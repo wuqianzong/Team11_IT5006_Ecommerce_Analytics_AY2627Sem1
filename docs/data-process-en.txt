@@ -1,0 +1,249 @@
+================================================================================
+Data Processing Report (data-process)
+Olist Brazilian E-Commerce · IT5006 Group 11 · Milestone 1 (Phase 1)
+Date: 2026-09-09
+================================================================================
+
+1. ARCHITECTURE OVERVIEW (FOUR LAYERS)
+================================================================================
+Raw  ->  Staging  ->  Core  ->  Marts  ->  Dashboard
+
+Each layer is validated before it feeds the next; a failed check stops the
+pipeline (§7) and no invalid file is written.
+
+  Layer      Location                Output                Purpose
+  ----       ----                    ----                  ----
+  Raw        data/raw/               9 CSV copies          immutable source data
+                                     + raw_manifest.csv    + SHA-256 provenance
+  Staging    data/staging/           9 Parquet             typed, source-aligned; no joins/aggregations
+  Core       data/processed/core/    8 Parquet             canonical facts + dimensions; explicit grain/PK
+  Marts      data/processed/marts/   5 Parquet             flat, ready-to-use; derived metrics live here
+  Dashboard  app.py + dashboard/     Streamlit app         reads marts only, never re-derives
+
+--------------------------------------------------------------------------------
+
+2. DATA CLEANING & TRANSFORMATION
+--------------------------------------------------------------------------------
+Note: Olist is a clean public dataset, so "cleaning" here is mainly
+type normalisation + contract validation + one geographic filter + an explicit
+missing-value policy — not large-scale removal of dirty rows.
+
+2.1  Type normalisation (staging)
+  · datetime: pd.to_datetime(errors="coerce") -> datetime64
+      Effect: enables delivery_days and monthly/weekly resampling
+  · string: astype("string") -> nullable string
+      Effect: missing values unified as <NA>, avoiding "" vs NaN mixing
+  · category: astype("category")
+      Effect: low-cardinality enums (order_status / payment_type / state)
+  · int64/float64: astype(...)
+      Effect: explicit numeric dtypes (int only for columns with no missing)
+
+2.2  Contract validation (domains / ranges / dates)
+  · Enum whitelists: order_status (8), payment_type (5), review_score (1-5),
+    27 Brazilian state codes
+  · Numeric ranges: price / freight_value >= 0; zip prefix 0-100000; lat/lng plausible
+  · Date range: 2015-01-01 .. 2021-01-01
+    (upper bound widened to 2021 to accommodate 4 anomalous 2020 shipping dates,
+     which are retained, not dropped)
+  · Any violation -> pipeline STOPS and does not write that file
+
+2.3  Primary key & row conservation
+  · PK unique + non-null enforced on: orders, order_items, payments, customers,
+    sellers, products
+  · Two tables intentionally have no PK (a data property, not an error):
+      - reviews: review_id has 789 ids duplicated across 1,603 rows
+      - geolocation: duplicate (zip, lat, lng) rows; no natural key
+  · Row conservation: each layer's row count must equal the previous layer's
+    (cleaning never silently adds or drops rows)
+
+2.4  Geographic filtering (core dim_geography — the only real row removal)
+  · ~1.0M geolocation rows contain 26 rows with out-of-Brazil coordinates
+  · Staging keeps them (source-aligned); core filters to the Brazil bounding box
+      lat ∈ [-33.75, 5.30], lng ∈ [-74, -34]
+  · Then aggregates to zip-prefix centroids: state/city = mode, lat/lng = mean,
+    n_records = count  ->  19,010 zip prefixes
+
+2.5  Missing-value policy (explicit, documented)
+  · Delivery/approval dates for non-delivered orders -> NA (a business fact)
+  · Review comment title/message often empty -> <NA>
+  · 610 "orphan" products (no category/name/photo metadata) -> <NA>
+  · English category name missing -> fall back to Portuguese -> then "unknown"
+
+2.6  Determinism
+  · The same raw input, serialised twice, yields byte-identical Parquet
+    (reproducible by any teammate)
+
+--------------------------------------------------------------------------------
+
+3. LAYER OUTPUTS (row counts, all validation green)
+--------------------------------------------------------------------------------
+Staging (9 source-aligned tables)
+  orders        99,441
+  order_items  112,650
+  payments     103,886
+  reviews       99,224
+  customers     99,441
+  sellers        3,095
+  products      32,951
+  geolocation 1,000,163
+  translation       71
+
+Core (8 tables: 4 facts + 4 dimensions)
+  fact_orders       99,441
+  fact_order_items 112,650
+  fact_payments    103,886
+  fact_reviews      99,224
+  dim_customers     99,441
+  dim_products      32,951
+  dim_sellers        3,095
+  dim_geography     19,010   (aggregated/deduped from ~1.0M geolocation rows)
+
+Marts (5 ready-to-use tables)
+  mart_order_dashboard  99,441   one row per order
+  mart_order_items     112,650   one row per (order, item)
+  mart_category_daily   18,990   one row per (date, category)
+  mart_state_summary        27   one row per state
+  mart_data_quality         12   one row per materialised table
+
+Manifest
+  raw_manifest.csv  9 rows (byte_count / row_count / sha256)
+
+--------------------------------------------------------------------------------
+
+4. DERIVED METRICS (marts only — forbidden in core, §4.5)
+--------------------------------------------------------------------------------
+  Temporal: order_purchase_date / year / month / year_month /
+            day_of_week / day_name / hour
+  Delivery: delivery_days (= delivered - purchased),
+            late_days (= delivered - estimated), is_on_time, is_late
+            (filled only for delivered orders, else NaN)
+  Payment rollup: payment_value_total, payment_installments_max,
+            payment_count, payment_type_primary (largest-value type)
+  Order rollup: order_item_count, order_price_total, order_freight_total,
+            order_value_total, distinct_categories, top_category
+
+  Key rule: order-level monetary totals are aggregated item -> order first,
+  never summed directly from the item grain (avoids double-counting when an
+  order has several items).
+
+--------------------------------------------------------------------------------
+
+5. DASHBOARD CHART -> TABLE MAPPING (complete)
+--------------------------------------------------------------------------------
+The dashboard now reads all 5 marts (previously only 2; completed this phase).
+
+  Section         Chart / table             Source           Key columns
+  ----            ----                      ----             ----
+  KPI             metric x period scorecard order_dashboard  order_value_total / is_on_time /
+                                                              delivery_days / review_score
+  Top 20          category detail table     order_items      price / item_value / freight_value /
+                                                              review_score / delivery_days
+  Gainers/Losers  category revenue change   order_items      price (sum, diff vs prior period)
+  Deep dive       revenue trend line        order_items      price (sum / period)
+  Deep dive       order volume bar          order_items      order_id (nunique / period)
+  Deep dive       review distribution       order_items      review_score (1-5, 100% stacked)
+  Deep dive       delivery boxplot          order_items      delivery_days (<=100, delivered)
+  Buyer geo       revenue/ratings/delivery  order_items      customer_state + price/review_score/delivery_days
+  Seller geo      revenue/ratings/delivery  order_items      seller_state   + price/review_score/delivery_days
+  State perf      Brazil map                state_summary    lat/lng + n_orders(size) + on_time_rate(colour)
+  State perf      on-time ranking           state_summary    on_time_rate
+  State perf      on-time vs speed scatter  state_summary    on_time_rate x avg_delivery_days (bubble=n_orders)
+  Category trend  top-6 revenue lines       category_daily   revenue (monthly, by category)
+  Category trend  category x month heatmap  category_daily   revenue (pivot category x month)
+  Data quality    status table + row bar    data_quality     layer/table/rows/status
+
+  Notes:
+  · KPI / Top 20 / Gainers-Losers / Deep dive / Buyer-Seller geo = respect the
+    sidebar start-end period filter.
+  · State performance (state_summary) and category trends (category_daily) are
+    full-history views: state_summary has no date field; category_daily shows
+    full-history seasonality and is not period-filtered.
+  · mart_state_summary n_orders / total_value / on_time_rate are computed over
+    delivered orders only.
+
+--------------------------------------------------------------------------------
+
+6. THE 5 TABLES THE DASHBOARD USES (DETAILED)
+--------------------------------------------------------------------------------
+Each mart, with purpose, grain, key fields, and dashboard usage.
+
+  [1] mart_order_dashboard — one row per order (99,441 rows)
+      Purpose: the order-level "fact" with item/review/payment metrics rolled
+      up, temporal fields, and delivery outcomes flattened into one row — the
+      single source for the executive KPI view.
+      Key fields:
+        · Order identity/status: order_id, customer_id, order_status
+        · Timestamps: order_purchase_timestamp, order_delivered_customer_date,
+                      order_estimated_delivery_date
+        · Customer: customer_unique_id, customer_city, customer_state
+        · Item/money rollup: order_item_count, order_price_total,
+                      order_freight_total, order_value_total,
+                      distinct_categories, top_category
+        · Review: review_score, review_creation_date, has_review
+        · Payment: payment_value_total, payment_installments_max,
+                      payment_count, payment_type_primary
+        · Temporal: order_purchase_date, year, month, year_month,
+                      day_of_week, day_name, hour
+        · Delivery outcomes: delivery_days, late_days, is_on_time, is_late
+      Dashboard usage:
+        · KPI scorecard (orders, revenue, AOV, repeat rate, on-time rate,
+          avg delivery days, avg review score — per period)
+        · The sidebar time-grain and start/end period filters are computed
+          from order_purchase_timestamp
+
+  [2] mart_order_items — one row per (order, item) (112,650 rows)
+      Purpose: the item-level detail, pre-joined with category/seller/customer/
+      review/payment context so category and geography views never re-join.
+      Key fields:
+        · Item identity: order_id, order_item_id, product_id, seller_id
+        · Value: price, freight_value, item_value (= price + freight)
+        · Category: product_category_name, product_category_name_english,
+                      product_weight_g
+        · Order context: order_status, order_purchase_timestamp,
+                      order_delivered_customer_date, order_estimated_delivery_date
+        · Customer: customer_unique_id, customer_city, customer_state
+        · Seller: seller_city, seller_state
+        · Review/payment: review_score, payment_value_total, ... payment_type_primary
+        · Temporal + delivery: (same as above) + delivery_days, late_days,
+                      is_on_time, is_late
+      Dashboard usage:
+        · Top 20 category table (revenue, orders, customers, avg rating,
+          avg delivery days, % 1-2-star ratings)
+        · Category gainers/losers (period-over-period revenue change)
+        · Category deep-dive (revenue trend, order volume, review distribution,
+          delivery boxplot)
+        · Buyer geo profile (customer_state) and Seller geo profile (seller_state)
+
+  [3] mart_state_summary — one row per state (27 rows)
+      Purpose: full state-level centroid + delivery-quality aggregates
+      (computed over delivered orders).
+      Key fields:
+        · state, state_name
+        · lat, lng (centroid, for map positioning)
+        · zip_prefix_count
+        · n_orders, total_value, avg_delivery_days, on_time_rate
+      Dashboard usage:
+        · Brazil map (bubble size = orders, colour = on-time rate)
+        · State on-time-rate ranking bar (worst first)
+        · On-time rate vs avg delivery days scatter (bubble = orders)
+
+  [4] mart_category_daily — one row per (date, category) (18,990 rows)
+      Purpose: additive daily counts per category, enabling daily-grain time series.
+      Key fields:
+        · n_orders, items_sold, revenue
+        · avg_price, avg_freight
+        · n_delivered, n_on_time
+        · n_reviews, sum_review_score, n_1_2_star
+        · n_customers
+      Dashboard usage:
+        · Top 6 categories revenue comparison lines (multi-category side by side)
+        · Category x month revenue heatmap (seasonality overview)
+
+  [5] mart_data_quality — one row per materialised table (12 rows)
+      Purpose: operational/metadata self-check — not business data.
+      Key fields: layer, table, grain, rows, primary_key, pk_unique, status
+      Dashboard usage:
+        · Data-quality status table (collapsed panel)
+        · Row count per table bar (log scale)
+
+================================================================================

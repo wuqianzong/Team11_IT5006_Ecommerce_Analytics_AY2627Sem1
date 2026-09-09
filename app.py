@@ -132,3 +132,29 @@ st.markdown("---")
 
 st.header("🏬 SELLER GEOGRAPHIC PROFILE ANALYSIS")
 _geo_profile(items_f, "seller_state", "Seller State", theme.SELLER_ORANGE)
+st.markdown("---")
+
+# ---- 7. national state performance (mart_state_summary, delivered orders) --
+st.header("🗺️ NATIONAL STATE PERFORMANCE (all 27 states)")
+st.caption("Aggregated over delivered orders — full history, not period-filtered.")
+state_summary = data_loader.load_geo_state()
+st.plotly_chart(charts.state_map(state_summary), width="stretch", key="state_map")
+col = st.columns(2)
+col[0].plotly_chart(charts.state_on_time_bar(state_summary), width="stretch", key="state_ontime")
+col[1].plotly_chart(charts.state_on_time_scatter(state_summary), width="stretch", key="state_scatter")
+st.markdown("---")
+
+# ---- 8. category time trends (mart_category_daily, daily grain) ----
+st.header("📅 CATEGORY TIME TRENDS")
+st.caption("Full-history seasonality view (daily grain), not affected by the period filter.")
+cat_daily = data_loader.load_category_daily()
+col = st.columns(2)
+col[0].plotly_chart(charts.category_multi_line(cat_daily, "revenue"), width="stretch", key="cat_multi")
+col[1].plotly_chart(charts.category_heatmap(cat_daily, "revenue"), width="stretch", key="cat_heat")
+st.markdown("---")
+
+# ---- 9. data quality (collapsed pipeline-health panel) ----
+with st.expander("🔧 Data Quality (pipeline health)", expanded=False):
+    dq = data_loader.load_data_quality()
+    st.dataframe(dq, width="stretch", hide_index=True)
+    st.plotly_chart(charts.data_quality_bar(dq), width="stretch", key="dq_bar")

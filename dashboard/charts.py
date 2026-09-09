@@ -387,3 +387,89 @@ def state_revenue_bar(df: pd.DataFrame, state_col: str, value_col: str,
     fig.update_xaxes(title="Revenue (R$)", rangemode="tozero")
     fig.update_yaxes(title=None)
     return theme.apply_layout(fig, title=title, height=360)
+
+
+# ----------------------------------------------------------------------
+# National state performance (mart_state_summary)
+# ----------------------------------------------------------------------
+def state_on_time_bar(state_summary: pd.DataFrame, height: int = 560) -> go.Figure:
+    """Rank all states by on-time delivery rate (worst first)."""
+    d = state_summary.dropna(subset=["on_time_rate"]).sort_values("on_time_rate")
+    fig = go.Figure(go.Bar(x=d["on_time_rate"], y=d["state_name"], orientation="h",
+                           marker_color=theme.BLUE_BAR))
+    fig.update_xaxes(title="On-time rate", tickformat=".0%", rangemode="tozero")
+    fig.update_yaxes(title=None)
+    return theme.apply_layout(fig, title="On-time delivery rate by state (worst first)",
+                              height=height)
+
+
+def state_on_time_scatter(state_summary: pd.DataFrame, height: int = 560) -> go.Figure:
+    """Reliability (on-time) vs speed (delivery days); bubble size = orders."""
+    d = state_summary.dropna(subset=["on_time_rate", "avg_delivery_days"])
+    fig = px.scatter(d, x="avg_delivery_days", y="on_time_rate", size="n_orders",
+                     size_max=50, hover_name="state_name",
+                     hover_data={"n_orders": True, "total_value": True},
+                     color_discrete_sequence=[theme.BLUE_PRIMARY])
+    fig.update_xaxes(title="Avg delivery days")
+    fig.update_yaxes(title="On-time rate", tickformat=".0%")
+    return theme.apply_layout(fig, title="On-time rate vs delivery speed (bubble = orders)",
+                              height=height)
+
+
+# ----------------------------------------------------------------------
+# Category time trends (mart_category_daily)
+# ----------------------------------------------------------------------
+def category_multi_line(cat_daily: pd.DataFrame, metric: str = "revenue",
+                        top_n: int = 6, height: int = 480) -> go.Figure:
+    """Top-N categories as separate monthly lines (side-by-side comparison)."""
+    d = cat_daily.copy()
+    d["month"] = d["order_purchase_date"].dt.to_period("M").astype(str)
+    top = (d.groupby("product_category_name_english")[metric].sum()
+            .nlargest(top_n).index.tolist())
+    d = d[d["product_category_name_english"].isin(top)]
+    monthly = (d.groupby(["month", "product_category_name_english"], as_index=False)[metric]
+                 .sum().sort_values("month"))
+    fig = px.line(monthly, x="month", y=metric, color="product_category_name_english",
+                  color_discrete_sequence=theme.CATEGORICAL)
+    fig.update_xaxes(title="Month")
+    fig.update_yaxes(title=metric.replace("_", " ").title())
+    fig = theme.apply_layout(fig, title=f"Top {top_n} categories — {metric} over time",
+                             height=height)
+    fig.update_layout(legend_title_text="Category")
+    return fig
+
+
+def category_heatmap(cat_daily: pd.DataFrame, metric: str = "revenue",
+                     top_n: int = 15, height: int = 480) -> go.Figure:
+    """Category × month heatmap of a metric (compact seasonality overview)."""
+    d = cat_daily.copy()
+    d["month"] = d["order_purchase_date"].dt.to_period("M").astype(str)
+    top = (d.groupby("product_category_name_english")[metric].sum()
+            .nlargest(top_n).index.tolist())
+    d = d[d["product_category_name_english"].isin(top)]
+    pivot = d.pivot_table(index="product_category_name_english",
+                          columns="month", values=metric, aggfunc="sum", fill_value=0.0)
+    pivot = pivot.loc[pivot.sum(axis=1).sort_values(ascending=False).index]
+    fig = go.Figure(go.Heatmap(
+        z=pivot.values, x=list(pivot.columns), y=list(pivot.index),
+        colorscale=theme.SEQUENTIAL_BLUE,
+        colorbar=dict(title=metric.replace("_", " ").title(), thickness=12, outlinewidth=0),
+    ))
+    fig.update_xaxes(title="Month", tickangle=45)
+    fig.update_yaxes(title="Category")
+    return theme.apply_layout(fig, title=f"Category × month {metric} heatmap", height=height)
+
+
+# ----------------------------------------------------------------------
+# Data-quality panel (mart_data_quality)
+# ----------------------------------------------------------------------
+def data_quality_bar(dq: pd.DataFrame, height: int = 420) -> go.Figure:
+    """Row count per materialised table (log scale — spans 71 .. 1M rows)."""
+    d = dq.sort_values("rows").copy()
+    d["label"] = d["layer"] + " · " + d["table"]
+    colors = [theme.STATUS["good"] if s == "OK" else theme.STATUS["critical"]
+              for s in d["status"]]
+    fig = go.Figure(go.Bar(x=d["rows"], y=d["label"], orientation="h", marker_color=colors))
+    fig.update_xaxes(title="Rows", type="log")
+    fig.update_yaxes(title=None)
+    return theme.apply_layout(fig, title="Row count per table (log scale)", height=height)
