@@ -1,269 +1,190 @@
 # IT5006 Group 11 Data Architecture
 
-Status: **authoritative project specification**
+Status: **Authoritative Project Specification**  
+Applies to: **Milestones 1, 2, and 3**  
+Last updated: **2026-09-11**
 
-Applies to: Milestones 1, 2, and 3
+---
 
-Last updated: 2026-09-08
+## 1. Purpose & Guiding Principles
 
-## 1. Purpose
+This document defines how project data must be stored, transformed, validated, and consumed across all phases of the IT5006 project. **All human contributors and AI coding agents must read and strictly adhere to this architecture** before adding or modifying any dataset, transformation script, notebook, dashboard metric, or machine learning model.
 
-This document defines how project data must be stored, transformed, validated,
-and consumed. Human contributors and AI agents must read this document before
-adding a dataset, transformation, dashboard metric, machine-learning feature,
-or deployment input.
+### Four Core Architecture Principles:
+1. **Raw Immutability**: Preserve the original 9 Olist CSV files exactly as downloaded from Canvas.
+2. **Deterministic 3-Layer Lineage**: Every derived table must be reproducible from code through a clear 3-layer architecture (`raw` $\rightarrow$ `preprocessed` $\rightarrow$ `business`).
+3. **Leakage & Bias Prevention**: Keep executive dashboard filtering (e.g. date clipping to stable operating months) strictly isolated from machine learning datasets (`business/dashboard/` vs. `business/ml/`).
+4. **Course Compliance**: Maintain strict compliance with the directory specification defined in **Page 7 of the IT5006 Project Description**.
 
-The architecture has four goals:
+---
 
-1. Preserve the original Olist data exactly as received.
-2. Make every derived table deterministic and reproducible from code.
-3. Prevent inconsistent dashboard calculations and machine-learning leakage.
-4. Support the complete project without unnecessary database infrastructure.
-
-## 2. Authoritative data flow
+## 2. Authoritative Data Flow & Lineage
 
 ```mermaid
-flowchart LR
-    Raw["Raw: immutable source files"] --> Staging["Staging: typed and source-aligned"]
-    Staging --> Core["Core: canonical facts and dimensions"]
-    Core --> Marts["Business marts: dashboard-ready"]
-    Marts --> Dashboard["EDA dashboard and reports"]
-    Core --> Features["Point-in-time ML features"]
-    Core --> Targets["ML targets"]
-    Features --> Splits["Versioned train, validation, test sets"]
-    Targets --> Splits
-    Splits --> Training["Scikit-learn pipelines"]
-    Training --> Artifacts["Models, metrics, feature schemas"]
-    Artifacts --> Deployment["Deployed prediction application"]
+flowchart TD
+    subgraph Layer1 ["Layer 1: Raw (Immutable)"]
+        Raw["data/raw/*.csv<br>(9 original Olist CSV files)"]
+    end
+
+    subgraph Notebook1 ["Stage 1: Cleaning Pipeline"]
+        NB1["notebooks/01_data_cleaning.ipynb<br>• Preserves 5-digit zip strings (01037)<br>• Converts ISO timestamps<br>• Removes 261k exact duplicate GPS rows<br>• 100% row preservation on transactions"]
+    end
+
+    subgraph Layer2 ["Layer 2: Preprocessed (Lossless Baseline)"]
+        Preprocessed["data/preprocessed/*.csv<br>(9 clean, typed baseline CSVs)"]
+    end
+
+    subgraph Notebook2 ["Stage 2: Dashboard Transformation Pipeline"]
+        NB2["notebooks/02_dashboard_preprocessing.ipynb<br>• Rules A–G applied<br>• Date filter: 2017-01 to 2018-08<br>• Lowest review score collapsing<br>• Delivery metrics: delivery_days, is_on_time"]
+    end
+
+    subgraph Layer3 ["Layer 3: Business Derived Layers"]
+        BizDash["data/business/dashboard/*.csv<br>(9 dashboard-ready CSVs)"]
+        BizML["data/business/ml/<br>(Point-in-time features, targets & splits)<br><i>Phase 2</i>"]
+    end
+
+    subgraph Consumers ["Consumers & Deployment"]
+        Loader["deployment/data_loader.py<br>(Cached memory loaders)"]
+        Streamlit["deployment/app.py & app.py<br>(Executive Streamlit Dashboard)"]
+        MLModels["src/models/ & artifacts/<br>(Scikit-Learn / XGBoost models)"]
+    end
+
+    Raw --> NB1 --> Preprocessed
+    Preprocessed --> NB2 --> BizDash
+    BizDash --> Loader --> Streamlit
+    Preprocessed --> BizML --> MLModels
 ```
 
-The raw layer is the source of record. The core layer is the analytical source
-of truth. Business marts and ML datasets are purpose-specific derivatives; they
-must never redefine or overwrite canonical records.
+---
 
-## 3. Directory contract
+## 3. Directory Contract (Page 7 Compliance)
+
+To satisfy grading requirements, root folders are strictly restricted to the official course structure:
 
 ```text
-data/
-  raw/                         Original source files; local and immutable
-  staging/                     Rebuildable typed source-level tables
-  processed/
-    core/                      Canonical facts and dimensions
-    marts/                     Dashboard and reporting tables
-    ml/                        Features, targets, and split assignments
-  metadata/                    Dictionaries, manifests, and quality reports
-preprocessing/                 Ingestion, core, mart, and validation pipelines
-src/
-  features/                    Point-in-time features, targets, and splits
-  models/                      Training and evaluation code
-  common/                      Shared constants and utilities
-notebooks/
-  01_eda/                      Exploratory analysis
-  02_problem_definition/       Target and business-problem definition
-  03_modeling/                 Experiments; not production transformations
-deployment/                    Inference and final application code
-artifacts/
-  models/                      Serialized fitted pipelines
-  metrics/                     Evaluation results
-  feature_schemas/             Inference input contracts
-tests/                         Data-contract and code tests
-docs/                          Project specifications and decisions
+IT5006_GRP11/
+├── data/
+│   ├── raw/                  # 9 original Olist CSV files (read-only, immutable)
+│   ├── preprocessed/         # 9 cleaned baseline CSVs (lossless type standardization)
+│   └── business/
+│       ├── dashboard/        # 9 processed CSVs with business rules applied (Streamlit ready)
+│       └── ml/               # [Phase 2] Point-in-time features, targets, and train/test splits
+│
+├── notebooks/
+│   ├── 01_data_cleaning.ipynb            # Pipeline: data/raw/ -> data/preprocessed/
+│   └── 02_dashboard_preprocessing.ipynb  # Pipeline: data/preprocessed/ -> data/business/dashboard/
+│
+├── deployment/               # Official directory for the dashboard & inference apps
+│   ├── app.py                # Main Streamlit dashboard application entrypoint
+│   ├── data_loader.py        # Central data access layer reading from data/business/dashboard/
+│   ├── charts.py             # Plotly visualization components
+│   ├── tables.py             # KPI summary tables and scorecards
+│   └── theme.py              # CSS styling and color palette
+│
+├── src/                      # Reusable Python modules
+│   ├── common/               # Shared constants, column types, and utility functions
+│   ├── features/             # [Phase 2] Feature engineering and encoders
+│   └── models/               # [Phase 2] Model training, hyperparameter tuning, and evaluation
+│
+├── docs/
+│   ├── data_architecture.md  # This document: authoritative system architecture
+│   └── references/           # Course Project Description PDF & 6 literature review papers
+│
+├── artifacts/                # Generated build outputs (not source code)
+│   ├── models/               # Serialized .joblib model pipelines
+│   └── metrics/              # Model evaluation metrics & confusion matrices
+│
+├── app.py                    # Root entrypoint launcher for Streamlit Cloud
+├── requirements.txt          # Frozen dependencies
+└── README.md                 # Project documentation and navigation guide
 ```
 
-Empty directories contain `.gitkeep` so the structure is available after a
-clone. Local data and generated model artifacts are excluded by `.gitignore`.
+> [!WARNING]
+> **Prohibited Root Directories**: Do not create or reintroduce folders such as `dashboard/`, `Clean data/`, `Dashboard data/`, `Project files/`, or `preprocessing/` under root. Any helper code belongs in `src/`, notebooks in `notebooks/`, and application components in `deployment/`.
 
-The four compressed CSV files currently stored directly under `data/` are the
-legacy Milestone 1 dashboard interface. They may remain in place until the
-dashboard loader is deliberately migrated to `data/processed/marts/`.
+---
 
-## 4. Layer specifications
+## 4. Layer Specifications & Data Contracts
 
-### 4.1 Raw layer
+### 4.1 Layer 1: Raw (`data/raw/`)
+Contains byte-for-byte copies of the 9 original Olist dataset files:
+- `olist_orders_dataset.csv`
+- `olist_order_items_dataset.csv`
+- `olist_order_payments_dataset.csv`
+- `olist_order_reviews_dataset.csv`
+- `olist_customers_dataset.csv`
+- `olist_sellers_dataset.csv`
+- `olist_products_dataset.csv`
+- `olist_geolocation_dataset.csv`
+- `product_category_name_translation.csv`
 
-`data/raw/` contains exact copies of the nine original Olist CSV files.
+**Rules**:
+- Immutable: Never edit, rename columns, filter, or overwrite any raw file.
+- Applications and ML scripts must **never** read directly from `data/raw/`.
 
-Rules:
+---
 
-- Never edit, rename columns in, deduplicate, or overwrite a raw file.
-- Copy files byte-for-byte; do not synthesize or manually reconstruct data.
-- Record the file name, byte count, row count, and SHA-256 checksum in a raw
-  manifest when the ingestion pipeline is implemented.
-- Raw files stay local and must not be committed unless the team explicitly
-  changes the data-distribution policy.
-- A pipeline must fail clearly when an expected file is absent.
+### 4.2 Layer 2: Preprocessed (`data/preprocessed/`)
+Generated exclusively by [`notebooks/01_data_cleaning.ipynb`](file:///Users/bensonwu/Projects/IT5006_GRP11/notebooks/01_data_cleaning.ipynb).
 
-### 4.2 Staging layer
+**Transformations Applied**:
+- **Lossless Typings**: Timestamps parsed to ISO-8601 datetimes (`YYYY-MM-DD HH:MM:SS`); IDs preserved as clean strings; numeric values cast to float/int.
+- **Zip-Code Preservation**: 5-digit Brazilian postal code prefixes are stored as **zero-padded strings** (e.g. `'01037'`), avoiding integer truncations.
+- **Geolocation Deduplication**: 261,831 byte-identical duplicate rows are removed from `olist_geolocation_dataset.csv`, leaving 738,332 unique geographic coordinate rows.
+- **Row Conservation**: Zero rows are dropped from all 8 transaction and dimension tables.
 
-`data/staging/` contains one output per source table. Staging may standardize
-column names, parse dates, assign data types, and handle documented malformed
-values, but it must retain the source table's grain.
+---
 
-Staging transformations must be deterministic. They must not perform business
-aggregations, dashboard calculations, target construction, or cross-table joins.
+### 4.3 Layer 3A: Business Dashboard (`data/business/dashboard/`)
+Generated exclusively by [`notebooks/02_dashboard_preprocessing.ipynb`](file:///Users/bensonwu/Projects/IT5006_GRP11/notebooks/02_dashboard_preprocessing.ipynb).
 
-### 4.3 Canonical core layer
+**Business Rules Applied (Steps A–G)**:
+- **Rule A (Order Timestamps)**: Drops orders with timestamp sequence errors (`order_delivered_carrier_date < order_approved_at` or `order_delivered_customer_date < order_delivered_carrier_date`).
+- **Rule B (Review Collapsing)**: Collapses multi-reviews for the same order into a single row, retaining the **lowest review score** to reflect customer friction.
+- **Rule C (Invalid Payments)**: Filters out invalid records where `payment_value == 0` and `payment_type == 'not_defined'`.
+- **Rule D (Ghost Orders)**: Drops orders without associated items in `olist_order_items_dataset.csv`.
+- **Rule E (Derived Delivery Columns)**: Calculates `delivery_days` (purchase to customer delivery) and boolean `is_on_time` (`order_delivered_customer_date <= order_estimated_delivery_date`).
+- **Rule F (Revenue)**: Calculates `item_revenue = price + freight_value`.
+- **Rule G (Stable Operating Window)**: Truncates orders to the complete, stable operating period (**2017-01 through 2018-08**), excluding incomplete border months.
+- **Pass-through**: Dimension tables (`customers`, `sellers`, `products`, `geolocation`, `translation`) pass through unchanged.
 
-`data/processed/core/` contains reusable facts and dimensions. Each table must
-have an explicit grain and primary-key expectation.
+---
 
-| Table | Required grain |
-| --- | --- |
-| `fact_orders` | one row per `order_id` |
-| `fact_order_items` | one row per (`order_id`, `order_item_id`) |
-| `fact_payments` | one row per source payment record |
-| `fact_reviews` | one row per review record |
-| `dim_customers` | one row per customer identifier at the documented level |
-| `dim_products` | one row per `product_id` |
-| `dim_sellers` | one row per `seller_id` |
-| `dim_geography` | one row per documented geographic key |
+### 4.4 Layer 3B: Business ML (`data/business/ml/`) — *Phase 2*
+Reserved for predictive modeling (e.g., delivery delay prediction, customer lifetime value, review rating prediction).
 
-`customer_id` identifies a customer record associated with an order, whereas
-`customer_unique_id` is the identifier for customer-level behavior. Code must
-not treat these identifiers as interchangeable.
+**Rules for ML Feature Engineering**:
+- **Cutoff Time**: Features must only represent information available at the moment of checkout (`order_purchase_timestamp`).
+- **Prohibited Features (Data Leakage)**:
+  - Any post-purchase timestamps (`order_approved_at`, `order_delivered_carrier_date`, `order_delivered_customer_date`).
+  - Target variables or derived delivery metrics (`delivery_days`, `is_on_time`).
+  - Review score and review comments.
+- **Split Isolation**: Train/validation/test splits must be stratified or chronological, versioned, and grouped by `customer_unique_id` to prevent cross-set leakage.
 
-Order-level measures must not be summed from an item-grain table. For example,
-if total order payment is repeated on every order item, summing that field will
-double-count multi-item orders. Joins must document their expected cardinality.
+---
 
-### 4.4 Business mart layer
+## 5. Consumer Standards (Streamlit & Deployment)
 
-`data/processed/marts/` contains stable, presentation-ready tables. Recommended
-marts are:
+1. **Access Path**:
+   All dashboard views in `deployment/` must load data via [`deployment/data_loader.py`](file:///Users/bensonwu/Projects/IT5006_GRP11/deployment/data_loader.py).
+2. **Caching**:
+   Use `@st.cache_data` for all data loading routines to ensure sub-second dashboard interactions.
+3. **No Direct Ad-Hoc Filtering**:
+   Pages should visualize pre-calculated metrics rather than recalculating complex joins repeatedly across multiple UI widgets.
 
-- `mart_order_dashboard`: one row per order, including observed outcomes.
-- `mart_category_daily`: one row per date and product category.
-- `mart_state_summary`: one row per state and reporting period.
-- `mart_data_quality`: validation results for operational visibility.
+---
 
-Normal dashboard pages must read business marts, not reproduce joins and metric
-logic independently. Access to core or staging data is allowed only for an
-explicit drill-down or data-quality use case.
+## 6. Mandatory Rules for Future Contributors & AI Agents
 
-Marts are logical views but may be materialized as Parquet or compressed CSV.
-Runtime SQL views are optional. For this dataset, reproducible materialized
-tables are preferred because they simplify Streamlit deployment.
+When interacting with this repository, every contributor and AI agent must observe the following constraints:
 
-### 4.5 Machine-learning layer
-
-`data/processed/ml/` must keep inputs, outcomes, and data splits separate:
-
-| Dataset | Grain | Purpose |
-| --- | --- | --- |
-| `order_features_at_purchase` | one row per order | predictor values known at prediction time |
-| `order_targets` | one row per order | classification and regression outcomes |
-| `split_assignments` | one row per order | reproducible train/validation/test membership |
-
-The default prediction moment is **immediately after checkout**. Every feature
-must have been available at that moment. If the prediction moment changes, it
-must be recorded as an architecture decision and the feature dataset renamed or
-versioned.
-
-Candidate features include purchase time components, customer and seller
-geography, product category and dimensions, item count, price, freight, and
-checkout payment information. Historical aggregates must use only events that
-occurred before the order being predicted.
-
-The following observed outcomes are prohibited as model features:
-
-- actual customer or carrier delivery dates;
-- delivery duration, late days, `is_late`, or `is_on_time`;
-- review score, review text, or review timestamps;
-- post-checkout status information; and
-- aggregates that include future orders or the target order's outcome.
-
-The initial targets are:
-
-- classification: `is_late`, defined from promised versus actual delivery; and
-- regression: `delivery_days`, defined from purchase to actual delivery.
-
-Eligibility rules, such as whether cancelled or undelivered orders are excluded,
-must be implemented once in target-building code and documented in metadata.
-
-## 5. Reproducible splitting and modelling
-
-- Generate split assignments once with a documented seed and split version.
-- Prefer a chronological held-out test set when claiming to predict future
-  orders. Use a stratified split for same-period classification experiments.
-- If customer history is used, group by `customer_unique_id` so the same person
-  cannot leak between training and evaluation sets.
-- Never use the test set to select features, tune thresholds, or choose a model.
-- Missing-value handling, encoding, scaling, sampling, and estimation must be
-  combined in a fitted scikit-learn pipeline.
-- Save the complete fitted pipeline, not only the estimator.
-- Store the input feature schema, training configuration, random seed, metrics,
-  and training-data version beside each model artifact.
-
-At minimum, classification evaluation should include precision, recall, F1,
-PR-AUC, ROC-AUC, and a confusion matrix. Regression evaluation should include
-MAE, RMSE, and R-squared.
-
-## 6. Storage conventions
-
-- Raw inputs: original CSV format.
-- Staging, core, and ML tables: Parquet is preferred for preserved types and
-  compression.
-- Small deployment marts: Parquet or `.csv.gz` are both acceptable.
-- Model pipelines: `.joblib`.
-- Metrics, schemas, and run metadata: JSON or Markdown.
-
-Do not add SQLite, DuckDB, or a remote database unless it solves a demonstrated
-need. The architecture is based on data contracts and reproducible layers, not
-on a particular storage engine.
-
-## 7. Required validation
-
-Every materialized dataset must be checked before publication. Tests should
-cover, where applicable:
-
-- expected columns and data types;
-- unique and non-null primary keys;
-- accepted categorical values;
-- plausible numeric and date ranges;
-- source and output row counts;
-- referential integrity between facts and dimensions;
-- join cardinality and unexpected row multiplication;
-- deterministic output for identical inputs;
-- raw-file checksum agreement; and
-- absence of prohibited outcome columns from ML features.
-
-A failed required validation must stop the pipeline rather than silently publish
-an invalid table.
-
-## 8. Milestone responsibilities
-
-### Milestone 1
-
-Build and validate raw, staging, core, and business-mart transformations. The EDA
-dashboard consumes business marts. Outcome fields are acceptable in descriptive
-dashboard marts when clearly labelled.
-
-### Milestone 2
-
-Build versioned point-in-time features, targets, split assignments, training
-pipelines, and evaluation outputs. Notebooks may explore models but reusable
-feature and training logic must be moved into `src/`.
-
-### Milestone 3
-
-Select at least one complete fitted pipeline for deployment. The deployed app
-must validate inference inputs against the saved feature schema and apply the
-same preprocessing used during training. Dashboard reporting continues to read
-business marts; prediction pages use model artifacts.
-
-## 9. Change rules for contributors and AI agents
-
-Before changing the data flow:
-
-1. Identify the affected layer and table grain.
-2. Confirm whether the change uses information available at prediction time.
-3. Add or update validation for the affected contract.
-4. Keep transformations in code; never patch generated datasets manually.
-5. Update this document when a layer, grain, prediction moment, target, storage
-   convention, or consumer contract changes.
-6. Do not move the legacy dashboard files until the loader and documentation are
-   updated in the same change.
-
-When a requirement is ambiguous, preserve raw data and existing interfaces, and
-record the unresolved decision rather than inventing data or silently changing a
-metric definition.
+1. **Do Not Recreate Stale Directories**:
+   Never create `data/staging/`, `data/processed/`, `Clean data/`, `Dashboard data/`, `Project files/`, `dashboard/`, or `preprocessing/`.
+2. **Respect the Lineage**:
+   - For data cleaning changes $\rightarrow$ modify [`notebooks/01_data_cleaning.ipynb`](file:///Users/bensonwu/Projects/IT5006_GRP11/notebooks/01_data_cleaning.ipynb).
+   - For dashboard data preparation changes $\rightarrow$ modify [`notebooks/02_dashboard_preprocessing.ipynb`](file:///Users/bensonwu/Projects/IT5006_GRP11/notebooks/02_dashboard_preprocessing.ipynb).
+   - For dashboard UI / visualization changes $\rightarrow$ modify files in [`deployment/`](file:///Users/bensonwu/Projects/IT5006_GRP11/deployment/).
+3. **Never Commit Without Explicit Instruction**:
+   Always keep code and data modifications in the working tree for human team review unless the user explicitly commands a `git commit`.
+4. **Preserve Relative Path Autonomy**:
+   Notebooks and scripts must resolve the repository root dynamically (e.g., using `Path(__file__).resolve().parent...` or scanning upwards for `data/raw/olist_orders_dataset.csv`), so they execute identically across macOS, Windows, and Linux environments.

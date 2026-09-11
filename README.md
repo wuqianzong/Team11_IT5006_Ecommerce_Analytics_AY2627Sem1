@@ -1,90 +1,101 @@
-# IT5006 Group 11 — Dashboard (Milestone 1)
+# SmartCommerce — IT5006 Group 11 (Olist E-Commerce Analytics)
 
-Layered data pipeline + Streamlit executive dashboard for the Olist e-commerce
-dataset, built to the team specification in `docs/data_architecture.md`.
+Interactive Streamlit Executive Dashboard and Data Analytics Pipeline for the **Olist Brazilian E-Commerce** dataset (2016–2018), built for **IT5006: Fundamentals of Data Analytics (AY 2026/27 Semester 1)**.
 
-This branch ships the **dashboard and the pre-generated processed data together**:
-teammates can run the dashboard or load the data directly without re-running the
-pipeline. The source-raw CSVs (a public byte-for-byte copy, ~121 MB) are **not**
-committed — see *Data policy* below.
+---
 
-## Structure
+## 📁 Repository Structure
 
+The repository strictly follows the official course specification (**Page 7 of the Project Description**):
+
+```text
+.
+├── data/
+│   ├── raw/                  # 9 original, untouched Olist CSV files
+│   ├── preprocessed/         # 9 cleaned & typed baseline CSVs (lossless type standardization)
+│   └── business/
+│       └── dashboard/        # 9 processed CSVs with business rules applied (ready for Streamlit)
+│
+├── notebooks/
+│   ├── 01_data_cleaning.ipynb            # Stage 1: raw -> preprocessed (types, zip codes, GPS dedup)
+│   └── 02_dashboard_preprocessing.ipynb  # Stage 2: preprocessed -> business/dashboard (filtering & metrics)
+│
+├── deployment/               # Official directory for the dashboard application
+│   ├── app.py                # Main Streamlit dashboard application
+│   ├── data_loader.py        # Cached CSV loaders (reads from data/business/dashboard/)
+│   ├── charts.py             # Plotly interactive chart builders
+│   ├── tables.py             # Executive KPI scorecard and category tables
+│   └── theme.py              # Visual design, palette, and styling
+│
+├── src/                      # Reusable Python source code and shared utilities
+│   └── common/               # Shared schemas and data loaders
+│
+├── docs/
+│   ├── references/           # Course project description & 6 curated literature review PDFs
+│   └── data_architecture.md  # Architectural specification and data contracts
+│
+├── app.py                    # Root entrypoint launcher (runs deployment/app.py)
+├── requirements.txt          # Python dependencies for local run and Streamlit Cloud
+└── README.md
 ```
-app.py                        Streamlit dashboard entry point
-dashboard/                    Dashboard module (charts, tables, theme, loader)
-preprocessing/                Pipeline: raw -> staging -> core -> marts -> validation
-src/common/                   Data contracts (schemas, core_schemas, loaders)
-docs/data_architecture.md     Authoritative team specification
-data/
-  staging/                    9 typed, source-aligned Parquet tables (committed)
-  processed/core/             8 canonical fact/dimension tables (committed)
-  processed/marts/            5 presentation-ready business marts (committed)
-  metadata/raw_manifest.csv   Raw-file manifest: byte count, row count, SHA-256 (committed)
-```
 
-## Data flow
+---
 
-| Layer | Location | Notes |
-| --- | --- | --- |
-| Raw | `data/raw/` | 9 original Olist CSVs, immutable, SHA-256 recorded (not committed) |
-| Staging | `data/staging/` | typed, source-aligned Parquet; no joins/aggregations |
-| Core | `data/processed/core/` | 8 facts/dimensions, explicit grain + primary key |
-| Marts | `data/processed/marts/` | 5 dashboard-ready tables; outcomes labelled here |
-| Dashboard | `app.py` + `dashboard/` | reads marts only |
+## 🔄 Data Architecture & Lineage
 
-## Run the dashboard (works out of the box)
+The data is organized into three clean layers under `data/`:
 
+$$\text{data/raw/} \xrightarrow[\text{01\_data\_cleaning.ipynb}]{\textbf{Stage 1: Clean}} \text{data/preprocessed/} \xrightarrow[\text{02\_dashboard\_preprocessing.ipynb}]{\textbf{Stage 2: Process}} \text{data/business/dashboard/}$$
+
+| Layer | Folder Path | Purpose & Rules |
+| :--- | :--- | :--- |
+| **1. Raw** | `data/raw/` | Exact, immutable copies of the 9 original Olist CSV files downloaded from Canvas. Never edit or overwrite manually. |
+| **2. Preprocessed** | `data/preprocessed/` | **Lossless baseline**: Parses ISO datetimes (`pd.to_datetime`), preserves 5-digit zip codes as strings (`01037`), checks categorical enums, and removes 261,831 exact duplicate GPS rows. Keeps 100% of transaction rows across all other tables. |
+| **3. Business** | `data/business/dashboard/` | **Dashboard-ready tables**: Applies business rules for executive presentation: removes timestamp sequence errors, filters orders to the stable operating period (**2017-01 to 2018-08**), collapses multi-reviews to the lowest review score, and pre-calculates `delivery_days`, `is_on_time`, and `item_revenue`. |
+
+> *Note for Phase 2 Modeling*: Future feature sets, target vectors, and train/test splits for machine learning will live under a dedicated `data/business/ml/` folder to prevent data leakage and avoid mixing modeling data with dashboard-specific date filters.
+
+---
+
+## 🚀 How to Run the Dashboard
+
+### 1. Install Dependencies
 ```bash
+pip install -r requirements.txt
+```
+
+### 2. Launch Streamlit
+You can run the dashboard from either the root launcher or directly from `deployment/`:
+```bash
+streamlit run deployment/app.py
+# or
 streamlit run app.py
 ```
+Open the printed local URL (usually `http://localhost:8501`) in your browser.
 
-## Regenerate the data (reproduce the pipeline)
+---
 
-```bash
-python preprocessing/ingest_raw.py --source ../archive   # copy raw CSVs + manifest
-python preprocessing/build_staging.py                     # raw -> typed staging
-python preprocessing/build_core.py                        # staging -> 8 core tables
-python preprocessing/build_marts.py                       # core -> 5 marts
-python preprocessing/validation.py --determinism          # full contract check
-```
+## 📓 How to Reproduce the Data Pipeline
 
-## Validation status (all green)
+If you want to regenerate the cleaned and business datasets from the raw CSVs, run the notebooks in order:
 
-- **Raw** — 9 files, byte counts + SHA-256 + row counts match the manifest.
-- **Staging** — 9/9 tables OK (columns, dtypes, PK, categorical values, ranges, row counts, determinism).
-- **Core** — 8/8 tables OK; referential integrity passed (6 FK→PK pairs).
+1. Open and run **`notebooks/01_data_cleaning.ipynb`**:
+   * Reads from: `data/raw/`
+   * Writes to: `data/preprocessed/`
+2. Open and run **`notebooks/02_dashboard_preprocessing.ipynb`**:
+   * Reads from: `data/preprocessed/`
+   * Writes to: `data/business/dashboard/`
 
-  | table | rows |
-  | --- | --- |
-  | fact_orders | 99,441 |
-  | fact_order_items | 112,650 |
-  | fact_payments | 103,886 |
-  | fact_reviews | 99,224 |
-  | dim_customers | 99,441 |
-  | dim_products | 32,951 |
-  | dim_sellers | 3,095 |
-  | dim_geography | 19,010 |
+Both notebooks resolve project paths dynamically, meaning they can be executed from within VS Code, JupyterLab, or command line without modifying directory paths.
 
-- **Marts** — 5/5 tables OK.
+---
 
-  | table | rows |
-  | --- | --- |
-  | mart_order_dashboard | 99,441 |
-  | mart_order_items | 112,650 |
-  | mart_category_daily | 18,990 |
-  | mart_state_summary | 27 |
-  | mart_data_quality | 12 |
+## ⚠️ Important Course Guidelines & Data Gotchas
 
-## Data policy
-
-- **Committed**: `data/staging/`, `data/processed/core/`, `data/processed/marts/`,
-  and `data/metadata/raw_manifest.csv` — the directly-usable processed data.
-- **Not committed**: `data/raw/` (the 9 source CSVs, ~121 MB), a byte-for-byte copy
-  of the public Olist dataset; regenerate it with `ingest_raw.py --source ../archive`.
-
-## Notes
-
-- `customer_id` and `customer_unique_id` are **not** interchangeable; both are kept.
-- Outcome columns (`delivery_days`, `is_on_time`, `is_late`, `late_days`) live only
-  in the marts and are reserved for Milestone 2 ML targets.
+* **`customer_id` vs. `customer_unique_id`**:
+  * `customer_id`: a 1-time session key generated per transaction.
+  * `customer_unique_id`: the persistent identifier of the actual human customer.
+  * *Always use `customer_unique_id` for repeat-purchase analysis, customer retention, or customer-level features.*
+* **Data Leakage Warnings (Literature: Kapoor & Narayanan, 2023)**:
+  * Columns like `order_delivered_customer_date`, `delivery_days`, and `is_on_time` are **outcomes**, not predictors.
+  * They are included in the dashboard tables purely for historical performance reporting. For Phase 2 predictive models, features must strictly use information known at or before checkout.

@@ -7,7 +7,7 @@ the layered business marts: raw -> staging -> core -> marts
 import pandas as pd
 import streamlit as st
 
-from dashboard import charts, data_loader, tables, theme
+from deployment import charts, data_loader, tables, theme
 
 st.set_page_config(page_title="Olist Operations Master Dashboard", layout="wide")
 

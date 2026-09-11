@@ -1,22 +1,9 @@
-# Raw downloaded data (from Canvas) — do not commit
-archive/
-
-# Layered data architecture — generated/local data must not be committed
+# Raw downloaded data (from Canvas) — immutable local files
 data/raw/*
 !data/raw/.gitkeep
-data/staging/*
-!data/staging/.gitkeep
-data/processed/core/*
-!data/processed/core/.gitkeep
-data/processed/marts/*
-!data/processed/marts/.gitkeep
-data/processed/ml/*
-!data/processed/ml/.gitkeep
+archive/
 
-# Plain preprocessed CSVs — commit only the .csv.gz versions
-data/*.csv
-
-# Trained model and evaluation outputs are reproducible build artifacts
+# Trained model and evaluation outputs (Phase 2 reproducible build artifacts)
 artifacts/models/*
 !artifacts/models/.gitkeep
 artifacts/metrics/*
@@ -27,3 +14,8 @@ artifacts/feature_schemas/*
 # Python
 __pycache__/
 *.pyc
+
+# OS
+.DS_Store
+
+
