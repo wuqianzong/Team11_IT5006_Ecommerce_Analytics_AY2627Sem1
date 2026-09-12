@@ -1,6 +1,3 @@
-# Raw downloaded data (from Canvas) — immutable local files
-data/raw/*
-!data/raw/.gitkeep
 archive/
 
 # Trained model and evaluation outputs (Phase 2 reproducible build artifacts)
