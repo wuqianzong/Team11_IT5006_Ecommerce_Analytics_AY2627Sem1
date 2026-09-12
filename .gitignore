@@ -1,18 +1,27 @@
-archive/
-
-# Trained model and evaluation outputs (Phase 2 reproducible build artifacts)
-artifacts/models/*
-!artifacts/models/.gitkeep
-artifacts/metrics/*
-!artifacts/metrics/.gitkeep
-artifacts/feature_schemas/*
-!artifacts/feature_schemas/.gitkeep
-
-# Python
+# Byte-compiled / optimized / cache files
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
 
-# OS
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Operating System files
 .DS_Store
+Thumbs.db
 
+# IDE & Editor settings
+.vscode/
+.idea/
 
+# Temporary & archive files
+archive/
+*.tmp
+*.log
