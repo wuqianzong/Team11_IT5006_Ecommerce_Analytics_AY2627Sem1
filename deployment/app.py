@@ -10,7 +10,7 @@ import streamlit as st
 # 1. EXECUTIVE SUMMARY & SYSTEM ARCHITECTURE
 # =============================================================================
 BASE_DIR = Path(__file__).resolve().parent.parent
-DATA_DIR = BASE_DIR / "data" / "business"
+DATA_DIR = BASE_DIR / "data" / "business" / "dashboard"
 DATA_PATH = DATA_DIR / "smartcommerce_consolidated.csv"
 CONFIG_PATH = DATA_DIR / "dashboard_default.config"
 
@@ -70,9 +70,43 @@ config = load_config()
 @st.cache_data
 def load_data():
     if not DATA_PATH.exists():
-        st.error(f"Data mart file not found at: {DATA_PATH}")
-        st.stop()
-    df = pd.read_csv(DATA_PATH)
+        # Resilient fallback: dynamically merge from data/business/dashboard/ CSVs
+        if (DATA_DIR / "olist_orders_dataset.csv").exists():
+            orders = pd.read_csv(DATA_DIR / "olist_orders_dataset.csv")
+            order_items = pd.read_csv(DATA_DIR / "olist_order_items_dataset.csv")
+            customers = pd.read_csv(DATA_DIR / "olist_customers_dataset.csv")
+            products = pd.read_csv(DATA_DIR / "olist_products_dataset.csv")
+            sellers = pd.read_csv(DATA_DIR / "olist_sellers_dataset.csv")
+            payments = pd.read_csv(DATA_DIR / "olist_order_payments_dataset.csv")
+            reviews = pd.read_csv(DATA_DIR / "olist_order_reviews_dataset.csv")
+            trans = pd.read_csv(DATA_DIR / "product_category_name_translation.csv")
+
+            products = products.merge(trans, on="product_category_name", how="left")
+            products["product_category_name_english"] = products["product_category_name_english"].fillna("Unknown")
+
+            payments_by_order = payments.groupby("order_id").agg({
+                "payment_value": "sum",
+                "payment_installments": "max"
+            }).reset_index()
+
+            df = order_items.copy()
+            df = df.merge(products[["product_id", "product_category_name_english", "product_description_lenght", "product_photos_qty", "product_weight_g"]], on="product_id", how="left")
+            df = df.merge(orders, on="order_id", how="left")
+            df = df.merge(customers[["customer_id", "customer_unique_id", "customer_state", "customer_city"]], on="customer_id", how="left")
+            df = df.merge(sellers[["seller_id", "seller_city", "seller_state"]], on="seller_id", how="left")
+            df = df.merge(payments_by_order, on="order_id", how="left")
+            df = df.merge(reviews[["review_id", "order_id", "review_score"]], on="order_id", how="left")
+            df.dropna(subset=["order_id"], inplace=True)
+            # Cache to disk for instant future loading
+            try:
+                df.to_csv(DATA_PATH, index=False)
+            except Exception:
+                pass
+        else:
+            st.error(f"Data mart file not found at: {DATA_PATH}")
+            st.stop()
+    else:
+        df = pd.read_csv(DATA_PATH)
 
     date_cols = [c for c in df.columns if "date" in c or "timestamp" in c]
     for c in date_cols:

@@ -38,20 +38,24 @@ flowchart TD
         NB2["notebooks/02_dashboard_preprocessing.ipynb<br>• Rules A–G applied<br>• Date filter: 2017-01 to 2018-08<br>• Lowest review score collapsing<br>• Delivery metrics: delivery_days, is_on_time"]
     end
 
+    subgraph Notebook3 ["Stage 3: Dashboard Consolidation Pipeline"]
+        NB3["notebooks/03_business_dashboard_data_preprocessing.ipynb<br>• Data preview & integrity checks<br>• Master relational join (110k rows × 37 cols)<br>• smartcommerce_consolidated.csv"]
+    end
+
     subgraph Layer3 ["Layer 3: Business Derived Layers"]
-        BizDash["data/business/dashboard/*.csv<br>(9 dashboard-ready CSVs)"]
+        BizDash["data/business/dashboard/*.csv<br>+ smartcommerce_consolidated.csv<br>(Dashboard-ready master datasets)"]
         BizML["data/business/ml/<br>(Point-in-time features, targets & splits)<br><i>Phase 2</i>"]
     end
 
     subgraph Consumers ["Consumers & Deployment"]
-        Loader["deployment/data_loader.py<br>(Cached memory loaders)"]
-        Streamlit["deployment/app.py & app.py<br>(Executive Streamlit Dashboard)"]
+        Streamlit["deployment/app.py & app.py<br>(Executive Streamlit Master Dashboard)"]
         MLModels["src/models/ & artifacts/<br>(Scikit-Learn / XGBoost models)"]
     end
 
     Raw --> NB1 --> Preprocessed
     Preprocessed --> NB2 --> BizDash
-    BizDash --> Loader --> Streamlit
+    BizDash --> NB3 --> BizDash
+    BizDash --> Streamlit
     Preprocessed --> BizML --> MLModels
 ```
 
@@ -67,19 +71,16 @@ IT5006_GRP11/
 │   ├── raw/                  # 9 original Olist CSV files (read-only, immutable)
 │   ├── preprocessed/         # 9 cleaned baseline CSVs (lossless type standardization)
 │   └── business/
-│       ├── dashboard/        # 9 processed CSVs with business rules applied (Streamlit ready)
+│       ├── dashboard/        # 9 processed CSVs + smartcommerce_consolidated.csv (Streamlit ready)
 │       └── ml/               # [Phase 2] Point-in-time features, targets, and train/test splits
 │
 ├── notebooks/
-│   ├── 01_data_cleaning.ipynb            # Pipeline: data/raw/ -> data/preprocessed/
-│   └── 02_dashboard_preprocessing.ipynb  # Pipeline: data/preprocessed/ -> data/business/dashboard/
+│   ├── 01_data_cleaning.ipynb                    # Stage 1: data/raw/ -> data/preprocessed/
+│   ├── 02_dashboard_preprocessing.ipynb          # Stage 2: data/preprocessed/ -> data/business/dashboard/
+│   └── 03_business_dashboard_data_preprocessing.ipynb # Stage 3: table consolidation & data integrity
 │
-├── deployment/               # Official directory for the dashboard & inference apps
-│   ├── app.py                # Main Streamlit dashboard application entrypoint
-│   ├── data_loader.py        # Central data access layer reading from data/business/dashboard/
-│   ├── charts.py             # Plotly visualization components
-│   ├── tables.py             # KPI summary tables and scorecards
-│   └── theme.py              # CSS styling and color palette
+├── deployment/               # Official directory for the dashboard application
+│   └── app.py                # Executive Operations Master Dashboard (Streamlit application)
 │
 ├── src/                      # Reusable Python modules
 │   ├── common/               # Shared constants, column types, and utility functions
@@ -94,7 +95,7 @@ IT5006_GRP11/
 │   ├── models/               # Serialized .joblib model pipelines
 │   └── metrics/              # Model evaluation metrics & confusion matrices
 │
-├── app.py                    # Root entrypoint launcher for Streamlit Cloud
+├── app.py                    # Root entrypoint launcher (runs deployment/app.py)
 ├── requirements.txt          # Frozen dependencies
 └── README.md                 # Project documentation and navigation guide
 ```
@@ -166,7 +167,7 @@ Reserved for predictive modeling (e.g., delivery delay prediction, customer life
 ## 5. Consumer Standards (Streamlit & Deployment)
 
 1. **Access Path**:
-   All dashboard views in `deployment/` must load data via [`deployment/data_loader.py`](file:///Users/bensonwu/Projects/IT5006_GRP11/deployment/data_loader.py).
+   Dashboard views in `deployment/` load data from `data/business/dashboard/smartcommerce_consolidated.csv` (with an automatic in-memory fallback from the 8 base dashboard CSVs if the consolidated file is missing).
 2. **Caching**:
    Use `@st.cache_data` for all data loading routines to ensure sub-second dashboard interactions.
 3. **No Direct Ad-Hoc Filtering**:
