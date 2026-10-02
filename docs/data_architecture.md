@@ -2,7 +2,7 @@
 
 Status: **Authoritative Project Specification**  
 Applies to: **Milestones 1, 2, and 3**  
-Last updated: **2026-09-11**
+Last updated: **2026-10-02**
 
 ---
 
@@ -43,7 +43,7 @@ flowchart TD
     end
 
     subgraph Notebook4 ["Stage 4: ML Feature Engineering Pipeline"]
-        NB4["notebooks/04_ml_feature_engineering.ipynb<br>• Point-in-time features & targets<br>• Haversine distance & corridor clusters<br>• GroupKFold on customer_unique_id"]
+        NB4["notebooks/04_ml_feature_engineering.ipynb<br>• Checkout features & task-specific targets<br>• Deterministic order-level aggregation<br>• Shared customer holdout + task CV manifests"]
     end
 
     subgraph Layer3 ["Layer 3: Business Derived Layers"]
@@ -157,11 +157,23 @@ Generated exclusively by [`notebooks/02_dashboard_preprocessing.ipynb`](file:///
 ---
 
 ### 4.4 Layer 3B: Business ML (`data/business/ml/`) — *Milestone 2*
-Generated exclusively by [`notebooks/04_ml_feature_engineering.ipynb`](file:///Users/bensonwu/Projects/IT5006_GRP11/notebooks/04_ml_feature_engineering.ipynb) and [`src/features/`](file:///Users/bensonwu/Projects/IT5006_GRP11/src/features/).
+Planned implementation: `notebooks/04_ml_feature_engineering.ipynb` calls reusable
+code in `src/features/`. These are implementation destinations, not a claim that
+the ML pipeline has already been built.
+
+Detailed implementation rules are maintained in the
+[ML guideline](../data/business/ml/README.md) and
+[feature contract](../data/business/ml/feature_contract.md). The processing-plan
+PDFs are discussion drafts; the revised Markdown contract governs implementation.
 
 **Standard Output Datasets**:
-- `orders_ml_features.csv`: Master point-in-time feature matrix joined at the order grain (`order_id`) containing candidate predictors and target variables.
-- Optional pre-computed partitions: `train.csv` / `test.csv` (versioned partitions).
+- `orders_ml_features.csv`: One row per source order, with explicit identifier,
+  predictor, target and eligibility/audit roles. Train using feature allowlists.
+- `split_assignments.csv`: Shared customer-group development/holdout assignment.
+- `cv_assignments.csv`: Task-specific development validation folds.
+- `feature_schema.json`, `dataset_manifest.json`, `quality_report.json`: Definitions,
+  input hashes, versions, cohort counts and validation evidence.
+- Optional `train.csv` / `test.csv` exports must derive from these manifests.
 
 **Lineage Contract**:
 - **Upstream Source**: Reads strictly from **`data/preprocessed/*.csv`** (clean typed baseline).
@@ -171,11 +183,27 @@ Generated exclusively by [`notebooks/04_ml_feature_engineering.ipynb`](file:///U
 
 **Rules for ML Feature Engineering (Anti-Leakage Standard)**:
 - **Cutoff Time**: Features must only represent information available at the moment of checkout (`order_purchase_timestamp`).
+- **Availability Assumptions**: Payment, seller allocation and catalogue snapshots
+  lack complete historical event timestamps; document assumptions and limitations.
+- **Targets**: Regression uses valid delivered orders; classification uses all valid
+  reviewed orders, including non-delivered ones. Missing targets are never imputed.
+  Minimum review score defines “any recorded negative review,” independently of
+  dashboard rules. Preserve task-specific eligibility and exclusion reasons.
+- **Column Roles**: Both targets, review scores, final status, identifiers and audit
+  fields are forbidden in model feature allowlists.
 - **Prohibited Features (Data Leakage - Kapoor & Narayanan, 2023)**:
   - Any post-purchase timestamps (`order_approved_at`, `order_delivered_carrier_date`, `order_delivered_customer_date`).
   - Actual delivery outcome metrics (`delivery_days`, `is_on_time`, `delivery_delay_days`).
   - Review text and review submission timestamps (`review_comment_message`, `review_comment_title`, `review_creation_date`, `review_answer_timestamp`).
-- **Split Isolation**: Train/validation/test splits must be stratified or chronological, and **strictly grouped by `customer_unique_id`** (e.g. `GroupKFold`) to prevent cross-partition behavioral leakage from repeat buyers.
+- **Split Isolation**: Reserve a shared customer-group holdout before fitting.
+  Use StratifiedGroupKFold for classification development CV and GroupKFold for
+  regression. All partitions are disjoint by `customer_unique_id`. Temporal
+  evaluation is separate and also requires outcome availability before fit time.
+- **Fitted Transformations**: Imputers, encoders, scalers, data-driven category
+  grouping and feature selection are fitted inside development folds only.
+- **Optional Extensions**: Seller outcome histories and cascaded predictions are
+  excluded from baseline exports. They require fold-specific provenance and the
+  stricter availability/nested evaluation rules in the feature contract.
 
 ---
 

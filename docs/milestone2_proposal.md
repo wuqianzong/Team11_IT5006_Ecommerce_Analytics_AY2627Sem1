@@ -1,276 +1,252 @@
-# IT5006 Group 11 — Milestone 2 Proposed Direction
+# Milestone 2 Proposal: Delivery Lead Time and Low-Review Risk at Checkout
 
-**Project Title**: The E-Commerce Conversion Engine: Balancing Physical Delivery Constraints with Review Sentiment Optimization  
-**Framework**: Interconnected Two-Stage Predictive Architecture (Regression + Classification)  
-**Applies to**: Milestone 2 (Deadline: Sunday, 11 October 2026, 23:59 | Weight: 40%)  
-**Target Report Length**: 6–8 Pages (Excluding cover, references, and appendices)  
+Status: revised implementation proposal, 2026-10-02. Results remain to be established.
 
----
+Milestone 2: 11 October 2026, 23:59; 40%; technical report of 6–8 pages excluding
+cover, references, and appendices. Verify deadline changes on Canvas.
 
-## 1. Executive Problem Scoping & System Architecture
+## 1. Scope and business questions
 
-Following the official guidance in **Page 3 (Example 2 + Example 3) and Pages 4–5 of the IT5006 Project Description**, we formulate a single, cohesive business problem centered on **Marketplace Conversion Optimization**. 
+We address two related prediction problems, using the same order-level checkout
+features and two reusable model families. This meets the brief's requirement for
+both regression and classification; connecting the models through stacking is
+optional, not a prerequisite.
 
-E-commerce conversion operates as an interconnected, two-stage flywheel:
-1. **Front-Funnel Conversion (Storefront Checkout)**: Driven by sharp, competitive, and realistic Estimated Delivery Dates (EDDs) that prevent cart abandonment.
-2. **Back-Funnel Conversion & Retention (Marketplace Reputation)**: Protected by preventing negative customer reviews (1–2 stars) that destroy seller ratings and depress future product page conversion.
+| Task | Question and target | Population and stakeholder |
+| --- | --- | --- |
+| Delivery regression | Predict elapsed calendar days from purchase to customer delivery: `lead_days = total_seconds(delivered_customer_date - purchase_timestamp) / 86400`. | Delivered orders with valid dates; fulfillment/customer service. Predictions describe duration conditional on eventual delivery. |
+| Low-review classification | Predict whether an order has any recorded review of 1–2 stars: `is_detractor = int(review_score_min <= 2)`. | Orders with a valid recorded review, including non-delivered orders; customer experience/seller operations. Predictions are evaluated among reviewed orders, not all possible customer experiences. |
 
-The solution deploys **two complementary, interconnected machine learning models**:
+Prediction time is immediately after checkout, represented by
+`order_purchase_timestamp`. The data does not timestamp every checkout field or
+provide historical product snapshots. Treat availability of recorded prices,
+seller allocation, payment information, and product attributes as documented
+assumptions, not proven historical facts.
 
-```
-                       ┌────────────────────────────────────────────────────────┐
-                       │          Point-of-Checkout Order Metadata              │
-                       │     (Known at order_purchase_timestamp — Zero Leakage) │
-                       └───────────────────────────┬────────────────────────────┘
-                                                   │
-                                                   ▼
-                       ┌────────────────────────────────────────────────────────┐
-                       │          STAGE 1: PHYSICAL LOGISTICS CONSTRAINT        │
-                       │             Task 1: Delivery Lead-Time Model           │
-                       │                  (Continuous Regression)               │
-                       └───────────────────────────┬────────────────────────────┘
-                                                   │
-                                                   ├──────────────────────────────────────────────┐
-                                                   ▼                                              ▼
-                                    ┌──────────────────────────────┐              ┌──────────────────────────────┐
-                                    │ Storefront Dynamic EDD       │              │ Out-of-Fold Predicted Lead   │
-                                    │ • Quoted to buyer at checkout│              │ Time Feature: T_pred         │
-                                    │ • Wins upfront conversion!   │              │ (Zero-leakage stacking input)│
-                                    └──────────────────────────────┘              └──────────────┬───────────────┘
-                                                                                                 │
-                                                   ┌─────────────────────────────────────────────┘
-                                                   ▼
-                       ┌────────────────────────────────────────────────────────┐
-                       │          STAGE 2: CUSTOMER SENTIMENT OPTIMIZATION      │
-                       │            Task 2: Review Detractor Risk Model         │
-                       │                  (Binary Classification)               │
-                       │       Inputs: T_pred + Freight Ratio + Price +         │
-                       │               Product Category + Seller Rating Track   │
-                       └───────────────────────────┬────────────────────────────┘
-                                                   │
-                                                   ▼
-                                    ┌──────────────────────────────┐
-                                    │ CX & Seller Operations       │
-                                    │ • Pre-dispatch packaging QC  │
-                                    │ • Priority courier rerouting │
-                                    │ • Proactive unboxing VIP care│
-                                    │ • Protects seller conversion!│
-                                    └──────────────────────────────┘
-```
+No review means an unknown classification target, not a satisfied customer.
+Regression eligibility must not require a review. Classification eligibility must
+not require eventual delivery. Eligibility flags and exclusions are task-specific.
 
-### Problem Statement 1 (Regression Task — Logistics Constraint)
-* **Question**: *At checkout, how many calendar days will it physically take for this parcel to travel from seller to customer?*
-* **Target Variable**: Continuous delivery lead time in calendar days:
-  $$\Delta t_{\text{lead\_days}} = \frac{\text{order\_delivered\_customer\_date} - \text{order\_purchase\_timestamp}}{86400}$$
-* **Primary Stakeholder**: **Storefront Product, Fulfillment Planning & Growth Teams**.
-* **Business Action**: Replacing Olist's static, over-padded 25-day delivery estimates with calibrated dynamic delivery windows, winning checkout conversion without setting unrealistic expectations (Cui et al., 2024).
+The intended actions are delivery-time decision support and prioritizing orders
+for customer-service attention. Predictive accuracy does not establish that an
+intervention prevents a bad review, increases conversion, or improves profit.
+The dataset has neither pre-purchase conversion denominators nor randomized
+interventions. Any economic scenario must identify assumed costs and effectiveness.
 
-### Problem Statement 2 (Classification Task — Sentiment Optimization)
-* **Question**: *At order creation, will this transaction result in a negative customer review (1–2 stars / Detractor)?*
-* **Target Variable**: Binary customer dissatisfaction / detractor indicator:
-  $$y_{\text{detractor}} = \begin{cases} 1, & \text{if } \text{review\_score} \le 2 \\ 0, & \text{if } \text{review\_score} \ge 3 \end{cases}$$
-* **Primary Stakeholder**: **Customer Experience (CX), Seller Quality, & Logistics Operations Teams**.
-* **Business Action**: Flagging high-risk orders at order placement to trigger pre-dispatch merchant quality checks, express courier upgrades, and proactive customer tracking support, preventing 1-star reviews from destroying seller sales conversion (Deshpande & Pendem, 2023).
+## 2. Data and feature architecture
 
----
+Source: the nine typed tables in `data/preprocessed/`. Do not use dashboard
+tables or copy dashboard date/review filters into ML implicitly.
 
-### 1.1 Formal Verification Against Problem Scoping Checklist (Syllabus Page 4)
+One shared table, `data/business/ml/orders_ml_features.csv`, preserves one row
+per source order. It contains clearly separated identifier/audit, feature, target,
+and eligibility columns. Each training script selects an explicit feature
+allowlist. Targets, IDs, timestamps used to construct outcomes, and eligibility
+flags must never enter predictors.
 
-| Checklist Criterion | Specific Project Compliance in Proposal | Status |
-| :--- | :--- | :---: |
-| **1. Derivable Target**<br>*(Can target be computed directly from provided tables without external data?)* | • **Regression**: $\Delta t_{\text{lead\_days}} = (\text{delivered\_date} - \text{purchase\_timestamp}) / 86400$ from `olist_orders_dataset.csv`.<br>• **Classification**: $y_{\text{detractor}} = \mathbb{I}(\text{review\_score} \le 2)$ from `olist_order_reviews_dataset.csv`.<br>Both derived 100% from provided tables across **95,832 complete records** (99.3% join coverage). Zero external data required. | **PASS** |
-| **2. Realistic Features**<br>*(Are all predictors known before the outcome occurs — zero leakage?)* | • **Strict Cutoff**: Frozen at `order_purchase_timestamp`.<br>• **Quarantined**: Review comment text, review creation dates, review answer timestamps, actual delivered dates, and carrier handover dates are strictly excluded.<br>• **Interconnection**: Task 1 predicted lead times feed into Task 2 via **Out-of-Fold (OOF) cross-validation stacking**, guaranteeing zero leakage across folds (Kapoor & Narayanan, 2023). | **PASS** |
-| **3. Sufficient Signal**<br>*(Does Phase 1 EDA show relationship between features and target?)* | • **Logistics Signal**: Interstate transit averages ~15.2 days vs. ~7.5 days for intrastate routes; distance and parcel weight heavily drive lead days.<br>• **Review Signal**: Empirical audit of 95,832 orders reveals that delivery lead time >17 days **quadruples the low-review rate from 7.31% to 29.20%**.<br>• Non-delivery drivers: Freight-to-price ratio, fragile categories, and seller rating histories strongly differentiate detractors. | **PASS** |
-| **4. Manageable Imbalance**<br>*(Do you have a plan for appropriate metrics/handling for imbalanced target?)* | • Low reviews (1–2 stars) represent **12.85% (12,311 orders)**.<br>• Evaluated strictly via **Precision, Recall, F1-Score, and PR-AUC** (Accuracy rejected).<br>• Applying cost-sensitive loss weighting (`scale_pos_weight ≈ 6.78` and `class_weight='balanced'`) and decision threshold tuning ($\tau$) (van den Goorbergh et al., 2022). | **PASS** |
-| **5. Clear Stakeholder**<br>*(Can you name a real business role who would use this, and how?)* | • **Storefront Product & Growth**: Uses Task 1 continuous lead-time predictions to display dynamic, calibrated Estimated Delivery Dates (EDDs) at checkout, lifting purchase conversion (Cui et al., 2024).<br>• **CX & Seller Quality Ops**: Uses Task 2 detractor risk scoring to trigger pre-dispatch merchant inspection, courier upgrades, and proactive unboxing support to prevent 1-star reviews and protect seller conversion (Deshpande & Pendem, 2023). | **PASS** |
+Read the [ML guideline](../data/business/ml/README.md) and
+[feature contract](../data/business/ml/feature_contract.md) before implementation.
+The contract defines exact aggregation, missing-value, split, and validation rules.
 
----
+Initial feature groups:
 
-## 2. Business Narrative & The Conversion Flywheel
+- Geography: customer state, primary seller state, mean/maximum seller distance,
+  interstate share, and seller count.
+- Basket and financial: item/product/category counts, total price, total freight,
+  and freight-to-price ratio.
+- Product properties: complete-case item weight/volume totals with missingness
+  fractions; deterministic primary product category.
+- Purchase context: month, weekday, hour, and documented payment summaries.
+- Secondary experiment: primary-item description length and photo count.
 
-### 2.1 The Two Pillars of E-Commerce Conversion
-In digital marketplace platforms like Olist, gross merchandise value (GMV) is governed by two sequential conversion hurdles:
-1. **Front-Funnel Acquisition Conversion (Day 0)**: When prospective buyers evaluate an item at checkout, delivery speed is a decisive conversion factor. Quoting bloated, over-conservative delivery dates causes immediate cart abandonment. As established by **Cui et al. (2024)**, every 1-day reduction in promised delivery time increases sales by **+0.73%** and profits by **+2.0%**.
-2. **Back-Funnel Reputation & Retention Conversion (Day 30+)**: Post-purchase satisfaction dictates future platform viability. In online marketplaces, over 90% of prospective buyers read customer reviews before purchasing. When an order delivers a poor experience, the customer posts a 1-star or 2-star review. As proven by **Deshpande & Pendem (2023)**, negative ratings shocks degrade third-party merchant sales by **13.3% per day of delay**, permanently suppressing seller conversion and driving customer churn.
+Retain state categories initially. Do not remove freight solely because a ratio
+uses it. Haversine distance is a straight-line geographic proxy, not road distance.
+Product volume sums are not measured package volume.
 
-### 2.2 Physical Logistics as the Primary Constraint
-Olist operates as an e-commerce gateway in Brazil, connecting small merchants to major national storefronts. Milestone 1 exploratory data analysis uncovered Brazil's extreme geographical asymmetry:
-* **Seller Concentration**: Over 70% of active merchants reside in the industrialized Southeast (São Paulo State, `SP`).
-* **Customer Dispersion**: Buyers span all 27 Brazilian states, frequently requiring shipments to traverse 3,000+ kilometers over federal road networks.
+Learn imputation, category grouping, scaling, feature selection, and any clipping
+thresholds inside development folds. Keep deterministic sums and ratios in the
+shared base table. Never pre-scale the exported feature table.
 
-Because delivery is constrained by physical geography, parcel weight, and road infrastructure, an e-commerce platform cannot arbitrarily promise 2-day delivery across continental routes without triggering catastrophic service failures. **Task 1 (Regression)** estimates this physical constraint with statistical rigor.
+Historical seller outcomes and regression predictions are excluded from baseline
+version 1. They require fold-specific construction and separate provenance.
 
-### 2.3 The Empirical Delivery-Review Nexus (Data Reality)
-An empirical audit across all **95,832 completed and reviewed orders** in the Olist dataset demonstrates how physical logistics directly governs review outcomes:
+## 3. Cohort evidence and target definition
 
-| Delivery Lead Time Quintile | Delivery Days Range | Low Review Rate (1–2 Stars) | Commercial Takeaway |
-| :--- | :---: | :---: | :--- |
-| **Quintile 1 (Fastest 20%)** | 0.5 to 6.0 days | **7.31%** | Baseline product dissatisfaction rate. |
-| **Quintile 2 (20%–40%)** | 6.0 to 8.7 days | **8.03%** | Healthy satisfaction band. |
-| **Quintile 3 (40%–60%)** | 8.7 to 12.1 days | **9.31%** | Moderate satisfaction band. |
-| **Quintile 4 (60%–80%)** | 12.1 to 17.4 days | **10.38%** | Slight increase in friction. |
-| **Quintile 5 (Slowest 20%)** | **17.4 to 208.4 days** | **29.20%** | **🚨 4X SURGE in negative reviews!** |
+A read-only audit on 2026-10-02 found:
 
-Crucially, **66.3% of all low reviews (8,190 / 12,350) occur on orders that arrived on-time**, driven by:
-* Disproportionate freight-to-price ratios (paying R\$35 freight on an R\$20 item induces severe buyer remorse).
-* Inherently fragile or complex categories (electronics, furniture, audio equipment).
-* Sub-par merchant packaging or seller reliability track records.
+| Check | Count |
+| --- | ---: |
+| Source orders | 99,441 |
+| Orders with multiple items | 9,803 |
+| Orders with multiple sellers | 1,278 |
+| Orders with multiple review records | 547 |
+| Reviewed orders, minimum-score rule | 98,673 |
+| Negative orders among those reviewed | 14,533 |
+| Delivered-and-reviewed orders, minimum-score rule | 95,832 |
+| Negative delivered-and-reviewed orders | 12,311 |
 
-### 2.4 The Interconnected Solution: How the Models Work Together
-Rather than operating in isolation, the two models form a cascaded intelligence engine:
-1. **At Checkout**: Task 1 calculates the true physical delivery capability ($\hat{T}_{\text{lead\_days}}$) based on spatial distance, parcel dimensions, and seasonal factors. The storefront uses this to display a calibrated, competitive dynamic delivery window (e.g. 7–9 days for local corridors), winning the checkout conversion.
-2. **At Order Creation**: Task 2 takes the order metadata **and incorporates Task 1's predicted lead time ($\hat{T}_{\text{lead\_days}}$)** to evaluate the overall probability of customer dissatisfaction ($y_{\text{detractor}} \in \{0, 1\}$).
-3. **Proactive Intervention**: When an order is flagged as high-risk ($P \ge \tau$):
-   * *Logistics Ops*: Issues a priority dispatch alert to the merchant and upgrades the parcel from standard road freight (Correios PAC) to express courier (Correios Sedex / Private Air).
-   * *Customer Experience (CX)*: Initiates proactive tracking notifications, pre-emptive unboxing guides, and VIP support check-ins, resolving issues before the customer ever writes a 1-star review.
+These are snapshot checks before the final eligibility validations, not fixed
+training sizes or expected test results. The old 12.85% prevalence applies to the
+delivered-and-reviewed cohort only. Recompute all cohort counts, class proportions,
+and baselines from the implemented target version.
 
-### 2.5 Literature-Calibrated Economic & ROI Simulation
-While raw pre-purchase clickstream impressions are unobserved in Olist's post-purchase transactional tables, we quantify business impact by combining our model's empirical metrics with causal elasticities established in peer-reviewed literature:
+Minimum score defines “any recorded negative review,” rather than first experience
+or final satisfaction. Use first answered review as an optional label sensitivity
+analysis on development data. All-review snapshot labels have variable follow-up;
+report this limitation. A temporal experiment additionally needs a fixed observation
+window and label-maturity rules, as defined in the feature contract.
 
-1. **Top-Line Sales Lift from Task 1 (Cui et al., 2024)**:
-   * Olist's legacy delivery estimates averaged **23.8 days** vs. actual delivery of **12.5 days** (+11.2-day over-pad; +9.4 days for SP $\rightarrow$ SP).
-   * Compressing stated delivery promises by a safe **4 to 6 days** on predictable routes yields:
-     $$\text{Estimated Sales Lift} = 4 \text{ to } 6 \text{ days} \times 0.73\%/\text{day} = \mathbf{+2.92\% \text{ to } +4.38\%}$$
-   * On Olist's total GMV of **R\$ 13,591,643 (~R\$ 13.6M)**, this generates **~R\$ 397,000 to R\$ 595,000 in incremental top-line revenue**.
-2. **Reputation Protection from Task 2 (Deshpande & Pendem, 2023)**:
-   * An empirical intercept of ~50% of detractor orders (~6,150 orders) shields marketplace sellers from negative rating shocks, protecting an estimated **~R\$ 1.8M in annualized seller sales volume** from conversion decay and customer churn.
+## 4. Models and scope control
 
----
+| Level | Regression | Classification |
+| --- | --- | --- |
+| Reference | Median DummyRegressor | Prior/majority DummyClassifier |
+| Family A: linear baseline | LinearRegression | LogisticRegression, initially unweighted |
+| Family B: tree baseline | DecisionTreeRegressor | DecisionTreeClassifier |
+| First complexity increase | RandomForestRegressor | RandomForestClassifier |
+| Optional, evidence-dependent | Ridge or XGBoostRegressor | Class weights or XGBoostClassifier |
+| Optional third family | Ensemble only if justified | Soft voting or regression-to-classification stacking |
 
-## 3. Direct Application of Week 06 Machine Learning Implementation Lab
+Reference dummy predictors are comparison controls. Use two substantive families
+initially; do not require every optional algorithm. Every added complexity must
+be compared against its simpler baseline on the same evaluation population.
 
-Our end-to-end architecture directly incorporates the modeling, pipeline design, and deployment workflows taught in the **Week 06 ML Implementation Lab (`L6.1_Fraud_Detection_Training` & `L6.2_Bulk_Scoring_Demo`)**:
+For linear models, use median numeric imputation with missingness indicators,
+selected nonnegative `log1p` transforms, and StandardScaler. Use categorical
+imputation and OneHotEncoder with documented reference/unknown handling.
+Tree pipelines need imputation and categorical handling but not scaling.
+Choose transformations using development CV, not the final test.
 
-### 3.1 Haversine Geospatial Feature Engineering (Week 6 Lab Pattern)
-Following the exact location-delta formulation taught in Week 6:
-* We convert customer and seller latitude/longitude coordinates from degrees to radians:
-  $$\text{radians} = \text{degrees} \times \left(\frac{\pi}{180}\right)$$
-* We apply the **Haversine formula** to calculate exact spherical distance in kilometers between customer and seller zip-code centroids:
-  $$d = 2R \arcsin \left( \sqrt{\sin^2\left(\frac{\Delta \phi}{2}\right) + \cos(\phi_1)\cos(\phi_2)\sin^2\left(\frac{\Delta \lambda}{2}\right)} \right)$$
-  where $R = 6,371\text{ km}$. This produces an uncompromised physical transit distance feature (`distance_km`) for every transaction.
+Tune a small predeclared search space: for example tree depth/minimum leaf size,
+forest depth/minimum leaf size/max features, and logistic regularization strength.
+Record candidate settings, scoring, folds, seeds, and compute budget. Report CV
+mean and standard deviation; fold variability is not a confidence interval.
 
-### 3.2 Preprocessing Pipelines with `ColumnTransformer` (Anti-Leakage Standard)
-Mirroring the Week 6 pipeline architecture, we separate feature types and bundle them into Scikit-Learn `Pipeline` workflows:
-* **Categorical Features**: `CATEGORICAL_COLS = ['customer_state', 'seller_state', 'product_category_name_english', 'payment_type']` processed with `OneHotEncoder(handle_unknown='ignore', sparse_output=False)` (or `OrdinalEncoder`).
-* **Numerical Features**: `NUMERIC_COLS = ['price', 'freight_value', 'freight_ratio', 'product_weight_g', 'product_volume_cm3', 'distance_km', 'seller_historical_review_score']` processed with `RobustScaler()` / `StandardScaler()`.
-* **Zero Leakage Rule**: As emphasized in Week 6 Step 4, train-test splitting occurs **before** preprocessor fitting so encoders and scalers only ever learn from the training fold.
+## 5. Evaluation protocol
 
-### 3.3 Out-of-Fold (OOF) Stacking & Cascading Architecture
-To pass Task 1's predicted lead time ($\hat{T}_{\text{lead\_days}}$) into Task 2 without data leakage:
-* Within each cross-validation fold, the Task 1 regression model is trained on the training partition and generates Out-of-Fold predictions for the validation partition.
-* These out-of-fold predictions serve as the input feature for training Task 2.
-* At runtime inference, a unified Scikit-Learn pipeline chains the Task 1 regressor output into the Task 2 classifier feature vector.
+### Primary course comparison
 
-### 3.4 Ensemble Workflows & Soft Voting (Week 6 Lab Architecture)
-Adopting the exact ensemble model training taught in Week 6 Step 5:
-* **Pipeline 1 (XGBoost)**: Preprocessor chained directly to `xgb.XGBClassifier` (with `scale_pos_weight ≈ 6.78` tuned for 12.85% imbalance) and `xgb.XGBRegressor`.
-* **Pipeline 2 (Random Forest)**: Preprocessor chained to `RandomForestClassifier` (with `class_weight='balanced'`) and `RandomForestRegressor`.
-* **Soft Voting Ensemble**: Averaging predicted probabilities across diverse models:
-  $$\hat{P}_{\text{ensemble}} = \frac{\hat{P}_{\text{XGB}} + \hat{P}_{\text{RF}}}{2}$$
-  and classifying via decision threshold tuning $\hat{y} = (\hat{P}_{\text{ensemble}} \ge \tau)$.
+1. Create a deterministic customer-group split manifest before fitting anything.
+   Reserve approximately 20% as a protected holdout, approximately stratified for
+   review labels; the contract defines how unlabeled orders share this assignment.
+2. Use only development data for model selection. Classification uses five-fold
+   StratifiedGroupKFold; regression uses five-fold GroupKFold. All groups use
+   `customer_unique_id`, not `customer_id`.
+3. Fit the entire preprocessing/model pipeline inside each fold. Compare candidates
+   on the same task-specific rows and folds.
+4. Choose the final configuration and generate development OOF probabilities for
+   threshold selection. These support development decisions, not an unbiased
+   performance claim after tuning. The protected holdout provides that assessment.
+5. Freeze model choice, feature list, threshold, and any calibration. Refit on all
+   eligible development rows and evaluate once on the holdout.
 
-### 3.5 Artifact Serialization & Metadata Packaging (Week 6 Lab Step 7)
-Following the production-readiness standards taught in Week 6 Step 7:
-* **Full Pipeline Pickling**: Serializing complete pipelines using `joblib.dump(pipeline, '..._pipeline.pkl')` so downstream inference requires zero manual preprocessing.
-* **`model_metadata.json`**: Tracking model version, training timestamp, Scikit-Learn/XGBoost hyperparameters, and cross-validation scores (MAE, RMSE, F1, PR-AUC).
-* **`feature_stats.json`**: Exporting training distribution parameters (min, max, mean, median, standard deviation) for runtime data validation and outlier checking during live inference.
+This evaluates held-out customers in the historical snapshot. It does not prove
+performance on future orders. Save assignments rather than regenerating different
+partitions in each script.
 
-### 3.6 Diagnostic Evaluations (Week 6 Lab Step 6)
-* Visualizing confusion matrices via `seaborn.heatmap`.
-* Extracting feature importances from `pipeline.named_steps['classifier'].feature_importances_`.
-* Logging multi-metric evaluation tables (Accuracy, Precision, Recall, F1-Score, ROC-AUC, PR-AUC).
+### Metrics and success criteria
 
----
+- Regression: primary MAE in days, plus RMSE, R², residual plots, and errors by
+  state, basket size, and duration band. Compare against median and linear baselines.
+- Classification: primary average precision (AP; explicitly identify this PR summary),
+  ROC-AUC, precision, recall, F1, confusion matrix, and precision/recall at a
+  predeclared review capacity. Accuracy is supplementary, not forbidden.
+- Report classification prevalence and constant-score AP baseline on each population.
+- Select additional complexity only if development evidence improves the chosen
+  metric/operating trade-off enough to justify its cost. If it fails, retain the
+  simpler model and report the negative result.
+- If probabilities drive decisions, inspect reliability plots and Brier score.
+  Class weighting is an experiment, not a guarantee of calibrated probabilities.
+  Compute any negative/positive weighting ratio within each training fold.
+- Select the operational threshold using development OOF predictions. A 5:1
+  false-negative/false-positive cost ratio is an illustrative assumption. Compare
+  1:1, 2:1, 5:1, and 10:1 or use a documented review-capacity constraint.
+  Save the chosen threshold with the model; never tune it on holdout outcomes.
 
-## 4. Grounding in the 6 Literature Review Papers
+### Optional temporal robustness check
 
-Our implementation directly translates findings from our Milestone 1 literature review into technical design decisions:
+Specify calendar windows before evaluating performance. July–August 2018 is a
+candidate, not an approved fixed window. Training requires outcome availability
+before the training cutoff, not merely purchase before cutoff. In the audit,
+1,705 orders purchased before July were delivered in July or later.
 
-1. **Promising Delivery Speed in Online Retail (Cui et al., 2024)**:  
-   Establishes that delivery speed promises fundamentally govern purchase conversion (+0.73% sales per day faster), while over-promising inflates returns. Our regression model provides calibrated expected lead times to capture sales lift without overpromising.
-2. **Ratings Impact on Sales and Purchasing Behavior (Deshpande & Pendem, 2023)**:  
-   Demonstrates that fulfillment delays trigger negative reviews that reduce seller sales by 13.3% per day of delay. Task 2 directly predicts low review risk (1–2 stars) to enable proactive intervention before negative ratings materialize.
-3. **Macro-Level Ground Truth (Kandula et al., 2021)**:  
-   Unlike Kandula’s unobserved hourly presence assumptions, our delivery lead times and customer review scores are fully recorded in observational logs across 95,832 orders, providing solid ground truth.
-4. **Tree Ensembles for Tabular Data (Grinsztajn et al., 2022)**:  
-   Tree-based models (XGBoost / Random Forest) handle tabular coordinate-axis splits and uninformative features significantly better than neural networks without requiring complex scaling.
-5. **Strict Point-in-Time Anti-Leakage Discipline (Kapoor & Narayanan, 2023)**:  
-   We enforce a strict cutoff at `order_purchase_timestamp`. Post-purchase dates (`order_delivered_carrier_date`, review text, review creation dates) are quarantined to ensure zero data leakage.
-6. **Cost-Sensitive Imbalance Handling (van den Goorbergh et al., 2022)**:  
-   Low reviews represent 12.85% of transactions. We reject synthetic resampling (SMOTE) to preserve natural probability calibration, using cost-sensitive weighted losses (`class_weight='balanced'`, `scale_pos_weight`) and precision-recall threshold optimization.
+Use a documented label-follow-up horizon, snapshot cutoff, and customer-overlap
+policy. Under the current disjoint-customer contract, exclude overlapping customers
+from temporal evaluation and report how this changes its population. Do not call
+the result representative of returning customers. Calendar validation is not
+stratified; retain the stratified primary comparison for the brief and report
+temporal prevalence separately.
 
----
+### Optional history and stacking
 
-## 5. Point-in-Time Feature Engineering Strategy
+Seller outcome histories need both event-time availability and fold isolation.
+The baseline feature builder must not export globally computed target-derived
+histories. A checkout-time filter alone cannot protect random CV.
 
-All features are extracted strictly from data available at or before `order_purchase_timestamp`:
+For stacking, each outer classifier-training partition must generate its own inner
+OOF regression predictions. Refit the regressor only on eligible outer-training
+orders to predict the outer validation partition. Do not reuse one global OOF
+column across classifier CV. Compare with/without `T_pred` on identical rows.
+All reviewed classification orders may need predictions even if they lack a
+regression target; document the resulting extrapolation risk.
 
-| Feature Family | Candidate Variables | Domain Justification & Task Allocation |
-| :--- | :--- | :--- |
-| **Geospatial & Spatial Corridors** | • Geodesic distance (km) via Haversine formula<br>• `is_interstate` boolean flag<br>• Origin & destination state clusters (e.g. SE $\rightarrow$ NE) | Direct physical proxy for transportation transit time across Brazil's diverse geography (Primary in Task 1 & Task 2). |
-| **Financial Scale & Freight Burden** | • Total order price & freight value<br>• Freight-to-price ratio (`freight / price`)<br>• Number of items in basket | High freight ratios on low-value items directly cause buyer remorse and drive low review scores (Primary in Task 2). |
-| **Physical Parcel Specifications** | • Total parcel weight (grams)<br>• Cubic volume ($L \times W \times H \text{ in } \text{cm}^3$)<br>• Packaging density ratio ($\text{weight} / \text{volume}$) | Heavy/oversized freight requires specialized road freight carriers with lower departure frequencies (Primary in Task 1). |
-| **Product Category Risk** | • English product category name<br>• High-defect category indicator (Electronics, Furniture, Audio vs. Books, Apparel) | Complex and fragile product categories exhibit structurally higher customer return and dissatisfaction rates (Primary in Task 2). |
-| **Seller Historical Track Record** | • Historical seller review score prior to order timestamp<br>• Historical seller dispatch SLA compliance rate | Seller operational diligence is the strongest early leading indicator of parcel quality and fulfillment speed (Task 1 & Task 2). |
-| **Temporal & Seasonality Context** | • Day of week of purchase<br>• Purchase hour of day<br>• Month of year / Black Friday high-volume quarter flag | Captures weekend dispatch bottlenecks and nationwide logistics congestion during peak promotional surges (Task 1). |
-| **Cascaded Predictive Feature** | • $\hat{T}_{\text{lead\_days}}$: Predicted delivery lead time generated by Task 1 (via Out-of-Fold cross-validation) | Bridges physical logistics constraint into customer sentiment prediction with zero data leakage (Unique to Task 2). |
+## 6. Connection to taught material
 
----
+Paths below are relative to the supplied course/tutorial folders, not dependencies
+required to clone or execute this repository.
 
-## 6. Modeling Strategy Within the 2–3 Family Budget
+| Material | Application |
+| --- | --- |
+| Tutorial 3, `T03.ipynb` | SimpleImputer, scaling, nominal encoding, Pipeline and ColumnTransformer. |
+| Tutorial 4, `T04.ipynb` / filled notebook | Train/test separation and reusing fitted preprocessing. Review text remains excluded because it is unavailable at checkout. |
+| Tutorial 5, `T05.ipynb` | Linear/multiple regression, residuals, heteroscedasticity and R². |
+| Course W6, `ML-deployement-necessary_files/Model/L6.1_Fraud_Detection_Training.ipynb` | Haversine engineering, RF/XGBoost pipelines, optional voting, model serialization and metadata. |
+| Course W6, `L6_Model_Deployment_Slides.md` and bulk-scoring lab | Reusable inference contract and saved feature schema; deployment itself is primarily Milestone 3. |
+| Tutorial 7, `Logistic_Regression_Standard_Solution_non_agentic.ipynb` | Protected holdout, whole-pipeline CV, OOF threshold choice, coefficient interpretation, pipeline plus threshold artifact. |
+| Course W7, `Classification_01_Updated.pdf` | Logistic probabilities/odds, classification metrics and cost-dependent decisions. |
 
-To adhere to the **"Quality over Quantity"** rule (Page 5 of Project Description), we implement matching algorithms across 2 core families plus an interconnected stacking ensemble:
+Adapt teaching examples to Olist's groups, observation times, and missing outcomes.
+The fraud lab's weighting is not mandatory for review classification. Tutorial 7
+provides an unweighted probability-model starting point. A matching mean predicted
+probability and prevalence alone is not sufficient evidence of calibration.
 
-```
-  ┌────────────────────────────────────────────────────────────────────────┐
-  │                        MODEL FAMILY BUDGET                             │
-  ├────────────────────────────────────┬───────────────────────────────────┤
-  │ Family A: Linear Models            │ Family B: Tree-Based Ensembles    │
-  │ • Task 1 Baseline: OLS Linear      │ • Task 1 Baseline: Decision Tree  │
-  │ • Task 1 Tuned: Ridge / Lasso      │ • Task 1 Tuned: RF & XGBoost      │
-  │ • Task 2: Logistic Regression (Bal)│ • Task 2: RF & XGBoost (Weighted) │
-  └─────────────────┬──────────────────┴───────────────────┬───────────────┘
-                    └───────────────────┬──────────────────┘
-                                        ▼
-                   ┌────────────────────────────────────────┐
-                   │ Family C: Two-Stage Stacking Ensemble  │
-                   │ Task 1 OOF predictions feed Task 2     │
-                   │ Soft Voting (XGBoost + Random Forest)  │
-                   └────────────────────────────────────────┘
-```
+## 7. Interpretation and literature
 
-1. **Family A (Linear Models)**:
-   * *Task 1 (Regression)*: `LinearRegression` (Baseline) $\rightarrow$ `Ridge` / `Lasso` (Tuned Regularization).
-   * *Task 2 (Classification)*: `LogisticRegression(class_weight='balanced', penalty='l2')`.
-2. **Family B (Tree-Based Models)**:
-   * *Task 1 (Regression)*: `DecisionTreeRegressor` (Baseline) $\rightarrow$ `RandomForestRegressor` $\rightarrow$ `XGBoostRegressor`.
-   * *Task 2 (Classification)*: `DecisionTreeClassifier` (Baseline) $\rightarrow$ `RandomForestClassifier(class_weight='balanced')` $\rightarrow$ `XGBoostClassifier(scale_pos_weight≈6.78)`.
-3. **Family C (Two-Stage Stacking & Soft Voting Ensemble)**:
-   * Interconnected pipeline where Task 1 regression outputs feed into Task 2, combined with soft voting probabilities:
-     $$\hat{P}_{\text{ensemble}} = 0.5 \cdot \hat{P}_{\text{XGB}} + 0.5 \cdot \hat{P}_{\text{RF}}$$
+Use linear coefficients with units/reference categories and stability caveats,
+plus validation-set permutation importance for selected models. SHAP is optional.
+Feature importance is predictive association, not proof of causation.
 
----
+The [project brief](references/IT5006%20Project%20Description%20-%20AY%202026_27%20Semester%201.pdf)
+is the requirements source. The six papers in `docs/references/` motivate delivery,
+reviews, tabular models, and leakage/calibration checks; they do not validate our
+unbuilt pipeline.
 
-## 7. Validation Protocol & Evaluation Discipline
+Corrected interpretation: Deshpande and Pendem estimate a 13.3% increase in average
+daily seller sales in a specific Tmall scenario reducing three-day deliveries to
+two days. This is not a universal 13.3% sales loss per day of delay. Do not transfer
+that number, or Cui et al.'s setting-specific effects, directly into an Olist ROI
+claim. The imbalance paper evaluates resampling methods and does not establish
+that weighted losses preserve calibration.
 
-1. **Split Protocol**:
-   * **5-Fold `GroupKFold` grouped by `customer_unique_id`**: Prevents multi-order customer patterns from leaking across training and validation splits.
-2. **Evaluation Metrics**:
-   * **Task 1 (Regression)**: Mean Absolute Error (MAE), Root Mean Squared Error (RMSE), and Coefficient of Determination ($R^2$).
-   * **Task 2 (Classification)**: Precision, Recall, F1-Score, and Precision-Recall AUC (PR-AUC). Accuracy is explicitly rejected due to class imbalance.
-3. **Operational Threshold Tuning**:
-   * For the classification task, optimize the probability decision threshold $\tau$ using an asymmetric business cost matrix where missing a detractor review (False Negative) is penalized $5\times$ more heavily than a false alarm (False Positive).
+Delivery point estimates do not justify promised delivery windows without separate
+coverage/interval validation. Do not describe purchase-to-delivery time as pure
+seller-to-customer transit; it also includes pre-dispatch processing.
 
----
+## 8. Deliverables and implementation order
 
-## 8. Implementation Deliverables & Execution Timeline
+1. Feature contract, reproducible base table, eligibility report and split manifest.
+2. Notebook `notebooks/04_ml_feature_engineering.ipynb`, delegating reusable code
+   to `src/features/build_features.py` and `src/features/create_splits.py`.
+3. Training/evaluation scripts in `src/models/` and
+   `notebooks/05_model_training_and_evaluation.ipynb`.
+4. Baseline and tuned model comparisons, errors, calibration/threshold analysis,
+   interpretation, and limitations.
+5. Optional extensions only after the baseline workflow passes validation.
+6. Complete pipeline/threshold artifacts under `artifacts/models/`; metrics under
+   `artifacts/metrics/`; schemas, feature lists, input hashes, environment versions,
+   fold assignments, random seeds and configuration recorded alongside them.
 
-* **Phase 2 Deadline**: Sunday, 11 October 2026, 23:59.
-* **Architecture Storage**:
-  * Feature table: `data/business/ml/orders_ml_features.csv`
-  * Feature Pipeline: `src/features/build_features.py`
-  * Model Training Scripts: `src/models/train_regression.py` & `src/models/train_classification.py`
-  * Analysis Notebooks: `notebooks/04_feature_engineering.ipynb` & `notebooks/05_model_training_and_evaluation.ipynb`
-  * Serialized Pipelines: `artifacts/models/lead_time_pipeline.pkl` & `artifacts/models/review_sentiment_pipeline.pkl`
-  * Model Metadata: `artifacts/models/model_metadata.json` & `artifacts/models/feature_stats.json`
-* **Report Deliverable**: 6–8 page PDF technical report detailing problem context, anti-leakage lineage, CV metric comparisons, residual plots, SHAP feature importance, and concrete stakeholder deployment recommendations including the literature-calibrated ROI simulation.
+Suggested 6–8 page allocation: problem/stakeholder and scope (1 page), data and
+features (1–2), models and validation (1–2), results/interpretation (2), limitations
+and recommendations (1). Include GitHub link, reproducible code, figure/table labels,
+and AI-use declaration. Do not fill result tables with projected performance.
