@@ -42,9 +42,13 @@ flowchart TD
         NB3["notebooks/03_business_dashboard_data_preprocessing.ipynb<br>• Data preview & integrity checks<br>• Master relational join (110k rows × 37 cols)<br>• smartcommerce_consolidated.csv"]
     end
 
+    subgraph Notebook4 ["Stage 4: ML Feature Engineering Pipeline"]
+        NB4["notebooks/04_ml_feature_engineering.ipynb<br>• Point-in-time features & targets<br>• Haversine distance & corridor clusters<br>• GroupKFold on customer_unique_id"]
+    end
+
     subgraph Layer3 ["Layer 3: Business Derived Layers"]
         BizDash["data/business/dashboard/*.csv<br>+ smartcommerce_consolidated.csv<br>(Dashboard-ready master datasets)"]
-        BizML["data/business/ml/<br>(Point-in-time features, targets & splits)<br><i>Phase 2</i>"]
+        BizML["data/business/ml/orders_ml_features.csv<br>(Point-in-time features, targets & splits)<br><i>Milestone 2</i>"]
     end
 
     subgraph Consumers ["Consumers & Deployment"]
@@ -56,7 +60,7 @@ flowchart TD
     Preprocessed --> NB2 --> BizDash
     BizDash --> NB3 --> BizDash
     BizDash --> Streamlit
-    Preprocessed --> BizML --> MLModels
+    Preprocessed --> NB4 --> BizML --> MLModels
 ```
 
 ---
@@ -72,12 +76,13 @@ IT5006_GRP11/
 │   ├── preprocessed/         # 9 cleaned baseline CSVs (lossless type standardization)
 │   └── business/
 │       ├── dashboard/        # 9 processed CSVs + smartcommerce_consolidated.csv (Streamlit ready)
-│       └── ml/               # [Phase 2] Point-in-time features, targets, and train/test splits
+│       └── ml/               # [Milestone 2] Point-in-time features, targets (orders_ml_features.csv), splits
 │
 ├── notebooks/
 │   ├── 01_data_cleaning.ipynb                    # Stage 1: data/raw/ -> data/preprocessed/
 │   ├── 02_dashboard_preprocessing.ipynb          # Stage 2: data/preprocessed/ -> data/business/dashboard/
-│   └── 03_business_dashboard_data_preprocessing.ipynb # Stage 3: table consolidation & data integrity
+│   ├── 03_business_dashboard_data_preprocessing.ipynb # Stage 3: table consolidation & data integrity
+│   └── 04_ml_feature_engineering.ipynb           # Stage 4: data/preprocessed/ -> data/business/ml/
 │
 ├── deployment/               # Official directory for the dashboard application
 │   └── app.py                # Executive Operations Master Dashboard (Streamlit application)
@@ -151,16 +156,26 @@ Generated exclusively by [`notebooks/02_dashboard_preprocessing.ipynb`](file:///
 
 ---
 
-### 4.4 Layer 3B: Business ML (`data/business/ml/`) — *Phase 2*
-Reserved for predictive modeling (e.g., delivery delay prediction, customer lifetime value, review rating prediction).
+### 4.4 Layer 3B: Business ML (`data/business/ml/`) — *Milestone 2*
+Generated exclusively by [`notebooks/04_ml_feature_engineering.ipynb`](file:///Users/bensonwu/Projects/IT5006_GRP11/notebooks/04_ml_feature_engineering.ipynb) and [`src/features/`](file:///Users/bensonwu/Projects/IT5006_GRP11/src/features/).
 
-**Rules for ML Feature Engineering**:
+**Standard Output Datasets**:
+- `orders_ml_features.csv`: Master point-in-time feature matrix joined at the order grain (`order_id`) containing candidate predictors and target variables.
+- Optional pre-computed partitions: `train.csv` / `test.csv` (versioned partitions).
+
+**Lineage Contract**:
+- **Upstream Source**: Reads strictly from **`data/preprocessed/*.csv`** (clean typed baseline).
+- **Prohibited Sources**:
+  - `data/raw/`: Prohibited per Principle 1 (immutable raw).
+  - `data/business/dashboard/`: Prohibited because dashboard-specific operating window filters (Rule G: 2017-01 to 2018-08) and review score collapsing induce sampling bias into ML training.
+
+**Rules for ML Feature Engineering (Anti-Leakage Standard)**:
 - **Cutoff Time**: Features must only represent information available at the moment of checkout (`order_purchase_timestamp`).
-- **Prohibited Features (Data Leakage)**:
+- **Prohibited Features (Data Leakage - Kapoor & Narayanan, 2023)**:
   - Any post-purchase timestamps (`order_approved_at`, `order_delivered_carrier_date`, `order_delivered_customer_date`).
-  - Target variables or derived delivery metrics (`delivery_days`, `is_on_time`).
-  - Review score and review comments.
-- **Split Isolation**: Train/validation/test splits must be stratified or chronological, versioned, and grouped by `customer_unique_id` to prevent cross-set leakage.
+  - Actual delivery outcome metrics (`delivery_days`, `is_on_time`, `delivery_delay_days`).
+  - Review text and review submission timestamps (`review_comment_message`, `review_comment_title`, `review_creation_date`, `review_answer_timestamp`).
+- **Split Isolation**: Train/validation/test splits must be stratified or chronological, and **strictly grouped by `customer_unique_id`** (e.g. `GroupKFold`) to prevent cross-partition behavioral leakage from repeat buyers.
 
 ---
 
@@ -185,6 +200,8 @@ When interacting with this repository, every contributor and AI agent must obser
    - For data cleaning changes $\rightarrow$ modify [`notebooks/01_data_cleaning.ipynb`](file:///Users/bensonwu/Projects/IT5006_GRP11/notebooks/01_data_cleaning.ipynb).
    - For dashboard data preparation changes $\rightarrow$ modify [`notebooks/02_dashboard_preprocessing.ipynb`](file:///Users/bensonwu/Projects/IT5006_GRP11/notebooks/02_dashboard_preprocessing.ipynb).
    - For dashboard UI / visualization changes $\rightarrow$ modify files in [`deployment/`](file:///Users/bensonwu/Projects/IT5006_GRP11/deployment/).
+   - For ML feature engineering changes $\rightarrow$ read from `data/preprocessed/`, modify [`notebooks/04_ml_feature_engineering.ipynb`](file:///Users/bensonwu/Projects/IT5006_GRP11/notebooks/04_ml_feature_engineering.ipynb) / [`src/features/`](file:///Users/bensonwu/Projects/IT5006_GRP11/src/features/), and write to `data/business/ml/orders_ml_features.csv`.
+   - For ML model training & evaluation $\rightarrow$ implement pipelines in [`src/models/`](file:///Users/bensonwu/Projects/IT5006_GRP11/src/models/) and serialize artifacts into `artifacts/models/`.
 3. **Never Commit Without Explicit Instruction**:
    Always keep code and data modifications in the working tree for human team review unless the user explicitly commands a `git commit`.
 4. **Preserve Relative Path Autonomy**:

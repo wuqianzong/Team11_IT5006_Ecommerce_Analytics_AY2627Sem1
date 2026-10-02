@@ -14,22 +14,31 @@ The repository strictly follows the official course specification (**Page 7 of t
 │   ├── raw/                  # 9 original, untouched Olist CSV files
 │   ├── preprocessed/         # 9 cleaned & typed baseline CSVs (lossless type standardization)
 │   └── business/
-│       └── dashboard/        # 9 processed CSVs + smartcommerce_consolidated.csv (ready for Streamlit)
+│       ├── dashboard/        # 9 processed CSVs + smartcommerce_consolidated.csv (ready for Streamlit)
+│       └── ml/               # Point-in-time features, targets (orders_ml_features.csv) & splits
 │
 ├── notebooks/
 │   ├── 01_data_cleaning.ipynb                    # Stage 1: raw -> preprocessed (types, zip codes, GPS dedup)
 │   ├── 02_dashboard_preprocessing.ipynb          # Stage 2: preprocessed -> business/dashboard (filtering & metrics)
-│   └── 03_business_dashboard_data_preprocessing.ipynb # Stage 3: data preview, table consolidation & KPI validation
+│   ├── 03_business_dashboard_data_preprocessing.ipynb # Stage 3: data preview, table consolidation & KPI validation
+│   └── 04_ml_feature_engineering.ipynb           # Stage 4: preprocessed -> business/ml (point-in-time features)
 │
 ├── deployment/               # Official directory for the dashboard application
 │   └── app.py                # Executive Operations Master Dashboard (Streamlit application)
 │
 ├── src/                      # Reusable Python source code and shared utilities
-│   └── common/               # Shared schemas and utilities
+│   ├── common/               # Shared schemas, loaders, and utilities
+│   ├── features/             # Feature engineering encoders and transformers
+│   └── models/               # Model training, hyperparameter tuning, and evaluation
 │
 ├── docs/
 │   ├── references/           # Course project description & 6 curated literature review PDFs
-│   └── data_architecture.md  # Architectural specification and data contracts
+│   ├── data_architecture.md  # Architectural specification and data contracts
+│   └── milestone2_proposal.md# Milestone 2 proposal and modeling blueprint
+│
+├── artifacts/                # Serialized model pipelines and evaluation metrics
+│   ├── models/               # .joblib / .pkl model artifacts
+│   └── metrics/              # Evaluation reports and confusion matrices
 │
 ├── app.py                    # Root entrypoint launcher (delegates execution to deployment/app.py)
 ├── requirements.txt          # Python dependencies for local run and Streamlit Cloud
@@ -42,15 +51,15 @@ The repository strictly follows the official course specification (**Page 7 of t
 
 The data is organized into three clean layers under `data/`:
 
-$$\text{data/raw/} \xrightarrow[\text{01\_data\_cleaning.ipynb}]{\textbf{Stage 1: Clean}} \text{data/preprocessed/} \xrightarrow[\text{02\_dashboard\_preprocessing.ipynb}]{\textbf{Stage 2: Process}} \text{data/business/dashboard/} \xrightarrow[\text{03\_business\_dashboard\_data\_preprocessing.ipynb}]{\textbf{Stage 3: Consolidate}} \text{smartcommerce\_consolidated.csv}$$
+* **Dashboard Track**: $\text{data/raw/} \xrightarrow{\textbf{Stage 1}} \text{data/preprocessed/} \xrightarrow{\textbf{Stage 2}} \text{data/business/dashboard/} \xrightarrow{\textbf{Stage 3}} \text{smartcommerce\_consolidated.csv}$
+* **Machine Learning Track**: $\text{data/raw/} \xrightarrow{\textbf{Stage 1}} \text{data/preprocessed/} \xrightarrow{\textbf{Stage 4}} \text{data/business/ml/orders\_ml\_features.csv} \xrightarrow{\textbf{Models}} \text{artifacts/models/}$
 
 | Layer | Folder Path | Purpose & Rules |
 | :--- | :--- | :--- |
 | **1. Raw** | `data/raw/` | Exact, immutable copies of the 9 original Olist CSV files downloaded from Canvas. Never edit or overwrite manually. |
 | **2. Preprocessed** | `data/preprocessed/` | **Lossless baseline**: Parses ISO datetimes (`pd.to_datetime`), preserves 5-digit zip codes as strings (`01037`), checks categorical enums, and removes 261,831 exact duplicate GPS rows. Keeps 100% of transaction rows across all other tables. |
-| **3. Business** | `data/business/dashboard/` | **Dashboard-ready tables**: Applies business rules for executive presentation: removes timestamp sequence errors, filters orders to the stable operating period (**2017-01 to 2018-08**), collapses multi-reviews to the lowest review score, and pre-calculates `delivery_days`, `is_on_time`, and `item_revenue`. Also houses the master merged table `smartcommerce_consolidated.csv`. |
-
-> *Note for Phase 2 Modeling*: Future feature sets, target vectors, and train/test splits for machine learning will live under a dedicated `data/business/ml/` folder to prevent data leakage and avoid mixing modeling data with dashboard-specific date filters.
+| **3A. Business (Dashboard)** | `data/business/dashboard/` | **Dashboard-ready tables**: Applies business rules for executive presentation: removes timestamp sequence errors, filters orders to the stable operating period (**2017-01 to 2018-08**), collapses multi-reviews to lowest score, and pre-calculates `delivery_days`, `is_on_time`, and `item_revenue`. Houses `smartcommerce_consolidated.csv`. |
+| **3B. Business (ML)** | `data/business/ml/` | **Predictive modeling features & targets**: Point-in-time features frozen at `order_purchase_timestamp` (`orders_ml_features.csv`). Strictly isolates training data from dashboard date clipping and prevents post-purchase target leakage. Splitting strictly grouped by `customer_unique_id`. |
 
 ---
 
