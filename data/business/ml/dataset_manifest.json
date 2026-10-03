@@ -1,0 +1,44 @@
+{
+  "feature_version": "v1.1",
+  "contract_version": "v1.1",
+  "split_version": "v1.0",
+  "config": {
+    "earth_radius_km": 6371.0,
+    "usable_payment_types": [
+      "boleto",
+      "credit_card",
+      "debit_card",
+      "voucher"
+    ],
+    "boundary_product": "BR_Pais_2024 (IBGE national boundary)",
+    "boundary_archive_sha256": "e84c4d4ab199e646b5a180e0f5b7a991fe4c3d424dff8ae3dcf4495992c128d5",
+    "boundary_derived_geometry_sha256": "779cd7671fd8ff7a09ebf2de063eec0ee1dd72003af576a8a8cb8f2c436d803b",
+    "source_crs": "EPSG:4674",
+    "target_crs": "EPSG:4326",
+    "library_versions": {
+      "geopandas": "1.2.0",
+      "shapely": "2.1.2",
+      "pyproj": "3.7.2"
+    }
+  },
+  "input_hashes": {
+    "olist_orders_dataset.csv": "fc9e1043710015ffaf0475c66b1d8dd9c5a10eb43f6758d743f68aa3cb8b38d9",
+    "olist_order_items_dataset.csv": "f150d8ff15bdb615f65698d9bd8ad1b0801c98e13e120d9a10064118845f8301",
+    "olist_order_payments_dataset.csv": "363b3f9bde8ca98f6f36d4a68b24c4a711222df88d13e700d24e65bc8d32e2c3",
+    "olist_order_reviews_dataset.csv": "0ee43d4cc9c2b3fc2f33490b331b4c51a752afbaf4eb2f584496fed5fe3e1791",
+    "olist_customers_dataset.csv": "c35df38fc2e81bb648484d14e6681322a256c1b208bce86e1110a22ffb3c39ca",
+    "olist_products_dataset.csv": "3129123b81a5d6128f387b815a0fc54b06aa949384ddb1ebb2f0eb6f29a2475e",
+    "olist_sellers_dataset.csv": "b0315bfa664dc63864b4a878ff7fed22b33282ecf125125db8bfdf29d909a2e6",
+    "olist_geolocation_dataset.csv": "f6adc82304da8e2f84f32376fe83b2050863aff565318e9a39673c97ddf04487",
+    "product_category_name_translation.csv": "ab914315d33815e0bc240d3aab0d3e004f4d85abdc0773c8016106b20d4ffb65"
+  },
+  "row_counts": {
+    "source_orders": 99441,
+    "output_orders": 99441,
+    "orders_with_items": 98666,
+    "eligible_regression": 96470,
+    "eligible_classification": 98673
+  },
+  "content_checksum": "65f096634f806eb160f76a29b1bfbc4fcf7e69eecda9d34037cf6b2e10fe5b4a",
+  "run_timestamp": "2026-10-03T19:09:32+00:00"
+}

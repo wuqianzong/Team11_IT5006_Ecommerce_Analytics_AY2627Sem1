@@ -1,0 +1,47 @@
+{
+  "split_version": "v1.0",
+  "library_versions": {
+    "scikit-learn": "1.9.0"
+  },
+  "outer_config": {
+    "n_splits": 5,
+    "shuffle": true,
+    "random_state": 42,
+    "holdout_fold": 0,
+    "strata": [
+      "negative",
+      "nonnegative",
+      "unknown"
+    ]
+  },
+  "counts": {
+    "holdout_orders": 19926,
+    "development_orders": 79515,
+    "excluded_orders": 0,
+    "cv_classification_rows": 78906,
+    "cv_regression_rows": 77108
+  },
+  "checks": [
+    {
+      "id": "outer_groups_disjoint",
+      "status": "pass",
+      "detail": "holdout 19220 groups disjoint from development 76876 groups"
+    },
+    {
+      "id": "classification_both_classes_development",
+      "status": "pass",
+      "detail": "development classification classes [np.float64(0.0), np.float64(1.0)]"
+    },
+    {
+      "id": "classification_both_classes_each_fold",
+      "status": "pass",
+      "detail": "both classes present in every classification validation fold"
+    },
+    {
+      "id": "no_holdout_in_cv",
+      "status": "pass",
+      "detail": "no holdout order assigned to an inner validation fold"
+    }
+  ],
+  "run_timestamp": "2026-10-03T19:09:58+00:00"
+}

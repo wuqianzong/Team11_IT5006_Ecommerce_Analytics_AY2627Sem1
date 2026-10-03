@@ -1,0 +1,189 @@
+{
+  "checks": [
+    {
+      "id": "geography_reject_foreign_accept_boundary",
+      "status": "pass",
+      "detail": "European/bbox-foreign points rejected; boundary point accepted via covers"
+    },
+    {
+      "id": "geography_mixed_validity_zip",
+      "status": "pass",
+      "detail": "mixed-validity ZIP median uses only the 3 in-polygon points"
+    },
+    {
+      "id": "geography_all_rejected_zip",
+      "status": "pass",
+      "detail": "all-rejected ZIP remains unresolved with null coordinates"
+    },
+    {
+      "id": "zip_normalization",
+      "status": "pass",
+      "detail": "ZIP prefix normalization zero-pads and rejects malformed forms"
+    },
+    {
+      "id": "haversine",
+      "status": "pass",
+      "detail": "haversine: coincident=0; 1-degree latitude ~111.19 km"
+    },
+    {
+      "id": "distance_aggregation",
+      "status": "pass",
+      "detail": "distance: single/dup/max semantics and null-on-missing verified"
+    },
+    {
+      "id": "physical_totals",
+      "status": "pass",
+      "detail": "physical totals null on missing measurement; fractions correct"
+    },
+    {
+      "id": "zero_price",
+      "status": "pass",
+      "detail": "zero price preserved; freight ratio null"
+    },
+    {
+      "id": "primary_item_tie",
+      "status": "pass",
+      "detail": "primary-item tie resolved by smallest order_item_id"
+    },
+    {
+      "id": "payment_tie",
+      "status": "pass",
+      "detail": "payment-type tie resolved lexicographically (boleto < credit_card)"
+    },
+    {
+      "id": "absent_payment_unknown_category",
+      "status": "pass",
+      "detail": "untranslated category unresolved; empty payments handled"
+    },
+    {
+      "id": "review_target",
+      "status": "pass",
+      "detail": "review target: min-score detractor mapping verified"
+    },
+    {
+      "id": "allowlist_separation",
+      "status": "pass",
+      "detail": "allowlist disjoint from targets/IDs/outcome/audit; 27 columns exported"
+    },
+    {
+      "id": "one_row_per_order",
+      "status": "pass",
+      "detail": "99441 output rows vs 99441 source orders"
+    },
+    {
+      "id": "unique_nonnull_order_id",
+      "status": "pass",
+      "detail": "order_id unique and non-null"
+    },
+    {
+      "id": "join_cardinality_items",
+      "status": "pass",
+      "detail": "orders with items match distinct item order_ids"
+    },
+    {
+      "id": "no_cartesian_multiplier",
+      "status": "pass",
+      "detail": "items/payments/reviews aggregated to order grain before joins (no multiplication)"
+    },
+    {
+      "id": "has_items_coherent",
+      "status": "pass",
+      "detail": "has_items == int(n_items > 0) for every row"
+    },
+    {
+      "id": "missing_review_stays_null",
+      "status": "pass",
+      "detail": "no review -> null detractor; any review -> non-null detractor"
+    },
+    {
+      "id": "delivered_unreviewed_is_regression_candidate",
+      "status": "pass",
+      "detail": "some delivered unreviewed orders are regression-eligible"
+    },
+    {
+      "id": "reviewed_nondelivered_is_classification_candidate",
+      "status": "pass",
+      "detail": "some reviewed non-delivered orders are classification-eligible"
+    },
+    {
+      "id": "freight_ratio_missing_coherent",
+      "status": "pass",
+      "detail": "freight_ratio_missing == int(freight_ratio is null)"
+    },
+    {
+      "id": "payment_missing_coherent",
+      "status": "pass",
+      "detail": "payment_missing == int(primary_payment_type is Unknown)"
+    }
+  ],
+  "checks_summary": {
+    "passed": 23,
+    "failed": 0
+  },
+  "geography": {
+    "filter_counts": {
+      "None": 738303,
+      "outside_polygon": 29
+    },
+    "zero_survivor_keys": 4,
+    "out_of_country_median_keys": 4,
+    "resolved_keys": 19015
+  },
+  "cohort_counts": {
+    "orders": 99441,
+    "delivered": 96478,
+    "with_items": 98666,
+    "multi_item": 9803,
+    "multi_seller": 1278,
+    "with_review": 98673,
+    "detractor": 14533,
+    "non_detractor": 84140,
+    "eligible_regression": 96470,
+    "eligible_classification": 98673,
+    "regression_exclusions": {
+      "": 96470,
+      "not_delivered": 2963,
+      "missing_delivery_timestamp": 8
+    },
+    "classification_exclusions": {
+      "": 98673,
+      "missing_review_target": 768
+    }
+  },
+  "predictor_missingness": {
+    "n_items": 0,
+    "has_items": 0,
+    "n_products": 0,
+    "n_sellers": 0,
+    "n_categories": 0,
+    "total_price": 775,
+    "total_freight": 775,
+    "freight_ratio": 775,
+    "freight_ratio_missing": 0,
+    "total_weight_g": 797,
+    "total_volume_cm3": 791,
+    "weight_missing_fraction": 775,
+    "volume_missing_fraction": 775,
+    "primary_category": 0,
+    "category_missing_fraction": 775,
+    "customer_state": 0,
+    "primary_seller_state": 0,
+    "distance_km_max": 1907,
+    "distance_missing_fraction": 775,
+    "interstate_share": 775,
+    "purchase_month": 0,
+    "purchase_dayofweek": 0,
+    "purchase_hour": 0,
+    "primary_payment_type": 0,
+    "payment_installments_max": 6,
+    "n_payment_methods": 0,
+    "payment_missing": 0
+  },
+  "deferred_checks": [
+    "pipeline_fit_fold_only",
+    "history_fixture",
+    "temporal_fixture",
+    "cascade_fixture",
+    "reload_pipeline_threshold"
+  ]
+}

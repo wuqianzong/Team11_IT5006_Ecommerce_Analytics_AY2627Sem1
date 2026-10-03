@@ -1,0 +1,10 @@
+# External IBGE reference data is staged locally, not supplied by the repository
+# (data/business/ml/README.md §1: "the archive is not supplied by this revision").
+# Only boundary_manifest.json (provenance) is committed.
+BR_Pais_2024.zip
+BR_Pais_2024.shp
+BR_Pais_2024.shx
+BR_Pais_2024.dbf
+BR_Pais_2024.prj
+BR_Pais_2024.cpg
+BR_Pais_2024_4326.geojson
