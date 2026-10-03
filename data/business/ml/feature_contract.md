@@ -1,13 +1,16 @@
 # Feature set suggestion and implementation contract
 
-Status: recommended baseline v1, specified for teammate/agent implementation.
-Updated: 2026-10-02. This document specifies intended behavior; no feature builder
+Status: implementation contract v1.1, incorporating the baseline PDF review and
+teammate geography feedback.
+Updated: 2026-10-04. This document specifies intended behavior; no feature builder
 or evaluation result is implied to exist.
 
 Read the [ML guideline](README.md) and
 [proposal](../../../docs/milestone2_proposal.md). Preserve the current
 `raw -> preprocessed -> business` architecture. Input tables below always refer
-to files under `data/preprocessed/`.
+to files under `data/preprocessed/`. The only additional input is the pinned,
+label-independent Brazil boundary reference specified below. This is a documented
+geographic quality-control exception, not an additional transactional data source.
 
 ## 1. Current problems and required resolution
 
@@ -26,10 +29,25 @@ to files under `data/preprocessed/`.
 | GroupKFold is described as the final test and as time-safe. | Maintain an outer holdout manifest and separate inner fold manifest. Temporal evaluation is a distinct protocol. |
 | Pipeline/model artifacts omit the operating threshold. | Serialize threshold, positive class, feature schema and data/split versions with the pipeline. |
 | Business effects and PASS labels are stated before validation. | Report hypotheses, assumptions and actual checks; no invented scores, ROI or leakage guarantees. |
+| Mean ZIP coordinates can be distorted by erroneous locations. | Filter coordinates against a pinned Brazil country polygon before computing ZIP/state coordinate medians. Audit exclusions and lost coverage. |
+| Three seller distances duplicate single-seller information. | Keep only `distance_km_max` as the baseline distance predictor. |
+| The baseline PDF leaves zero-price rows “dropped or imputed.” | Retain the order, null the ratio and impute within folds. Missing predictors alone do not cause task exclusion. |
+| The baseline PDF proposes partial physical sums. | Use complete totals plus missingness fractions; a partial sum must not masquerade as a total. |
+| The baseline PDF permits a review record without a valid score. | Require at least one valid integer score in 1–5; otherwise the label remains null. |
 
 Audit context, before final eligibility filtering: 99,441 orders; 9,803 multi-item
 orders; 1,278 multi-seller orders; 547 orders with multiple reviews. Recompute and
 record these during implementation rather than hardcoding acceptance counts.
+The prior audit found 98,666 orders with items, of which 1,278 were multi-seller:
+approximately 98.7% of item-bearing orders were single-seller. Recompute the
+denominator explicitly. Primary, mean and maximum distances coincide for complete
+single-seller orders, but this does not establish full-sample correlation >0.99.
+
+Maximum distance is a parsimonious geographic-difficulty proxy. The farthest seller
+need not dispatch or deliver last. Carrier choice, processing and routes also
+matter; an order-level delivery timestamp does not establish the responsible
+parcel. Mean distance is a valid summary, not a truck route. Its omission is a
+simplicity decision, not proof that it is meaningless.
 
 ## 2. Grain, population and deterministic joins
 
@@ -119,7 +137,7 @@ formula, aggregation grain, missingness rule, availability assumption, and phase
 | `category_missing_fraction` | Fraction of items lacking resolved category. | Null for no items. |
 | `customer_state` | Customer table state. | Normalize whitespace/case; invalid state -> Unknown plus quality flag. |
 | `primary_seller_state` | Seller state of deterministic primary item. | Unknown for absent/unresolved state. |
-| `distance_km_mean`, `distance_km_max` | Mean/max Haversine distance from customer to each distinct seller, equal weight per seller, km. | Null aggregate if any required seller/customer coordinate unresolved. Retain distance_missing_fraction. |
+| `distance_km_max` | Maximum Haversine distance from customer to each distinct seller, km; the only baseline distance predictor. | Null if no sellers, an item seller ID is missing, or any required seller/customer coordinate is unresolved. Never take a partial maximum. |
 | `distance_missing_fraction` | Distinct sellers with unresolved distance / n_sellers. | Null if no sellers. |
 | `interstate_share` | Fraction of distinct sellers whose state differs from customer state. | Null if customer or any seller state unresolved, or no sellers. Do not treat unknown as intrastate. |
 | `purchase_month`, `purchase_dayofweek`, `purchase_hour` | Purchase timestamp components: 1–12, 0–6 (Monday=0), 0–23. Treat as categorical in v1. | Null if timestamp invalid. Preserve source clock convention; do not invent timezone conversions. |
@@ -127,7 +145,9 @@ formula, aggregation grain, missingness rule, availability assumption, and phase
 | `payment_installments_max` | Maximum positive recorded instalments across usable payment rows. | Zero/nonfinite/missing -> null; flag. Do not interpret zero as a legitimate no-instalment observation without evidence. |
 | `n_payment_methods` | Distinct usable payment types. | Zero if no usable payment; retain payment_missing indicator. |
 
-Usable payment rows: recognized source payment type and finite positive
+Usable payment types are `credit_card`, `boleto`, `voucher`, and `debit_card`,
+normalized to lowercase after trimming. Other types, including `not_defined`,
+are unusable and counted. Usable payment rows require finite positive
 payment_value. Flag excluded payment records rather than silently rewriting raw
 data. Do not count payment totals as item revenue. Check source payment key
 (`order_id`, `payment_sequential`) and fail/report duplicates.
@@ -137,18 +157,142 @@ table lacks event timestamps. Define the baseline as the checkout-complete
 simulation and include this assumption in both report and inference schema.
 Compare a no-payment feature variant if its operational availability is uncertain.
 
-### Geography lookup
+### Geography lookup: required algorithm
 
-Use the preprocessed geolocation reference, independent of labels. Keep valid
-finite coordinates within latitude [-90, 90] and longitude [-180, 180]; flag
-additional plausible-country checks separately. Build median latitude/longitude
-per zero-padded ZIP prefix and normalized state; use that composite key for customer
-and seller lookup. Missing matches stay missing; no invented coordinates.
+1. Read preprocessed geolocation; source tables stay unchanged. Filtering applies
+   only to the ML lookup.
+2. Normalize state to uppercase and ZIP prefix to a five-digit string. Accept
+   integer-valued numeric prefixes or digit strings of length 1–5, zero-pad them,
+   and reject other forms. Never create a ZIP for missing data.
+   Valid states: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR,
+   PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO.
+3. Reject invalid keys, then nonnumeric/nonfinite coordinates, then latitude
+   outside [-90,90] or longitude outside [-180,180]. Record mutually exclusive
+   first-failure reasons in this order.
+4. Apply the country polygon below using longitude as x and latitude as y. Keep
+   points inside or on its boundary. A rectangular coordinate range is insufficient:
+   it also covers neighboring countries and ocean.
+5. Group surviving rows by (ZIP prefix, state). Compute latitude median and
+   longitude median independently, with equal weight per surviving preprocessed
+   row. Do not deduplicate further or weight by order frequency.
+6. Check the median point against the same polygon. Coordinate-wise medians can
+   fall outside nonconvex polygons; mark such lookups unresolved. Do not silently
+   snap to a coast, substitute a mean, or invent a nearest ZIP.
+7. Left-join customers/sellers by the composite lookup key. A ZIP with no surviving
+   coordinates stays unresolved. No city/state-centroid fallback in v1.1.
+8. Build distinct (order_id, seller_id) pairs and calculate their customer distances.
+   Repeated seller items do not multiply distances. Publish the maximum only if
+   all seller IDs and required coordinates resolve. Otherwise null it and retain
+   the order for pipeline imputation.
 
-Record the reference hash and acknowledge static geography as an assumption.
-With radius 6371 km, apply Haversine in radians and clip its floating-point
-intermediate to [0,1]. Unit checks must distinguish degrees, radians and kilometers.
-Do not claim this is route distance or a historically versioned geolocation service.
+Median is robust to a minority of extreme values; it neither identifies every bad
+point nor guarantees the true neighborhood center. Country filtering cannot remove
+wrong coordinates that still lie within Brazil.
+
+### Boundary reference and provenance
+
+Use the country polygon from the pinned
+[IBGE BR_Pais_2024.zip](https://geoftp.ibge.gov.br/organizacao_do_territorio/malhas_territoriais/malhas_municipais/municipio_2024/Brasil/BR_Pais_2024.zip).
+The [official directory](https://geoftp.ibge.gov.br/organizacao_do_territorio/malhas_territoriais/malhas_municipais/municipio_2024/Brasil/)
+identifies this national product. It is specified, not bundled by this documentation
+change. The implementing agent must stage the original archive and provenance under
+`docs/references/geography/`, leaving the nine raw Olist tables untouched.
+
+Record URL, product year, retrieval time, actual archive SHA-256, original CRS,
+geometry-selection rule, library versions, transformation and derived geometry hash
+in `boundary_manifest.json`. Honor source attribution/redistribution terms. Never
+invent a checksum or silently upgrade the edition.
+
+Read the declared CRS and fail if absent. Transform the country geometry to
+EPSG:4326, union all country parts, and retain supplied islands. Validate nonempty,
+valid geometry; invalid geometry requires an explicit documented repair. Use
+boundary-inclusive coverage, e.g. Shapely `covers`; do not silently simplify or
+buffer. The initial policy has zero buffer. Resolution/GPS error can exclude
+legitimate coastal/border points, so report coverage loss.
+
+Suggested tools: GeoPandas for file/CRS handling, Shapely for vectorized coverage;
+record compatible versions in requirements. Build against the cached local
+reference; no implicit runtime download. Missing/unreadable reference or hash
+mismatch must fail, not fall back to a bounding box. Another source, buffer or
+edition requires a new feature version and rationale.
+
+The 2024 country polygon is a static plausibility reference for 2016–2018 orders,
+not a historical administrative reconstruction. Disclose this external-reference
+assumption in the report. Do not assert every rejected point is proven erroneous.
+
+### Haversine and audit outputs
+
+Use radius 6371 km and convert degrees to radians:
+`a = sin²(delta_lat/2) + cos(lat_customer)*cos(lat_seller)*sin²(delta_lon/2)`.
+Clip a to [0,1], then `distance = 2*6371*arcsin(sqrt(a))`.
+Require finite nonnegative results; do not round intermediate calculations.
+These are straight-line distances, not observed travel times or road distances.
+
+Save `zip_centroids.csv` under `data/business/ml/` with ZIP, state, accepted
+coordinate count, median lat/lon, resolution status and boundary version. Include
+every valid source key, even if all its coordinates were rejected (null coordinates
+and zero accepted count). Sort by ZIP/state. Hash the lookup and boundary inputs.
+The quality report must include:
+
+- reference counts before/after each filter and first-failure reason;
+- keys with zero survivors or out-of-country median points;
+- customer/seller coverage before and after filtering, using the same valid-key
+  denominator (before = key with at least one globally valid coordinate);
+- zero/one/multiple-seller order counts and their denominators;
+- order distance completeness, and missingness rates by state and task eligibility;
+- boundary edition/CRS and implementation library versions.
+
+Do not use holdout outcomes to select geographic filtering policies.
+
+### Exact predictor allowlist and baseline-PDF migration
+
+Use this shared list for both tasks initially; task-specific removals need a named
+development ablation:
+
+```text
+n_items, has_items, n_products, n_sellers, n_categories,
+total_price, total_freight, freight_ratio, freight_ratio_missing,
+total_weight_g, total_volume_cm3, weight_missing_fraction,
+volume_missing_fraction, primary_category, category_missing_fraction,
+customer_state, primary_seller_state, distance_km_max,
+distance_missing_fraction, interstate_share,
+purchase_month, purchase_dayofweek, purchase_hour,
+primary_payment_type, payment_installments_max, n_payment_methods, payment_missing
+```
+
+`has_items = int(n_items > 0)`;
+`freight_ratio_missing = int(freight_ratio is null)`;
+`payment_missing = int(no usable payment rows)`.
+Counts are nonnegative integers; flags are 0/1; continuous values/fractions are
+nullable floats; states/category/payment are categorical strings; time components
+are nullable integers encoded as categories. Unlisted quality flags are audit-only.
+Primary photo count and description length remain optional secondary features.
+
+Missing item seller IDs mean the complete seller set is unknown: set maximum
+distance, distance_missing_fraction and interstate_share to null and record
+`seller_id_missing` as an audit flag. Otherwise distance_missing_fraction is the
+unresolved distinct-seller count / n_sellers; missing customer coordinates make all
+seller distances unresolved. With no sellers, distance and fraction are null.
+
+| Baseline PDF name | Canonical implementation / action |
+| --- | --- |
+| `order_purchase_timestamp` | `prediction_timestamp` in export; preserve source name in lineage. |
+| `is_task1_eligible`, `is_task2_eligible` | `eligible_regression`, `eligible_classification`. |
+| `detractor` | `is_detractor`; retain `review_score_min` as target-source metadata. |
+| `seller_state` | `primary_seller_state`. |
+| `distance_max_km` | `distance_km_max`, the only distance predictor. |
+| `distance_km`, `distance_mean_km` | Omit; also omit old repo `distance_km_mean`. |
+| `is_interstate` | `interstate_share`; this changes meaning, not merely naming. |
+| `n_distinct_products` | `n_products`. |
+| `sum_weight_g`, `sum_volume_cm3` | `total_weight_g`, `total_volume_cm3` with complete-total semantics. |
+| `weight_missing`, `volume_missing` | Missingness fractions, not binary-any-missing flags. |
+| `payment_method_primary`, `max_installments` | `primary_payment_type`, `payment_installments_max`. |
+| `purchase_weekday` | `purchase_dayofweek`, Monday=0. |
+| `description_length`, `photos_count` | Optional `primary_description_length`, `primary_photos_count`. |
+
+Do not export duplicate aliases. Normalize once and give both model teams the same
+schema and manifests. Highest-price primary-item ties use smallest numeric item ID.
+Payment-type total ties use lexicographic type, not an undefined aggregate sequence.
 
 ## 5. Secondary feature experiments
 
@@ -238,6 +382,23 @@ arbitrary numeric state codes must not imply a ranking. Report unseen categories
 Feature selection/ablation, transformations and clipping all remain development
 decisions.
 
+Default preprocessing for the first reproducible baseline:
+- Categorical columns are customer_state, primary_seller_state, primary_category,
+  primary_payment_type, purchase_month, purchase_dayofweek and purchase_hour.
+  Convert time codes to consistent category strings; use an explicit Unknown
+  missing token and OneHotEncoder(handle_unknown='ignore'). For the linear
+  baseline use drop='first' and record reference categories and the fact that an
+  unseen value can encode like the reference. Record unknown-category counts.
+- All other allowlisted columns are numeric. Use training-fold median imputation
+  with missingness indicators and keep_empty_features=True; a wholly missing
+  training column therefore retains its position with the imputer's documented
+  zero fallback and indicator, never a claimed observed value. Version/persist
+  transformed feature names. Scale numeric columns for linear/logistic models;
+  use unscaled imputed numbers for trees.
+- No log transform, top-10 grouping or clipping in the first baseline. These are
+  named development experiments rather than per-agent choices. No precomputed
+  medians/scales or encoded dummy columns in orders_ml_features.csv.
+
 Predictions and target arrays join by order_id, not by incidental row position.
 Never impute labels. Never cap or remove true long-duration test labels to make
 the regression score better.
@@ -275,7 +436,17 @@ Use these checks before publishing outputs:
   order, unique non-null order_id, stable content on rerun.
 - Keys and join cardinalities asserted; two items × two payments × two reviews
   still produce one order row with correct item totals.
-- Fixture for multi-seller geography verifies distinct-seller weighting and max.
+- Geography fixtures reject a European point and an ocean/foreign point inside the
+  bounding rectangle but outside the polygon; accept a covered boundary point.
+  A mixed-validity ZIP uses only accepted coordinates; an all-rejected ZIP remains
+  unresolved. Verify CRS, coordinate order and post-median coverage.
+- Distance fixtures: coincident points give zero; one seller gives its distance;
+  multiple sellers give the maximum; duplicated seller items do not change it;
+  missing required coordinates yield null, not a smaller partial maximum.
+  Assert primary/mean distance columns are absent from exports and allowlists.
+- Physical fixtures: two items with one missing measurement give null total and
+  missingness fraction 0.5; all-missing/no-item cases never yield misleading zero
+  totals. A zero price preserves the row and yields a null ratio.
 - Primary-item and payment ties produce the documented deterministic result.
 - Null/invalid dimensions, zero price, absent payments/items, unmatched ZIPs and
   unknown categories produce the documented missing values/flags.

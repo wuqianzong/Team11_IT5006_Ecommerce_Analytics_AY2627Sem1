@@ -1,6 +1,6 @@
 # Milestone 2 Proposal: Delivery Lead Time and Low-Review Risk at Checkout
 
-Status: revised implementation proposal, 2026-10-02. Results remain to be established.
+Status: revised implementation proposal, 2026-10-04. Results remain to be established.
 
 Milestone 2: 11 October 2026, 23:59; 40%; technical report of 6–8 pages excluding
 cover, references, and appendices. Verify deadline changes on Canvas.
@@ -50,7 +50,7 @@ The contract defines exact aggregation, missing-value, split, and validation rul
 
 Initial feature groups:
 
-- Geography: customer state, primary seller state, mean/maximum seller distance,
+- Geography: customer state, primary seller state, maximum seller distance only,
   interstate share, and seller count.
 - Basket and financial: item/product/category counts, total price, total freight,
   and freight-to-price ratio.
@@ -62,6 +62,10 @@ Initial feature groups:
 Retain state categories initially. Do not remove freight solely because a ratio
 uses it. Haversine distance is a straight-line geographic proxy, not road distance.
 Product volume sums are not measured package volume.
+Geolocation uses a pinned IBGE country polygon to filter coordinates before
+ZIP/state medians; this label-independent external quality-control reference is
+documented in the feature contract. Median locations and maximum distances are
+robustness/simplicity choices, not guaranteed true centers or last-arrival causes.
 
 Learn imputation, category grouping, scaling, feature selection, and any clipping
 thresholds inside development folds. Keep deterministic sums and ratios in the

@@ -1,12 +1,33 @@
 # ML dataset guideline
 
-Status: implementation specification, revised 2026-10-02.
+Status: implementation specification v1.1, revised 2026-10-04.
 
 Read this document together with the [feature contract](feature_contract.md),
 [proposal](../../../docs/milestone2_proposal.md), and
 [data architecture](../../../docs/data_architecture.md). The architecture owns
 directory/lineage rules; this guideline and the feature contract own detailed ML
-rules. The two PDF processing plans are discussion drafts, not overriding contracts.
+rules. The processing-plan PDFs and Feature Baseline v1.0 PDF are discussion inputs;
+this revised contract incorporates their review and teammate geography feedback.
+
+## Locked v1.1 implementation decisions
+
+- Only `distance_km_max` is a baseline distance predictor. Do not export primary
+  or mean seller distance. The maximum is a geographic-difficulty proxy, not proof
+  that the farthest parcel is last to arrive. No correlation >0.99 is assumed.
+- Filter points against the pinned IBGE Brazil polygon before computing coordinate
+  medians by five-digit ZIP prefix and state. A bounding box is insufficient.
+  Median reduces outlier influence; it does not guarantee a true location.
+- Null distance when any required seller/customer location is unresolved. Retain
+  the order and record missingness; never use a smaller partial maximum.
+- Physical totals require all item measurements; otherwise null them and retain
+  missingness fractions. Zero-price orders remain, with a null freight ratio.
+- Keep customer and primary-seller state and interstate_share. Section 4 of the
+  contract freezes the exact predictor allowlist and PDF-name mapping.
+- Require a valid score for classification and positive fractional-day duration
+  for regression. IDs, status, outcomes and eligibility flags are audit/target
+  columns, never predictors.
+- Listing features are secondary. Seller outcome histories and stacking remain
+  deferred until their stricter contracts are implemented.
 
 ## 1. Lineage and scope
 
@@ -20,6 +41,20 @@ Build one row per source order. Keep deterministic checkout aggregates reusable
 across tasks, but fit task-specific models on task-specific eligible rows.
 Preserve source files and existing dashboard behavior.
 
+The sole additional reference is the pinned IBGE country polygon specified in
+the contract's Geography lookup section. Stage it and `boundary_manifest.json`
+under `docs/references/geography/`; the archive is not supplied by this revision.
+Record the actual source URL, edition, SHA-256, CRS and geometry transformation.
+This is a documented, label-independent geographic quality-control exception to
+the preprocessed-only rule. Do not alter raw Olist inputs or import other external
+predictors.
+
+Build with cached local geometry. A missing reference, missing CRS, invalid
+geometry or checksum mismatch must fail clearly; no silent bounding-box fallback
+or runtime downloads. Boundary-inclusive coverage, retained islands, zero buffer,
+coordinate-median revalidation and coverage-loss reporting are mandatory.
+The contract defines exact steps and the historical-boundary limitation.
+
 ## 2. Artifacts and column roles
 
 | Artifact | Contract |
@@ -30,6 +65,7 @@ Preserve source files and existing dashboard behavior.
 | `split_assignments.csv` | One row per order: customer group, split version, and development/holdout/excluded assignment with reason. |
 | `cv_assignments.csv` | One row per task and eligible development order: validation fold and split version. |
 | `quality_report.json` | Contract checks, missingness, join cardinalities and cohort counts. Required failures stop publication. |
+| `zip_centroids.csv` | Versioned ZIP/state median lookup after country filtering, with coordinate counts, status and boundary version; unresolved keys retained. Not a model-input table. |
 
 Optional `train.csv` and `test.csv` are derived exports, never independent sources of
 split membership. Fold-specific history or prediction caches require task, fold,
@@ -106,6 +142,27 @@ Class weighting, XGBoost, temporal validation, voting and stacking are optional.
 Begin with simple linear/logistic and tree baselines. Do not hardcode class weights.
 
 ## 7. Handoff and artifact requirements
+
+Implementation order:
+
+1. Read contract sections 2–4; stage/check the boundary reference and provenance.
+2. Implement portable reusable modules under `src/features/` for geometry lookup,
+   item/payment/review aggregation, targets and base export. Explain execution in
+   `notebooks/04_ml_feature_engineering.ipynb`.
+3. Export the base table, lookup, schema, manifest and quality report. Apply the
+   exact common predictor allowlist; secondary features require versioned variants.
+4. Build shared outer and task-specific inner split manifests per contract section 7.
+5. Run contract section 9 checks, including country filtering, incomplete distances,
+   missing physical totals, review eligibility and multiplication-safe joins.
+6. Hand off commands, input requirements, dependency versions, actual output counts,
+   missingness/coverage, exclusions and test results to both model teams.
+
+The implementation should expose a repository-root CLI such as
+`python -m src.features.build_features` followed by
+`python -m src.features.create_splits`; document actual arguments, boundary setup
+and validation commands when implemented. Pin compatible GIS dependencies if used.
+Do not claim these entrypoints already exist. Training can proceed only once
+required dataset checks pass. No model fitting is required merely to build features.
 
 Before training, pass every required check in the feature contract. Save pipelines
 with feature names/order, positive class, threshold, target/cohort version, split

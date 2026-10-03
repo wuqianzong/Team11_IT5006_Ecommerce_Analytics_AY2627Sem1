@@ -2,7 +2,7 @@
 
 Status: **Authoritative Project Specification**  
 Applies to: **Milestones 1, 2, and 3**  
-Last updated: **2026-10-02**
+Last updated: **2026-10-04**
 
 ---
 
@@ -177,6 +177,12 @@ PDFs are discussion drafts; the revised Markdown contract governs implementation
 
 **Lineage Contract**:
 - **Upstream Source**: Reads strictly from **`data/preprocessed/*.csv`** (clean typed baseline).
+- **Geographic Reference Exception (v1.1)**: Transactional inputs remain exclusively
+  preprocessed Olist tables. A pinned IBGE country polygon under
+  `docs/references/geography/` is permitted solely for coordinate quality control,
+  with source/hash/CRS provenance. Follow the feature contract's polygon-filtered
+  ZIP/state medians and maximum-only seller distance rules; do not alter raw or
+  dashboard data. Document this external static-reference assumption in the report.
 - **Prohibited Sources**:
   - `data/raw/`: Prohibited per Principle 1 (immutable raw).
   - `data/business/dashboard/`: Prohibited because dashboard-specific operating window filters (Rule G: 2017-01 to 2018-08) and review score collapsing induce sampling bias into ML training.
