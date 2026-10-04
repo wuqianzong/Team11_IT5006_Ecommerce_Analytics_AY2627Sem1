@@ -61,6 +61,16 @@
       "detail": "review target: min-score detractor mapping verified"
     },
     {
+      "id": "invalid_review_null_label",
+      "status": "pass",
+      "detail": "invalid-only review keeps null label despite positive review_count"
+    },
+    {
+      "id": "cartesian_join_safety",
+      "status": "pass",
+      "detail": "2 items x 2 payments x 2 reviews -> exactly 1 order row with correct totals"
+    },
+    {
       "id": "allowlist_separation",
       "status": "pass",
       "detail": "allowlist disjoint from targets/IDs/outcome/audit; 27 columns exported"
@@ -81,19 +91,19 @@
       "detail": "orders with items match distinct item order_ids"
     },
     {
-      "id": "no_cartesian_multiplier",
-      "status": "pass",
-      "detail": "items/payments/reviews aggregated to order grain before joins (no multiplication)"
-    },
-    {
       "id": "has_items_coherent",
       "status": "pass",
       "detail": "has_items == int(n_items > 0) for every row"
     },
     {
-      "id": "missing_review_stays_null",
+      "id": "review_label_null_iff_no_valid_score",
       "status": "pass",
-      "detail": "no review -> null detractor; any review -> non-null detractor"
+      "detail": "is_detractor null exactly when no valid review score (invalid-only reviews stay null)"
+    },
+    {
+      "id": "no_review_implies_null_label",
+      "status": "pass",
+      "detail": "every order with zero reviews has a null detractor label"
     },
     {
       "id": "delivered_unreviewed_is_regression_candidate",
@@ -117,17 +127,400 @@
     }
   ],
   "checks_summary": {
-    "passed": 23,
+    "passed": 25,
     "failed": 0
   },
   "geography": {
-    "filter_counts": {
-      "None": 738303,
-      "outside_polygon": 29
+    "boundary": {
+      "product": "BR_Pais_2024 (IBGE national boundary)",
+      "boundary_version": "BR_Pais_2024",
+      "archive_sha256": "e84c4d4ab199e646b5a180e0f5b7a991fe4c3d424dff8ae3dcf4495992c128d5",
+      "derived_geometry_sha256": "779cd7671fd8ff7a09ebf2de063eec0ee1dd72003af576a8a8cb8f2c436d803b",
+      "original_crs": "EPSG:4674",
+      "target_crs": "EPSG:4326",
+      "library_versions": {
+        "geopandas": "1.2.0",
+        "shapely": "2.1.2",
+        "pyproj": "3.7.2"
+      }
     },
-    "zero_survivor_keys": 4,
-    "out_of_country_median_keys": 4,
-    "resolved_keys": 19015
+    "reference_filter": {
+      "total_rows": 738332,
+      "accepted": 738303,
+      "first_failure_reasons": {
+        "None": 738303,
+        "outside_polygon": 29
+      },
+      "survivors_after_step": {
+        "start": 738332,
+        "after_invalid_key": 738332,
+        "after_invalid_coords": 738332,
+        "after_lat_range": 738332,
+        "after_lng_range": 738332,
+        "after_polygon": 738303
+      }
+    },
+    "keys": {
+      "total_keys": 19023,
+      "zero_survivor_keys": 4,
+      "out_of_country_median_keys": 4,
+      "resolved_keys": 19015
+    },
+    "coverage": {
+      "customer": {
+        "keys": 14994,
+        "before": 14837,
+        "after": 14834,
+        "coverage_after_over_before": 0.9997978027903215
+      },
+      "seller": {
+        "keys": 2264,
+        "before": 2223,
+        "after": 2222,
+        "coverage_after_over_before": 0.9995501574448943
+      }
+    },
+    "seller_order_counts": {
+      "zero_seller": 0,
+      "one_seller": 97388,
+      "multi_seller": 1278,
+      "denominator_with_items": 98666
+    },
+    "order_distance_completeness": {
+      "resolved": 97534,
+      "missing": 1907,
+      "fraction_resolved": 0.9808227994489195
+    },
+    "distance_missingness_by_state_eligibility": {
+      "regression": [
+        {
+          "customer_state": "AC",
+          "total": 80,
+          "missing": 1,
+          "missing_fraction": 0.0125
+        },
+        {
+          "customer_state": "AL",
+          "total": 397,
+          "missing": 5,
+          "missing_fraction": 0.012594458438287154
+        },
+        {
+          "customer_state": "AM",
+          "total": 145,
+          "missing": 0,
+          "missing_fraction": 0.0
+        },
+        {
+          "customer_state": "AP",
+          "total": 67,
+          "missing": 0,
+          "missing_fraction": 0.0
+        },
+        {
+          "customer_state": "BA",
+          "total": 3256,
+          "missing": 36,
+          "missing_fraction": 0.011056511056511056
+        },
+        {
+          "customer_state": "CE",
+          "total": 1279,
+          "missing": 16,
+          "missing_fraction": 0.012509773260359656
+        },
+        {
+          "customer_state": "DF",
+          "total": 2080,
+          "missing": 177,
+          "missing_fraction": 0.08509615384615385
+        },
+        {
+          "customer_state": "ES",
+          "total": 1995,
+          "missing": 19,
+          "missing_fraction": 0.009523809523809525
+        },
+        {
+          "customer_state": "GO",
+          "total": 1957,
+          "missing": 27,
+          "missing_fraction": 0.013796627491057742
+        },
+        {
+          "customer_state": "MA",
+          "total": 717,
+          "missing": 6,
+          "missing_fraction": 0.008368200836820083
+        },
+        {
+          "customer_state": "MG",
+          "total": 11354,
+          "missing": 128,
+          "missing_fraction": 0.011273559978862075
+        },
+        {
+          "customer_state": "MS",
+          "total": 701,
+          "missing": 4,
+          "missing_fraction": 0.005706134094151213
+        },
+        {
+          "customer_state": "MT",
+          "total": 886,
+          "missing": 9,
+          "missing_fraction": 0.010158013544018058
+        },
+        {
+          "customer_state": "PA",
+          "total": 946,
+          "missing": 6,
+          "missing_fraction": 0.006342494714587738
+        },
+        {
+          "customer_state": "PB",
+          "total": 517,
+          "missing": 10,
+          "missing_fraction": 0.019342359767891684
+        },
+        {
+          "customer_state": "PE",
+          "total": 1593,
+          "missing": 14,
+          "missing_fraction": 0.008788449466415568
+        },
+        {
+          "customer_state": "PI",
+          "total": 476,
+          "missing": 4,
+          "missing_fraction": 0.008403361344537815
+        },
+        {
+          "customer_state": "PR",
+          "total": 4923,
+          "missing": 57,
+          "missing_fraction": 0.01157830591102986
+        },
+        {
+          "customer_state": "RJ",
+          "total": 12350,
+          "missing": 133,
+          "missing_fraction": 0.010769230769230769
+        },
+        {
+          "customer_state": "RN",
+          "total": 474,
+          "missing": 4,
+          "missing_fraction": 0.008438818565400843
+        },
+        {
+          "customer_state": "RO",
+          "total": 243,
+          "missing": 6,
+          "missing_fraction": 0.024691358024691357
+        },
+        {
+          "customer_state": "RR",
+          "total": 41,
+          "missing": 0,
+          "missing_fraction": 0.0
+        },
+        {
+          "customer_state": "RS",
+          "total": 5344,
+          "missing": 49,
+          "missing_fraction": 0.009169161676646706
+        },
+        {
+          "customer_state": "SC",
+          "total": 3546,
+          "missing": 82,
+          "missing_fraction": 0.023124647490129723
+        },
+        {
+          "customer_state": "SE",
+          "total": 335,
+          "missing": 2,
+          "missing_fraction": 0.005970149253731343
+        },
+        {
+          "customer_state": "SP",
+          "total": 40494,
+          "missing": 309,
+          "missing_fraction": 0.0076307601126092755
+        },
+        {
+          "customer_state": "TO",
+          "total": 274,
+          "missing": 2,
+          "missing_fraction": 0.0072992700729927005
+        }
+      ],
+      "classification": [
+        {
+          "customer_state": "AC",
+          "total": 81,
+          "missing": 1,
+          "missing_fraction": 0.012345679012345678
+        },
+        {
+          "customer_state": "AL",
+          "total": 410,
+          "missing": 7,
+          "missing_fraction": 0.01707317073170732
+        },
+        {
+          "customer_state": "AM",
+          "total": 146,
+          "missing": 1,
+          "missing_fraction": 0.00684931506849315
+        },
+        {
+          "customer_state": "AP",
+          "total": 67,
+          "missing": 0,
+          "missing_fraction": 0.0
+        },
+        {
+          "customer_state": "BA",
+          "total": 3340,
+          "missing": 57,
+          "missing_fraction": 0.017065868263473054
+        },
+        {
+          "customer_state": "CE",
+          "total": 1326,
+          "missing": 25,
+          "missing_fraction": 0.01885369532428356
+        },
+        {
+          "customer_state": "DF",
+          "total": 2128,
+          "missing": 197,
+          "missing_fraction": 0.09257518796992481
+        },
+        {
+          "customer_state": "ES",
+          "total": 2006,
+          "missing": 26,
+          "missing_fraction": 0.01296111665004985
+        },
+        {
+          "customer_state": "GO",
+          "total": 2007,
+          "missing": 40,
+          "missing_fraction": 0.019930244145490782
+        },
+        {
+          "customer_state": "MA",
+          "total": 742,
+          "missing": 14,
+          "missing_fraction": 0.018867924528301886
+        },
+        {
+          "customer_state": "MG",
+          "total": 11554,
+          "missing": 218,
+          "missing_fraction": 0.018867924528301886
+        },
+        {
+          "customer_state": "MS",
+          "total": 713,
+          "missing": 10,
+          "missing_fraction": 0.014025245441795231
+        },
+        {
+          "customer_state": "MT",
+          "total": 900,
+          "missing": 13,
+          "missing_fraction": 0.014444444444444444
+        },
+        {
+          "customer_state": "PA",
+          "total": 962,
+          "missing": 12,
+          "missing_fraction": 0.012474012474012475
+        },
+        {
+          "customer_state": "PB",
+          "total": 530,
+          "missing": 14,
+          "missing_fraction": 0.026415094339622643
+        },
+        {
+          "customer_state": "PE",
+          "total": 1635,
+          "missing": 19,
+          "missing_fraction": 0.011620795107033639
+        },
+        {
+          "customer_state": "PI",
+          "total": 490,
+          "missing": 6,
+          "missing_fraction": 0.012244897959183673
+        },
+        {
+          "customer_state": "PR",
+          "total": 5019,
+          "missing": 104,
+          "missing_fraction": 0.020721259214983065
+        },
+        {
+          "customer_state": "RJ",
+          "total": 12687,
+          "missing": 225,
+          "missing_fraction": 0.017734689051785293
+        },
+        {
+          "customer_state": "RN",
+          "total": 480,
+          "missing": 6,
+          "missing_fraction": 0.0125
+        },
+        {
+          "customer_state": "RO",
+          "total": 252,
+          "missing": 12,
+          "missing_fraction": 0.047619047619047616
+        },
+        {
+          "customer_state": "RR",
+          "total": 46,
+          "missing": 0,
+          "missing_fraction": 0.0
+        },
+        {
+          "customer_state": "RS",
+          "total": 5443,
+          "missing": 81,
+          "missing_fraction": 0.014881499173250046
+        },
+        {
+          "customer_state": "SC",
+          "total": 3609,
+          "missing": 108,
+          "missing_fraction": 0.029925187032418952
+        },
+        {
+          "customer_state": "SE",
+          "total": 349,
+          "missing": 7,
+          "missing_fraction": 0.02005730659025788
+        },
+        {
+          "customer_state": "SP",
+          "total": 41472,
+          "missing": 679,
+          "missing_fraction": 0.01637249228395062
+        },
+        {
+          "customer_state": "TO",
+          "total": 279,
+          "missing": 3,
+          "missing_fraction": 0.010752688172043012
+        }
+      ]
+    }
   },
   "cohort_counts": {
     "orders": 99441,

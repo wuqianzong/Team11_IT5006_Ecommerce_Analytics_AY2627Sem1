@@ -315,6 +315,97 @@ def check_review_target() -> dict:
     return _ok("review target: min-score detractor mapping verified")
 
 
+def check_invalid_review_null_label() -> dict:
+    """A review with no valid score keeps a null label even when review_count > 0."""
+    reviews = pd.DataFrame({
+        "review_id": ["r1", "r2"],
+        "order_id": ["o1", "o1"],
+        "review_score": [0, "abc"],  # both invalid (out of range / non-numeric)
+        "review_answer_timestamp": ["2018-01-01", "2018-01-02"],
+    })
+    out = aggregate_reviews(reviews)
+    row = out.loc["o1"]
+    if int(row["review_count"]) != 2:
+        return _fail(f"review_count {row['review_count']} != 2")
+    if not pd.isna(row["is_detractor"]):
+        return _fail("is_detractor should be null when no valid score exists")
+    if not pd.isna(row["review_score_min"]):
+        return _fail("review_score_min should be null when no valid score exists")
+    return _ok("invalid-only review keeps null label despite positive review_count")
+
+
+def check_cartesian_join_safety() -> dict:
+    """Two items x two payments x two reviews must still yield exactly one order row.
+
+    Exercises the real production join path (``assemble_base``) rather than a
+    hardcoded pass (feature_contract.md §9 / §11.4).
+    """
+    from shapely.geometry import Polygon
+
+    from .build_features import assemble_base
+
+    orders = pd.DataFrame({
+        "order_id": ["o1"], "customer_id": ["c1"], "order_status": ["delivered"],
+        "order_purchase_timestamp": pd.to_datetime(["2018-01-01 00:00:00"]),
+        "order_delivered_customer_date": pd.to_datetime(["2018-01-05 00:00:00"]),
+    })
+    customers = pd.DataFrame({
+        "customer_id": ["c1"], "customer_unique_id": ["cu1"],
+        "customer_zip_code_prefix": [1000], "customer_state": ["SP"],
+    })
+    products = pd.DataFrame({
+        "product_id": ["p1", "p2"],
+        "product_category_name": ["cat_a", "cat_b"],
+        "product_weight_g": [100.0, 200.0],
+        "product_length_cm": [10.0, 10.0], "product_height_cm": [10.0, 10.0],
+        "product_width_cm": [10.0, 10.0],
+    })
+    sellers = pd.DataFrame({
+        "seller_id": ["s1"], "seller_zip_code_prefix": [1000], "seller_state": ["SP"],
+    })
+    geolocation = pd.DataFrame({
+        "geolocation_zip_code_prefix": [1000],
+        "geolocation_lat": [-23.55], "geolocation_lng": [-46.63],
+        "geolocation_state": ["SP"],
+    })
+    translation = pd.DataFrame({
+        "product_category_name": ["cat_a", "cat_b"],
+        "product_category_name_english": ["Cat A", "Cat B"],
+    })
+    items = pd.DataFrame({
+        "order_id": ["o1", "o1"], "order_item_id": [1, 2],
+        "product_id": ["p1", "p2"], "seller_id": ["s1", "s1"],
+        "price": [10.0, 20.0], "freight_value": [5.0, 5.0],
+    })
+    payments = pd.DataFrame({
+        "order_id": ["o1", "o1"], "payment_sequential": [1, 2],
+        "payment_type": ["credit_card", "boleto"],
+        "payment_installments": [1, 1], "payment_value": [15.0, 15.0],
+    })
+    reviews = pd.DataFrame({
+        "review_id": ["r1", "r2"], "order_id": ["o1", "o1"],
+        "review_score": [4, 5],
+        "review_answer_timestamp": ["2018-01-03", "2018-01-04"],
+    })
+    polygon = Polygon([(-50, -30), (-40, -30), (-40, -20), (-50, -20)])
+
+    built = assemble_base(orders, customers, products, sellers, geolocation,
+                          translation, items, payments, reviews, polygon)
+    base = built["base"]
+    if len(base) != 1:
+        return _fail(f"2x2x2 fixture produced {len(base)} rows, expected 1")
+    row = base.iloc[0]
+    if int(row["n_items"]) != 2:
+        return _fail(f"n_items {row['n_items']} != 2")
+    if not _close(row["total_price"], 30.0):
+        return _fail(f"total_price {row['total_price']} != 30.0")
+    if int(row["n_payment_methods"]) != 2:
+        return _fail(f"n_payment_methods {row['n_payment_methods']} != 2")
+    if int(row["review_count"]) != 2:
+        return _fail(f"review_count {row['review_count']} != 2")
+    return _ok("2 items x 2 payments x 2 reviews -> exactly 1 order row with correct totals")
+
+
 # ---------------------------------------------------------------------------
 # Allowlist separation
 # ---------------------------------------------------------------------------
@@ -362,6 +453,8 @@ def run_fixture_checks(polygon, export_columns: list[str]) -> list[dict]:
         ("payment_tie", check_payment_tie),
         ("absent_payment_unknown_category", check_absent_payment_and_unknown_category),
         ("review_target", check_review_target),
+        ("invalid_review_null_label", check_invalid_review_null_label),
+        ("cartesian_join_safety", check_cartesian_join_safety),
         ("allowlist_separation", lambda: check_allowlist_separation(export_columns)),
     ]:
         try:

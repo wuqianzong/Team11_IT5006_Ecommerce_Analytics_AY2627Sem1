@@ -1,4 +1,4 @@
-"""Deterministic base-table builder (feature_contract.md v1.1, Phase A).
+"""Deterministic base-table builder (feature_contract.md v1.2, Phase A).
 
 Entrypoint: ``python -m src.features.build_features``
 
@@ -9,16 +9,21 @@ Reads ``data/preprocessed/*.csv`` (plus the pinned IBGE boundary under
     feature_schema.json      versioned column roles/types/units/formulas
     dataset_manifest.json    input hashes, config, row counts, content checksum
     zip_centroids.csv        polygon-filtered ZIP/state median lookup
-    quality_report.json      contract checks, missingness, cardinalities, cohorts
+    quality_report.json      contract checks, missingness, coverage, cohorts
 
 No imputation, scaling, encoding or learned transform happens here; those are
 training-fold operations. Run ``python -m src.features.create_splits`` afterwards
 for the development/holdout and CV manifests.
+
+Outputs are written to a staging directory and published only when every required
+check passes, so a failed build leaves the previous published artifacts intact
+(feature_contract.md §11.4). Generated CSVs use explicit LF line endings.
 """
 from __future__ import annotations
 
-import hashlib
 import json
+import os
+import shutil
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -37,22 +42,26 @@ from .checks import run_fixture_checks
 from .contract import (
     BASE_COLUMN_ORDER,
     CATEGORICAL_COLUMNS,
+    CONTRACT_VERSION,
     FEATURE_SCHEMA,
+    FEATURE_VERSION,
     NUMERIC_COLUMNS,
     PREDICTOR_ALLOWLIST,
+    SPLIT_VERSION,
     UNKNOWN,
     normalize_state,
 )
 from .geography import (
+    BOUNDARY_VERSION,
     build_zip_centroids,
     compute_distance_features,
-    normalize_zip,
+    compute_geography_coverage,
     prepare_boundary,
 )
+from .serialization import write_csv_lf, write_text_lf
 
-FEATURE_VERSION = "v1.1"
-SPLIT_VERSION = "v1.0"
-CONTRACT_VERSION = "v1.1"
+STAGING_DIR = "_staging"
+
 
 # ---------------------------------------------------------------------------
 # Loaders (explicit dtypes + date parsing for determinism)
@@ -228,24 +237,18 @@ def _enriched_schema() -> dict:
 
 
 # ---------------------------------------------------------------------------
-# Main build
+# Pure order-grain assembly (no file I/O)
 # ---------------------------------------------------------------------------
 
-def build(repo_root: Path) -> dict:
-    pre = repo_root / "data" / "preprocessed"
-    ml = repo_root / "data" / "business" / "ml"
-    ml.mkdir(parents=True, exist_ok=True)
+def assemble_base(orders, customers, products, sellers, geolocation, translation,
+                  items, payments, reviews, polygon) -> dict:
+    """Assemble one order-grain base row per source order from typed tables.
 
-    orders = _load_orders(pre)
-    items = _load_items(pre)
-    payments = _load_payments(pre)
-    reviews = _load_reviews(pre)
-    customers = _load_customers(pre)
-    products = _load_products(pre)
-    sellers = _load_sellers(pre)
-    geolocation = _load_geolocation(pre)
-    translation = _load_translation(pre)
-
+    Pure with respect to the filesystem: it consumes typed tables and the validated
+    boundary polygon and returns the base table plus intermediates. Keeping the
+    join logic here (rather than buried behind loaders) makes it directly testable
+    with the small Cartesian-join fixture (feature_contract.md §11.4).
+    """
     # Key uniqueness (fail, never silently drop).
     _assert_unique(orders, "order_id", "orders")
     _assert_unique(customers, "customer_id", "customers")
@@ -255,10 +258,8 @@ def build(repo_root: Path) -> dict:
     _assert_unique(items, ["order_id", "order_item_id"], "items")
     _assert_unique(payments, ["order_id", "payment_sequential"], "payments")
 
-    # Boundary + ZIP/state median lookup.
-    polygon = prepare_boundary(repo_root)
-    centroids, geo_filter_counts = build_zip_centroids(geolocation, polygon)
-    centroids.to_csv(ml / "zip_centroids.csv", index=False)
+    # Boundary-filtered ZIP/state median lookup.
+    centroids, geo_filter_report = build_zip_centroids(geolocation, polygon)
 
     # Categories, then order-grain aggregation (items / payments / reviews).
     products_cat = resolve_english_category(products, translation)
@@ -349,7 +350,7 @@ def build(repo_root: Path) -> dict:
     return {
         "base": base,
         "centroids": centroids,
-        "geo_filter_counts": geo_filter_counts,
+        "geo_filter_report": geo_filter_report,
         "polygon": polygon,
         "source": {
             "orders": orders, "items": items, "payments": payments, "reviews": reviews,
@@ -360,6 +361,28 @@ def build(repo_root: Path) -> dict:
     }
 
 
+def build(repo_root: Path) -> dict:
+    """Load preprocessed tables + the boundary, then assemble the base table."""
+    pre = repo_root / "data" / "preprocessed"
+
+    orders = _load_orders(pre)
+    items = _load_items(pre)
+    payments = _load_payments(pre)
+    reviews = _load_reviews(pre)
+    customers = _load_customers(pre)
+    products = _load_products(pre)
+    sellers = _load_sellers(pre)
+    geolocation = _load_geolocation(pre)
+    translation = _load_translation(pre)
+
+    polygon, boundary_manifest = prepare_boundary(repo_root)
+
+    built = assemble_base(orders, customers, products, sellers, geolocation,
+                          translation, items, payments, reviews, polygon)
+    built["boundary_manifest"] = boundary_manifest
+    return built
+
+
 def _to_int64(s: pd.Series) -> pd.Series:
     out = pd.Series(pd.NA, index=s.index, dtype="Int64")
     out[s.notna()] = pd.to_numeric(s[s.notna()], errors="coerce").astype("Int64")
@@ -367,7 +390,7 @@ def _to_int64(s: pd.Series) -> pd.Series:
 
 
 # ---------------------------------------------------------------------------
-# Serialization
+# Serialization (to a caller-supplied directory, so staging is possible)
 # ---------------------------------------------------------------------------
 
 _DATE_COLS = ["prediction_timestamp", "regression_label_available_at",
@@ -378,19 +401,23 @@ def _serialize_date_col(df: pd.DataFrame, col: str) -> None:
     df[col] = [t.strftime("%Y-%m-%d %H:%M:%S") if pd.notna(t) else "" for t in df[col]]
 
 
-def export(repo_root: Path, built: dict) -> None:
-    ml = repo_root / "data" / "business" / "ml"
+def export(repo_root: Path, built: dict, out_dir: Path, all_checks: list[dict]) -> None:
+    """Write every artifact (base CSV, lookup, schema, manifests, report) to out_dir."""
     base = built["base"]
+    centroids = built["centroids"]
+    boundary_manifest = built["boundary_manifest"]
 
-    # Fixed column order + date serialization, then stable CSV.
+    # Fixed column order + date serialization, then LF CSV.
     out = base.copy()
     for col in _DATE_COLS:
         _serialize_date_col(out, col)
-    csv_path = ml / "orders_ml_features.csv"
-    out.to_csv(csv_path, index=False)
+    csv_path = out_dir / "orders_ml_features.csv"
+    write_csv_lf(out, csv_path)
 
-    (ml / "feature_schema.json").write_text(
-        json.dumps(_enriched_schema(), indent=2) + "\n", encoding="utf-8")
+    write_csv_lf(centroids, out_dir / "zip_centroids.csv")
+
+    write_text_lf(json.dumps(_enriched_schema(), indent=2) + "\n",
+                  out_dir / "feature_schema.json")
 
     # Input hashes (content identity) + boundary provenance.
     pre = repo_root / "data" / "preprocessed"
@@ -403,9 +430,6 @@ def export(repo_root: Path, built: dict) -> None:
     ]
     input_hashes = {n: sha256_file(pre / n) for n in input_names}
 
-    geo_dir = repo_root / "docs" / "references" / "geography"
-    boundary_manifest = json.loads((geo_dir / "boundary_manifest.json").read_text(encoding="utf-8"))
-
     manifest = {
         "feature_version": FEATURE_VERSION,
         "contract_version": CONTRACT_VERSION,
@@ -414,6 +438,7 @@ def export(repo_root: Path, built: dict) -> None:
             "earth_radius_km": 6371.0,
             "usable_payment_types": sorted(["credit_card", "boleto", "voucher", "debit_card"]),
             "boundary_product": boundary_manifest["product"],
+            "boundary_version": BOUNDARY_VERSION,
             "boundary_archive_sha256": boundary_manifest["archive_sha256"],
             "boundary_derived_geometry_sha256": boundary_manifest["derived_geometry_sha256"],
             "source_crs": boundary_manifest["original_crs"],
@@ -429,9 +454,15 @@ def export(repo_root: Path, built: dict) -> None:
             "eligible_classification": int(base["eligible_classification"].sum()),
         },
         "content_checksum": sha256_file(csv_path),
+        "content_hash_algorithm": "sha256",
+        "newline_convention": "LF",
         "run_timestamp": datetime.now(timezone.utc).isoformat(timespec="seconds"),
     }
-    (ml / "dataset_manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+    write_text_lf(json.dumps(manifest, indent=2) + "\n",
+                  out_dir / "dataset_manifest.json")
+
+    write_text_lf(json.dumps(_quality_report_payload(built, all_checks), indent=2) + "\n",
+                  out_dir / "quality_report.json")
 
 
 # ---------------------------------------------------------------------------
@@ -453,14 +484,15 @@ def _data_checks(built: dict) -> list[dict]:
     add("join_cardinality_items",
         (base["has_items"] == 1).sum() == src["items"]["order_id"].nunique(),
         "orders with items match distinct item order_ids")
-    add("no_cartesian_multiplier", True,
-        "items/payments/reviews aggregated to order grain before joins (no multiplication)")
     add("has_items_coherent",
         ((base["has_items"] == 1) == (base["n_items"] > 0)).all(),
         "has_items == int(n_items > 0) for every row")
-    add("missing_review_stays_null",
-        ((base["review_count"] == 0) == base["is_detractor"].isna()).all(),
-        "no review -> null detractor; any review -> non-null detractor")
+    add("review_label_null_iff_no_valid_score",
+        (base["is_detractor"].isna() == base["review_score_min"].isna()).all(),
+        "is_detractor null exactly when no valid review score (invalid-only reviews stay null)")
+    add("no_review_implies_null_label",
+        ((base["review_count"] > 0) | base["is_detractor"].isna()).all(),
+        "every order with zero reviews has a null detractor label")
     add("delivered_unreviewed_is_regression_candidate",
         bool(((base["order_status"] == "delivered") & base["review_count"].eq(0)
               & base["eligible_regression"].eq(1)).any()),
@@ -484,9 +516,8 @@ def _missingness(base: pd.DataFrame) -> dict:
 
 
 def _cohort_counts(base: pd.DataFrame) -> dict:
-    n = len(base)
     return {
-        "orders": int(n),
+        "orders": int(len(base)),
         "delivered": int((base["order_status"] == "delivered").sum()),
         "with_items": int((base["has_items"] == 1).sum()),
         "multi_item": int((base["n_items"] > 1).sum()),
@@ -501,29 +532,77 @@ def _cohort_counts(base: pd.DataFrame) -> dict:
     }
 
 
-def _write_quality_report(repo_root: Path, built: dict, fixture_results: list[dict]) -> None:
-    ml = repo_root / "data" / "business" / "ml"
+def _quality_report_payload(built: dict, all_checks: list[dict]) -> dict:
     base = built["base"]
-    geo_filter_counts = built["geo_filter_counts"]
     centroids = built["centroids"]
+    src = built["source"]
+    bm = built["boundary_manifest"]
 
-    data_checks = _data_checks(built)
-    all_checks = fixture_results + data_checks
+    coverage = compute_geography_coverage(
+        src["geolocation"], src["customers"], src["sellers"], centroids)
 
-    # Coverage: customer/seller keys resolved before (>=1 surviving coord) vs after.
-    resolved_centroids = centroids[centroids["resolution_status"] == "resolved"]
+    resolved = centroids[centroids["resolution_status"] == "resolved"]
 
-    report = {
+    # Zero/one/multiple-seller order counts with denominator.
+    with_items = base["has_items"] == 1
+    n_with_items = int(with_items.sum())
+    seller_order_counts = {
+        "zero_seller": int((with_items & (base["n_sellers"] == 0)).sum()),
+        "one_seller": int((with_items & (base["n_sellers"] == 1)).sum()),
+        "multi_seller": int((with_items & (base["n_sellers"] > 1)).sum()),
+        "denominator_with_items": n_with_items,
+    }
+
+    # Order distance completeness.
+    dist_resolved = int(base["distance_km_max"].notna().sum())
+    dist_missing = int(base["distance_km_max"].isna().sum())
+    dist_total = dist_resolved + dist_missing
+    order_distance_completeness = {
+        "resolved": dist_resolved,
+        "missing": dist_missing,
+        "fraction_resolved": (dist_resolved / dist_total) if dist_total else None,
+    }
+
+    # Distance missingness by state and task eligibility.
+    distance_missingness = {}
+    for task, elig_col in [("regression", "eligible_regression"),
+                           ("classification", "eligible_classification")]:
+        sub = base[base[elig_col] == 1]
+        if len(sub):
+            g = sub.groupby("customer_state")["distance_km_max"].agg(
+                total="size", missing=lambda s: int(s.isna().sum()))
+            g = g.assign(missing_fraction=g["missing"] / g["total"])
+            distance_missingness[task] = g.reset_index().to_dict(orient="records")
+        else:
+            distance_missingness[task] = []
+
+    return {
         "checks": all_checks,
         "checks_summary": {
             "passed": sum(1 for c in all_checks if c["status"] == "pass"),
             "failed": sum(1 for c in all_checks if c["status"] == "fail"),
         },
         "geography": {
-            "filter_counts": {str(k): int(v) for k, v in geo_filter_counts.items()},
-            "zero_survivor_keys": int((centroids["resolution_status"] == "no_surviving_coordinates").sum()),
-            "out_of_country_median_keys": int((centroids["resolution_status"] == "median_outside_polygon").sum()),
-            "resolved_keys": int(len(resolved_centroids)),
+            "boundary": {
+                "product": bm.get("product"),
+                "boundary_version": BOUNDARY_VERSION,
+                "archive_sha256": bm.get("archive_sha256"),
+                "derived_geometry_sha256": bm.get("derived_geometry_sha256"),
+                "original_crs": bm.get("original_crs"),
+                "target_crs": bm.get("target_crs"),
+                "library_versions": bm.get("library_versions"),
+            },
+            "reference_filter": built["geo_filter_report"],
+            "keys": {
+                "total_keys": int(len(centroids)),
+                "zero_survivor_keys": int((centroids["resolution_status"] == "no_surviving_coordinates").sum()),
+                "out_of_country_median_keys": int((centroids["resolution_status"] == "median_outside_polygon").sum()),
+                "resolved_keys": int(len(resolved)),
+            },
+            "coverage": coverage,
+            "seller_order_counts": seller_order_counts,
+            "order_distance_completeness": order_distance_completeness,
+            "distance_missingness_by_state_eligibility": distance_missingness,
         },
         "cohort_counts": _cohort_counts(base),
         "predictor_missingness": _missingness(base),
@@ -532,13 +611,6 @@ def _write_quality_report(repo_root: Path, built: dict, fixture_results: list[di
             "cascade_fixture", "reload_pipeline_threshold",
         ],
     }
-    (ml / "quality_report.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
-
-    failed = [c for c in all_checks if c["status"] == "fail"]
-    if failed:
-        raise RuntimeError(
-            "Required checks failed; publication stopped.\n"
-            + "\n".join(f"- {c['id']}: {c['detail']}" for c in failed))
 
 
 # ---------------------------------------------------------------------------
@@ -551,23 +623,41 @@ def _repo_root() -> Path:
 
 def main() -> None:
     repo = _repo_root()
+    ml = repo / "data" / "business" / "ml"
+    staging = ml / STAGING_DIR
+
     built = build(repo)
 
     # Fixture checks run against the prepared boundary + real export columns.
     fixture_results = run_fixture_checks(built["polygon"], BASE_COLUMN_ORDER)
+    data_checks = _data_checks(built)
+    all_checks = fixture_results + data_checks
 
-    export(repo, built)
-    _write_quality_report(repo, built, fixture_results)
+    # Write everything to staging; publish only if every required check passes.
+    if staging.exists():
+        shutil.rmtree(staging)
+    staging.mkdir(parents=True)
+    export(repo, built, staging, all_checks)
 
-    ml = repo / "data" / "business" / "ml"
+    failed = [c for c in all_checks if c["status"] == "fail"]
+    if failed:
+        raise RuntimeError(
+            "Required checks failed; previous published outputs left intact.\n"
+            + "\n".join(f"- {c['id']}: {c['detail']}" for c in failed))
+
+    # Publish: atomic overwrite per file on the same volume, then clean staging.
+    for f in sorted(staging.iterdir()):
+        os.replace(f, ml / f.name)
+    staging.rmdir()
+
     base = built["base"]
     print("build_features complete.")
     print(f"  orders:      {len(base)} rows -> {ml / 'orders_ml_features.csv'}")
     print(f"  centroids:   {len(built['centroids'])} keys -> {ml / 'zip_centroids.csv'}")
     print(f"  eligible_regression:    {int(base['eligible_regression'].sum())}")
     print(f"  eligible_classification: {int(base['eligible_classification'].sum())}")
-    print(f"  fixture+data checks: {sum(1 for c in fixture_results if c['status']=='pass')}/"
-          f"{len(fixture_results)} fixtures passed (see quality_report.json)")
+    print(f"  checks: {sum(1 for c in all_checks if c['status']=='pass')}/"
+          f"{len(all_checks)} passed (see quality_report.json)")
 
 
 if __name__ == "__main__":

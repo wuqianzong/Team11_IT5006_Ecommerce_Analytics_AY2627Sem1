@@ -1,5 +1,6 @@
 {
-  "split_version": "v1.0",
+  "split_version": "v1.1",
+  "contract_version": "v1.2",
   "library_versions": {
     "scikit-learn": "1.9.0"
   },
@@ -12,20 +13,21 @@
       "negative",
       "nonnegative",
       "unknown"
-    ]
+    ],
+    "strata_grain": "per order, grouped by customer_unique_id"
   },
   "counts": {
-    "holdout_orders": 19926,
-    "development_orders": 79515,
+    "holdout_orders": 19889,
+    "development_orders": 79552,
     "excluded_orders": 0,
-    "cv_classification_rows": 78906,
-    "cv_regression_rows": 77108
+    "cv_classification_rows": 78938,
+    "cv_regression_rows": 77139
   },
   "checks": [
     {
       "id": "outer_groups_disjoint",
       "status": "pass",
-      "detail": "holdout 19220 groups disjoint from development 76876 groups"
+      "detail": "holdout 19246 groups disjoint from development 76850 groups"
     },
     {
       "id": "classification_both_classes_development",
@@ -43,5 +45,5 @@
       "detail": "no holdout order assigned to an inner validation fold"
     }
   ],
-  "run_timestamp": "2026-10-03T19:09:58+00:00"
+  "run_timestamp": "2026-10-04T07:24:15+00:00"
 }

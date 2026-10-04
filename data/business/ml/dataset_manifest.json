@@ -1,7 +1,7 @@
 {
   "feature_version": "v1.1",
-  "contract_version": "v1.1",
-  "split_version": "v1.0",
+  "contract_version": "v1.2",
+  "split_version": "v1.1",
   "config": {
     "earth_radius_km": 6371.0,
     "usable_payment_types": [
@@ -11,6 +11,7 @@
       "voucher"
     ],
     "boundary_product": "BR_Pais_2024 (IBGE national boundary)",
+    "boundary_version": "BR_Pais_2024",
     "boundary_archive_sha256": "e84c4d4ab199e646b5a180e0f5b7a991fe4c3d424dff8ae3dcf4495992c128d5",
     "boundary_derived_geometry_sha256": "779cd7671fd8ff7a09ebf2de063eec0ee1dd72003af576a8a8cb8f2c436d803b",
     "source_crs": "EPSG:4674",
@@ -39,6 +40,8 @@
     "eligible_regression": 96470,
     "eligible_classification": 98673
   },
-  "content_checksum": "65f096634f806eb160f76a29b1bfbc4fcf7e69eecda9d34037cf6b2e10fe5b4a",
-  "run_timestamp": "2026-10-03T19:09:32+00:00"
+  "content_checksum": "0964e4e1711c40d107d4dfc7ac7982081114d4f8a09f9bd5a9ba25d028a89d67",
+  "content_hash_algorithm": "sha256",
+  "newline_convention": "LF",
+  "run_timestamp": "2026-10-04T07:23:54+00:00"
 }

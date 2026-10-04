@@ -1,6 +1,6 @@
 {
   "version": "v1.1",
-  "contract_version": "v1.1",
+  "contract_version": "v1.2",
   "predictor_allowlist": [
     "n_items",
     "has_items",

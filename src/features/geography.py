@@ -1,7 +1,7 @@
 """Geography lookup: IBGE boundary reference + polygon-filtered ZIP/state medians.
 
-Implements feature_contract.md v1.1 §4 "Geography lookup: required algorithm",
-"Haversine and audit outputs" and the boundary provenance rules.
+Implements feature_contract.md v1.2 §4 "Geography lookup: required algorithm",
+"Boundary reference and provenance", and "Haversine and audit outputs".
 
 The only transactional inputs are ``data/preprocessed/*.csv``. The single external
 reference is the pinned IBGE ``BR_Pais_2024`` country polygon staged under
@@ -10,7 +10,6 @@ exception).
 """
 from __future__ import annotations
 
-import hashlib
 import json
 from datetime import datetime
 from pathlib import Path
@@ -18,22 +17,27 @@ from pathlib import Path
 import geopandas as gpd
 import numpy as np
 import pandas as pd
-from shapely import contains_xy
+from shapely import contains_xy, covers, points
+
+from src.common.loaders import sha256_file
 
 from .contract import UNKNOWN, VALID_STATES, normalize_state
 
 EARTH_RADIUS_KM = 6371.0
 
-# Archive SHA-256 recorded at staging time (see boundary_manifest.json).
+# Boundary edition identifier recorded in zip_centroids.csv and the reports.
+BOUNDARY_VERSION = "BR_Pais_2024"
+
+# Pinned archive SHA-256 for the IBGE BR_Pais_2024.zip reference. This is the
+# expected value the supplied archive is verified against on every build; it is
+# not a substitute for hashing the actual file (feature_contract.md §4).
 _ARCHIVE_SHA256 = "e84c4d4ab199e646b5a180e0f5b7a991fe4c3d424dff8ae3dcf4495992c128d5"
+
+_TARGET_CRS_EPSG = 4326
 
 
 def geography_dir(repo_root: Path) -> Path:
     return Path(repo_root) / "docs" / "references" / "geography"
-
-
-def _sha256_bytes(data: bytes) -> str:
-    return hashlib.sha256(data).hexdigest()
 
 
 def normalize_zip(value) -> str | None:
@@ -73,50 +77,65 @@ def haversine_km(lat1, lon1, lat2, lon2) -> np.ndarray:
 
 
 def _point_covers(polygon, lng, lat) -> np.ndarray:
-    """Boundary-inclusive point-in-polygon, fast path via ``contains_xy``.
+    """Boundary-inclusive point-in-polygon (x=lng, y=lat).
 
-    Float lat/lng values never land exactly on the polygon boundary, so the
-    strict interior test is equivalent in practice. Boundary inclusion is
-    verified explicitly with scalar Shapely ``covers`` in the geography fixture
-    (``checks.py``).
+    feature_contract.md §4 requires boundary-inclusive coverage. Shapely's
+    vectorized ``covers`` does not use a prepared geometry, so it is O(parts)
+    per point (≈13 minutes for the full geolocation table). ``contains_xy``
+    uses GEOS's prepared-geometry XY path and is O(1) per point, but is strictly
+    interior. Combining both is exactly boundary-inclusive and fast:
+
+      * ``contains_xy`` marks every strictly-interior point in one vectorized pass;
+      * exact ``covers`` is then run only on the (tiny) non-interior set, recovering
+        points lying exactly on the boundary line.
+
+    The result is identical to ``covers(polygon, points(lng, lat))`` for every
+    point, with the fast path used for the interior majority.
     """
-    return contains_xy(polygon, lng, lat)
+    lng = np.asarray(lng, dtype=float)
+    lat = np.asarray(lat, dtype=float)
+    inside = contains_xy(polygon, lng, lat)
+    outside = np.nonzero(~inside)[0]
+    if outside.size:
+        inside[outside] = covers(polygon, points(lng[outside], lat[outside]))
+    return inside
 
 
-def prepare_boundary(repo_root: Path):
-    """Load (or build once) the EPSG:4326 country polygon and its provenance manifest.
-
-    Returns the single unioned polygon geometry.
-    """
-    gdir = geography_dir(repo_root)
-    gj = gdir / "BR_Pais_2024_4326.geojson"
-    manifest_path = gdir / "boundary_manifest.json"
-
-    if gj.exists():
-        poly = gpd.read_file(gj).geometry.union_all()
-        return poly
-
-    shp = gdir / "BR_Pais_2024.shp"
-    if not shp.exists():
-        raise FileNotFoundError(
-            f"Missing {shp}. Stage the pinned IBGE BR_Pais_2024 archive under "
-            f"{gdir} before running (feature_contract.md §4 boundary reference)."
-        )
-
-    gdf = gpd.read_file(shp)
-    src_crs = str(gdf.crs)
-    gdf = gdf.to_crs("EPSG:4326")
-    # Union all country parts; dissolve retains supplied islands.
-    gdf = gdf.dissolve()
-    geom = gdf.geometry.iloc[0]
-
-    if geom.is_empty:
+def _validate_geometry(geom):
+    """Nonempty + valid boundary geometry; zero-buffer repair is the documented fix."""
+    if geom is None or geom.is_empty:
         raise ValueError("IBGE boundary dissolved to empty geometry.")
     if not geom.is_valid:
         # Documented repair: zero buffer. Recorded in the manifest.
         geom = geom.buffer(0)
         if not geom.is_valid or geom.is_empty:
             raise ValueError("IBGE boundary invalid after zero-buffer repair.")
+    return geom
+
+
+def _read_manifest(manifest_path: Path) -> dict:
+    if not manifest_path.exists():
+        raise FileNotFoundError(
+            f"Missing {manifest_path}; re-stage the boundary reference "
+            f"(feature_contract.md §4).")
+    return json.loads(manifest_path.read_text(encoding="utf-8"))
+
+
+def _build_boundary(gdir: Path, archive: Path, gj: Path,
+                    manifest_path: Path, archive_sha: str):
+    """Build the derived EPSG:4326 geometry and provenance manifest once."""
+    shp = gdir / "BR_Pais_2024.shp"
+    if not shp.exists():
+        raise FileNotFoundError(
+            f"Missing {shp}. Extract the pinned IBGE archive under {gdir} before running.")
+
+    gdf = gpd.read_file(shp)
+    if gdf.crs is None:
+        raise ValueError("IBGE shapefile has no declared CRS (feature_contract.md §4).")
+    src_crs = str(gdf.crs)
+    gdf = gdf.to_crs("EPSG:4326")
+    gdf = gdf.dissolve()  # union all country parts; dissolve retains supplied islands
+    geom = _validate_geometry(gdf.geometry.iloc[0])
 
     out = gpd.GeoDataFrame({"geometry": [geom]}, crs="EPSG:4326")
     out.to_file(gj, driver="GeoJSON")
@@ -128,8 +147,9 @@ def prepare_boundary(repo_root: Path):
         ),
         "product": "BR_Pais_2024 (IBGE national boundary)",
         "product_year": 2024,
+        "boundary_version": BOUNDARY_VERSION,
         "retrieved_at": datetime.now().astimezone().isoformat(timespec="seconds"),
-        "archive_sha256": _ARCHIVE_SHA256,
+        "archive_sha256": archive_sha,
         "original_crs": src_crs,
         "target_crs": "EPSG:4326",
         "geometry_selection_rule": "union all country parts; retain supplied islands",
@@ -141,17 +161,63 @@ def prepare_boundary(repo_root: Path):
             "pyproj": __import__("pyproj").__version__,
         },
         "derived_geometry_file": gj.name,
-        "derived_geometry_sha256": _sha256_bytes(gj.read_bytes()),
+        "derived_geometry_sha256": sha256_file(gj),
     }
-    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
-    return geom
+    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n",
+                             encoding="utf-8", newline="\n")
+    return geom, manifest
 
 
-def build_zip_centroids(geolocation: pd.DataFrame, polygon):
-    """8-step polygon-filtered ZIP/state median lookup (feature_contract.md §4).
+def prepare_boundary(repo_root: Path):
+    """Load the EPSG:4326 country polygon, verifying provenance on every call.
 
-    Returns ``(centroids, filter_counts)`` where centroids has one row per valid
-    (zip, state) key and filter_counts tallies first-failure reasons.
+    Always hashes the supplied archive against the pinned expected value. On a
+    cached-geometry path, also verifies the derived geometry hash, declared CRS
+    and geometry validity against the manifest. Returns ``(polygon, manifest)``.
+    """
+    gdir = geography_dir(repo_root)
+    archive = gdir / "BR_Pais_2024.zip"
+    gj = gdir / "BR_Pais_2024_4326.geojson"
+    manifest_path = gdir / "boundary_manifest.json"
+
+    if not archive.exists():
+        raise FileNotFoundError(
+            f"Missing {archive}. Stage the pinned IBGE BR_Pais_2024 archive under "
+            f"{gdir} before running (feature_contract.md §4 boundary reference).")
+
+    actual_archive_sha = sha256_file(archive)
+    if actual_archive_sha != _ARCHIVE_SHA256:
+        raise ValueError(
+            f"IBGE archive SHA-256 mismatch: expected {_ARCHIVE_SHA256}, got "
+            f"{actual_archive_sha}. Re-stage the pinned archive; no bounding-box "
+            f"fallback (feature_contract.md §4).")
+
+    if gj.exists():
+        manifest = _read_manifest(manifest_path)
+        actual_gj_sha = sha256_file(gj)
+        expected_gj_sha = manifest.get("derived_geometry_sha256")
+        if expected_gj_sha is None or actual_gj_sha != expected_gj_sha:
+            raise ValueError(
+                "Derived boundary geometry SHA-256 does not match boundary_manifest.json; "
+                "re-stage the boundary reference rather than silently rebuilding.")
+        gdf = gpd.read_file(gj)
+        if gdf.crs is None or gdf.crs.to_epsg() != _TARGET_CRS_EPSG:
+            raise ValueError(
+                f"Derived boundary CRS {gdf.crs} is not EPSG:{_TARGET_CRS_EPSG}.")
+        geom = gdf.geometry.union_all()
+        geom = _validate_geometry(geom)
+        return geom, manifest
+
+    return _build_boundary(gdir, archive, gj, manifest_path, actual_archive_sha)
+
+
+def _classify_geolocation(geolocation: pd.DataFrame):
+    """Normalize geolocation and assign first-failure reasons for contract steps 1-4.
+
+    Steps 1-4 cover key/coordinate/range validity (before country filtering); the
+    polygon step is applied separately in ``build_zip_centroids``. Returns
+    ``(df, reason, lat, lng)`` where ``reason`` holds mutually exclusive
+    first-failure labels (None = passed steps 1-4).
     """
     df = geolocation.copy()
     df["_zip"] = df["geolocation_zip_code_prefix"].map(normalize_zip)
@@ -177,17 +243,51 @@ def build_zip_centroids(geolocation: pd.DataFrame, polygon):
     bad_lng = (lng < -180) | (lng > 180)
     reason[reason.isna() & bad_lng] = "lng_out_of_range"
 
+    return df, reason, lat, lng
+
+
+def build_zip_centroids(geolocation: pd.DataFrame, polygon,
+                        boundary_version: str = BOUNDARY_VERSION):
+    """8-step polygon-filtered ZIP/state median lookup (feature_contract.md §4).
+
+    Returns ``(centroids, filter_report)`` where centroids has one row per valid
+    (zip, state) key — including zero-survivor keys with null coordinates — and
+    filter_report tallies mutually exclusive first-failure reasons plus the
+    number of surviving rows after each step.
+    """
+    df, reason, lat, lng = _classify_geolocation(geolocation)
+
     # 5. country polygon (boundary-inclusive)
     candidates = reason.isna()
     if candidates.any():
         cx = lng[candidates].to_numpy(dtype=float)
         cy = lat[candidates].to_numpy(dtype=float)
         inside = _point_covers(polygon, cx, cy)
-        outside_mask = candidates.copy()
-        outside_mask[candidates] = ~inside
-        reason[outside_mask] = "outside_polygon"
+        outside = candidates.copy()
+        outside[candidates] = ~inside
+        reason[outside] = "outside_polygon"
 
-    filter_counts = reason.value_counts(dropna=False).to_dict()
+    vc = reason.value_counts(dropna=False).to_dict()
+    total = int(len(reason))
+    n_key = int(vc.get("invalid_key", 0))
+    n_coord = int(vc.get("invalid_coords", 0))
+    n_lat = int(vc.get("lat_out_of_range", 0))
+    n_lng = int(vc.get("lng_out_of_range", 0))
+    n_outside = int(vc.get("outside_polygon", 0))
+    n_accepted = int(vc.get(None, 0))
+    filter_report = {
+        "total_rows": total,
+        "accepted": n_accepted,
+        "first_failure_reasons": {str(k): int(v) for k, v in vc.items()},
+        "survivors_after_step": {
+            "start": total,
+            "after_invalid_key": total - n_key,
+            "after_invalid_coords": total - n_key - n_coord,
+            "after_lat_range": total - n_key - n_coord - n_lat,
+            "after_lng_range": total - n_key - n_coord - n_lat - n_lng,
+            "after_polygon": n_accepted,
+        },
+    }
 
     # Group valid keys; equal weight per surviving preprocessed row.
     valid = df[reason != "invalid_key"].copy()
@@ -211,7 +311,7 @@ def build_zip_centroids(geolocation: pd.DataFrame, polygon):
         groups["median_lat"] = np.nan
         groups["median_lng"] = np.nan
 
-    # Step 6: re-check median against the polygon; coordinate-wise medians can fall
+    # 6. re-check median against the polygon; coordinate-wise medians can fall
     # outside nonconvex polygons.
     has_med = groups["median_lat"].notna()
     if has_med.any():
@@ -228,11 +328,50 @@ def build_zip_centroids(geolocation: pd.DataFrame, polygon):
             np.where(groups["median_lat"].isna(), "median_outside_polygon", "resolved"))
 
     groups["resolution_status"] = status()
+    groups["boundary_version"] = boundary_version
     groups = groups.rename(columns={"_zip": "zip_prefix", "_state": "state"})
     groups = groups.sort_values(["zip_prefix", "state"]).reset_index(drop=True)
     groups = groups[["zip_prefix", "state", "accepted_count", "median_lat",
-                     "median_lng", "resolution_status"]]
-    return groups, filter_counts
+                     "median_lng", "resolution_status", "boundary_version"]]
+    return groups, filter_report
+
+
+def compute_geography_coverage(geolocation: pd.DataFrame, customers: pd.DataFrame,
+                               sellers: pd.DataFrame, centroids: pd.DataFrame) -> dict:
+    """Customer/seller lookup coverage before and after country filtering.
+
+    A key is "globally valid" if it has at least one coordinate passing the
+    key/coordinate/range steps (i.e. before polygon filtering). "after" means the
+    key resolved to an in-polygon median. Uses the same valid-key denominator
+    (feature_contract.md §4 "Haversine and audit outputs").
+    """
+    df, reason, _, _ = _classify_geolocation(geolocation)
+    gv_keys = set(map(tuple, df.loc[reason.isna(), ["_zip", "_state"]]
+                      .drop_duplicates().to_numpy()))
+    resolved_keys = set(map(tuple, centroids.loc[
+        centroids["resolution_status"] == "resolved",
+        ["zip_prefix", "state"]].to_numpy()))
+
+    def keys_of(table, zip_col, state_col):
+        z = table[zip_col].map(normalize_zip)
+        s = table[state_col].map(normalize_state)
+        ok = z.notna() & (s != UNKNOWN)
+        return set(map(tuple, pd.DataFrame({"z": z[ok], "s": s[ok]}).to_numpy()))
+
+    def cov(keys):
+        before = len(keys & gv_keys)
+        after = len(keys & resolved_keys)
+        return {
+            "keys": len(keys),
+            "before": before,
+            "after": after,
+            "coverage_after_over_before": (after / before) if before else None,
+        }
+
+    return {
+        "customer": cov(keys_of(customers, "customer_zip_code_prefix", "customer_state")),
+        "seller": cov(keys_of(sellers, "seller_zip_code_prefix", "seller_state")),
+    }
 
 
 def compute_distance_features(orders: pd.DataFrame, customers: pd.DataFrame,

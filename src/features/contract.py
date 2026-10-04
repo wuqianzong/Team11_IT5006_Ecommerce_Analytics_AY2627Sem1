@@ -1,9 +1,11 @@
 """Constants and column contracts for the ML base table.
 
-This mirrors ``data/business/ml/feature_contract.md`` (v1.1). The 27-column
-predictor allowlist is frozen here; targets, identifiers, eligibility and audit
-columns are declared with explicit roles so that training never infers predictors
-by dropping a target or selecting "all numeric columns".
+This mirrors ``data/business/ml/feature_contract.md`` (v1.2). The 27-column
+predictor allowlist and base feature definitions remain v1.1; the contract
+version is tracked separately from the feature and split versions. Targets,
+identifiers, eligibility and audit columns are declared with explicit roles so
+that training never infers predictors by dropping a target or selecting "all
+numeric columns".
 """
 from __future__ import annotations
 
@@ -24,9 +26,12 @@ USABLE_PAYMENT_TYPES = frozenset({"credit_card", "boleto", "voucher", "debit_car
 
 UNKNOWN = "Unknown"
 
-# Version strings shared across artifacts (build + splits).
+# Version strings shared across artifacts (build + splits). Base features stay
+# v1.1; the contract revision and the corrected split manifest are versioned
+# separately and explicitly (feature_contract.md header + README Phase A step 3).
 FEATURE_VERSION = "v1.1"
-SPLIT_VERSION = "v1.0"
+CONTRACT_VERSION = "v1.2"
+SPLIT_VERSION = "v1.1"
 
 
 def normalize_state(value) -> str:

@@ -1,2 +1,7 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# ML base/split artifacts carry canonical-LF content hashes (feature_contract.md §2):
+# force LF in the working tree so a clean checkout reproduces the hashed bytes.
+data/business/ml/*.csv text eol=lf
+data/business/ml/*.json text eol=lf

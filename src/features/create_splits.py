@@ -1,4 +1,4 @@
-"""Split-manifest builder (feature_contract.md v1.1 §7, Phase B).
+"""Split-manifest builder (feature_contract.md v1.2 §7).
 
 Entrypoint: ``python -m src.features.create_splits``
 
@@ -7,16 +7,22 @@ Reads the base table produced by ``build_features`` and writes, under
 
     split_assignments.csv   one row per order: group, version, development/holdout/excluded
     cv_assignments.csv      one row per task and eligible development order: validation fold
+    split_report.json       configuration, counts, checks, versions
 
 Outer assignment: StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=42)
-on resolved customer groups with three split-only strata (negative / nonnegative /
-unknown review); fold 0 is the approximate 20% holdout, the rest development.
+on resolved customer groups with three per-order split-only strata (negative /
+nonnegative / unknown review); fold 0 is the approximate 20% holdout, the rest
+development. Order rows are passed with groups=customer_unique_id so every order
+of a customer shares one outer assignment, but strata are per order — not an
+"any negative review wins" customer-level stratum (feature_contract.md §7 step 2).
 Inner task folds are independent five-fold splits within development
 (StratifiedGroupKFold for classification, GroupKFold for regression).
 """
 from __future__ import annotations
 
 import json
+import os
+import shutil
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -24,24 +30,17 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import GroupKFold, StratifiedGroupKFold
 
-from .contract import SPLIT_VERSION
+from .contract import CONTRACT_VERSION, SPLIT_VERSION
+from .serialization import write_csv_lf, write_text_lf
 
 OUTER_SPLITS = 5
 OUTER_SEED = 42
 INNER_SPLITS = 5
+STAGING_DIR = "_staging"
 
 
 def _repo_root() -> Path:
     return Path(__file__).resolve().parents[2]
-
-
-def _group_class(neg: bool, nonneg: bool) -> str:
-    """Split-only stratum: any negative review dominates; else nonnegative; else unknown."""
-    if neg:
-        return "negative"
-    if nonneg:
-        return "nonnegative"
-    return "unknown"
 
 
 def build_splits(ml: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
@@ -55,26 +54,22 @@ def build_splits(ml: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
     resolved = base[base["customer_unique_id"].notna()].copy()
     excluded = base[base["customer_unique_id"].isna()].copy()
 
-    # One stratum per group.
-    agg = resolved.groupby("customer_unique_id")["_det"].agg(
-        neg=lambda s: bool((s == 1).any()),
-        nonneg=lambda s: bool((s == 0).any()),
-    ).reset_index()
-    agg["stratum"] = [ _group_class(r.neg, r.nonneg) for r in agg.itertuples() ]
+    # Order-level split-only strata (feature_contract.md §7 step 2).
+    resolved["stratum"] = np.where(
+        resolved["_det"] == 1, "negative",
+        np.where(resolved["_det"] == 0, "nonnegative", "unknown"))
 
-    groups_sorted = agg.sort_values("customer_unique_id", kind="mergesort").reset_index(drop=True)
-    y = groups_sorted["stratum"].to_numpy()
-    gids = groups_sorted["customer_unique_id"].to_numpy()
+    # Stable order_id sort before splitting (feature_contract.md §7 step 2).
+    resolved = resolved.sort_values("order_id", kind="mergesort").reset_index(drop=True)
+    y = resolved["stratum"].to_numpy()
+    gids = resolved["customer_unique_id"].to_numpy()
 
     sgkf = StratifiedGroupKFold(n_splits=OUTER_SPLITS, shuffle=True, random_state=OUTER_SEED)
     X = np.zeros((len(gids), 1))
     holdout_groups = set()
-    for fold, (train_idx, test_idx) in enumerate(sgkf.split(X, y, groups=gids)):
+    for fold, (_, test_idx) in enumerate(sgkf.split(X, y, groups=gids)):
         if fold == 0:
             holdout_groups = set(gids[test_idx])
-
-    group_assign = groups_sorted["customer_unique_id"].map(
-        lambda g: "holdout" if g in holdout_groups else "development")
 
     assignments = resolved[["order_id", "customer_unique_id"]].copy()
     assignments["split_assignment"] = assignments["customer_unique_id"].map(
@@ -91,14 +86,13 @@ def build_splits(ml: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
     assignments = assignments.sort_values("order_id", kind="mergesort").reset_index(drop=True)
 
     # Inner task folds within development eligible rows.
-    dev = resolved[resolved["customer_unique_id"].map(
-        lambda g: "development" if g not in holdout_groups else "holdout") == "development"].copy()
+    dev = resolved[~resolved["customer_unique_id"].isin(holdout_groups)].copy()
 
     cv_rows = []
     # Classification: StratifiedGroupKFold on binary is_detractor.
     cls_dev = dev[dev["eligible_classification"] == 1].copy()
     if len(cls_dev):
-        cls_dev = cls_dev.sort_values("customer_unique_id", kind="mergesort").reset_index(drop=True)
+        cls_dev = cls_dev.sort_values("order_id", kind="mergesort").reset_index(drop=True)
         c_y = cls_dev["_det"].astype(int).to_numpy()  # 0/1 only (eligible => non-null)
         c_g = cls_dev["customer_unique_id"].to_numpy()
         cskf = StratifiedGroupKFold(n_splits=INNER_SPLITS, shuffle=True, random_state=OUTER_SEED)
@@ -112,7 +106,7 @@ def build_splits(ml: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
     # Regression: GroupKFold.
     reg_dev = dev[dev["eligible_regression"] == 1].copy()
     if len(reg_dev):
-        reg_dev = reg_dev.sort_values("customer_unique_id", kind="mergesort").reset_index(drop=True)
+        reg_dev = reg_dev.sort_values("order_id", kind="mergesort").reset_index(drop=True)
         r_g = reg_dev["customer_unique_id"].to_numpy()
         gkf = GroupKFold(n_splits=INNER_SPLITS)
         for fold, (_, test_idx) in enumerate(gkf.split(np.zeros((len(reg_dev), 1)), groups=r_g)):
@@ -166,21 +160,22 @@ def _check_splits(assignments: pd.DataFrame, cv: pd.DataFrame,
 def main() -> None:
     repo = _repo_root()
     ml = repo / "data" / "business" / "ml"
+    staging = ml / STAGING_DIR
 
     base = pd.read_csv(ml / "orders_ml_features.csv",
                        usecols=["order_id", "customer_unique_id", "is_detractor",
                                 "eligible_regression", "eligible_classification"])
     assignments, cv = build_splits(ml)
-
-    assignments.to_csv(ml / "split_assignments.csv", index=False)
-    cv.to_csv(ml / "cv_assignments.csv", index=False)
-
     checks = _check_splits(assignments, cv, base)
+
     report = {
         "split_version": SPLIT_VERSION,
+        "contract_version": CONTRACT_VERSION,
         "library_versions": {"scikit-learn": _sklearn_version()},
         "outer_config": {"n_splits": OUTER_SPLITS, "shuffle": True, "random_state": OUTER_SEED,
-                         "holdout_fold": 0, "strata": ["negative", "nonnegative", "unknown"]},
+                         "holdout_fold": 0,
+                         "strata": ["negative", "nonnegative", "unknown"],
+                         "strata_grain": "per order, grouped by customer_unique_id"},
         "counts": {
             "holdout_orders": int((assignments["split_assignment"] == "holdout").sum()),
             "development_orders": int((assignments["split_assignment"] == "development").sum()),
@@ -191,13 +186,25 @@ def main() -> None:
         "checks": checks,
         "run_timestamp": datetime.now(timezone.utc).isoformat(timespec="seconds"),
     }
-    (ml / "split_report.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
 
     failed = [c for c in checks if c["status"] == "fail"]
+
+    # Stage, run checks, publish only on success (feature_contract.md §11.4).
+    if staging.exists():
+        shutil.rmtree(staging)
+    staging.mkdir(parents=True)
+    write_csv_lf(assignments, staging / "split_assignments.csv")
+    write_csv_lf(cv, staging / "cv_assignments.csv")
+    write_text_lf(json.dumps(report, indent=2) + "\n", staging / "split_report.json")
+
     if failed:
         raise RuntimeError(
-            "Split checks failed; publication stopped.\n"
+            "Split checks failed; previous published outputs left intact.\n"
             + "\n".join(f"- {c['id']}: {c['detail']}" for c in failed))
+
+    for f in sorted(staging.iterdir()):
+        os.replace(f, ml / f.name)
+    staging.rmdir()
 
     print("create_splits complete.")
     print(f"  split_assignments.csv: {len(assignments)} orders "

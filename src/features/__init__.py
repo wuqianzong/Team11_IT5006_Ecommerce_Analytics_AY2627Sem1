@@ -1,4 +1,4 @@
-"""Feature engineering and split manifest modules (feature_contract.md v1.1).
+"""Feature engineering and split manifest modules (feature_contract.md v1.2).
 
 This package implements the deterministic ``data/preprocessed`` -> ``data/business/ml``
 lineage described in ``data/business/ml/feature_contract.md`` and
