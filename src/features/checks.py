@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import numpy as np
 import pandas as pd
-from shapely.geometry import Point, Polygon
+from shapely.geometry import Polygon
 
 from .aggregation import aggregate_items, aggregate_payments, aggregate_reviews
 from .contract import PREDICTOR_ALLOWLIST, UNKNOWN, VALID_STATES
@@ -40,7 +40,7 @@ def _close(a, b, tol=1e-6) -> bool:
 
 def check_geography(polygon) -> dict:
     """Reject a European point and a bounding-box-but-not-Brazil point; accept a
-    boundary point (scalar Shapely ``covers``, boundary-inclusive)."""
+    boundary point via the production ``_point_covers`` helper (boundary-inclusive)."""
     paris = _point_covers(polygon, np.array([2.3522]), np.array([48.8566]))
     if bool(paris[0]):
         return _fail("Paris (48.86, 2.35) was accepted inside the Brazil polygon")
@@ -54,9 +54,9 @@ def check_geography(polygon) -> dict:
         pt = boundary.geoms[0].coords[0]
     else:
         pt = boundary.coords[0]
-    if not polygon.covers(Point(pt[0], pt[1])):
-        return _fail("a point on the polygon boundary was rejected by covers")
-    return _ok("European/bbox-foreign points rejected; boundary point accepted via covers")
+    if not bool(_point_covers(polygon, np.array([pt[0]]), np.array([pt[1]]))[0]):
+        return _fail("a point on the polygon boundary was rejected by _point_covers")
+    return _ok("European/bbox-foreign points rejected; boundary point accepted via _point_covers")
 
 
 def check_mixed_validity_zip(polygon) -> dict:
@@ -100,18 +100,22 @@ def check_all_rejected_zip(polygon) -> dict:
 
 
 def check_zip_normalization() -> dict:
-    """Integer/digit prefixes zero-pad; malformed forms reject."""
+    """Integer/digit prefixes zero-pad; malformed and overlength forms reject."""
     if normalize_zip(1234) != "01234":
         return _fail("normalize_zip(1234) != '01234'")
     if normalize_zip("42") != "00042":
         return _fail("normalize_zip('42') != '00042'")
+    if normalize_zip("12345") != "12345":
+        return _fail("normalize_zip('12345') != '12345'")
     if normalize_zip("abc") is not None:
         return _fail("normalize_zip('abc') should be None")
     if normalize_zip(123456) is not None:
         return _fail("normalize_zip(123456) should be None")
+    if normalize_zip("000001") is not None:
+        return _fail("normalize_zip('000001') should be None (overlength string)")
     if normalize_zip(None) is not None:
         return _fail("normalize_zip(None) should be None")
-    return _ok("ZIP prefix normalization zero-pads and rejects malformed forms")
+    return _ok("ZIP prefix normalization zero-pads and rejects malformed/overlength forms")
 
 
 # ---------------------------------------------------------------------------
@@ -434,6 +438,90 @@ def check_allowlist_separation(export_columns: list[str]) -> dict:
 
 
 # ---------------------------------------------------------------------------
+# Loader + publication fixtures (exercise the real file-loading/publish path)
+# ---------------------------------------------------------------------------
+
+def check_loaders_tolerate_invalid() -> dict:
+    """Missing customer ZIP and nonnumeric review score must survive the real
+    file-loading path: loaders read strings, downstream coercion quarantines."""
+    import tempfile
+    from pathlib import Path
+
+    from .build_features import _load_customers, _load_reviews
+
+    with tempfile.TemporaryDirectory() as tmp:
+        tmp = Path(tmp)
+        (tmp / "olist_customers_dataset.csv").write_text(
+            "customer_id,customer_unique_id,customer_zip_code_prefix,customer_state\n"
+            "c1,cu1,,SP\n"
+            "c2,cu2,1000,RJ\n",
+            encoding="utf-8", newline="\n",
+        )
+        cust = _load_customers(tmp)
+        zips = cust["customer_zip_code_prefix"].map(normalize_zip)
+        if zips.iloc[0] is not None:
+            return _fail("missing customer ZIP was not left unresolved by the loader")
+        if zips.iloc[1] != "01000":
+            return _fail(f"customer ZIP normalized to {zips.iloc[1]!r}, expected '01000'")
+
+        (tmp / "olist_order_reviews_dataset.csv").write_text(
+            "review_id,order_id,review_score,review_answer_timestamp\n"
+            "r1,o1,abc,2018-01-01 00:00:00\n"
+            "r2,o2,4,2018-01-02 00:00:00\n",
+            encoding="utf-8", newline="\n",
+        )
+        rev = _load_reviews(tmp)
+        out = aggregate_reviews(rev)
+        if int(out.loc["o1", "review_count"]) != 1:
+            return _fail("review_count for invalid-only order != 1")
+        if not pd.isna(out.loc["o1", "is_detractor"]):
+            return _fail("nonnumeric review score produced a label instead of null")
+        if int(out.loc["o2", "is_detractor"]) != 0:
+            return _fail("valid score 4 should map to is_detractor=0")
+    return _ok("missing ZIP / nonnumeric score survive the file-loading path")
+
+
+def check_atomic_publish_rollback() -> dict:
+    """An interrupted publication must roll back every already-replaced file."""
+    import os
+    import tempfile
+    from pathlib import Path
+
+    from .build_features import publish_atomic
+
+    with tempfile.TemporaryDirectory() as tmp:
+        root = Path(tmp)
+        target = root / "target"
+        staging = root / "staging"
+        target.mkdir()
+        staging.mkdir()
+        (target / "a.csv").write_text("old-a\n", encoding="utf-8", newline="\n")
+        (target / "b.csv").write_text("old-b\n", encoding="utf-8", newline="\n")
+        (staging / "a.csv").write_text("new-a\n", encoding="utf-8", newline="\n")
+        (staging / "b.csv").write_text("new-b\n", encoding="utf-8", newline="\n")
+
+        calls = {"n": 0}
+
+        def flaky_replace(src, dst):
+            calls["n"] += 1
+            if calls["n"] == 2:
+                raise OSError("injected failure during second replacement")
+            os.replace(src, dst)
+
+        try:
+            publish_atomic(staging, target, replace=flaky_replace)
+            return _fail("injected publication failure did not propagate")
+        except OSError:
+            pass
+
+        if (target / "a.csv").read_text(encoding="utf-8") != "old-a\n":
+            return _fail("rollback did not restore a.csv")
+        if (target / "b.csv").read_text(encoding="utf-8") != "old-b\n":
+            return _fail("rollback did not restore b.csv")
+    return _ok("failed publication rolled back to original files")
+
+
+# ---------------------------------------------------------------------------
 # Runner
 # ---------------------------------------------------------------------------
 
@@ -456,6 +544,8 @@ def run_fixture_checks(polygon, export_columns: list[str]) -> list[dict]:
         ("invalid_review_null_label", check_invalid_review_null_label),
         ("cartesian_join_safety", check_cartesian_join_safety),
         ("allowlist_separation", lambda: check_allowlist_separation(export_columns)),
+        ("loaders_tolerate_invalid", check_loaders_tolerate_invalid),
+        ("atomic_publish_rollback", check_atomic_publish_rollback),
     ]:
         try:
             res = fn()

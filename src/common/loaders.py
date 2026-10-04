@@ -23,6 +23,31 @@ def sha256_file(path: Path) -> str:
     return h.hexdigest()
 
 
+def sha256_file_lf(path: Path) -> str:
+    """SHA-256 of a text file's LF-normalized bytes (CRLF and lone CR -> LF).
+
+    Transactional inputs can arrive with Windows (CRLF) or Unix (LF) line endings
+    depending on the checkout. Hashing the LF-normalized content makes the recorded
+    hash independent of that convention, so the same logical CSV hashes identically
+    on every platform (docs/data_architecture.md §4.2 reproducibility).
+    """
+    h = hashlib.sha256()
+    carry = b""
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            data = carry + chunk
+            carry = b""
+            if data.endswith(b"\r"):
+                # A trailing \r may pair with a leading \n of the next chunk.
+                carry = data[-1:]
+                data = data[:-1]
+            data = data.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+            h.update(data)
+    if carry:
+        h.update(carry.replace(b"\r", b"\n"))
+    return h.hexdigest()
+
+
 def count_rows(path: Path) -> int:
     """Row count (excluding header) using a real CSV parser, so quoted
     newlines inside fields (e.g. review comments) are handled correctly."""

@@ -2,13 +2,20 @@
   "source_url": "https://geoftp.ibge.gov.br/organizacao_do_territorio/malhas_territoriais/malhas_municipais/municipio_2024/Brasil/BR_Pais_2024.zip",
   "product": "BR_Pais_2024 (IBGE national boundary)",
   "product_year": 2024,
-  "retrieved_at": "2026-10-04T02:37:33+08:00",
+  "boundary_version": "BR_Pais_2024",
+  "retrieved_at": "2026-10-04T15:58:50+08:00",
   "archive_sha256": "e84c4d4ab199e646b5a180e0f5b7a991fe4c3d424dff8ae3dcf4495992c128d5",
+  "archive_members_verified": [
+    "BR_Pais_2024.shp",
+    "BR_Pais_2024.shx",
+    "BR_Pais_2024.dbf",
+    "BR_Pais_2024.prj"
+  ],
   "original_crs": "EPSG:4674",
   "target_crs": "EPSG:4326",
   "geometry_selection_rule": "union all country parts; retain supplied islands",
-  "transformation": "read shapefile; to_crs EPSG:4326; dissolve to single geometry",
-  "repair": "zero buffer applied only if source geometry was invalid",
+  "transformation": "read shapefile members directly from the verified archive; to_crs EPSG:4326; dissolve to single geometry",
+  "repair": "none (invalid geometry rejected; zero-buffer policy)",
   "library_versions": {
     "geopandas": "1.2.0",
     "shapely": "2.1.2",

@@ -79,6 +79,13 @@ Use UTF-8 and explicit LF line endings for generated CSVs. Hash the actual canon
 files distributed with the repository, not a pre-Git CRLF representation. Record
 the byte-hash algorithm and newline convention; verify hashes after a clean checkout.
 
+Serialized floats keep full float64 precision without rounding. Content hashes are
+byte-exact for integer/string/categorical/date columns. Floating-point columns
+(Haversine `arcsin`/`sqrt`, coordinate medians) can differ at the ~1e-12 level
+across platforms and math backends, so verify float equality with a documented
+numerical tolerance — `atol=1e-9` and `rtol=1e-9` in each column's native unit
+(km, g, cm³, BRL, days, fractions) — instead of demanding bit-identical bytes.
+
 Fixed order-local sums, ratios and date components may be computed before splitting.
 Determinism alone is not a leakage guarantee: a globally fitted median imputer or
 category ranking is deterministic but still forbidden. ZIP medians are a separate

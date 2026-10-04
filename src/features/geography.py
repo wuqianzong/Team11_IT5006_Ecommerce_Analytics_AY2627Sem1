@@ -11,6 +11,8 @@ exception).
 from __future__ import annotations
 
 import json
+import tempfile
+import zipfile
 from datetime import datetime
 from pathlib import Path
 
@@ -33,6 +35,10 @@ BOUNDARY_VERSION = "BR_Pais_2024"
 # not a substitute for hashing the actual file (feature_contract.md §4).
 _ARCHIVE_SHA256 = "e84c4d4ab199e646b5a180e0f5b7a991fe4c3d424dff8ae3dcf4495992c128d5"
 
+# Members required to read the shapefile directly from the verified archive.
+_ARCHIVE_MEMBERS = ("BR_Pais_2024.shp", "BR_Pais_2024.shx", "BR_Pais_2024.dbf",
+                    "BR_Pais_2024.prj")
+
 _TARGET_CRS_EPSG = 4326
 
 
@@ -52,7 +58,7 @@ def normalize_zip(value) -> str | None:
         ival = int(value)
     elif isinstance(value, str):
         s = value.strip()
-        if not s.isdigit():
+        if not s.isdigit() or len(s) > 5:
             return None
         ival = int(s)
     else:
@@ -102,14 +108,19 @@ def _point_covers(polygon, lng, lat) -> np.ndarray:
 
 
 def _validate_geometry(geom):
-    """Nonempty + valid boundary geometry; zero-buffer repair is the documented fix."""
+    """Nonempty + valid boundary geometry; invalid geometry is rejected, never repaired.
+
+    feature_contract.md §4: the initial policy has zero buffer, and any repair must
+    be an explicit, documented, label-independent decision — not a silent
+    ``buffer(0)`` applied by the builder.
+    """
     if geom is None or geom.is_empty:
         raise ValueError("IBGE boundary dissolved to empty geometry.")
     if not geom.is_valid:
-        # Documented repair: zero buffer. Recorded in the manifest.
-        geom = geom.buffer(0)
-        if not geom.is_valid or geom.is_empty:
-            raise ValueError("IBGE boundary invalid after zero-buffer repair.")
+        raise ValueError(
+            "IBGE boundary geometry is invalid; refusing to auto-repair "
+            "(feature_contract.md §4 zero-buffer policy). Re-stage the pinned archive "
+            "or document an explicit repair.")
     return geom
 
 
@@ -121,15 +132,25 @@ def _read_manifest(manifest_path: Path) -> dict:
     return json.loads(manifest_path.read_text(encoding="utf-8"))
 
 
-def _build_boundary(gdir: Path, archive: Path, gj: Path,
-                    manifest_path: Path, archive_sha: str):
-    """Build the derived EPSG:4326 geometry and provenance manifest once."""
-    shp = gdir / "BR_Pais_2024.shp"
-    if not shp.exists():
-        raise FileNotFoundError(
-            f"Missing {shp}. Extract the pinned IBGE archive under {gdir} before running.")
+def _build_boundary(archive: Path, gj: Path, manifest_path: Path, archive_sha: str):
+    """Build the derived EPSG:4326 geometry and provenance manifest once.
 
-    gdf = gpd.read_file(shp)
+    The shapefile is read directly from the archive whose SHA-256 was just
+    verified, so the derived geometry is provably from the pinned ZIP rather than
+    from a separately extracted copy that may have drifted. Expected members are
+    checked before extraction (feature_contract.md §4).
+    """
+    with zipfile.ZipFile(archive) as zf:
+        names = set(zf.namelist())
+        missing = [m for m in _ARCHIVE_MEMBERS if m not in names]
+        if missing:
+            raise ValueError(
+                f"IBGE archive missing expected members {missing}; re-stage the "
+                f"pinned archive (feature_contract.md §4).")
+        with tempfile.TemporaryDirectory() as tmp:
+            zf.extractall(tmp)
+            gdf = gpd.read_file(Path(tmp) / "BR_Pais_2024.shp")
+
     if gdf.crs is None:
         raise ValueError("IBGE shapefile has no declared CRS (feature_contract.md §4).")
     src_crs = str(gdf.crs)
@@ -150,11 +171,14 @@ def _build_boundary(gdir: Path, archive: Path, gj: Path,
         "boundary_version": BOUNDARY_VERSION,
         "retrieved_at": datetime.now().astimezone().isoformat(timespec="seconds"),
         "archive_sha256": archive_sha,
+        "archive_members_verified": list(_ARCHIVE_MEMBERS),
         "original_crs": src_crs,
         "target_crs": "EPSG:4326",
         "geometry_selection_rule": "union all country parts; retain supplied islands",
-        "transformation": "read shapefile; to_crs EPSG:4326; dissolve to single geometry",
-        "repair": "zero buffer applied only if source geometry was invalid",
+        "transformation": (
+            "read shapefile members directly from the verified archive; "
+            "to_crs EPSG:4326; dissolve to single geometry"),
+        "repair": "none (invalid geometry rejected; zero-buffer policy)",
         "library_versions": {
             "geopandas": gpd.__version__,
             "shapely": __import__("shapely").__version__,
@@ -208,7 +232,7 @@ def prepare_boundary(repo_root: Path):
         geom = _validate_geometry(geom)
         return geom, manifest
 
-    return _build_boundary(gdir, archive, gj, manifest_path, actual_archive_sha)
+    return _build_boundary(archive, gj, manifest_path, actual_archive_sha)
 
 
 def _classify_geolocation(geolocation: pd.DataFrame):

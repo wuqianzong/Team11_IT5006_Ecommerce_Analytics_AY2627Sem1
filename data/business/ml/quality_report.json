@@ -3,7 +3,7 @@
     {
       "id": "geography_reject_foreign_accept_boundary",
       "status": "pass",
-      "detail": "European/bbox-foreign points rejected; boundary point accepted via covers"
+      "detail": "European/bbox-foreign points rejected; boundary point accepted via _point_covers"
     },
     {
       "id": "geography_mixed_validity_zip",
@@ -18,7 +18,7 @@
     {
       "id": "zip_normalization",
       "status": "pass",
-      "detail": "ZIP prefix normalization zero-pads and rejects malformed forms"
+      "detail": "ZIP prefix normalization zero-pads and rejects malformed/overlength forms"
     },
     {
       "id": "haversine",
@@ -76,6 +76,16 @@
       "detail": "allowlist disjoint from targets/IDs/outcome/audit; 27 columns exported"
     },
     {
+      "id": "loaders_tolerate_invalid",
+      "status": "pass",
+      "detail": "missing ZIP / nonnumeric score survive the file-loading path"
+    },
+    {
+      "id": "atomic_publish_rollback",
+      "status": "pass",
+      "detail": "failed publication rolled back to original files"
+    },
+    {
       "id": "one_row_per_order",
       "status": "pass",
       "detail": "99441 output rows vs 99441 source orders"
@@ -127,7 +137,7 @@
     }
   ],
   "checks_summary": {
-    "passed": 25,
+    "passed": 27,
     "failed": 0
   },
   "geography": {

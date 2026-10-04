@@ -30,7 +30,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from src.common.loaders import sha256_file
+from src.common.loaders import sha256_file, sha256_file_lf
 
 from .aggregation import (
     aggregate_items,
@@ -101,7 +101,7 @@ def _load_reviews(pre: Path) -> pd.DataFrame:
     return pd.read_csv(
         pre / "olist_order_reviews_dataset.csv",
         usecols=["review_id", "order_id", "review_score", "review_answer_timestamp"],
-        dtype={"review_id": "str", "order_id": "str", "review_score": "float64"},
+        dtype={"review_id": "str", "order_id": "str", "review_score": "str"},
         parse_dates=["review_answer_timestamp"],
     )
 
@@ -112,7 +112,7 @@ def _load_customers(pre: Path) -> pd.DataFrame:
         usecols=["customer_id", "customer_unique_id", "customer_zip_code_prefix",
                  "customer_state"],
         dtype={"customer_id": "str", "customer_unique_id": "str", "customer_state": "str",
-               "customer_zip_code_prefix": "int64"},
+               "customer_zip_code_prefix": "str"},
     )
 
 
@@ -131,7 +131,7 @@ def _load_sellers(pre: Path) -> pd.DataFrame:
     return pd.read_csv(
         pre / "olist_sellers_dataset.csv",
         usecols=["seller_id", "seller_zip_code_prefix", "seller_state"],
-        dtype={"seller_id": "str", "seller_state": "str", "seller_zip_code_prefix": "int64"},
+        dtype={"seller_id": "str", "seller_state": "str", "seller_zip_code_prefix": "str"},
     )
 
 
@@ -140,7 +140,7 @@ def _load_geolocation(pre: Path) -> pd.DataFrame:
         pre / "olist_geolocation_dataset.csv",
         usecols=["geolocation_zip_code_prefix", "geolocation_lat", "geolocation_lng",
                  "geolocation_state"],
-        dtype={"geolocation_state": "str", "geolocation_zip_code_prefix": "int64",
+        dtype={"geolocation_state": "str", "geolocation_zip_code_prefix": "str",
                "geolocation_lat": "float64", "geolocation_lng": "float64"},
     )
 
@@ -419,7 +419,8 @@ def export(repo_root: Path, built: dict, out_dir: Path, all_checks: list[dict]) 
     write_text_lf(json.dumps(_enriched_schema(), indent=2) + "\n",
                   out_dir / "feature_schema.json")
 
-    # Input hashes (content identity) + boundary provenance.
+    # Input hashes (content identity) + boundary provenance. Inputs are hashed
+    # LF-normalized so the recorded identity is checkout-line-ending independent.
     pre = repo_root / "data" / "preprocessed"
     input_names = [
         "olist_orders_dataset.csv", "olist_order_items_dataset.csv",
@@ -428,7 +429,7 @@ def export(repo_root: Path, built: dict, out_dir: Path, all_checks: list[dict]) 
         "olist_sellers_dataset.csv", "olist_geolocation_dataset.csv",
         "product_category_name_translation.csv",
     ]
-    input_hashes = {n: sha256_file(pre / n) for n in input_names}
+    input_hashes = {n: sha256_file_lf(pre / n) for n in input_names}
 
     manifest = {
         "feature_version": FEATURE_VERSION,
@@ -454,6 +455,7 @@ def export(repo_root: Path, built: dict, out_dir: Path, all_checks: list[dict]) 
             "eligible_classification": int(base["eligible_classification"].sum()),
         },
         "content_checksum": sha256_file(csv_path),
+        "zip_centroids_sha256": sha256_file(out_dir / "zip_centroids.csv"),
         "content_hash_algorithm": "sha256",
         "newline_convention": "LF",
         "run_timestamp": datetime.now(timezone.utc).isoformat(timespec="seconds"),
@@ -621,6 +623,34 @@ def _repo_root() -> Path:
     return Path(__file__).resolve().parents[2]
 
 
+def publish_atomic(staging: Path, target: Path, replace=os.replace) -> None:
+    """Publish every staged file into ``target``, rolling back on any failure.
+
+    Backs up each pre-existing target file in memory before replacing it; if any
+    replacement raises, every already-replaced file is restored (or removed, when
+    it did not exist before) and the error is re-raised, so the target directory
+    is never left in a partially-updated state (feature_contract.md §11.4).
+    """
+    files = sorted(staging.iterdir())
+    backups: dict[str, bytes] = {}
+    replaced: list[str] = []
+    try:
+        for f in files:
+            dst = target / f.name
+            if dst.exists():
+                backups[f.name] = dst.read_bytes()
+            replace(f, dst)
+            replaced.append(f.name)
+    except Exception:
+        for name in reversed(replaced):
+            dst = target / name
+            if name in backups:
+                dst.write_bytes(backups[name])
+            else:
+                dst.unlink(missing_ok=True)
+        raise
+
+
 def main() -> None:
     repo = _repo_root()
     ml = repo / "data" / "business" / "ml"
@@ -645,9 +675,9 @@ def main() -> None:
             "Required checks failed; previous published outputs left intact.\n"
             + "\n".join(f"- {c['id']}: {c['detail']}" for c in failed))
 
-    # Publish: atomic overwrite per file on the same volume, then clean staging.
-    for f in sorted(staging.iterdir()):
-        os.replace(f, ml / f.name)
+    # Publish the complete bundle atomically (rollback on interrupted writes),
+    # then clean staging.
+    publish_atomic(staging, ml)
     staging.rmdir()
 
     base = built["base"]

@@ -225,7 +225,9 @@ vectorization into the project merely because a tutorial mentions them.
 6. Hand off actual counts, missingness rates, coverage, source/output hashes, split
    checks, commands, environment versions and limitations. Separate executed passes,
    failures and deferred pipeline checks. Record contract_version=v1.2 separately
-   from feature/split versions. Test reproducibility after Git newline normalization.
+   from feature/split versions. Test reproducibility after Git newline normalization;
+   treat float columns as reproducible within `atol=1e-9`, `rtol=1e-9` (native
+   units), not bit-identical, per contract §2.
 
 Phase A does not authorize model fitting or seller-history implementation. Complete
 and verify the base/split handoff before the team starts Phase B.

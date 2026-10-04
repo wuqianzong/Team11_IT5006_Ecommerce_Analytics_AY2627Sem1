@@ -5,3 +5,7 @@
 # force LF in the working tree so a clean checkout reproduces the hashed bytes.
 data/business/ml/*.csv text eol=lf
 data/business/ml/*.json text eol=lf
+
+# Preprocessed transactional inputs are hashed LF-normalized into the manifest;
+# force LF on checkout so the working tree matches the hashed bytes on every OS.
+data/preprocessed/*.csv text eol=lf

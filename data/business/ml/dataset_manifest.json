@@ -23,15 +23,15 @@
     }
   },
   "input_hashes": {
-    "olist_orders_dataset.csv": "fc9e1043710015ffaf0475c66b1d8dd9c5a10eb43f6758d743f68aa3cb8b38d9",
-    "olist_order_items_dataset.csv": "f150d8ff15bdb615f65698d9bd8ad1b0801c98e13e120d9a10064118845f8301",
-    "olist_order_payments_dataset.csv": "363b3f9bde8ca98f6f36d4a68b24c4a711222df88d13e700d24e65bc8d32e2c3",
-    "olist_order_reviews_dataset.csv": "0ee43d4cc9c2b3fc2f33490b331b4c51a752afbaf4eb2f584496fed5fe3e1791",
-    "olist_customers_dataset.csv": "c35df38fc2e81bb648484d14e6681322a256c1b208bce86e1110a22ffb3c39ca",
-    "olist_products_dataset.csv": "3129123b81a5d6128f387b815a0fc54b06aa949384ddb1ebb2f0eb6f29a2475e",
-    "olist_sellers_dataset.csv": "b0315bfa664dc63864b4a878ff7fed22b33282ecf125125db8bfdf29d909a2e6",
-    "olist_geolocation_dataset.csv": "f6adc82304da8e2f84f32376fe83b2050863aff565318e9a39673c97ddf04487",
-    "product_category_name_translation.csv": "ab914315d33815e0bc240d3aab0d3e004f4d85abdc0773c8016106b20d4ffb65"
+    "olist_orders_dataset.csv": "da4fd85fcb0e61899cd9c3c0f16a89fae3b800cbeed24b3b7e9f24e02b58cb0d",
+    "olist_order_items_dataset.csv": "36b8898eda7a34733ced5e21b7ce75f52f85bed19959b548a36790ec0e34e422",
+    "olist_order_payments_dataset.csv": "b9f890e8f219d9691909c6d19574d0dab920afb95e9bc213dcc43082416187ac",
+    "olist_order_reviews_dataset.csv": "ba9a3e3be0bddbc24ef103b53a998777818a6dac988b3017ecdf5ed6f6f0c50c",
+    "olist_customers_dataset.csv": "0f736acb73e3cabeaf8a92e9ff901ae03e462b629d74fae29d2a6418de25b163",
+    "olist_products_dataset.csv": "fc8598b4fbef435ad3e00fcd8d4a770342b808ec60c7a7743ca82c51bece7869",
+    "olist_sellers_dataset.csv": "ef556bf03c06574c172a27195ed669472f39bdec1d5af6819916045d7a1c9c65",
+    "olist_geolocation_dataset.csv": "139e5c8d34a8e20f08c6d59894358d2ff1c57548cc325fd442ace051b4c30bdf",
+    "product_category_name_translation.csv": "5233473346639d5ff3da9b784385ba284778abfaac1062572abe99e8aba8b7e3"
   },
   "row_counts": {
     "source_orders": 99441,
@@ -41,7 +41,8 @@
     "eligible_classification": 98673
   },
   "content_checksum": "0964e4e1711c40d107d4dfc7ac7982081114d4f8a09f9bd5a9ba25d028a89d67",
+  "zip_centroids_sha256": "465d3bd702cd3117623a7d364613569875e97195648d836f5552ef25e110f46a",
   "content_hash_algorithm": "sha256",
   "newline_convention": "LF",
-  "run_timestamp": "2026-10-04T07:23:54+00:00"
+  "run_timestamp": "2026-10-04T08:03:56+00:00"
 }
