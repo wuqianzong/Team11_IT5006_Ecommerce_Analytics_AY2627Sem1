@@ -1,6 +1,9 @@
 # ML dataset guideline
 
-Status: implementation specification v1.1, revised 2026-10-04.
+Status: implementation specification v1.2, revised 2026-10-04.
+Base feature definitions remain v1.1 (the same 27 predictors). Contract v1.2 adds
+tutorial-aligned evidence, validation and training interfaces. The existing builder
+is not yet certified against this revision; do not relabel old reports as passes.
 
 Read this document together with the [feature contract](feature_contract.md),
 [proposal](../../../docs/milestone2_proposal.md), and
@@ -9,7 +12,7 @@ directory/lineage rules; this guideline and the feature contract own detailed ML
 rules. The processing-plan PDFs and Feature Baseline v1.0 PDF are discussion inputs;
 this revised contract incorporates their review and teammate geography feedback.
 
-## Locked v1.1 implementation decisions
+## Locked baseline implementation decisions
 
 - Only `distance_km_max` is a baseline distance predictor. Do not export primary
   or mean seller distance. The maximum is a geographic-difficulty proxy, not proof
@@ -51,7 +54,7 @@ predictors.
 
 Build with cached local geometry. A missing reference, missing CRS, invalid
 geometry or checksum mismatch must fail clearly; no silent bounding-box fallback
-or runtime downloads. Boundary-inclusive coverage, retained islands, zero buffer,
+or runtime downloads. Boundary-inclusive coverage, retained islands, no buffering,
 coordinate-median revalidation and coverage-loss reporting are mandatory.
 The contract defines exact steps and the historical-boundary limitation.
 
@@ -157,14 +160,16 @@ Implementation order:
 6. Hand off commands, input requirements, dependency versions, actual output counts,
    missingness/coverage, exclusions and test results to both model teams.
 
-The implementation should expose a repository-root CLI such as
+The existing repository-root entrypoints are
 `python -m src.features.build_features` followed by
 `python -m src.features.create_splits`; document actual arguments, boundary setup
-and validation commands when implemented. Pin compatible GIS dependencies if used.
-Do not claim these entrypoints already exist. Training can proceed only once
+and validation commands after fixing and verifying them. Pin compatible dependencies.
+Their existence does not establish successful validation. Training can proceed only once
 required dataset checks pass. No model fitting is required merely to build features.
 
-Before training, pass every required check in the feature contract. Save pipelines
+Before training, pass the required base/split checks in the feature contract.
+Pipeline-dependent checks are deferred until training, then gate model publication.
+Save pipelines
 with feature names/order, positive class, threshold, target/cohort version, split
 version, dependency versions, configuration and metrics. Reload and verify
 predictions and threshold decisions.
@@ -173,3 +178,71 @@ Generated datasets and models are implementation outputs, not deliverables of th
 documentation revision. Do not claim a plan has passed leakage checks before the
 implementation and its assertions exist. Keep implementation changes uncommitted
 unless explicitly instructed to commit.
+
+## 8. Tutorial alignment and implementation handoff
+
+The feature contract is the detailed authority, especially §11. If the proposal's
+general wording suggests log transforms in the initial baseline, follow §7: no logs
+in the first baseline; evaluate them only as named development experiments.
+
+| Local teaching material | Required project adaptation |
+| --- | --- |
+| [Tutorial 1](../../../docs/Tutorial/Tutorial%201/T1.ipynb) and [Tutorial 2](../../../docs/Tutorial/Tutorial%202/T2.ipynb) | Question-driven development EDA, per-column summaries, grouping and documented data-quality observations. |
+| [Tutorial 3](../../../docs/Tutorial/Tutorial%203/T03.ipynb) | SimpleImputer, StandardScaler, OneHotEncoder, Pipeline and ColumnTransformer. Whole-dataset fitting is a teaching demonstration, not our evaluation protocol. Binning/interactions are optional experiments. |
+| [Tutorial 4](../../../docs/Tutorial/Tutorial%204/T04.ipynb) | Fit transformations on training only; reuse transform at validation/inference. Use reusable code; no checkout-time review-text features. |
+| [Tutorial 5](../../../docs/Tutorial/Tutorial%205/T05.ipynb) | Linear regression, correlations and residual-led investigation. No automatic feature removal or causal claims from coefficients. |
+| [Tutorial 7 reference](../../../docs/Tutorial/Tutorial%207/Logistic_Regression_Standard_Solution_non_agentic.ipynb) | Unweighted baseline, whole-pipeline CV, OOF threshold choice, input QA, and pipeline plus threshold plus metadata. |
+| [Tutorial 7 agentic lab](../../../docs/Tutorial/Tutorial%207/IT5006_Agentic_Logistic_Regression_Student.ipynb) | Team-owned modelling decisions, evidence-based review and mechanical acceptance checks. |
+
+These are learning references, not runnable dependencies or instructions to copy
+synthetic data/results. Where T07_Main differs, follow the reference/agentic lab's
+unweighted baseline and development-only threshold selection. Keep the project's
+group-aware splits, Unknown category policy and AP primary metric as documented
+adaptations. No need to force PCA, normalization, polynomial expansion or text
+vectorization into the project merely because a tutorial mentions them.
+
+### Phase A — current base-feature/split correction and handoff
+
+1. Read the entire contract and this README. Preserve the 27 predictors, target
+   definitions and eligibility rules. Do not add history, T_pred, imputed values,
+   one-hot columns or scaled values to orders_ml_features.csv.
+2. Resolve the existing implementation review findings: actual boundary hash/CRS
+   validation including caches; boundary-inclusive production filtering; canonical
+   LF file hashes; validation before publication; real Cartesian-join tests; null
+   labels for invalid-only reviews; complete geography coverage reporting and lookup
+   provenance. Supply reproducible boundary-staging instructions without runtime
+   downloads. Do not claim a clean-clone rebuild without testing it.
+3. Align splits to contract §7: order-level strata with customer grouping, stable
+   order_id sorting, not customer-level "any negative wins" strata. Explicitly
+   version corrected splits, regenerate dependent CV manifests and invalidate old
+   fold-dependent caches. Freeze only after checks and review; never select a split
+   for better model scores.
+4. Implement base-input/export validation and fixtures from §11.4. Keep source
+   files untouched and previous published outputs intact on a failed build.
+5. Simplify notebooks/04_ml_feature_engineering.ipynb to module calls and explanations;
+   replace embedded source copies with actual development-only audit outputs per
+   §11.2. No data-driven feature changes without a named experiment and approval.
+6. Hand off actual counts, missingness rates, coverage, source/output hashes, split
+   checks, commands, environment versions and limitations. Separate executed passes,
+   failures and deferred pipeline checks. Record contract_version=v1.2 separately
+   from feature/split versions. Test reproducibility after Git newline normalization.
+
+Phase A does not authorize model fitting or seller-history implementation. Complete
+and verify the base/split handoff before the team starts Phase B.
+
+### Phase B — subsequent training-agent instructions
+
+Implement src/models/ factories and notebooks/05_model_training_and_evaluation.ipynb
+following contract §§7 and 11.3–11.5. Use explicit column names and remainder='drop',
+the approved manifests, and one preprocessing-plus-estimator Pipeline per model/fold.
+Whole-pipeline CV consumes original-unit columns. No global fitting or resplitting.
+
+Run missing/type/range/unseen-category/all-missing/reordered-column tests and verify
+that validation perturbations cannot change fitted training transformations. Produce
+baseline comparisons, OOF predictions, residual/calibration diagnostics and approved
+threshold evidence. Save/reload the complete decision artifact and verify identical
+predictions. Leave histories and stacking deferred unless separately authorized.
+
+Maintain a decision record with choice, rationale, evidence and team approval for
+feature variants, metrics, cost assumptions and thresholds. Do not use holdout results
+to revise them. Do not commit implementation changes without an explicit instruction.

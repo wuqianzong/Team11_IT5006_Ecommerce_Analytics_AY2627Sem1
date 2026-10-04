@@ -1,9 +1,12 @@
 # Feature set suggestion and implementation contract
 
-Status: implementation contract v1.1, incorporating the baseline PDF review and
-teammate geography feedback.
-Updated: 2026-10-04. This document specifies intended behavior; no feature builder
-or evaluation result is implied to exist.
+Status: implementation contract v1.2, incorporating tutorial-aligned implementation
+and acceptance requirements. Updated: 2026-10-04.
+The v1.1 builder and split implementation exist but have outstanding review findings.
+This revision is a specification, not certification that those findings are fixed.
+The 27-column base feature definitions remain v1.1; record contract_version=v1.2
+separately. Version changed data, lookup or split artifacts explicitly and regenerate
+their dependent manifests; do not silently relabel existing outputs as verified.
 
 Read the [ML guideline](README.md) and
 [proposal](../../../docs/milestone2_proposal.md). Preserve the current
@@ -72,6 +75,14 @@ No items means missing primary attributes.
 
 Sort exported rows by `order_id` with a fixed column order and fixed null/date
 serialization. Preserve IDs and five-digit postal prefixes as strings.
+Use UTF-8 and explicit LF line endings for generated CSVs. Hash the actual canonical
+files distributed with the repository, not a pre-Git CRLF representation. Record
+the byte-hash algorithm and newline convention; verify hashes after a clean checkout.
+
+Fixed order-local sums, ratios and date components may be computed before splitting.
+Determinism alone is not a leakage guarantee: a globally fitted median imputer or
+category ranking is deterministic but still forbidden. ZIP medians are a separate
+frozen reference lookup, not order-local features; see the reference assumption in §4.
 
 ## 3. Column roles and target contract
 
@@ -219,6 +230,14 @@ edition requires a new feature version and rationale.
 The 2024 country polygon is a static plausibility reference for 2016–2018 orders,
 not a historical administrative reconstruction. Disclose this external-reference
 assumption in the report. Do not assert every rejected point is proven erroneous.
+The ZIP lookup also assumes the supplied geolocation reference is available to the
+simulated system. It is aggregated reference data, not a training-fitted imputer and
+not proof of historical availability. Freeze and hash it independently of task splits;
+never use holdout outcomes to select its policy. A stricter historical lookup requires
+a separately versioned experiment with an evidenced reference-availability rule.
+On every build, including cached-geometry paths, verify actual reference hashes,
+declared CRS and geometry validity before use. A hardcoded expected hash is not
+evidence that the supplied file matches it.
 
 ### Haversine and audit outputs
 
@@ -316,6 +335,16 @@ a documented mapping and validation, not a claim of observed defects.
 Catalogue attributes have no historical versions. Acknowledge this limitation
 rather than certifying all recorded descriptions/photos as known at checkout.
 
+Tutorial 3 demonstrates binning and polynomial interactions; Tutorial 5 demonstrates
+nonlinear regression and residual-led transformations. These are options, not a
+requirement to enlarge the baseline. No binning, polynomial expansion, PCA or
+row-wise normalization in the first baseline. A named experiment may use selected
+nonnegative log1p predictors, selected numeric interactions or learned bins if
+development evidence motivates it. Fit learned parameters within training folds;
+compare identical task rows and folds, record configuration and negative results,
+and obtain team approval before changing the baseline. Do not expand all one-hot
+columns into polynomials or automatically remove correlated predictors.
+
 ## 6. Fold-specific seller history (optional)
 
 Build order–seller pairs once so one multi-item order does not count repeatedly for
@@ -356,8 +385,11 @@ in its lineage.
 Baseline outer assignment:
 1. Resolve customer_unique_id for all orders. Missing groups receive excluded
    assignment and reason; never fill them with one shared dummy customer.
-2. For resolved groups, use three split-only strata: negative review, nonnegative
-   review, and unknown review. Unknown is not a model class.
+2. For orders with resolved groups, use three per-order split-only strata: negative
+   review, nonnegative review, and unknown review. Unknown is not a model class.
+   Sort by order_id before splitting; pass order rows and their strata with
+   groups=customer_unique_id. Do not collapse customers to one row or use an
+   "any negative review wins" customer-level stratum.
 3. Use StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=42) on this
    population; preselect fold 0 as the approximate 20% holdout. Assign all remaining
    groups to development. Do not choose a fold based on model scores.
@@ -365,7 +397,7 @@ Baseline outer assignment:
    resulting sizes, class balance, and group disjointness for each task.
 5. Within development eligible rows, create task-specific five-fold manifests:
    StratifiedGroupKFold for classification, GroupKFold for regression. Use stable
-   order sorting; record library versions and seed where applicable.
+   order_id sorting; record library versions and seed where applicable.
 
 Group constraints make exact 80/20 proportions and exact class ratios impossible
 in general. Check both classification classes in each partition and validation
@@ -480,3 +512,135 @@ without the user's instruction.
 5. Optional listing attributes, weighting or XGBoost through controlled comparisons.
 6. History, temporal robustness and stacking only after their stricter contracts
    can be implemented and verified within the remaining project time.
+
+## 11. Tutorial-aligned implementation and evidence contract
+
+### 11.1 Stage boundaries and tutorial interpretation
+
+The sequence is: define contract -> build fixed base features -> create approved
+outer/inner manifests -> optionally construct fold/time-safe histories -> fit the
+complete preprocessing/model pipeline within each training fold. Histories are
+optional: the baseline proceeds directly from manifests to pipeline fitting.
+
+Tutorial 3 explicitly uses the whole dataset for a preprocessing-only demonstration.
+Do not copy that fitting scope into supervised evaluation. Tutorial 4's train-only
+fit/reused transform rule and Tutorial 7's reference/agentic workflow govern training.
+Keep customer-group isolation rather than copying the labs' ordinary row splits.
+Do not adopt review-text features from the spam exercise: they are unavailable at
+checkout. Tutorial synthetic datasets and results are teaching examples, never
+project inputs or evidence.
+
+### 11.2 Required feature audit (after split approval)
+
+The feature notebook must import reusable modules, not maintain embedded copies of
+their full implementation. Add a development-only audit, separately for the two
+eligible task populations, containing:
+
+- column roles, dtypes and units; missing counts and percentages with denominators;
+- numeric count, mean, standard deviation, min, quartiles and max; constant columns;
+- category frequencies and class counts/proportions;
+- distributions of key price, weight, volume, distance and duration variables;
+- numeric predictor correlations and selected feature/target relationships;
+- written observations identifying possible skew, redundancy and coverage problems,
+  with evidence and proposed experiments, not automatic feature deletion.
+
+Full-population integrity, eligibility and split-balance checks remain permissible.
+Do not use holdout feature/target relationships to choose features or transformations.
+These audits do not impute, scale, clip or drop rows in the base CSV. A quality
+report with row counts alone does not satisfy the exploratory evidence requirement.
+
+### 11.3 Reusable training interface (later training phase)
+
+Implement preprocessing/model factories under src/models/ and explain their use in
+notebooks/05_model_training_and_evaluation.ipynb. Select X by the explicit task
+allowlist and select y/groups/manifests separately, joined by order_id. Build a
+name-based ColumnTransformer with remainder='drop', then the estimator as the last
+step of a single Pipeline. Apply §7's categorical and numeric defaults. For trees,
+use one-hot encoding with drop=None; no numeric scaling. For linear/logistic models,
+retain drop='first' and save the reference categories. Use sparse encoding when
+practical; dense conversion requires a documented memory check, not a lab copy-paste.
+
+The categorical missing token is Unknown, not the tutorial's most-frequent fill:
+this is an intentional project choice preserving missing-category meaning. Normalize
+calendar codes consistently (e.g. integer 1 and 1.0 must not become distinct levels).
+Retain all 27 input columns, including constant or wholly missing training columns;
+any approved removal is a named variant. Missingness-indicator output columns may
+differ between folds, but each fitted pipeline must have stable transform dimensions
+and persisted feature names. Do not compare coefficients across folds by position.
+
+CV and hyperparameter search receive the entire pipeline and original-unit X, never
+a matrix transformed before CV. Convert saved validation-fold assignments to index
+pairs using the aligned task rows; do not silently recreate random folds. A fresh
+pipeline is fitted per fold. Validation and holdout receive transform/predict only.
+Neither a scaler nor a Pipeline makes a globally precomputed seller history safe.
+
+### 11.4 Input-validation contract and acceptance fixtures
+
+Validate both base exports and incoming model features. Required predictor columns
+must be present, but an allowed null cell is not a missing column. Reorder columns
+by name; exclude non-allowlisted metadata from X. Preserve source files.
+
+At the model-input boundary, fail clearly on missing columns, malformed numeric
+values, infinities, fractional counts and invalid ranges. At base-source ingestion,
+retain the existing per-field missing/quarantine rules and report rejected values;
+do not turn every malformed source value into an unreported zero. Valid numeric
+nulls continue to the fold-fitted imputer. Enforce:
+
+- counts: nonnegative integers; flags: 0/1;
+- price/freight/distance/ratio: nonnegative finite values when present;
+- complete weight/volume and known installments: strictly positive when present;
+- missingness fractions and interstate_share: [0,1];
+- month 1–12, weekday 0–6, hour 0–23; identifiers and targets never in X.
+
+Malformed state/payment tokens follow §4's normalization to Unknown with a quality
+flag/count. A valid category unseen in training is different from a malformed value:
+allow it through the configured encoder, count it and disclose the possible all-zero
+encoding/reference collision. Domain vocabularies come from the contract; fitted
+category vocabularies come only from training, not a full-data reference dataframe.
+
+Add executable tests for missing required columns, reordered columns, wrong types,
+infinities, negative counts/prices, out-of-range fractions/calendar codes, legitimate
+nulls, unseen categories and a wholly missing training column. Verify that changing
+validation values or labels cannot change training-fitted imputation statistics,
+scaler parameters or encoder categories. Assert identical reordered-column predictions,
+finite transformed numeric values, stable per-pipeline feature names/dimensions and
+equality of predictions/threshold decisions after artifact reload.
+
+Base/split tests gate base/split publication now. Pipeline and scoring fixtures gate
+training artifacts later; report them as deferred, not passed, until implemented.
+Build outputs in staging, run required checks, and publish only on success. A failed
+build must leave the previous published dataset/manifests intact. Test that behavior.
+Exercise the actual production geography function on a boundary point. Test Cartesian
+join safety with the two-item/two-payment/two-review fixture, not a hardcoded pass.
+A review with no valid score must have a null label even if review_count is positive.
+
+### 11.5 Model diagnostics, decisions and persistence (later training phase)
+
+Start logistic regression with class_weight=None and no resampling. Weighted models
+remain separate development experiments, not automatic imbalance fixes. Follow the
+Tutorial 7 reference/agentic approach where T07_Main differs on weighting or uses
+test predictions for a threshold sweep. Retain the proposal's primary AP metric,
+ROC-AUC, majority-baseline accuracy and threshold-dependent precision/recall/F1;
+regression retains MAE, RMSE, R² and development OOF residual plots. Accuracy is
+supplementary, and beating it is not the sole definition of business usefulness.
+
+Choose thresholds using development OOF probabilities; freeze feature/model choices,
+any calibration and the threshold before final holdout scoring. Mean predicted
+probability versus prevalence is only a preliminary calibration check: also report
+reliability plots and Brier score when interpreting probabilities. Any fitted
+calibrator must use development-only, group-respecting validation. State positive
+class is_detractor=1 and retrieve that class's probability explicitly.
+
+Retrieve transformed names from the fitted pipeline and assert alignment with
+coefficients. Explain standardized numeric coefficients separately from categorical
+reference comparisons; report associations, not causal effects. Before claiming a
+feature matters, inspect correlations and a same-fold ablation or stability analysis.
+Perform all feature refinement before opening the final holdout. Business costs,
+capacity constraints and the operational threshold require a team decision; do not
+borrow the tutorial's banking costs or claim measured intervention benefits.
+
+Save pipeline, threshold, validation policy, feature names/references, positive class,
+task/contract/feature/split versions, dependency versions, seeds and selection evidence.
+Reload without fit and reproduce predictions and decisions. Keep a decision record
+of target/feature/metric/threshold choices, rationale, evidence and team approval;
+agents must not silently change these choices.
