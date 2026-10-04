@@ -481,13 +481,106 @@ def check_loaders_tolerate_invalid() -> dict:
     return _ok("missing ZIP / nonnumeric score survive the file-loading path")
 
 
+def check_geolocation_loader_malformed_coords() -> dict:
+    """Malformed/missing/nonfinite/out-of-range coordinates must survive the real
+    CSV loader and be rejected by downstream geography with the contract's
+    precedence, accepted-only medians, unresolved zero-survivor keys, and null
+    distance for any unresolved required location."""
+    import tempfile
+    from pathlib import Path
+
+    from .build_features import _load_geolocation
+
+    csv = (
+        "geolocation_zip_code_prefix,geolocation_lat,geolocation_lng,geolocation_state\n"
+        "11111,1.0,5.0,SP\n"    # accepted
+        "11111,2.0,5.0,SP\n"    # accepted
+        "11111,3.0,5.0,SP\n"    # accepted
+        "11111,50.0,5.0,SP\n"   # outside polygon (lat 50 in global range)
+        "22222,50.0,5.0,SP\n"   # outside polygon
+        "22222,60.0,5.0,SP\n"   # outside polygon -> all-rejected group
+        "33333,bad,5.0,SP\n"    # nonnumeric -> invalid_coords
+        "44444,1.0,,SP\n"       # missing lng -> invalid_coords
+        "55555,inf,5.0,SP\n"    # nonfinite -> invalid_coords
+        "66666,95.0,5.0,SP\n"   # lat out of range
+        "77777,1.0,200.0,SP\n"  # lng out of range
+        "88888,1.0,5.0,XX\n"    # invalid key
+        "99999,bad,5.0,XX\n"    # invalid key wins over bad coords (precedence)
+    )
+
+    sq = Polygon([(0, 0), (10, 0), (10, 10), (0, 10)])  # lng 0..10, lat 0..10
+    with tempfile.TemporaryDirectory() as tmp:
+        tmp = Path(tmp)
+        (tmp / "olist_geolocation_dataset.csv").write_text(csv, encoding="utf-8", newline="\n")
+        geo = _load_geolocation(tmp)  # the real loader: must not raise on "bad"/""/"inf"
+
+        centroids, filter_report = build_zip_centroids(geo, sq)
+
+        # Rejection counts (mutually exclusive first-failure reasons).
+        ffr = filter_report["first_failure_reasons"]
+        expected = {
+            "None": 3, "outside_polygon": 3, "invalid_coords": 3,
+            "lat_out_of_range": 1, "lng_out_of_range": 1, "invalid_key": 2,
+        }
+        for k, v in expected.items():
+            if int(ffr.get(k, 0)) != v:
+                return _fail(f"first_failure_reasons[{k}] = {ffr.get(k)} != {v}")
+        if filter_report["total_rows"] != 13 or filter_report["accepted"] != 3:
+            return _fail(f"total/accepted {filter_report['total_rows']}/{filter_report['accepted']} != 13/3")
+
+        # Surviving median uses accepted coordinates only; all-rejected/coords
+        # rejected keys stay unresolved with null coordinates; invalid keys absent.
+        if len(centroids) != 7:
+            return _fail(f"expected 7 centroid keys (13 rows - 2 invalid-key groups), got {len(centroids)}")
+        ok = centroids[centroids["zip_prefix"] == "11111"].iloc[0]
+        if ok["resolution_status"] != "resolved":
+            return _fail(f"11111 status {ok['resolution_status']} != resolved")
+        if not _close(ok["median_lat"], 2.0) or not _close(ok["median_lng"], 5.0):
+            return _fail(f"11111 median ({ok['median_lat']},{ok['median_lng']}) != (2.0,5.0)")
+        if int(ok["accepted_count"]) != 3:
+            return _fail(f"11111 accepted_count {ok['accepted_count']} != 3")
+
+        unresolved = centroids[centroids["resolution_status"] == "no_surviving_coordinates"]
+        if len(unresolved) != 6:
+            return _fail(f"expected 6 no_surviving keys, got {len(unresolved)}")
+        if not (unresolved["median_lat"].isna() & unresolved["median_lng"].isna()).all():
+            return _fail("an unresolved key produced non-null coordinates")
+        if "88888" in set(centroids["zip_prefix"]) or "99999" in set(centroids["zip_prefix"]):
+            return _fail("invalid-key group was exported as a centroid")
+
+        # Null distance whenever a required customer/seller location is unresolved.
+        customers = pd.DataFrame({
+            "customer_id": ["c1", "c2"], "customer_unique_id": ["cu1", "cu2"],
+            "customer_zip_code_prefix": ["22222", "11111"], "customer_state": ["SP", "SP"],
+        })
+        sellers = pd.DataFrame({
+            "seller_id": ["s1", "s2"], "seller_zip_code_prefix": ["11111", "22222"],
+            "seller_state": ["SP", "SP"],
+        })
+        orders = pd.DataFrame({
+            "order_id": ["o1", "o2", "o3"], "customer_id": ["c1", "c2", "c2"],
+        })
+        pairs = pd.DataFrame({
+            "order_id": ["o1", "o2", "o3"], "seller_id": ["s1", "s2", "s1"],
+        })
+        dist = compute_distance_features(orders, customers, sellers, pairs, centroids)
+        if not pd.isna(dist.loc["o1", "distance_km_max"]):
+            return _fail("unresolved customer should null distance, not a partial max")
+        if not pd.isna(dist.loc["o2", "distance_km_max"]):
+            return _fail("unresolved seller should null distance, not a partial max")
+        if not _close(dist.loc["o3", "distance_km_max"], 0.0):
+            return _fail(f"resolved order o3 distance {dist.loc['o3', 'distance_km_max']} != 0.0")
+    return _ok("malformed coords survive the loader; precedence/medians/unresolved/null-distance verified")
+
+
 def check_atomic_publish_rollback() -> dict:
-    """An interrupted publication must roll back every already-replaced file."""
+    """An interrupted publication must roll back every already-replaced file to
+    its exact prior bytes, leaving no mixed old/new artifact set."""
     import os
     import tempfile
     from pathlib import Path
 
-    from .build_features import publish_atomic
+    from .serialization import publish_atomic
 
     with tempfile.TemporaryDirectory() as tmp:
         root = Path(tmp)
@@ -514,11 +607,53 @@ def check_atomic_publish_rollback() -> dict:
         except OSError:
             pass
 
+        # No mixed old/new set: both artifacts restored to their exact bytes.
         if (target / "a.csv").read_text(encoding="utf-8") != "old-a\n":
             return _fail("rollback did not restore a.csv")
         if (target / "b.csv").read_text(encoding="utf-8") != "old-b\n":
             return _fail("rollback did not restore b.csv")
-    return _ok("failed publication rolled back to original files")
+        if sorted(p.name for p in target.iterdir()) != ["a.csv", "b.csv"]:
+            return _fail("rollback left an unexpected artifact set")
+    return _ok("failed publication over existing outputs rolled back to original files")
+
+
+def check_atomic_publish_first_publication() -> dict:
+    """A failed first-time publication must remove newly published copies instead
+    of leaving a partial artifact set behind."""
+    import os
+    import tempfile
+    from pathlib import Path
+
+    from .serialization import publish_atomic
+
+    with tempfile.TemporaryDirectory() as tmp:
+        root = Path(tmp)
+        target = root / "target"
+        staging = root / "staging"
+        target.mkdir()  # empty: nothing published yet
+        staging.mkdir()
+        (staging / "split_assignments.csv").write_text("new-split\n", encoding="utf-8", newline="\n")
+        (staging / "cv_assignments.csv").write_text("new-cv\n", encoding="utf-8", newline="\n")
+        (staging / "split_report.json").write_text("{}\n", encoding="utf-8", newline="\n")
+
+        calls = {"n": 0}
+
+        def flaky_replace(src, dst):
+            calls["n"] += 1
+            if calls["n"] == 2:
+                raise OSError("injected failure during second replacement")
+            os.replace(src, dst)
+
+        try:
+            publish_atomic(staging, target, replace=flaky_replace)
+            return _fail("injected first-publication failure did not propagate")
+        except OSError:
+            pass
+
+        # The single already-published copy must have been removed.
+        if list(target.iterdir()):
+            return _fail("first-time publication left partial files after rollback")
+    return _ok("failed first-time publication removed newly published copies")
 
 
 # ---------------------------------------------------------------------------
@@ -545,7 +680,9 @@ def run_fixture_checks(polygon, export_columns: list[str]) -> list[dict]:
         ("cartesian_join_safety", check_cartesian_join_safety),
         ("allowlist_separation", lambda: check_allowlist_separation(export_columns)),
         ("loaders_tolerate_invalid", check_loaders_tolerate_invalid),
+        ("geolocation_loader_malformed_coords", check_geolocation_loader_malformed_coords),
         ("atomic_publish_rollback", check_atomic_publish_rollback),
+        ("atomic_publish_first_publication", check_atomic_publish_first_publication),
     ]:
         try:
             res = fn()

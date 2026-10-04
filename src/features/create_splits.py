@@ -21,7 +21,6 @@ Inner task folds are independent five-fold splits within development
 from __future__ import annotations
 
 import json
-import os
 import shutil
 from datetime import datetime, timezone
 from pathlib import Path
@@ -31,7 +30,7 @@ import pandas as pd
 from sklearn.model_selection import GroupKFold, StratifiedGroupKFold
 
 from .contract import CONTRACT_VERSION, SPLIT_VERSION
-from .serialization import write_csv_lf, write_text_lf
+from .serialization import publish_atomic, write_csv_lf, write_text_lf
 
 OUTER_SPLITS = 5
 OUTER_SEED = 42
@@ -157,6 +156,29 @@ def _check_splits(assignments: pd.DataFrame, cv: pd.DataFrame,
     return results
 
 
+def _validate_staged(staging: Path, n_assignments: int, n_cv: int) -> None:
+    """Confirm every staged split artifact exists, is non-empty and parseable
+    before publication (feature_contract.md §11.4 validation-before-publish)."""
+    expected = ["split_assignments.csv", "cv_assignments.csv", "split_report.json"]
+    missing = [n for n in expected if not (staging / n).exists()]
+    if missing:
+        raise RuntimeError(f"staged split outputs missing before publication: {missing}")
+    empty = [n for n in expected if (staging / n).stat().st_size == 0]
+    if empty:
+        raise RuntimeError(f"staged split outputs empty before publication: {empty}")
+
+    split = pd.read_csv(staging / "split_assignments.csv")
+    cv = pd.read_csv(staging / "cv_assignments.csv")
+    json.loads((staging / "split_report.json").read_text(encoding="utf-8"))
+
+    if len(split) != n_assignments:
+        raise RuntimeError(
+            f"staged split_assignments.csv has {len(split)} rows, expected {n_assignments}")
+    if len(cv) != n_cv:
+        raise RuntimeError(
+            f"staged cv_assignments.csv has {len(cv)} rows, expected {n_cv}")
+
+
 def main() -> None:
     repo = _repo_root()
     ml = repo / "data" / "business" / "ml"
@@ -202,8 +224,10 @@ def main() -> None:
             "Split checks failed; previous published outputs left intact.\n"
             + "\n".join(f"- {c['id']}: {c['detail']}" for c in failed))
 
-    for f in sorted(staging.iterdir()):
-        os.replace(f, ml / f.name)
+    # Validate the staged bundle, then publish atomically (rollback on a handled
+    # replacement failure; feature_contract.md §11.4).
+    _validate_staged(staging, len(assignments), len(cv))
+    publish_atomic(staging, ml)
     staging.rmdir()
 
     print("create_splits complete.")

@@ -248,6 +248,11 @@ def _classify_geolocation(geolocation: pd.DataFrame):
     df["_state"] = df["geolocation_state"].astype(str).str.strip().str.upper()
     lat = pd.to_numeric(df["geolocation_lat"], errors="coerce")
     lng = pd.to_numeric(df["geolocation_lng"], errors="coerce")
+    # Loaders keep coordinates as strings so malformed numeric text survives to
+    # this point (never crashing the read); replace them with the coerced numeric
+    # values here so downstream medians aggregate numbers, not strings.
+    df["geolocation_lat"] = lat
+    df["geolocation_lng"] = lng
 
     reason = pd.Series(np.full(len(df), None, dtype=object), index=df.index)
 

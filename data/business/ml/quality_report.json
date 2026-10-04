@@ -81,9 +81,19 @@
       "detail": "missing ZIP / nonnumeric score survive the file-loading path"
     },
     {
+      "id": "geolocation_loader_malformed_coords",
+      "status": "pass",
+      "detail": "malformed coords survive the loader; precedence/medians/unresolved/null-distance verified"
+    },
+    {
       "id": "atomic_publish_rollback",
       "status": "pass",
-      "detail": "failed publication rolled back to original files"
+      "detail": "failed publication over existing outputs rolled back to original files"
+    },
+    {
+      "id": "atomic_publish_first_publication",
+      "status": "pass",
+      "detail": "failed first-time publication removed newly published copies"
     },
     {
       "id": "one_row_per_order",
@@ -137,7 +147,7 @@
     }
   ],
   "checks_summary": {
-    "passed": 27,
+    "passed": 29,
     "failed": 0
   },
   "geography": {

@@ -22,7 +22,6 @@ check passes, so a failed build leaves the previous published artifacts intact
 from __future__ import annotations
 
 import json
-import os
 import shutil
 from datetime import datetime, timezone
 from pathlib import Path
@@ -58,7 +57,7 @@ from .geography import (
     compute_geography_coverage,
     prepare_boundary,
 )
-from .serialization import write_csv_lf, write_text_lf
+from .serialization import publish_atomic, write_csv_lf, write_text_lf
 
 STAGING_DIR = "_staging"
 
@@ -141,7 +140,7 @@ def _load_geolocation(pre: Path) -> pd.DataFrame:
         usecols=["geolocation_zip_code_prefix", "geolocation_lat", "geolocation_lng",
                  "geolocation_state"],
         dtype={"geolocation_state": "str", "geolocation_zip_code_prefix": "str",
-               "geolocation_lat": "float64", "geolocation_lng": "float64"},
+               "geolocation_lat": "str", "geolocation_lng": "str"},
     )
 
 
@@ -621,34 +620,6 @@ def _quality_report_payload(built: dict, all_checks: list[dict]) -> dict:
 
 def _repo_root() -> Path:
     return Path(__file__).resolve().parents[2]
-
-
-def publish_atomic(staging: Path, target: Path, replace=os.replace) -> None:
-    """Publish every staged file into ``target``, rolling back on any failure.
-
-    Backs up each pre-existing target file in memory before replacing it; if any
-    replacement raises, every already-replaced file is restored (or removed, when
-    it did not exist before) and the error is re-raised, so the target directory
-    is never left in a partially-updated state (feature_contract.md §11.4).
-    """
-    files = sorted(staging.iterdir())
-    backups: dict[str, bytes] = {}
-    replaced: list[str] = []
-    try:
-        for f in files:
-            dst = target / f.name
-            if dst.exists():
-                backups[f.name] = dst.read_bytes()
-            replace(f, dst)
-            replaced.append(f.name)
-    except Exception:
-        for name in reversed(replaced):
-            dst = target / name
-            if name in backups:
-                dst.write_bytes(backups[name])
-            else:
-                dst.unlink(missing_ok=True)
-        raise
 
 
 def main() -> None:
