@@ -1,0 +1,43 @@
+{
+  "stage": 4,
+  "seed": 42,
+  "holdout_evaluation": false,
+  "stage3_run_id": "stage3-baseline-v1",
+  "folds": 5,
+  "n_jobs": 1,
+  "max_fits": 120,
+  "max_wall_seconds": 3600,
+  "primary_metrics": {"regression": "mae", "classification": "average_precision"},
+  "selection_tolerance": {"regression": 0.02, "classification": 0.002},
+  "family_preference": ["linear", "ridge", "logistic", "tree", "forest"],
+  "regression_candidates": [
+    {"id": "ridge_a1", "family": "ridge", "params": {"alpha": 1.0, "solver": "lsqr", "tol": 0.000001}},
+    {"id": "ridge_a100", "family": "ridge", "params": {"alpha": 100.0, "solver": "lsqr", "tol": 0.000001}},
+    {"id": "tree_d3_l200", "family": "tree", "params": {"max_depth": 3, "min_samples_leaf": 200, "ccp_alpha": 0.0}},
+    {"id": "tree_d8_l50", "family": "tree", "params": {"max_depth": 8, "min_samples_leaf": 50, "ccp_alpha": 0.0}},
+    {"id": "tree_d12_l20", "family": "tree", "params": {"max_depth": 12, "min_samples_leaf": 20, "ccp_alpha": 0.0}},
+    {"id": "tree_d12_l20_pruned", "family": "tree", "params": {"max_depth": 12, "min_samples_leaf": 20, "ccp_alpha": 0.05}},
+    {"id": "forest_d8_l50_sqrt", "family": "forest", "params": {"n_estimators": 64, "max_depth": 8, "min_samples_leaf": 50, "max_features": "sqrt", "bootstrap": true}},
+    {"id": "forest_d12_l20_half", "family": "forest", "params": {"n_estimators": 64, "max_depth": 12, "min_samples_leaf": 20, "max_features": 0.5, "bootstrap": true}},
+    {"id": "forest_d16_l20_half", "family": "forest", "params": {"n_estimators": 64, "max_depth": 16, "min_samples_leaf": 20, "max_features": 0.5, "bootstrap": true}}
+  ],
+  "classification_candidates": [
+    {"id": "logistic_c001", "family": "logistic", "params": {"C": 0.01, "solver": "lbfgs", "max_iter": 2000, "tol": 0.0001, "class_weight": null}},
+    {"id": "logistic_c01", "family": "logistic", "params": {"C": 0.1, "solver": "lbfgs", "max_iter": 2000, "tol": 0.0001, "class_weight": null}},
+    {"id": "logistic_c1", "family": "logistic", "params": {"C": 1.0, "solver": "lbfgs", "max_iter": 2000, "tol": 0.0001, "class_weight": null}},
+    {"id": "tree_d3_l200", "family": "tree", "params": {"max_depth": 3, "min_samples_leaf": 200, "ccp_alpha": 0.0}},
+    {"id": "tree_d8_l50", "family": "tree", "params": {"max_depth": 8, "min_samples_leaf": 50, "ccp_alpha": 0.0}},
+    {"id": "tree_d12_l20", "family": "tree", "params": {"max_depth": 12, "min_samples_leaf": 20, "ccp_alpha": 0.0}},
+    {"id": "tree_d12_l20_pruned", "family": "tree", "params": {"max_depth": 12, "min_samples_leaf": 20, "ccp_alpha": 0.0005}},
+    {"id": "forest_d8_l50_sqrt", "family": "forest", "params": {"n_estimators": 64, "max_depth": 8, "min_samples_leaf": 50, "max_features": "sqrt", "bootstrap": true}},
+    {"id": "forest_d12_l20_half", "family": "forest", "params": {"n_estimators": 64, "max_depth": 12, "min_samples_leaf": 20, "max_features": 0.5, "bootstrap": true}},
+    {"id": "forest_d16_l20_half", "family": "forest", "params": {"n_estimators": 64, "max_depth": 16, "min_samples_leaf": 20, "max_features": 0.5, "bootstrap": true}}
+  ],
+  "sensitivity_variants": ["no_payment_both_tasks", "classification_item_bearing_only"],
+  "permutation_sample_per_fold": 2500,
+  "permutation_repeats": 3,
+  "cost_ratios": [1, 2, 5, 10],
+  "proposed_primary_cost_ratio": 5,
+  "threshold_tie_break": "highest threshold among exactly equal integer costs",
+  "optional_methods_deferred": ["logs", "history", "weighting", "calibration", "temporal_testing", "XGBoost", "voting", "stacking", "alternate_label_retraining"]
+}

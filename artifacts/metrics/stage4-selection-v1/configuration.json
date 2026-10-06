@@ -1,0 +1,243 @@
+{
+  "classification_candidates": [
+    {
+      "family": "logistic",
+      "id": "logistic_c001",
+      "params": {
+        "C": 0.01,
+        "class_weight": null,
+        "max_iter": 2000,
+        "solver": "lbfgs",
+        "tol": 0.0001
+      }
+    },
+    {
+      "family": "logistic",
+      "id": "logistic_c01",
+      "params": {
+        "C": 0.1,
+        "class_weight": null,
+        "max_iter": 2000,
+        "solver": "lbfgs",
+        "tol": 0.0001
+      }
+    },
+    {
+      "family": "logistic",
+      "id": "logistic_c1",
+      "params": {
+        "C": 1.0,
+        "class_weight": null,
+        "max_iter": 2000,
+        "solver": "lbfgs",
+        "tol": 0.0001
+      }
+    },
+    {
+      "family": "tree",
+      "id": "tree_d3_l200",
+      "params": {
+        "ccp_alpha": 0.0,
+        "max_depth": 3,
+        "min_samples_leaf": 200
+      }
+    },
+    {
+      "family": "tree",
+      "id": "tree_d8_l50",
+      "params": {
+        "ccp_alpha": 0.0,
+        "max_depth": 8,
+        "min_samples_leaf": 50
+      }
+    },
+    {
+      "family": "tree",
+      "id": "tree_d12_l20",
+      "params": {
+        "ccp_alpha": 0.0,
+        "max_depth": 12,
+        "min_samples_leaf": 20
+      }
+    },
+    {
+      "family": "tree",
+      "id": "tree_d12_l20_pruned",
+      "params": {
+        "ccp_alpha": 0.0005,
+        "max_depth": 12,
+        "min_samples_leaf": 20
+      }
+    },
+    {
+      "family": "forest",
+      "id": "forest_d8_l50_sqrt",
+      "params": {
+        "bootstrap": true,
+        "max_depth": 8,
+        "max_features": "sqrt",
+        "min_samples_leaf": 50,
+        "n_estimators": 64
+      }
+    },
+    {
+      "family": "forest",
+      "id": "forest_d12_l20_half",
+      "params": {
+        "bootstrap": true,
+        "max_depth": 12,
+        "max_features": 0.5,
+        "min_samples_leaf": 20,
+        "n_estimators": 64
+      }
+    },
+    {
+      "family": "forest",
+      "id": "forest_d16_l20_half",
+      "params": {
+        "bootstrap": true,
+        "max_depth": 16,
+        "max_features": 0.5,
+        "min_samples_leaf": 20,
+        "n_estimators": 64
+      }
+    }
+  ],
+  "cost_ratios": [
+    1,
+    2,
+    5,
+    10
+  ],
+  "family_preference": [
+    "linear",
+    "ridge",
+    "logistic",
+    "tree",
+    "forest"
+  ],
+  "folds": 5,
+  "holdout_evaluation": false,
+  "max_fits": 120,
+  "max_wall_seconds": 3600,
+  "n_jobs": 1,
+  "optional_methods_deferred": [
+    "logs",
+    "history",
+    "weighting",
+    "calibration",
+    "temporal_testing",
+    "XGBoost",
+    "voting",
+    "stacking",
+    "alternate_label_retraining"
+  ],
+  "permutation_repeats": 3,
+  "permutation_sample_per_fold": 2500,
+  "primary_metrics": {
+    "classification": "average_precision",
+    "regression": "mae"
+  },
+  "proposed_primary_cost_ratio": 5,
+  "regression_candidates": [
+    {
+      "family": "ridge",
+      "id": "ridge_a1",
+      "params": {
+        "alpha": 1.0,
+        "solver": "lsqr",
+        "tol": 1e-06
+      }
+    },
+    {
+      "family": "ridge",
+      "id": "ridge_a100",
+      "params": {
+        "alpha": 100.0,
+        "solver": "lsqr",
+        "tol": 1e-06
+      }
+    },
+    {
+      "family": "tree",
+      "id": "tree_d3_l200",
+      "params": {
+        "ccp_alpha": 0.0,
+        "max_depth": 3,
+        "min_samples_leaf": 200
+      }
+    },
+    {
+      "family": "tree",
+      "id": "tree_d8_l50",
+      "params": {
+        "ccp_alpha": 0.0,
+        "max_depth": 8,
+        "min_samples_leaf": 50
+      }
+    },
+    {
+      "family": "tree",
+      "id": "tree_d12_l20",
+      "params": {
+        "ccp_alpha": 0.0,
+        "max_depth": 12,
+        "min_samples_leaf": 20
+      }
+    },
+    {
+      "family": "tree",
+      "id": "tree_d12_l20_pruned",
+      "params": {
+        "ccp_alpha": 0.05,
+        "max_depth": 12,
+        "min_samples_leaf": 20
+      }
+    },
+    {
+      "family": "forest",
+      "id": "forest_d8_l50_sqrt",
+      "params": {
+        "bootstrap": true,
+        "max_depth": 8,
+        "max_features": "sqrt",
+        "min_samples_leaf": 50,
+        "n_estimators": 64
+      }
+    },
+    {
+      "family": "forest",
+      "id": "forest_d12_l20_half",
+      "params": {
+        "bootstrap": true,
+        "max_depth": 12,
+        "max_features": 0.5,
+        "min_samples_leaf": 20,
+        "n_estimators": 64
+      }
+    },
+    {
+      "family": "forest",
+      "id": "forest_d16_l20_half",
+      "params": {
+        "bootstrap": true,
+        "max_depth": 16,
+        "max_features": 0.5,
+        "min_samples_leaf": 20,
+        "n_estimators": 64
+      }
+    }
+  ],
+  "seed": 42,
+  "selection_tolerance": {
+    "classification": 0.002,
+    "regression": 0.02
+  },
+  "sensitivity_variants": [
+    "no_payment_both_tasks",
+    "classification_item_bearing_only"
+  ],
+  "stage": 4,
+  "stage3_run_id": "stage3-baseline-v1",
+  "threshold_tie_break": "highest threshold among exactly equal integer costs"
+}

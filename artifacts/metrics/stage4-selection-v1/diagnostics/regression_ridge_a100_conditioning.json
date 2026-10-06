@@ -1,0 +1,28 @@
+{
+  "columns_with_intercept": 187,
+  "condition_number": null,
+  "constant_columns": [
+    0,
+    2,
+    9,
+    20,
+    24,
+    60,
+    63,
+    67,
+    70,
+    95,
+    118,
+    124,
+    127,
+    133
+  ],
+  "dense_bytes": 7480000,
+  "limitation": "sample rank/conditioning only; no OLS inference or full-matrix rank claim",
+  "nonzero_subspace_condition_number": 1424.0468471959891,
+  "numerical_rank": 170,
+  "rank_deficient": true,
+  "rank_tolerance": 1.582057962728412e-10,
+  "sample_policy": "up to 5000 evenly spaced sorted training orders",
+  "sample_training_n": 5000
+}

@@ -1,0 +1,165 @@
+{
+  "full_build": "Preserve existing Stage 4 run outside active artifacts, then python -m src.models.stage4 --rebuild-baseline; never overwrite an existing run.",
+  "full_local_verification_at_publication": {
+    "candidate_fold_metrics": 125,
+    "fits": 120,
+    "holdout_evaluated": false,
+    "independent_agent_review": "pending",
+    "output_files_checked": 47,
+    "selected_candidates": {
+      "classification": "forest_d16_l20_half",
+      "regression": "forest_d16_l20_half"
+    },
+    "stage": 4,
+    "status": "passed_internal_verification",
+    "team_explanation_review": "pending",
+    "unit_tests": 46
+  },
+  "full_verification": "python -m src.models.verify_stage4",
+  "holdout_evaluated": false,
+  "inspection_scope": "Published hashes, input/baseline lineage, fold summaries, paired differences and selection/policy consistency. Omitted predictions/models are not reverified.",
+  "omitted_files": {
+    "candidate_oof_predictions.csv": {
+      "bytes": 212716704,
+      "reason": "full intermediate prediction dump",
+      "rebuild": "src.models.stage4",
+      "sha256": "b74935523a8fcbbaafbe54c5a5bad5830caa9e41da6eb865c3e20df2c4653fbb"
+    },
+    "cv_models/classification_selected_fold0.joblib": {
+      "bytes": 5401179,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.stage4",
+      "sha256": "c88eaf9ee5fb4c98c06461add39847615925068bfa92f3f54e63eb5179d89908"
+    },
+    "cv_models/classification_selected_fold1.joblib": {
+      "bytes": 5407899,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.stage4",
+      "sha256": "09df47f102efbd098c81015521ca6b0071570d0881e37c4210f96b7a9a73a1a8"
+    },
+    "cv_models/classification_selected_fold2.joblib": {
+      "bytes": 5433979,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.stage4",
+      "sha256": "78003da54715eba921cb0b00e6d5593cf56bfa2292737a96e898208a20e205ab"
+    },
+    "cv_models/classification_selected_fold3.joblib": {
+      "bytes": 5326939,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.stage4",
+      "sha256": "75cb65f6b51bc00a3da30afc009931c6e097a8f714743930bac086b6befc1cd4"
+    },
+    "cv_models/classification_selected_fold4.joblib": {
+      "bytes": 5543899,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.stage4",
+      "sha256": "a1a80f5d697adfdc274def5c92e3e7d3a59ac169049243ff04a63eceee26acd5"
+    },
+    "cv_models/regression_selected_fold0.joblib": {
+      "bytes": 8514643,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.stage4",
+      "sha256": "12f5a0b237559f89103ade93707f1f95e3a12d5ac3fc6b030e20ecf73c615560"
+    },
+    "cv_models/regression_selected_fold1.joblib": {
+      "bytes": 8623219,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.stage4",
+      "sha256": "7adbadb6d9c57cad61f4ed5031bcc70eed27d676bb8b22c2c22d0f58da510d0d"
+    },
+    "cv_models/regression_selected_fold2.joblib": {
+      "bytes": 8591955,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.stage4",
+      "sha256": "532cfe325dd088eb8171438c520af62a71a77f871b168b233bf7609edd21a594"
+    },
+    "cv_models/regression_selected_fold3.joblib": {
+      "bytes": 8591539,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.stage4",
+      "sha256": "d36d87a0e272d897cd616eba68c2934ec3feeeff69c6c735108afafb1fd51f30"
+    },
+    "cv_models/regression_selected_fold4.joblib": {
+      "bytes": 8725027,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.stage4",
+      "sha256": "fc518e3136d489ec8daeb16f8e315f5cdbf593c4ea7035428861696d527cb0c6"
+    },
+    "selected_classification_policy_predictions.csv": {
+      "bytes": 10399784,
+      "reason": "full intermediate prediction dump",
+      "rebuild": "src.models.stage4",
+      "sha256": "1d86e9403a45028076b07bf5bd32707e250e0e6feb4097b2ec1bb35773a8bfe5"
+    },
+    "selected_oof_predictions.csv": {
+      "bytes": 17805206,
+      "reason": "full intermediate prediction dump",
+      "rebuild": "src.models.stage4",
+      "sha256": "01c1d2df50597dc479bc7b7dd791b57a76c4a62ab01964e33a9356a6eaa4f0f2"
+    },
+    "sensitivity_oof_predictions.csv": {
+      "bytes": 52026315,
+      "reason": "full intermediate prediction dump",
+      "rebuild": "src.models.stage4",
+      "sha256": "65c1103fb280173131c48ca45604fd1d1a0fd5d1db75cd064921a13d287bfae5"
+    }
+  },
+  "published_files": {
+    "block_permutation_importance.csv": "140021224f9bd94858fae92887ee2be5137fa0759f96217025268fbe3cf34f35",
+    "coefficient_stability.csv": "39f24ac4d7a723cb57e4d823a2341f1dd4999712d8cd728ad5566bdc32bb89fc",
+    "configuration.json": "30aa6e23a86a803bf86c7fe1e3d97fa7a03c56cace5b87ceb5aab68758b807fd",
+    "cv_summary.csv": "666801df4e3e59c56ce11dadc8946915c3365ca7effd8b8a0cde458f95f9a135",
+    "decision_policy.json": "28604c970aa2683fa04e0693894a4306cfe5fd7656c1a549243f88d67bf52ed9",
+    "diagnostics/classification_forest_d16_l20_half_reliability.csv": "9788d637d9b40f6e41d34e832010064746fa76b9aebec5fd670af5a3671ec022",
+    "diagnostics/classification_forest_d16_l20_half_reliability.png": "d2743338eef8820780333483e47f4b107db056ed7692225f73014e4cd99fd6d3",
+    "diagnostics/classification_logistic_c001_conditioning.json": "77ca812d1bc34dc6033df6a7de70547fad4c1d7bc48038d46187aea57697f3d1",
+    "diagnostics/classification_logistic_c01_conditioning.json": "77ca812d1bc34dc6033df6a7de70547fad4c1d7bc48038d46187aea57697f3d1",
+    "diagnostics/classification_logistic_c1_conditioning.json": "77ca812d1bc34dc6033df6a7de70547fad4c1d7bc48038d46187aea57697f3d1",
+    "diagnostics/classification_policy_tradeoffs.png": "17d01372af0e6d515cb885200c14b5850def5b30d8937ade62926819c0980cd4",
+    "diagnostics/classification_subgroup_metrics.csv": "1abcfec6fdfe1d98608390707ef7e2915f9e0753f952961226d6711b1c771ad7",
+    "diagnostics/classification_tree_d12_l20_pruned_top_levels.png": "b0f209573f2da92701bfa2b3fd15c31bc2693e3646253b11c47dc573e9877879",
+    "diagnostics/classification_tree_d12_l20_top_levels.png": "9750e1df9924003b63f6dc9ede61fec95e9e4af9f02b43e04756ed0d56b6e975",
+    "diagnostics/classification_tree_d3_l200_top_levels.png": "a5bf1aa55493c595c47b62688719bf06a9e9dc58e054922dcd64b8cb08426b6b",
+    "diagnostics/classification_tree_d8_l50_top_levels.png": "83303f83aa00bbc78ad9db257b6c1be94de01d84af03caaa3816ee06d6cb6e20",
+    "diagnostics/regression_forest_d16_l20_half_residuals.png": "fbbecea537adb3c2196a9e05ef89ea26bc783b65e600428f60fc52b72b26197e",
+    "diagnostics/regression_ridge_a100_conditioning.json": "9a03238cae397863fde458816c44c7199736d19f20a1b2c874e31516e7d66e57",
+    "diagnostics/regression_ridge_a1_conditioning.json": "9a03238cae397863fde458816c44c7199736d19f20a1b2c874e31516e7d66e57",
+    "diagnostics/regression_subgroup_metrics.csv": "c2655fc4660677450816498f9177d405c3ef36df210757e0d7cdf167fdffb632",
+    "diagnostics/regression_tree_d12_l20_pruned_top_levels.png": "179ed7b590c44c1067b47b53ee1b2fffad0dea0cf6e1318a5282399c97f8d485",
+    "diagnostics/regression_tree_d12_l20_top_levels.png": "c3fb3bb967bec349d9884e1f1af3774e6c00e5ac1e7f34a14e69edec186b0188",
+    "diagnostics/regression_tree_d3_l200_top_levels.png": "59959a5a27645c84880a97ce2aeba85e12b46abbca2fbdf317618acfcdba22e0",
+    "diagnostics/regression_tree_d8_l50_top_levels.png": "21ec6b376337066492dd3dd694b6587fbe40e96b0f3b056c823d543e0215b700",
+    "fit_evidence.json": "f49da5706a18d638dc58d1914d341e2813b71317cd2c305f08ab9f8449628ba8",
+    "fold_metrics.csv": "57ff65010502b41b8e6938c0307b8319775129c9536a9e7a65a7686db8d90829",
+    "linear_coefficients_by_name.csv": "e146ed5851bb6bbefa666a17ffc7b2eff9e412401f84de2ac7f3816590865b2f",
+    "paired_fold_differences.csv": "4595b6486680919c862b6c69fea840d1a4e6c43ed9dd06cc6d644c3b132a7dd8",
+    "pooled_oof_metrics.csv": "1fa3fe7b01434f109cd6ebedbc45a931f2d2f93867ca6be3cbd7da3b0d01899c",
+    "run_manifest.json": "be2c36693d1e291f35cc33e4652faa0d78848d0616b482c60f1979480ced38dc",
+    "selection_record.json": "c8591b88aa75a9ff6b1cb2f940d76d5bb4429333dd3dd05eab938c076e830d3e",
+    "sensitivity_fold_metrics.csv": "715b9634d7a9fac26021e481d650d45fd96797711b9025d51a65b9c5c080af3d",
+    "threshold_curve.csv": "dc8a3fb725c7398d5c7f42bb1bc6bdf6d6485b40845ef3f74435bd3c287b39ed",
+    "threshold_scenarios.csv": "74da2f5132b589ba3db65fa123645b01229cfc11bcc596d9e880aaf897099871"
+  },
+  "reproduction": {
+    "reference": "preserved accepted Stage 4 computation",
+    "fresh_primary_fits": 120,
+    "search_fits": 95,
+    "selected_diagnostic_fits": 10,
+    "sensitivity_fits": 15,
+    "candidate_prediction_rows_compared": 1951862,
+    "maximum_absolute_candidate_prediction_difference": 0.0,
+    "sensitivity_prediction_rows_compared": 468822,
+    "maximum_absolute_sensitivity_prediction_difference": 0.0,
+    "csv_outputs_compared_excluding_fit_timing": 17,
+    "tolerance_atol": 1e-9,
+    "tolerance_rtol": 1e-9,
+    "selected_fold_models_reloaded_without_fit": 10,
+    "selected_candidates_and_policy_identical": true,
+    "input_files_and_original_holdout_receipt_unchanged": true,
+    "separate_compact_baseline_recovery_audit_fits": 30,
+    "independent_agent_review": "pending",
+    "team_explanation_review": "pending"
+  },
+  "schema_version": 1,
+  "stage": 4
+}

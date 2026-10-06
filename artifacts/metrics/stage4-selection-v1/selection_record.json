@@ -1,0 +1,236 @@
+{
+  "baseline_config": {
+    "classification_diagnostic_threshold": 0.5,
+    "diagnostic_review_capacity": 0.1,
+    "holdout_evaluation": false,
+    "hypotheses": {
+      "label_audit": "The minimum-review policy may increase recorded negative prevalence relative to earliest valid answered review.",
+      "linear": "Checkout features may improve over an intercept-only reference through additive effects / additive log odds.",
+      "tree": "A depth-5 CART may capture thresholds and interactions missed by additive models; no improvement is assumed."
+    },
+    "linear": {
+      "tol": 1e-06
+    },
+    "logistic": {
+      "C": "infinity",
+      "class_weight": null,
+      "max_iter": 2000,
+      "solver": "lbfgs",
+      "tol": 0.0001
+    },
+    "models": [
+      "dummy",
+      "linear",
+      "tree"
+    ],
+    "primary_metrics": {
+      "classification": "average_precision",
+      "regression": "mae"
+    },
+    "seed": 42,
+    "selection": "none; Stage 4 required",
+    "subgroups": [
+      "customer_state",
+      "basket_size"
+    ],
+    "tasks": [
+      "regression",
+      "classification"
+    ],
+    "tree": {
+      "ccp_alpha": 0.0,
+      "max_depth": 5,
+      "min_samples_leaf": 100,
+      "min_samples_split": 2
+    },
+    "version": "stage3-baseline-v1"
+  },
+  "config_sha256": "eb88c657b8d9edaf39d4658983ef238547d3c4251ff7124bb2aadf64adc6c344",
+  "contract_version": "v1.2",
+  "decision_policy_file": "decision_policy.json",
+  "decision_policy_sha256": "28604c970aa2683fa04e0693894a4306cfe5fd7656c1a549243f88d67bf52ed9",
+  "feature_version": "v1.1",
+  "features": [
+    "n_items",
+    "has_items",
+    "n_products",
+    "n_sellers",
+    "n_categories",
+    "total_price",
+    "total_freight",
+    "freight_ratio",
+    "freight_ratio_missing",
+    "total_weight_g",
+    "total_volume_cm3",
+    "weight_missing_fraction",
+    "volume_missing_fraction",
+    "primary_category",
+    "category_missing_fraction",
+    "customer_state",
+    "primary_seller_state",
+    "distance_km_max",
+    "distance_missing_fraction",
+    "interstate_share",
+    "purchase_month",
+    "purchase_dayofweek",
+    "purchase_hour",
+    "primary_payment_type",
+    "payment_installments_max",
+    "n_payment_methods",
+    "payment_missing"
+  ],
+  "frozen_at_utc": "2026-10-06T14:40:20.329061+00:00",
+  "holdout_evaluated": false,
+  "independent_agent_review": "pending",
+  "input_hashes": {
+    "cv_assignments.csv": "8a3fd8540aebed918eabb11c5d10285d28d13aeeee6a6e07074b6b3defdb95cf",
+    "dataset_manifest.json": "55537e4c2c40b97caf1e71d700d09997eaac487609ba928b165b496049f6225b",
+    "feature_schema.json": "35f53124fcfc6e301aed9bd0f6c9e12810c3da24e48c0621e0adadd31191f7a1",
+    "orders_ml_features.csv": "0964e4e1711c40d107d4dfc7ac7982081114d4f8a09f9bd5a9ba25d028a89d67",
+    "quality_report.json": "159f40a7dadc83aad9729672faea8c380d709c17ac27b260ff1eedabab053a9e",
+    "split_assignments.csv": "61a84e18be7c8eeae57f74e2eb08b3f5bd082524850934b7cd68b7d3674069d2",
+    "split_report.json": "8ddf76bf3b7f2c636f9cd0a22d10e676fcf989b2af172a294c78d34aaaa1bb8c",
+    "zip_centroids.csv": "465d3bd702cd3117623a7d364613569875e97195648d836f5552ef25e110f46a"
+  },
+  "limitations": [
+    "CV scores and threshold performance are selected on development, not independent estimates",
+    "mixed-time customer holdout does not estimate future drift",
+    "snapshot availability remains unproven",
+    "missing reviews are unknown; recorded negatives are not latent satisfaction",
+    "sensitivity results do not silently change primary contract/cohort",
+    "no final-fit deployment model exists"
+  ],
+  "optional_methods_deferred": [
+    "logs",
+    "history",
+    "weighting",
+    "calibration",
+    "temporal_testing",
+    "XGBoost",
+    "voting",
+    "stacking",
+    "alternate_label_retraining"
+  ],
+  "policy_metrics": {
+    "accuracy": 0.7446223618536066,
+    "alerts": 18795,
+    "assumption": "hypothetical FP=1, FN=ratio; not measured intervention benefit",
+    "average_precision": 0.31128397858517154,
+    "brier": 0.11654707858030763,
+    "cost_ratio_fn_to_fp": 5,
+    "f1_1": 0.33733276355149405,
+    "fn": 6495,
+    "fnr": 0.558661620505763,
+    "fp": 13664,
+    "fpr": 0.20299500831946754,
+    "illustrative_cost": 46139,
+    "mean_illustrative_cost": 0.5844966936076414,
+    "mean_probability": 0.1473978771624965,
+    "n": 78938,
+    "negatives": 67312,
+    "positives": 11626,
+    "precision_1": 0.27299813780260707,
+    "precision_defined": true,
+    "prevalence": 0.1472801439104107,
+    "ranking_metrics_defined": true,
+    "recall_1": 0.44133837949423704,
+    "roc_auc": 0.6641309517641807,
+    "specificity": 0.7970049916805324,
+    "threshold": 0.16387042604339028,
+    "tie_break": "highest threshold among equal integer costs",
+    "tn": 53648,
+    "tp": 5131
+  },
+  "positive_class": 1,
+  "selection_rule": {
+    "family_preference": [
+      "linear",
+      "ridge",
+      "logistic",
+      "tree",
+      "forest"
+    ],
+    "practical_tolerance": {
+      "classification": 0.002,
+      "regression": 0.02
+    },
+    "primary_metrics": {
+      "classification": "average_precision",
+      "regression": "mae"
+    },
+    "tie_break": "best score then lexical ID"
+  },
+  "source_stage3_manifest_sha256": "0e732a827fd9e114059f1461d533228ea2ead65d9c0555957cff72fc421a26ee",
+  "split_version": "v1.1",
+  "stage": 4,
+  "tasks": {
+    "classification": {
+      "candidate": {
+        "family": "forest",
+        "id": "forest_d16_l20_half",
+        "params": {
+          "bootstrap": true,
+          "max_depth": 16,
+          "max_features": 0.5,
+          "min_samples_leaf": 20,
+          "n_estimators": 64
+        }
+      },
+      "cv_selection_summary": {
+        "accuracy_mean": 0.8572930522400082,
+        "accuracy_std": 0.0006227021091353222,
+        "average_precision_mean": 0.3117694690515946,
+        "average_precision_std": 0.002933173491029783,
+        "brier_mean": 0.11654707028883246,
+        "brier_std": 0.0003469545209960345,
+        "candidate": "forest_d16_l20_half",
+        "family": "forest",
+        "mae_mean": null,
+        "mae_std": null,
+        "r2_mean": null,
+        "r2_std": null,
+        "rmse_mean": null,
+        "rmse_std": null,
+        "roc_auc_mean": 0.664615172707326,
+        "roc_auc_std": 0.010299175057418642,
+        "task": "classification",
+        "total_fit_seconds": 94.03889112488832
+      }
+    },
+    "regression": {
+      "candidate": {
+        "family": "forest",
+        "id": "forest_d16_l20_half",
+        "params": {
+          "bootstrap": true,
+          "max_depth": 16,
+          "max_features": 0.5,
+          "min_samples_leaf": 20,
+          "n_estimators": 64
+        }
+      },
+      "cv_selection_summary": {
+        "accuracy_mean": null,
+        "accuracy_std": null,
+        "average_precision_mean": null,
+        "average_precision_std": null,
+        "brier_mean": null,
+        "brier_std": null,
+        "candidate": "forest_d16_l20_half",
+        "family": "forest",
+        "mae_mean": 4.807863285299417,
+        "mae_std": 0.0676126911412976,
+        "r2_mean": 0.3152467746630564,
+        "r2_std": 0.009532488743376356,
+        "rmse_mean": 7.806653044974892,
+        "rmse_std": 0.3003315555119453,
+        "roc_auc_mean": null,
+        "roc_auc_std": null,
+        "task": "regression",
+        "total_fit_seconds": 116.56186487403465
+      }
+    }
+  },
+  "team_explanation_review": "pending",
+  "team_policy_approval": "user delegated choice of sensible taught policy; illustrative 5:1 chosen"
+}
