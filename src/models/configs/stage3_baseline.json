@@ -1,0 +1,20 @@
+{
+  "version": "stage3-baseline-v1",
+  "seed": 42,
+  "models": ["dummy", "linear", "tree"],
+  "tasks": ["regression", "classification"],
+  "tree": {"max_depth": 5, "min_samples_leaf": 100, "min_samples_split": 2, "ccp_alpha": 0.0},
+  "logistic": {"C": "infinity", "solver": "lbfgs", "max_iter": 2000, "tol": 0.0001, "class_weight": null},
+  "linear": {"tol": 0.000001},
+  "classification_diagnostic_threshold": 0.5,
+  "diagnostic_review_capacity": 0.1,
+  "subgroups": ["customer_state", "basket_size"],
+  "primary_metrics": {"regression": "mae", "classification": "average_precision"},
+  "holdout_evaluation": false,
+  "selection": "none; Stage 4 required",
+  "hypotheses": {
+    "linear": "Checkout features may improve over an intercept-only reference through additive effects / additive log odds.",
+    "tree": "A depth-5 CART may capture thresholds and interactions missed by additive models; no improvement is assumed.",
+    "label_audit": "The minimum-review policy may increase recorded negative prevalence relative to earliest valid answered review."
+  }
+}

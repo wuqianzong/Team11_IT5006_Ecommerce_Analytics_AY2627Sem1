@@ -1,0 +1,86 @@
+{
+  "alternative_retraining": "not performed",
+  "baseline_multi_review_orders": 449,
+  "baseline_negative_prevalence": 0.1472801439104107,
+  "baseline_orders": 78938,
+  "baseline_score_counts": {
+    "1.0": 9113,
+    "2.0": 2513,
+    "3.0": 6520,
+    "4.0": 15265,
+    "5.0": 45527
+  },
+  "common_orders": 78884,
+  "development_review_rows": 79391,
+  "direction_assertion": "passed",
+  "disagreement_table": {
+    "0": {
+      "0": 67294,
+      "1": 47
+    },
+    "1": {
+      "0": 0,
+      "1": 11543
+    }
+  },
+  "exclusions_first_failure": {
+    "answer_before_purchase": 57,
+    "usable": 79334
+  },
+  "matched": {
+    "all": {
+      "baseline_prevalence": 0.14692459814411035,
+      "disagreements": 47,
+      "first_prevalence": 0.14632878657268902,
+      "first_score_counts": {
+        "1": 9045,
+        "2": 2498,
+        "3": 6495,
+        "4": 15261,
+        "5": 45585
+      },
+      "minimum_score_counts": {
+        "1.0": 9084,
+        "2.0": 2506,
+        "3.0": 6512,
+        "4.0": 15261,
+        "5.0": 45521
+      },
+      "n": 78884,
+      "prevalence_difference": 0.0005958115714213275
+    },
+    "multi_review": {
+      "baseline_prevalence": 0.2516703786191537,
+      "disagreements": 47,
+      "first_prevalence": 0.14699331848552338,
+      "first_score_counts": {
+        "1": 50,
+        "2": 16,
+        "3": 41,
+        "4": 77,
+        "5": 265
+      },
+      "minimum_score_counts": {
+        "1.0": 89,
+        "2.0": 24,
+        "3.0": 58,
+        "4.0": 77,
+        "5.0": 201
+      },
+      "n": 449,
+      "prevalence_difference": 0.10467706013363029
+    }
+  },
+  "missing_alternative_orders": 54,
+  "review_timing": {
+    "answer_before_purchase_valid_score_rows": 57,
+    "usable_review_lag_days_quantiles": {
+      "0.0": 0.09224537037037037,
+      "0.25": 9.224152199074075,
+      "0.5": 13.41160300925926,
+      "0.75": 19.72437789351852,
+      "1.0": 528.1294444444444
+    }
+  },
+  "valid_score_missing_answer_rows": 0
+}

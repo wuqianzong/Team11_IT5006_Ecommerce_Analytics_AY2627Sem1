@@ -3,7 +3,7 @@
 Entrypoint: ``python -m src.features.build_features``
 
 Reads ``data/preprocessed/*.csv`` (plus the pinned IBGE boundary under
-``docs/references/geography/``) and writes, under ``data/business/ml/``:
+``data/reference/geography/``) and writes, under ``data/business/ml/``:
 
     orders_ml_features.csv   one row per source order
     feature_schema.json      versioned column roles/types/units/formulas

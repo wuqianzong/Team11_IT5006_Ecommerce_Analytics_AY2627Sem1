@@ -9,3 +9,10 @@ data/business/ml/*.json text eol=lf
 # Preprocessed transactional inputs are hashed LF-normalized into the manifest;
 # force LF on checkout so the working tree matches the hashed bytes on every OS.
 data/preprocessed/*.csv text eol=lf
+
+artifacts/metrics/**/*.csv text eol=lf
+artifacts/metrics/**/*.json text eol=lf
+*.ipynb text eol=lf
+*.joblib binary
+*.gz binary
+data/reference/geography/* -text

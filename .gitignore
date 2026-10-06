@@ -25,3 +25,31 @@ Thumbs.db
 archive/
 *.tmp
 *.log
+
+# Internal team review material is shared separately, not published.
+*.md
+/docs/
+/data/business/ml/*.pdf
+/src/reporting/
+
+# Publish only canonical experiment outputs, not internal review/replay copies.
+/artifacts/*
+!/artifacts/metrics/
+!/artifacts/models/
+!/artifacts/transport_manifest.json
+/artifacts/metrics/*
+!/artifacts/metrics/stage3-baseline-v1/
+!/artifacts/metrics/stage4-selection-v1/
+!/artifacts/metrics/stage5-tutorial8-v1/
+!/artifacts/metrics/stage5-final-v1/
+!/artifacts/metrics/stage5-scoring-demo-v1/
+!/artifacts/metrics/stage5_holdout_access.json
+!/artifacts/metrics/stage5_tutorial8_internal_verification.json
+/artifacts/metrics/stage4-selection-v1/candidate_oof_predictions.csv
+/artifacts/models/*
+!/artifacts/models/regression/
+!/artifacts/models/classification/
+/artifacts/models/regression/*
+!/artifacts/models/regression/stage5-final-v1/
+/artifacts/models/classification/*
+!/artifacts/models/classification/stage5-final-v1/

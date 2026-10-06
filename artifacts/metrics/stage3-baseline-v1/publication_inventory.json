@@ -1,0 +1,271 @@
+{
+  "full_build": "python -m src.models.train (requires absent canonical run folder)",
+  "full_local_verification_at_publication": {
+    "fold_model_records": 30,
+    "holdout_evaluated": false,
+    "independent_agent_review": "pending",
+    "output_files_checked": 76,
+    "status": "passed_internal_verification",
+    "team_explanation_review": "pending",
+    "unit_tests": 28
+  },
+  "full_verification": "python -m src.models.verify",
+  "holdout_evaluated": false,
+  "inspection_scope": "Published checksums, frozen input identity and consistency of fold metric summaries. Omitted OOF predictions/fold models are not reverified by compact inspection.",
+  "omitted_files": {
+    "cv_models/classification_dummy_fold0.joblib": {
+      "bytes": 8594,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "8de5edac11568ad6bd6701ec4214d0357f3da1b7ae10dd996e5886db76b8ddd2"
+    },
+    "cv_models/classification_dummy_fold1.joblib": {
+      "bytes": 8610,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "fef0742ffbb6139356085dc5032acb91e75deaee89e7a33a9021de0334791dc2"
+    },
+    "cv_models/classification_dummy_fold2.joblib": {
+      "bytes": 8594,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "3026af03096d4ec365199ddd6bcc72f690fc25c84efb12f687f4f6819424dc8f"
+    },
+    "cv_models/classification_dummy_fold3.joblib": {
+      "bytes": 8610,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "981f015035602236b5bdeac147aab7806588172b5f79925d305ea3189c01e93a"
+    },
+    "cv_models/classification_dummy_fold4.joblib": {
+      "bytes": 8610,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "ae94db505bdf1f008651d297190ac25c0314db93716eccbd140c3f2d58923ed5"
+    },
+    "cv_models/classification_linear_fold0.joblib": {
+      "bytes": 12026,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "1c3594cb7bc189f5d550538e5395e8ea6009d20ed905c819919d2846f45874ec"
+    },
+    "cv_models/classification_linear_fold1.joblib": {
+      "bytes": 12026,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "e3e6c72a77aaf6d85c9416d720c8313dceaacb7c403d11150f7a485c40697350"
+    },
+    "cv_models/classification_linear_fold2.joblib": {
+      "bytes": 12026,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "c95a76907a8adde47e11d186573cdfd8349b721643403b42949c59c6ea6dc9b3"
+    },
+    "cv_models/classification_linear_fold3.joblib": {
+      "bytes": 12026,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "3b3e3b2e80c50e9fc3549ed85225dd1d3eaf9225b2b296425038a0a8faf92277"
+    },
+    "cv_models/classification_linear_fold4.joblib": {
+      "bytes": 12026,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "df660b2aa056431fc2549a349d73d26fc0a74050962d6c8ecfc0a66cd41edb39"
+    },
+    "cv_models/classification_tree_fold0.joblib": {
+      "bytes": 12356,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "087a93a03458857ff3f578c38013661be46d3566ec34373bab52b09f86add30a"
+    },
+    "cv_models/classification_tree_fold1.joblib": {
+      "bytes": 12196,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "5ee598c9b30c659d855d5e7525a29814558651e4b0f65566deb3325fe3222769"
+    },
+    "cv_models/classification_tree_fold2.joblib": {
+      "bytes": 12356,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "8b44a803b4711fc18a40fc65f9363d7a090c07604dbc536602ae7a15b1a1d936"
+    },
+    "cv_models/classification_tree_fold3.joblib": {
+      "bytes": 12196,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "251897c91be41d26f741ff9a64ece3403dd066a1bf7dcc19d327b2bafba857ed"
+    },
+    "cv_models/classification_tree_fold4.joblib": {
+      "bytes": 12196,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "0a592c489d68c2a6738ce4425bf85bbfd72c264205cd295e11f5a6ed71b7eaa4"
+    },
+    "cv_models/regression_dummy_fold0.joblib": {
+      "bytes": 8394,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "b0d824a0d102251da26dcfd439122b55e41e5377b51b254804e7c8f5f26fb451"
+    },
+    "cv_models/regression_dummy_fold1.joblib": {
+      "bytes": 8394,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "39550ee85e3be356807e83b36c19fd29624bfb150ef1100645ba76d0ed4a0558"
+    },
+    "cv_models/regression_dummy_fold2.joblib": {
+      "bytes": 8378,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "c056c4c8c55cf30d9410823a47dfc88838dd209ebde14f4a11a001dbe12402f5"
+    },
+    "cv_models/regression_dummy_fold3.joblib": {
+      "bytes": 8394,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "e7669572723fe8e1fc6a707ec3ff7f31229b629bd7b409239d069c49d3d57375"
+    },
+    "cv_models/regression_dummy_fold4.joblib": {
+      "bytes": 8394,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "e5669873f7c4640e4dc05eea465dfccd3de545869ae999a4fe67039cd1fb1737"
+    },
+    "cv_models/regression_linear_fold0.joblib": {
+      "bytes": 11314,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "25fb16086bb1a89937cfe5eb9ab785f2457b1ae2d04ecfbbc59dde309e928931"
+    },
+    "cv_models/regression_linear_fold1.joblib": {
+      "bytes": 11314,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "70ae639a51ad285dea528c9f9b8954da1ad59b8bea12e372f46619aa2413a08f"
+    },
+    "cv_models/regression_linear_fold2.joblib": {
+      "bytes": 11234,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "33d6c14b6f06aec292fc3f6c73cf006398d22e83b3742616879ece72ea9ff6eb"
+    },
+    "cv_models/regression_linear_fold3.joblib": {
+      "bytes": 11314,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "021cfc29976d764b424f77a02fa74ff2da1726151b5fc6070d58141a5848f668"
+    },
+    "cv_models/regression_linear_fold4.joblib": {
+      "bytes": 11314,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "51fb6e95b5d305208ed87fd8bc782e3f0abedd4b6cee4bb6942a23f7a5891c1a"
+    },
+    "cv_models/regression_tree_fold0.joblib": {
+      "bytes": 13708,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "d7c892992b2a891819de08cbfe05ec0fa1814f1bb95024c2d34b26804a24d06d"
+    },
+    "cv_models/regression_tree_fold1.joblib": {
+      "bytes": 13420,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "7f1af632d717cea57685ad10858d6cb9bbc2b6149e45dbd1a130f46ec9973cfc"
+    },
+    "cv_models/regression_tree_fold2.joblib": {
+      "bytes": 13548,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "9d8338e397dcc1c60db28921aa9d7c4bd4365b957a492c8022596fcfac60b68d"
+    },
+    "cv_models/regression_tree_fold3.joblib": {
+      "bytes": 13420,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "8bddaada8cec8fd5bbc2d9df79218a83c0b5b01a751de31a8c32dbfee3d58fa7"
+    },
+    "cv_models/regression_tree_fold4.joblib": {
+      "bytes": 13420,
+      "reason": "intermediate fold model",
+      "rebuild": "src.models.train",
+      "sha256": "95f0083d5d06de66f8b1b1a64178a9ee3b8a1b95f694b93174a03cbb8ff951e1"
+    },
+    "eda/review_label_comparison.csv": {
+      "bytes": 8510701,
+      "reason": "large intermediate table",
+      "rebuild": "src.models.train",
+      "sha256": "e3491c8db270f0d95db0bb1cd941c19db448b0e03d0d30d66be16fc5b921e5f5"
+    },
+    "oof_predictions.csv": {
+      "bytes": 46640529,
+      "reason": "full intermediate prediction dump",
+      "rebuild": "src.models.train",
+      "sha256": "7a8bd8683fc3f0c65fc957d2ad66eb7536367bd09c01f0627f6fb694ed4f6b9d"
+    }
+  },
+  "published_files": {
+    "configuration.json": "ae4ac6e1f48e35e672fd5bbdb1c3914998ece44bbd3d600abbfae17edb4be342",
+    "cv_summary.csv": "67eb2cdc7e2b47bfc2dc557adb056eb1fb63c5aab3f40c781718cfa92e2e5a7c",
+    "diagnostics/classification_dummy_reliability.csv": "b8eeea5835d9af7a94bab904d94a910e6a662c9f9c64eef48a094ae9e34da896",
+    "diagnostics/classification_dummy_reliability.png": "297e7302150ba57efa4ca3bc9aba726fd9419850b0cfc63fa1a92688fc220e87",
+    "diagnostics/classification_linear_conditioning.json": "77ca812d1bc34dc6033df6a7de70547fad4c1d7bc48038d46187aea57697f3d1",
+    "diagnostics/classification_linear_reliability.csv": "093bc877e156701054fe98a29f25b716f8f23b6e52b38756efec9ed55f056314",
+    "diagnostics/classification_linear_reliability.png": "3b93d290a3c43a0db12b7d95ea3f7fdc2b5f6d7426ba4a4477e034a8e6103836",
+    "diagnostics/classification_subgroup_metrics.csv": "2bfa382934a3842bd99879175320c7be5810d87654661ac6046ff0c7901ef01b",
+    "diagnostics/classification_tree_reliability.csv": "ce07a2e1010cb4338ed05c9454034d42ddbed36d7edfe1fc18fef4b9194cec7d",
+    "diagnostics/classification_tree_reliability.png": "6fd186c8fcfb63bd4ae21db70358f2ec1941b9565ce5cab97ca6d8b29008090f",
+    "diagnostics/classification_tree_top_levels.png": "3e35584a9863afb9342afb578cb6bf03d7cc07a286d27d2c3f2ea32f6e970828",
+    "diagnostics/regression_dummy_residuals.png": "1e0eb2b8ed8e53ccebadbe9368c8b1b4ea01e7d1ceb6020a94f1dd6c847f214a",
+    "diagnostics/regression_linear_conditioning.json": "9a03238cae397863fde458816c44c7199736d19f20a1b2c874e31516e7d66e57",
+    "diagnostics/regression_linear_residuals.png": "68e42ba47520e6e31de9a63c305fbbb6962d9488de2b22b7ed7855211e47bcd0",
+    "diagnostics/regression_subgroup_metrics.csv": "4f29ca2819ac407b5f56cc88f598099ce3ee4c0a40e688aa47b16e4e0e47f8e5",
+    "diagnostics/regression_tree_residuals.png": "e3de7882fac1282fdb9b680422f51502d6fab1819fa595661c14d10ef9d285cf",
+    "diagnostics/regression_tree_top_levels.png": "d3d2404aae73325282f4f551f51b20deac1847a5d7ea30605d15495260987ec8",
+    "eda/audit_summary.json": "703570bc9cdbc74c2041f7629307a4f636682372eba8b2fa58d5ba87d4770a3e",
+    "eda/classification_category_counts.csv": "1702f011077db2d275aff47d1d9edfb41b8d0f928984810bbd8f2ecd10704d3a",
+    "eda/classification_correlation_pair_counts.csv": "dc61f362d16d3443216ca61be069db14033d04dce9e7d3f09f89e8293a898ff0",
+    "eda/classification_monthly_outcomes.csv": "2316f9c31c2a4be4ed7e339578ce6e1c60ddef4ffdf857400b112ee5b0999863",
+    "eda/classification_numeric_summary.csv": "bdebfdda93757f759621d1ed46e9f9d72ad9d2bb5c85d5ee5e626b0793a83a8c",
+    "eda/classification_pearson_correlations.csv": "3863c9e8b582af13946ff5392fc6f85380f742e6fe6b3c94241dedfb6dbfc7a3",
+    "eda/feature_outcome_relationships.csv": "ff20f0fc3cebbcc5a735b60d53522b95a307971f217b2e074db8dd79f046a629",
+    "eda/figures/classification_distributions.png": "d2edbbe1646edcb0b2d6115dfe8d57d15d071f90328772e995454bb0569a454b",
+    "eda/figures/classification_monthly.png": "8cbea808623ae9a053858048b79aa75bfd2f469b1a222cbe04ce60aadbd62f34",
+    "eda/figures/regression_distributions.png": "8736d633219d3d9b89d613191cfbae9bbd342ca46d44762529340f171569096d",
+    "eda/figures/regression_monthly.png": "756ae8cd33dee544d1ef04415867403dfde9bf5f4e008d6c4a0b0af3c05b6bb8",
+    "eda/figures/relationships.png": "865b5234b5fad3f5063ac595a0266b94f587b84abf471c4996940fd0558be19c",
+    "eda/join_worked_fixture.json": "87df2c09a02cf842b9a51beaa94c468d51a228f2b222be26175ef8dae637383e",
+    "eda/monthly_review_score_counts.csv": "9601260ddb289bbbe83cd0f91b7d36cd1a2caa5154c339a35571b8bd89b00756",
+    "eda/regression_category_counts.csv": "10d7ed52a550b5f3a4f1eadc32b99b382401e939894c94da00fe9b80d2fb5a28",
+    "eda/regression_correlation_pair_counts.csv": "ea342488bb416a172ee5dea4e9bbedb375b1b15d79d1a9d28015b0054a9e1f50",
+    "eda/regression_monthly_outcomes.csv": "bd734d8bde7de44d31357b993def234969c341e4c03e993be95da7ae7543035e",
+    "eda/regression_numeric_summary.csv": "213bffef053b0f86db9b4a6f71c892bbee27a8acc3cb35bb8b2bf88dd5879e90",
+    "eda/regression_pearson_correlations.csv": "386339b078a31f48a40bea4e428f6fdbd5fcdf9d02ff7ddc85ed36dda6c27a28",
+    "eda/review_label_audit.json": "4fbb45043ea5017eb65f5a87ce1052b0de70bc14facc8c27ee41b79587024597",
+    "eda/review_vs_duration_band_diagnostic.csv": "ac1e70f447609696c7cb9f69235e18cd5ee0648f9d5e1827cd27bb047fbe0160",
+    "eda/review_vs_late_diagnostic.csv": "581cff7fbeb94e0b657640cb039aa2db548f8178c7ed40f7356a5bde5ee034f4",
+    "fit_evidence.json": "9aadcfa1b2d3636638eaac0f063d8cadde9372df1df2601e9492bd0ad3dc7e8f",
+    "fold_metrics.csv": "b9330e9028f2ad979a33aa9e3741b81040893f0b69ccb53d8fec5fa689776d25",
+    "linear_coefficients_by_name.csv": "e4de29bf406278b80ad3960e06587d844a2efe483bb72ff276dc01967775c87f",
+    "paired_fold_differences.csv": "5fd2bd092d8bc7c8da0cbc739f5e7d875240c4ed9768bdceee3be56b6349000f",
+    "pooled_oof_metrics.csv": "bb1c9dde0be94f284d9bd597a92b1badf4d259035ee56391c5d0e9238b34f63a",
+    "run_manifest.json": "0e732a827fd9e114059f1461d533228ea2ead65d9c0555957cff72fc421a26ee"
+  },
+  "reproduction": {
+    "execution_kind": "stage_by_stage_replay_of_previously_accepted_run",
+    "fresh_real_data_fits": 30,
+    "prediction_rows_compared_with_reference": 468231,
+    "maximum_absolute_prediction_difference": 0.0,
+    "reference_comparison_tolerance_atol_and_rtol": 1e-9,
+    "csv_outputs_compared_with_reference": 26,
+    "fold_models_reloaded_without_fit": 30,
+    "frozen_input_files_unchanged": true,
+    "original_holdout_receipt_unchanged": true,
+    "independent_review": "pending",
+    "team_review": "pending"
+  },
+  "schema_version": 1,
+  "stage": 3
+}

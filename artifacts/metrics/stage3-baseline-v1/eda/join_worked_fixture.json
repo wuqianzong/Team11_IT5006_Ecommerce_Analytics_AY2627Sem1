@@ -1,0 +1,30 @@
+{
+  "correct_freight_ratio": 0.16666666666666666,
+  "correct_is_detractor": 1,
+  "correct_n_items": 2,
+  "correct_order_rows": 1,
+  "correct_review_min": 1,
+  "correct_total_freight": 5,
+  "correct_total_price": 30,
+  "items": [
+    {
+      "freight": 2,
+      "price": 10
+    },
+    {
+      "freight": 3,
+      "price": 20
+    }
+  ],
+  "payments": [
+    12,
+    23
+  ],
+  "raw_cartesian_rows": 8,
+  "review_scores": [
+    5,
+    1
+  ],
+  "synthetic_fixture_not_observed": true,
+  "unsafe_cartesian_price_sum": 120
+}

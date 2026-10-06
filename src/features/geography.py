@@ -5,7 +5,7 @@ Implements feature_contract.md v1.2 §4 "Geography lookup: required algorithm",
 
 The only transactional inputs are ``data/preprocessed/*.csv``. The single external
 reference is the pinned IBGE ``BR_Pais_2024`` country polygon staged under
-``docs/references/geography/`` (a documented, label-independent quality-control
+``data/reference/geography/`` (a documented, label-independent quality-control
 exception).
 """
 from __future__ import annotations
@@ -43,7 +43,7 @@ _TARGET_CRS_EPSG = 4326
 
 
 def geography_dir(repo_root: Path) -> Path:
-    return Path(repo_root) / "docs" / "references" / "geography"
+    return Path(repo_root) / "data" / "reference" / "geography"
 
 
 def normalize_zip(value) -> str | None:
