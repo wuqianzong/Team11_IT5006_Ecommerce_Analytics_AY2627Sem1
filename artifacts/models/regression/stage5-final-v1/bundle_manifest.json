@@ -1,0 +1,11 @@
+{
+  "model_version": "stage5-final-v1",
+  "output_hashes": {
+    "configuration.json": "760d8995b396bb36510fcc1e5d053d61965fefb7f081f861eb5371b936ae3ad0",
+    "feature_schema.json": "aebc32c0e078dde72d080720aca3adf6dc233fb3ca544ba9a8776cb270d9f2c7",
+    "feature_stats.json": "2e0b26a75a1ce9125abe0bd9149eaf69161ddc337d22d30bbf16fa41cdd2d7cf",
+    "metadata.json": "41eee67684f1624b3438332f2b55ec3ccdbf106effa8715542c089d4d348c5d4",
+    "pipeline.joblib": "10ead95cca93e026607fe09aaf328a736e24ba3a1a208c5618e6763efa6acd02"
+  },
+  "task": "regression"
+}

@@ -1,0 +1,7 @@
+input_row,order_id,task,model_version,feature_version,contract_version,split_version,prediction,probability_1,decision,threshold,status,error,warnings
+0,00018f77f2f0320c557190d7a144bdd3,regression,stage5-final-v1,v1.1,v1.2,v1.1,11.64213576016007,,,,valid,,"{""missing_predictor_cells"": []}"
+1,000229ec398224ef6ca0657da4fc703e,regression,stage5-final-v1,v1.1,v1.2,v1.1,10.62125871518257,,,,valid,,"{""missing_predictor_cells"": []}"
+2,00024acbcdf0a6daa1e931b038114c75,regression,stage5-final-v1,v1.1,v1.2,v1.1,7.257059448584744,,,,valid,,"{""missing_predictor_cells"": []}"
+3,00042b26cf59d7ce69dfabb4e55b4fd9,regression,stage5-final-v1,v1.1,v1.2,v1.1,15.573153189381358,,,,valid,,"{""missing_predictor_cells"": []}"
+4,00048cc3ae777c65dbb7d2a0634bc1ea,regression,stage5-final-v1,v1.1,v1.2,v1.1,11.763056607227629,,,,valid,,"{""missing_predictor_cells"": []}"
+5,00054e8431b9d7675808bcb819fb4a32,regression,stage5-final-v1,v1.1,v1.2,v1.1,11.72343469710344,,,,valid,,"{""missing_predictor_cells"": []}"

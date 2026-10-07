@@ -1,0 +1,55 @@
+|--- numeric__missingindicator_distance_missing_fraction <= 0.50
+|   |--- numeric__n_items <= 1.50
+|   |   |--- categorical__customer_state_RJ <= 0.50
+|   |   |   |--- numeric__distance_km_max <= 1409.68
+|   |   |   |   |--- categorical__purchase_month_3 <= 0.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |   |--- categorical__purchase_month_3 >  0.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |--- numeric__distance_km_max >  1409.68
+|   |   |   |   |--- categorical__purchase_month_3 <= 0.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |   |--- categorical__purchase_month_3 >  0.50
+|   |   |   |   |   |--- class: 0
+|   |   |--- categorical__customer_state_RJ >  0.50
+|   |   |   |--- categorical__purchase_month_2 <= 0.50
+|   |   |   |   |--- categorical__purchase_month_3 <= 0.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |   |--- categorical__purchase_month_3 >  0.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |--- categorical__purchase_month_2 >  0.50
+|   |   |   |   |--- categorical__primary_seller_state_SP <= 0.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |   |--- categorical__primary_seller_state_SP >  0.50
+|   |   |   |   |   |--- class: 0
+|   |--- numeric__n_items >  1.50
+|   |   |--- numeric__n_sellers <= 1.50
+|   |   |   |--- categorical__customer_state_SP <= 0.50
+|   |   |   |   |--- categorical__customer_state_RJ <= 0.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |   |--- categorical__customer_state_RJ >  0.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |--- categorical__customer_state_SP >  0.50
+|   |   |   |   |--- numeric__n_items <= 4.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |   |--- numeric__n_items >  4.50
+|   |   |   |   |   |--- class: 0
+|   |   |--- numeric__n_sellers >  1.50
+|   |   |   |--- numeric__freight_ratio <= 0.47
+|   |   |   |   |--- numeric__total_volume_cm3 <= 24916.00
+|   |   |   |   |   |--- class: 0
+|   |   |   |   |--- numeric__total_volume_cm3 >  24916.00
+|   |   |   |   |   |--- class: 1
+|   |   |   |--- numeric__freight_ratio >  0.47
+|   |   |   |   |--- class: 0
+|--- numeric__missingindicator_distance_missing_fraction >  0.50
+|   |--- categorical__primary_payment_type_boleto <= 0.50
+|   |   |--- numeric__payment_installments_max <= 2.50
+|   |   |   |--- categorical__customer_state_SP <= 0.50
+|   |   |   |   |--- class: 1
+|   |   |   |--- categorical__customer_state_SP >  0.50
+|   |   |   |   |--- class: 1
+|   |   |--- numeric__payment_installments_max >  2.50
+|   |   |   |--- class: 1
+|   |--- categorical__primary_payment_type_boleto >  0.50
+|   |   |--- class: 1

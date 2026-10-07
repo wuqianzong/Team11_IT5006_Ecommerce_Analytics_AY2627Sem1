@@ -1,0 +1,505 @@
+{
+  "categorical_columns": [
+    "customer_state",
+    "primary_seller_state",
+    "primary_category",
+    "primary_payment_type",
+    "purchase_month",
+    "purchase_dayofweek",
+    "purchase_hour"
+  ],
+  "columns": [
+    {
+      "description": "Source order key; unique non-null; audit/join only.",
+      "dtype": "string",
+      "name": "order_id",
+      "role": "identifier"
+    },
+    {
+      "description": "Session key; audit/join only, never a predictor.",
+      "dtype": "string",
+      "name": "customer_id",
+      "role": "identifier"
+    },
+    {
+      "description": "Persistent customer key used for CV grouping.",
+      "dtype": "string",
+      "name": "customer_unique_id",
+      "role": "identifier"
+    },
+    {
+      "description": "Checkout cutoff anchor (order_purchase_timestamp); splitting only.",
+      "dtype": "datetime",
+      "name": "prediction_timestamp",
+      "role": "audit"
+    },
+    {
+      "description": "Final source status; audit only, never a predictor.",
+      "dtype": "string",
+      "name": "order_status",
+      "role": "audit"
+    },
+    {
+      "description": "(delivered - purchase) seconds / 86400; delivered + strictly positive.",
+      "dtype": "float",
+      "name": "lead_days",
+      "role": "target",
+      "unit": "days"
+    },
+    {
+      "description": "Minimum valid score 1-5 across supplied reviews; null if none.",
+      "dtype": "int",
+      "name": "review_score_min",
+      "role": "target_source"
+    },
+    {
+      "description": "1 if review_score_min <= 2; 0 if >= 3; null if no valid score.",
+      "dtype": "int",
+      "name": "is_detractor",
+      "role": "target"
+    },
+    {
+      "description": "Delivered + valid positive lead_days + valid prediction time + resolved group.",
+      "dtype": "int",
+      "name": "eligible_regression",
+      "role": "eligibility"
+    },
+    {
+      "description": "Valid review target + valid prediction time + resolved group; delivery not required.",
+      "dtype": "int",
+      "name": "eligible_classification",
+      "role": "eligibility"
+    },
+    {
+      "description": "Ordered reason codes for regression ineligibility.",
+      "dtype": "string",
+      "name": "regression_exclusion_reason",
+      "role": "audit"
+    },
+    {
+      "description": "Ordered reason codes for classification ineligibility.",
+      "dtype": "string",
+      "name": "classification_exclusion_reason",
+      "role": "audit"
+    },
+    {
+      "description": "Customer delivery timestamp for valid regression outcomes.",
+      "dtype": "datetime",
+      "name": "regression_label_available_at",
+      "role": "audit"
+    },
+    {
+      "description": "Max valid answer timestamp across contributing valid reviews.",
+      "dtype": "datetime",
+      "name": "review_latest_observed_at",
+      "role": "audit"
+    },
+    {
+      "description": "Number of review records for the order.",
+      "dtype": "int",
+      "name": "review_count",
+      "role": "audit"
+    },
+    {
+      "description": "Any item seller_id missing -> complete seller set unknown.",
+      "dtype": "int",
+      "name": "seller_id_missing",
+      "role": "audit"
+    },
+    {
+      "aggregation_grain": "order",
+      "availability_assumption": "checkout-complete simulation: item/payment/catalogue snapshot availability assumed; payments have no event timestamps and catalogue attributes have no historical versions",
+      "description": "Count of item rows per order.",
+      "dtype": "int",
+      "name": "n_items",
+      "phase": "base",
+      "role": "feature",
+      "source_columns": [
+        "order_item_id"
+      ]
+    },
+    {
+      "aggregation_grain": "order",
+      "availability_assumption": "checkout-complete simulation: item/payment/catalogue snapshot availability assumed; payments have no event timestamps and catalogue attributes have no historical versions",
+      "description": "int(n_items > 0).",
+      "dtype": "int",
+      "name": "has_items",
+      "phase": "base",
+      "role": "feature",
+      "source_columns": [
+        "n_items"
+      ]
+    },
+    {
+      "aggregation_grain": "order",
+      "availability_assumption": "checkout-complete simulation: item/payment/catalogue snapshot availability assumed; payments have no event timestamps and catalogue attributes have no historical versions",
+      "description": "Distinct non-null product_id among items.",
+      "dtype": "int",
+      "name": "n_products",
+      "phase": "base",
+      "role": "feature",
+      "source_columns": [
+        "product_id"
+      ]
+    },
+    {
+      "aggregation_grain": "order",
+      "availability_assumption": "checkout-complete simulation: item/payment/catalogue snapshot availability assumed; payments have no event timestamps and catalogue attributes have no historical versions",
+      "description": "Distinct non-null seller_id among items.",
+      "dtype": "int",
+      "name": "n_sellers",
+      "phase": "base",
+      "role": "feature",
+      "source_columns": [
+        "seller_id"
+      ]
+    },
+    {
+      "aggregation_grain": "order",
+      "availability_assumption": "checkout-complete simulation: item/payment/catalogue snapshot availability assumed; payments have no event timestamps and catalogue attributes have no historical versions",
+      "description": "Distinct resolved translated English categories, excluding Unknown.",
+      "dtype": "int",
+      "name": "n_categories",
+      "phase": "base",
+      "role": "feature",
+      "source_columns": [
+        "english_category"
+      ]
+    },
+    {
+      "aggregation_grain": "order",
+      "availability_assumption": "checkout-complete simulation: item/payment/catalogue snapshot availability assumed; payments have no event timestamps and catalogue attributes have no historical versions",
+      "description": "Sum item price, each item once.",
+      "dtype": "float",
+      "name": "total_price",
+      "phase": "base",
+      "role": "feature",
+      "source_columns": [
+        "price"
+      ],
+      "unit": "BRL"
+    },
+    {
+      "aggregation_grain": "order",
+      "availability_assumption": "checkout-complete simulation: item/payment/catalogue snapshot availability assumed; payments have no event timestamps and catalogue attributes have no historical versions",
+      "description": "Sum item freight_value, each item once.",
+      "dtype": "float",
+      "name": "total_freight",
+      "phase": "base",
+      "role": "feature",
+      "source_columns": [
+        "freight_value"
+      ],
+      "unit": "BRL"
+    },
+    {
+      "aggregation_grain": "order",
+      "availability_assumption": "checkout-complete simulation: item/payment/catalogue snapshot availability assumed; payments have no event timestamps and catalogue attributes have no historical versions",
+      "description": "total_freight / total_price; null if denominator <= 0 or either missing.",
+      "dtype": "float",
+      "name": "freight_ratio",
+      "phase": "base",
+      "role": "feature",
+      "source_columns": [
+        "total_freight",
+        "total_price"
+      ]
+    },
+    {
+      "aggregation_grain": "order",
+      "availability_assumption": "checkout-complete simulation: item/payment/catalogue snapshot availability assumed; payments have no event timestamps and catalogue attributes have no historical versions",
+      "description": "int(freight_ratio is null).",
+      "dtype": "int",
+      "name": "freight_ratio_missing",
+      "phase": "base",
+      "role": "feature",
+      "source_columns": [
+        "freight_ratio"
+      ]
+    },
+    {
+      "aggregation_grain": "order",
+      "availability_assumption": "checkout-complete simulation: item/payment/catalogue snapshot availability assumed; payments have no event timestamps and catalogue attributes have no historical versions",
+      "description": "Sum product_weight_g; null if any item weight invalid/missing or no items.",
+      "dtype": "float",
+      "name": "total_weight_g",
+      "phase": "base",
+      "role": "feature",
+      "source_columns": [
+        "product_weight_g"
+      ],
+      "unit": "g"
+    },
+    {
+      "aggregation_grain": "order",
+      "availability_assumption": "checkout-complete simulation: item/payment/catalogue snapshot availability assumed; payments have no event timestamps and catalogue attributes have no historical versions",
+      "description": "Sum length*height*width; null if any item volume unknown or no items.",
+      "dtype": "float",
+      "name": "total_volume_cm3",
+      "phase": "base",
+      "role": "feature",
+      "source_columns": [
+        "product_length_cm",
+        "product_height_cm",
+        "product_width_cm"
+      ],
+      "unit": "cm^3"
+    },
+    {
+      "aggregation_grain": "order",
+      "availability_assumption": "checkout-complete simulation: item/payment/catalogue snapshot availability assumed; payments have no event timestamps and catalogue attributes have no historical versions",
+      "description": "Invalid/unknown item weights / n_items; null if no items.",
+      "dtype": "float",
+      "name": "weight_missing_fraction",
+      "phase": "base",
+      "role": "feature",
+      "source_columns": [
+        "product_weight_g"
+      ]
+    },
+    {
+      "aggregation_grain": "order",
+      "availability_assumption": "checkout-complete simulation: item/payment/catalogue snapshot availability assumed; payments have no event timestamps and catalogue attributes have no historical versions",
+      "description": "Invalid/unknown item volumes / n_items; null if no items.",
+      "dtype": "float",
+      "name": "volume_missing_fraction",
+      "phase": "base",
+      "role": "feature",
+      "source_columns": [
+        "product_length_cm",
+        "product_height_cm",
+        "product_width_cm"
+      ]
+    },
+    {
+      "aggregation_grain": "order (primary item)",
+      "availability_assumption": "checkout-complete simulation: item/payment/catalogue snapshot availability assumed; payments have no event timestamps and catalogue attributes have no historical versions",
+      "description": "English category of the deterministic primary item.",
+      "dtype": "string",
+      "name": "primary_category",
+      "phase": "base",
+      "role": "feature",
+      "source_columns": [
+        "english_category"
+      ]
+    },
+    {
+      "aggregation_grain": "order",
+      "availability_assumption": "checkout-complete simulation: item/payment/catalogue snapshot availability assumed; payments have no event timestamps and catalogue attributes have no historical versions",
+      "description": "Fraction of items lacking a resolved category; null if no items.",
+      "dtype": "float",
+      "name": "category_missing_fraction",
+      "phase": "base",
+      "role": "feature",
+      "source_columns": [
+        "english_category"
+      ]
+    },
+    {
+      "aggregation_grain": "customer",
+      "availability_assumption": "checkout-complete simulation: item/payment/catalogue snapshot availability assumed; payments have no event timestamps and catalogue attributes have no historical versions",
+      "description": "Customer state, normalized; invalid -> Unknown.",
+      "dtype": "string",
+      "name": "customer_state",
+      "phase": "base",
+      "role": "feature",
+      "source_columns": [
+        "customer_state"
+      ]
+    },
+    {
+      "aggregation_grain": "order (primary seller)",
+      "availability_assumption": "checkout-complete simulation: item/payment/catalogue snapshot availability assumed; payments have no event timestamps and catalogue attributes have no historical versions",
+      "description": "Seller state of the primary item; Unknown for absent/unresolved.",
+      "dtype": "string",
+      "name": "primary_seller_state",
+      "phase": "base",
+      "role": "feature",
+      "source_columns": [
+        "seller_state"
+      ]
+    },
+    {
+      "aggregation_grain": "order (distinct sellers)",
+      "availability_assumption": "static IBGE BR_Pais_2024 boundary (2016-2018 orders); label-independent reference",
+      "description": "Max Haversine distance from customer to each distinct seller.",
+      "dtype": "float",
+      "name": "distance_km_max",
+      "phase": "base",
+      "role": "feature",
+      "source_columns": [
+        "geolocation_lat",
+        "geolocation_lng",
+        "customer_zip_code_prefix",
+        "customer_state",
+        "seller_zip_code_prefix",
+        "seller_state"
+      ],
+      "unit": "km"
+    },
+    {
+      "aggregation_grain": "order (distinct sellers)",
+      "availability_assumption": "static IBGE BR_Pais_2024 boundary (2016-2018 orders); label-independent reference",
+      "description": "Distinct sellers with unresolved distance / n_sellers; null if no sellers.",
+      "dtype": "float",
+      "name": "distance_missing_fraction",
+      "phase": "base",
+      "role": "feature",
+      "source_columns": [
+        "distance_km_max"
+      ]
+    },
+    {
+      "aggregation_grain": "order (distinct sellers)",
+      "availability_assumption": "checkout-complete simulation: item/payment/catalogue snapshot availability assumed; payments have no event timestamps and catalogue attributes have no historical versions",
+      "description": "Fraction of distinct sellers whose state differs from customer state.",
+      "dtype": "float",
+      "name": "interstate_share",
+      "phase": "base",
+      "role": "feature",
+      "source_columns": [
+        "customer_state",
+        "seller_state"
+      ]
+    },
+    {
+      "aggregation_grain": "order",
+      "availability_assumption": "source clock convention; no timezone conversion",
+      "description": "Purchase month 1-12, categorical.",
+      "dtype": "int",
+      "name": "purchase_month",
+      "phase": "base",
+      "role": "feature",
+      "source_columns": [
+        "order_purchase_timestamp"
+      ]
+    },
+    {
+      "aggregation_grain": "order",
+      "availability_assumption": "source clock convention; no timezone conversion",
+      "description": "Purchase day of week 0-6 (Monday=0), categorical.",
+      "dtype": "int",
+      "name": "purchase_dayofweek",
+      "phase": "base",
+      "role": "feature",
+      "source_columns": [
+        "order_purchase_timestamp"
+      ]
+    },
+    {
+      "aggregation_grain": "order",
+      "availability_assumption": "source clock convention; no timezone conversion",
+      "description": "Purchase hour 0-23, categorical.",
+      "dtype": "int",
+      "name": "purchase_hour",
+      "phase": "base",
+      "role": "feature",
+      "source_columns": [
+        "order_purchase_timestamp"
+      ]
+    },
+    {
+      "aggregation_grain": "order",
+      "availability_assumption": "checkout-complete simulation: item/payment/catalogue snapshot availability assumed; payments have no event timestamps and catalogue attributes have no historical versions",
+      "description": "Payment type with largest summed value; ties lexicographic; Unknown if none usable.",
+      "dtype": "string",
+      "name": "primary_payment_type",
+      "phase": "base",
+      "role": "feature",
+      "source_columns": [
+        "payment_type",
+        "payment_value"
+      ]
+    },
+    {
+      "aggregation_grain": "order",
+      "availability_assumption": "checkout-complete simulation: item/payment/catalogue snapshot availability assumed; payments have no event timestamps and catalogue attributes have no historical versions",
+      "description": "Max positive recorded installments across usable payment rows.",
+      "dtype": "int",
+      "name": "payment_installments_max",
+      "phase": "base",
+      "role": "feature",
+      "source_columns": [
+        "payment_installments"
+      ]
+    },
+    {
+      "aggregation_grain": "order",
+      "availability_assumption": "checkout-complete simulation: item/payment/catalogue snapshot availability assumed; payments have no event timestamps and catalogue attributes have no historical versions",
+      "description": "Distinct usable payment types.",
+      "dtype": "int",
+      "name": "n_payment_methods",
+      "phase": "base",
+      "role": "feature",
+      "source_columns": [
+        "payment_type"
+      ]
+    },
+    {
+      "aggregation_grain": "order",
+      "availability_assumption": "checkout-complete simulation: item/payment/catalogue snapshot availability assumed; payments have no event timestamps and catalogue attributes have no historical versions",
+      "description": "int(no usable payment rows).",
+      "dtype": "int",
+      "name": "payment_missing",
+      "phase": "base",
+      "role": "feature",
+      "source_columns": [
+        "payment_type",
+        "payment_value"
+      ]
+    }
+  ],
+  "contract_version": "v1.2",
+  "numeric_columns": [
+    "n_items",
+    "has_items",
+    "n_products",
+    "n_sellers",
+    "n_categories",
+    "total_price",
+    "total_freight",
+    "freight_ratio",
+    "freight_ratio_missing",
+    "total_weight_g",
+    "total_volume_cm3",
+    "weight_missing_fraction",
+    "volume_missing_fraction",
+    "category_missing_fraction",
+    "distance_km_max",
+    "distance_missing_fraction",
+    "interstate_share",
+    "payment_installments_max",
+    "n_payment_methods",
+    "payment_missing"
+  ],
+  "predictor_allowlist": [
+    "n_items",
+    "has_items",
+    "n_products",
+    "n_sellers",
+    "n_categories",
+    "total_price",
+    "total_freight",
+    "freight_ratio",
+    "freight_ratio_missing",
+    "total_weight_g",
+    "total_volume_cm3",
+    "weight_missing_fraction",
+    "volume_missing_fraction",
+    "primary_category",
+    "category_missing_fraction",
+    "customer_state",
+    "primary_seller_state",
+    "distance_km_max",
+    "distance_missing_fraction",
+    "interstate_share",
+    "purchase_month",
+    "purchase_dayofweek",
+    "purchase_hour",
+    "primary_payment_type",
+    "payment_installments_max",
+    "n_payment_methods",
+    "payment_missing"
+  ],
+  "version": "v1.1"
+}

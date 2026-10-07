@@ -1,0 +1,13 @@
+{
+  "candidate": "forest_d16_l20_half",
+  "comparison": ">=",
+  "cost_assumption": "illustrative, not measured Olist business cost",
+  "cost_ratio_fn_to_fp": 5,
+  "false_positive_cost": 1,
+  "kind": "fixed_threshold",
+  "positive_class": 1,
+  "team_policy_approval": "user delegated choice of sensible taught policy; illustrative 5:1 chosen",
+  "threshold": 0.16387042604339028,
+  "threshold_selection_population": "selected development OOF; after tuning, not independent",
+  "tie_break": "highest threshold among exactly equal integer costs"
+}

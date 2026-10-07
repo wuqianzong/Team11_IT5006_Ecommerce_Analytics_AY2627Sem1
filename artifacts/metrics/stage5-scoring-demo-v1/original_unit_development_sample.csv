@@ -1,0 +1,7 @@
+order_id,n_items,has_items,n_products,n_sellers,n_categories,total_price,total_freight,freight_ratio,freight_ratio_missing,total_weight_g,total_volume_cm3,weight_missing_fraction,volume_missing_fraction,primary_category,category_missing_fraction,customer_state,primary_seller_state,distance_km_max,distance_missing_fraction,interstate_share,purchase_month,purchase_dayofweek,purchase_hour,primary_payment_type,payment_installments_max,n_payment_methods,payment_missing
+00018f77f2f0320c557190d7a144bdd3,1.0,1.0,1.0,1.0,1.0,239.9,19.93,0.0830762817840767,0.0,30000.0,60000.0,0.0,0.0,pet_shop,0.0,SP,SP,588.5442562604816,0.0,0.0,4,2,10,credit_card,3.0,1,0
+000229ec398224ef6ca0657da4fc703e,1.0,1.0,1.0,1.0,1.0,199.0,17.87,0.0897989949748743,0.0,3050.0,14157.0,0.0,0.0,furniture_decor,0.0,MG,MG,312.9552174848084,0.0,0.0,1,6,14,credit_card,5.0,1,0
+00024acbcdf0a6daa1e931b038114c75,1.0,1.0,1.0,1.0,1.0,12.99,12.79,0.9846035411855272,0.0,200.0,2400.0,0.0,0.0,perfumery,0.0,SP,SP,295.31958151303064,0.0,0.0,8,2,10,credit_card,2.0,1,0
+00042b26cf59d7ce69dfabb4e55b4fd9,1.0,1.0,1.0,1.0,1.0,199.9,18.14,0.0907453726863431,0.0,3750.0,42000.0,0.0,0.0,garden_tools,0.0,SP,PR,646.4598214967991,0.0,1.0,2,5,13,credit_card,3.0,1,0
+00048cc3ae777c65dbb7d2a0634bc1ea,1.0,1.0,1.0,1.0,1.0,21.9,12.69,0.5794520547945206,0.0,450.0,2880.0,0.0,0.0,housewares,0.0,MG,SP,161.80880331934534,0.0,1.0,5,0,21,boleto,1.0,1,0
+00054e8431b9d7675808bcb819fb4a32,1.0,1.0,1.0,1.0,1.0,19.9,11.85,0.5954773869346733,0.0,200.0,2700.0,0.0,0.0,telephony,0.0,SP,SP,484.733463320167,0.0,0.0,12,6,11,credit_card,1.0,1,0

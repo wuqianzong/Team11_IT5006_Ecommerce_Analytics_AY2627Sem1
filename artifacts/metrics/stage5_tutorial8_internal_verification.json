@@ -1,0 +1,10 @@
+{
+  "fit_count": 10,
+  "fold_size_records": 15,
+  "holdout_evaluated": false,
+  "output_files_checked": 8,
+  "run_manifest_sha256": "ae34171b0fea8568a0c7f90537720a56b5b2d44117127101dc3a90c8e3e9f0ea",
+  "stage": "5_pre_holdout_diagnostics",
+  "status": "passed_internal_verification",
+  "verifier_sha256": "5b64c0c80b3fe6ad9793f42b1647e10125c4f9ac21eac7380cb5de63ae479f93"
+}

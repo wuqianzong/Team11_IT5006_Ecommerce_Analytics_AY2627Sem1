@@ -1,0 +1,78 @@
+{
+  "checkpoint_sha256": "087a93a03458857ff3f578c38013661be46d3566ec34373bab52b09f86add30a",
+  "conditions": [
+    {
+      "feature": "numeric__missingindicator_distance_missing_fraction",
+      "node": 0,
+      "operator": "<=",
+      "threshold": 0.5,
+      "transformed_value": 0.0
+    },
+    {
+      "feature": "numeric__n_items",
+      "node": 1,
+      "operator": "<=",
+      "threshold": 1.5,
+      "transformed_value": 1.0
+    },
+    {
+      "feature": "categorical__customer_state_RJ",
+      "node": 2,
+      "operator": "<=",
+      "threshold": 0.5,
+      "transformed_value": 0.0
+    },
+    {
+      "feature": "numeric__distance_km_max",
+      "node": 3,
+      "operator": "<=",
+      "threshold": 1409.6771240234375,
+      "transformed_value": 21.684565269150085
+    },
+    {
+      "feature": "categorical__purchase_month_3",
+      "node": 4,
+      "operator": ">",
+      "threshold": 0.5,
+      "transformed_value": 1.0
+    }
+  ],
+  "fold": 0,
+  "leaf": 6,
+  "model": "baseline CART, not selected forest",
+  "numeric_note": "Original units after training imputation; indicator and one-hot values are 0/1",
+  "order_id": "000e63d38ae8c00bbcb5a30573b99628",
+  "probability_1": 0.15067222994900326,
+  "raw_predictors": {
+    "category_missing_fraction": 0.0,
+    "customer_state": "SP",
+    "distance_km_max": 21.684565269150085,
+    "distance_missing_fraction": 0.0,
+    "freight_ratio": 0.1853862212943632,
+    "freight_ratio_missing": 0.0,
+    "has_items": 1.0,
+    "interstate_share": 0.0,
+    "n_categories": 1.0,
+    "n_items": 1.0,
+    "n_payment_methods": 1,
+    "n_products": 1.0,
+    "n_sellers": 1.0,
+    "payment_installments_max": 1.0,
+    "payment_missing": 0,
+    "primary_category": "bed_bath_table",
+    "primary_payment_type": "credit_card",
+    "primary_seller_state": "SP",
+    "purchase_dayofweek": 4,
+    "purchase_hour": 19,
+    "purchase_month": 3,
+    "total_freight": 8.88,
+    "total_price": 47.9,
+    "total_volume_cm3": 8000.0,
+    "total_weight_g": 800.0,
+    "volume_missing_fraction": 0.0,
+    "weight_missing_fraction": 0.0
+  },
+  "scale_present": false,
+  "task": "classification",
+  "tree_default_prediction": 0
+}

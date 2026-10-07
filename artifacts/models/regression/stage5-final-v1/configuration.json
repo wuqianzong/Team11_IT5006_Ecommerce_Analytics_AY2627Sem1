@@ -1,0 +1,79 @@
+{
+  "baseline_preprocessing_configuration": {
+    "classification_diagnostic_threshold": 0.5,
+    "diagnostic_review_capacity": 0.1,
+    "holdout_evaluation": false,
+    "hypotheses": {
+      "label_audit": "The minimum-review policy may increase recorded negative prevalence relative to earliest valid answered review.",
+      "linear": "Checkout features may improve over an intercept-only reference through additive effects / additive log odds.",
+      "tree": "A depth-5 CART may capture thresholds and interactions missed by additive models; no improvement is assumed."
+    },
+    "linear": {
+      "tol": 1e-06
+    },
+    "logistic": {
+      "C": "infinity",
+      "class_weight": null,
+      "max_iter": 2000,
+      "solver": "lbfgs",
+      "tol": 0.0001
+    },
+    "models": [
+      "dummy",
+      "linear",
+      "tree"
+    ],
+    "primary_metrics": {
+      "classification": "average_precision",
+      "regression": "mae"
+    },
+    "seed": 42,
+    "selection": "none; Stage 4 required",
+    "subgroups": [
+      "customer_state",
+      "basket_size"
+    ],
+    "tasks": [
+      "regression",
+      "classification"
+    ],
+    "tree": {
+      "ccp_alpha": 0.0,
+      "max_depth": 5,
+      "min_samples_leaf": 100,
+      "min_samples_split": 2
+    },
+    "version": "stage3-baseline-v1"
+  },
+  "candidate": {
+    "family": "forest",
+    "id": "forest_d16_l20_half",
+    "params": {
+      "bootstrap": true,
+      "max_depth": 16,
+      "max_features": 0.5,
+      "min_samples_leaf": 20,
+      "n_estimators": 64
+    }
+  },
+  "estimator_params": {
+    "bootstrap": true,
+    "ccp_alpha": 0.0,
+    "criterion": "squared_error",
+    "max_depth": 16,
+    "max_features": 0.5,
+    "max_leaf_nodes": null,
+    "max_samples": null,
+    "min_impurity_decrease": 0.0,
+    "min_samples_leaf": 20,
+    "min_samples_split": 2,
+    "min_weight_fraction_leaf": 0.0,
+    "monotonic_cst": null,
+    "n_estimators": 64,
+    "n_jobs": 1,
+    "oob_score": false,
+    "random_state": 42,
+    "verbose": 0,
+    "warm_start": false
+  }
+}

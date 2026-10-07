@@ -1,0 +1,21 @@
+{
+  "created_utc": "2026-10-05T07:00:56.583201+00:00",
+  "input_hashes": {
+    "cv_assignments.csv": "8a3fd8540aebed918eabb11c5d10285d28d13aeeee6a6e07074b6b3defdb95cf",
+    "dataset_manifest.json": "55537e4c2c40b97caf1e71d700d09997eaac487609ba928b165b496049f6225b",
+    "feature_schema.json": "35f53124fcfc6e301aed9bd0f6c9e12810c3da24e48c0621e0adadd31191f7a1",
+    "orders_ml_features.csv": "0964e4e1711c40d107d4dfc7ac7982081114d4f8a09f9bd5a9ba25d028a89d67",
+    "quality_report.json": "159f40a7dadc83aad9729672faea8c380d709c17ac27b260ff1eedabab053a9e",
+    "split_assignments.csv": "61a84e18be7c8eeae57f74e2eb08b3f5bd082524850934b7cd68b7d3674069d2",
+    "split_report.json": "8ddf76bf3b7f2c636f9cd0a22d10e676fcf989b2af172a294c78d34aaaa1bb8c",
+    "zip_centroids.csv": "465d3bd702cd3117623a7d364613569875e97195648d836f5552ef25e110f46a"
+  },
+  "pipeline_hashes": {
+    "classification": "44883275e9358632c993ba9abed3a9ae4ae06c6734b6f37489254925793a82c5",
+    "regression": "10ead95cca93e026607fe09aaf328a736e24ba3a1a208c5618e6763efa6acd02"
+  },
+  "run_id": "stage5-final-v1",
+  "run_manifest_sha256": "6d88e9734665f31ffc6b2e2118a3d8ea6de4ad8055c232f0b5edc90930edc16a",
+  "selection_sha256": "34bcc36ebed47686f85f9a85b8f18a1006d9b1997b686b6c84184de6f586b842",
+  "state": "evaluated_and_published"
+}

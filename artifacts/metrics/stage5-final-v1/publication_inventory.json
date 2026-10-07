@@ -1,0 +1,109 @@
+{
+  "evaluation_mode": "frozen_holdout_reproduction_not_independent_test",
+  "full_diagnostic_verification": {
+    "fit_count": 10,
+    "fold_size_records": 15,
+    "holdout_evaluated": false,
+    "output_files_checked": 8,
+    "status": "passed_internal_verification"
+  },
+  "full_final_verification": {
+    "holdout_evaluated": true,
+    "independent_agent_review": "pending",
+    "output_files_checked": 13,
+    "run_manifest_sha256": "89d8486f6baf33d289f1080be57f6deb133cc2ffe6acf1699428d26160c683f4",
+    "stage": 5,
+    "status": "passed_internal_verification",
+    "tasks": {
+      "classification": {
+        "holdout_n": 19735,
+        "no_fit": true,
+        "reload_tolerance": 1e-12,
+        "sample_n": 16,
+        "single_batch_reorder_isolation_missing_unseen_invalid": "passed"
+      },
+      "regression": {
+        "holdout_n": 19331,
+        "no_fit": true,
+        "reload_tolerance": 1e-12,
+        "sample_n": 16,
+        "single_batch_reorder_isolation_missing_unseen_invalid": "passed"
+      }
+    },
+    "team_review": "pending",
+    "unit_tests": 69,
+    "verifier_sha256": "b9d02ae527e627355b86f3ad190c432f6f26949ab7e7eadc61afd633342c62af"
+  },
+  "independent_test_estimate": false,
+  "inspection_scope": "Final models/predictions verified fully. Compact diagnostic hashes, source lineage, fit counts and curve coverage checked; omitted development curve coordinates/fold models are not reverified.",
+  "omitted_files": {
+    "artifacts/metrics/stage5-tutorial8-v1/oof_curve_coordinates.csv": {
+      "bytes": 11674199,
+      "reason": "large intermediate development curve coordinates",
+      "sha256": "ca3e3a572a0431d60b436b017dc7e13029a6168913abe989f2411c8bec9928af"
+    }
+  },
+  "published_files": {
+    "artifacts/metrics/stage5-final-v1/classification_holdout_curves.png": "a1c6a01cfd8ddf5a5ded41d6de95ba56333e1da17580bb6a07a932001735cf8b",
+    "artifacts/metrics/stage5-final-v1/classification_holdout_predictions.csv": "71c248842de1bef3cb8ffdd9fcd7f5c0e286653ebb5724c29ebf9da826cc80c0",
+    "artifacts/metrics/stage5-final-v1/classification_per_class_report.csv": "5af06e6a74169da0c9d7a3f3bf58fae34748ddced8cefdcc8f91c06c0f201662",
+    "artifacts/metrics/stage5-final-v1/classification_reliability.csv": "f3d4b54fc09d960e998435aae1cc152c3e6a7c59272e24b82392277a167262ee",
+    "artifacts/metrics/stage5-final-v1/confusion_default.json": "7fb9b1466ec30ed1395cba784950dc41f52e683a37bf2f5fe359802fceee838f",
+    "artifacts/metrics/stage5-final-v1/confusion_default.png": "9cf591ad837b87c5356252de9950e612da0b29fc89fe0f9a4e98c727abb6e349",
+    "artifacts/metrics/stage5-final-v1/confusion_frozen_policy.json": "0526c38cfb8fd14e33166a8550d6e8659b570777147215d75c5e42a3adc2ba27",
+    "artifacts/metrics/stage5-final-v1/confusion_frozen_policy.png": "6437f088dd39889b4331324e62ffecea3b78f04795fb5e117fcb782b0172de2d",
+    "artifacts/metrics/stage5-final-v1/final_fit_evidence.json": "21f78f357e37b0df642f6266a93ddd15ab170305ef78b9276b7803fcc325c340",
+    "artifacts/metrics/stage5-final-v1/holdout_metrics.json": "fdb56e1d9b3f01e08a5163027bed8307a1152b7551c31efaa61faf175f00c4f9",
+    "artifacts/metrics/stage5-final-v1/holdout_subgroups.csv": "5c31a4f07b6c7dedc3872b66839a7d786a6602b21f0a6431c8968946a2f528f2",
+    "artifacts/metrics/stage5-final-v1/regression_holdout_diagnostics.png": "caee670a2e974b908db8b47289febfd7a0c34be19f17d973867833fa5092aa95",
+    "artifacts/metrics/stage5-final-v1/regression_holdout_predictions.csv": "eba7366b35554ac6b4671d9e098cb8b522a92b7c25ff6aaf06691f26cbd82aa5",
+    "artifacts/metrics/stage5-final-v1/run_manifest.json": "89d8486f6baf33d289f1080be57f6deb133cc2ffe6acf1699428d26160c683f4",
+    "artifacts/metrics/stage5-scoring-demo-v1/classification_scores.csv": "02068c27988c41577042d329326fe005de20fc3bf1f3c232e3ba8217c841814b",
+    "artifacts/metrics/stage5-scoring-demo-v1/classification_scores.qa.json": "3d78cc47e7625a37bc1a451787d35c372d72dbdb8a5160b04a12869d8ca69345",
+    "artifacts/metrics/stage5-scoring-demo-v1/original_unit_development_sample.csv": "993974d64423ac2f5d8ecaa583392a7e02d69567be5b90a03afbbd00ab149936",
+    "artifacts/metrics/stage5-scoring-demo-v1/regression_scores.csv": "4afefcab8de5f94d39ad614892ca2446fe119bdfbaec2f6194849bc523d2a1e9",
+    "artifacts/metrics/stage5-scoring-demo-v1/regression_scores.qa.json": "3d78cc47e7625a37bc1a451787d35c372d72dbdb8a5160b04a12869d8ca69345",
+    "artifacts/metrics/stage5-tutorial8-v1/development_tree_rules.txt": "98a5d2c413312307ddffe20259e2840cb43fe6701386f866bf5d93899f567a97",
+    "artifacts/metrics/stage5-tutorial8-v1/learning_curve.csv": "5c84cc790620894ea7df1dd5f24f1c9a125c7b1669bd7748cacb170ce5923685",
+    "artifacts/metrics/stage5-tutorial8-v1/learning_curves.png": "bd6bc8fdee868becf55ff874bd33e6a0313ae0806401ed585b9e479835edc0a1",
+    "artifacts/metrics/stage5-tutorial8-v1/learning_fit_evidence.json": "e24ab34cc206ac98c0ceccd2a62e3d17df6c119ce559ae512cf587455bcad767",
+    "artifacts/metrics/stage5-tutorial8-v1/oof_comparison.png": "6b640bb1d66610d3cb7d6fa9b3c6fc8945112e8dcc6672c577b5593c42935673",
+    "artifacts/metrics/stage5-tutorial8-v1/oof_comparison_metrics.csv": "56bda3659a3394fe4230a77f5f1efd7d8243469c455a48a750ea69a29f1d5d3b",
+    "artifacts/metrics/stage5-tutorial8-v1/run_manifest.json": "ae34171b0fea8568a0c7f90537720a56b5b2d44117127101dc3a90c8e3e9f0ea",
+    "artifacts/metrics/stage5-tutorial8-v1/worked_tree_path.json": "c1ba2f40de1da230d9f2947e83d223037c060b5703bbfb1f1f4cbbcdb4821744",
+    "artifacts/metrics/stage5_holdout_access.json": "eb5d1c9dc1a3f33b8dff211f96e646206fc99bbc59e8ac198a2c09c7aa140def",
+    "artifacts/metrics/stage5_holdout_reproduction.json": "7e2eefa4a2c0cf544af12c0809a694acedc95d574abb3d2263b12bdcf0d0eee0",
+    "artifacts/metrics/stage5_tutorial8_internal_verification.json": "25d5e986a6aa9636fbec8d2eea84fcacd6407c783bb2acf380758993484b5eb1",
+    "artifacts/models/classification/stage5-final-v1/bundle_manifest.json": "28b9ddf8d596cdf1cf76dcffae07c90e6dadeb08b6a62b93bf3754e436a5f518",
+    "artifacts/models/classification/stage5-final-v1/configuration.json": "fd71e44ba6983c8b24630baa148234b79c5e8ad2412ddb92df0a05d72be10f75",
+    "artifacts/models/classification/stage5-final-v1/decision_policy.json": "28604c970aa2683fa04e0693894a4306cfe5fd7656c1a549243f88d67bf52ed9",
+    "artifacts/models/classification/stage5-final-v1/feature_schema.json": "aebc32c0e078dde72d080720aca3adf6dc233fb3ca544ba9a8776cb270d9f2c7",
+    "artifacts/models/classification/stage5-final-v1/feature_stats.json": "27884db35002ddc6ee5e9c8ed8883b180be5519fb14d1bb58d362955c6d4ecbd",
+    "artifacts/models/classification/stage5-final-v1/metadata.json": "64b6534306e5a46b24503df948fa2d264789cac3fec14595c147d8cde1cd936a",
+    "artifacts/models/classification/stage5-final-v1/pipeline.joblib": "44883275e9358632c993ba9abed3a9ae4ae06c6734b6f37489254925793a82c5",
+    "artifacts/models/regression/stage5-final-v1/bundle_manifest.json": "fcae85e18a0d365c9706d596c469ef1f7f0c9fb00f79d3fb53cc6b074659ca19",
+    "artifacts/models/regression/stage5-final-v1/configuration.json": "760d8995b396bb36510fcc1e5d053d61965fefb7f081f861eb5371b936ae3ad0",
+    "artifacts/models/regression/stage5-final-v1/feature_schema.json": "aebc32c0e078dde72d080720aca3adf6dc233fb3ca544ba9a8776cb270d9f2c7",
+    "artifacts/models/regression/stage5-final-v1/feature_stats.json": "2e0b26a75a1ce9125abe0bd9149eaf69161ddc337d22d30bbf16fa41cdd2d7cf",
+    "artifacts/models/regression/stage5-final-v1/metadata.json": "41eee67684f1624b3438332f2b55ec3ccdbf106effa8715542c089d4d348c5d4",
+    "artifacts/models/regression/stage5-final-v1/pipeline.joblib": "10ead95cca93e026607fe09aaf328a736e24ba3a1a208c5618e6763efa6acd02"
+  },
+  "reproduction": {
+    "canonical_new_fits": 12,
+    "development_learning_fits": 10,
+    "final_model_fits": 2,
+    "regression_holdout_predictions_compared": 19331,
+    "classification_holdout_predictions_compared": 19735,
+    "maximum_absolute_final_prediction_difference": 0.0,
+    "classification_decisions_exactly_identical": true,
+    "both_saved_final_pipeline_files_byte_identical": true,
+    "csv_outputs_compared": 11,
+    "worked_tree_path_rules_and_learning_lineage_identical": true,
+    "frozen_inputs_and_original_holdout_receipt_unchanged": true,
+    "independent_test_estimate": false,
+    "independent_agent_review": "pending",
+    "team_review": "pending"
+  },
+  "schema_version": 1,
+  "stage": 5
+}

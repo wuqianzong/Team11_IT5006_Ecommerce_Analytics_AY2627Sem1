@@ -1,0 +1,12 @@
+{
+  "model_version": "stage5-final-v1",
+  "output_hashes": {
+    "configuration.json": "fd71e44ba6983c8b24630baa148234b79c5e8ad2412ddb92df0a05d72be10f75",
+    "decision_policy.json": "28604c970aa2683fa04e0693894a4306cfe5fd7656c1a549243f88d67bf52ed9",
+    "feature_schema.json": "aebc32c0e078dde72d080720aca3adf6dc233fb3ca544ba9a8776cb270d9f2c7",
+    "feature_stats.json": "27884db35002ddc6ee5e9c8ed8883b180be5519fb14d1bb58d362955c6d4ecbd",
+    "metadata.json": "64b6534306e5a46b24503df948fa2d264789cac3fec14595c147d8cde1cd936a",
+    "pipeline.joblib": "44883275e9358632c993ba9abed3a9ae4ae06c6734b6f37489254925793a82c5"
+  },
+  "task": "classification"
+}

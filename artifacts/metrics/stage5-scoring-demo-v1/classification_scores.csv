@@ -1,0 +1,7 @@
+input_row,order_id,task,model_version,feature_version,contract_version,split_version,prediction,probability_1,decision,threshold,status,error,warnings
+0,00018f77f2f0320c557190d7a144bdd3,classification,stage5-final-v1,v1.1,v1.2,v1.1,0,0.10590933956882366,0,0.16387042604339028,valid,,"{""missing_predictor_cells"": []}"
+1,000229ec398224ef6ca0657da4fc703e,classification,stage5-final-v1,v1.1,v1.2,v1.1,0,0.09273575644482758,0,0.16387042604339028,valid,,"{""missing_predictor_cells"": []}"
+2,00024acbcdf0a6daa1e931b038114c75,classification,stage5-final-v1,v1.1,v1.2,v1.1,0,0.0963072201829139,0,0.16387042604339028,valid,,"{""missing_predictor_cells"": []}"
+3,00042b26cf59d7ce69dfabb4e55b4fd9,classification,stage5-final-v1,v1.1,v1.2,v1.1,0,0.15110025015090725,0,0.16387042604339028,valid,,"{""missing_predictor_cells"": []}"
+4,00048cc3ae777c65dbb7d2a0634bc1ea,classification,stage5-final-v1,v1.1,v1.2,v1.1,0,0.08942660193999939,0,0.16387042604339028,valid,,"{""missing_predictor_cells"": []}"
+5,00054e8431b9d7675808bcb819fb4a32,classification,stage5-final-v1,v1.1,v1.2,v1.1,0,0.08728500570380038,0,0.16387042604339028,valid,,"{""missing_predictor_cells"": []}"

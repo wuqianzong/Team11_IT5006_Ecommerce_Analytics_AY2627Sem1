@@ -1,0 +1,20 @@
+[
+  {
+    "groups": 74626,
+    "n": 77139,
+    "seconds": 30.45163095794851,
+    "task": "regression",
+    "training_group_ids_sha256": "07ae122f33b64bd27164ac3abba5577ae5b1afa80bd19a327e6734b7aac46b69",
+    "training_order_ids_sha256": "2d88d343eaf52cab13490ae5ae20213f1260dfca6944918693e7fffb1fe4de92",
+    "warnings": []
+  },
+  {
+    "groups": 76279,
+    "n": 78938,
+    "seconds": 24.2274650419713,
+    "task": "classification",
+    "training_group_ids_sha256": "e9fc63743d8966b04073ba29ff247bbcf1704253e1905d079fd671f400fa11f7",
+    "training_order_ids_sha256": "f11b40f91d4a76c021dcb8f31eafa9873ca13b2adde9c5df4cb33f4d53156ff7",
+    "warnings": []
+  }
+]
