@@ -1,0 +1,38 @@
+{
+  "figure_sources": {
+    "holdout_curves": [
+      "artifacts/metrics/stage5-final-v1/classification_holdout_predictions.csv"
+    ],
+    "holdout_errors": [
+      "artifacts/metrics/stage5-final-v1/regression_holdout_predictions.csv",
+      "artifacts/metrics/stage5-final-v1/holdout_subgroups.csv"
+    ],
+    "learning": [
+      "artifacts/metrics/stage5-tutorial8-v1/learning_curve.csv"
+    ],
+    "monthly": [
+      "artifacts/metrics/stage3-baseline-v1/eda/regression_monthly_outcomes.csv",
+      "artifacts/metrics/stage3-baseline-v1/eda/classification_monthly_outcomes.csv"
+    ]
+  },
+  "notes": {
+    "holdout_curves": "all eligible reviewed holdout rows; frozen model; no new fits",
+    "holdout_errors": "scatter deterministic every max(1,n//2500)-th row, all points untrimmed; band metrics use all eligible regression rows",
+    "learning": "classification; mean and sample SD across 5 saved folds, not confidence intervals",
+    "monthly": "development task populations; 2017-01 through 2018-08; all months/counts in source CSVs"
+  },
+  "outputs": {
+    "holdout_curves.png": "6c69af30075e5924b6cc3c753c4a55b30eb220e2c76271f7f79d6b2e1bfcbe93",
+    "holdout_errors.png": "502e421dfde1084a4993b4abf9b67794e7b34bca11c56c49358ba3bd43c4d4cf",
+    "learning.png": "7cba532656f2a4afdff400b586b53736f02fe4fa2af4f7da877ce6c6c4a8cc4c",
+    "monthly.png": "f7dcecb5f266adf23317d568458be4cca08ab3d2cdea6abaa5025ccf8e430d6f"
+  },
+  "sources": {
+    "artifacts/metrics/stage3-baseline-v1/eda/classification_monthly_outcomes.csv": "2316f9c31c2a4be4ed7e339578ce6e1c60ddef4ffdf857400b112ee5b0999863",
+    "artifacts/metrics/stage3-baseline-v1/eda/regression_monthly_outcomes.csv": "bd734d8bde7de44d31357b993def234969c341e4c03e993be95da7ae7543035e",
+    "artifacts/metrics/stage5-final-v1/classification_holdout_predictions.csv": "71c248842de1bef3cb8ffdd9fcd7f5c0e286653ebb5724c29ebf9da826cc80c0",
+    "artifacts/metrics/stage5-final-v1/holdout_subgroups.csv": "5c31a4f07b6c7dedc3872b66839a7d786a6602b21f0a6431c8968946a2f528f2",
+    "artifacts/metrics/stage5-final-v1/regression_holdout_predictions.csv": "eba7366b35554ac6b4671d9e098cb8b522a92b7c25ff6aaf06691f26cbd82aa5",
+    "artifacts/metrics/stage5-tutorial8-v1/learning_curve.csv": "5c84cc790620894ea7df1dd5f24f1c9a125c7b1669bd7748cacb170ce5923685"
+  }
+}

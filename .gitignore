@@ -30,12 +30,18 @@ archive/
 *.md
 /docs/
 /data/business/ml/*.pdf
-/src/reporting/
+/src/reporting/*
+!/src/reporting/__init__.py
+!/src/reporting/charts.py
+/src/common/recover_artifacts.py
+/src/common/tests/
+/src/models/rebuild_intermediates.py
 
 # Publish only canonical experiment outputs, not internal review/replay copies.
 /artifacts/*
 !/artifacts/metrics/
 !/artifacts/models/
+!/artifacts/report/
 !/artifacts/transport_manifest.json
 /artifacts/metrics/*
 !/artifacts/metrics/stage3-baseline-v1/
@@ -55,3 +61,13 @@ archive/
 !/artifacts/models/regression/stage5-final-v1/
 /artifacts/models/classification/*
 !/artifacts/models/classification/stage5-final-v1/
+
+# Publish report-sized result charts, not report documents or private audit logs.
+/artifacts/report/*
+!/artifacts/report/stage6-v1/
+/artifacts/report/stage6-v1/*
+!/artifacts/report/stage6-v1/monthly.png
+!/artifacts/report/stage6-v1/learning.png
+!/artifacts/report/stage6-v1/holdout_curves.png
+!/artifacts/report/stage6-v1/holdout_errors.png
+!/artifacts/report/stage6-v1/figure_manifest.json
