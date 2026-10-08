@@ -28,6 +28,8 @@ archive/
 
 # Internal team review material is shared separately, not published.
 *.md
+!/README.md
+!/experiments/refinement_cycle1/README.md
 /docs/
 /data/business/ml/*.pdf
 /src/reporting/*
@@ -52,6 +54,36 @@ archive/
 !/artifacts/metrics/stage5_holdout_access.json
 !/artifacts/metrics/stage5_holdout_reproduction.json
 !/artifacts/metrics/stage5_tutorial8_internal_verification.json
+!/artifacts/metrics/refinement-cycle1-evidence/
+!/artifacts/metrics/refinement-selected-v3/
+/artifacts/metrics/refinement-selected-v3/*
+!/artifacts/metrics/refinement-selected-v3/configuration.json
+!/artifacts/metrics/refinement-selected-v3/frozen_decision_policy.json
+!/artifacts/metrics/refinement-selected-v3/development_fold_metrics.csv
+!/artifacts/metrics/refinement-selected-v3/policy_scenarios.csv
+!/artifacts/metrics/refinement-selected-v3/regression_training_ids.csv
+!/artifacts/metrics/refinement-selected-v3/classification_training_ids.csv
+!/artifacts/metrics/refinement-selected-v3/bundles/
+/artifacts/metrics/refinement-selected-v3/bundles/*
+!/artifacts/metrics/refinement-selected-v3/bundles/regression/
+!/artifacts/metrics/refinement-selected-v3/bundles/classification/
+/artifacts/metrics/refinement-selected-v3/bundles/regression/*
+/artifacts/metrics/refinement-selected-v3/bundles/classification/*
+!/artifacts/metrics/refinement-selected-v3/bundles/regression/selected/
+!/artifacts/metrics/refinement-selected-v3/bundles/classification/selected/
+!/artifacts/metrics/refinement-selected-v3/terminal/
+/artifacts/metrics/refinement-selected-v3/terminal/*
+!/artifacts/metrics/refinement-selected-v3/terminal/*.png
+!/artifacts/metrics/refinement-selected-v3/terminal/metrics.csv
+!/artifacts/metrics/refinement-selected-v3/terminal/subgroups.csv
+!/artifacts/metrics/refinement-selected-v3/terminal/classification_per_class.csv
+!/artifacts/metrics/refinement-selected-v3/terminal/classification_reliability.csv
+!/artifacts/metrics/refinement-selected-v3/terminal/classification_policy_comparison.json
+!/artifacts/metrics/refinement-selected-v3/terminal/paired_intervals.csv
+!/artifacts/metrics/refinement-selected-v3/development_diagnostics/
+/artifacts/metrics/refinement-selected-v3/development_diagnostics/*
+!/artifacts/metrics/refinement-selected-v3/development_diagnostics/*.png
+!/artifacts/metrics/refinement-selected-v3/development_diagnostics/*.csv
 /artifacts/metrics/stage4-selection-v1/candidate_oof_predictions.csv
 /artifacts/metrics/stage5-tutorial8-v1/oof_curve_coordinates.csv
 /artifacts/models/*

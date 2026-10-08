@@ -1,0 +1,98 @@
+{
+  "fold_checks": [
+    {
+      "fold": 0,
+      "no_terminal_rows": true,
+      "same_ids_targets_training": true,
+      "subset_core_parity_128_rows": true,
+      "task": "regression",
+      "training_n": 4792,
+      "validation_n": 6905
+    },
+    {
+      "fold": 1,
+      "no_terminal_rows": true,
+      "same_ids_targets_training": true,
+      "subset_core_parity_128_rows": true,
+      "task": "regression",
+      "training_n": 11519,
+      "validation_n": 8424
+    },
+    {
+      "fold": 2,
+      "no_terminal_rows": true,
+      "same_ids_targets_training": true,
+      "subset_core_parity_128_rows": true,
+      "task": "regression",
+      "training_n": 19701,
+      "validation_n": 12329
+    },
+    {
+      "fold": 3,
+      "no_terminal_rows": true,
+      "same_ids_targets_training": true,
+      "subset_core_parity_128_rows": true,
+      "task": "regression",
+      "training_n": 30601,
+      "validation_n": 13227
+    },
+    {
+      "fold": 4,
+      "no_terminal_rows": true,
+      "same_ids_targets_training": true,
+      "subset_core_parity_128_rows": true,
+      "task": "regression",
+      "training_n": 43505,
+      "validation_n": 12655
+    },
+    {
+      "fold": 0,
+      "no_terminal_rows": true,
+      "same_ids_targets_training": true,
+      "subset_core_parity_128_rows": true,
+      "task": "classification",
+      "training_n": 4921,
+      "validation_n": 7111
+    },
+    {
+      "fold": 1,
+      "no_terminal_rows": true,
+      "same_ids_targets_training": true,
+      "subset_core_parity_128_rows": true,
+      "task": "classification",
+      "training_n": 11741,
+      "validation_n": 8647
+    },
+    {
+      "fold": 2,
+      "no_terminal_rows": true,
+      "same_ids_targets_training": true,
+      "subset_core_parity_128_rows": true,
+      "task": "classification",
+      "training_n": 20053,
+      "validation_n": 12622
+    },
+    {
+      "fold": 3,
+      "no_terminal_rows": true,
+      "same_ids_targets_training": true,
+      "subset_core_parity_128_rows": true,
+      "task": "classification",
+      "training_n": 31000,
+      "validation_n": 13445
+    },
+    {
+      "fold": 4,
+      "no_terminal_rows": true,
+      "same_ids_targets_training": true,
+      "subset_core_parity_128_rows": true,
+      "task": "classification",
+      "training_n": 44104,
+      "validation_n": 12168
+    }
+  ],
+  "new_predictive_fits": 0,
+  "same_chronological_membership": true,
+  "status": "passed",
+  "terminal_scoring_calls": 0
+}

@@ -1,0 +1,23 @@
+{
+  "logical_cycle": "Milestone 2 refinement cycle 1",
+  "authoritative_applied_configuration": "src/models/configs/refinement_selected_v3.json",
+  "direct_final_outputs": "artifacts/metrics/refinement-selected-v3",
+  "report_contract": "artifacts/metrics/refinement-cycle1-evidence/report_evidence.json",
+  "accepted_archive_inventory": "artifacts/metrics/refinement-cycle1-evidence/manifest.json",
+  "full_reproduction_module": "experiments.refinement_cycle1.reproduce",
+  "phase_order": [
+    {"phase": "initial_reference", "fits": 255, "meaning": "Review-driven development diagnostics; original candidate selection"},
+    {"phase": "core", "fits": 8, "meaning": "Initial 11-input applied reference; superseded, not current final"},
+    {"phase": "core_terminal", "fits": 0, "meaning": "Initial previously inspected later-period diagnostic"},
+    {"phase": "screen", "fits": 50, "meaning": "Single feature-block tests, including weak/negative outcomes"},
+    {"phase": "combinations", "fits": 50, "meaning": "Incremental combination tests, including retrospective payment sensitivity"},
+    {"phase": "model_gate", "fits": 50, "reused_results": 15, "meaning": "Plain-family comparison and recorded recommendation; model_decision.json is this historical phase record"},
+    {"phase": "final", "fits": 19, "meaning": "Current applied 13-input tree and 14-input logistic; final frozen policy and diagnostic"}
+  ],
+  "original_predictive_fits": 432,
+  "reproduction_fits": "A full reproduction repeats those 432 fixed computations; it is not new model/feature exploration",
+  "historical_27_feature_random_baseline": "Existing notebooks 04-07 and stage3/stage4/stage5 artifacts, outside this cycle; retained in earlier commits",
+  "chronology": "Adaptive phases; initial terminal evidence preceded expansion. Later catalogues froze before their own fits. Neither terminal assessment is an untouched independent test.",
+  "failed_execution_issues": "execution_issues/; distinguished from negative predictive findings",
+  "human_review_required": "Method justification, availability assumptions, literature interpretation and report prose/layout"
+}

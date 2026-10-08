@@ -1,0 +1,7 @@
+{
+  "adopted": false,
+  "error": "Accepted chronological memberships differ",
+  "error_type": "ValueError",
+  "new_predictive_attempts": 0,
+  "status": "failed_preserved"
+}

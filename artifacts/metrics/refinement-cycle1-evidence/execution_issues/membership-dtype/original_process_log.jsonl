@@ -1,0 +1,2 @@
+{"event_id": "FS3-0001", "timestamp_utc": "2026-10-08T04:10:35.912432+00:00", "previous_event_id": null, "kind": "initialization", "action": "Freeze a new exploratory preterminal block screen; preserve accepted runs.", "new_predictive_attempts": 0, "terminal_evaluation_allowed": false}
+{"event_id": "FS3-0002", "timestamp_utc": "2026-10-08T04:10:42.190609+00:00", "previous_event_id": "FS3-0001", "kind": "failure", "action": "Stop and retain failed attempt; do not hide or overwrite.", "error": "Accepted chronological memberships differ", "attempts": 0}

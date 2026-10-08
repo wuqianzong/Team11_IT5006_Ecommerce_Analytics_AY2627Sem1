@@ -1,0 +1,32 @@
+{
+  "status": "verified_recommendation_pending_application",
+  "adopted_in_production": false,
+  "terminal_evaluation_used_for_selection": false,
+  "evidence_root": "artifacts/metrics/feature-selection-v3-model-gate",
+  "regression": {
+    "recommended_model_id": "r13_tree",
+    "feature_set": "core11_plus_distance",
+    "raw_input_count": 13,
+    "mean_validation_mae": 5.204082256100149,
+    "mean_dummy_mae": 6.134491828083808,
+    "candidate": {"id": "baseline_tree", "family": "tree", "baseline_model": "tree"},
+    "numerical_mae_winner": "r19_tree",
+    "numerical_winner_mae": 5.167875938234075,
+    "r19_vs_r13_gain_days": 0.036206317866074,
+    "r19_vs_r13_improving_windows": 3,
+    "decision_basis": "Prefer the smaller simple tree: larger feature set fails predeclared incremental practical/stability flag; forest fails same-family primary-metric improvement."
+  },
+  "classification": {
+    "recommended_model_id": "c14_regularized_logistic",
+    "feature_set": "core11_plus_seller",
+    "raw_input_count": 14,
+    "mean_validation_average_precision": 0.27690602996831337,
+    "mean_plain_logistic_average_precision": 0.24644160531192472,
+    "regularized_vs_plain_improving_windows": 5,
+    "candidate": {"id": "logistic_c001", "family": "logistic", "params": {"C": 0.01, "class_weight": null, "max_iter": 2000, "solver": "lbfgs", "tol": 0.0001}},
+    "decision_basis": "Regularisation beats plain logistic in all windows with better secondary metrics; forest improves its tree baseline but underperforms this logistic candidate."
+  },
+  "fit_accounting": {"completed_feature_study_fits": 100, "new_model_baseline_fits": 50, "reused_model_fold_results": 15, "verification_fits": 0},
+  "next_gate": "Apply frozen task-specific contracts, final pipelines and development evidence before any downstream report refresh; no automatic new selection from terminal evidence.",
+  "limitations": ["Previously explored dataset/development folds; not independent confirmation.", "Recorded order-placement snapshot proxies, not certified real-time availability.", "Fixed models and bounded shortlisted features, not global optimum.", "Chronological conditional populations and label-maturity exclusions remain."]
+}

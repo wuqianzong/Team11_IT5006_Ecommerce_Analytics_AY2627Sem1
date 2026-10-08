@@ -1,0 +1,191 @@
+{
+  "status": "read_only_feasibility_not_split_implementation",
+  "terminal_cutoff": "2018-05-25T00:00:00",
+  "calendar_boundaries": [
+    "2017-05-01T00:00:00",
+    "2017-07-17T19:12:00",
+    "2017-10-03T14:24:00",
+    "2017-12-20T09:36:00",
+    "2018-03-08T04:48:00",
+    "2018-05-25T00:00:00"
+  ],
+  "warmup_rule": "First calendar-month boundary with at least 5000 pre-terminal, nonterminal-customer order dates before it; then five equal-calendar-duration validation windows.",
+  "warmup_threshold_is_planning_assumption": true,
+  "preterminal_orders_purged_for_terminal_customer_identity": 447,
+  "folds": [
+    {
+      "fold": 0,
+      "task": "regression",
+      "training_cutoff": "2017-05-01T00:00:00",
+      "validation_end_exclusive": "2017-07-17T19:12:00",
+      "eligible_earlier_training": 5926,
+      "customer_purged": 46,
+      "label_maturity_excluded": 1088,
+      "usable_training": 4792,
+      "eligible_validation": 6905,
+      "label_time_invalid_or_not_observable_by_terminal_cutoff_validation": 0,
+      "usable_validation": 6905
+    },
+    {
+      "fold": 0,
+      "task": "classification",
+      "training_cutoff": "2017-05-01T00:00:00",
+      "validation_end_exclusive": "2017-07-17T19:12:00",
+      "eligible_earlier_training": 6253,
+      "customer_purged": 46,
+      "label_maturity_excluded": 1286,
+      "usable_training": 4921,
+      "eligible_validation": 7115,
+      "label_time_invalid_or_not_observable_by_terminal_cutoff_validation": 4,
+      "usable_validation": 7111,
+      "training_classes_present": [
+        0,
+        1
+      ],
+      "validation_classes_present": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 1,
+      "task": "regression",
+      "training_cutoff": "2017-07-17T19:12:00",
+      "validation_end_exclusive": "2017-10-03T14:24:00",
+      "eligible_earlier_training": 12831,
+      "customer_purged": 106,
+      "label_maturity_excluded": 1206,
+      "usable_training": 11519,
+      "eligible_validation": 8424,
+      "label_time_invalid_or_not_observable_by_terminal_cutoff_validation": 0,
+      "usable_validation": 8424
+    },
+    {
+      "fold": 1,
+      "task": "classification",
+      "training_cutoff": "2017-07-17T19:12:00",
+      "validation_end_exclusive": "2017-10-03T14:24:00",
+      "eligible_earlier_training": 13368,
+      "customer_purged": 107,
+      "label_maturity_excluded": 1520,
+      "usable_training": 11741,
+      "eligible_validation": 8647,
+      "label_time_invalid_or_not_observable_by_terminal_cutoff_validation": 0,
+      "usable_validation": 8647,
+      "training_classes_present": [
+        0,
+        1
+      ],
+      "validation_classes_present": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "task": "regression",
+      "training_cutoff": "2017-10-03T14:24:00",
+      "validation_end_exclusive": "2017-12-20T09:36:00",
+      "eligible_earlier_training": 21255,
+      "customer_purged": 192,
+      "label_maturity_excluded": 1362,
+      "usable_training": 19701,
+      "eligible_validation": 12329,
+      "label_time_invalid_or_not_observable_by_terminal_cutoff_validation": 0,
+      "usable_validation": 12329
+    },
+    {
+      "fold": 2,
+      "task": "classification",
+      "training_cutoff": "2017-10-03T14:24:00",
+      "validation_end_exclusive": "2017-12-20T09:36:00",
+      "eligible_earlier_training": 22015,
+      "customer_purged": 196,
+      "label_maturity_excluded": 1766,
+      "usable_training": 20053,
+      "eligible_validation": 12631,
+      "label_time_invalid_or_not_observable_by_terminal_cutoff_validation": 9,
+      "usable_validation": 12622,
+      "training_classes_present": [
+        0,
+        1
+      ],
+      "validation_classes_present": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 3,
+      "task": "regression",
+      "training_cutoff": "2017-12-20T09:36:00",
+      "validation_end_exclusive": "2018-03-08T04:48:00",
+      "eligible_earlier_training": 33584,
+      "customer_purged": 248,
+      "label_maturity_excluded": 2735,
+      "usable_training": 30601,
+      "eligible_validation": 13235,
+      "label_time_invalid_or_not_observable_by_terminal_cutoff_validation": 8,
+      "usable_validation": 13227
+    },
+    {
+      "fold": 3,
+      "task": "classification",
+      "training_cutoff": "2017-12-20T09:36:00",
+      "validation_end_exclusive": "2018-03-08T04:48:00",
+      "eligible_earlier_training": 34646,
+      "customer_purged": 252,
+      "label_maturity_excluded": 3394,
+      "usable_training": 31000,
+      "eligible_validation": 13473,
+      "label_time_invalid_or_not_observable_by_terminal_cutoff_validation": 28,
+      "usable_validation": 13445,
+      "training_classes_present": [
+        0,
+        1
+      ],
+      "validation_classes_present": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 4,
+      "task": "regression",
+      "training_cutoff": "2018-03-08T04:48:00",
+      "validation_end_exclusive": "2018-05-25T00:00:00",
+      "eligible_earlier_training": 46819,
+      "customer_purged": 316,
+      "label_maturity_excluded": 2998,
+      "usable_training": 43505,
+      "eligible_validation": 14275,
+      "label_time_invalid_or_not_observable_by_terminal_cutoff_validation": 1620,
+      "usable_validation": 12655
+    },
+    {
+      "fold": 4,
+      "task": "classification",
+      "training_cutoff": "2018-03-08T04:48:00",
+      "validation_end_exclusive": "2018-05-25T00:00:00",
+      "eligible_earlier_training": 48119,
+      "customer_purged": 324,
+      "label_maturity_excluded": 3691,
+      "usable_training": 44104,
+      "eligible_validation": 14519,
+      "label_time_invalid_or_not_observable_by_terminal_cutoff_validation": 2351,
+      "usable_validation": 12168,
+      "training_classes_present": [
+        0,
+        1
+      ],
+      "validation_classes_present": [
+        0,
+        1
+      ]
+    }
+  ],
+  "terminal_outcomes_not_analysed": true,
+  "holdout_outcomes_not_analysed": true,
+  "new_model_fits": 0,
+  "note": "Counts validate proposed training maturity and grouping feasibility; no metric/cutoff optimization. Timestamps are naive source local times, not assigned a guessed timezone."
+}

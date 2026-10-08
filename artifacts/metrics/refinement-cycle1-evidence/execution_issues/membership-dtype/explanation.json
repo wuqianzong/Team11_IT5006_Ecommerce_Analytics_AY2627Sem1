@@ -1,0 +1,11 @@
+{
+  "issue": "Initial screen preflight compared pandas storage dtypes as well as membership values",
+  "original_failure": "Accepted chronological memberships differ",
+  "predictive_fits_consumed": 0,
+  "resolution": "Canonicalise task, fold, role and order_id types and compare sorted membership values; retain duplicate/missing-key rejection",
+  "scientific_parameters_changed": false,
+  "input_data_changed": false,
+  "regression_test": "experiments.feature_selection_v3.test_runner.FeatureScreenTests.test_membership_values_not_storage_dtype",
+  "evidence": ["original_failure.json", "original_process_log.jsonl", "corrected_preflight.json"],
+  "classification": "Execution validation issue, not a failed predictive hypothesis"
+}

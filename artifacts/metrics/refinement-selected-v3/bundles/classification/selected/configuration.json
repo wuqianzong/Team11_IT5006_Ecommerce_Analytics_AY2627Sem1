@@ -1,0 +1,32 @@
+{
+  "baseline_config": {
+    "linear": {
+      "tol": 1e-06
+    },
+    "logistic": {
+      "C": "infinity",
+      "class_weight": null,
+      "max_iter": 2000,
+      "solver": "lbfgs",
+      "tol": 0.0001
+    },
+    "seed": 42,
+    "tree": {
+      "ccp_alpha": 0.0,
+      "max_depth": 5,
+      "min_samples_leaf": 100,
+      "min_samples_split": 2
+    }
+  },
+  "candidate": {
+    "family": "logistic",
+    "id": "logistic_c001",
+    "params": {
+      "C": 0.01,
+      "class_weight": null,
+      "max_iter": 2000,
+      "solver": "lbfgs",
+      "tol": 0.0001
+    }
+  }
+}

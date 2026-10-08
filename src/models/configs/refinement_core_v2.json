@@ -1,0 +1,20 @@
+{
+  "version": "refinement-core-v2",
+  "terminal_evaluation_allowed": false,
+  "terminal_cutoff": "2018-05-25T00:00:00",
+  "inner_calendar_boundaries": ["2017-05-01T00:00:00", "2017-07-17T19:12:00", "2017-10-03T14:24:00", "2017-12-20T09:36:00", "2018-03-08T04:48:00", "2018-05-25T00:00:00"],
+  "predictors": ["n_items", "has_items", "n_products", "total_price", "total_freight", "freight_ratio", "freight_ratio_missing", "customer_state", "purchase_month", "purchase_dayofweek", "purchase_hour"],
+  "baseline_config": {
+    "seed": 42,
+    "linear": {"tol": 0.000001},
+    "logistic": {"C": "infinity", "class_weight": null, "max_iter": 2000, "solver": "lbfgs", "tol": 0.0001},
+    "tree": {"ccp_alpha": 0.0, "max_depth": 5, "min_samples_leaf": 100, "min_samples_split": 2}
+  },
+  "selected": {
+    "regression": {"id": "forest_d12_l20_half", "family": "forest", "params": {"bootstrap": true, "max_depth": 12, "max_features": 0.5, "min_samples_leaf": 20, "n_estimators": 64}},
+    "classification": {"id": "logistic_c001", "family": "logistic", "params": {"C": 0.01, "class_weight": null, "max_iter": 2000, "solver": "lbfgs", "tol": 0.0001}}
+  },
+  "policy_cost_ratio": 5,
+  "policy_cost_is_measured": false,
+  "limitations": ["Prior dataset exposure; temporal test is not untouched.", "Reconstructed purchase transaction inputs, not event-time certification.", "Recorded reviewed/delivered conditional populations and maturity exclusions.", "Unknown complete follow-up horizon."]
+}

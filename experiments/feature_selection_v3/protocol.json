@@ -1,0 +1,30 @@
+{
+  "version": "feature-selection-v3-screen",
+  "status": "development_only_block_screen_no_adoption",
+  "terminal_evaluation_allowed": false,
+  "source_config": "src/models/configs/refinement_core_v2.json",
+  "baseline_evidence": "artifacts/generated/refinement-cycle1/initial_reference/results",
+  "baseline_membership": "artifacts/generated/refinement-cycle1/core/chronological_fold_membership.csv",
+  "stage_fit_ceiling": 50,
+  "total_feature_fit_ceiling": 100,
+  "followup_execution_allowed": false,
+  "practical_gain": {"regression": 0.05, "classification": 0.005},
+  "required_improving_folds": 4,
+  "subgroup_harm": {"regression": 0.5, "classification": 0.02},
+  "minimum_subgroup_n": 100,
+  "minimum_subgroup_class_n": 20,
+  "blocks": [
+    {"id": "category", "columns": ["primary_category", "n_categories", "category_missing_fraction"], "hypothesis": "Product type/assortment may add signal beyond item/product counts and price.", "availability_assumption": "Unversioned catalogue category represents the purchased listing; unverified snapshot proxy."},
+    {"id": "physical", "columns": ["total_weight_g", "total_volume_cm3", "weight_missing_fraction", "volume_missing_fraction"], "hypothesis": "Listed physical burden may add handling/experience information; not measured parcel packing.", "availability_assumption": "Unversioned catalogue dimensions/weight approximate order-time attributes; unverified."},
+    {"id": "seller", "columns": ["n_sellers", "primary_seller_state", "interstate_share"], "hypothesis": "Multiple origins and cross-state fulfilment may add signal beyond destination state.", "availability_assumption": "Recorded seller IDs/states approximate placed-order allocation; unverified."},
+    {"id": "distance", "columns": ["distance_km_max", "distance_missing_fraction"], "hypothesis": "Maximum seller-to-customer distance may add a static geographic proxy.", "availability_assumption": "Seller allocation and static ZIP/geolocation references are representative; not a road route or time-certified geography."},
+    {"id": "payment", "columns": ["primary_payment_type", "payment_installments_max", "n_payment_methods", "payment_missing"], "hypothesis": "Payment arrangement may add transaction context; lower prior priority based on rich-block evidence.", "availability_assumption": "Final payment aggregates approximate chosen arrangement; no event timestamps prove order-placement availability."}
+  ],
+  "limitations": [
+    "Earlier dataset, validation and terminal evidence already examined; exploratory reused-data study.",
+    "Fixed-model block tests do not establish globally optimal individual feature subsets.",
+    "Mean/fold practical flags are not statistical significance or deployment certification.",
+    "Availability assumptions must be independently justified before adoption.",
+    "No feature/model/threshold selected from terminal or original holdout results."
+  ]
+}

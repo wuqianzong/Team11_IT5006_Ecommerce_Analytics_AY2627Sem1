@@ -1,0 +1,528 @@
+{
+  "version": "refinement-cycle-1-chronological-v2",
+  "status": "frozen_design_not_implemented_or_executed",
+  "frozen_at_utc": "2026-10-07T16:34:33.662804+00:00",
+  "baseline_HEAD": "6179c17918fcb81e8a677367aef91fefa04878cb",
+  "authority": "Team decisions justified from supplied brief, teacher rubric and teaching materials; no teacher permission dependency.",
+  "prediction_point": "Placed order at order_purchase_timestamp; retrospective transaction reconstruction, not certified live checkout.",
+  "primary_features": [
+    "n_items",
+    "has_items",
+    "n_products",
+    "total_price",
+    "total_freight",
+    "freight_ratio",
+    "freight_ratio_missing",
+    "customer_state",
+    "purchase_month",
+    "purchase_dayofweek",
+    "purchase_hour"
+  ],
+  "calendar_features": [
+    "purchase_month",
+    "purchase_dayofweek",
+    "purchase_hour"
+  ],
+  "retrospective_no_payment_features": [
+    "n_items",
+    "has_items",
+    "n_products",
+    "n_sellers",
+    "n_categories",
+    "total_price",
+    "total_freight",
+    "freight_ratio",
+    "freight_ratio_missing",
+    "total_weight_g",
+    "total_volume_cm3",
+    "weight_missing_fraction",
+    "volume_missing_fraction",
+    "primary_category",
+    "category_missing_fraction",
+    "customer_state",
+    "primary_seller_state",
+    "distance_km_max",
+    "distance_missing_fraction",
+    "interstate_share",
+    "purchase_month",
+    "purchase_dayofweek",
+    "purchase_hour"
+  ],
+  "retrospective_full_features": [
+    "n_items",
+    "has_items",
+    "n_products",
+    "n_sellers",
+    "n_categories",
+    "total_price",
+    "total_freight",
+    "freight_ratio",
+    "freight_ratio_missing",
+    "total_weight_g",
+    "total_volume_cm3",
+    "weight_missing_fraction",
+    "volume_missing_fraction",
+    "primary_category",
+    "category_missing_fraction",
+    "customer_state",
+    "primary_seller_state",
+    "distance_km_max",
+    "distance_missing_fraction",
+    "interstate_share",
+    "purchase_month",
+    "purchase_dayofweek",
+    "purchase_hour",
+    "primary_payment_type",
+    "payment_installments_max",
+    "n_payment_methods",
+    "payment_missing"
+  ],
+  "seed": 42,
+  "baseline_config": {
+    "classification_diagnostic_threshold": 0.5,
+    "diagnostic_review_capacity": 0.1,
+    "holdout_evaluation": false,
+    "hypotheses": {
+      "label_audit": "The minimum-review policy may increase recorded negative prevalence relative to earliest valid answered review.",
+      "linear": "Checkout features may improve over an intercept-only reference through additive effects / additive log odds.",
+      "tree": "A depth-5 CART may capture thresholds and interactions missed by additive models; no improvement is assumed."
+    },
+    "linear": {
+      "tol": 1e-06
+    },
+    "logistic": {
+      "C": "infinity",
+      "class_weight": null,
+      "max_iter": 2000,
+      "solver": "lbfgs",
+      "tol": 0.0001
+    },
+    "models": [
+      "dummy",
+      "linear",
+      "tree"
+    ],
+    "primary_metrics": {
+      "classification": "average_precision",
+      "regression": "mae"
+    },
+    "seed": 42,
+    "selection": "none; Stage 4 required",
+    "subgroups": [
+      "customer_state",
+      "basket_size"
+    ],
+    "tasks": [
+      "regression",
+      "classification"
+    ],
+    "tree": {
+      "ccp_alpha": 0.0,
+      "max_depth": 5,
+      "min_samples_leaf": 100,
+      "min_samples_split": 2
+    },
+    "version": "stage3-baseline-v1"
+  },
+  "candidates": {
+    "regression": [
+      {
+        "id": "baseline_dummy",
+        "baseline_model": "dummy",
+        "family": "dummy"
+      },
+      {
+        "id": "baseline_linear",
+        "baseline_model": "linear",
+        "family": "linear"
+      },
+      {
+        "id": "baseline_tree",
+        "baseline_model": "tree",
+        "family": "tree"
+      },
+      {
+        "family": "ridge",
+        "id": "ridge_a1",
+        "params": {
+          "alpha": 1.0,
+          "solver": "lsqr",
+          "tol": 1e-06
+        }
+      },
+      {
+        "family": "ridge",
+        "id": "ridge_a100",
+        "params": {
+          "alpha": 100.0,
+          "solver": "lsqr",
+          "tol": 1e-06
+        }
+      },
+      {
+        "family": "tree",
+        "id": "tree_d3_l200",
+        "params": {
+          "ccp_alpha": 0.0,
+          "max_depth": 3,
+          "min_samples_leaf": 200
+        }
+      },
+      {
+        "family": "tree",
+        "id": "tree_d8_l50",
+        "params": {
+          "ccp_alpha": 0.0,
+          "max_depth": 8,
+          "min_samples_leaf": 50
+        }
+      },
+      {
+        "family": "tree",
+        "id": "tree_d12_l20",
+        "params": {
+          "ccp_alpha": 0.0,
+          "max_depth": 12,
+          "min_samples_leaf": 20
+        }
+      },
+      {
+        "family": "tree",
+        "id": "tree_d12_l20_pruned",
+        "params": {
+          "ccp_alpha": 0.05,
+          "max_depth": 12,
+          "min_samples_leaf": 20
+        }
+      },
+      {
+        "family": "forest",
+        "id": "forest_d8_l50_sqrt",
+        "params": {
+          "bootstrap": true,
+          "max_depth": 8,
+          "max_features": "sqrt",
+          "min_samples_leaf": 50,
+          "n_estimators": 64
+        }
+      },
+      {
+        "family": "forest",
+        "id": "forest_d12_l20_half",
+        "params": {
+          "bootstrap": true,
+          "max_depth": 12,
+          "max_features": 0.5,
+          "min_samples_leaf": 20,
+          "n_estimators": 64
+        }
+      },
+      {
+        "family": "forest",
+        "id": "forest_d16_l20_half",
+        "params": {
+          "bootstrap": true,
+          "max_depth": 16,
+          "max_features": 0.5,
+          "min_samples_leaf": 20,
+          "n_estimators": 64
+        }
+      }
+    ],
+    "classification": [
+      {
+        "id": "baseline_dummy",
+        "baseline_model": "dummy",
+        "family": "dummy"
+      },
+      {
+        "id": "baseline_linear",
+        "baseline_model": "linear",
+        "family": "linear"
+      },
+      {
+        "id": "baseline_tree",
+        "baseline_model": "tree",
+        "family": "tree"
+      },
+      {
+        "family": "logistic",
+        "id": "logistic_c001",
+        "params": {
+          "C": 0.01,
+          "class_weight": null,
+          "max_iter": 2000,
+          "solver": "lbfgs",
+          "tol": 0.0001
+        }
+      },
+      {
+        "family": "logistic",
+        "id": "logistic_c01",
+        "params": {
+          "C": 0.1,
+          "class_weight": null,
+          "max_iter": 2000,
+          "solver": "lbfgs",
+          "tol": 0.0001
+        }
+      },
+      {
+        "family": "logistic",
+        "id": "logistic_c1",
+        "params": {
+          "C": 1.0,
+          "class_weight": null,
+          "max_iter": 2000,
+          "solver": "lbfgs",
+          "tol": 0.0001
+        }
+      },
+      {
+        "family": "tree",
+        "id": "tree_d3_l200",
+        "params": {
+          "ccp_alpha": 0.0,
+          "max_depth": 3,
+          "min_samples_leaf": 200
+        }
+      },
+      {
+        "family": "tree",
+        "id": "tree_d8_l50",
+        "params": {
+          "ccp_alpha": 0.0,
+          "max_depth": 8,
+          "min_samples_leaf": 50
+        }
+      },
+      {
+        "family": "tree",
+        "id": "tree_d12_l20",
+        "params": {
+          "ccp_alpha": 0.0,
+          "max_depth": 12,
+          "min_samples_leaf": 20
+        }
+      },
+      {
+        "family": "tree",
+        "id": "tree_d12_l20_pruned",
+        "params": {
+          "ccp_alpha": 0.0005,
+          "max_depth": 12,
+          "min_samples_leaf": 20
+        }
+      },
+      {
+        "family": "forest",
+        "id": "forest_d8_l50_sqrt",
+        "params": {
+          "bootstrap": true,
+          "max_depth": 8,
+          "max_features": "sqrt",
+          "min_samples_leaf": 50,
+          "n_estimators": 64
+        }
+      },
+      {
+        "family": "forest",
+        "id": "forest_d12_l20_half",
+        "params": {
+          "bootstrap": true,
+          "max_depth": 12,
+          "max_features": 0.5,
+          "min_samples_leaf": 20,
+          "n_estimators": 64
+        }
+      },
+      {
+        "family": "forest",
+        "id": "forest_d16_l20_half",
+        "params": {
+          "bootstrap": true,
+          "max_depth": 16,
+          "max_features": 0.5,
+          "min_samples_leaf": 20,
+          "n_estimators": 64
+        }
+      }
+    ]
+  },
+  "candidate_grid_source": "artifacts/metrics/stage4-selection-v1/configuration.json",
+  "candidate_grid_sha256": "30aa6e23a86a803bf86c7fe1e3d97fa7a03c56cace5b87ceb5aab68758b807fd",
+  "outer_scope": "Original development only; original holdout excluded from refinement and terminal evaluation.",
+  "terminal_cutoff": "2018-05-25T00:00:00",
+  "terminal_end": "Available source end; no score-driven tail trim.",
+  "timestamp_timezone": "Source-naive; do not invent timezone.",
+  "inner_calendar_boundaries": [
+    "2017-05-01T00:00:00",
+    "2017-07-17T19:12:00",
+    "2017-10-03T14:24:00",
+    "2017-12-20T09:36:00",
+    "2018-03-08T04:48:00",
+    "2018-05-25T00:00:00"
+  ],
+  "terminal_customers_reserved_before_inner_selection": true,
+  "fold_training_validation_customers_disjoint": true,
+  "training_labels_strictly_observable_before_fold_cutoff": true,
+  "inner_validation_labels_strictly_observable_before_terminal_cutoff": true,
+  "classification_all_contributing_review_timestamps_required": true,
+  "targets_unchanged": {
+    "regression": "lead_days",
+    "classification": "is_detractor from recorded minimum valid score"
+  },
+  "primary_metrics": {
+    "regression": "MAE_days",
+    "classification": "average_precision"
+  },
+  "selection_tolerance": {
+    "MAE_days": 0.05,
+    "average_precision": 0.005,
+    "within_tolerance_folds_required": 4
+  },
+  "selection_rule": "Rank mean chronological fold primary score; prefer simplest practically comparable candidate within tolerance on mean and at least four paired folds. Remaining ties candidate ID.",
+  "family_complexity_order": [
+    "dummy",
+    "plain_linear_or_logistic",
+    "regularised_linear_or_logistic",
+    "single_tree",
+    "forest"
+  ],
+  "experiments": [
+    {
+      "id": "E01",
+      "name": "Core simple baselines and bounded grid",
+      "predictive_fits": 125,
+      "rubric": [
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "E02",
+      "name": "Core minus n_products",
+      "predictive_fits": 20,
+      "review_ids": [
+        "R33"
+      ],
+      "rubric": [
+        3,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "E03",
+      "name": "Calendar-only reference",
+      "predictive_fits": 20,
+      "review_ids": [
+        "R04"
+      ],
+      "rubric": [
+        1,
+        3,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "E04",
+      "name": "23-feature retrospective no-payment",
+      "predictive_fits": 20,
+      "review_ids": [
+        "R04",
+        "R34"
+      ],
+      "rubric": [
+        1,
+        3,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "E05",
+      "name": "27-feature retrospective full",
+      "predictive_fits": 20,
+      "review_ids": [
+        "R04",
+        "R34"
+      ],
+      "rubric": [
+        1,
+        3,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "E06",
+      "name": "Retrospective full minus three counts",
+      "predictive_fits": 20,
+      "review_ids": [
+        "R33"
+      ],
+      "rubric": [
+        3,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "E07",
+      "name": "Core fold-fitted customer_state grouping",
+      "predictive_fits": 20,
+      "review_ids": [
+        "R29"
+      ],
+      "rubric": [
+        2,
+        3,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "E08",
+      "name": "Retrospective forest complete-case training sensitivity",
+      "predictive_fits": 10,
+      "review_ids": [
+        "R28"
+      ],
+      "rubric": [
+        2,
+        3,
+        5,
+        6
+      ]
+    }
+  ],
+  "fit_budget": {
+    "selection_and_sensitivity": 255,
+    "terminal_finalist_and_references_max": 8,
+    "same_spec_retries_max": 7,
+    "total_attempt_ceiling": 270
+  },
+  "diagnostic_only": [
+    "D03 actual-fold VIF/rank/constants",
+    "D07 extreme development source records"
+  ],
+  "classification_policy": {
+    "diagnostic_threshold": 0.5,
+    "final_threshold_source": "Approved finalist preterminal OOF only, after feature/model freeze",
+    "illustrative_miss_to_false_alert_cost": 5,
+    "cost_is_measured": false
+  },
+  "terminal_gate": "Evidence review and approved implementation/config/policy freeze before terminal scores; one declared finalist/reference evaluation.",
+  "limitations": [
+    "Previously inspected dataset: not an untouched independent temporal test.",
+    "Snapshot features are assumed, not event-time certified.",
+    "Reviewed/delivered cohort and label-maturity exclusions restrict population.",
+    "No guaranteed complete follow-up horizon."
+  ],
+  "next_step": "Build and validate local temporal manifests and diagnostic harness, then run under this frozen design after stage review.",
+  "new_model_fits": 0
+}

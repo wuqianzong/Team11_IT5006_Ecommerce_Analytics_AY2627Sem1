@@ -1,0 +1,39 @@
+{
+  "version": "feature-selection-v3-model-gate",
+  "status": "development_only_fixed_baseline_comparison_no_adoption",
+  "terminal_evaluation_allowed": false,
+  "source_config": "src/models/configs/refinement_core_v2.json",
+  "baseline_evidence": "artifacts/generated/refinement-cycle1/initial_reference/results",
+  "baseline_membership": "artifacts/generated/refinement-cycle1/core/chronological_fold_membership.csv",
+  "screen_evidence": "artifacts/metrics/feature-selection-v3-combinations",
+  "stage_fit_ceiling": 50,
+  "new_model_fit_ceiling": 50,
+  "feature_selection_attempts_already_consumed": 100,
+  "reused_model_fold_results": 15,
+  "followup_execution_allowed": false,
+  "practical_gain": {"regression": 0.05, "classification": 0.005},
+  "required_improving_folds": 4,
+  "subgroup_harm": {"regression": 0.5, "classification": 0.02},
+  "minimum_subgroup_n": 100,
+  "minimum_subgroup_class_n": 20,
+  "feature_sets": {"r13": ["distance"], "r19": ["seller", "distance", "category"], "c14": ["seller"]},
+  "blocks": [
+    {"id": "r13_dummy", "tasks": ["regression"], "feature_set": "r13", "candidate": {"id": "baseline_dummy", "family": "dummy", "baseline_model": "dummy"}},
+    {"id": "r13_ols", "tasks": ["regression"], "feature_set": "r13", "candidate": {"id": "baseline_linear", "family": "linear", "baseline_model": "linear"}},
+    {"id": "r13_tree", "tasks": ["regression"], "feature_set": "r13", "candidate": {"id": "baseline_tree", "family": "tree", "baseline_model": "tree"}},
+    {"id": "r19_dummy", "tasks": ["regression"], "feature_set": "r19", "candidate": {"id": "baseline_dummy", "family": "dummy", "baseline_model": "dummy"}},
+    {"id": "r19_ols", "tasks": ["regression"], "feature_set": "r19", "candidate": {"id": "baseline_linear", "family": "linear", "baseline_model": "linear"}},
+    {"id": "r19_tree", "tasks": ["regression"], "feature_set": "r19", "candidate": {"id": "baseline_tree", "family": "tree", "baseline_model": "tree"}},
+    {"id": "c14_dummy", "tasks": ["classification"], "feature_set": "c14", "candidate": {"id": "baseline_dummy", "family": "dummy", "baseline_model": "dummy"}},
+    {"id": "c14_plain_logistic", "tasks": ["classification"], "feature_set": "c14", "candidate": {"id": "baseline_linear", "family": "logistic", "baseline_model": "linear"}},
+    {"id": "c14_tree", "tasks": ["classification"], "feature_set": "c14", "candidate": {"id": "baseline_tree", "family": "tree", "baseline_model": "tree"}},
+    {"id": "c14_forest", "tasks": ["classification"], "feature_set": "c14", "candidate": {"id": "forest_d12_l20_half", "family": "forest", "params": {"bootstrap": true, "max_depth": 12, "max_features": 0.5, "min_samples_leaf": 20, "n_estimators": 64}}}
+  ],
+  "reuse": [
+    {"id": "r13_forest", "task": "regression", "feature_set": "r13", "source": "artifacts/metrics/feature-selection-v3-screen", "block": "distance"},
+    {"id": "r19_forest", "task": "regression", "feature_set": "r19", "source": "artifacts/metrics/feature-selection-v3-combinations", "block": "seller_distance_category"},
+    {"id": "c14_regularized_logistic", "task": "classification", "feature_set": "c14", "source": "artifacts/metrics/feature-selection-v3-screen", "block": "seller"}
+  ],
+  "selection_rule": "Compare matched MAE/AP and window stability, training gaps, secondary metrics and supported subgroup errors. Require same-family baseline improvement for an advanced model. Prefer the simpler model for negligible gains. If no useful baseline gain, retain that negative result. No automatic adoption or threshold tuning.",
+  "limitations": ["Same previously explored chronological development windows; exploratory comparison, not independent confirmation.", "Recorded snapshot proxy availability assumptions unchanged.", "50 additional model-baseline fits are separately budgeted; no new feature candidates or hyperparameter search."]
+}

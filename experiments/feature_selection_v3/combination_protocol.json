@@ -1,0 +1,30 @@
+{
+  "version": "feature-selection-v3-combinations",
+  "status": "development_only_combinations_no_adoption",
+  "terminal_evaluation_allowed": false,
+  "source_config": "src/models/configs/refinement_core_v2.json",
+  "baseline_evidence": "artifacts/generated/refinement-cycle1/initial_reference/results",
+  "baseline_membership": "artifacts/generated/refinement-cycle1/core/chronological_fold_membership.csv",
+  "screen_evidence": "artifacts/metrics/feature-selection-v3-screen",
+  "stage_fit_ceiling": 50,
+  "total_feature_fit_ceiling": 100,
+  "followup_execution_allowed": false,
+  "practical_gain": {"regression": 0.05, "classification": 0.005},
+  "required_improving_folds": 4,
+  "subgroup_harm": {"regression": 0.5, "classification": 0.02},
+  "minimum_subgroup_n": 100,
+  "minimum_subgroup_class_n": 20,
+  "blocks": [
+    {"id": "seller_distance", "tasks": ["regression"], "add_blocks": ["seller", "distance"]},
+    {"id": "seller_distance_physical", "tasks": ["regression"], "add_blocks": ["seller", "distance", "physical"]},
+    {"id": "seller_distance_category", "tasks": ["regression"], "add_blocks": ["seller", "distance", "category"]},
+    {"id": "all_nonpayment", "tasks": ["regression", "classification"], "add_blocks": ["seller", "distance", "physical", "category"]},
+    {"id": "seller_distance_payment", "tasks": ["regression"], "add_blocks": ["seller", "distance", "payment"], "retrospective_sensitivity_only": true},
+    {"id": "full27", "tasks": ["regression"], "add_blocks": ["seller", "distance", "physical", "category", "payment"], "retrospective_sensitivity_only": true},
+    {"id": "seller_category", "tasks": ["classification"], "add_blocks": ["seller", "category"]},
+    {"id": "seller_distance", "tasks": ["classification"], "add_blocks": ["seller", "distance"]},
+    {"id": "seller_category_distance", "tasks": ["classification"], "add_blocks": ["seller", "category", "distance"]}
+  ],
+  "selection_rule": "Review matched primary metrics, at least four improving windows and subgroup warnings. Compare additions to nearest smaller tested subset, not just core. Prefer simpler near-equivalent candidates; no automatic adoption. Payment is sensitivity only.",
+  "limitations": ["Exploratory reused validation and previously inspected dataset, not an untouched test.", "Fixed model settings only; not global optimality.", "All added blocks retain original screen availability assumptions; predictive gains do not certify order-time availability.", "No further feature fits in this study after its 100-attempt total ceiling."]
+}

@@ -1,0 +1,15 @@
+{
+  "limitations": [
+    "Single refinement cycle expanded adaptively in phases; each catalogue frozen before its own fits.",
+    "Previously inspected dataset/development/terminal observations, not untouched confirmation.",
+    "Reconstructed placement snapshots: seller allocation and static geography not event-time certified.",
+    "Conditional recorded delivered/reviewed populations and label maturity exclusions; unknown complete follow-up horizon.",
+    "Point estimates and hypothetical alert costs do not establish deployment readiness or intervention value."
+  ],
+  "model_version": "refinement-selected-v3",
+  "role": "selected",
+  "task": "regression",
+  "terminal_cutoff": "2018-05-25T00:00:00",
+  "training_ids_sha256": "774eb954b7f8165e825619f57c1245cc7e8d3d4624741a20489a1a3fadf0286e",
+  "training_n": 59466
+}

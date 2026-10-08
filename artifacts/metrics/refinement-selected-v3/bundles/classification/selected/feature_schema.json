@@ -1,0 +1,23 @@
+{
+  "input_units": "original units; see unchanged base feature schema",
+  "missing_columns": "reject",
+  "null_cells": "allow",
+  "predictor_allowlist": [
+    "n_items",
+    "has_items",
+    "n_products",
+    "total_price",
+    "total_freight",
+    "freight_ratio",
+    "freight_ratio_missing",
+    "customer_state",
+    "purchase_month",
+    "purchase_dayofweek",
+    "purchase_hour",
+    "n_sellers",
+    "primary_seller_state",
+    "interstate_share"
+  ],
+  "task": "classification",
+  "version": "refinement-selected-v3"
+}

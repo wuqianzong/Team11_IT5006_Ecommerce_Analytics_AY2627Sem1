@@ -1,0 +1,2459 @@
+{
+  "claims": [
+    {
+      "claim_id": "C001",
+      "field": "n",
+      "report_section": "6",
+      "selector": {
+        "role": "dummy",
+        "task": "regression"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 15615.0
+    },
+    {
+      "claim_id": "C002",
+      "field": "mae",
+      "report_section": "6",
+      "selector": {
+        "role": "dummy",
+        "task": "regression"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 4.8877909187806114
+    },
+    {
+      "claim_id": "C003",
+      "field": "rmse",
+      "report_section": "6",
+      "selector": {
+        "role": "dummy",
+        "task": "regression"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 6.303318903707673
+    },
+    {
+      "claim_id": "C004",
+      "field": "r2",
+      "report_section": "6",
+      "selector": {
+        "role": "dummy",
+        "task": "regression"
+      },
+      "source": "terminal/metrics.csv",
+      "value": -0.1461017963732509
+    },
+    {
+      "claim_id": "C005",
+      "field": "negative_predictions",
+      "report_section": "6",
+      "selector": {
+        "role": "dummy",
+        "task": "regression"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 0.0
+    },
+    {
+      "claim_id": "C006",
+      "field": "n",
+      "report_section": "6",
+      "selector": {
+        "role": "forest",
+        "task": "regression"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 15615.0
+    },
+    {
+      "claim_id": "C007",
+      "field": "mae",
+      "report_section": "6",
+      "selector": {
+        "role": "forest",
+        "task": "regression"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 4.7270898970537205
+    },
+    {
+      "claim_id": "C008",
+      "field": "rmse",
+      "report_section": "6",
+      "selector": {
+        "role": "forest",
+        "task": "regression"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 6.039448857724727
+    },
+    {
+      "claim_id": "C009",
+      "field": "r2",
+      "report_section": "6",
+      "selector": {
+        "role": "forest",
+        "task": "regression"
+      },
+      "source": "terminal/metrics.csv",
+      "value": -0.0521538516464847
+    },
+    {
+      "claim_id": "C010",
+      "field": "negative_predictions",
+      "report_section": "6",
+      "selector": {
+        "role": "forest",
+        "task": "regression"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 0.0
+    },
+    {
+      "claim_id": "C011",
+      "field": "n",
+      "report_section": "6",
+      "selector": {
+        "role": "linear",
+        "task": "regression"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 15615.0
+    },
+    {
+      "claim_id": "C012",
+      "field": "mae",
+      "report_section": "6",
+      "selector": {
+        "role": "linear",
+        "task": "regression"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 4.4227887128341745
+    },
+    {
+      "claim_id": "C013",
+      "field": "rmse",
+      "report_section": "6",
+      "selector": {
+        "role": "linear",
+        "task": "regression"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 5.878737595137577
+    },
+    {
+      "claim_id": "C014",
+      "field": "r2",
+      "report_section": "6",
+      "selector": {
+        "role": "linear",
+        "task": "regression"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 0.0030972729011308
+    },
+    {
+      "claim_id": "C015",
+      "field": "negative_predictions",
+      "report_section": "6",
+      "selector": {
+        "role": "linear",
+        "task": "regression"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 3.0
+    },
+    {
+      "claim_id": "C016",
+      "field": "n",
+      "report_section": "6",
+      "selector": {
+        "role": "selected",
+        "task": "regression"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 15615.0
+    },
+    {
+      "claim_id": "C017",
+      "field": "mae",
+      "report_section": "6",
+      "selector": {
+        "role": "selected",
+        "task": "regression"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 5.540144358905471
+    },
+    {
+      "claim_id": "C018",
+      "field": "rmse",
+      "report_section": "6",
+      "selector": {
+        "role": "selected",
+        "task": "regression"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 6.866804901579697
+    },
+    {
+      "claim_id": "C019",
+      "field": "r2",
+      "report_section": "6",
+      "selector": {
+        "role": "selected",
+        "task": "regression"
+      },
+      "source": "terminal/metrics.csv",
+      "value": -0.3601726888136172
+    },
+    {
+      "claim_id": "C020",
+      "field": "negative_predictions",
+      "report_section": "6",
+      "selector": {
+        "role": "selected",
+        "task": "regression"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 0.0
+    },
+    {
+      "claim_id": "C021",
+      "field": "n",
+      "report_section": "7",
+      "selector": {
+        "role": "dummy",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 15807.0
+    },
+    {
+      "claim_id": "C022",
+      "field": "positives",
+      "report_section": "7",
+      "selector": {
+        "role": "dummy",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 1737.0
+    },
+    {
+      "claim_id": "C023",
+      "field": "prevalence",
+      "report_section": "7",
+      "selector": {
+        "role": "dummy",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 0.1098880242930347
+    },
+    {
+      "claim_id": "C024",
+      "field": "average_precision",
+      "report_section": "7",
+      "selector": {
+        "role": "dummy",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 0.1098880242930347
+    },
+    {
+      "claim_id": "C025",
+      "field": "roc_auc",
+      "report_section": "7",
+      "selector": {
+        "role": "dummy",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 0.5
+    },
+    {
+      "claim_id": "C026",
+      "field": "brier",
+      "report_section": "7",
+      "selector": {
+        "role": "dummy",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 0.0998637111817369
+    },
+    {
+      "claim_id": "C027",
+      "field": "n",
+      "report_section": "7",
+      "selector": {
+        "role": "forest",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 15807.0
+    },
+    {
+      "claim_id": "C028",
+      "field": "positives",
+      "report_section": "7",
+      "selector": {
+        "role": "forest",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 1737.0
+    },
+    {
+      "claim_id": "C029",
+      "field": "prevalence",
+      "report_section": "7",
+      "selector": {
+        "role": "forest",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 0.1098880242930347
+    },
+    {
+      "claim_id": "C030",
+      "field": "average_precision",
+      "report_section": "7",
+      "selector": {
+        "role": "forest",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 0.2024018250513788
+    },
+    {
+      "claim_id": "C031",
+      "field": "roc_auc",
+      "report_section": "7",
+      "selector": {
+        "role": "forest",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 0.5912524105355286
+    },
+    {
+      "claim_id": "C032",
+      "field": "brier",
+      "report_section": "7",
+      "selector": {
+        "role": "forest",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 0.0952210676886802
+    },
+    {
+      "claim_id": "C033",
+      "field": "n",
+      "report_section": "7",
+      "selector": {
+        "role": "linear",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 15807.0
+    },
+    {
+      "claim_id": "C034",
+      "field": "positives",
+      "report_section": "7",
+      "selector": {
+        "role": "linear",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 1737.0
+    },
+    {
+      "claim_id": "C035",
+      "field": "prevalence",
+      "report_section": "7",
+      "selector": {
+        "role": "linear",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 0.1098880242930347
+    },
+    {
+      "claim_id": "C036",
+      "field": "average_precision",
+      "report_section": "7",
+      "selector": {
+        "role": "linear",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 0.194884642653551
+    },
+    {
+      "claim_id": "C037",
+      "field": "roc_auc",
+      "report_section": "7",
+      "selector": {
+        "role": "linear",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 0.5838126580683227
+    },
+    {
+      "claim_id": "C038",
+      "field": "brier",
+      "report_section": "7",
+      "selector": {
+        "role": "linear",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 0.0951080434369026
+    },
+    {
+      "claim_id": "C039",
+      "field": "n",
+      "report_section": "7",
+      "selector": {
+        "role": "selected",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 15807.0
+    },
+    {
+      "claim_id": "C040",
+      "field": "positives",
+      "report_section": "7",
+      "selector": {
+        "role": "selected",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 1737.0
+    },
+    {
+      "claim_id": "C041",
+      "field": "prevalence",
+      "report_section": "7",
+      "selector": {
+        "role": "selected",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 0.1098880242930347
+    },
+    {
+      "claim_id": "C042",
+      "field": "average_precision",
+      "report_section": "7",
+      "selector": {
+        "role": "selected",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 0.1954467808150443
+    },
+    {
+      "claim_id": "C043",
+      "field": "roc_auc",
+      "report_section": "7",
+      "selector": {
+        "role": "selected",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 0.5831967312053925
+    },
+    {
+      "claim_id": "C044",
+      "field": "brier",
+      "report_section": "7",
+      "selector": {
+        "role": "selected",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 0.0951206704416607
+    },
+    {
+      "claim_id": "C045",
+      "field": "n",
+      "report_section": "7",
+      "selector": {
+        "role": "tree",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 15807.0
+    },
+    {
+      "claim_id": "C046",
+      "field": "positives",
+      "report_section": "7",
+      "selector": {
+        "role": "tree",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 1737.0
+    },
+    {
+      "claim_id": "C047",
+      "field": "prevalence",
+      "report_section": "7",
+      "selector": {
+        "role": "tree",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 0.1098880242930347
+    },
+    {
+      "claim_id": "C048",
+      "field": "average_precision",
+      "report_section": "7",
+      "selector": {
+        "role": "tree",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 0.1859335936387009
+    },
+    {
+      "claim_id": "C049",
+      "field": "roc_auc",
+      "report_section": "7",
+      "selector": {
+        "role": "tree",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 0.5799943861578694
+    },
+    {
+      "claim_id": "C050",
+      "field": "brier",
+      "report_section": "7",
+      "selector": {
+        "role": "tree",
+        "task": "classification"
+      },
+      "source": "terminal/metrics.csv",
+      "value": 0.0956374127510733
+    },
+    {
+      "claim_id": "C051",
+      "field": "mae_mean",
+      "report_section": "6",
+      "selector": {
+        "partition": "training_resubstitution",
+        "task": "regression"
+      },
+      "source": "development_fold_metrics.csv",
+      "value": 4.617440151294386
+    },
+    {
+      "claim_id": "C052",
+      "field": "mae_sd",
+      "report_section": "6",
+      "selector": {
+        "partition": "training_resubstitution",
+        "task": "regression"
+      },
+      "source": "development_fold_metrics.csv",
+      "value": 0.24275164135205318
+    },
+    {
+      "claim_id": "C053",
+      "field": "mae_mean",
+      "report_section": "6",
+      "selector": {
+        "partition": "validation",
+        "task": "regression"
+      },
+      "source": "development_fold_metrics.csv",
+      "value": 5.204082256100149
+    },
+    {
+      "claim_id": "C054",
+      "field": "mae_sd",
+      "report_section": "6",
+      "selector": {
+        "partition": "validation",
+        "task": "regression"
+      },
+      "source": "development_fold_metrics.csv",
+      "value": 0.8897425239710375
+    },
+    {
+      "claim_id": "C055",
+      "field": "average_precision_mean",
+      "report_section": "6",
+      "selector": {
+        "partition": "training_resubstitution",
+        "task": "classification"
+      },
+      "source": "development_fold_metrics.csv",
+      "value": 0.29189809148521095
+    },
+    {
+      "claim_id": "C056",
+      "field": "average_precision_sd",
+      "report_section": "6",
+      "selector": {
+        "partition": "training_resubstitution",
+        "task": "classification"
+      },
+      "source": "development_fold_metrics.csv",
+      "value": 0.02588909868206911
+    },
+    {
+      "claim_id": "C057",
+      "field": "average_precision_mean",
+      "report_section": "6",
+      "selector": {
+        "partition": "validation",
+        "task": "classification"
+      },
+      "source": "development_fold_metrics.csv",
+      "value": 0.2769060299683133
+    },
+    {
+      "claim_id": "C058",
+      "field": "average_precision_sd",
+      "report_section": "6",
+      "selector": {
+        "partition": "validation",
+        "task": "classification"
+      },
+      "source": "development_fold_metrics.csv",
+      "value": 0.049384956620231506
+    },
+    {
+      "claim_id": "C059",
+      "field": "threshold",
+      "report_section": "7",
+      "selector": {},
+      "source": "frozen_decision_policy.json",
+      "value": 0.15087684563771
+    },
+    {
+      "claim_id": "C060",
+      "field": "cost_ratio_fn_to_fp",
+      "report_section": "7",
+      "selector": {},
+      "source": "frozen_decision_policy.json",
+      "value": 5.0
+    },
+    {
+      "claim_id": "C061",
+      "field": "alerts",
+      "report_section": "7",
+      "selector": {
+        "policy": "frozen_policy"
+      },
+      "source": "terminal/classification_policy_comparison.json",
+      "value": 2703.0
+    },
+    {
+      "claim_id": "C062",
+      "field": "precision_1",
+      "report_section": "7",
+      "selector": {
+        "policy": "frozen_policy"
+      },
+      "source": "terminal/classification_policy_comparison.json",
+      "value": 0.1761006289308176
+    },
+    {
+      "claim_id": "C063",
+      "field": "recall_1",
+      "report_section": "7",
+      "selector": {
+        "policy": "frozen_policy"
+      },
+      "source": "terminal/classification_policy_comparison.json",
+      "value": 0.2740356937248129
+    },
+    {
+      "claim_id": "C064",
+      "field": "f1_1",
+      "report_section": "7",
+      "selector": {
+        "policy": "frozen_policy"
+      },
+      "source": "terminal/classification_policy_comparison.json",
+      "value": 0.21441441441441442
+    },
+    {
+      "claim_id": "C065",
+      "field": "tp",
+      "report_section": "7",
+      "selector": {
+        "policy": "frozen_policy"
+      },
+      "source": "terminal/classification_policy_comparison.json",
+      "value": 476.0
+    },
+    {
+      "claim_id": "C066",
+      "field": "fp",
+      "report_section": "7",
+      "selector": {
+        "policy": "frozen_policy"
+      },
+      "source": "terminal/classification_policy_comparison.json",
+      "value": 2227.0
+    },
+    {
+      "claim_id": "C067",
+      "field": "tn",
+      "report_section": "7",
+      "selector": {
+        "policy": "frozen_policy"
+      },
+      "source": "terminal/classification_policy_comparison.json",
+      "value": 11843.0
+    },
+    {
+      "claim_id": "C068",
+      "field": "fn",
+      "report_section": "7",
+      "selector": {
+        "policy": "frozen_policy"
+      },
+      "source": "terminal/classification_policy_comparison.json",
+      "value": 1261.0
+    },
+    {
+      "claim_id": "C069",
+      "field": "illustrative_cost_5_to_1",
+      "report_section": "7",
+      "selector": {
+        "policy": "frozen_policy"
+      },
+      "source": "terminal/classification_policy_comparison.json",
+      "value": 8532.0
+    },
+    {
+      "claim_id": "C070",
+      "field": "alert_fraction",
+      "report_section": "7",
+      "selector": {
+        "policy": "frozen_policy"
+      },
+      "source": "terminal/classification_policy_comparison.json",
+      "value": 0.17100018978933385
+    },
+    {
+      "claim_id": "C071",
+      "field": "fpr",
+      "report_section": "7",
+      "selector": {
+        "policy": "frozen_policy"
+      },
+      "source": "terminal/classification_policy_comparison.json",
+      "value": 0.15828002842928215
+    },
+    {
+      "claim_id": "C072",
+      "field": "fnr",
+      "report_section": "7",
+      "selector": {
+        "policy": "frozen_policy"
+      },
+      "source": "terminal/classification_policy_comparison.json",
+      "value": 0.7259643062751872
+    },
+    {
+      "claim_id": "C073",
+      "field": "alerts",
+      "report_section": "7",
+      "selector": {
+        "policy": "fixed_05_diagnostic"
+      },
+      "source": "terminal/classification_policy_comparison.json",
+      "value": 124.0
+    },
+    {
+      "claim_id": "C074",
+      "field": "precision_1",
+      "report_section": "7",
+      "selector": {
+        "policy": "fixed_05_diagnostic"
+      },
+      "source": "terminal/classification_policy_comparison.json",
+      "value": 0.5483870967741935
+    },
+    {
+      "claim_id": "C075",
+      "field": "recall_1",
+      "report_section": "7",
+      "selector": {
+        "policy": "fixed_05_diagnostic"
+      },
+      "source": "terminal/classification_policy_comparison.json",
+      "value": 0.03914795624640184
+    },
+    {
+      "claim_id": "C076",
+      "field": "f1_1",
+      "report_section": "7",
+      "selector": {
+        "policy": "fixed_05_diagnostic"
+      },
+      "source": "terminal/classification_policy_comparison.json",
+      "value": 0.07307898979043526
+    },
+    {
+      "claim_id": "C077",
+      "field": "tp",
+      "report_section": "7",
+      "selector": {
+        "policy": "fixed_05_diagnostic"
+      },
+      "source": "terminal/classification_policy_comparison.json",
+      "value": 68.0
+    },
+    {
+      "claim_id": "C078",
+      "field": "fp",
+      "report_section": "7",
+      "selector": {
+        "policy": "fixed_05_diagnostic"
+      },
+      "source": "terminal/classification_policy_comparison.json",
+      "value": 56.0
+    },
+    {
+      "claim_id": "C079",
+      "field": "tn",
+      "report_section": "7",
+      "selector": {
+        "policy": "fixed_05_diagnostic"
+      },
+      "source": "terminal/classification_policy_comparison.json",
+      "value": 14014.0
+    },
+    {
+      "claim_id": "C080",
+      "field": "fn",
+      "report_section": "7",
+      "selector": {
+        "policy": "fixed_05_diagnostic"
+      },
+      "source": "terminal/classification_policy_comparison.json",
+      "value": 1669.0
+    },
+    {
+      "claim_id": "C081",
+      "field": "illustrative_cost_5_to_1",
+      "report_section": "7",
+      "selector": {
+        "policy": "fixed_05_diagnostic"
+      },
+      "source": "terminal/classification_policy_comparison.json",
+      "value": 8401.0
+    },
+    {
+      "claim_id": "C082",
+      "field": "alert_fraction",
+      "report_section": "7",
+      "selector": {
+        "policy": "fixed_05_diagnostic"
+      },
+      "source": "terminal/classification_policy_comparison.json",
+      "value": 0.00784462579869678
+    },
+    {
+      "claim_id": "C083",
+      "field": "fpr",
+      "report_section": "7",
+      "selector": {
+        "policy": "fixed_05_diagnostic"
+      },
+      "source": "terminal/classification_policy_comparison.json",
+      "value": 0.003980099502487562
+    },
+    {
+      "claim_id": "C084",
+      "field": "fnr",
+      "report_section": "7",
+      "selector": {
+        "policy": "fixed_05_diagnostic"
+      },
+      "source": "terminal/classification_policy_comparison.json",
+      "value": 0.9608520437535981
+    },
+    {
+      "claim_id": "C085",
+      "field": "no_alert_cost",
+      "report_section": "7",
+      "selector": {},
+      "source": "terminal/classification_policy_comparison.json",
+      "value": 8685.0
+    },
+    {
+      "claim_id": "C086",
+      "field": "n",
+      "report_section": "Appendix B",
+      "selector": {
+        "dimension": "customer_state",
+        "subgroup": "RJ",
+        "task": "regression"
+      },
+      "source": "terminal/subgroups.csv",
+      "value": 1790.0
+    },
+    {
+      "claim_id": "C087",
+      "field": "mae",
+      "report_section": "Appendix B",
+      "selector": {
+        "dimension": "customer_state",
+        "subgroup": "RJ",
+        "task": "regression"
+      },
+      "source": "terminal/subgroups.csv",
+      "value": 7.534337694681478
+    },
+    {
+      "claim_id": "C088",
+      "field": "n",
+      "report_section": "Appendix B",
+      "selector": {
+        "dimension": "customer_state",
+        "subgroup": "SP",
+        "task": "regression"
+      },
+      "source": "terminal/subgroups.csv",
+      "value": 7217.0
+    },
+    {
+      "claim_id": "C089",
+      "field": "mae",
+      "report_section": "Appendix B",
+      "selector": {
+        "dimension": "customer_state",
+        "subgroup": "SP",
+        "task": "regression"
+      },
+      "source": "terminal/subgroups.csv",
+      "value": 3.744742088075886
+    },
+    {
+      "claim_id": "C090",
+      "field": "n",
+      "report_section": "Appendix B",
+      "selector": {
+        "dimension": "observed_duration_days",
+        "subgroup": "0-7",
+        "task": "regression"
+      },
+      "source": "terminal/subgroups.csv",
+      "value": 6789.0
+    },
+    {
+      "claim_id": "C091",
+      "field": "mae",
+      "report_section": "Appendix B",
+      "selector": {
+        "dimension": "observed_duration_days",
+        "subgroup": "0-7",
+        "task": "regression"
+      },
+      "source": "terminal/subgroups.csv",
+      "value": 5.599944721486445
+    },
+    {
+      "claim_id": "C092",
+      "field": "n",
+      "report_section": "Appendix B",
+      "selector": {
+        "dimension": "observed_duration_days",
+        "subgroup": "7-14",
+        "task": "regression"
+      },
+      "source": "terminal/subgroups.csv",
+      "value": 6771.0
+    },
+    {
+      "claim_id": "C093",
+      "field": "mae",
+      "report_section": "Appendix B",
+      "selector": {
+        "dimension": "observed_duration_days",
+        "subgroup": "7-14",
+        "task": "regression"
+      },
+      "source": "terminal/subgroups.csv",
+      "value": 5.284749927669932
+    },
+    {
+      "claim_id": "C094",
+      "field": "n",
+      "report_section": "Appendix B",
+      "selector": {
+        "dimension": "observed_duration_days",
+        "subgroup": "14-30",
+        "task": "regression"
+      },
+      "source": "terminal/subgroups.csv",
+      "value": 1902.0
+    },
+    {
+      "claim_id": "C095",
+      "field": "mae",
+      "report_section": "Appendix B",
+      "selector": {
+        "dimension": "observed_duration_days",
+        "subgroup": "14-30",
+        "task": "regression"
+      },
+      "source": "terminal/subgroups.csv",
+      "value": 4.798231825318501
+    },
+    {
+      "claim_id": "C096",
+      "field": "n",
+      "report_section": "Appendix B",
+      "selector": {
+        "dimension": "observed_duration_days",
+        "subgroup": "30+",
+        "task": "regression"
+      },
+      "source": "terminal/subgroups.csv",
+      "value": 153.0
+    },
+    {
+      "claim_id": "C097",
+      "field": "mae",
+      "report_section": "Appendix B",
+      "selector": {
+        "dimension": "observed_duration_days",
+        "subgroup": "30+",
+        "task": "regression"
+      },
+      "source": "terminal/subgroups.csv",
+      "value": 23.412096458356636
+    },
+    {
+      "claim_id": "C098",
+      "field": "coefficient",
+      "report_section": "Appendix C",
+      "selector": {
+        "transformed_feature": "numeric__n_items"
+      },
+      "source": "development_diagnostics/logistic_coefficients.csv",
+      "value": 0.1564737114144398
+    },
+    {
+      "claim_id": "C099",
+      "field": "odds_ratio",
+      "report_section": "Appendix C",
+      "selector": {
+        "transformed_feature": "numeric__n_items"
+      },
+      "source": "development_diagnostics/logistic_coefficients.csv",
+      "value": 1.1693800205682432
+    },
+    {
+      "claim_id": "C100",
+      "field": "coefficient",
+      "report_section": "Appendix C",
+      "selector": {
+        "transformed_feature": "numeric__n_products"
+      },
+      "source": "development_diagnostics/logistic_coefficients.csv",
+      "value": 0.0429834790797584
+    },
+    {
+      "claim_id": "C101",
+      "field": "odds_ratio",
+      "report_section": "Appendix C",
+      "selector": {
+        "transformed_feature": "numeric__n_products"
+      },
+      "source": "development_diagnostics/logistic_coefficients.csv",
+      "value": 1.0439206481783805
+    },
+    {
+      "claim_id": "C102",
+      "field": "coefficient",
+      "report_section": "Appendix C",
+      "selector": {
+        "transformed_feature": "numeric__n_sellers"
+      },
+      "source": "development_diagnostics/logistic_coefficients.csv",
+      "value": 0.1674877011996086
+    },
+    {
+      "claim_id": "C103",
+      "field": "odds_ratio",
+      "report_section": "Appendix C",
+      "selector": {
+        "transformed_feature": "numeric__n_sellers"
+      },
+      "source": "development_diagnostics/logistic_coefficients.csv",
+      "value": 1.182330748845625
+    },
+    {
+      "claim_id": "C104",
+      "field": "coefficient",
+      "report_section": "Appendix C",
+      "selector": {
+        "transformed_feature": "numeric__total_freight"
+      },
+      "source": "development_diagnostics/logistic_coefficients.csv",
+      "value": 0.0787150450660018
+    },
+    {
+      "claim_id": "C105",
+      "field": "odds_ratio",
+      "report_section": "Appendix C",
+      "selector": {
+        "transformed_feature": "numeric__total_freight"
+      },
+      "source": "development_diagnostics/logistic_coefficients.csv",
+      "value": 1.081895986542098
+    },
+    {
+      "claim_id": "C106",
+      "field": "mean",
+      "report_section": "Appendix C",
+      "selector": {
+        "feature": "customer_state",
+        "task": "classification"
+      },
+      "source": "development_diagnostics/permutation_summary.csv",
+      "value": 0.0166017338268566
+    },
+    {
+      "claim_id": "C107",
+      "field": "mean",
+      "report_section": "Appendix C",
+      "selector": {
+        "feature": "freight_ratio",
+        "task": "classification"
+      },
+      "source": "development_diagnostics/permutation_summary.csv",
+      "value": 0.0056533512914647
+    },
+    {
+      "claim_id": "C108",
+      "field": "mean",
+      "report_section": "Appendix C",
+      "selector": {
+        "feature": "freight_ratio_missing",
+        "task": "classification"
+      },
+      "source": "development_diagnostics/permutation_summary.csv",
+      "value": 0.0039339948967302
+    },
+    {
+      "claim_id": "C109",
+      "field": "mean",
+      "report_section": "Appendix C",
+      "selector": {
+        "feature": "has_items",
+        "task": "classification"
+      },
+      "source": "development_diagnostics/permutation_summary.csv",
+      "value": 0.0042405635729779
+    },
+    {
+      "claim_id": "C110",
+      "field": "mean",
+      "report_section": "Appendix C",
+      "selector": {
+        "feature": "interstate_share",
+        "task": "classification"
+      },
+      "source": "development_diagnostics/permutation_summary.csv",
+      "value": 0.0056388318481006
+    },
+    {
+      "claim_id": "C111",
+      "field": "mean",
+      "report_section": "Appendix C",
+      "selector": {
+        "feature": "n_items",
+        "task": "classification"
+      },
+      "source": "development_diagnostics/permutation_summary.csv",
+      "value": 0.025357904191231
+    },
+    {
+      "claim_id": "C112",
+      "field": "mean",
+      "report_section": "Appendix C",
+      "selector": {
+        "feature": "n_products",
+        "task": "classification"
+      },
+      "source": "development_diagnostics/permutation_summary.csv",
+      "value": 2.6814290894294768e-05
+    },
+    {
+      "claim_id": "C113",
+      "field": "mean",
+      "report_section": "Appendix C",
+      "selector": {
+        "feature": "n_sellers",
+        "task": "classification"
+      },
+      "source": "development_diagnostics/permutation_summary.csv",
+      "value": 0.0183956314625481
+    },
+    {
+      "claim_id": "C114",
+      "field": "mean",
+      "report_section": "Appendix C",
+      "selector": {
+        "feature": "primary_seller_state",
+        "task": "classification"
+      },
+      "source": "development_diagnostics/permutation_summary.csv",
+      "value": 0.0052830347224627
+    },
+    {
+      "claim_id": "C115",
+      "field": "mean",
+      "report_section": "Appendix C",
+      "selector": {
+        "feature": "purchase_dayofweek",
+        "task": "classification"
+      },
+      "source": "development_diagnostics/permutation_summary.csv",
+      "value": -0.0004780549235271
+    },
+    {
+      "claim_id": "C116",
+      "field": "mean",
+      "report_section": "Appendix C",
+      "selector": {
+        "feature": "purchase_hour",
+        "task": "classification"
+      },
+      "source": "development_diagnostics/permutation_summary.csv",
+      "value": 0.0008752146078357
+    },
+    {
+      "claim_id": "C117",
+      "field": "mean",
+      "report_section": "Appendix C",
+      "selector": {
+        "feature": "purchase_month",
+        "task": "classification"
+      },
+      "source": "development_diagnostics/permutation_summary.csv",
+      "value": -0.0027552780902857
+    },
+    {
+      "claim_id": "C118",
+      "field": "mean",
+      "report_section": "Appendix C",
+      "selector": {
+        "feature": "total_freight",
+        "task": "classification"
+      },
+      "source": "development_diagnostics/permutation_summary.csv",
+      "value": 0.0119051205274145
+    },
+    {
+      "claim_id": "C119",
+      "field": "mean",
+      "report_section": "Appendix C",
+      "selector": {
+        "feature": "total_price",
+        "task": "classification"
+      },
+      "source": "development_diagnostics/permutation_summary.csv",
+      "value": 0.0064825865437899
+    },
+    {
+      "claim_id": "C120",
+      "field": "mean",
+      "report_section": "Appendix C",
+      "selector": {
+        "feature": "customer_state",
+        "task": "regression"
+      },
+      "source": "development_diagnostics/permutation_summary.csv",
+      "value": 0.1992148473678998
+    },
+    {
+      "claim_id": "C121",
+      "field": "mean",
+      "report_section": "Appendix C",
+      "selector": {
+        "feature": "distance_km_max",
+        "task": "regression"
+      },
+      "source": "development_diagnostics/permutation_summary.csv",
+      "value": 0.9545147266898126
+    },
+    {
+      "claim_id": "C122",
+      "field": "mean",
+      "report_section": "Appendix C",
+      "selector": {
+        "feature": "distance_missing_fraction",
+        "task": "regression"
+      },
+      "source": "development_diagnostics/permutation_summary.csv",
+      "value": 0.0
+    },
+    {
+      "claim_id": "C123",
+      "field": "mean",
+      "report_section": "Appendix C",
+      "selector": {
+        "feature": "freight_ratio",
+        "task": "regression"
+      },
+      "source": "development_diagnostics/permutation_summary.csv",
+      "value": 0.0010005091250011
+    },
+    {
+      "claim_id": "C124",
+      "field": "mean",
+      "report_section": "Appendix C",
+      "selector": {
+        "feature": "freight_ratio_missing",
+        "task": "regression"
+      },
+      "source": "development_diagnostics/permutation_summary.csv",
+      "value": 0.0
+    },
+    {
+      "claim_id": "C125",
+      "field": "mean",
+      "report_section": "Appendix C",
+      "selector": {
+        "feature": "has_items",
+        "task": "regression"
+      },
+      "source": "development_diagnostics/permutation_summary.csv",
+      "value": 0.0
+    },
+    {
+      "claim_id": "C126",
+      "field": "mean",
+      "report_section": "Appendix C",
+      "selector": {
+        "feature": "n_items",
+        "task": "regression"
+      },
+      "source": "development_diagnostics/permutation_summary.csv",
+      "value": 0.0
+    },
+    {
+      "claim_id": "C127",
+      "field": "mean",
+      "report_section": "Appendix C",
+      "selector": {
+        "feature": "n_products",
+        "task": "regression"
+      },
+      "source": "development_diagnostics/permutation_summary.csv",
+      "value": 0.0
+    },
+    {
+      "claim_id": "C128",
+      "field": "mean",
+      "report_section": "Appendix C",
+      "selector": {
+        "feature": "purchase_dayofweek",
+        "task": "regression"
+      },
+      "source": "development_diagnostics/permutation_summary.csv",
+      "value": 0.0004442856956634
+    },
+    {
+      "claim_id": "C129",
+      "field": "mean",
+      "report_section": "Appendix C",
+      "selector": {
+        "feature": "purchase_hour",
+        "task": "regression"
+      },
+      "source": "development_diagnostics/permutation_summary.csv",
+      "value": 0.0
+    },
+    {
+      "claim_id": "C130",
+      "field": "mean",
+      "report_section": "Appendix C",
+      "selector": {
+        "feature": "purchase_month",
+        "task": "regression"
+      },
+      "source": "development_diagnostics/permutation_summary.csv",
+      "value": 0.0046369268145311
+    },
+    {
+      "claim_id": "C131",
+      "field": "mean",
+      "report_section": "Appendix C",
+      "selector": {
+        "feature": "total_freight",
+        "task": "regression"
+      },
+      "source": "development_diagnostics/permutation_summary.csv",
+      "value": 0.1744220184365951
+    },
+    {
+      "claim_id": "C132",
+      "field": "mean",
+      "report_section": "Appendix C",
+      "selector": {
+        "feature": "total_price",
+        "task": "regression"
+      },
+      "source": "development_diagnostics/permutation_summary.csv",
+      "value": 0.0006967162939976
+    },
+    {
+      "claim_id": "C133",
+      "field": "difference_selected_minus_reference",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "dummy",
+        "task": "regression"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 0.6523534401248604
+    },
+    {
+      "claim_id": "C134",
+      "field": "lower_95",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "dummy",
+        "task": "regression"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 0.5795755890264865
+    },
+    {
+      "claim_id": "C135",
+      "field": "upper_95",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "dummy",
+        "task": "regression"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 0.7159631289236621
+    },
+    {
+      "claim_id": "C136",
+      "field": "replicates_requested",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "dummy",
+        "task": "regression"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 1000.0
+    },
+    {
+      "claim_id": "C137",
+      "field": "replicates_valid",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "dummy",
+        "task": "regression"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 1000.0
+    },
+    {
+      "claim_id": "C138",
+      "field": "seed",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "dummy",
+        "task": "regression"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 42.0
+    },
+    {
+      "claim_id": "C139",
+      "field": "difference_selected_minus_reference",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "forest",
+        "task": "regression"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 0.813054461851752
+    },
+    {
+      "claim_id": "C140",
+      "field": "lower_95",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "forest",
+        "task": "regression"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 0.7883786096283834
+    },
+    {
+      "claim_id": "C141",
+      "field": "upper_95",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "forest",
+        "task": "regression"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 0.8361272443267551
+    },
+    {
+      "claim_id": "C142",
+      "field": "replicates_requested",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "forest",
+        "task": "regression"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 1000.0
+    },
+    {
+      "claim_id": "C143",
+      "field": "replicates_valid",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "forest",
+        "task": "regression"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 1000.0
+    },
+    {
+      "claim_id": "C144",
+      "field": "seed",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "forest",
+        "task": "regression"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 42.0
+    },
+    {
+      "claim_id": "C145",
+      "field": "difference_selected_minus_reference",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "linear",
+        "task": "regression"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 1.1173556460712977
+    },
+    {
+      "claim_id": "C146",
+      "field": "lower_95",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "linear",
+        "task": "regression"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 1.0814885577619555
+    },
+    {
+      "claim_id": "C147",
+      "field": "upper_95",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "linear",
+        "task": "regression"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 1.1518459497708935
+    },
+    {
+      "claim_id": "C148",
+      "field": "replicates_requested",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "linear",
+        "task": "regression"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 1000.0
+    },
+    {
+      "claim_id": "C149",
+      "field": "replicates_valid",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "linear",
+        "task": "regression"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 1000.0
+    },
+    {
+      "claim_id": "C150",
+      "field": "seed",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "linear",
+        "task": "regression"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 42.0
+    },
+    {
+      "claim_id": "C151",
+      "field": "difference_selected_minus_reference",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "dummy",
+        "task": "classification"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 0.0855587565220095
+    },
+    {
+      "claim_id": "C152",
+      "field": "lower_95",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "dummy",
+        "task": "classification"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 0.0708497692112925
+    },
+    {
+      "claim_id": "C153",
+      "field": "upper_95",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "dummy",
+        "task": "classification"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 0.1020031941523853
+    },
+    {
+      "claim_id": "C154",
+      "field": "replicates_requested",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "dummy",
+        "task": "classification"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 1000.0
+    },
+    {
+      "claim_id": "C155",
+      "field": "replicates_valid",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "dummy",
+        "task": "classification"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 1000.0
+    },
+    {
+      "claim_id": "C156",
+      "field": "seed",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "dummy",
+        "task": "classification"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 42.0
+    },
+    {
+      "claim_id": "C157",
+      "field": "difference_selected_minus_reference",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "forest",
+        "task": "classification"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": -0.0069550442363345
+    },
+    {
+      "claim_id": "C158",
+      "field": "lower_95",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "forest",
+        "task": "classification"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": -0.0157463809966871
+    },
+    {
+      "claim_id": "C159",
+      "field": "upper_95",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "forest",
+        "task": "classification"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 0.0012133716558876
+    },
+    {
+      "claim_id": "C160",
+      "field": "replicates_requested",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "forest",
+        "task": "classification"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 1000.0
+    },
+    {
+      "claim_id": "C161",
+      "field": "replicates_valid",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "forest",
+        "task": "classification"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 1000.0
+    },
+    {
+      "claim_id": "C162",
+      "field": "seed",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "forest",
+        "task": "classification"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 42.0
+    },
+    {
+      "claim_id": "C163",
+      "field": "difference_selected_minus_reference",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "linear",
+        "task": "classification"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 0.0005621381614933
+    },
+    {
+      "claim_id": "C164",
+      "field": "lower_95",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "linear",
+        "task": "classification"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": -0.0013470922060985
+    },
+    {
+      "claim_id": "C165",
+      "field": "upper_95",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "linear",
+        "task": "classification"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 0.0023713508499428
+    },
+    {
+      "claim_id": "C166",
+      "field": "replicates_requested",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "linear",
+        "task": "classification"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 1000.0
+    },
+    {
+      "claim_id": "C167",
+      "field": "replicates_valid",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "linear",
+        "task": "classification"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 1000.0
+    },
+    {
+      "claim_id": "C168",
+      "field": "seed",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "linear",
+        "task": "classification"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 42.0
+    },
+    {
+      "claim_id": "C169",
+      "field": "difference_selected_minus_reference",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "tree",
+        "task": "classification"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 0.0095131871763433
+    },
+    {
+      "claim_id": "C170",
+      "field": "lower_95",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "tree",
+        "task": "classification"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 0.0009984353335086
+    },
+    {
+      "claim_id": "C171",
+      "field": "upper_95",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "tree",
+        "task": "classification"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 0.0182210605709248
+    },
+    {
+      "claim_id": "C172",
+      "field": "replicates_requested",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "tree",
+        "task": "classification"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 1000.0
+    },
+    {
+      "claim_id": "C173",
+      "field": "replicates_valid",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "tree",
+        "task": "classification"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 1000.0
+    },
+    {
+      "claim_id": "C174",
+      "field": "seed",
+      "report_section": "6-7",
+      "selector": {
+        "reference": "tree",
+        "task": "classification"
+      },
+      "source": "terminal/paired_intervals.csv",
+      "value": 42.0
+    },
+    {
+      "claim_id": "C175",
+      "field": "support",
+      "report_section": "Appendix B",
+      "selector": {
+        "class": 0
+      },
+      "source": "terminal/classification_per_class.csv",
+      "value": 14070.0
+    },
+    {
+      "claim_id": "C176",
+      "field": "predicted_n",
+      "report_section": "Appendix B",
+      "selector": {
+        "class": 0
+      },
+      "source": "terminal/classification_per_class.csv",
+      "value": 13104.0
+    },
+    {
+      "claim_id": "C177",
+      "field": "precision",
+      "report_section": "Appendix B",
+      "selector": {
+        "class": 0
+      },
+      "source": "terminal/classification_per_class.csv",
+      "value": 0.9037698412698412
+    },
+    {
+      "claim_id": "C178",
+      "field": "recall",
+      "report_section": "Appendix B",
+      "selector": {
+        "class": 0
+      },
+      "source": "terminal/classification_per_class.csv",
+      "value": 0.8417199715707179
+    },
+    {
+      "claim_id": "C179",
+      "field": "f1",
+      "report_section": "Appendix B",
+      "selector": {
+        "class": 0
+      },
+      "source": "terminal/classification_per_class.csv",
+      "value": 0.8716420107455656
+    },
+    {
+      "claim_id": "C180",
+      "field": "support",
+      "report_section": "Appendix B",
+      "selector": {
+        "class": 1
+      },
+      "source": "terminal/classification_per_class.csv",
+      "value": 1737.0
+    },
+    {
+      "claim_id": "C181",
+      "field": "predicted_n",
+      "report_section": "Appendix B",
+      "selector": {
+        "class": 1
+      },
+      "source": "terminal/classification_per_class.csv",
+      "value": 2703.0
+    },
+    {
+      "claim_id": "C182",
+      "field": "precision",
+      "report_section": "Appendix B",
+      "selector": {
+        "class": 1
+      },
+      "source": "terminal/classification_per_class.csv",
+      "value": 0.1761006289308176
+    },
+    {
+      "claim_id": "C183",
+      "field": "recall",
+      "report_section": "Appendix B",
+      "selector": {
+        "class": 1
+      },
+      "source": "terminal/classification_per_class.csv",
+      "value": 0.2740356937248129
+    },
+    {
+      "claim_id": "C184",
+      "field": "f1",
+      "report_section": "Appendix B",
+      "selector": {
+        "class": 1
+      },
+      "source": "terminal/classification_per_class.csv",
+      "value": 0.2144144144144144
+    },
+    {
+      "claim_id": "C185",
+      "field": "impurity_importance",
+      "report_section": "Appendix C",
+      "selector": {
+        "transformed_feature": "numeric__total_price"
+      },
+      "source": "development_diagnostics/tree_importance.csv",
+      "value": 0.0001975410454066
+    },
+    {
+      "claim_id": "C186",
+      "field": "impurity_importance",
+      "report_section": "Appendix C",
+      "selector": {
+        "transformed_feature": "numeric__total_freight"
+      },
+      "source": "development_diagnostics/tree_importance.csv",
+      "value": 0.0788439909797707
+    },
+    {
+      "claim_id": "C187",
+      "field": "impurity_importance",
+      "report_section": "Appendix C",
+      "selector": {
+        "transformed_feature": "numeric__freight_ratio"
+      },
+      "source": "development_diagnostics/tree_importance.csv",
+      "value": 0.0006068397691208
+    },
+    {
+      "claim_id": "C188",
+      "field": "impurity_importance",
+      "report_section": "Appendix C",
+      "selector": {
+        "transformed_feature": "numeric__distance_km_max"
+      },
+      "source": "development_diagnostics/tree_importance.csv",
+      "value": 0.2758052035294525
+    },
+    {
+      "claim_id": "C189",
+      "field": "impurity_importance",
+      "report_section": "Appendix C",
+      "selector": {
+        "transformed_feature": "categorical__customer_state_MG"
+      },
+      "source": "development_diagnostics/tree_importance.csv",
+      "value": 0.0311079605762038
+    },
+    {
+      "claim_id": "C190",
+      "field": "impurity_importance",
+      "report_section": "Appendix C",
+      "selector": {
+        "transformed_feature": "categorical__customer_state_SP"
+      },
+      "source": "development_diagnostics/tree_importance.csv",
+      "value": 0.5249489448618647
+    },
+    {
+      "claim_id": "C191",
+      "field": "impurity_importance",
+      "report_section": "Appendix C",
+      "selector": {
+        "transformed_feature": "categorical__purchase_month_11"
+      },
+      "source": "development_diagnostics/tree_importance.csv",
+      "value": 0.0005129105756928
+    },
+    {
+      "claim_id": "C192",
+      "field": "impurity_importance",
+      "report_section": "Appendix C",
+      "selector": {
+        "transformed_feature": "categorical__purchase_month_2"
+      },
+      "source": "development_diagnostics/tree_importance.csv",
+      "value": 0.0060425776395498
+    },
+    {
+      "claim_id": "C193",
+      "field": "impurity_importance",
+      "report_section": "Appendix C",
+      "selector": {
+        "transformed_feature": "categorical__purchase_month_3"
+      },
+      "source": "development_diagnostics/tree_importance.csv",
+      "value": 0.0113031711125894
+    },
+    {
+      "claim_id": "C194",
+      "field": "impurity_importance",
+      "report_section": "Appendix C",
+      "selector": {
+        "transformed_feature": "categorical__purchase_month_5"
+      },
+      "source": "development_diagnostics/tree_importance.csv",
+      "value": 0.0672551839177227
+    },
+    {
+      "claim_id": "C195",
+      "field": "impurity_importance",
+      "report_section": "Appendix C",
+      "selector": {
+        "transformed_feature": "categorical__purchase_month_8"
+      },
+      "source": "development_diagnostics/tree_importance.csv",
+      "value": 0.0025209741167757
+    },
+    {
+      "claim_id": "C196",
+      "field": "impurity_importance",
+      "report_section": "Appendix C",
+      "selector": {
+        "transformed_feature": "categorical__purchase_hour_15"
+      },
+      "source": "development_diagnostics/tree_importance.csv",
+      "value": 0.0008547018758502
+    },
+    {
+      "claim_id": "C197",
+      "field": "n",
+      "report_section": "Appendix D",
+      "selector": {
+        "fold": 0,
+        "role": "training",
+        "task": "classification"
+      },
+      "source": "chronological_fold_membership.csv",
+      "value": 4921.0
+    },
+    {
+      "claim_id": "C198",
+      "field": "n",
+      "report_section": "Appendix D",
+      "selector": {
+        "fold": 0,
+        "role": "validation",
+        "task": "classification"
+      },
+      "source": "chronological_fold_membership.csv",
+      "value": 7111.0
+    },
+    {
+      "claim_id": "C199",
+      "field": "n",
+      "report_section": "Appendix D",
+      "selector": {
+        "fold": 1,
+        "role": "training",
+        "task": "classification"
+      },
+      "source": "chronological_fold_membership.csv",
+      "value": 11741.0
+    },
+    {
+      "claim_id": "C200",
+      "field": "n",
+      "report_section": "Appendix D",
+      "selector": {
+        "fold": 1,
+        "role": "validation",
+        "task": "classification"
+      },
+      "source": "chronological_fold_membership.csv",
+      "value": 8647.0
+    },
+    {
+      "claim_id": "C201",
+      "field": "n",
+      "report_section": "Appendix D",
+      "selector": {
+        "fold": 2,
+        "role": "training",
+        "task": "classification"
+      },
+      "source": "chronological_fold_membership.csv",
+      "value": 20053.0
+    },
+    {
+      "claim_id": "C202",
+      "field": "n",
+      "report_section": "Appendix D",
+      "selector": {
+        "fold": 2,
+        "role": "validation",
+        "task": "classification"
+      },
+      "source": "chronological_fold_membership.csv",
+      "value": 12622.0
+    },
+    {
+      "claim_id": "C203",
+      "field": "n",
+      "report_section": "Appendix D",
+      "selector": {
+        "fold": 3,
+        "role": "training",
+        "task": "classification"
+      },
+      "source": "chronological_fold_membership.csv",
+      "value": 31000.0
+    },
+    {
+      "claim_id": "C204",
+      "field": "n",
+      "report_section": "Appendix D",
+      "selector": {
+        "fold": 3,
+        "role": "validation",
+        "task": "classification"
+      },
+      "source": "chronological_fold_membership.csv",
+      "value": 13445.0
+    },
+    {
+      "claim_id": "C205",
+      "field": "n",
+      "report_section": "Appendix D",
+      "selector": {
+        "fold": 4,
+        "role": "training",
+        "task": "classification"
+      },
+      "source": "chronological_fold_membership.csv",
+      "value": 44104.0
+    },
+    {
+      "claim_id": "C206",
+      "field": "n",
+      "report_section": "Appendix D",
+      "selector": {
+        "fold": 4,
+        "role": "validation",
+        "task": "classification"
+      },
+      "source": "chronological_fold_membership.csv",
+      "value": 12168.0
+    },
+    {
+      "claim_id": "C207",
+      "field": "n",
+      "report_section": "Appendix D",
+      "selector": {
+        "fold": 0,
+        "role": "training",
+        "task": "regression"
+      },
+      "source": "chronological_fold_membership.csv",
+      "value": 4792.0
+    },
+    {
+      "claim_id": "C208",
+      "field": "n",
+      "report_section": "Appendix D",
+      "selector": {
+        "fold": 0,
+        "role": "validation",
+        "task": "regression"
+      },
+      "source": "chronological_fold_membership.csv",
+      "value": 6905.0
+    },
+    {
+      "claim_id": "C209",
+      "field": "n",
+      "report_section": "Appendix D",
+      "selector": {
+        "fold": 1,
+        "role": "training",
+        "task": "regression"
+      },
+      "source": "chronological_fold_membership.csv",
+      "value": 11519.0
+    },
+    {
+      "claim_id": "C210",
+      "field": "n",
+      "report_section": "Appendix D",
+      "selector": {
+        "fold": 1,
+        "role": "validation",
+        "task": "regression"
+      },
+      "source": "chronological_fold_membership.csv",
+      "value": 8424.0
+    },
+    {
+      "claim_id": "C211",
+      "field": "n",
+      "report_section": "Appendix D",
+      "selector": {
+        "fold": 2,
+        "role": "training",
+        "task": "regression"
+      },
+      "source": "chronological_fold_membership.csv",
+      "value": 19701.0
+    },
+    {
+      "claim_id": "C212",
+      "field": "n",
+      "report_section": "Appendix D",
+      "selector": {
+        "fold": 2,
+        "role": "validation",
+        "task": "regression"
+      },
+      "source": "chronological_fold_membership.csv",
+      "value": 12329.0
+    },
+    {
+      "claim_id": "C213",
+      "field": "n",
+      "report_section": "Appendix D",
+      "selector": {
+        "fold": 3,
+        "role": "training",
+        "task": "regression"
+      },
+      "source": "chronological_fold_membership.csv",
+      "value": 30601.0
+    },
+    {
+      "claim_id": "C214",
+      "field": "n",
+      "report_section": "Appendix D",
+      "selector": {
+        "fold": 3,
+        "role": "validation",
+        "task": "regression"
+      },
+      "source": "chronological_fold_membership.csv",
+      "value": 13227.0
+    },
+    {
+      "claim_id": "C215",
+      "field": "n",
+      "report_section": "Appendix D",
+      "selector": {
+        "fold": 4,
+        "role": "training",
+        "task": "regression"
+      },
+      "source": "chronological_fold_membership.csv",
+      "value": 43505.0
+    },
+    {
+      "claim_id": "C216",
+      "field": "n",
+      "report_section": "Appendix D",
+      "selector": {
+        "fold": 4,
+        "role": "validation",
+        "task": "regression"
+      },
+      "source": "chronological_fold_membership.csv",
+      "value": 12655.0
+    },
+    {
+      "claim_id": "C217",
+      "field": "training_n",
+      "report_section": "6-7",
+      "selector": {
+        "target_from": "data/business/ml/orders_ml_features.csv"
+      },
+      "source": "regression_training_ids.csv",
+      "value": 59466.0
+    },
+    {
+      "claim_id": "C218",
+      "field": "training_target_mean",
+      "report_section": "6-7",
+      "selector": {
+        "target_from": "data/business/ml/orders_ml_features.csv"
+      },
+      "source": "regression_training_ids.csv",
+      "value": 13.2679334057292
+    },
+    {
+      "claim_id": "C219",
+      "field": "training_n",
+      "report_section": "6-7",
+      "selector": {
+        "target_from": "data/business/ml/orders_ml_features.csv"
+      },
+      "source": "classification_training_ids.csv",
+      "value": 60241.0
+    },
+    {
+      "claim_id": "C220",
+      "field": "training_target_mean",
+      "report_section": "6-7",
+      "selector": {
+        "target_from": "data/business/ml/orders_ml_features.csv"
+      },
+      "source": "classification_training_ids.csv",
+      "value": 0.15517670689397586
+    },
+    {
+      "claim_id": "C221",
+      "field": "reserved_unique_orders",
+      "report_section": "Appendix D",
+      "selector": {},
+      "source": "terminal/eligibility.csv",
+      "value": 15939.0
+    },
+    {
+      "claim_id": "C222",
+      "field": "n",
+      "report_section": "Appendix D",
+      "selector": {
+        "reason": "contributing_label_timestamp_missing_or_inconsistent",
+        "task": "classification"
+      },
+      "source": "terminal/eligibility.csv",
+      "value": 50.0
+    },
+    {
+      "claim_id": "C223",
+      "field": "n",
+      "report_section": "Appendix D",
+      "selector": {
+        "reason": "existing_task_ineligible",
+        "task": "classification"
+      },
+      "source": "terminal/eligibility.csv",
+      "value": 82.0
+    },
+    {
+      "claim_id": "C224",
+      "field": "n",
+      "report_section": "Appendix D",
+      "selector": {
+        "reason": "included",
+        "task": "classification"
+      },
+      "source": "terminal/eligibility.csv",
+      "value": 15807.0
+    },
+    {
+      "claim_id": "C225",
+      "field": "n",
+      "report_section": "Appendix D",
+      "selector": {
+        "reason": "existing_task_ineligible",
+        "task": "regression"
+      },
+      "source": "terminal/eligibility.csv",
+      "value": 324.0
+    },
+    {
+      "claim_id": "C226",
+      "field": "n",
+      "report_section": "Appendix D",
+      "selector": {
+        "reason": "included",
+        "task": "regression"
+      },
+      "source": "terminal/eligibility.csv",
+      "value": 15615.0
+    }
+  ],
+  "external_report_sha256": "17c3f68b99d19e7c1ddb0740fb0081b18c7d5a36d835f230c1030ee1791aaea4",
+  "trial_sections": {
+    "4": "initial_reference/results and audit",
+    "5": "screen, combinations/incremental_comparisons and model_gate/model_comparisons"
+  },
+  "verification_scope": "Calculations and version identity, not semantic validation of every sentence or Word layout.",
+  "version": "refinement-selected-v3"
+}

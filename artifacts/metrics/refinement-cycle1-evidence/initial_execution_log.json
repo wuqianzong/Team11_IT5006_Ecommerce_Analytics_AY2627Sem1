@@ -1,0 +1,5162 @@
+{
+  "source_sha256": "49ba7cc02532502256f0098964aa1efa6499dba704074a897040a13db0eb5ad7",
+  "projection": "Scientific execution events; private administrative fields omitted",
+  "events": [
+    {
+      "event_id": "S5-0001",
+      "timestamp_utc": "2026-10-07T16:49:50.821892+00:00",
+      "event_type": "start",
+      "experiment_id": "STEP5",
+      "action": "Build separate chronological manifests and verify cohort gates.",
+      "outcome": "Started; no production data changes."
+    },
+    {
+      "event_id": "S5-0002",
+      "timestamp_utc": "2026-10-07T16:49:56.480005+00:00",
+      "event_type": "completion",
+      "experiment_id": "STEP5",
+      "action": "Verify chronological manifests against independent preflight.",
+      "outcome": "All ten task/fold training/validation counts match; zero group/time leakage."
+    },
+    {
+      "event_id": "S5-0003",
+      "timestamp_utc": "2026-10-07T16:51:36.419853+00:00",
+      "event_type": "start",
+      "experiment_id": "STEP5",
+      "action": "Build separate chronological manifests and verify cohort gates.",
+      "outcome": "Started; no production data changes."
+    },
+    {
+      "event_id": "S5-0004",
+      "timestamp_utc": "2026-10-07T16:51:41.974235+00:00",
+      "event_type": "completion",
+      "experiment_id": "STEP5",
+      "action": "Verify chronological manifests against independent preflight.",
+      "outcome": "All ten task/fold training/validation counts match; zero group/time leakage."
+    },
+    {
+      "event_id": "S5-0005",
+      "timestamp_utc": "2026-10-07T16:51:41.981393+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-baseline_dummy-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 1,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0006",
+      "timestamp_utc": "2026-10-07T16:51:42.122780+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-baseline_dummy-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 1,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0007",
+      "timestamp_utc": "2026-10-07T16:51:42.133922+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-baseline_dummy-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 2,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0008",
+      "timestamp_utc": "2026-10-07T16:51:42.306483+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-baseline_dummy-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 2,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0009",
+      "timestamp_utc": "2026-10-07T16:51:42.323282+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-baseline_dummy-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 3,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0010",
+      "timestamp_utc": "2026-10-07T16:51:42.581691+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-baseline_dummy-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 3,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0011",
+      "timestamp_utc": "2026-10-07T16:51:42.607282+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-baseline_dummy-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 4,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0012",
+      "timestamp_utc": "2026-10-07T16:51:42.949345+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-baseline_dummy-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 4,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0013",
+      "timestamp_utc": "2026-10-07T16:51:42.981425+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-baseline_dummy-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 5,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0014",
+      "timestamp_utc": "2026-10-07T16:51:43.440583+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-baseline_dummy-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 5,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0015",
+      "timestamp_utc": "2026-10-07T16:51:43.447354+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-baseline_linear-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 6,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0016",
+      "timestamp_utc": "2026-10-07T16:51:43.586174+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-baseline_linear-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 6,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0017",
+      "timestamp_utc": "2026-10-07T16:51:43.599316+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-baseline_linear-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 7,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0018",
+      "timestamp_utc": "2026-10-07T16:51:43.801675+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-baseline_linear-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 7,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0019",
+      "timestamp_utc": "2026-10-07T16:51:43.818914+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-baseline_linear-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 8,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0020",
+      "timestamp_utc": "2026-10-07T16:51:44.117477+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-baseline_linear-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 8,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0021",
+      "timestamp_utc": "2026-10-07T16:51:44.142016+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-baseline_linear-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 9,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0022",
+      "timestamp_utc": "2026-10-07T16:51:44.545558+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-baseline_linear-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 9,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0023",
+      "timestamp_utc": "2026-10-07T16:51:44.577859+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-baseline_linear-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 10,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0024",
+      "timestamp_utc": "2026-10-07T16:51:45.093523+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-baseline_linear-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 10,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0025",
+      "timestamp_utc": "2026-10-07T16:51:45.099910+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-baseline_tree-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 11,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0026",
+      "timestamp_utc": "2026-10-07T16:51:45.228188+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-baseline_tree-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 11,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0027",
+      "timestamp_utc": "2026-10-07T16:51:45.240154+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-baseline_tree-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 12,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0028",
+      "timestamp_utc": "2026-10-07T16:51:45.431352+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-baseline_tree-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 12,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0029",
+      "timestamp_utc": "2026-10-07T16:51:45.449067+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-baseline_tree-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 13,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0030",
+      "timestamp_utc": "2026-10-07T16:51:45.739125+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-baseline_tree-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 13,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0031",
+      "timestamp_utc": "2026-10-07T16:51:45.765161+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-baseline_tree-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 14,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0032",
+      "timestamp_utc": "2026-10-07T16:51:46.152820+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-baseline_tree-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 14,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0033",
+      "timestamp_utc": "2026-10-07T16:51:46.185322+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-baseline_tree-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 15,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0034",
+      "timestamp_utc": "2026-10-07T16:51:46.689225+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-baseline_tree-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 15,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0035",
+      "timestamp_utc": "2026-10-07T16:51:46.695780+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-ridge_a1-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 16,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0036",
+      "timestamp_utc": "2026-10-07T16:51:46.824470+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-ridge_a1-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 16,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0037",
+      "timestamp_utc": "2026-10-07T16:51:46.836020+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-ridge_a1-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 17,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0038",
+      "timestamp_utc": "2026-10-07T16:51:47.036412+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-ridge_a1-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 17,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0039",
+      "timestamp_utc": "2026-10-07T16:51:47.054205+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-ridge_a1-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 18,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0040",
+      "timestamp_utc": "2026-10-07T16:51:47.344835+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-ridge_a1-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 18,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0041",
+      "timestamp_utc": "2026-10-07T16:51:47.369328+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-ridge_a1-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 19,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0042",
+      "timestamp_utc": "2026-10-07T16:51:47.769869+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-ridge_a1-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 19,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0043",
+      "timestamp_utc": "2026-10-07T16:51:47.802279+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-ridge_a1-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 20,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0044",
+      "timestamp_utc": "2026-10-07T16:51:48.311819+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-ridge_a1-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 20,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0045",
+      "timestamp_utc": "2026-10-07T16:51:48.318368+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-ridge_a100-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 21,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0046",
+      "timestamp_utc": "2026-10-07T16:51:48.446421+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-ridge_a100-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 21,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0047",
+      "timestamp_utc": "2026-10-07T16:51:48.458237+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-ridge_a100-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 22,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0048",
+      "timestamp_utc": "2026-10-07T16:51:48.645604+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-ridge_a100-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 22,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0049",
+      "timestamp_utc": "2026-10-07T16:51:48.663677+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-ridge_a100-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 23,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0050",
+      "timestamp_utc": "2026-10-07T16:51:48.956336+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-ridge_a100-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 23,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0051",
+      "timestamp_utc": "2026-10-07T16:51:48.981466+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-ridge_a100-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 24,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0052",
+      "timestamp_utc": "2026-10-07T16:51:49.358361+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-ridge_a100-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 24,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0053",
+      "timestamp_utc": "2026-10-07T16:51:49.390935+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-ridge_a100-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 25,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0054",
+      "timestamp_utc": "2026-10-07T16:51:49.872428+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-ridge_a100-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 25,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0055",
+      "timestamp_utc": "2026-10-07T16:51:49.878660+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-tree_d3_l200-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 26,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0056",
+      "timestamp_utc": "2026-10-07T16:51:50.003014+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-tree_d3_l200-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 26,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0057",
+      "timestamp_utc": "2026-10-07T16:51:50.014853+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-tree_d3_l200-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 27,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0058",
+      "timestamp_utc": "2026-10-07T16:51:50.199761+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-tree_d3_l200-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 27,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0059",
+      "timestamp_utc": "2026-10-07T16:51:50.217206+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-tree_d3_l200-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 28,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0060",
+      "timestamp_utc": "2026-10-07T16:51:50.495317+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-tree_d3_l200-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 28,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0061",
+      "timestamp_utc": "2026-10-07T16:51:50.519530+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-tree_d3_l200-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 29,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0062",
+      "timestamp_utc": "2026-10-07T16:51:50.889029+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-tree_d3_l200-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 29,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0063",
+      "timestamp_utc": "2026-10-07T16:51:50.921767+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-tree_d3_l200-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 30,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0064",
+      "timestamp_utc": "2026-10-07T16:51:51.401853+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-tree_d3_l200-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 30,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0065",
+      "timestamp_utc": "2026-10-07T16:51:51.408334+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-tree_d8_l50-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 31,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0066",
+      "timestamp_utc": "2026-10-07T16:51:51.535656+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-tree_d8_l50-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 31,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0067",
+      "timestamp_utc": "2026-10-07T16:51:51.547113+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-tree_d8_l50-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 32,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0068",
+      "timestamp_utc": "2026-10-07T16:51:51.748504+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-tree_d8_l50-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 32,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0069",
+      "timestamp_utc": "2026-10-07T16:51:51.766033+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-tree_d8_l50-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 33,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0070",
+      "timestamp_utc": "2026-10-07T16:51:52.075901+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-tree_d8_l50-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 33,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0071",
+      "timestamp_utc": "2026-10-07T16:51:52.100336+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-tree_d8_l50-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 34,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0072",
+      "timestamp_utc": "2026-10-07T16:51:52.529507+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-tree_d8_l50-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 34,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0073",
+      "timestamp_utc": "2026-10-07T16:51:52.562284+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-tree_d8_l50-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 35,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0074",
+      "timestamp_utc": "2026-10-07T16:51:53.119372+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-tree_d8_l50-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 35,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0075",
+      "timestamp_utc": "2026-10-07T16:51:53.125555+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-tree_d12_l20-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 36,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0076",
+      "timestamp_utc": "2026-10-07T16:51:53.262087+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-tree_d12_l20-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 36,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0077",
+      "timestamp_utc": "2026-10-07T16:51:53.274191+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-tree_d12_l20-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 37,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0078",
+      "timestamp_utc": "2026-10-07T16:51:53.489740+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-tree_d12_l20-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 37,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0079",
+      "timestamp_utc": "2026-10-07T16:51:53.507018+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-tree_d12_l20-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 38,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0080",
+      "timestamp_utc": "2026-10-07T16:51:53.846601+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-tree_d12_l20-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 38,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0081",
+      "timestamp_utc": "2026-10-07T16:51:53.871220+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-tree_d12_l20-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 39,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0082",
+      "timestamp_utc": "2026-10-07T16:51:54.355815+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-tree_d12_l20-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 39,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0083",
+      "timestamp_utc": "2026-10-07T16:51:54.388608+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-tree_d12_l20-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 40,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0084",
+      "timestamp_utc": "2026-10-07T16:51:55.037896+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-tree_d12_l20-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 40,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0085",
+      "timestamp_utc": "2026-10-07T16:51:55.045368+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-tree_d12_l20_pruned-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 41,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0086",
+      "timestamp_utc": "2026-10-07T16:51:55.179488+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-tree_d12_l20_pruned-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 41,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0087",
+      "timestamp_utc": "2026-10-07T16:51:55.190741+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-tree_d12_l20_pruned-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 42,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0088",
+      "timestamp_utc": "2026-10-07T16:51:55.408813+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-tree_d12_l20_pruned-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 42,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0089",
+      "timestamp_utc": "2026-10-07T16:51:55.426764+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-tree_d12_l20_pruned-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 43,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0090",
+      "timestamp_utc": "2026-10-07T16:51:55.764662+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-tree_d12_l20_pruned-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 43,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0091",
+      "timestamp_utc": "2026-10-07T16:51:55.788593+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-tree_d12_l20_pruned-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 44,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0092",
+      "timestamp_utc": "2026-10-07T16:51:56.268331+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-tree_d12_l20_pruned-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 44,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0093",
+      "timestamp_utc": "2026-10-07T16:51:56.301917+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-tree_d12_l20_pruned-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 45,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0094",
+      "timestamp_utc": "2026-10-07T16:51:56.942351+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-tree_d12_l20_pruned-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 45,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0095",
+      "timestamp_utc": "2026-10-07T16:51:56.949322+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-forest_d8_l50_sqrt-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 46,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0096",
+      "timestamp_utc": "2026-10-07T16:51:57.184587+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-forest_d8_l50_sqrt-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 46,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0097",
+      "timestamp_utc": "2026-10-07T16:51:57.196513+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-forest_d8_l50_sqrt-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 47,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0098",
+      "timestamp_utc": "2026-10-07T16:51:57.604845+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-forest_d8_l50_sqrt-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 47,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0099",
+      "timestamp_utc": "2026-10-07T16:51:57.623039+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-forest_d8_l50_sqrt-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 48,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0100",
+      "timestamp_utc": "2026-10-07T16:51:58.269906+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-forest_d8_l50_sqrt-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 48,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0101",
+      "timestamp_utc": "2026-10-07T16:51:58.305722+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-forest_d8_l50_sqrt-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 49,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0102",
+      "timestamp_utc": "2026-10-07T16:51:59.232122+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-forest_d8_l50_sqrt-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 49,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0103",
+      "timestamp_utc": "2026-10-07T16:51:59.273394+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-forest_d8_l50_sqrt-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 50,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0104",
+      "timestamp_utc": "2026-10-07T16:52:00.550436+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-forest_d8_l50_sqrt-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 50,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0105",
+      "timestamp_utc": "2026-10-07T16:52:00.557387+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-forest_d12_l20_half-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 51,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0106",
+      "timestamp_utc": "2026-10-07T16:52:01.046112+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-forest_d12_l20_half-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 51,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0107",
+      "timestamp_utc": "2026-10-07T16:52:01.057958+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-forest_d12_l20_half-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 52,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0108",
+      "timestamp_utc": "2026-10-07T16:52:02.269293+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-forest_d12_l20_half-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 52,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0109",
+      "timestamp_utc": "2026-10-07T16:52:02.287167+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-forest_d12_l20_half-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 53,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0110",
+      "timestamp_utc": "2026-10-07T16:52:04.472709+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-forest_d12_l20_half-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 53,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0111",
+      "timestamp_utc": "2026-10-07T16:52:04.498620+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-forest_d12_l20_half-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 54,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0112",
+      "timestamp_utc": "2026-10-07T16:52:08.170861+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-forest_d12_l20_half-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 54,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0113",
+      "timestamp_utc": "2026-10-07T16:52:08.205821+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-forest_d12_l20_half-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 55,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0114",
+      "timestamp_utc": "2026-10-07T16:52:13.735835+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-forest_d12_l20_half-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 55,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0115",
+      "timestamp_utc": "2026-10-07T16:52:13.742704+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-forest_d16_l20_half-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 56,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0116",
+      "timestamp_utc": "2026-10-07T16:52:14.260725+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-forest_d16_l20_half-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 56,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0117",
+      "timestamp_utc": "2026-10-07T16:52:14.272936+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-forest_d16_l20_half-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 57,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0118",
+      "timestamp_utc": "2026-10-07T16:52:15.666674+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-forest_d16_l20_half-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 57,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0119",
+      "timestamp_utc": "2026-10-07T16:52:15.684086+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-forest_d16_l20_half-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 58,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0120",
+      "timestamp_utc": "2026-10-07T16:52:18.382175+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-forest_d16_l20_half-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 58,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0121",
+      "timestamp_utc": "2026-10-07T16:52:18.406937+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-forest_d16_l20_half-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 59,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0122",
+      "timestamp_utc": "2026-10-07T16:52:23.119548+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-forest_d16_l20_half-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 59,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0123",
+      "timestamp_utc": "2026-10-07T16:52:23.153102+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-regression-forest_d16_l20_half-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 60,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0124",
+      "timestamp_utc": "2026-10-07T16:52:30.611650+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-regression-forest_d16_l20_half-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 60,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0125",
+      "timestamp_utc": "2026-10-07T16:52:30.619900+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-baseline_dummy-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 61,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0126",
+      "timestamp_utc": "2026-10-07T16:52:30.751154+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-baseline_dummy-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 61,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0127",
+      "timestamp_utc": "2026-10-07T16:52:30.763877+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-baseline_dummy-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 62,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0128",
+      "timestamp_utc": "2026-10-07T16:52:30.953475+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-baseline_dummy-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 62,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0129",
+      "timestamp_utc": "2026-10-07T16:52:30.972796+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-baseline_dummy-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 63,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0130",
+      "timestamp_utc": "2026-10-07T16:52:31.260753+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-baseline_dummy-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 63,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0131",
+      "timestamp_utc": "2026-10-07T16:52:31.288253+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-baseline_dummy-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 64,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0132",
+      "timestamp_utc": "2026-10-07T16:52:31.661978+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-baseline_dummy-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 64,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0133",
+      "timestamp_utc": "2026-10-07T16:52:31.698689+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-baseline_dummy-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 65,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0134",
+      "timestamp_utc": "2026-10-07T16:52:32.160356+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-baseline_dummy-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 65,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0135",
+      "timestamp_utc": "2026-10-07T16:52:32.167844+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-baseline_linear-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 66,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0136",
+      "timestamp_utc": "2026-10-07T16:52:32.341227+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-baseline_linear-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 66,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0137",
+      "timestamp_utc": "2026-10-07T16:52:32.354236+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-baseline_linear-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 67,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0138",
+      "timestamp_utc": "2026-10-07T16:52:32.611734+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-baseline_linear-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 67,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0139",
+      "timestamp_utc": "2026-10-07T16:52:32.631360+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-baseline_linear-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 68,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0140",
+      "timestamp_utc": "2026-10-07T16:52:33.007246+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-baseline_linear-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 68,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0141",
+      "timestamp_utc": "2026-10-07T16:52:33.034829+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-baseline_linear-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 69,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0142",
+      "timestamp_utc": "2026-10-07T16:52:33.500225+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-baseline_linear-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 69,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0143",
+      "timestamp_utc": "2026-10-07T16:52:33.536691+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-baseline_linear-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 70,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0144",
+      "timestamp_utc": "2026-10-07T16:52:34.145468+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-baseline_linear-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 70,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0145",
+      "timestamp_utc": "2026-10-07T16:52:34.153410+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-baseline_tree-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 71,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0146",
+      "timestamp_utc": "2026-10-07T16:52:34.291293+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-baseline_tree-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 71,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0147",
+      "timestamp_utc": "2026-10-07T16:52:34.304630+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-baseline_tree-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 72,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0148",
+      "timestamp_utc": "2026-10-07T16:52:34.513762+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-baseline_tree-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 72,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0149",
+      "timestamp_utc": "2026-10-07T16:52:34.533075+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-baseline_tree-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 73,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0150",
+      "timestamp_utc": "2026-10-07T16:52:34.840707+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-baseline_tree-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 73,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0151",
+      "timestamp_utc": "2026-10-07T16:52:34.867521+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-baseline_tree-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 74,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0152",
+      "timestamp_utc": "2026-10-07T16:52:35.281866+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-baseline_tree-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 74,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0153",
+      "timestamp_utc": "2026-10-07T16:52:35.318435+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-baseline_tree-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 75,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0154",
+      "timestamp_utc": "2026-10-07T16:52:35.839960+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-baseline_tree-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 75,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0155",
+      "timestamp_utc": "2026-10-07T16:52:35.848365+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-logistic_c001-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 76,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0156",
+      "timestamp_utc": "2026-10-07T16:52:35.991006+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-logistic_c001-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 76,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0157",
+      "timestamp_utc": "2026-10-07T16:52:36.004539+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-logistic_c001-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 77,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0158",
+      "timestamp_utc": "2026-10-07T16:52:36.215944+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-logistic_c001-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 77,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0159",
+      "timestamp_utc": "2026-10-07T16:52:36.235549+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-logistic_c001-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 78,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0160",
+      "timestamp_utc": "2026-10-07T16:52:36.565111+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-logistic_c001-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 78,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0161",
+      "timestamp_utc": "2026-10-07T16:52:36.592283+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-logistic_c001-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 79,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0162",
+      "timestamp_utc": "2026-10-07T16:52:37.020132+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-logistic_c001-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 79,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0163",
+      "timestamp_utc": "2026-10-07T16:52:37.056162+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-logistic_c001-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 80,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0164",
+      "timestamp_utc": "2026-10-07T16:52:37.602247+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-logistic_c001-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 80,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0165",
+      "timestamp_utc": "2026-10-07T16:52:37.610325+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-logistic_c01-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 81,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0166",
+      "timestamp_utc": "2026-10-07T16:52:37.756816+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-logistic_c01-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 81,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0167",
+      "timestamp_utc": "2026-10-07T16:52:37.770302+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-logistic_c01-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 82,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0168",
+      "timestamp_utc": "2026-10-07T16:52:37.993365+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-logistic_c01-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 82,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0169",
+      "timestamp_utc": "2026-10-07T16:52:38.013399+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-logistic_c01-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 83,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0170",
+      "timestamp_utc": "2026-10-07T16:52:38.343235+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-logistic_c01-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 83,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0171",
+      "timestamp_utc": "2026-10-07T16:52:38.370369+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-logistic_c01-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 84,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0172",
+      "timestamp_utc": "2026-10-07T16:52:38.820399+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-logistic_c01-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 84,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0173",
+      "timestamp_utc": "2026-10-07T16:52:38.856214+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-logistic_c01-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 85,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0174",
+      "timestamp_utc": "2026-10-07T16:52:39.411879+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-logistic_c01-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 85,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0175",
+      "timestamp_utc": "2026-10-07T16:52:39.419554+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-logistic_c1-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 86,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0176",
+      "timestamp_utc": "2026-10-07T16:52:39.573256+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-logistic_c1-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 86,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0177",
+      "timestamp_utc": "2026-10-07T16:52:39.586333+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-logistic_c1-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 87,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0178",
+      "timestamp_utc": "2026-10-07T16:52:39.825724+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-logistic_c1-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 87,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0179",
+      "timestamp_utc": "2026-10-07T16:52:39.845352+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-logistic_c1-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 88,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0180",
+      "timestamp_utc": "2026-10-07T16:52:40.192403+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-logistic_c1-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 88,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0181",
+      "timestamp_utc": "2026-10-07T16:52:40.220192+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-logistic_c1-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 89,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0182",
+      "timestamp_utc": "2026-10-07T16:52:40.697521+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-logistic_c1-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 89,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0183",
+      "timestamp_utc": "2026-10-07T16:52:40.736569+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-logistic_c1-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 90,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0184",
+      "timestamp_utc": "2026-10-07T16:52:41.337630+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-logistic_c1-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 90,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0185",
+      "timestamp_utc": "2026-10-07T16:52:41.345648+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-tree_d3_l200-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 91,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0186",
+      "timestamp_utc": "2026-10-07T16:52:41.485810+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-tree_d3_l200-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 91,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0187",
+      "timestamp_utc": "2026-10-07T16:52:41.500708+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-tree_d3_l200-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 92,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0188",
+      "timestamp_utc": "2026-10-07T16:52:41.858180+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-tree_d3_l200-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 92,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0189",
+      "timestamp_utc": "2026-10-07T16:52:41.879346+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-tree_d3_l200-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 93,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0190",
+      "timestamp_utc": "2026-10-07T16:52:42.193258+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-tree_d3_l200-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 93,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0191",
+      "timestamp_utc": "2026-10-07T16:52:42.222239+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-tree_d3_l200-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 94,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0192",
+      "timestamp_utc": "2026-10-07T16:52:42.634308+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-tree_d3_l200-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 94,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0193",
+      "timestamp_utc": "2026-10-07T16:52:42.671804+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-tree_d3_l200-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 95,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0194",
+      "timestamp_utc": "2026-10-07T16:52:43.192568+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-tree_d3_l200-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 95,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0195",
+      "timestamp_utc": "2026-10-07T16:52:43.201475+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-tree_d8_l50-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 96,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0196",
+      "timestamp_utc": "2026-10-07T16:52:43.363552+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-tree_d8_l50-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 96,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0197",
+      "timestamp_utc": "2026-10-07T16:52:43.379023+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-tree_d8_l50-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 97,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0198",
+      "timestamp_utc": "2026-10-07T16:52:43.604092+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-tree_d8_l50-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 97,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0199",
+      "timestamp_utc": "2026-10-07T16:52:43.624386+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-tree_d8_l50-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 98,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0200",
+      "timestamp_utc": "2026-10-07T16:52:43.966390+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-tree_d8_l50-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 98,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0201",
+      "timestamp_utc": "2026-10-07T16:52:43.994616+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-tree_d8_l50-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 99,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0202",
+      "timestamp_utc": "2026-10-07T16:52:44.453349+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-tree_d8_l50-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 99,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0203",
+      "timestamp_utc": "2026-10-07T16:52:44.490541+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-tree_d8_l50-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 100,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0204",
+      "timestamp_utc": "2026-10-07T16:52:45.066333+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-tree_d8_l50-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 100,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0205",
+      "timestamp_utc": "2026-10-07T16:52:45.074644+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-tree_d12_l20-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 101,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0206",
+      "timestamp_utc": "2026-10-07T16:52:45.222014+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-tree_d12_l20-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 101,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0207",
+      "timestamp_utc": "2026-10-07T16:52:45.235612+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-tree_d12_l20-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 102,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0208",
+      "timestamp_utc": "2026-10-07T16:52:45.467852+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-tree_d12_l20-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 102,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0209",
+      "timestamp_utc": "2026-10-07T16:52:45.488207+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-tree_d12_l20-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 103,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0210",
+      "timestamp_utc": "2026-10-07T16:52:45.843713+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-tree_d12_l20-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 103,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0211",
+      "timestamp_utc": "2026-10-07T16:52:45.872180+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-tree_d12_l20-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 104,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0212",
+      "timestamp_utc": "2026-10-07T16:52:46.361343+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-tree_d12_l20-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 104,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0213",
+      "timestamp_utc": "2026-10-07T16:52:46.400926+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-tree_d12_l20-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 105,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0214",
+      "timestamp_utc": "2026-10-07T16:52:47.063145+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-tree_d12_l20-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 105,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0215",
+      "timestamp_utc": "2026-10-07T16:52:47.071119+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-tree_d12_l20_pruned-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 106,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0216",
+      "timestamp_utc": "2026-10-07T16:52:47.218134+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-tree_d12_l20_pruned-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 106,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0217",
+      "timestamp_utc": "2026-10-07T16:52:47.231459+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-tree_d12_l20_pruned-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 107,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0218",
+      "timestamp_utc": "2026-10-07T16:52:47.462741+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-tree_d12_l20_pruned-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 107,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0219",
+      "timestamp_utc": "2026-10-07T16:52:47.482863+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-tree_d12_l20_pruned-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 108,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0220",
+      "timestamp_utc": "2026-10-07T16:52:47.831709+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-tree_d12_l20_pruned-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 108,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0221",
+      "timestamp_utc": "2026-10-07T16:52:47.858999+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-tree_d12_l20_pruned-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 109,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0222",
+      "timestamp_utc": "2026-10-07T16:52:48.341834+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-tree_d12_l20_pruned-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 109,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0223",
+      "timestamp_utc": "2026-10-07T16:52:48.378409+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-tree_d12_l20_pruned-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 110,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0224",
+      "timestamp_utc": "2026-10-07T16:52:49.022030+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-tree_d12_l20_pruned-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 110,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0225",
+      "timestamp_utc": "2026-10-07T16:52:49.031326+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-forest_d8_l50_sqrt-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 111,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0226",
+      "timestamp_utc": "2026-10-07T16:52:49.292024+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-forest_d8_l50_sqrt-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 111,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0227",
+      "timestamp_utc": "2026-10-07T16:52:49.305551+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-forest_d8_l50_sqrt-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 112,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0228",
+      "timestamp_utc": "2026-10-07T16:52:49.746914+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-forest_d8_l50_sqrt-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 112,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0229",
+      "timestamp_utc": "2026-10-07T16:52:49.767325+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-forest_d8_l50_sqrt-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 113,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0230",
+      "timestamp_utc": "2026-10-07T16:52:50.465987+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-forest_d8_l50_sqrt-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 113,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0231",
+      "timestamp_utc": "2026-10-07T16:52:50.493677+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-forest_d8_l50_sqrt-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 114,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0232",
+      "timestamp_utc": "2026-10-07T16:52:51.476484+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-forest_d8_l50_sqrt-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 114,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0233",
+      "timestamp_utc": "2026-10-07T16:52:51.513573+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-forest_d8_l50_sqrt-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 115,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0234",
+      "timestamp_utc": "2026-10-07T16:52:52.886940+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-forest_d8_l50_sqrt-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 115,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0235",
+      "timestamp_utc": "2026-10-07T16:52:52.895578+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-forest_d12_l20_half-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 116,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0236",
+      "timestamp_utc": "2026-10-07T16:52:53.423951+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-forest_d12_l20_half-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 116,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0237",
+      "timestamp_utc": "2026-10-07T16:52:53.437462+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-forest_d12_l20_half-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 117,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0238",
+      "timestamp_utc": "2026-10-07T16:52:54.641327+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-forest_d12_l20_half-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 117,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0239",
+      "timestamp_utc": "2026-10-07T16:52:54.661164+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-forest_d12_l20_half-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 118,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0240",
+      "timestamp_utc": "2026-10-07T16:52:56.702165+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-forest_d12_l20_half-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 118,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0241",
+      "timestamp_utc": "2026-10-07T16:52:56.729484+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-forest_d12_l20_half-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 119,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0242",
+      "timestamp_utc": "2026-10-07T16:52:59.971320+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-forest_d12_l20_half-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 119,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0243",
+      "timestamp_utc": "2026-10-07T16:53:00.008135+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-forest_d12_l20_half-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 120,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0244",
+      "timestamp_utc": "2026-10-07T16:53:04.916948+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-forest_d12_l20_half-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 120,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0245",
+      "timestamp_utc": "2026-10-07T16:53:04.925305+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-forest_d16_l20_half-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 121,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0246",
+      "timestamp_utc": "2026-10-07T16:53:05.518531+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-forest_d16_l20_half-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 121,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0247",
+      "timestamp_utc": "2026-10-07T16:53:05.532401+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-forest_d16_l20_half-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 122,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0248",
+      "timestamp_utc": "2026-10-07T16:53:06.979454+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-forest_d16_l20_half-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 122,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0249",
+      "timestamp_utc": "2026-10-07T16:53:07.000812+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-forest_d16_l20_half-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 123,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0250",
+      "timestamp_utc": "2026-10-07T16:53:09.591683+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-forest_d16_l20_half-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 123,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0251",
+      "timestamp_utc": "2026-10-07T16:53:09.619925+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-forest_d16_l20_half-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 124,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0252",
+      "timestamp_utc": "2026-10-07T16:53:13.817839+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-forest_d16_l20_half-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 124,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0253",
+      "timestamp_utc": "2026-10-07T16:53:13.854866+00:00",
+      "event_type": "start",
+      "experiment_id": "E01",
+      "action": "Fit E01-classification-forest_d16_l20_half-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 125,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0254",
+      "timestamp_utc": "2026-10-07T16:53:20.352822+00:00",
+      "event_type": "completion",
+      "experiment_id": "E01",
+      "action": "Complete E01-classification-forest_d16_l20_half-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 125,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0255",
+      "timestamp_utc": "2026-10-07T16:53:20.361950+00:00",
+      "event_type": "start",
+      "experiment_id": "E02",
+      "action": "Fit E02-regression-ridge_a100-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 126,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0256",
+      "timestamp_utc": "2026-10-07T16:53:20.492274+00:00",
+      "event_type": "completion",
+      "experiment_id": "E02",
+      "action": "Complete E02-regression-ridge_a100-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 126,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0257",
+      "timestamp_utc": "2026-10-07T16:53:20.505231+00:00",
+      "event_type": "start",
+      "experiment_id": "E02",
+      "action": "Fit E02-regression-ridge_a100-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 127,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0258",
+      "timestamp_utc": "2026-10-07T16:53:20.698855+00:00",
+      "event_type": "completion",
+      "experiment_id": "E02",
+      "action": "Complete E02-regression-ridge_a100-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 127,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0259",
+      "timestamp_utc": "2026-10-07T16:53:20.718083+00:00",
+      "event_type": "start",
+      "experiment_id": "E02",
+      "action": "Fit E02-regression-ridge_a100-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 128,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0260",
+      "timestamp_utc": "2026-10-07T16:53:21.004756+00:00",
+      "event_type": "completion",
+      "experiment_id": "E02",
+      "action": "Complete E02-regression-ridge_a100-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 128,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0261",
+      "timestamp_utc": "2026-10-07T16:53:21.031446+00:00",
+      "event_type": "start",
+      "experiment_id": "E02",
+      "action": "Fit E02-regression-ridge_a100-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 129,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0262",
+      "timestamp_utc": "2026-10-07T16:53:21.416903+00:00",
+      "event_type": "completion",
+      "experiment_id": "E02",
+      "action": "Complete E02-regression-ridge_a100-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 129,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0263",
+      "timestamp_utc": "2026-10-07T16:53:21.451822+00:00",
+      "event_type": "start",
+      "experiment_id": "E02",
+      "action": "Fit E02-regression-ridge_a100-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 130,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0264",
+      "timestamp_utc": "2026-10-07T16:53:21.948821+00:00",
+      "event_type": "completion",
+      "experiment_id": "E02",
+      "action": "Complete E02-regression-ridge_a100-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 130,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0265",
+      "timestamp_utc": "2026-10-07T16:53:21.957306+00:00",
+      "event_type": "start",
+      "experiment_id": "E02",
+      "action": "Fit E02-regression-forest_d12_l20_half-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 131,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0266",
+      "timestamp_utc": "2026-10-07T16:53:22.447555+00:00",
+      "event_type": "completion",
+      "experiment_id": "E02",
+      "action": "Complete E02-regression-forest_d12_l20_half-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 131,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0267",
+      "timestamp_utc": "2026-10-07T16:53:22.460337+00:00",
+      "event_type": "start",
+      "experiment_id": "E02",
+      "action": "Fit E02-regression-forest_d12_l20_half-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 132,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0268",
+      "timestamp_utc": "2026-10-07T16:53:23.651239+00:00",
+      "event_type": "completion",
+      "experiment_id": "E02",
+      "action": "Complete E02-regression-forest_d12_l20_half-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 132,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0269",
+      "timestamp_utc": "2026-10-07T16:53:23.670759+00:00",
+      "event_type": "start",
+      "experiment_id": "E02",
+      "action": "Fit E02-regression-forest_d12_l20_half-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 133,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0270",
+      "timestamp_utc": "2026-10-07T16:53:25.822098+00:00",
+      "event_type": "completion",
+      "experiment_id": "E02",
+      "action": "Complete E02-regression-forest_d12_l20_half-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 133,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0271",
+      "timestamp_utc": "2026-10-07T16:53:25.848052+00:00",
+      "event_type": "start",
+      "experiment_id": "E02",
+      "action": "Fit E02-regression-forest_d12_l20_half-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 134,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0272",
+      "timestamp_utc": "2026-10-07T16:53:29.468799+00:00",
+      "event_type": "completion",
+      "experiment_id": "E02",
+      "action": "Complete E02-regression-forest_d12_l20_half-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 134,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0273",
+      "timestamp_utc": "2026-10-07T16:53:29.503366+00:00",
+      "event_type": "start",
+      "experiment_id": "E02",
+      "action": "Fit E02-regression-forest_d12_l20_half-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 135,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0274",
+      "timestamp_utc": "2026-10-07T16:53:34.974060+00:00",
+      "event_type": "completion",
+      "experiment_id": "E02",
+      "action": "Complete E02-regression-forest_d12_l20_half-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 135,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0275",
+      "timestamp_utc": "2026-10-07T16:53:34.983097+00:00",
+      "event_type": "start",
+      "experiment_id": "E02",
+      "action": "Fit E02-classification-logistic_c001-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 136,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0276",
+      "timestamp_utc": "2026-10-07T16:53:35.127495+00:00",
+      "event_type": "completion",
+      "experiment_id": "E02",
+      "action": "Complete E02-classification-logistic_c001-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 136,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0277",
+      "timestamp_utc": "2026-10-07T16:53:35.141613+00:00",
+      "event_type": "start",
+      "experiment_id": "E02",
+      "action": "Fit E02-classification-logistic_c001-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 137,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0278",
+      "timestamp_utc": "2026-10-07T16:53:35.355707+00:00",
+      "event_type": "completion",
+      "experiment_id": "E02",
+      "action": "Complete E02-classification-logistic_c001-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 137,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0279",
+      "timestamp_utc": "2026-10-07T16:53:35.376507+00:00",
+      "event_type": "start",
+      "experiment_id": "E02",
+      "action": "Fit E02-classification-logistic_c001-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 138,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0280",
+      "timestamp_utc": "2026-10-07T16:53:35.694844+00:00",
+      "event_type": "completion",
+      "experiment_id": "E02",
+      "action": "Complete E02-classification-logistic_c001-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 138,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0281",
+      "timestamp_utc": "2026-10-07T16:53:35.723210+00:00",
+      "event_type": "start",
+      "experiment_id": "E02",
+      "action": "Fit E02-classification-logistic_c001-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 139,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0282",
+      "timestamp_utc": "2026-10-07T16:53:36.146104+00:00",
+      "event_type": "completion",
+      "experiment_id": "E02",
+      "action": "Complete E02-classification-logistic_c001-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 139,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0283",
+      "timestamp_utc": "2026-10-07T16:53:36.183331+00:00",
+      "event_type": "start",
+      "experiment_id": "E02",
+      "action": "Fit E02-classification-logistic_c001-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 140,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0284",
+      "timestamp_utc": "2026-10-07T16:53:36.726546+00:00",
+      "event_type": "completion",
+      "experiment_id": "E02",
+      "action": "Complete E02-classification-logistic_c001-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 140,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0285",
+      "timestamp_utc": "2026-10-07T16:53:36.735474+00:00",
+      "event_type": "start",
+      "experiment_id": "E02",
+      "action": "Fit E02-classification-forest_d8_l50_sqrt-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 141,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0286",
+      "timestamp_utc": "2026-10-07T16:53:36.994753+00:00",
+      "event_type": "completion",
+      "experiment_id": "E02",
+      "action": "Complete E02-classification-forest_d8_l50_sqrt-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 141,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0287",
+      "timestamp_utc": "2026-10-07T16:53:37.008937+00:00",
+      "event_type": "start",
+      "experiment_id": "E02",
+      "action": "Fit E02-classification-forest_d8_l50_sqrt-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 142,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0288",
+      "timestamp_utc": "2026-10-07T16:53:37.451393+00:00",
+      "event_type": "completion",
+      "experiment_id": "E02",
+      "action": "Complete E02-classification-forest_d8_l50_sqrt-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 142,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0289",
+      "timestamp_utc": "2026-10-07T16:53:37.472424+00:00",
+      "event_type": "start",
+      "experiment_id": "E02",
+      "action": "Fit E02-classification-forest_d8_l50_sqrt-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 143,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0290",
+      "timestamp_utc": "2026-10-07T16:53:38.156554+00:00",
+      "event_type": "completion",
+      "experiment_id": "E02",
+      "action": "Complete E02-classification-forest_d8_l50_sqrt-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 143,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0291",
+      "timestamp_utc": "2026-10-07T16:53:38.185268+00:00",
+      "event_type": "start",
+      "experiment_id": "E02",
+      "action": "Fit E02-classification-forest_d8_l50_sqrt-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 144,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0292",
+      "timestamp_utc": "2026-10-07T16:53:39.155146+00:00",
+      "event_type": "completion",
+      "experiment_id": "E02",
+      "action": "Complete E02-classification-forest_d8_l50_sqrt-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 144,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0293",
+      "timestamp_utc": "2026-10-07T16:53:39.192298+00:00",
+      "event_type": "start",
+      "experiment_id": "E02",
+      "action": "Fit E02-classification-forest_d8_l50_sqrt-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 145,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0294",
+      "timestamp_utc": "2026-10-07T16:53:40.505053+00:00",
+      "event_type": "completion",
+      "experiment_id": "E02",
+      "action": "Complete E02-classification-forest_d8_l50_sqrt-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 145,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0295",
+      "timestamp_utc": "2026-10-07T16:53:40.513906+00:00",
+      "event_type": "start",
+      "experiment_id": "E03",
+      "action": "Fit E03-regression-ridge_a100-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 146,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0296",
+      "timestamp_utc": "2026-10-07T16:53:40.633695+00:00",
+      "event_type": "completion",
+      "experiment_id": "E03",
+      "action": "Complete E03-regression-ridge_a100-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 146,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0297",
+      "timestamp_utc": "2026-10-07T16:53:40.647133+00:00",
+      "event_type": "start",
+      "experiment_id": "E03",
+      "action": "Fit E03-regression-ridge_a100-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 147,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0298",
+      "timestamp_utc": "2026-10-07T16:53:40.820097+00:00",
+      "event_type": "completion",
+      "experiment_id": "E03",
+      "action": "Complete E03-regression-ridge_a100-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 147,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0299",
+      "timestamp_utc": "2026-10-07T16:53:40.839038+00:00",
+      "event_type": "start",
+      "experiment_id": "E03",
+      "action": "Fit E03-regression-ridge_a100-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 148,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0300",
+      "timestamp_utc": "2026-10-07T16:53:41.094504+00:00",
+      "event_type": "completion",
+      "experiment_id": "E03",
+      "action": "Complete E03-regression-ridge_a100-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 148,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0301",
+      "timestamp_utc": "2026-10-07T16:53:41.120939+00:00",
+      "event_type": "start",
+      "experiment_id": "E03",
+      "action": "Fit E03-regression-ridge_a100-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 149,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0302",
+      "timestamp_utc": "2026-10-07T16:53:41.461033+00:00",
+      "event_type": "completion",
+      "experiment_id": "E03",
+      "action": "Complete E03-regression-ridge_a100-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 149,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0303",
+      "timestamp_utc": "2026-10-07T16:53:41.496378+00:00",
+      "event_type": "start",
+      "experiment_id": "E03",
+      "action": "Fit E03-regression-ridge_a100-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 150,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0304",
+      "timestamp_utc": "2026-10-07T16:53:41.924729+00:00",
+      "event_type": "completion",
+      "experiment_id": "E03",
+      "action": "Complete E03-regression-ridge_a100-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 150,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0305",
+      "timestamp_utc": "2026-10-07T16:53:41.934207+00:00",
+      "event_type": "start",
+      "experiment_id": "E03",
+      "action": "Fit E03-regression-forest_d12_l20_half-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 151,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0306",
+      "timestamp_utc": "2026-10-07T16:53:42.166245+00:00",
+      "event_type": "completion",
+      "experiment_id": "E03",
+      "action": "Complete E03-regression-forest_d12_l20_half-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 151,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0307",
+      "timestamp_utc": "2026-10-07T16:53:42.179467+00:00",
+      "event_type": "start",
+      "experiment_id": "E03",
+      "action": "Fit E03-regression-forest_d12_l20_half-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 152,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0308",
+      "timestamp_utc": "2026-10-07T16:53:42.594295+00:00",
+      "event_type": "completion",
+      "experiment_id": "E03",
+      "action": "Complete E03-regression-forest_d12_l20_half-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 152,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0309",
+      "timestamp_utc": "2026-10-07T16:53:42.613959+00:00",
+      "event_type": "start",
+      "experiment_id": "E03",
+      "action": "Fit E03-regression-forest_d12_l20_half-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 153,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0310",
+      "timestamp_utc": "2026-10-07T16:53:43.307841+00:00",
+      "event_type": "completion",
+      "experiment_id": "E03",
+      "action": "Complete E03-regression-forest_d12_l20_half-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 153,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0311",
+      "timestamp_utc": "2026-10-07T16:53:43.356623+00:00",
+      "event_type": "start",
+      "experiment_id": "E03",
+      "action": "Fit E03-regression-forest_d12_l20_half-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 154,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0312",
+      "timestamp_utc": "2026-10-07T16:53:44.387119+00:00",
+      "event_type": "completion",
+      "experiment_id": "E03",
+      "action": "Complete E03-regression-forest_d12_l20_half-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 154,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0313",
+      "timestamp_utc": "2026-10-07T16:53:44.422300+00:00",
+      "event_type": "start",
+      "experiment_id": "E03",
+      "action": "Fit E03-regression-forest_d12_l20_half-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 155,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0314",
+      "timestamp_utc": "2026-10-07T16:53:45.967305+00:00",
+      "event_type": "completion",
+      "experiment_id": "E03",
+      "action": "Complete E03-regression-forest_d12_l20_half-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 155,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0315",
+      "timestamp_utc": "2026-10-07T16:53:45.975980+00:00",
+      "event_type": "start",
+      "experiment_id": "E03",
+      "action": "Fit E03-classification-logistic_c001-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 156,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0316",
+      "timestamp_utc": "2026-10-07T16:53:46.105820+00:00",
+      "event_type": "completion",
+      "experiment_id": "E03",
+      "action": "Complete E03-classification-logistic_c001-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 156,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0317",
+      "timestamp_utc": "2026-10-07T16:53:46.120267+00:00",
+      "event_type": "start",
+      "experiment_id": "E03",
+      "action": "Fit E03-classification-logistic_c001-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 157,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0318",
+      "timestamp_utc": "2026-10-07T16:53:46.309563+00:00",
+      "event_type": "completion",
+      "experiment_id": "E03",
+      "action": "Complete E03-classification-logistic_c001-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 157,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0319",
+      "timestamp_utc": "2026-10-07T16:53:46.330098+00:00",
+      "event_type": "start",
+      "experiment_id": "E03",
+      "action": "Fit E03-classification-logistic_c001-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 158,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0320",
+      "timestamp_utc": "2026-10-07T16:53:46.606820+00:00",
+      "event_type": "completion",
+      "experiment_id": "E03",
+      "action": "Complete E03-classification-logistic_c001-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 158,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0321",
+      "timestamp_utc": "2026-10-07T16:53:46.635391+00:00",
+      "event_type": "start",
+      "experiment_id": "E03",
+      "action": "Fit E03-classification-logistic_c001-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 159,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0322",
+      "timestamp_utc": "2026-10-07T16:53:46.997401+00:00",
+      "event_type": "completion",
+      "experiment_id": "E03",
+      "action": "Complete E03-classification-logistic_c001-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 159,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0323",
+      "timestamp_utc": "2026-10-07T16:53:47.034713+00:00",
+      "event_type": "start",
+      "experiment_id": "E03",
+      "action": "Fit E03-classification-logistic_c001-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 160,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0324",
+      "timestamp_utc": "2026-10-07T16:53:47.493170+00:00",
+      "event_type": "completion",
+      "experiment_id": "E03",
+      "action": "Complete E03-classification-logistic_c001-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 160,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0325",
+      "timestamp_utc": "2026-10-07T16:53:47.502460+00:00",
+      "event_type": "start",
+      "experiment_id": "E03",
+      "action": "Fit E03-classification-forest_d8_l50_sqrt-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 161,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0326",
+      "timestamp_utc": "2026-10-07T16:53:47.711014+00:00",
+      "event_type": "completion",
+      "experiment_id": "E03",
+      "action": "Complete E03-classification-forest_d8_l50_sqrt-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 161,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0327",
+      "timestamp_utc": "2026-10-07T16:53:47.725388+00:00",
+      "event_type": "start",
+      "experiment_id": "E03",
+      "action": "Fit E03-classification-forest_d8_l50_sqrt-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 162,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0328",
+      "timestamp_utc": "2026-10-07T16:53:48.047241+00:00",
+      "event_type": "completion",
+      "experiment_id": "E03",
+      "action": "Complete E03-classification-forest_d8_l50_sqrt-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 162,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0329",
+      "timestamp_utc": "2026-10-07T16:53:48.067881+00:00",
+      "event_type": "start",
+      "experiment_id": "E03",
+      "action": "Fit E03-classification-forest_d8_l50_sqrt-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 163,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0330",
+      "timestamp_utc": "2026-10-07T16:53:48.546999+00:00",
+      "event_type": "completion",
+      "experiment_id": "E03",
+      "action": "Complete E03-classification-forest_d8_l50_sqrt-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 163,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0331",
+      "timestamp_utc": "2026-10-07T16:53:48.575491+00:00",
+      "event_type": "start",
+      "experiment_id": "E03",
+      "action": "Fit E03-classification-forest_d8_l50_sqrt-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 164,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0332",
+      "timestamp_utc": "2026-10-07T16:53:49.211817+00:00",
+      "event_type": "completion",
+      "experiment_id": "E03",
+      "action": "Complete E03-classification-forest_d8_l50_sqrt-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 164,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0333",
+      "timestamp_utc": "2026-10-07T16:53:49.248882+00:00",
+      "event_type": "start",
+      "experiment_id": "E03",
+      "action": "Fit E03-classification-forest_d8_l50_sqrt-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 165,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0334",
+      "timestamp_utc": "2026-10-07T16:53:50.103935+00:00",
+      "event_type": "completion",
+      "experiment_id": "E03",
+      "action": "Complete E03-classification-forest_d8_l50_sqrt-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 165,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0335",
+      "timestamp_utc": "2026-10-07T16:53:50.113190+00:00",
+      "event_type": "start",
+      "experiment_id": "E04",
+      "action": "Fit E04-regression-ridge_a100-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 166,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0336",
+      "timestamp_utc": "2026-10-07T16:53:50.268365+00:00",
+      "event_type": "completion",
+      "experiment_id": "E04",
+      "action": "Complete E04-regression-ridge_a100-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 166,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0337",
+      "timestamp_utc": "2026-10-07T16:53:50.283633+00:00",
+      "event_type": "start",
+      "experiment_id": "E04",
+      "action": "Fit E04-regression-ridge_a100-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 167,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0338",
+      "timestamp_utc": "2026-10-07T16:53:50.548903+00:00",
+      "event_type": "completion",
+      "experiment_id": "E04",
+      "action": "Complete E04-regression-ridge_a100-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 167,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0339",
+      "timestamp_utc": "2026-10-07T16:53:50.568475+00:00",
+      "event_type": "start",
+      "experiment_id": "E04",
+      "action": "Fit E04-regression-ridge_a100-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 168,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0340",
+      "timestamp_utc": "2026-10-07T16:53:50.925214+00:00",
+      "event_type": "completion",
+      "experiment_id": "E04",
+      "action": "Complete E04-regression-ridge_a100-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 168,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0341",
+      "timestamp_utc": "2026-10-07T16:53:50.951831+00:00",
+      "event_type": "start",
+      "experiment_id": "E04",
+      "action": "Fit E04-regression-ridge_a100-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 169,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0342",
+      "timestamp_utc": "2026-10-07T16:53:51.439137+00:00",
+      "event_type": "completion",
+      "experiment_id": "E04",
+      "action": "Complete E04-regression-ridge_a100-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 169,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0343",
+      "timestamp_utc": "2026-10-07T16:53:51.474810+00:00",
+      "event_type": "start",
+      "experiment_id": "E04",
+      "action": "Fit E04-regression-ridge_a100-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 170,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0344",
+      "timestamp_utc": "2026-10-07T16:53:52.110121+00:00",
+      "event_type": "completion",
+      "experiment_id": "E04",
+      "action": "Complete E04-regression-ridge_a100-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 170,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0345",
+      "timestamp_utc": "2026-10-07T16:53:52.119655+00:00",
+      "event_type": "start",
+      "experiment_id": "E04",
+      "action": "Fit E04-regression-forest_d12_l20_half-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 171,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0346",
+      "timestamp_utc": "2026-10-07T16:53:52.890150+00:00",
+      "event_type": "completion",
+      "experiment_id": "E04",
+      "action": "Complete E04-regression-forest_d12_l20_half-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 171,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0347",
+      "timestamp_utc": "2026-10-07T16:53:52.904535+00:00",
+      "event_type": "start",
+      "experiment_id": "E04",
+      "action": "Fit E04-regression-forest_d12_l20_half-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 172,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0348",
+      "timestamp_utc": "2026-10-07T16:53:54.910304+00:00",
+      "event_type": "completion",
+      "experiment_id": "E04",
+      "action": "Complete E04-regression-forest_d12_l20_half-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 172,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0349",
+      "timestamp_utc": "2026-10-07T16:53:54.929552+00:00",
+      "event_type": "start",
+      "experiment_id": "E04",
+      "action": "Fit E04-regression-forest_d12_l20_half-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 173,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0350",
+      "timestamp_utc": "2026-10-07T16:53:58.646139+00:00",
+      "event_type": "completion",
+      "experiment_id": "E04",
+      "action": "Complete E04-regression-forest_d12_l20_half-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 173,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0351",
+      "timestamp_utc": "2026-10-07T16:53:58.672710+00:00",
+      "event_type": "start",
+      "experiment_id": "E04",
+      "action": "Fit E04-regression-forest_d12_l20_half-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 174,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0352",
+      "timestamp_utc": "2026-10-07T16:54:05.157612+00:00",
+      "event_type": "completion",
+      "experiment_id": "E04",
+      "action": "Complete E04-regression-forest_d12_l20_half-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 174,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0353",
+      "timestamp_utc": "2026-10-07T16:54:05.192444+00:00",
+      "event_type": "start",
+      "experiment_id": "E04",
+      "action": "Fit E04-regression-forest_d12_l20_half-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 175,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0354",
+      "timestamp_utc": "2026-10-07T16:54:15.109779+00:00",
+      "event_type": "completion",
+      "experiment_id": "E04",
+      "action": "Complete E04-regression-forest_d12_l20_half-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 175,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0355",
+      "timestamp_utc": "2026-10-07T16:54:15.119406+00:00",
+      "event_type": "start",
+      "experiment_id": "E04",
+      "action": "Fit E04-classification-logistic_c001-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 176,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0356",
+      "timestamp_utc": "2026-10-07T16:54:15.287384+00:00",
+      "event_type": "completion",
+      "experiment_id": "E04",
+      "action": "Complete E04-classification-logistic_c001-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 176,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0357",
+      "timestamp_utc": "2026-10-07T16:54:15.301706+00:00",
+      "event_type": "start",
+      "experiment_id": "E04",
+      "action": "Fit E04-classification-logistic_c001-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 177,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0358",
+      "timestamp_utc": "2026-10-07T16:54:15.566014+00:00",
+      "event_type": "completion",
+      "experiment_id": "E04",
+      "action": "Complete E04-classification-logistic_c001-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 177,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0359",
+      "timestamp_utc": "2026-10-07T16:54:15.586920+00:00",
+      "event_type": "start",
+      "experiment_id": "E04",
+      "action": "Fit E04-classification-logistic_c001-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 178,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0360",
+      "timestamp_utc": "2026-10-07T16:54:15.996006+00:00",
+      "event_type": "completion",
+      "experiment_id": "E04",
+      "action": "Complete E04-classification-logistic_c001-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 178,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0361",
+      "timestamp_utc": "2026-10-07T16:54:16.024710+00:00",
+      "event_type": "start",
+      "experiment_id": "E04",
+      "action": "Fit E04-classification-logistic_c001-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 179,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0362",
+      "timestamp_utc": "2026-10-07T16:54:16.585287+00:00",
+      "event_type": "completion",
+      "experiment_id": "E04",
+      "action": "Complete E04-classification-logistic_c001-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 179,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0363",
+      "timestamp_utc": "2026-10-07T16:54:16.623600+00:00",
+      "event_type": "start",
+      "experiment_id": "E04",
+      "action": "Fit E04-classification-logistic_c001-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 180,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0364",
+      "timestamp_utc": "2026-10-07T16:54:17.371453+00:00",
+      "event_type": "completion",
+      "experiment_id": "E04",
+      "action": "Complete E04-classification-logistic_c001-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 180,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0365",
+      "timestamp_utc": "2026-10-07T16:54:17.381352+00:00",
+      "event_type": "start",
+      "experiment_id": "E04",
+      "action": "Fit E04-classification-forest_d8_l50_sqrt-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 181,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0366",
+      "timestamp_utc": "2026-10-07T16:54:17.682682+00:00",
+      "event_type": "completion",
+      "experiment_id": "E04",
+      "action": "Complete E04-classification-forest_d8_l50_sqrt-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 181,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0367",
+      "timestamp_utc": "2026-10-07T16:54:17.697443+00:00",
+      "event_type": "start",
+      "experiment_id": "E04",
+      "action": "Fit E04-classification-forest_d8_l50_sqrt-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 182,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0368",
+      "timestamp_utc": "2026-10-07T16:54:18.198701+00:00",
+      "event_type": "completion",
+      "experiment_id": "E04",
+      "action": "Complete E04-classification-forest_d8_l50_sqrt-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 182,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0369",
+      "timestamp_utc": "2026-10-07T16:54:18.219585+00:00",
+      "event_type": "start",
+      "experiment_id": "E04",
+      "action": "Fit E04-classification-forest_d8_l50_sqrt-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 183,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0370",
+      "timestamp_utc": "2026-10-07T16:54:18.989983+00:00",
+      "event_type": "completion",
+      "experiment_id": "E04",
+      "action": "Complete E04-classification-forest_d8_l50_sqrt-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 183,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0371",
+      "timestamp_utc": "2026-10-07T16:54:19.018918+00:00",
+      "event_type": "start",
+      "experiment_id": "E04",
+      "action": "Fit E04-classification-forest_d8_l50_sqrt-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 184,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0372",
+      "timestamp_utc": "2026-10-07T16:54:20.104088+00:00",
+      "event_type": "completion",
+      "experiment_id": "E04",
+      "action": "Complete E04-classification-forest_d8_l50_sqrt-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 184,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0373",
+      "timestamp_utc": "2026-10-07T16:54:20.141883+00:00",
+      "event_type": "start",
+      "experiment_id": "E04",
+      "action": "Fit E04-classification-forest_d8_l50_sqrt-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 185,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0374",
+      "timestamp_utc": "2026-10-07T16:54:21.695179+00:00",
+      "event_type": "completion",
+      "experiment_id": "E04",
+      "action": "Complete E04-classification-forest_d8_l50_sqrt-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 185,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0375",
+      "timestamp_utc": "2026-10-07T16:54:21.704203+00:00",
+      "event_type": "start",
+      "experiment_id": "E05",
+      "action": "Fit E05-regression-ridge_a100-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 186,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0376",
+      "timestamp_utc": "2026-10-07T16:54:21.856638+00:00",
+      "event_type": "completion",
+      "experiment_id": "E05",
+      "action": "Complete E05-regression-ridge_a100-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 186,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0377",
+      "timestamp_utc": "2026-10-07T16:54:21.870746+00:00",
+      "event_type": "start",
+      "experiment_id": "E05",
+      "action": "Fit E05-regression-ridge_a100-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 187,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0378",
+      "timestamp_utc": "2026-10-07T16:54:22.124972+00:00",
+      "event_type": "completion",
+      "experiment_id": "E05",
+      "action": "Complete E05-regression-ridge_a100-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 187,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0379",
+      "timestamp_utc": "2026-10-07T16:54:22.144646+00:00",
+      "event_type": "start",
+      "experiment_id": "E05",
+      "action": "Fit E05-regression-ridge_a100-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 188,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0380",
+      "timestamp_utc": "2026-10-07T16:54:22.522757+00:00",
+      "event_type": "completion",
+      "experiment_id": "E05",
+      "action": "Complete E05-regression-ridge_a100-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 188,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0381",
+      "timestamp_utc": "2026-10-07T16:54:22.549918+00:00",
+      "event_type": "start",
+      "experiment_id": "E05",
+      "action": "Fit E05-regression-ridge_a100-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 189,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0382",
+      "timestamp_utc": "2026-10-07T16:54:23.078694+00:00",
+      "event_type": "completion",
+      "experiment_id": "E05",
+      "action": "Complete E05-regression-ridge_a100-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 189,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0383",
+      "timestamp_utc": "2026-10-07T16:54:23.114645+00:00",
+      "event_type": "start",
+      "experiment_id": "E05",
+      "action": "Fit E05-regression-ridge_a100-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 190,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0384",
+      "timestamp_utc": "2026-10-07T16:54:23.812833+00:00",
+      "event_type": "completion",
+      "experiment_id": "E05",
+      "action": "Complete E05-regression-ridge_a100-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 190,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0385",
+      "timestamp_utc": "2026-10-07T16:54:23.821757+00:00",
+      "event_type": "start",
+      "experiment_id": "E05",
+      "action": "Fit E05-regression-forest_d12_l20_half-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 191,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0386",
+      "timestamp_utc": "2026-10-07T16:54:24.647973+00:00",
+      "event_type": "completion",
+      "experiment_id": "E05",
+      "action": "Complete E05-regression-forest_d12_l20_half-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 191,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0387",
+      "timestamp_utc": "2026-10-07T16:54:24.662507+00:00",
+      "event_type": "start",
+      "experiment_id": "E05",
+      "action": "Fit E05-regression-forest_d12_l20_half-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 192,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0388",
+      "timestamp_utc": "2026-10-07T16:54:26.980126+00:00",
+      "event_type": "completion",
+      "experiment_id": "E05",
+      "action": "Complete E05-regression-forest_d12_l20_half-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 192,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0389",
+      "timestamp_utc": "2026-10-07T16:54:26.999747+00:00",
+      "event_type": "start",
+      "experiment_id": "E05",
+      "action": "Fit E05-regression-forest_d12_l20_half-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 193,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0390",
+      "timestamp_utc": "2026-10-07T16:54:31.154068+00:00",
+      "event_type": "completion",
+      "experiment_id": "E05",
+      "action": "Complete E05-regression-forest_d12_l20_half-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 193,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0391",
+      "timestamp_utc": "2026-10-07T16:54:31.184771+00:00",
+      "event_type": "start",
+      "experiment_id": "E05",
+      "action": "Fit E05-regression-forest_d12_l20_half-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 194,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0392",
+      "timestamp_utc": "2026-10-07T16:54:38.367117+00:00",
+      "event_type": "completion",
+      "experiment_id": "E05",
+      "action": "Complete E05-regression-forest_d12_l20_half-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 194,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0393",
+      "timestamp_utc": "2026-10-07T16:54:38.402672+00:00",
+      "event_type": "start",
+      "experiment_id": "E05",
+      "action": "Fit E05-regression-forest_d12_l20_half-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 195,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0394",
+      "timestamp_utc": "2026-10-07T16:54:49.416577+00:00",
+      "event_type": "completion",
+      "experiment_id": "E05",
+      "action": "Complete E05-regression-forest_d12_l20_half-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 195,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0395",
+      "timestamp_utc": "2026-10-07T16:54:49.426088+00:00",
+      "event_type": "start",
+      "experiment_id": "E05",
+      "action": "Fit E05-classification-logistic_c001-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 196,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0396",
+      "timestamp_utc": "2026-10-07T16:54:49.603721+00:00",
+      "event_type": "completion",
+      "experiment_id": "E05",
+      "action": "Complete E05-classification-logistic_c001-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 196,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0397",
+      "timestamp_utc": "2026-10-07T16:54:49.619147+00:00",
+      "event_type": "start",
+      "experiment_id": "E05",
+      "action": "Fit E05-classification-logistic_c001-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 197,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0398",
+      "timestamp_utc": "2026-10-07T16:54:49.897780+00:00",
+      "event_type": "completion",
+      "experiment_id": "E05",
+      "action": "Complete E05-classification-logistic_c001-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 197,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0399",
+      "timestamp_utc": "2026-10-07T16:54:49.919692+00:00",
+      "event_type": "start",
+      "experiment_id": "E05",
+      "action": "Fit E05-classification-logistic_c001-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 198,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0400",
+      "timestamp_utc": "2026-10-07T16:54:50.359176+00:00",
+      "event_type": "completion",
+      "experiment_id": "E05",
+      "action": "Complete E05-classification-logistic_c001-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 198,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0401",
+      "timestamp_utc": "2026-10-07T16:54:50.388436+00:00",
+      "event_type": "start",
+      "experiment_id": "E05",
+      "action": "Fit E05-classification-logistic_c001-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 199,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0402",
+      "timestamp_utc": "2026-10-07T16:54:51.003097+00:00",
+      "event_type": "completion",
+      "experiment_id": "E05",
+      "action": "Complete E05-classification-logistic_c001-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 199,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0403",
+      "timestamp_utc": "2026-10-07T16:54:51.041421+00:00",
+      "event_type": "start",
+      "experiment_id": "E05",
+      "action": "Fit E05-classification-logistic_c001-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 200,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0404",
+      "timestamp_utc": "2026-10-07T16:54:51.846104+00:00",
+      "event_type": "completion",
+      "experiment_id": "E05",
+      "action": "Complete E05-classification-logistic_c001-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 200,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0405",
+      "timestamp_utc": "2026-10-07T16:54:51.855445+00:00",
+      "event_type": "start",
+      "experiment_id": "E05",
+      "action": "Fit E05-classification-forest_d8_l50_sqrt-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 201,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0406",
+      "timestamp_utc": "2026-10-07T16:54:52.158749+00:00",
+      "event_type": "completion",
+      "experiment_id": "E05",
+      "action": "Complete E05-classification-forest_d8_l50_sqrt-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 201,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0407",
+      "timestamp_utc": "2026-10-07T16:54:52.174196+00:00",
+      "event_type": "start",
+      "experiment_id": "E05",
+      "action": "Fit E05-classification-forest_d8_l50_sqrt-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 202,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0408",
+      "timestamp_utc": "2026-10-07T16:54:52.706718+00:00",
+      "event_type": "completion",
+      "experiment_id": "E05",
+      "action": "Complete E05-classification-forest_d8_l50_sqrt-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 202,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0409",
+      "timestamp_utc": "2026-10-07T16:54:52.728213+00:00",
+      "event_type": "start",
+      "experiment_id": "E05",
+      "action": "Fit E05-classification-forest_d8_l50_sqrt-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 203,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0410",
+      "timestamp_utc": "2026-10-07T16:54:53.576926+00:00",
+      "event_type": "completion",
+      "experiment_id": "E05",
+      "action": "Complete E05-classification-forest_d8_l50_sqrt-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 203,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0411",
+      "timestamp_utc": "2026-10-07T16:54:53.607018+00:00",
+      "event_type": "start",
+      "experiment_id": "E05",
+      "action": "Fit E05-classification-forest_d8_l50_sqrt-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 204,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0412",
+      "timestamp_utc": "2026-10-07T16:54:54.831932+00:00",
+      "event_type": "completion",
+      "experiment_id": "E05",
+      "action": "Complete E05-classification-forest_d8_l50_sqrt-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 204,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0413",
+      "timestamp_utc": "2026-10-07T16:54:54.870124+00:00",
+      "event_type": "start",
+      "experiment_id": "E05",
+      "action": "Fit E05-classification-forest_d8_l50_sqrt-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 205,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0414",
+      "timestamp_utc": "2026-10-07T16:54:56.483754+00:00",
+      "event_type": "completion",
+      "experiment_id": "E05",
+      "action": "Complete E05-classification-forest_d8_l50_sqrt-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 205,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0415",
+      "timestamp_utc": "2026-10-07T16:54:56.492918+00:00",
+      "event_type": "start",
+      "experiment_id": "E06",
+      "action": "Fit E06-regression-ridge_a100-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 206,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0416",
+      "timestamp_utc": "2026-10-07T16:54:56.647799+00:00",
+      "event_type": "completion",
+      "experiment_id": "E06",
+      "action": "Complete E06-regression-ridge_a100-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 206,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0417",
+      "timestamp_utc": "2026-10-07T16:54:56.661906+00:00",
+      "event_type": "start",
+      "experiment_id": "E06",
+      "action": "Fit E06-regression-ridge_a100-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 207,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0418",
+      "timestamp_utc": "2026-10-07T16:54:56.903690+00:00",
+      "event_type": "completion",
+      "experiment_id": "E06",
+      "action": "Complete E06-regression-ridge_a100-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 207,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0419",
+      "timestamp_utc": "2026-10-07T16:54:56.923247+00:00",
+      "event_type": "start",
+      "experiment_id": "E06",
+      "action": "Fit E06-regression-ridge_a100-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 208,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0420",
+      "timestamp_utc": "2026-10-07T16:54:57.290689+00:00",
+      "event_type": "completion",
+      "experiment_id": "E06",
+      "action": "Complete E06-regression-ridge_a100-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 208,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0421",
+      "timestamp_utc": "2026-10-07T16:54:57.318104+00:00",
+      "event_type": "start",
+      "experiment_id": "E06",
+      "action": "Fit E06-regression-ridge_a100-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 209,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0422",
+      "timestamp_utc": "2026-10-07T16:54:57.832503+00:00",
+      "event_type": "completion",
+      "experiment_id": "E06",
+      "action": "Complete E06-regression-ridge_a100-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 209,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0423",
+      "timestamp_utc": "2026-10-07T16:54:57.868122+00:00",
+      "event_type": "start",
+      "experiment_id": "E06",
+      "action": "Fit E06-regression-ridge_a100-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 210,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0424",
+      "timestamp_utc": "2026-10-07T16:54:58.538834+00:00",
+      "event_type": "completion",
+      "experiment_id": "E06",
+      "action": "Complete E06-regression-ridge_a100-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 210,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0425",
+      "timestamp_utc": "2026-10-07T16:54:58.548409+00:00",
+      "event_type": "start",
+      "experiment_id": "E06",
+      "action": "Fit E06-regression-forest_d12_l20_half-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 211,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0426",
+      "timestamp_utc": "2026-10-07T16:54:59.334291+00:00",
+      "event_type": "completion",
+      "experiment_id": "E06",
+      "action": "Complete E06-regression-forest_d12_l20_half-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 211,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0427",
+      "timestamp_utc": "2026-10-07T16:54:59.348083+00:00",
+      "event_type": "start",
+      "experiment_id": "E06",
+      "action": "Fit E06-regression-forest_d12_l20_half-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 212,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0428",
+      "timestamp_utc": "2026-10-07T16:55:01.413506+00:00",
+      "event_type": "completion",
+      "experiment_id": "E06",
+      "action": "Complete E06-regression-forest_d12_l20_half-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 212,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0429",
+      "timestamp_utc": "2026-10-07T16:55:01.433629+00:00",
+      "event_type": "start",
+      "experiment_id": "E06",
+      "action": "Fit E06-regression-forest_d12_l20_half-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 213,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0430",
+      "timestamp_utc": "2026-10-07T16:55:05.291516+00:00",
+      "event_type": "completion",
+      "experiment_id": "E06",
+      "action": "Complete E06-regression-forest_d12_l20_half-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 213,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0431",
+      "timestamp_utc": "2026-10-07T16:55:05.318815+00:00",
+      "event_type": "start",
+      "experiment_id": "E06",
+      "action": "Fit E06-regression-forest_d12_l20_half-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 214,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0432",
+      "timestamp_utc": "2026-10-07T16:55:12.038020+00:00",
+      "event_type": "completion",
+      "experiment_id": "E06",
+      "action": "Complete E06-regression-forest_d12_l20_half-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 214,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0433",
+      "timestamp_utc": "2026-10-07T16:55:12.073841+00:00",
+      "event_type": "start",
+      "experiment_id": "E06",
+      "action": "Fit E06-regression-forest_d12_l20_half-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 215,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0434",
+      "timestamp_utc": "2026-10-07T16:55:22.384496+00:00",
+      "event_type": "completion",
+      "experiment_id": "E06",
+      "action": "Complete E06-regression-forest_d12_l20_half-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 215,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0435",
+      "timestamp_utc": "2026-10-07T16:55:22.394828+00:00",
+      "event_type": "start",
+      "experiment_id": "E06",
+      "action": "Fit E06-classification-logistic_c001-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 216,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0436",
+      "timestamp_utc": "2026-10-07T16:55:22.570015+00:00",
+      "event_type": "completion",
+      "experiment_id": "E06",
+      "action": "Complete E06-classification-logistic_c001-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 216,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0437",
+      "timestamp_utc": "2026-10-07T16:55:22.584894+00:00",
+      "event_type": "start",
+      "experiment_id": "E06",
+      "action": "Fit E06-classification-logistic_c001-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 217,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0438",
+      "timestamp_utc": "2026-10-07T16:55:22.852359+00:00",
+      "event_type": "completion",
+      "experiment_id": "E06",
+      "action": "Complete E06-classification-logistic_c001-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 217,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0439",
+      "timestamp_utc": "2026-10-07T16:55:22.873581+00:00",
+      "event_type": "start",
+      "experiment_id": "E06",
+      "action": "Fit E06-classification-logistic_c001-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 218,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0440",
+      "timestamp_utc": "2026-10-07T16:55:23.299623+00:00",
+      "event_type": "completion",
+      "experiment_id": "E06",
+      "action": "Complete E06-classification-logistic_c001-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 218,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0441",
+      "timestamp_utc": "2026-10-07T16:55:23.329566+00:00",
+      "event_type": "start",
+      "experiment_id": "E06",
+      "action": "Fit E06-classification-logistic_c001-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 219,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0442",
+      "timestamp_utc": "2026-10-07T16:55:23.900081+00:00",
+      "event_type": "completion",
+      "experiment_id": "E06",
+      "action": "Complete E06-classification-logistic_c001-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 219,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0443",
+      "timestamp_utc": "2026-10-07T16:55:23.939381+00:00",
+      "event_type": "start",
+      "experiment_id": "E06",
+      "action": "Fit E06-classification-logistic_c001-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 220,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0444",
+      "timestamp_utc": "2026-10-07T16:55:24.705864+00:00",
+      "event_type": "completion",
+      "experiment_id": "E06",
+      "action": "Complete E06-classification-logistic_c001-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 220,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0445",
+      "timestamp_utc": "2026-10-07T16:55:24.716046+00:00",
+      "event_type": "start",
+      "experiment_id": "E06",
+      "action": "Fit E06-classification-forest_d8_l50_sqrt-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 221,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0446",
+      "timestamp_utc": "2026-10-07T16:55:25.013464+00:00",
+      "event_type": "completion",
+      "experiment_id": "E06",
+      "action": "Complete E06-classification-forest_d8_l50_sqrt-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 221,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0447",
+      "timestamp_utc": "2026-10-07T16:55:25.028566+00:00",
+      "event_type": "start",
+      "experiment_id": "E06",
+      "action": "Fit E06-classification-forest_d8_l50_sqrt-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 222,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0448",
+      "timestamp_utc": "2026-10-07T16:55:25.552871+00:00",
+      "event_type": "completion",
+      "experiment_id": "E06",
+      "action": "Complete E06-classification-forest_d8_l50_sqrt-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 222,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0449",
+      "timestamp_utc": "2026-10-07T16:55:25.574688+00:00",
+      "event_type": "start",
+      "experiment_id": "E06",
+      "action": "Fit E06-classification-forest_d8_l50_sqrt-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 223,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0450",
+      "timestamp_utc": "2026-10-07T16:55:26.368469+00:00",
+      "event_type": "completion",
+      "experiment_id": "E06",
+      "action": "Complete E06-classification-forest_d8_l50_sqrt-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 223,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0451",
+      "timestamp_utc": "2026-10-07T16:55:26.397895+00:00",
+      "event_type": "start",
+      "experiment_id": "E06",
+      "action": "Fit E06-classification-forest_d8_l50_sqrt-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 224,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0452",
+      "timestamp_utc": "2026-10-07T16:55:27.552610+00:00",
+      "event_type": "completion",
+      "experiment_id": "E06",
+      "action": "Complete E06-classification-forest_d8_l50_sqrt-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 224,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0453",
+      "timestamp_utc": "2026-10-07T16:55:27.590860+00:00",
+      "event_type": "start",
+      "experiment_id": "E06",
+      "action": "Fit E06-classification-forest_d8_l50_sqrt-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 225,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0454",
+      "timestamp_utc": "2026-10-07T16:55:29.168841+00:00",
+      "event_type": "completion",
+      "experiment_id": "E06",
+      "action": "Complete E06-classification-forest_d8_l50_sqrt-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 225,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0455",
+      "timestamp_utc": "2026-10-07T16:55:29.178435+00:00",
+      "event_type": "start",
+      "experiment_id": "E07",
+      "action": "Fit E07-regression-ridge_a100-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 226,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0456",
+      "timestamp_utc": "2026-10-07T16:55:29.313916+00:00",
+      "event_type": "completion",
+      "experiment_id": "E07",
+      "action": "Complete E07-regression-ridge_a100-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 226,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0457",
+      "timestamp_utc": "2026-10-07T16:55:29.328333+00:00",
+      "event_type": "start",
+      "experiment_id": "E07",
+      "action": "Fit E07-regression-ridge_a100-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 227,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0458",
+      "timestamp_utc": "2026-10-07T16:55:29.533712+00:00",
+      "event_type": "completion",
+      "experiment_id": "E07",
+      "action": "Complete E07-regression-ridge_a100-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 227,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0459",
+      "timestamp_utc": "2026-10-07T16:55:29.554020+00:00",
+      "event_type": "start",
+      "experiment_id": "E07",
+      "action": "Fit E07-regression-ridge_a100-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 228,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0460",
+      "timestamp_utc": "2026-10-07T16:55:29.858450+00:00",
+      "event_type": "completion",
+      "experiment_id": "E07",
+      "action": "Complete E07-regression-ridge_a100-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 228,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0461",
+      "timestamp_utc": "2026-10-07T16:55:29.885631+00:00",
+      "event_type": "start",
+      "experiment_id": "E07",
+      "action": "Fit E07-regression-ridge_a100-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 229,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0462",
+      "timestamp_utc": "2026-10-07T16:55:30.296488+00:00",
+      "event_type": "completion",
+      "experiment_id": "E07",
+      "action": "Complete E07-regression-ridge_a100-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 229,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0463",
+      "timestamp_utc": "2026-10-07T16:55:30.331818+00:00",
+      "event_type": "start",
+      "experiment_id": "E07",
+      "action": "Fit E07-regression-ridge_a100-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 230,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0464",
+      "timestamp_utc": "2026-10-07T16:55:30.863215+00:00",
+      "event_type": "completion",
+      "experiment_id": "E07",
+      "action": "Complete E07-regression-ridge_a100-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 230,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0465",
+      "timestamp_utc": "2026-10-07T16:55:30.872794+00:00",
+      "event_type": "start",
+      "experiment_id": "E07",
+      "action": "Fit E07-regression-forest_d12_l20_half-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 231,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0466",
+      "timestamp_utc": "2026-10-07T16:55:31.380438+00:00",
+      "event_type": "completion",
+      "experiment_id": "E07",
+      "action": "Complete E07-regression-forest_d12_l20_half-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 231,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0467",
+      "timestamp_utc": "2026-10-07T16:55:31.395308+00:00",
+      "event_type": "start",
+      "experiment_id": "E07",
+      "action": "Fit E07-regression-forest_d12_l20_half-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 232,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0468",
+      "timestamp_utc": "2026-10-07T16:55:32.619287+00:00",
+      "event_type": "completion",
+      "experiment_id": "E07",
+      "action": "Complete E07-regression-forest_d12_l20_half-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 232,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0469",
+      "timestamp_utc": "2026-10-07T16:55:32.639483+00:00",
+      "event_type": "start",
+      "experiment_id": "E07",
+      "action": "Fit E07-regression-forest_d12_l20_half-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 233,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0470",
+      "timestamp_utc": "2026-10-07T16:55:34.900933+00:00",
+      "event_type": "completion",
+      "experiment_id": "E07",
+      "action": "Complete E07-regression-forest_d12_l20_half-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 233,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0471",
+      "timestamp_utc": "2026-10-07T16:55:34.928339+00:00",
+      "event_type": "start",
+      "experiment_id": "E07",
+      "action": "Fit E07-regression-forest_d12_l20_half-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 234,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0472",
+      "timestamp_utc": "2026-10-07T16:55:38.753645+00:00",
+      "event_type": "completion",
+      "experiment_id": "E07",
+      "action": "Complete E07-regression-forest_d12_l20_half-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 234,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0473",
+      "timestamp_utc": "2026-10-07T16:55:38.789948+00:00",
+      "event_type": "start",
+      "experiment_id": "E07",
+      "action": "Fit E07-regression-forest_d12_l20_half-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 235,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0474",
+      "timestamp_utc": "2026-10-07T16:55:44.680764+00:00",
+      "event_type": "completion",
+      "experiment_id": "E07",
+      "action": "Complete E07-regression-forest_d12_l20_half-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 235,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0475",
+      "timestamp_utc": "2026-10-07T16:55:44.690757+00:00",
+      "event_type": "start",
+      "experiment_id": "E07",
+      "action": "Fit E07-classification-logistic_c001-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 236,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0476",
+      "timestamp_utc": "2026-10-07T16:55:44.842991+00:00",
+      "event_type": "completion",
+      "experiment_id": "E07",
+      "action": "Complete E07-classification-logistic_c001-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 236,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0477",
+      "timestamp_utc": "2026-10-07T16:55:44.858085+00:00",
+      "event_type": "start",
+      "experiment_id": "E07",
+      "action": "Fit E07-classification-logistic_c001-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 237,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0478",
+      "timestamp_utc": "2026-10-07T16:55:45.085028+00:00",
+      "event_type": "completion",
+      "experiment_id": "E07",
+      "action": "Complete E07-classification-logistic_c001-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 237,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0479",
+      "timestamp_utc": "2026-10-07T16:55:45.107048+00:00",
+      "event_type": "start",
+      "experiment_id": "E07",
+      "action": "Fit E07-classification-logistic_c001-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 238,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0480",
+      "timestamp_utc": "2026-10-07T16:55:45.450449+00:00",
+      "event_type": "completion",
+      "experiment_id": "E07",
+      "action": "Complete E07-classification-logistic_c001-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 238,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0481",
+      "timestamp_utc": "2026-10-07T16:55:45.480427+00:00",
+      "event_type": "start",
+      "experiment_id": "E07",
+      "action": "Fit E07-classification-logistic_c001-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 239,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0482",
+      "timestamp_utc": "2026-10-07T16:55:45.935463+00:00",
+      "event_type": "completion",
+      "experiment_id": "E07",
+      "action": "Complete E07-classification-logistic_c001-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 239,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0483",
+      "timestamp_utc": "2026-10-07T16:55:45.978509+00:00",
+      "event_type": "start",
+      "experiment_id": "E07",
+      "action": "Fit E07-classification-logistic_c001-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 240,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0484",
+      "timestamp_utc": "2026-10-07T16:55:46.600709+00:00",
+      "event_type": "completion",
+      "experiment_id": "E07",
+      "action": "Complete E07-classification-logistic_c001-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 240,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0485",
+      "timestamp_utc": "2026-10-07T16:55:46.640759+00:00",
+      "event_type": "start",
+      "experiment_id": "E07",
+      "action": "Fit E07-classification-forest_d8_l50_sqrt-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 241,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0486",
+      "timestamp_utc": "2026-10-07T16:55:46.930140+00:00",
+      "event_type": "completion",
+      "experiment_id": "E07",
+      "action": "Complete E07-classification-forest_d8_l50_sqrt-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 241,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0487",
+      "timestamp_utc": "2026-10-07T16:55:46.946566+00:00",
+      "event_type": "start",
+      "experiment_id": "E07",
+      "action": "Fit E07-classification-forest_d8_l50_sqrt-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 242,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0488",
+      "timestamp_utc": "2026-10-07T16:55:47.435028+00:00",
+      "event_type": "completion",
+      "experiment_id": "E07",
+      "action": "Complete E07-classification-forest_d8_l50_sqrt-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 242,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0489",
+      "timestamp_utc": "2026-10-07T16:55:47.457380+00:00",
+      "event_type": "start",
+      "experiment_id": "E07",
+      "action": "Fit E07-classification-forest_d8_l50_sqrt-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 243,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0490",
+      "timestamp_utc": "2026-10-07T16:55:48.363201+00:00",
+      "event_type": "completion",
+      "experiment_id": "E07",
+      "action": "Complete E07-classification-forest_d8_l50_sqrt-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 243,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0491",
+      "timestamp_utc": "2026-10-07T16:55:48.392454+00:00",
+      "event_type": "start",
+      "experiment_id": "E07",
+      "action": "Fit E07-classification-forest_d8_l50_sqrt-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 244,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0492",
+      "timestamp_utc": "2026-10-07T16:55:49.451438+00:00",
+      "event_type": "completion",
+      "experiment_id": "E07",
+      "action": "Complete E07-classification-forest_d8_l50_sqrt-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 244,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0493",
+      "timestamp_utc": "2026-10-07T16:55:49.490794+00:00",
+      "event_type": "start",
+      "experiment_id": "E07",
+      "action": "Fit E07-classification-forest_d8_l50_sqrt-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 245,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0494",
+      "timestamp_utc": "2026-10-07T16:55:50.962477+00:00",
+      "event_type": "completion",
+      "experiment_id": "E07",
+      "action": "Complete E07-classification-forest_d8_l50_sqrt-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 245,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0495",
+      "timestamp_utc": "2026-10-07T16:55:50.975095+00:00",
+      "event_type": "start",
+      "experiment_id": "E08",
+      "action": "Fit E08-regression-forest_d12_l20_half-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 246,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0496",
+      "timestamp_utc": "2026-10-07T16:55:51.782191+00:00",
+      "event_type": "completion",
+      "experiment_id": "E08",
+      "action": "Complete E08-regression-forest_d12_l20_half-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 246,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0497",
+      "timestamp_utc": "2026-10-07T16:55:51.802037+00:00",
+      "event_type": "start",
+      "experiment_id": "E08",
+      "action": "Fit E08-regression-forest_d12_l20_half-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 247,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0498",
+      "timestamp_utc": "2026-10-07T16:55:53.930121+00:00",
+      "event_type": "completion",
+      "experiment_id": "E08",
+      "action": "Complete E08-regression-forest_d12_l20_half-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 247,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0499",
+      "timestamp_utc": "2026-10-07T16:55:53.959420+00:00",
+      "event_type": "start",
+      "experiment_id": "E08",
+      "action": "Fit E08-regression-forest_d12_l20_half-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 248,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0500",
+      "timestamp_utc": "2026-10-07T16:55:57.994433+00:00",
+      "event_type": "completion",
+      "experiment_id": "E08",
+      "action": "Complete E08-regression-forest_d12_l20_half-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 248,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0501",
+      "timestamp_utc": "2026-10-07T16:55:58.034171+00:00",
+      "event_type": "start",
+      "experiment_id": "E08",
+      "action": "Fit E08-regression-forest_d12_l20_half-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 249,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0502",
+      "timestamp_utc": "2026-10-07T16:56:05.038790+00:00",
+      "event_type": "completion",
+      "experiment_id": "E08",
+      "action": "Complete E08-regression-forest_d12_l20_half-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 249,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0503",
+      "timestamp_utc": "2026-10-07T16:56:05.090182+00:00",
+      "event_type": "start",
+      "experiment_id": "E08",
+      "action": "Fit E08-regression-forest_d12_l20_half-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 250,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0504",
+      "timestamp_utc": "2026-10-07T16:56:15.881175+00:00",
+      "event_type": "completion",
+      "experiment_id": "E08",
+      "action": "Complete E08-regression-forest_d12_l20_half-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 250,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0505",
+      "timestamp_utc": "2026-10-07T16:56:15.895605+00:00",
+      "event_type": "start",
+      "experiment_id": "E08",
+      "action": "Fit E08-classification-forest_d8_l50_sqrt-fold0",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 251,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0506",
+      "timestamp_utc": "2026-10-07T16:56:16.205815+00:00",
+      "event_type": "completion",
+      "experiment_id": "E08",
+      "action": "Complete E08-classification-forest_d8_l50_sqrt-fold0",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 251,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0507",
+      "timestamp_utc": "2026-10-07T16:56:16.225776+00:00",
+      "event_type": "start",
+      "experiment_id": "E08",
+      "action": "Fit E08-classification-forest_d8_l50_sqrt-fold1",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 252,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0508",
+      "timestamp_utc": "2026-10-07T16:56:16.795794+00:00",
+      "event_type": "completion",
+      "experiment_id": "E08",
+      "action": "Complete E08-classification-forest_d8_l50_sqrt-fold1",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 252,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0509",
+      "timestamp_utc": "2026-10-07T16:56:16.827052+00:00",
+      "event_type": "start",
+      "experiment_id": "E08",
+      "action": "Fit E08-classification-forest_d8_l50_sqrt-fold2",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 253,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0510",
+      "timestamp_utc": "2026-10-07T16:56:17.749247+00:00",
+      "event_type": "completion",
+      "experiment_id": "E08",
+      "action": "Complete E08-classification-forest_d8_l50_sqrt-fold2",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 253,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0511",
+      "timestamp_utc": "2026-10-07T16:56:17.789861+00:00",
+      "event_type": "start",
+      "experiment_id": "E08",
+      "action": "Fit E08-classification-forest_d8_l50_sqrt-fold3",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 254,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0512",
+      "timestamp_utc": "2026-10-07T16:56:19.092232+00:00",
+      "event_type": "completion",
+      "experiment_id": "E08",
+      "action": "Complete E08-classification-forest_d8_l50_sqrt-fold3",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 254,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0513",
+      "timestamp_utc": "2026-10-07T16:56:19.145628+00:00",
+      "event_type": "start",
+      "experiment_id": "E08",
+      "action": "Fit E08-classification-forest_d8_l50_sqrt-fold4",
+      "outcome": "Predictive attempt started.",
+      "attempt_id": 255,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0514",
+      "timestamp_utc": "2026-10-07T16:56:20.923320+00:00",
+      "event_type": "completion",
+      "experiment_id": "E08",
+      "action": "Complete E08-classification-forest_d8_l50_sqrt-fold4",
+      "outcome": "Valid training/validation metrics and provenance saved.",
+      "attempt_id": 255,
+      "warnings": []
+    },
+    {
+      "event_id": "S5-0515",
+      "timestamp_utc": "2026-10-07T16:56:20.929392+00:00",
+      "event_type": "completion",
+      "experiment_id": "STEP5",
+      "action": "Finish frozen predictive diagnostics.",
+      "outcome": "255 fits complete; terminal/holdout untouched by this run; evidence review and auxiliary audits remain."
+    },
+    {
+      "event_id": "S5-0516",
+      "timestamp_utc": "2026-10-07T16:57:51.736223+00:00",
+      "event_type": "completion",
+      "experiment_id": "STEP5",
+      "action": "Validate diagnostic evidence, subgroup/paired scores and actual linear designs.",
+      "outcome": "Checks passed; results ready for human decision and impact analysis; no adoption."
+    },
+    {
+      "event_id": "S5-0517",
+      "timestamp_utc": "2026-10-07T17:01:35.163467+00:00",
+      "event_type": "decision",
+      "experiment_id": "STEP5_REVIEW",
+      "action": "Synthesize verified diagnostic findings; retain failed hypotheses and defer final adoption.",
+      "outcome": "Classification does not support three-count removal; complete-case training harms classification; regression/count recommendations are task-specific. No final model adoption."
+    }
+  ]
+}

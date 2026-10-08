@@ -1,0 +1,13 @@
+{
+  "issue": "Publication verification initially generated only the default OLS descriptive diagnostic folder",
+  "failure": "Missing model_gate/baseline-diagnostics-v2/ols_largest_coefficients.csv during accepted-evidence comparison",
+  "completed_predictive_fits_before_failure": 432,
+  "additional_predictive_fits_for_correction": 0,
+  "resolution": "Run the same no-fit descriptive diagnostic with an explicit baseline-diagnostics-v2 output, retaining both original evidence versions",
+  "shared_original_csvs_are_byte_identical": true,
+  "scientific_parameters_or_selection_changed": false,
+  "corrected_command": "python -m experiments.feature_selection_v3.baseline_diagnostics --input RUN/model_gate --output RUN/model_gate/baseline-diagnostics-v2",
+  "corrected_workflow": "experiments.refinement_cycle1.reproduce",
+  "original_failed_run_record_preserved": true,
+  "classification": "Publication output-binding issue, not a failed model hypothesis"
+}
