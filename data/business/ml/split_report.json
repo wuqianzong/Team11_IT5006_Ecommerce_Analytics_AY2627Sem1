@@ -2,7 +2,7 @@
   "split_version": "v1.1",
   "contract_version": "v1.2",
   "library_versions": {
-    "scikit-learn": "1.8.0"
+    "scikit-learn": "1.9.0"
   },
   "outer_config": {
     "n_splits": 5,
@@ -45,5 +45,5 @@
       "detail": "no holdout order assigned to an inner validation fold"
     }
   ],
-  "run_timestamp": "2026-10-07T08:27:36+00:00"
+  "run_timestamp": "2026-10-04T09:23:51+00:00"
 }
