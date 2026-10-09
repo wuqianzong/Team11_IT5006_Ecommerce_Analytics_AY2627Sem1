@@ -30,6 +30,7 @@ archive/
 *.md
 !/README.md
 !/experiments/refinement_cycle1/README.md
+!/experiments/experiment_3/*.md
 /docs/
 /data/business/ml/*.pdf
 /src/reporting/*
@@ -56,6 +57,7 @@ archive/
 !/artifacts/metrics/stage5_tutorial8_internal_verification.json
 !/artifacts/metrics/refinement-cycle1-evidence/
 !/artifacts/metrics/refinement-selected-v3/
+/experiments/experiment_3/data/
 /artifacts/metrics/refinement-selected-v3/*
 !/artifacts/metrics/refinement-selected-v3/configuration.json
 !/artifacts/metrics/refinement-selected-v3/frozen_decision_policy.json
