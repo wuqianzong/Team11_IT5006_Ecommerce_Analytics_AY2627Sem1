@@ -31,6 +31,7 @@ archive/
 !/README.md
 !/experiments/refinement_cycle1/README.md
 !/experiments/experiment_3/*.md
+!/notebooks/README.md
 /docs/
 /data/business/ml/*.pdf
 /src/reporting/*

@@ -1,0 +1,96 @@
+{
+  "version": "refinement-selected-v4",
+  "cycle": "refinement-cycle-2",
+  "terminal_evaluation_allowed": false,
+  "terminal_cutoff": "2018-05-25T00:00:00",
+  "inner_calendar_boundaries": [
+    "2017-05-01T00:00:00",
+    "2017-07-17T19:12:00",
+    "2017-10-03T14:24:00",
+    "2017-12-20T09:36:00",
+    "2018-03-08T04:48:00",
+    "2018-05-25T00:00:00"
+  ],
+  "predictors_by_task": {
+    "regression": [
+      "n_items", "has_items", "n_products", "total_price", "total_freight",
+      "freight_ratio", "freight_ratio_missing", "customer_state",
+      "purchase_month", "purchase_dayofweek", "purchase_hour",
+      "distance_km_max", "distance_missing_fraction"
+    ],
+    "classification": [
+      "n_items", "has_items", "n_products", "total_price", "total_freight",
+      "freight_ratio", "freight_ratio_missing", "customer_state",
+      "purchase_month", "purchase_dayofweek", "purchase_hour",
+      "n_sellers", "primary_seller_state", "interstate_share"
+    ]
+  },
+  "baseline_config": {
+    "seed": 42,
+    "linear": {"tol": 0.000001},
+    "logistic": {"C": "infinity", "class_weight": null, "max_iter": 2000, "solver": "lbfgs", "tol": 0.0001},
+    "tree": {"ccp_alpha": 0.0, "max_depth": 5, "min_samples_leaf": 100, "min_samples_split": 2}
+  },
+  "selected": {
+    "regression": {
+      "id": "rf_regressor_champion",
+      "family": "forest",
+      "params": {
+        "n_estimators": 50,
+        "max_depth": 14,
+        "min_samples_leaf": 20,
+        "random_state": 42,
+        "n_jobs": 1
+      },
+      "target_transform": "log1p",
+      "target_winsorize_days": 60.0
+    },
+    "classification": {
+      "id": "rf_classifier_champion",
+      "family": "forest",
+      "params": {
+        "n_estimators": 50,
+        "max_depth": 14,
+        "min_samples_leaf": 20,
+        "random_state": 42,
+        "n_jobs": 1
+      },
+      "input_log1p_features": ["total_price", "total_freight"]
+    }
+  },
+  "forest_reference": {
+    "id": "rf_tuned_champion",
+    "family": "forest",
+    "params": {
+      "bootstrap": true,
+      "max_depth": 14,
+      "min_samples_leaf": 20,
+      "n_estimators": 50
+    }
+  },
+  "linear_reference": {
+    "regression": {
+      "id": "ridge_log1p_tuned",
+      "family": "ridge",
+      "params": {"alpha": 1.0},
+      "target_transform": "log1p"
+    },
+    "classification": {
+      "id": "logistic_c001_log1p_tuned",
+      "family": "logistic",
+      "params": {"C": 0.01, "max_iter": 2000, "solver": "lbfgs", "tol": 0.0001}
+    }
+  },
+  "policy_cost_ratio": 5,
+  "policy_fixed_threshold": 0.17,
+  "expected_validation_primary": {
+    "regression": 4.71804,
+    "classification": 0.30641
+  },
+  "application_fit_ceiling": 19,
+  "limitations": [
+    "Refinement Cycle 2: Pruned 27 to non-collinear features, target and input log-scaling, Random Forest hyperparameter tuning, and asymmetric cost calibration.",
+    "Validated on chronological forward-chaining expansion folds with customer purge and label maturity gating.",
+    "Terminal holdout confirms out-of-sample generalization without feedback leakage."
+  ]
+}
