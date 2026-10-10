@@ -13,14 +13,14 @@
   ],
   "predictors_by_task": {
     "regression": [
-      "n_items", "has_items", "n_products", "total_price", "total_freight",
-      "freight_ratio", "freight_ratio_missing", "customer_state",
+      "n_items", "n_products", "total_price", "total_freight",
+      "freight_ratio", "customer_state",
       "purchase_month", "purchase_dayofweek", "purchase_hour",
       "distance_km_max", "distance_missing_fraction"
     ],
     "classification": [
-      "n_items", "has_items", "n_products", "total_price", "total_freight",
-      "freight_ratio", "freight_ratio_missing", "customer_state",
+      "n_items", "n_products", "total_price", "total_freight",
+      "freight_ratio", "customer_state",
       "purchase_month", "purchase_dayofweek", "purchase_hour",
       "n_sellers", "primary_seller_state", "interstate_share"
     ]

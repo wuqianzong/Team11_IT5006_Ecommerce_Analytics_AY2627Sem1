@@ -53,8 +53,9 @@ from src.models.refinement_core import CORE_FEATURES
 OUTPUT_DIR = REPO_ROOT / "artifacts" / "metrics" / "experiment-3" / "threshold_calibration"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-# 14 Features for Classification (Phase 3 winning set)
-CLF_14_FEATURES = CORE_FEATURES + ["n_sellers", "primary_seller_state", "interstate_share"]
+# 12 Features for Classification (Phase 3 winning set, Option 1)
+CLF_12_FEATURES = CORE_FEATURES + ["n_sellers", "primary_seller_state", "interstate_share"]
+CLF_14_FEATURES = CLF_12_FEATURES
 SKEWED_NUMERIC_COLS = ["total_price", "total_freight", "distance_km_max"]
 
 
@@ -362,6 +363,8 @@ def main():
 
     f, cv, hashes = load_development()
     df_clf = task_rows(f, cv, "classification").copy()
+    # Option 1: Filter out retrospective zero-item orders (leakage elimination)
+    df_clf = df_clf[df_clf["has_items"].eq(1)].copy().reset_index(drop=True)
     print(f"Loaded {len(df_clf):,} classification orders for Phase 5 evaluation.")
 
     # 1. Run Calibration Audit

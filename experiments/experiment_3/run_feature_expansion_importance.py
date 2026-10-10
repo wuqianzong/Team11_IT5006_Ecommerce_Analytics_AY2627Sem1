@@ -45,8 +45,10 @@ OUTPUT_DIR = REPO_ROOT / "artifacts" / "metrics" / "experiment-3" / "feature_imp
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # Feature definitions
-REG_13_FEATURES = CORE_FEATURES + ["distance_km_max", "distance_missing_fraction"]
-CLF_14_FEATURES = CORE_FEATURES + ["n_sellers", "primary_seller_state", "interstate_share"]
+REG_11_FEATURES = CORE_FEATURES + ["distance_km_max", "distance_missing_fraction"]
+CLF_12_FEATURES = CORE_FEATURES + ["n_sellers", "primary_seller_state", "interstate_share"]
+REG_13_FEATURES = REG_11_FEATURES
+CLF_14_FEATURES = CLF_12_FEATURES
 
 
 def build_pipeline(feature_names, task="regression", model_type="tree", seed=42):
@@ -312,20 +314,22 @@ def main():
     f, cv, hashes = load_development()
     df_reg = task_rows(f, cv, "regression").copy()
     df_clf = task_rows(f, cv, "classification").copy()
-    print(f"Loaded {len(df_reg):,} regression orders and {len(df_clf):,} classification orders.")
+    # Option 1: Filter out post-checkout canceled orders with zero items (leakage elimination)
+    df_clf = df_clf[df_clf["has_items"].eq(1)].copy().reset_index(drop=True)
+    print(f"Loaded {len(df_reg):,} regression orders and {len(df_clf):,} classification orders (zero-item orders filtered).")
 
-    # 1. Evaluate Model Performance across 27, 11, and Final Features from Base to Complex
+    # 1. Evaluate Model Performance across 27, 9, and Final Features from Base to Complex
     reg_subsets = {
         "27 Features (Baseline Allowlist)": PREDICTOR_ALLOWLIST,
-        "11 Features (Core Transaction)": CORE_FEATURES,
-        "13 Features (Core + Distance Spatial)": REG_13_FEATURES
+        "9 Features (Core Transaction)": CORE_FEATURES,
+        "11 Features (Core + Distance Spatial)": REG_11_FEATURES
     }
     df_reg_scores = evaluate_regression(df_reg, reg_subsets)
 
     clf_subsets = {
         "27 Features (Baseline Allowlist)": PREDICTOR_ALLOWLIST,
-        "11 Features (Core Transaction)": CORE_FEATURES,
-        "14 Features (Core + Seller/Interstate)": CLF_14_FEATURES
+        "9 Features (Core Transaction)": CORE_FEATURES,
+        "12 Features (Core + Seller/Interstate)": CLF_12_FEATURES
     }
     df_clf_scores = evaluate_classification(df_clf, clf_subsets)
 
@@ -336,17 +340,19 @@ def main():
     print(f"\nSaved feature dimension score comparison to: {comparison_csv_path}")
     print(df_comparison[["task", "model", "feature_set", "feature_count", "primary_metric", "primary_mean", "primary_std"]].to_string())
 
-    # 2. Compute Feature Importance for Regression (13 features)
-    df_reg_imp = compute_feature_importance_regression(df_reg, REG_13_FEATURES)
-    reg_imp_csv_path = OUTPUT_DIR / "regression_13_feature_importance.csv"
+    # 2. Compute Feature Importance for Regression (11 features)
+    df_reg_imp = compute_feature_importance_regression(df_reg, REG_11_FEATURES)
+    reg_imp_csv_path = OUTPUT_DIR / "regression_11_feature_importance.csv"
     df_reg_imp.to_csv(reg_imp_csv_path, index=False)
-    print(f"\nSaved Regression 13 Feature Importance to: {reg_imp_csv_path}")
+    df_reg_imp.to_csv(OUTPUT_DIR / "regression_13_feature_importance.csv", index=False)
+    print(f"\nSaved Regression 11 Feature Importance to: {reg_imp_csv_path}")
 
-    # 3. Compute Feature Importance for Classification (14 features)
-    df_clf_imp = compute_feature_importance_classification(df_clf, CLF_14_FEATURES)
-    clf_imp_csv_path = OUTPUT_DIR / "classification_14_feature_importance.csv"
+    # 3. Compute Feature Importance for Classification (12 features)
+    df_clf_imp = compute_feature_importance_classification(df_clf, CLF_12_FEATURES)
+    clf_imp_csv_path = OUTPUT_DIR / "classification_12_feature_importance.csv"
     df_clf_imp.to_csv(clf_imp_csv_path, index=False)
-    print(f"\nSaved Classification 14 Feature Importance to: {clf_imp_csv_path}")
+    df_clf_imp.to_csv(OUTPUT_DIR / "classification_14_feature_importance.csv", index=False)
+    print(f"\nSaved Classification 12 Feature Importance to: {clf_imp_csv_path}")
 
     # 4. Generate Visualizations
     plt.style.use("seaborn-v0_8-whitegrid" if "seaborn-v0_8-whitegrid" in plt.style.available else "default")
@@ -361,10 +367,11 @@ def main():
     ax.set_yticklabels(df_reg_imp["feature"], fontsize=10)
     ax.invert_yaxis()
     ax.set_xlabel("Permutation Importance: Mean MAE Degradation when Permuted (Days)", fontsize=11, fontweight="bold")
-    ax.set_title("Regression (13 Features): Permutation Feature Importance (5-Fold CV Mean ± SD)\nDark Blue = Task-Specific Expansion Features", fontsize=12, fontweight="bold", pad=12)
+    ax.set_title("Regression (11 Features): Permutation Feature Importance (5-Fold CV Mean ± SD)\nDark Blue = Task-Specific Expansion Features", fontsize=12, fontweight="bold", pad=12)
     plt.tight_layout()
-    reg_imp_plot_path = OUTPUT_DIR / "regression_13_feature_importance.png"
+    reg_imp_plot_path = OUTPUT_DIR / "regression_11_feature_importance.png"
     plt.savefig(reg_imp_plot_path, dpi=150)
+    plt.savefig(OUTPUT_DIR / "regression_13_feature_importance.png", dpi=150)
     plt.close()
 
     # B. Classification Feature Importance Plot
@@ -377,10 +384,11 @@ def main():
     ax.set_yticklabels(df_clf_imp["feature"], fontsize=10)
     ax.invert_yaxis()
     ax.set_xlabel("Permutation Importance: Mean AP Degradation when Permuted", fontsize=11, fontweight="bold")
-    ax.set_title("Classification (14 Features): Permutation Feature Importance (5-Fold CV Mean ± SD)\nDark Red = Task-Specific Expansion Features", fontsize=12, fontweight="bold", pad=12)
+    ax.set_title("Classification (12 Features): Permutation Feature Importance (5-Fold CV Mean ± SD)\nDark Red = Task-Specific Expansion Features", fontsize=12, fontweight="bold", pad=12)
     plt.tight_layout()
-    clf_imp_plot_path = OUTPUT_DIR / "classification_14_feature_importance.png"
+    clf_imp_plot_path = OUTPUT_DIR / "classification_12_feature_importance.png"
     plt.savefig(clf_imp_plot_path, dpi=150)
+    plt.savefig(OUTPUT_DIR / "classification_14_feature_importance.png", dpi=150)
     plt.close()
 
     # C. Score Comparison Bar Chart (Grouped by Model Tier)
@@ -388,7 +396,7 @@ def main():
     
     # 1. Regression Plot
     df_reg_plot = df_comparison[df_comparison["task"].str.startswith("Regression")].copy()
-    feature_sets_reg = ["27 Features (Baseline Allowlist)", "11 Features (Core Transaction)", "13 Features (Core + Distance Spatial)"]
+    feature_sets_reg = ["27 Features (Baseline Allowlist)", "9 Features (Core Transaction)", "11 Features (Core + Distance Spatial)"]
     x = np.arange(len(feature_sets_reg))
     width = 0.25
 
@@ -407,7 +415,7 @@ def main():
                      ha="center", va="bottom", fontsize=8, fontweight="bold", rotation=0)
 
     ax1.set_xticks(x)
-    ax1.set_xticklabels(["27 Features\n(Allowlist)", "11 Features\n(Core)", "13 Features\n(Core + Dist)"], fontsize=10, fontweight="bold")
+    ax1.set_xticklabels(["27 Features\n(Allowlist)", "9 Features\n(Core)", "11 Features\n(Core + Dist)"], fontsize=10, fontweight="bold")
     ax1.set_ylabel("Validation MAE in Days (Lower is Better)", fontsize=11, fontweight="bold")
     ax1.set_title("Regression: Base to Complex Model Comparison\n(Ridge vs Decision Tree vs Random Forest)", fontsize=12, fontweight="bold")
     ax1.set_ylim(4.8, 5.8)
@@ -415,7 +423,7 @@ def main():
 
     # 2. Classification Plot
     df_clf_plot = df_comparison[df_comparison["task"].str.startswith("Classification")].copy()
-    feature_sets_clf = ["27 Features (Baseline Allowlist)", "11 Features (Core Transaction)", "14 Features (Core + Seller/Interstate)"]
+    feature_sets_clf = ["27 Features (Baseline Allowlist)", "9 Features (Core Transaction)", "12 Features (Core + Seller/Interstate)"]
     x_clf = np.arange(len(feature_sets_clf))
 
     models_clf_info = [
@@ -433,7 +441,7 @@ def main():
                      ha="center", va="bottom", fontsize=7.5, fontweight="bold", rotation=0)
 
     ax2.set_xticks(x_clf)
-    ax2.set_xticklabels(["27 Features\n(Allowlist)", "11 Features\n(Core)", "14 Features\n(Core + Seller/Inter)"], fontsize=10, fontweight="bold")
+    ax2.set_xticklabels(["27 Features\n(Allowlist)", "9 Features\n(Core)", "12 Features\n(Core + Seller/Inter)"], fontsize=10, fontweight="bold")
     ax2.set_ylabel("Validation Average Precision (Higher is Better)", fontsize=11, fontweight="bold")
     ax2.set_title("Classification: Base to Complex Model Comparison\n(Logistic vs Decision Tree vs Random Forest)", fontsize=12, fontweight="bold")
     ax2.set_ylim(0.25, 0.33)

@@ -186,21 +186,21 @@ def main():
     rank_drop_27 = np.linalg.matrix_rank(X_drop_27)
     cond_drop_27 = s_drop_27[0] / s_drop_27[-1] if s_drop_27[-1] > 1e-12 else np.inf
 
-    # 7C: 11 Core Transaction Predictors (Pruned + Standardized Active + Drop First)
-    assert len(CORE_FEATURES) == 11, f"Expected 11 core features, got {len(CORE_FEATURES)}"
-    df_11 = df_dev[CORE_FEATURES].copy()
-    num_11_active = ["n_items", "n_products", "total_price", "total_freight", "freight_ratio"]
-    cat_11 = ["customer_state", "purchase_month", "purchase_dayofweek", "purchase_hour"]
+    # 7C: 9 Core Transaction Predictors (Pruned + Standardized Active + Drop First)
+    assert len(CORE_FEATURES) == 9, f"Expected 9 core features, got {len(CORE_FEATURES)}"
+    df_9 = df_dev[CORE_FEATURES].copy()
+    num_9_active = ["n_items", "n_products", "total_price", "total_freight", "freight_ratio"]
+    cat_9 = ["customer_state", "purchase_month", "purchase_dayofweek", "purchase_hour"]
     
-    scaler_11 = StandardScaler()
-    X_num_scaled_11 = scaler_11.fit_transform(df_11[num_11_active].fillna(df_11[num_11_active].median()))
-    ohe_11 = OneHotEncoder(drop="first", sparse_output=False, handle_unknown="ignore")
-    X_cat_11 = ohe_11.fit_transform(df_11[cat_11].astype(str))
-    X_design_11_active = np.hstack([X_num_scaled_11, X_cat_11])
+    scaler_9 = StandardScaler()
+    X_num_scaled_9 = scaler_9.fit_transform(df_9[num_9_active].fillna(df_9[num_9_active].median()))
+    ohe_9 = OneHotEncoder(drop="first", sparse_output=False, handle_unknown="ignore")
+    X_cat_9 = ohe_9.fit_transform(df_9[cat_9].astype(str))
+    X_design_9_active = np.hstack([X_num_scaled_9, X_cat_9])
     
-    s_11 = np.linalg.svd(X_design_11_active, compute_uv=False)
-    rank_11 = np.linalg.matrix_rank(X_design_11_active)
-    cond_11 = s_11[0] / s_11[-1]
+    s_9 = np.linalg.svd(X_design_9_active, compute_uv=False)
+    rank_9 = np.linalg.matrix_rank(X_design_9_active)
+    cond_9 = s_9[0] / s_9[-1]
 
     cond_summary = pd.DataFrame([
         {
@@ -222,12 +222,12 @@ def main():
             "stability_status": "Severe Multicollinearity (Dummy Trap + Redundant Flags, κ = 1.3e+17)"
         },
         {
-            "configuration": "11 Core Transaction Predictors (Standardized Active + Drop First OHE)",
-            "raw_features": 11,
-            "encoded_columns": X_design_11_active.shape[1],
-            "numerical_rank": rank_11,
-            "rank_deficiency": X_design_11_active.shape[1] - rank_11,
-            "condition_number_kappa": cond_11,
+            "configuration": "9 Core Transaction Predictors (Standardized Active + Drop First OHE)",
+            "raw_features": 9,
+            "encoded_columns": X_design_9_active.shape[1],
+            "numerical_rank": rank_9,
+            "rank_deficiency": X_design_9_active.shape[1] - rank_9,
+            "condition_number_kappa": cond_9,
             "stability_status": "Well-Conditioned / Full Numerical Rank (κ = 70.77)"
         }
     ])
@@ -236,17 +236,19 @@ def main():
     print("\nDesign Matrix Condition Number Summary:")
     print(cond_summary.to_string())
 
-    # 8. Compute Correlation Matrix & Heatmap for 11 Core Active Features
-    corr_11 = df_11[num_11_active + calendar_cols].astype(float).corr(method="pearson")
-    corr_11_csv_path = OUTPUT_DIR / "correlation_matrix_11.csv"
-    corr_11.to_csv(corr_11_csv_path)
-    print(f"\nSaved 11-feature correlation matrix to: {corr_11_csv_path}")
+    # 8. Compute Correlation Matrix & Heatmap for 9 Core Active Features
+    corr_9 = df_9[num_9_active + calendar_cols].astype(float).corr(method="pearson")
+    corr_9_csv_path = OUTPUT_DIR / "correlation_matrix_9.csv"
+    corr_9.to_csv(corr_9_csv_path)
+    # Also save correlation_matrix_11.csv for backward compatibility
+    corr_9.to_csv(OUTPUT_DIR / "correlation_matrix_11.csv")
+    print(f"\nSaved 9-feature correlation matrix to: {corr_9_csv_path}")
 
     fig, ax = plt.subplots(figsize=(9, 7.5), dpi=150)
-    mask_11 = np.triu(np.ones_like(corr_11, dtype=bool), k=1)
+    mask_9 = np.triu(np.ones_like(corr_9, dtype=bool), k=1)
     sns.heatmap(
-        corr_11,
-        mask=mask_11,
+        corr_9,
+        mask=mask_9,
         cmap=cmap,
         vmax=1.0,
         vmin=-1.0,
@@ -259,31 +261,32 @@ def main():
         annot_kws={"size": 9.5},
         ax=ax
     )
-    ax.set_title("Pairwise Pearson Correlation Matrix — 11 Core Transaction Predictors (Active Numerics)", fontsize=12, fontweight="bold", pad=15)
+    ax.set_title("Pairwise Pearson Correlation Matrix — 9 Core Transaction Predictors (Active Numerics)", fontsize=12, fontweight="bold", pad=15)
     plt.xticks(rotation=45, ha="right", fontsize=9)
     plt.yticks(fontsize=9)
     plt.tight_layout()
-    corr_11_plot_path = OUTPUT_DIR / "correlation_matrix_11.png"
-    plt.savefig(corr_11_plot_path, dpi=150)
+    corr_9_plot_path = OUTPUT_DIR / "correlation_matrix_9.png"
+    plt.savefig(corr_9_plot_path, dpi=150)
+    plt.savefig(OUTPUT_DIR / "correlation_matrix_11.png", dpi=150)
     plt.close()
-    print(f"Saved 11-feature correlation heatmap to: {corr_11_plot_path}")
+    print(f"Saved 9-feature correlation heatmap to: {corr_9_plot_path}")
 
-    # 9. Systematic Feature Reduction Rationale Table (27 -> 11)
+    # 9. Systematic Feature Reduction Rationale Table (27 -> 9 Core)
     reduction_records = [
-        # Kept 11
-        {"feature": "n_items", "category": "Basket / Volume", "action": "Retained (Core 11)", "rationale": "Primary volume indicator; strongly predictive of split deliveries and warehouse handling time."},
-        {"feature": "has_items", "category": "Basket / Volume", "action": "Retained (Core 11)", "rationale": "Structural integrity indicator separating valid item-bearing transactions from anomalous cancellations."},
-        {"feature": "n_products", "category": "Basket / Volume", "action": "Retained (Core 11)", "rationale": "Product variety indicator; distinguishes single-SKU bulk orders from multi-SKU complex packing."},
-        {"feature": "total_price", "category": "Financial", "action": "Retained (Core 11)", "rationale": "Primary commercial transaction magnitude; essential for customer expectation and priority logistics."},
-        {"feature": "total_freight", "category": "Financial / Logistics", "action": "Retained (Core 11)", "rationale": "Direct shipping cost carrier signal reflecting weight, urgency, and distance proxy."},
-        {"feature": "freight_ratio", "category": "Financial", "action": "Retained (Core 11)", "rationale": "Normalized freight-to-value ratio; flags low-value orders with disproportionate shipping friction."},
-        {"feature": "freight_ratio_missing", "category": "Data Quality", "action": "Retained (Core 11)", "rationale": "Missing indicator preventing bias from zero-price promotional or gift orders."},
-        {"feature": "customer_state", "category": "Geographic", "action": "Retained (Core 11)", "rationale": "Destination jurisdiction; captures macro-regional transit infrastructure and local delivery speed."},
-        {"feature": "purchase_month", "category": "Temporal / Seasonality", "action": "Retained (Core 11)", "rationale": "Captures macroeconomic seasonality, holiday delivery volume surges, and carrier postal strike periods."},
-        {"feature": "purchase_dayofweek", "category": "Temporal", "action": "Retained (Core 11)", "rationale": "Captures weekend fulfillment lag and weekday dispatch schedules."},
-        {"feature": "purchase_hour", "category": "Temporal", "action": "Retained (Core 11)", "rationale": "Intraday order placement timing; captures same-day versus next-day carrier cutoff boundaries."},
-        # Dropped 16
-        {"feature": "n_sellers", "category": "Seller Logistics", "action": "Dropped from Core (Retained in Clf 14)", "rationale": "98.6% of orders have exactly 1 seller (extreme zero-variance mass). Set aside for task-specific classification expansion."},
+        # Kept 9 Core
+        {"feature": "n_items", "category": "Basket / Volume", "action": "Retained (Core 9)", "rationale": "Primary volume indicator; strongly predictive of split deliveries and warehouse handling time."},
+        {"feature": "n_products", "category": "Basket / Volume", "action": "Retained (Core 9)", "rationale": "Product variety indicator; distinguishes single-SKU bulk orders from multi-SKU complex packing."},
+        {"feature": "total_price", "category": "Financial", "action": "Retained (Core 9)", "rationale": "Primary commercial transaction magnitude; essential for customer expectation and priority logistics."},
+        {"feature": "total_freight", "category": "Financial / Logistics", "action": "Retained (Core 9)", "rationale": "Direct shipping cost carrier signal reflecting weight, urgency, and distance proxy."},
+        {"feature": "freight_ratio", "category": "Financial", "action": "Retained (Core 9)", "rationale": "Normalized freight-to-value ratio; flags low-value orders with disproportionate shipping friction."},
+        {"feature": "customer_state", "category": "Geographic", "action": "Retained (Core 9)", "rationale": "Destination jurisdiction; captures macro-regional transit infrastructure and local delivery speed."},
+        {"feature": "purchase_month", "category": "Temporal / Seasonality", "action": "Retained (Core 9)", "rationale": "Captures macroeconomic seasonality, holiday delivery volume surges, and carrier postal strike periods."},
+        {"feature": "purchase_dayofweek", "category": "Temporal", "action": "Retained (Core 9)", "rationale": "Captures weekend fulfillment lag and weekday dispatch schedules."},
+        {"feature": "purchase_hour", "category": "Temporal", "action": "Retained (Core 9)", "rationale": "Intraday order placement timing; captures same-day versus next-day carrier cutoff boundaries."},
+        # Dropped 18
+        {"feature": "has_items", "category": "Basket / Leakage", "action": "Dropped (Ex-post Leakage / Zero Variance)", "rationale": "100% constant (has_items == 1.0) in valid checkout orders. In historical data, zero-item rows reflect post-checkout fulfillment cancellations, introducing target leakage into classification and zero variance into regression."},
+        {"feature": "freight_ratio_missing", "category": "Data Quality / Zero Variance", "action": "Dropped (Zero Variance)", "rationale": "100% constant (0.0) in valid checkout orders where price and freight are simultaneously populated; rank-deficient zero-variance constant."},
+        {"feature": "n_sellers", "category": "Seller Logistics", "action": "Dropped from Core (Retained in Clf 12)", "rationale": "98.6% of orders have exactly 1 seller (extreme zero-variance mass). Set aside for task-specific classification expansion."},
         {"feature": "n_categories", "category": "Product / Catalog", "action": "Dropped", "rationale": "Highly collinear with n_products (r = 0.88); redundant count adding zero orthogonal information."},
         {"feature": "total_weight_g", "category": "Physical Dimension", "action": "Dropped", "rationale": "Severe collinearity with total_volume_cm3 (r = 0.824); high missingness; total_freight already captures mass/bulk proxy."},
         {"feature": "total_volume_cm3", "category": "Physical Dimension", "action": "Dropped", "rationale": "Severe collinearity with total_weight_g (r = 0.824); extreme right-skew (kurtosis = 81.7); freight already monetizes bulk."},
@@ -291,10 +294,10 @@ def main():
         {"feature": "volume_missing_fraction", "category": "Data Quality", "action": "Dropped", "rationale": "99.98% zero values; redundant data quality flag with negligible variation."},
         {"feature": "primary_category", "category": "Catalog / Taxonomy", "action": "Dropped from Core", "rationale": "71 sparse categorical levels creating 70 dummy variables; induces high variance and overfitting in linear models."},
         {"feature": "category_missing_fraction", "category": "Data Quality", "action": "Dropped", "rationale": ">98.5% zero values; missing categories captured adequately by unknown category token."},
-        {"feature": "primary_seller_state", "category": "Geographic", "action": "Dropped from Core (Retained in Clf 14)", "rationale": "27 states creating 26 dummy levels; set aside for task-specific classification expansion where cross-state friction matters."},
-        {"feature": "distance_km_max", "category": "Spatial / Route", "action": "Dropped from Core (Retained in Reg 13)", "rationale": "Haversine transit distance; set aside for regression task-specific expansion where physical transit duration is primary."},
-        {"feature": "distance_missing_fraction", "category": "Data Quality", "action": "Dropped from Core (Retained in Reg 13)", "rationale": "Tracks missing zip centroid coordinates; bundled with distance_km_max for regression."},
-        {"feature": "interstate_share", "category": "Geographic Route", "action": "Dropped from Core (Retained in Clf 14)", "rationale": "Redundant with customer_state + seller_state combination; set aside for classification expansion."},
+        {"feature": "primary_seller_state", "category": "Geographic", "action": "Dropped from Core (Retained in Clf 12)", "rationale": "27 states creating 26 dummy levels; set aside for task-specific classification expansion where cross-state friction matters."},
+        {"feature": "distance_km_max", "category": "Spatial / Route", "action": "Dropped from Core (Retained in Reg 11)", "rationale": "Haversine transit distance; set aside for regression task-specific expansion where physical transit duration is primary."},
+        {"feature": "distance_missing_fraction", "category": "Data Quality", "action": "Dropped from Core (Retained in Reg 11)", "rationale": "Tracks missing zip centroid coordinates; bundled with distance_km_max for regression."},
+        {"feature": "interstate_share", "category": "Geographic Route", "action": "Dropped from Core (Retained in Clf 12)", "rationale": "Redundant with customer_state + seller_state combination; set aside for classification expansion."},
         {"feature": "primary_payment_type", "category": "Payment", "action": "Dropped", "rationale": "Payment method selected at checkout; post-purchase data shows negligible correlation with delivery lead time."},
         {"feature": "payment_installments_max", "category": "Payment", "action": "Dropped", "rationale": "Customer credit financing term; uninformative for logistics lead time and induces dummy instability."},
         {"feature": "n_payment_methods", "category": "Payment", "action": "Dropped", "rationale": "96.5% of orders use a single payment method; near-zero variance."},
@@ -303,7 +306,7 @@ def main():
     df_reduction = pd.DataFrame(reduction_records)
     reduction_csv_path = OUTPUT_DIR / "reduction_rationale_27_to_11.csv"
     df_reduction.to_csv(reduction_csv_path, index=False)
-    print(f"\nSaved 27-to-11 reduction rationale ({len(df_reduction)} features) to: {reduction_csv_path}")
+    print(f"\nSaved 27-to-9 reduction rationale ({len(df_reduction)} features) to: {reduction_csv_path}")
 
     print("\n" + "=" * 70)
     print("PHASE 2 COMPLETED SUCCESSFULLY!")

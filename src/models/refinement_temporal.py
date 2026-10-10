@@ -32,11 +32,13 @@ def chronological_data(root,protocol):
     folds={};members=[];excluded=[];final={};boundaries=list(map(pd.Timestamp,protocol['inner_calendar_boundaries']))
     for task in TARGETS:
         eligibility=pre['eligible_'+task].eq(1)
+        if task == 'classification':
+            eligibility = eligibility & pre.has_items.eq(1)
         final_mask=eligibility&valid_time[task]&available[task].lt(cutoff)
         final[task]=pre.loc[final_mask].copy()
-        for _,r in pre.loc[eligibility&~final_mask,['order_id']].iterrows():
+        for _,r in pre.loc[pre['eligible_'+task].eq(1)&~final_mask,['order_id']].iterrows():
             i=r.name
-            excluded.append({'order_id':r.order_id,'task':task,'fold':-1,'role':'terminal_training','reasons':'label_timestamp_missing_or_inconsistent' if not valid_time[task].loc[i] else 'label_not_observable_by_cutoff'})
+            excluded.append({'order_id':r.order_id,'task':task,'fold':-1,'role':'terminal_training','reasons':'zero_items_cart_ineligible' if pre.loc[i,'has_items']==0 else ('label_timestamp_missing_or_inconsistent' if not valid_time[task].loc[i] else 'label_not_observable_by_cutoff')})
         for fold,(lo,hi) in enumerate(zip(boundaries[:-1],boundaries[1:])):
             window=pre.prediction_timestamp.ge(lo)&pre.prediction_timestamp.lt(hi)
             groups=set(pre.loc[window,'customer_unique_id'])

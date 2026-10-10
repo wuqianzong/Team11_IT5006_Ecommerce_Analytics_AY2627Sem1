@@ -7,17 +7,17 @@ from sklearn.compose import ColumnTransformer
 from src.features.contract import UNKNOWN, VALID_STATES
 from .tuned_pipelines import make_tuned_pipeline
 
-CORE_FEATURES = ['n_items', 'has_items', 'n_products', 'total_price', 'total_freight',
-                 'freight_ratio', 'freight_ratio_missing', 'customer_state',
+CORE_FEATURES = ['n_items', 'n_products', 'total_price', 'total_freight',
+                 'freight_ratio', 'customer_state',
                  'purchase_month', 'purchase_dayofweek', 'purchase_hour']
-CORE_SCHEMA_VERSION = 'transaction-core-v2'
+CORE_SCHEMA_VERSION = 'transaction-core-v3'
 CALENDAR = {'purchase_month': (1,12), 'purchase_dayofweek': (0,6), 'purchase_hour': (0,23)}
 
 def normalize_core(frame):
     if not isinstance(frame, pd.DataFrame) or frame.columns.duplicated().any():
         raise ValueError('Unique named dataframe columns required')
     if set(frame.columns) != set(CORE_FEATURES):
-        raise ValueError('Expected exactly 11 core predictors; missing=' + str(sorted(set(CORE_FEATURES)-set(frame))) + '; extra=' + str(sorted(set(frame)-set(CORE_FEATURES))))
+        raise ValueError('Expected exactly 9 core predictors; missing=' + str(sorted(set(CORE_FEATURES)-set(frame))) + '; extra=' + str(sorted(set(frame)-set(CORE_FEATURES))))
     result = frame[CORE_FEATURES].copy()
     for col in [x for x in CORE_FEATURES if x!='customer_state']:
         value = pd.to_numeric(result[col], errors='coerce')
@@ -25,10 +25,8 @@ def normalize_core(frame):
             raise ValueError(f'{col}: malformed/nonfinite value')
         valid = value.dropna()
         if valid.lt(0).any():raise ValueError(f'{col}: negative value')
-        if col in {'n_items','n_products','has_items','freight_ratio_missing'} | set(CALENDAR):
+        if col in {'n_items','n_products'} | set(CALENDAR):
             if not np.equal(valid,np.floor(valid)).all():raise ValueError(f'{col}: fractional count/code')
-        if col in {'has_items','freight_ratio_missing'} and not valid.isin([0,1]).all():
-            raise ValueError(f'{col}: invalid flag')
         if col in CALENDAR:
             lo,hi=CALENDAR[col]
             if not valid.between(lo,hi).all():raise ValueError(f'{col}: invalid calendar component')

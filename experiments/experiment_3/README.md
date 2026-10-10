@@ -21,8 +21,8 @@ experiments/experiment_3/
 ├── TO_TEST_LIST.md                           # Master hypothesis and decision backlog
 ├── SUMMARY_REPORT.md                         # Academic master synthesis report
 ├── run_eda_outliers.py                       # Phase 1: Distribution tail audit & outlier ablation
-├── run_collinearity_reduction.py             # Phase 2: Correlation matrices & 27 -> 11 feature reduction
-├── run_feature_expansion_importance.py       # Phase 3: Base-to-complex hierarchy & task-specific expansion
+├── run_collinearity_reduction.py             # Phase 2: Correlation matrices & 27 -> 9 feature reduction (Option 1)
+├── run_feature_expansion_importance.py       # Phase 3: Base-to-complex hierarchy & task-specific expansion (9 -> 11/12)
 ├── run_phase4_transforms_and_tuning.py       # Phase 4: Target log1p & GridSearchCV hyperparameter tuning
 ├── run_phase5_threshold_calibration.py       # Phase 5: Probability calibration & cost-curve optimization
 ├── run_phase6_final_synthesis.py             # Phase 6: Unified Train vs. 5-Fold CV vs. Holdout benchmark
@@ -75,14 +75,14 @@ python experiments/experiment_3/run_eda_outliers.py
 python experiments/experiment_3/run_collinearity_reduction.py
 ```
 * **Outputs:** `artifacts/metrics/experiment-3/feature_selection/`
-* **Verification Checkpoint:** Confirms 27 baseline features have rank deficiency 9 and condition number $\kappa = \infty$. Pruning to 11 core features restores full numerical rank (**71/71**) and slashes condition number to $\mathbf{\kappa = 70.77}$.
+* **Verification Checkpoint:** Confirms 27 baseline features have rank deficiency 9 and condition number $\kappa = \infty$. Pruning to 9 core features (Option 1) restores full numerical rank (**71/71**) and slashes condition number to $\mathbf{\kappa = 70.77}$.
 
 #### Phase 3: Base-to-Complex Hierarchy & Task-Specific Expansion
 ```bash
 python experiments/experiment_3/run_feature_expansion_importance.py
 ```
 * **Outputs:** `artifacts/metrics/experiment-3/feature_importance/`
-* **Verification Checkpoint:** Confirms expanding to 13 features for regression (adding `distance_km_max`) improves Random Forest MAE from $5.098$d $\to \mathbf{4.986}$d. Expanding to 14 features for classification (adding seller/interstate variables) restores Logistic AP to $0.2990$ and Random Forest to $0.2991$.
+* **Verification Checkpoint:** Confirms expanding to 11 features for regression (adding `distance_km_max`) improves Random Forest MAE from $5.098$d $\to \mathbf{4.986}$d. Expanding to 12 features for classification (adding seller/interstate variables) restores Logistic AP to $0.2990$ and Random Forest to $0.2991$.
 
 #### Phase 4: Pre-Scaling, Target Log-Transformations & GridSearchCV Tuning
 ```bash
@@ -111,9 +111,9 @@ python experiments/experiment_3/run_phase6_final_synthesis.py
 
 | Task | Champion Model Architecture | Features | 5-Fold CV Validation | Terminal Holdout Test | Baseline Holdout | Absolute Gain on Holdout |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
-| **Regression** | Random Forest (`depth=14, leaf=20`) + Target Log1p | 13 | **$4.718 \pm 0.059$d** MAE | **$4.839$d** MAE | 5.026d MAE | **$-0.187$ days** ($-3.7\%$ error) |
-| **Classification** | Random Forest (`depth=14, leaf=20`) + Log1p Pre-scale | 14 | **$0.3064 \pm 0.0011$** AP | **$0.3130$** AP | 0.3077 AP | **$+0.0053$ AP** |
-| **Policy Cost** | Optimal Decision Threshold ($\tau^* = 0.17$) | 14 | $46,812$ Cost | **$11,802$** Cost | 13,885 Cost ($\tau=0.50$) | **$-15.0\%$ Cost Reduction** |
+| **Regression** | Random Forest (`depth=14, leaf=20`) + Target Log1p | 11 | **$4.718 \pm 0.059$d** MAE | **$4.839$d** MAE | 5.026d MAE | **$-0.187$ days** ($-3.7\%$ error) |
+| **Classification** | Random Forest (`depth=14, leaf=20`) + Log1p Pre-scale | 12 | **$0.3064 \pm 0.0011$** AP | **$0.3130$** AP | 0.3077 AP | **$+0.0053$ AP** |
+| **Policy Cost** | Optimal Decision Threshold ($\tau^* = 0.17$) | 12 | $46,812$ Cost | **$11,802$** Cost | 13,885 Cost ($\tau=0.50$) | **$-15.0\%$ Cost Reduction** |
 
 ---
 

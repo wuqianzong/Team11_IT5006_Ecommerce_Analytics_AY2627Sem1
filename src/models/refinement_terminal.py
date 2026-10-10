@@ -96,6 +96,8 @@ def terminal_cohorts(development, reviews, cutoff):
     frames, eligibility = {}, []
     for task, target in TARGETS.items():
         eligible = terminal['eligible_'+task].eq(1)
+        if task == 'classification':
+            eligible = eligible & terminal.has_items.eq(1)
         mask = eligible & valid_time[task]
         frames[task] = terminal.loc[mask].sort_values('order_id').reset_index(drop=True)
         if frames[task].empty or frames[task][target].isna().any():
@@ -107,8 +109,8 @@ def terminal_cohorts(development, reviews, cutoff):
         for i, row in terminal.iterrows():
             eligibility.append({'order_id': row.order_id, 'task': task, 'purchase_month': str(row.prediction_timestamp.to_period('M')),
                                 'included': bool(mask.loc[i]), 'existing_eligible': bool(eligible.loc[i]),
-                                'reason': 'included' if mask.loc[i] else ('existing_task_ineligible' if not eligible.loc[i]
-                                             else 'contributing_label_timestamp_missing_or_inconsistent')})
+                                'reason': 'included' if mask.loc[i] else ('zero_items_cart_ineligible' if row.has_items == 0 else ('existing_task_ineligible' if not eligible.loc[i]
+                                             else 'contributing_label_timestamp_missing_or_inconsistent'))})
     return terminal, frames, pd.DataFrame(eligibility)
 
 

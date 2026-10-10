@@ -53,8 +53,8 @@ Every method, model, and diagnostic in Experiment 3 strictly maps to techniques 
 
 ```mermaid
 flowchart TD
-    P1["Phase 1: EDA, Skewness & Outlier Diagnostics<br/>(Boxplots, Cook's Distance, Clipping vs. Removal)"] --> P2["Phase 2: Multicollinearity & Feature Correlation Matrix<br/>(27-Feature Pearson Matrix, VIF/Rank, Reduction to 11 Core)"]
-    P2 --> P3["Phase 3: Feature Importance Analysis & Task Expansion<br/>(Permutation Importance, Tree MDI, Odds Ratios: 11 → 13/14)"]
+    P1["Phase 1: EDA, Skewness & Outlier Diagnostics<br/>(Boxplots, Cook's Distance, Clipping vs. Removal)"] --> P2["Phase 2: Multicollinearity & Feature Correlation Matrix<br/>(27-Feature Pearson Matrix, VIF/Rank, Reduction to 9 Core)"]
+    P2 --> P3["Phase 3: Feature Importance Analysis & Task Expansion<br/>(Permutation Importance, Tree MDI, Odds Ratios: 9 → 11/12)"]
     P3 --> P4["Phase 4: Pre-Scaling & Target Log-Transformations<br/>(log1p on Skewed Predictors & TransformedTargetRegressor on lead_days)"]
     P4 --> P5["Phase 5: Classification Threshold & Calibration<br/>(Cost-curve optimization & Platt calibration)"]
     P5 --> P6["Phase 6: Unified Model Gate Evaluation<br/>(Train, Val Mean ± SD, Holdout Table: 27 vs 11 vs Final vs Exp 3)"]
@@ -81,7 +81,7 @@ flowchart TD
 
 ---
 
-### Phase 2: Multicollinearity Audit, Feature Correlation Matrix & Feature Reduction (27 $\rightarrow$ 11)
+### Phase 2: Multicollinearity Audit, Feature Correlation Matrix & Feature Reduction (27 $\rightarrow$ 9)
 * **Lab References:** `T05.ipynb` (Advertising correlation matrix `corr()`, surrogate credit effect, condition number, VIF).
 * **Script:** `experiments/experiment_3/run_collinearity_reduction.py`
 * **Workflow:**
@@ -98,30 +98,31 @@ flowchart TD
      - Compute the non-zero condition number ($\kappa$) of the unregularized design matrix.
      - Verify numerical matrix rank vs. nominal columns ($p$) to detect linear dependencies caused by high-cardinality one-hot encoding.
      - Formulate the dummy variable trap check: verify `drop="first"` implementation for linear/logistic models.
-  3. *Justified Reduction from 27 to 11 Core Features:*
+  3. *Justified Reduction from 27 to 9 Core Features (Option 1 Checkout Scoping):*
      - **Prune Physical Block (4 features):** Extreme collinearity ($r=0.824$), heavy right-skew, high missingness requiring imputation.
      - **Prune Category Block (2 features):** 71 sparse dummy levels causing rank deficiency ($\text{rank}=170$ vs 187) and condition explosion ($\kappa > 1400$).
      - **Prune Payment Block (4 features):** Retrospective multi-voucher timestamps pose post-checkout leakage risks.
+     - **Prune Invariant/Leakage Flags (2 features - Option 1):** `has_items` and `freight_ratio_missing` are eliminated because legitimate checkout orders always have items and defined freight ratios; zero-item cancellation rows represent retrospective leakage.
      - **Hold Out Seller/Distance Blocks (6 features):** Kept aside for controlled ablation to test task-specific contributions.
-     - **Resulting 11 Core Features:** `n_items`, `has_items`, `n_products`, `total_price`, `total_freight`, `freight_ratio`, `freight_ratio_missing`, `customer_state`, `purchase_month`, `purchase_dayofweek`, `purchase_hour`.
+     - **Resulting 9 Core Features:** `n_items`, `n_products`, `total_price`, `total_freight`, `freight_ratio`, `customer_state`, `purchase_month`, `purchase_dayofweek`, `purchase_hour`.
 
 ---
 
-### Phase 3: Feature Importance Analysis & Task-Specific Feature Expansion (11 $\rightarrow$ 13 Reg / 14 Clf)
+### Phase 3: Feature Importance Analysis & Task-Specific Feature Expansion (9 $\rightarrow$ 11 Reg / 12 Clf)
 * **Lab References:** `T08_Classficiation_Models.ipynb` (Odds Ratios & Horizontal Bar Charts in Cell 33; Random Forest Importances in Cell 46).
-* **Script:** `experiments/experiment_3/run_feature_importance_expansion.py`
+* **Script:** `experiments/experiment_3/run_feature_expansion_importance.py`
 * **Workflow:**
   1. *Tri-Method Feature Importance Profiling:*
      - **Out-of-Fold Permutation Importance:** Calculate degradation in primary metric ($\Delta \text{MAE}$ for regression; $\Delta \text{AP}$ for classification) when shuffling each feature across 5 folds (`permutation_importance`).
      - **Tree Impurity Feature Importance (MDI):** Extract Gini / MSE variance reduction from Decision Trees and Random Forests (`model.feature_importances_`).
      - **Standardized Logistic Regression Odds Ratios:** Extract standardized coefficients $\beta_j$ and calculate multiplicative odds multipliers ($OR = \exp(\beta_j)$) and percentage impact ($(\exp(\beta_j) - 1) \times 100\%$).
   2. *Visual Feature Importance Bar Charts:*
-     - Generate horizontal bar plots (`artifacts/metrics/experiment-3/feature_selection/feature_importance_bars.png`) styled after `T08` Cell 33 (green for protective/delay-reducing features, red for risk/delay-increasing features).
+     - Generate horizontal bar plots (`artifacts/metrics/experiment-3/feature_importance/regression_11_feature_importance.png` and `classification_12_feature_importance.png`) styled after `T08` Cell 33.
   3. *Hypothesis-Driven Feature Expansion:*
-     - **Task 1 Regression Expansion (11 $\rightarrow$ 13 Features):** Add `distance_km_max` and `distance_missing_fraction`. Justified by #1 permutation importance ($+0.9545$ days MAE degradation) and $27.58\%$ tree impurity. Other blocks rejected (Physical gained only $+0.0428$d; Categories gained $+0.0389$d, failing the $0.05$-day threshold).
-     - **Task 2 Classification Expansion (11 $\rightarrow$ 14 Features):** Add `n_sellers`, `primary_seller_state`, and `interstate_share`. Justified by top odds ratios ($OR = 1.182$ for sellers, $1.129$ for interstate) and AP drop. Distance rejected for classification (only $+0.0003$ AP gain, failing 3/5 folds).
+     - **Task 1 Regression Expansion (9 $\rightarrow$ 11 Features):** Add `distance_km_max` and `distance_missing_fraction`. Justified by dominant permutation importance ($+0.891$ days MAE degradation) and tree impurity.
+     - **Task 2 Classification Expansion (9 $\rightarrow$ 12 Features):** Add `n_sellers`, `primary_seller_state`, and `interstate_share`. Justified by top odds ratios and AP drop; distance rejected for classification (only $+0.0003$ AP gain).
   4. *Feature Regime Score Comparison Table:*
-     - Benchmark 27 Features vs. 11 Core Features vs. Final 13/14 Features side-by-side across 5-fold CV.
+     - Benchmark 27 Features vs. 9 Core Features vs. Final 11/12 Features side-by-side across 5-fold CV.
 
 ---
 

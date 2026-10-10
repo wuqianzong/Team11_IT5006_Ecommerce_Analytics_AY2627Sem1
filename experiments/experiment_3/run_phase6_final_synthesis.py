@@ -49,9 +49,11 @@ from src.models.refinement_core import CORE_FEATURES
 OUTPUT_DIR = REPO_ROOT / "artifacts" / "metrics" / "experiment-3" / "final_synthesis"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-# Feature subsets
-REG_13_FEATURES = CORE_FEATURES + ["distance_km_max", "distance_missing_fraction"]
-CLF_14_FEATURES = CORE_FEATURES + ["n_sellers", "primary_seller_state", "interstate_share"]
+# Feature subsets (Option 1: 9 Core -> 11 Regression / 12 Classification)
+REG_11_FEATURES = CORE_FEATURES + ["distance_km_max", "distance_missing_fraction"]
+CLF_12_FEATURES = CORE_FEATURES + ["n_sellers", "primary_seller_state", "interstate_share"]
+REG_13_FEATURES = REG_11_FEATURES
+CLF_14_FEATURES = CLF_12_FEATURES
 SKEWED_NUMERIC_COLS = ["total_price", "total_freight", "distance_km_max"]
 
 
@@ -64,7 +66,8 @@ def load_holdout_data():
     holdout = base.loc[base["order_id"].isin(selected_ids)].sort_values("order_id").reset_index(drop=True)
 
     df_holdout_reg = holdout.loc[holdout["eligible_regression"].eq(1)].copy().reset_index(drop=True)
-    df_holdout_clf = holdout.loc[holdout["eligible_classification"].eq(1)].copy().reset_index(drop=True)
+    # Option 1: Filter out retrospective zero-item orders (leakage elimination)
+    df_holdout_clf = holdout.loc[holdout["eligible_classification"].eq(1) & holdout["has_items"].eq(1)].copy().reset_index(drop=True)
     return df_holdout_reg, df_holdout_clf
 
 
@@ -428,6 +431,8 @@ def main():
     f, cv, hashes = load_development()
     df_dev_reg = task_rows(f, cv, "regression").copy()
     df_dev_clf = task_rows(f, cv, "classification").copy()
+    # Option 1: Filter out retrospective zero-item orders (leakage elimination)
+    df_dev_clf = df_dev_clf[df_dev_clf["has_items"].eq(1)].copy().reset_index(drop=True)
 
     df_holdout_reg, df_holdout_clf = load_holdout_data()
 

@@ -1,0 +1,21 @@
+{
+  "cycle": "refinement-cycle-2",
+  "input_units": "Standard raw units; log1p scaling encapsulated in pipeline",
+  "predictor_allowlist": [
+    "n_items",
+    "n_products",
+    "total_price",
+    "total_freight",
+    "freight_ratio",
+    "customer_state",
+    "purchase_month",
+    "purchase_dayofweek",
+    "purchase_hour",
+    "n_sellers",
+    "primary_seller_state",
+    "interstate_share"
+  ],
+  "role": "selected",
+  "task": "classification",
+  "version": "refinement-selected-v4"
+}

@@ -16,7 +16,7 @@ Experiment 3 was initiated to investigate and resolve fundamental structural def
 4. **Arbitrary 0.50 Decision Threshold Failure:** In customer detractor classification ($14.7\%$ minority class), the default threshold ($\tau = 0.50$) missed $>95\%$ of dissatisfied customers, incurring severe operational failure costs.
 
 ### Key Breakthroughs & Milestones:
-* **Multicollinearity Elimination:** Pruning redundant features down to **11 core features** restored full numerical rank (71/71) and reduced the condition number from $\mathbf{\kappa = \infty \to 70.77}$.
+* **Multicollinearity Elimination (Option 1):** Pruning redundant and invariant/leakage features down to **9 core features** restored full numerical rank (71/71) and reduced the condition number from $\mathbf{\kappa = \infty \to 70.77}$.
 * **Target Log-Transformation Breakthrough:** Applying $\log(1+y)$ via `TransformedTargetRegressor` slashed Ridge Regression MAE from **$5.141$d $\to \mathbf{4.794}$d ($-0.347$ days)** and Random Forest MAE to **$4.718$ days**.
 * **Hyperparameter Optimization (`GridSearchCV`):** Decision Tree classification Average Precision (AP) surged by **$+0.0217$** (from $0.2626 \to 0.2843$), and Random Forest reached **$0.3064$ CV AP** and **$0.3130$ Holdout AP**.
 * **Asymmetric Cost Threshold Optimization:** Under a realistic $1:5$ business cost ratio ($C_{\text{FP}} = \$1, C_{\text{FN}} = \$5$), lowering the decision threshold from $\tau = 0.50 \to \mathbf{\tau^* = 0.17}$ increased detractor recall from $4.5\% \to \mathbf{38.2\%}$ (F1 peaked at $0.330$) and directly slashed total operational error costs by **$16.3\%$ (saving $9,100$ cost units)**.
@@ -38,8 +38,8 @@ All techniques deployed strictly adhere to the methods taught in the course lab 
 
 ```mermaid
 flowchart TD
-    P1["Phase 1: Tail Audit & Outlier Benchmark<br>77,139 Orders | Skewness Diagnostics | Winsorization @ 60d"] --> P2["Phase 2: Multicollinearity Diagnostics<br>Pearson Matrix | VIF Audit | 27 -> 11 Features (Rank: 71/71, Cond: 70.77)"]
-    P2 --> P3["Phase 3: Base-to-Complex Hierarchy<br>Ridge/Logistic -> DT -> RF | Expanded 13/14 Sets"]
+    P1["Phase 1: Tail Audit & Outlier Benchmark<br>77,139 Orders | Skewness Diagnostics | Winsorization @ 60d"] --> P2["Phase 2: Multicollinearity Diagnostics<br>Pearson Matrix | VIF Audit | 27 -> 9 Features (Rank: 71/71, Cond: 70.77)"]
+    P2 --> P3["Phase 3: Base-to-Complex Hierarchy<br>Ridge/Logistic -> DT -> RF | Expanded 11/12 Sets"]
     P3 --> P4["Phase 4: Transforms & GridSearchCV<br>Target log1p Regressor | Input log1p | Optimal Tree Parameters"]
     P4 --> P5["Phase 5: Calibration & Threshold Optimization<br>Brier Loss: 0.1174 | Business Cost Optimization (tau* = 0.17)"]
     P5 --> P6["Phase 6: Unified Train-Val-Holdout Benchmark<br>77k Dev vs 19k Holdout | Generalization Gap Verification"]
@@ -61,14 +61,14 @@ flowchart TD
 | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
 | **27 Baseline Predictors (Unregularized OHE)** | 27 | 189 | 180 | **9** | **$\infty$** | Singular matrix; non-invertible $(X^T X)$ |
 | **27 Baseline Predictors (Standardized + Drop First)** | 27 | 183 | 180 | **3** | **$1.3 \times 10^{17}$** | Extreme multicollinearity & dummy traps |
-| **11 Core Predictors (Standardized Active + Drop First)** | **11** | **71** | **71** | **0** | **$\mathbf{70.77}$** | **Full numerical rank restored; well-conditioned** |
+| **9 Core Predictors (Standardized Active + Drop First, Option 1)** | **9** | **71** | **71** | **0** | **$\mathbf{70.77}$** | **Full numerical rank restored; well-conditioned** |
 
-- **Decision:** Pruned physical duplicates, high-cardinality category dummies, and retrospective payment counts.
+- **Decision:** Pruned physical duplicates, high-cardinality category dummies, retrospective payment counts, and invariant/leakage flags (`has_items`, `freight_ratio_missing`).
 
 ### Phase 3: Base-to-Complex Hierarchy & Task-Specific Expansion
-- Evaluated linear base models (Ridge/Logistic) $\to$ Decision Trees $\to$ Random Forests across 27, 11, and expanded feature sets.
-- **Regression (11 $\to$ 13 Features):** Adding `distance_km_max` and `distance_missing_fraction` recovered MAE across all model tiers (Ridge: $5.244$d $\to 5.141$d; RF: $5.098$d $\to 4.986$d).
-- **Classification (11 $\to$ 14 Features):** Adding `n_sellers`, `primary_seller_state`, and `interstate_share` restored AP from $0.2881 \to \mathbf{0.2990}$ for Logistic Regression and $0.2940 \to \mathbf{0.2991}$ for Random Forest.
+- Evaluated linear base models (Ridge/Logistic) $\to$ Decision Trees $\to$ Random Forests across 27, 9, and expanded feature sets.
+- **Regression (9 $\to$ 11 Features):** Adding `distance_km_max` and `distance_missing_fraction` recovered MAE across all model tiers (Ridge: $5.244$d $\to 5.141$d; RF: $5.098$d $\to 4.986$d).
+- **Classification (9 $\to$ 12 Features):** Adding `n_sellers`, `primary_seller_state`, and `interstate_share` restored AP from $0.2881 \to \mathbf{0.2990}$ for Logistic Regression and $0.2940 \to \mathbf{0.2991}$ for Random Forest.
 
 ### Phase 4: Pre-Scaling, Target Log-Transformations & GridSearchCV Tuning
 - **Target Log-Transformation ($\log(1+y)$ via `TransformedTargetRegressor`):**

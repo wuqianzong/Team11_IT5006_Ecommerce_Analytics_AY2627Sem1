@@ -1,0 +1,13 @@
+{
+  "limitations": [
+    "Refinement Cycle 2: Pruned 27 to non-collinear features, target and input log-scaling, Random Forest hyperparameter tuning, and asymmetric cost calibration.",
+    "Validated on chronological forward-chaining expansion folds with customer purge and label maturity gating.",
+    "Terminal holdout confirms out-of-sample generalization without feedback leakage."
+  ],
+  "model_version": "refinement-selected-v4",
+  "role": "selected",
+  "task": "regression",
+  "terminal_cutoff": "2018-05-25T00:00:00",
+  "training_ids_sha256": "774eb954b7f8165e825619f57c1245cc7e8d3d4624741a20489a1a3fadf0286e",
+  "training_n": 59466
+}

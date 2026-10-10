@@ -1,0 +1,134 @@
+{
+  "application_fit_ceiling": 19,
+  "baseline_config": {
+    "linear": {
+      "tol": 1e-06
+    },
+    "logistic": {
+      "C": "infinity",
+      "class_weight": null,
+      "max_iter": 2000,
+      "solver": "lbfgs",
+      "tol": 0.0001
+    },
+    "seed": 42,
+    "tree": {
+      "ccp_alpha": 0.0,
+      "max_depth": 5,
+      "min_samples_leaf": 100,
+      "min_samples_split": 2
+    }
+  },
+  "cycle": "refinement-cycle-2",
+  "expected_validation_primary": {
+    "classification": 0.30641,
+    "regression": 4.71804
+  },
+  "forest_reference": {
+    "family": "forest",
+    "id": "rf_tuned_champion",
+    "params": {
+      "bootstrap": true,
+      "max_depth": 14,
+      "min_samples_leaf": 20,
+      "n_estimators": 50
+    }
+  },
+  "inner_calendar_boundaries": [
+    "2017-05-01T00:00:00",
+    "2017-07-17T19:12:00",
+    "2017-10-03T14:24:00",
+    "2017-12-20T09:36:00",
+    "2018-03-08T04:48:00",
+    "2018-05-25T00:00:00"
+  ],
+  "limitations": [
+    "Refinement Cycle 2: Pruned 27 to non-collinear features, target and input log-scaling, Random Forest hyperparameter tuning, and asymmetric cost calibration.",
+    "Validated on chronological forward-chaining expansion folds with customer purge and label maturity gating.",
+    "Terminal holdout confirms out-of-sample generalization without feedback leakage."
+  ],
+  "linear_reference": {
+    "classification": {
+      "family": "logistic",
+      "id": "logistic_c001_log1p_tuned",
+      "params": {
+        "C": 0.01,
+        "max_iter": 2000,
+        "solver": "lbfgs",
+        "tol": 0.0001
+      }
+    },
+    "regression": {
+      "family": "ridge",
+      "id": "ridge_log1p_tuned",
+      "params": {
+        "alpha": 1.0
+      },
+      "target_transform": "log1p"
+    }
+  },
+  "policy_cost_ratio": 5,
+  "policy_fixed_threshold": 0.17,
+  "predictors_by_task": {
+    "classification": [
+      "n_items",
+      "n_products",
+      "total_price",
+      "total_freight",
+      "freight_ratio",
+      "customer_state",
+      "purchase_month",
+      "purchase_dayofweek",
+      "purchase_hour",
+      "n_sellers",
+      "primary_seller_state",
+      "interstate_share"
+    ],
+    "regression": [
+      "n_items",
+      "n_products",
+      "total_price",
+      "total_freight",
+      "freight_ratio",
+      "customer_state",
+      "purchase_month",
+      "purchase_dayofweek",
+      "purchase_hour",
+      "distance_km_max",
+      "distance_missing_fraction"
+    ]
+  },
+  "selected": {
+    "classification": {
+      "family": "forest",
+      "id": "rf_classifier_champion",
+      "input_log1p_features": [
+        "total_price",
+        "total_freight"
+      ],
+      "params": {
+        "max_depth": 14,
+        "min_samples_leaf": 20,
+        "n_estimators": 50,
+        "n_jobs": 1,
+        "random_state": 42
+      }
+    },
+    "regression": {
+      "family": "forest",
+      "id": "rf_regressor_champion",
+      "params": {
+        "max_depth": 14,
+        "min_samples_leaf": 20,
+        "n_estimators": 50,
+        "n_jobs": 1,
+        "random_state": 42
+      },
+      "target_transform": "log1p",
+      "target_winsorize_days": 60.0
+    }
+  },
+  "terminal_cutoff": "2018-05-25T00:00:00",
+  "terminal_evaluation_allowed": false,
+  "version": "refinement-selected-v4"
+}

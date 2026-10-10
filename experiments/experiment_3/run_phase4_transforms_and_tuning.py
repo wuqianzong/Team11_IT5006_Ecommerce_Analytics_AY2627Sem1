@@ -45,9 +45,11 @@ from src.models.refinement_core import CORE_FEATURES
 OUTPUT_DIR = REPO_ROOT / "artifacts" / "metrics" / "experiment-3" / "transforms_and_tuning"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-# Final Selected Feature Subsets
-REG_13_FEATURES = CORE_FEATURES + ["distance_km_max", "distance_missing_fraction"]
-CLF_14_FEATURES = CORE_FEATURES + ["n_sellers", "primary_seller_state", "interstate_share"]
+# Final Selected Feature Subsets (Option 1: 9 Core -> 11 Regression / 12 Classification)
+REG_11_FEATURES = CORE_FEATURES + ["distance_km_max", "distance_missing_fraction"]
+CLF_12_FEATURES = CORE_FEATURES + ["n_sellers", "primary_seller_state", "interstate_share"]
+REG_13_FEATURES = REG_11_FEATURES
+CLF_14_FEATURES = CLF_12_FEATURES
 
 # Continuous features requiring log1p pre-scaling (skewness > 2.0 audited in Phase 1)
 SKEWED_NUMERIC_COLS = ["total_price", "total_freight", "distance_km_max"]
@@ -633,6 +635,8 @@ def main():
     f, cv, hashes = load_development()
     df_reg = task_rows(f, cv, "regression").copy()
     df_clf = task_rows(f, cv, "classification").copy()
+    # Option 1: Filter out retrospective zero-item orders (leakage elimination)
+    df_clf = df_clf[df_clf["has_items"].eq(1)].copy().reset_index(drop=True)
     print(f"Loaded {len(df_reg):,} regression orders and {len(df_clf):,} classification orders.")
 
     # 1. Run Phase 4A: Pre-scaling and Target log-transform ablation

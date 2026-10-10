@@ -7,6 +7,7 @@ import argparse
 import importlib.metadata
 import json
 from pathlib import Path
+import shutil
 import sys
 import warnings
 
@@ -147,11 +148,14 @@ def fit_checked(pipe, X: pd.DataFrame, y: np.ndarray | pd.Series, task: str, can
     return notices
 
 
-def build(output_dir: Path, config_path: Path = CONFIG_PATH):
+def build(output_dir: Path, config_path: Path = CONFIG_PATH, overwrite: bool = False):
     """Build Refinement Cycle 2 (v4) models, cross-validation metrics, decision policies, and bundles."""
     output = Path(output_dir).resolve()
     if output.exists():
-        raise FileExistsError(f'Output directory {output} already exists. Do not overwrite accepted runs.')
+        if overwrite:
+            shutil.rmtree(output)
+        else:
+            raise FileExistsError(f'Output directory {output} already exists. Do not overwrite accepted runs.')
 
     config = json.loads(Path(config_path).read_text())
     output.mkdir(parents=True)
@@ -349,7 +353,8 @@ if __name__ == '__main__':
     b = sub.add_parser('build')
     b.add_argument('--output', type=Path, required=True, help='Destination directory for the v4 bundle')
     b.add_argument('--config', type=Path, default=CONFIG_PATH, help='Configuration JSON path')
+    b.add_argument('--overwrite', action='store_true', help='Allow overwriting existing output directory')
     args = parser.parse_args()
 
     if args.command == 'build':
-        build(args.output, args.config)
+        build(args.output, args.config, overwrite=args.overwrite)

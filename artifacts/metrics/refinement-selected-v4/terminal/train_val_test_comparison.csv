@@ -1,0 +1,8 @@
+task,metric,train_mean,train_sd,val_mean,val_sd,test_holdout
+regression,mae,3.9879,0.1863,5.2436,1.15,3.7185
+regression,rmse,7.0698,0.4444,8.3675,1.7945,5.3085
+regression,r2,0.2737,0.0215,0.1244,0.0994,0.1871
+classification,average_precision,0.2996,0.0278,0.2192,0.0587,0.1823
+classification,roc_auc,0.7298,0.027,0.5862,0.033,0.5864
+classification,brier,0.1073,0.003,0.1213,0.0189,0.0949
+classification,f1_1,0.0007,0.0016,0.0005,0.001,0.2268
