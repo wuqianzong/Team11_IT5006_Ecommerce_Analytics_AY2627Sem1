@@ -32,9 +32,11 @@ archive/
 !/experiments/refinement_cycle1/README.md
 !/experiments/experiment_3/*.md
 !/notebooks/README.md
+!/data/business/ml/README.md
 /docs/*
 !/docs/reports/
 /docs/reports/*
+!/docs/reports/README.md
 !/docs/reports/Team11_Phase2_IT5006_AY2627Sem1_final.md
 !/docs/reports/Team11_Phase2_IT5006_AY2627Sem1_final.docx
 !/docs/reports/figures/

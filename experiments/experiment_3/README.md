@@ -121,4 +121,5 @@ python experiments/experiment_3/run_phase6_final_synthesis.py
 
 * **Zero Leakage:** All transformations (target log-transformation, input scaling, imputation, one-hot encoding) are encapsulated within `sklearn.pipeline.Pipeline` and fit strictly on training folds.
 * **Locked Input Hashes:** Input datasets (`data/business/ml/orders_ml_features.csv` and `data/business/ml/split_assignments.csv`) are validated against canonical SHA-256 digests.
-* **Read-Only Working Directory:** Production source code (`src/`), notebooks (`notebooks/`), and frozen baseline bundle directories remain untouched during all phases of Experiment 3.
+* **Production Migration:** Following Phase 6 confirmation, the winning Experiment 3 (Option 1) configuration and feature schema (9 Core $\to$ 11 Regression / 12 Classification) have been migrated into production under `refinement-selected-v4` (`src/models/configs/refinement_selected_v4.json` and `src/models/refinement_selected_v4.py`).
+

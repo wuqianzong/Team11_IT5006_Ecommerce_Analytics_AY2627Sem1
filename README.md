@@ -99,9 +99,9 @@ To ensure instructors and reviewers can easily navigate the project history with
 ```
 [Generation 1: Historical Baseline]    ===>    [Generation 2: Refinement Cycle 1]    ===>    [Generation 3: Refinement Cycle 2 (Champion)]
 Notebooks 04–07 (Milestone 1)                  Notebook 08 (refinement-selected-v3)          Notebook 09 & Exp 3 (refinement-selected-v4)
-• 27 raw features (collinear, κ = ∞)           • 13/14 pruned features                       • Full-rank features (κ = 70.8)
+• 27 raw features (collinear, κ = ∞)           • 13/14 pruned features                       • 11/12 full-rank features (Option 1, κ = 70.8)
 • Random-grouped split by customer             • Chronological forward-chaining split        • Chronological forward-chaining split
-• ⚠️ Severe temporal inversion leakage         • Customer purges + label maturity            • Customer purges + label maturity
+• ⚠️ Severe temporal inversion leakage         • Customer purges + label maturity            • Customer purges + pre-checkout item gating
 • Untuned baselines                            • Baseline tree & unweighted logistic         • Tuned RF + log1p transforms + τ* = 0.17
                                                • Regression MAE: 5.540 days                  • Regression MAE: 3.719 days (-32.9% error)
                                                • R² = -0.360 (unreliable)                    • R² = +0.187 (strong generalization)
@@ -114,10 +114,10 @@ Notebooks 04–07 (Milestone 1)                  Notebook 08 (refinement-selecte
 | **Notebook Reference** | [`notebooks/04` to `07`](notebooks/) | [`notebooks/08_refined_models_and_evidence.ipynb`](notebooks/08_refined_models_and_evidence.ipynb) | [`notebooks/09_refinement_cycle2_migration.ipynb`](notebooks/09_refinement_cycle2_migration.ipynb) |
 | **Configuration File** | `src/models/configs/stage3_baseline.json` | `src/models/configs/refinement_selected_v3.json` | `src/models/configs/refinement_selected_v4.json` |
 | **Artifact Location** | `artifacts/metrics/stage3-baseline-v1/` | `artifacts/metrics/refinement-selected-v3/` | `artifacts/metrics/refinement-selected-v4/` |
-| **Feature Set** | 27 raw predictors (collinear) | 13 (regression) / 14 (classification) | 13 (regression) / 14 (classification), full-rank |
+| **Feature Set** | 27 raw predictors (collinear) | 13 (regression) / 14 (classification) | **11 (regression) / 12 (classification)**, full-rank (Option 1: pruned `has_items` & `freight_ratio_missing`) |
 | **Matrix Conditioning** | Condition number $\kappa = \infty$ (rank deficient 9) | Not analyzed | Condition number $\kappa = 70.77$ (full rank 71/71) |
 | **Validation Splitting** | Random Grouped 80/20 by `customer_unique_id` | 5-Fold Chronological Forward-Chaining | 5-Fold Chronological Forward-Chaining |
-| **Leakage Controls** | ❌ **Temporal Inversion Leakage**: future 2018 orders leaked into 2017 training | ✅ **Leak-Free**: Training strictly precedes validation; validation customers purged | ✅ **Leak-Free**: Strict temporal arrow of time + customer purge + label maturity check |
+| **Leakage Controls** | ❌ **Temporal Inversion Leakage**: future 2018 orders leaked into 2017 training | ✅ **Leak-Free**: Training strictly precedes validation; validation customers purged | ✅ **Leak-Free**: Arrow of time + customer purges + label maturity + **pre-checkout item gating** (`has_items == 1` filters 604 cancellation records) |
 | **Preprocessing** | Standard scaling & imputation only | Pipeline-encapsulated scaling & OHE | **Log1p scaling** on continuous inputs (`total_price`, `freight`, `distance`) |
 | **Target Handling** | Raw continuous lead days (right-skewed) | Raw continuous lead days | **Target Log1p + 60d Winsorization** via `TransformedTargetRegressor` |
 | **Regression Model** | Linear Regression & Untuned Tree | Decision Tree ($d=5$) | **Tuned Random Forest Regressor** ($N=50, d=14, L=20$) |

@@ -1,10 +1,19 @@
-# Milestone 2: one refinement cycle
+# Milestone 2: Refinement Cycle 1 (Historical Generation 2)
 
-The **current applied state** is `refinement-selected-v3`: a 13-input delivery
-decision tree and a 14-input regularised review-risk logistic classifier.
+> [!NOTE] Lineage & Champion Status Notice
+> This directory documents **Refinement Cycle 1 (Generation 2, `refinement-selected-v3`)**, which established leak-free chronological forward-chaining splits and initial baseline models (13-input Decision Tree and 14-input Logistic Classifier).
+> 
+> The **current production champion models and latest refinement study (Generation 3)** are located in:
+> - Systematic research study & reproduction: [`experiments/experiment_3/`](../experiment_3/)
+> - Production model bundles: [`artifacts/metrics/refinement-selected-v4/`](../../artifacts/metrics/refinement-selected-v4/)
+> - Champion configuration: [`src/models/configs/refinement_selected_v4.json`](../../src/models/configs/refinement_selected_v4.json)
+> - Current feature schema (Option 1): **11 Regression** / **12 Classification** predictors (with `has_items` and `freight_ratio_missing` pruned to eliminate retrospective cancellation leakage, and zero-item cancellations filtered out).
+> - Executive report: [`docs/reports/Team11_Phase2_IT5006_AY2627Sem1_final.md`](../../docs/reports/Team11_Phase2_IT5006_AY2627Sem1_final.md)
+
+This directory is preserved as the verifiable audit trail for Cycle 1 (`refinement-selected-v3`).
 The reusable base table still has 27 predictors. Earlier notebooks 04–07 and
 stage3/4/5 artifacts are the historical grouped-random baseline, not this model.
-Notebook 08 reviews the current model and can rebuild its fixed choices.
+Notebook 08 reviews this Cycle 1 baseline and can rebuild its fixed choices.
 
 ## Read the evidence without fitting
 
