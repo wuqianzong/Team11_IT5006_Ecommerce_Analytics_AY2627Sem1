@@ -1,7 +1,9 @@
 {
-  "shared_report_sha256": "77add69b395856d681f8122c4a604ffd1efe3c3ee7b262e8bccf8a8cc8c457f8",
-  "repository_report_sha256": "77add69b395856d681f8122c4a604ffd1efe3c3ee7b262e8bccf8a8cc8c457f8",
-  "report_primary_evidence": "summary.csv, paired_comparisons.csv, train_validation_terminal.csv, terminal_metrics.csv, decision_policy.json",
-  "current_appendix": "H",
-  "historical_evidence_preserved": true
+  "shared_report_sha256": "1040259b6c8f020edd3c624655d7d41cebe5faf9218918fd136f7847b2afa0c8",
+  "repository_report_sha256": "1040259b6c8f020edd3c624655d7d41cebe5faf9218918fd136f7847b2afa0c8",
+  "report_primary_evidence": "summary.csv, paired_comparisons.csv, train_validation_terminal.csv, terminal_metrics.csv, decision_policy.json; raw cohort summaries reproduced by experiments.experiment_4.cohort_summary",
+  "current_appendix": "C",
+  "historical_evidence_preserved": true,
+  "report_presentation": "one logical pipeline with two modelling cycles; implementation history retained in repository",
+  "user_accepted_baseline_sha256": "63774a795b5a375769c3992a6593443d09d47cf04f2e903e401b315d597ff454"
 }

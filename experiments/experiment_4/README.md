@@ -29,6 +29,14 @@ MPLCONFIGDIR=/tmp/it5006-mpl python -m experiments.experiment_4.summarize --run 
 
 Never overwrite an accepted run. Retain failures. Read probability CSVs with pandas `float_precision='round_trip'` when reproducing exact threshold decisions: default float conversion may move a boundary probability by one floating-point step.
 
+The report's raw cohort distribution summaries can also be reproduced without model fitting:
+
+```bash
+python -m experiments.experiment_4.cohort_summary --run artifacts/metrics/experiment-4/run-01 --output artifacts/generated/report-cohort-summary-01
+```
+
+This checks the accepted feature-input hash, selects rows using the saved training/terminal order identifiers, and writes raw numeric, state, basket, seller and target summaries to a fresh directory.
+
 ## Active zero-fit scoring
 
 `src/models/configs/active_pipeline.json` identifies the selected bundles. `src.models.experiment4_score` validates checksums, required columns and order identifiers before scoring:

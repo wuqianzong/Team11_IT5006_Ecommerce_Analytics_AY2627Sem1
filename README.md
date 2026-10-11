@@ -4,7 +4,7 @@ This repository contains the Olist e-commerce dashboard and the Milestone 2 pred
 
 ## Start here: current report and evidence
 
-- [Word report with tracked changes](docs/reports/Team11_Phase2_IT5006_AY2627Sem1_final.docx): current results are in the main modelling sections and Appendix H.
+- [Word report with tracked changes](docs/reports/Team11_Phase2_IT5006_AY2627Sem1_final.docx): Sections 4–5 present the matched modelling cycles; Section 7 and Appendix C present final diagnostics. Appendix D covers cohort distributions and Appendix E points to this reproduction guide.
 - [Notebook 10](notebooks/10_matched_two_cycle_pipeline.ipynb): walkthrough of the saved split checks, two modelling cycles, model selection, final results and scoring. It reads saved evidence and does not retrain models.
 - [Experiment 4 guide](experiments/experiment_4/README.md): protocol, implementation, reproduction and interpretation.
 - [Saved evidence](artifacts/metrics/experiment-4/run-01/): all 130 validation-fold models/predictions and 26 final reference bundles/predictions, plus comparison tables and verification records.
@@ -71,6 +71,14 @@ python -m experiments.experiment_4.summarize --run artifacts/generated/experimen
 This performs **130 fold fits and 26 final fits**. The original run took approximately six minutes in its recorded environment; time varies with hardware. Choose a new directory name for each attempt: the runner refuses to overwrite an existing run, and failures must be retained. `protocol.json` already defines the fixed candidate catalogue; do not rerun `freeze_protocol.py` as a prerequisite.
 
 The summarizer creates paired-comparison tables, split checks, selected subgroup results, train/validation/terminal comparisons and three diagnostic figures under the new run directory. It summarizes saved predictions without retraining. Reproduction does not change the active configuration, which continues to point to the accepted `run-01` bundles.
+
+To reproduce the raw feature, state, basket, seller and target distribution summaries in the report's Appendix D without fitting models:
+
+```bash
+python -m experiments.experiment_4.cohort_summary --run artifacts/metrics/experiment-4/run-01 --output artifacts/generated/report-cohort-summary-01
+```
+
+Use a fresh output directory. The command checks the feature-input hash and uses the accepted final-training and terminal memberships.
 
 ### 4. Demonstrate scoring with the accepted selected models
 
