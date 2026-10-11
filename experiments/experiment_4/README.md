@@ -19,7 +19,7 @@ The classifier is selected for development AP, not terminal AP or outreach utili
 
 ## Reproduce and verify
 
-Use the versions recorded in `freeze.json` (original Python 3.10.19) and `requirements.txt`. From the repository root, choose a fresh output directory:
+Start with the [root reproduction guide](../../README.md#reproduce-experiment-4) for environment setup, verification of the committed evidence, and a runnable scoring demonstration. Use the versions recorded in `freeze.json` (original Python 3.10.19) and `requirements.txt`; install them with `python -m pip install -r experiments/experiment_4/requirements.txt` in a dedicated environment. From the repository root, choose a fresh output directory:
 
 ```bash
 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m experiments.experiment_4.run --output artifacts/generated/experiment4-reproduction-01
@@ -32,6 +32,8 @@ Never overwrite an accepted run. Retain failures. Read probability CSVs with pan
 ## Active zero-fit scoring
 
 `src/models/configs/active_pipeline.json` identifies the selected bundles. `src.models.experiment4_score` validates checksums, required columns and order identifiers before scoring:
+
+The following commands assume you have supplied a CSV containing unique `order_id` values and the required constructed predictor columns. For a complete example using the committed feature data, follow the [root scoring demonstration](../../README.md#4-demonstrate-scoring-with-the-accepted-selected-models).
 
 ```bash
 python -m src.models.experiment4_score --task regression --input constructed_checkout_features.csv --output new_regression_scores.csv
