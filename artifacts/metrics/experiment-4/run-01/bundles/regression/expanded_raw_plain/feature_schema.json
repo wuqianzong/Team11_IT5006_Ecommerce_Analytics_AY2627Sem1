@@ -1,0 +1,17 @@
+{
+  "task": "regression",
+  "predictor_allowlist": [
+    "n_items",
+    "n_products",
+    "total_price",
+    "total_freight",
+    "freight_ratio",
+    "customer_state",
+    "purchase_month",
+    "purchase_dayofweek",
+    "purchase_hour",
+    "distance_km_max",
+    "distance_missing_fraction"
+  ],
+  "version": "experiment-4-v1"
+}

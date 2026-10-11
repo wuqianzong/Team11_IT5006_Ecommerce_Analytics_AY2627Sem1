@@ -56,9 +56,9 @@ Downstream fields are strictly quarantined and barred from the feature design ma
 
 ### 2.3 Cart Checkout Scoping & Zero-Item Ex-Post Cancellation Leakage Remediation
 A subtle but critical target leakage vulnerability was identified and eliminated through deep transactional auditing:
-* *The Conceptual Flaw*: In an e-commerce checkout interface, an order cannot be placed with an empty shopping cart; by definition, every legitimate checkout contains at least one line item (`n_items >= 1`). However, in the raw historical Olist dataset, $775$ orders ($604$ in development, $38$ in terminal holdout) appeared with payment records but $0$ rows in `olist_order_items_dataset.csv`.
+* *The Conceptual Flaw*: In an e-commerce checkout interface, an order cannot be placed with an empty shopping cart; by definition, every legitimate checkout contains at least one line item (`n_items >= 1`). Across the entire raw Olist base of 99,441 orders, 775 orders contain 0 rows in `olist_order_items_dataset.csv` (603 unavailable, 164 canceled, 5 created, 2 invoiced, 1 shipped). Of these 775 zero-item orders, 772 possess usable payment records, and 756 are review-eligible, among which 79.497% (601/756) are 1-star or 2-star detractor reviews.
 * *Diagnostic Root Cause*: Transaction status decomposition revealed that these zero-item records were **ex-post fulfillment anomalies**—orders immediately canceled, abandoned, or rejected due to merchant out-of-stock events where items were never packed or invoiced. Crucially, **$79.3\%$ of these zero-item orders received 1-star or 2-star detractor reviews**, reflecting severe consumer dissatisfaction over canceled orders.
-* *Remediation Protocol (Option 1: Strict Checkout Scoping)*: Retaining zero-item rows and training models with flags such as `has_items` or `freight_ratio_missing` constitutes severe retrospective target leakage, providing models with an artificial shortcut that cannot exist at legitimate checkout. We enforced strict pre-checkout eligibility gating: $\text{eligible\_classification} \land (\text{has\_items} == 1)$. Filtering out the $604$ retrospective cancellations refined development classification support to $N = 78,334$ orders (and terminal holdout to $N = 15,769$ orders), while completely pruning `has_items` and `freight_ratio_missing` from all feature spaces.
+* *Remediation Protocol (Option 1: Strict Checkout Scoping)*: Retaining zero-item rows and training models with flags such as `has_items` or `freight_ratio_missing` constitutes severe retrospective target leakage, providing models with an artificial shortcut that cannot exist at legitimate checkout. We enforced strict pre-checkout eligibility gating: $\text{eligible\_classification} \land (\text{has\_items} == 1)$. Enforcing pre-checkout cart eligibility (`has_items == 1`) excluded 604 review-eligible canceled rows from the initial development pool (refining it to $N = 78,334$) and 38 from the late terminal window (leaving $N = 15,769$). In the final preterminal training partition, mature item-present support is $N = 59,466$ (regression) and $N = 59,740$ (classification), while `has_items` and `freight_ratio_missing` are completely pruned from all predictor sets.
 
 ### 2.4 Entity Resolution: `customer_id` vs. `customer_unique_id`
 The Olist schema creates an ephemeral `customer_id` per transaction, whereas `customer_unique_id` identifies the actual individual across repeat purchases over time. Splitting or grouping on `customer_id` creates entity leakage (Project Brief Warning). All customer identity groupings and repeat-transaction logic are resolved strictly through `customer_unique_id`.
@@ -68,10 +68,10 @@ Standard grouped K-Fold cross-validation grouped by `customer_unique_id` introdu
 * *The Failure Mechanism*: When grouping transactions by customer without chronological constraints, a customer who placed Order A in January 2017 and Order B in July 2018 would have Order B placed into the historical training fold to predict Order A. This allows future macroeconomic conditions, postal rates, and carrier network states to leak backward into past predictions.
 * *The Architectural Resolution*: We implemented a **Chronological Expanding Window Architecture with Strict Customer Purging**:
   1. All orders are ordered chronologically by $\tau_{\text{checkout}}$.
-  2. The historical development timeline (October 2016 through May 24, 2018; $N = 77,139$ regression orders, $N = 78,334$ classification orders) is partitioned into **5 forward-chaining chronological folds**, mimicking operational deployment where past data trains models to predict the immediate future.
+  2. The preterminal development timeline (spanning September 2016 through May 24, 2018; mature preterminal training support $N = 59,466$ regression orders, $N = 59,740$ classification orders) is partitioned into **5 forward-chaining chronological folds** (evaluating $N = 53,540$ regression and $N = 53,596$ classification out-of-fold instances), mimicking operational deployment where past data trains models to predict the immediate future.
   3. **Customer Purging**: Any customer with historical transactions who also appears in the subsequent validation window has their prior transactions purged from that fold's training set, guaranteeing zero cross-temporal identity overlap.
   4. **Target Label Maturity Gating**: To prevent survival bias, orders placed near fold boundaries that had not yet reached terminal delivery status at fold cutoff were gated out of evaluation.
-  5. **Unseen Terminal Holdout**: A completely quarantined test cohort ($N=15,615$ regression orders; $N=15,769$ classification orders) spanning **May 25, 2018 to August 29, 2018** was locked until final model verification.
+  5. **Out-of-Sample Terminal Holdout Diagnostic**: A forward chronological test cohort ($N = 15,615$ regression orders; $N = 15,769$ classification orders) spanning **May 25, 2018 to August 29, 2018** was evaluated. As disclosed in our execution protocol (`--acknowledge-previously-inspected-terminal`), this late partition was sliced from the historical development dataset and had been inspected during prior exploratory cycles; hence, terminal evaluation serves as an out-of-sample temporal diagnostic confirmation rather than an unexposed blind test.
 
 > *(Refer to Diagram B.1 in Appendix B for the structural flowchart of the Chronological Expanding Window Cross-Validation Architecture and customer purging safeguards, and Appendix F for the comprehensive Feature Metadata, Distribution Parity & Covariate Drift Audit comparing the training dataset against the unseen holdout cohort).*
 
@@ -83,9 +83,9 @@ Standard grouped K-Fold cross-validation grouped by `customer_unique_id` introdu
 
 ### 3.1 Literature Grounding & Domain-Driven Predictor Formulation
 Carried forward from our Phase 1 Literature Review, we ground our feature formulation in three established e-commerce supply chain theories (Teacher Expectation 3):
-1. **Spatial Gravity & Transit Lead Time (Cui et al., 2020)**: Physical transit distance is the primary structural determinant of delivery duration. We calculate geodesic Haversine distance (`distance_km_max`) between customer and seller zip-code centroids.
-2. **Economic Shipping Burden & Price Sensitivity (Deshpande & Pendem, 2023)**: Consumer tolerance for delivery delay is inversely proportional to freight cost. Customers paying high shipping relative to item price (`freight_ratio = total_freight / (total_price + total_freight)`) exhibit heightened sensitivity to delay, escalating detractor review probability.
-3. **Cross-Border Interstate Friction & Tax Inspections (Leite et al., 2022)**: Multi-vendor split-shipment complexity (`n_sellers`) and interstate border crossings (`interstate_share`) trigger mandatory tax clearance checkpoints (SEFAZ ICMS inspections), inflating transit delays and consumer friction.
+1. **Delivery Speed Expectations & Fulfillment (Cui et al., 2024)**: Consumer satisfaction and evaluation are heavily governed by delivered transit duration relative to order promise. We calculate geodesic Haversine distance (`distance_km_max`) between customer and seller zip-code centroids as the primary structural determinant of elapsed transit time.
+2. **Logistics Performance & Rating Impact (Deshpande & Pendem, 2023)**: Empirical marketplace ratings depend critically on fulfillment latency and relative shipping burden. Customers paying high freight relative to merchandise value (`freight_ratio = total_freight / total_price`; observed range $[0, 21.45]$) show amplified sensitivity to fulfillment friction, escalating detractor review probability.
+3. **Prescriptive Multi-Vendor Logistics Analytics (Kandula et al., 2021)**: Multi-seller order consolidation (`n_sellers`) and inter-regional routing (`interstate_share`, evaluated over distinct sellers) introduce transfer friction and coordination overhead, compounding shipping latency and customer dissatisfaction.
 
 ### 3.2 Collinearity Screening & Cart-Scoping Pruning: 27 Candidates Down to 9 Core Predictors
 An initial candidate pool generated 27 raw attributes (including redundant coordinates, seller freight totals, min/max item price variants, and multiple payment breakdowns). Evaluating this design matrix revealed extreme multicollinearity:
@@ -169,7 +169,7 @@ In Tutorial Week 2, delivery times were shown to exhibit pronounced right-skewne
 
 * We encapsulated regression within Scikit-Learn's `TransformedTargetRegressor(func=np.log1p, inverse_func=np.expm1)`.
 * We instituted a 60-day upper Winsorization bound during training, clipping non-representative postal anomalies.
-* This transformed residual errors from severe heteroscedasticity into a Gaussian-like bell distribution centered at zero.
+* While target log-transformation stabilized variance and curbed extreme error penalties, the champion residual distribution remains non-Gaussian and right-skewed (actual minus predicted residual mean: -1.1441 days, skewness: +3.5121, excess kurtosis: +37.2216), reflecting structural delivery delays in the upper tail.
 
 #### Intervention 3: Random Forest Bagging Ensemble Architecture (Tutorial W8)
 To resolve the catastrophic overfitting of single decision trees while adhering to the Model Family Budget, we advanced the Tree-based Family from a single tree to a **Random Forest Bagging Ensemble** (`RandomForestRegressor` and `RandomForestClassifier`):
@@ -624,9 +624,9 @@ flowchart LR
 ![Classification Diagnostics](figures/classification_diagnostics.png)
 *Figure E.6: Four-panel diagnostic breakdown for classification holdout: (1) PR Curve dominating base rate, (2) ROC Curve, (3) Reliability diagram, (4) Cost vs. Threshold curve.*
 
-### Figure E.7: Cook's Distance Outlier Leverage Diagnostics
+### Figure E.7: Bivariate Scatter Distribution: Delivery Lead Time vs. Transit Distance (Extreme Delays > 60 Days Highlighted)
 ![Cooks Distance](figures/cooks_distance.png)
-*Figure E.7: Cook's distance distribution identifying highly influential observations to justify 60-day upper Winsorization.*
+*Figure E.7: Scatter distribution of delivery duration against Haversine distance, illustrating extreme operational delay outliers beyond the 60-day threshold.*
 
 ### Figure E.8: Delivery Delay Seasonality Drift
 ![Delay Seasonality](figures/delay_seasonality.png)

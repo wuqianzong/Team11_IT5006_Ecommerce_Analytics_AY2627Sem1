@@ -1,0 +1,14 @@
+{
+  "regression": {
+    "n": 15615,
+    "saved_prediction_parity": true,
+    "invalid_inputs_rejected": true
+  },
+  "classification": {
+    "n": 15769,
+    "saved_prediction_parity": true,
+    "invalid_inputs_rejected": true
+  },
+  "historical_evidence_unchanged": 103,
+  "status": "passed"
+}

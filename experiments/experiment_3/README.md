@@ -1,3 +1,5 @@
+This directory preserves historical exploration. The active matched two-cycle pipeline, selected models and scoring instructions are in [Experiment 4](../experiment_4/README.md). Earlier champion labels refer to their original experiments.
+
 # Experiment 3: Comprehensive Model Refinement & Evaluation
 
 This directory contains the complete, self-contained implementation, documentation, and reproduction scripts for **Experiment 3**.

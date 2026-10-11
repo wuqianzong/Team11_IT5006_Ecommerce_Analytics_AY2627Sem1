@@ -1,3 +1,5 @@
+Use [notebook 10](10_matched_two_cycle_pipeline.ipynb) for the active saved-evidence walkthrough. Current modelling evidence and scoring are in [Experiment 4](../experiments/experiment_4/README.md). Notebooks 05–09 preserve historical analyses; notebook 09 is not the active release.
+
 # Notebooks Directory Guide — IT5006 Group 11
 
 This directory contains the complete sequence of Jupyter notebooks documenting the data processing, historical modeling baselines, and applied refinement cycles for the Olist E-Commerce dataset.
@@ -16,13 +18,13 @@ This directory contains the complete sequence of Jupyter notebooks documenting t
 | **06** | [`06_model_tuning_and_selection.ipynb`](06_model_tuning_and_selection.ipynb) | **Stage 5B (Historical Selection)** | Hyperparameter search and bounded selection under the random-group protocol. |
 | **07** | [`07_final_evaluation_and_scoring.ipynb`](07_final_evaluation_and_scoring.ipynb) | **Stage 5C (Historical Final Holdout)** | Frozen evaluation on the random holdout partition. |
 | **08** | [`08_refined_models_and_evidence.ipynb`](08_refined_models_and_evidence.ipynb) | **Refinement Cycle 1 (`v3`)** | Replaced flawed random-group splits with **leak-free chronological forward-chaining evaluation** (customer purges + label maturity gating). Evaluates Decision Tree ($d=5$) and Logistic Regression ($C=0.01$) over pruned 13/14 features. |
-| **09** | [`09_refinement_cycle2_migration.ipynb`](09_refinement_cycle2_migration.ipynb) | **Refinement Cycle 2 (`v4`, Champion)** | **Current Production Champion**: Migrates winning Experiment 3 (Option 1) architectures: 11-feature Regression and 12-feature Classification (pruned `has_items` and `freight_ratio_missing`, filtered zero-item cancellations), Non-linear Random Forests ($N=50, d=14$), Target & Input Log1p transformations, and cost-calibrated threshold policy ($\tau^* = 0.17$). Slashes holdout MAE by $32.9\%$ and minimizes total business cost. |
+| **09** | [`09_refinement_cycle2_migration.ipynb`](09_refinement_cycle2_migration.ipynb) | **Historical refinement (`v4`)** | **Historical v4 recipe**: Migrates winning Experiment 3 (Option 1) architectures: 11-feature Regression and 12-feature Classification (pruned `has_items` and `freight_ratio_missing`, filtered zero-item cancellations), Non-linear Random Forests ($N=50, d=14$), Target & Input Log1p transformations, and cost-calibrated threshold policy ($\tau^* = 0.17$). Reports historical diagnostic results; it is superseded by the matched Experiment 4 pipeline. |
 
 ---
 
 ## 🎯 Quick Guide for Reviewers & Instructors
 
-* **If you want to inspect the current production models and live inference immediately**:
+* **If you want to inspect the historical v4 models and inference**:
   * Open and run **[`09_refinement_cycle2_migration.ipynb`](09_refinement_cycle2_migration.ipynb)**. It directly loads the serialized bundles from `artifacts/metrics/refinement-selected-v4/` and demonstrates zero-fit batch scoring and head-to-head comparison against Cycle 1.
 * **If you want to understand the temporal leakage discovery**:
   * Compare **`05_model_training_and_evaluation.ipynb`** (which used random `GroupKFold` and suffered temporal inversion) against **`08_refined_models_and_evidence.ipynb`** (which introduced chronological expansion splits with customer purges).

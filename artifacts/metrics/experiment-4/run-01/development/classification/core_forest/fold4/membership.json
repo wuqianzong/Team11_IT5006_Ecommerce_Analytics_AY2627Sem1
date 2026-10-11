@@ -1,0 +1,6 @@
+{
+  "training_n": 43650,
+  "validation_n": 12150,
+  "training_ids_sha256": "1636de58a053d09e94de4bd9c450f674895728215890ae4fc406745bc8ae21f2",
+  "validation_ids_sha256": "6e552eb87f8da25b87fe059cdaeea1fd2d18800a675ee6e16f5b8938f361aa25"
+}

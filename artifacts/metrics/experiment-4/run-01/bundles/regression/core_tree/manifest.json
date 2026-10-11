@@ -1,0 +1,9 @@
+{
+  "sha256": {
+    "metadata.json": "19b2593e070f36974d8a453f3e915ea696a06ebd920a03deddf6d5e007fc282f",
+    "configuration.json": "548b0a10ff65f660cb78df03eeaf4b69f9c0b135708dace120f2a5ad893723a4",
+    "pipeline.joblib": "1c21b101e5881bad688698dacedca2d26789605aaf741276d2f5d93c87f70e02",
+    "feature_schema.json": "85fa86746b58d89edb0eeb811d92c3ca456d1fbbf240e03c4f0f38ac310592e1",
+    "warnings.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  }
+}

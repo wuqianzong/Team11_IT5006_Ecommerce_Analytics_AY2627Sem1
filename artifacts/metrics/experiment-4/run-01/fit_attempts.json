@@ -1,0 +1,782 @@
+[
+  {
+    "task": "regression",
+    "candidate": "core_dummy",
+    "fold": 0,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "core_dummy",
+    "fold": 1,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "core_dummy",
+    "fold": 2,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "core_dummy",
+    "fold": 3,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "core_dummy",
+    "fold": 4,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "core_plain",
+    "fold": 0,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "core_plain",
+    "fold": 1,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "core_plain",
+    "fold": 2,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "core_plain",
+    "fold": 3,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "core_plain",
+    "fold": 4,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "core_tree",
+    "fold": 0,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "core_tree",
+    "fold": 1,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "core_tree",
+    "fold": 2,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "core_tree",
+    "fold": 3,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "core_tree",
+    "fold": 4,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "core_forest",
+    "fold": 0,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "core_forest",
+    "fold": 1,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "core_forest",
+    "fold": 2,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "core_forest",
+    "fold": 3,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "core_forest",
+    "fold": 4,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_raw_plain",
+    "fold": 0,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_raw_plain",
+    "fold": 1,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_raw_plain",
+    "fold": 2,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_raw_plain",
+    "fold": 3,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_raw_plain",
+    "fold": 4,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_raw_tree",
+    "fold": 0,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_raw_tree",
+    "fold": 1,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_raw_tree",
+    "fold": 2,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_raw_tree",
+    "fold": 3,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_raw_tree",
+    "fold": 4,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_raw_forest",
+    "fold": 0,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_raw_forest",
+    "fold": 1,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_raw_forest",
+    "fold": 2,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_raw_forest",
+    "fold": 3,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_raw_forest",
+    "fold": 4,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_inputlog_plain",
+    "fold": 0,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_inputlog_plain",
+    "fold": 1,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_inputlog_plain",
+    "fold": 2,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_inputlog_plain",
+    "fold": 3,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_inputlog_plain",
+    "fold": 4,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_inputlog_forest",
+    "fold": 0,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_inputlog_forest",
+    "fold": 1,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_inputlog_forest",
+    "fold": 2,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_inputlog_forest",
+    "fold": 3,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_inputlog_forest",
+    "fold": 4,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_plain",
+    "fold": 0,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_plain",
+    "fold": 1,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_plain",
+    "fold": 2,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_plain",
+    "fold": 3,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_plain",
+    "fold": 4,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_regularized",
+    "fold": 0,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_regularized",
+    "fold": 1,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_regularized",
+    "fold": 2,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_regularized",
+    "fold": 3,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_regularized",
+    "fold": 4,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_tree",
+    "fold": 0,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_tree",
+    "fold": 1,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_tree",
+    "fold": 2,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_tree",
+    "fold": 3,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_tree",
+    "fold": 4,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_forest",
+    "fold": 0,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_forest",
+    "fold": 1,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_forest",
+    "fold": 2,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_forest",
+    "fold": 3,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_forest",
+    "fold": 4,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_forest_leaf50",
+    "fold": 0,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_forest_leaf50",
+    "fold": 1,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_forest_leaf50",
+    "fold": 2,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_forest_leaf50",
+    "fold": 3,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_forest_leaf50",
+    "fold": 4,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_forest_clip60",
+    "fold": 0,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_forest_clip60",
+    "fold": 1,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_forest_clip60",
+    "fold": 2,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_forest_clip60",
+    "fold": 3,
+    "status": "completed"
+  },
+  {
+    "task": "regression",
+    "candidate": "expanded_log_forest_clip60",
+    "fold": 4,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "core_dummy",
+    "fold": 0,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "core_dummy",
+    "fold": 1,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "core_dummy",
+    "fold": 2,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "core_dummy",
+    "fold": 3,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "core_dummy",
+    "fold": 4,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "core_plain",
+    "fold": 0,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "core_plain",
+    "fold": 1,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "core_plain",
+    "fold": 2,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "core_plain",
+    "fold": 3,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "core_plain",
+    "fold": 4,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "core_tree",
+    "fold": 0,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "core_tree",
+    "fold": 1,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "core_tree",
+    "fold": 2,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "core_tree",
+    "fold": 3,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "core_tree",
+    "fold": 4,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "core_forest",
+    "fold": 0,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "core_forest",
+    "fold": 1,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "core_forest",
+    "fold": 2,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "core_forest",
+    "fold": 3,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "core_forest",
+    "fold": 4,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_raw_plain",
+    "fold": 0,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_raw_plain",
+    "fold": 1,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_raw_plain",
+    "fold": 2,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_raw_plain",
+    "fold": 3,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_raw_plain",
+    "fold": 4,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_raw_tree",
+    "fold": 0,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_raw_tree",
+    "fold": 1,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_raw_tree",
+    "fold": 2,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_raw_tree",
+    "fold": 3,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_raw_tree",
+    "fold": 4,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_raw_forest",
+    "fold": 0,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_raw_forest",
+    "fold": 1,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_raw_forest",
+    "fold": 2,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_raw_forest",
+    "fold": 3,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_raw_forest",
+    "fold": 4,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_inputlog_plain",
+    "fold": 0,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_inputlog_plain",
+    "fold": 1,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_inputlog_plain",
+    "fold": 2,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_inputlog_plain",
+    "fold": 3,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_inputlog_plain",
+    "fold": 4,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_inputlog_regularized",
+    "fold": 0,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_inputlog_regularized",
+    "fold": 1,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_inputlog_regularized",
+    "fold": 2,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_inputlog_regularized",
+    "fold": 3,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_inputlog_regularized",
+    "fold": 4,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_inputlog_tree",
+    "fold": 0,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_inputlog_tree",
+    "fold": 1,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_inputlog_tree",
+    "fold": 2,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_inputlog_tree",
+    "fold": 3,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_inputlog_tree",
+    "fold": 4,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_inputlog_forest",
+    "fold": 0,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_inputlog_forest",
+    "fold": 1,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_inputlog_forest",
+    "fold": 2,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_inputlog_forest",
+    "fold": 3,
+    "status": "completed"
+  },
+  {
+    "task": "classification",
+    "candidate": "expanded_inputlog_forest",
+    "fold": 4,
+    "status": "completed"
+  }
+]

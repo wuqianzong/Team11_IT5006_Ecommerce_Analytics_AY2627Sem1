@@ -45,7 +45,8 @@ def verify(run):
         if row.task == 'classification':
             np.testing.assert_array_equal(pred.decision, apply_threshold(values, {'kind': 'fixed_threshold', 'positive_class': 1, 'threshold': threshold}))
         checked.append({'task': row.task, 'role': row.role, 'n': len(pred), 'metrics_and_decisions_recomputed': True})
-    assert len(frames['regression']) == 15615 and len(frames['classification']) == 15807
+    expected_clf_n = 15769 if config.get('version') == 'refinement-selected-v4' else 15807
+    assert len(frames['regression']) == 15615 and len(frames['classification']) == expected_clf_n
     groups = pd.read_csv(folder / 'subgroups.csv', dtype={'subgroup': 'string'})
     for task, frame in frames.items():
         p = pd.read_csv(folder / f'{task}_selected_predictions.csv')
@@ -56,6 +57,8 @@ def verify(run):
                       'purchase_month': frame.prediction_timestamp.dt.to_period('M').astype(str)}
         if task == 'regression':
             dimensions['observed_duration_days'] = pd.cut(frame.lead_days, [0, 7, 14, 30, np.inf], labels=['0-7', '7-14', '14-30', '30+']).astype(str)
+            if 'distance_km_max' in frame.columns:
+                dimensions['distance_band'] = pd.cut(frame['distance_km_max'].fillna(-1), bins=[-np.inf, 0, 250, 500, 1000, np.inf], labels=['Missing', '0-250km', '250-500km', '500-1000km', '1000km+']).astype(str)
         for r in groups[groups.task == task].itertuples():
             mask = dimensions[r.dimension].eq(r.subgroup).to_numpy()
             assert r.n == mask.sum()

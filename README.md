@@ -1,5 +1,11 @@
 # SmartCommerce — IT5006 Group 11 (Olist E-Commerce Analytics)
 
+## Active matched two-cycle pipeline
+
+The current Milestone 2 pipeline is Experiment 4: [protocol and reproduction](experiments/experiment_4/README.md), [active scoring configuration](src/models/configs/active_pipeline.json), and evidence in `artifacts/metrics/experiment-4/run-01/`. It establishes nine-feature simple baselines, then tests controlled refinements on the same five chronological folds. Selected models are an 11-feature log-target Random Forest (minimum leaf 50, no target clipping) and a 12-feature regularized Logistic Regression (C=0.01).
+
+The development-selected classifier threshold has terminal illustrative loss 9,902 versus 8,535 for no alerts, so the alert policy is not recommended for deployment. Selection uses development validation, never terminal results. The terminal cohort was previously inspected. The earlier model-evolution descriptions below are historical records and do not identify the active release.
+
 Interactive Streamlit Executive Dashboard and Data Analytics Pipeline for the **Olist Brazilian E-Commerce** dataset (2016–2018), built for **IT5006: Fundamentals of Data Analytics (AY 2026/27 Semester 1)**.
 
 ---
@@ -27,7 +33,7 @@ The repository strictly follows the official course specification (**Page 7 of t
 │   ├── 06_model_tuning_and_selection.ipynb           # Historical Baseline (Stage 5B): bounded development selection
 │   ├── 07_final_evaluation_and_scoring.ipynb         # Historical Baseline (Stage 5C): frozen random holdout scoring
 │   ├── 08_refined_models_and_evidence.ipynb         # Refinement Cycle 1: leak-free chronological split (v3: tree/logistic)
-│   └── 09_refinement_cycle2_migration.ipynb          # Refinement Cycle 2: current champion models (v4: tuned RF + log1p)
+│   └── 09_refinement_cycle2_migration.ipynb          # Refinement Cycle 2: historical v4 models and diagnostics
 │
 ├── deployment/               # Official directory for the dashboard application
 │   └── app.py                # Executive Operations Master Dashboard (Streamlit application)
@@ -46,7 +52,7 @@ The repository strictly follows the official course specification (**Page 7 of t
 │   ├── models/               # .joblib / .pkl model artifacts
 │   └── metrics/              # Evaluation reports, confusion matrices, and benchmark bundles
 │       ├── refinement-selected-v3/  # Refinement Cycle 1 accepted bundles & evidence
-│       └── refinement-selected-v4/  # Refinement Cycle 2 (Current Champion) bundles & evidence
+│       └── refinement-selected-v4/  # Historical v4 bundles & evidence
 │
 ├── app.py                    # Root entrypoint launcher (delegates execution to deployment/app.py)
 ├── requirements.txt          # Python dependencies for local run and Streamlit Cloud

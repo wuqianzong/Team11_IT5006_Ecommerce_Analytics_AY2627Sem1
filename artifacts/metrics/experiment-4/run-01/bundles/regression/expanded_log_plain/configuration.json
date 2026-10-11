@@ -1,0 +1,20 @@
+{
+  "id": "expanded_log_plain",
+  "cycle": 2,
+  "family": "plain",
+  "features": [
+    "n_items",
+    "n_products",
+    "total_price",
+    "total_freight",
+    "freight_ratio",
+    "customer_state",
+    "purchase_month",
+    "purchase_dayofweek",
+    "purchase_hour",
+    "distance_km_max",
+    "distance_missing_fraction"
+  ],
+  "input_log": true,
+  "target_log": true
+}

@@ -1,0 +1,7 @@
+{
+  "shared_report_sha256": "77add69b395856d681f8122c4a604ffd1efe3c3ee7b262e8bccf8a8cc8c457f8",
+  "repository_report_sha256": "77add69b395856d681f8122c4a604ffd1efe3c3ee7b262e8bccf8a8cc8c457f8",
+  "report_primary_evidence": "summary.csv, paired_comparisons.csv, train_validation_terminal.csv, terminal_metrics.csv, decision_policy.json",
+  "current_appendix": "H",
+  "historical_evidence_preserved": true
+}
