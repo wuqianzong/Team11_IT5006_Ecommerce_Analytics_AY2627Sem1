@@ -134,14 +134,25 @@ Notebooks 04–07 (Milestone 1)                  Notebook 08 (refinement-selecte
 
 Instructors and reviewers can reproduce and verify any part of the project using the methods below:
 
+### Verify report statistics without training
+
+Run `python experiments/experiment_3/verify_report_evidence.py` to recalculate the development target statistics, Table F.1 cohort statistics and unrounded drift percentages, and the zero-item partition counts. The outputs in `artifacts/metrics/report-evidence-exp3/` include the source-file checksums. This audit reads frozen data and cohort IDs; it does not fit models or select thresholds.
+
+The report's nine-feature Cycle 1 scores are in `artifacts/metrics/experiment-3/feature_importance/feature_dimension_score_comparison.csv`. Grouped-CV tuning scores are in `artifacts/metrics/experiment-3/transforms_and_tuning/phase4b_tuning_results.csv`; these are separate from the chronological confirmation in `refinement-selected-v4/development_fold_metrics.csv`. The Stage 3 dummy-classifier AP is a historical development reference, not a matched nine-feature comparison.
+
+Figures D.1/D.2 use the published `regression_11_feature_importance` and `classification_12_feature_importance` CSV/PNG pairs in that feature-importance directory. They describe the expanded-feature tree regressor and logistic classifier during feature assessment, not the final selected forests. Their error bars use population SD across five fold means; the model-score comparison CSV uses sample SD. The committed generator is `experiments/experiment_3/run_feature_expansion_importance.py`.
+
+The condition-number evidence is `artifacts/metrics/experiment-3/feature_selection/design_matrix_condition_numbers.csv`: the original 27-feature design is singular; the standardized nine-feature core has full rank and condition number 70.77. The earlier EDA CSV uses SciPy's default moment estimators; the report audit summary uses pandas bias-corrected sample skewness and excess kurtosis, with the same saved development cohort.
+
 ### Method 1: The Recommended Interactive Walkthrough (Jupyter Notebooks)
 
 1. **Inspect Historical Baseline (Milestone 1)**:
    * Run [`notebooks/04_ml_feature_engineering.ipynb`](notebooks/04_ml_feature_engineering.ipynb) to [`notebooks/07_final_evaluation_and_scoring.ipynb`](notebooks/07_final_evaluation_and_scoring.ipynb).
    * Note the initial 27-feature baseline results and random-group split.
-2. **Inspect Refinement Cycle 1 (Leakage Fix & Chronological Baseline)**:
+2. **Inspect Cycle 1 feature screening and earlier chronological diagnostics**:
+   * Use the nine-feature rows in `artifacts/metrics/experiment-3/feature_importance/feature_dimension_score_comparison.csv` for the report's Cycle 1 grouped-CV evidence.
    * Run [`notebooks/08_refined_models_and_evidence.ipynb`](notebooks/08_refined_models_and_evidence.ipynb).
-   * Verifies the 5 chronological expansion folds and baseline decision tree / logistic regression models (`refinement-selected-v3`).
+   * The notebook examines the earlier `refinement-selected-v3` chronological diagnostics; those scores are distinct from the report's nine-feature screening comparison.
 3. **Inspect Refinement Cycle 2 (Current Production Champion)**:
    * Run [`notebooks/09_refinement_cycle2_migration.ipynb`](notebooks/09_refinement_cycle2_migration.ipynb).
    * Directly loads the `refinement-selected-v4` models, executes live head-to-head comparisons, displays cost curves, and performs zero-fit production scoring on sample checkout orders.

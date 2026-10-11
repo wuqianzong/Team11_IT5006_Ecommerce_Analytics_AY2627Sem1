@@ -1,0 +1,12 @@
+feature,feature_role,mdi_impurity_importance,permutation_mae_drop_mean,permutation_mae_drop_std
+distance_km_max,Task-Specific Spatial Driver,0.32159911590527274,0.8909784917409365,0.04107380200158852
+customer_state,Core Transaction Feature,0.5131345093997846,0.3476916488195407,0.017286251944543994
+purchase_month,Core Transaction Feature,0.14593647511462832,0.2764811452387604,0.013816259526893396
+total_freight,Core Transaction Feature,0.017726445816476418,0.10447727091652714,0.0015111674161937024
+purchase_dayofweek,Core Transaction Feature,0.0,0.0006696828042816706,0.0008575395004423641
+n_items,Core Transaction Feature,0.0003461643612608393,0.0006424794572160409,0.0008002781258170321
+freight_ratio,Core Transaction Feature,0.0,9.327538719183792e-06,1.6751254018646605e-05
+n_products,Core Transaction Feature,0.0,0.0,0.0
+purchase_hour,Core Transaction Feature,0.0012572894025772651,0.0,0.0
+distance_missing_fraction,Task-Specific Spatial Driver,0.0,0.0,0.0
+total_price,Core Transaction Feature,0.0,-0.00011294421352729953,0.0008595899023204757

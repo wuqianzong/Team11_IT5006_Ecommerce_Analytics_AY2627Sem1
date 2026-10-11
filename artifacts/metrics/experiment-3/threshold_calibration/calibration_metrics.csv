@@ -1,0 +1,5 @@
+model,calibration_status,brier_score,average_precision
+Logistic Regression (C=0.01),Uncalibrated,0.11763019087556505,0.2993596877700675
+Logistic Regression (C=0.01),Platt Calibrated (Sigmoid),0.11764718570391992,0.2992460908240997
+Random Forest (Tuned),Uncalibrated,0.11740439350193417,0.30511810080744883
+Random Forest (Tuned),Platt Calibrated (Sigmoid),0.1175259745909328,0.30525145431044354

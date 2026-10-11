@@ -1,0 +1,43 @@
+{
+  "lead_days": {
+    "cohort": "eligible regression in saved outer development split; raw target",
+    "n": 77139,
+    "mean": 12.532262414368146,
+    "minimum": 0.5334143518518518,
+    "maximum": 209.6286111111111,
+    "skewness": 3.700235121293575,
+    "excess_kurtosis": 37.173827688802234,
+    "estimator": "pandas bias-corrected sample skewness and excess kurtosis",
+    "training_cap_days": 60
+  },
+  "zero_item": {
+    "all_n": 775,
+    "eligible_n": 756,
+    "detractor_n": 601,
+    "detractor_rate": 0.794973544973545
+  },
+  "freight_ratio": {
+    "formula": "total_freight / total_price",
+    "maximum": 21.447058823529417,
+    "observed_n": 98666,
+    "above_one_n": 3159
+  },
+  "cohort_targets": {
+    "train": {
+      "n": 59466,
+      "lead_mean": 13.2679334057292,
+      "lead_median": 11.044062499999999
+    },
+    "terminal": {
+      "n": 15615,
+      "lead_mean": 8.793529107517701,
+      "lead_median": 7.476481481481481
+    }
+  },
+  "input_sha256": {
+    "data/business/ml/orders_ml_features.csv": "0964e4e1711c40d107d4dfc7ac7982081114d4f8a09f9bd5a9ba25d028a89d67",
+    "data/business/ml/split_assignments.csv": "61a84e18be7c8eeae57f74e2eb08b3f5bd082524850934b7cd68b7d3674069d2",
+    "artifacts/metrics/refinement-selected-v4/regression_training_ids.csv": "e771344cb1d030472894866059576de8adbe614a4f4170a42e07e30b16991ed0",
+    "artifacts/metrics/refinement-selected-v4/terminal/regression_selected_predictions.csv": "dae688138e1decf38c4bd0b2b63ae4452aa6168c5099042f82f91bc7b4dd4881"
+  }
+}

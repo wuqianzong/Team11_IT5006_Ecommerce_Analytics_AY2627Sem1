@@ -1,0 +1,4 @@
+configuration,raw_features,encoded_columns,numerical_rank,rank_deficiency,condition_number_kappa,stability_status
+"27 Baseline Predictors (Unregularized OHE, no drop)",27,189,180,9,inf,"Severe Multicollinearity / Ill-Conditioned (Singular Matrix, κ = ∞)"
+27 Baseline Predictors (Standardized + Drop First OHE),27,183,180,3,inf,"Severe Multicollinearity (Dummy Trap + Redundant Flags, κ = 1.3e+17)"
+9 Core Transaction Predictors (Standardized Active + Drop First OHE),9,71,71,0,70.77452278928912,Well-Conditioned / Full Numerical Rank (κ = 70.77)
