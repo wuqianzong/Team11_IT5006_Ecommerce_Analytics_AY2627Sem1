@@ -1,16 +1,18 @@
 {
-  "shared_report_sha256": "c696e6e04e41e345be0f11e034a0e96ac9c64bede1e710ec571d1012912ef190",
-  "repository_report_sha256": "c696e6e04e41e345be0f11e034a0e96ac9c64bede1e710ec571d1012912ef190",
+  "shared_report_sha256": "2378bd5ea3cc1495827d54f380a3b6476682bf8ddb4a21656a5a204dcadf04f9",
+  "repository_report_sha256": "2378bd5ea3cc1495827d54f380a3b6476682bf8ddb4a21656a5a204dcadf04f9",
   "report_primary_evidence": "run-01 comparative metrics, paired comparisons, memberships and predictions; report-support-01 independently verified tables and charts derived without fitting",
   "current_appendix": "B\u2013E",
   "historical_evidence_preserved": true,
   "report_presentation": "one logical pipeline with two modelling cycles and self-contained analytical evidence; implementation history retained in repository",
-  "user_accepted_baseline_sha256": "bade71c48f38015df18147a5a6bd7c6d1d4930822a989f3531b8e2b430ff0d43",
+  "user_accepted_baseline_sha256": "0639ed8c9b2c0d726d4930630d1304302cbe12e570e5591a016b3b0040501161",
   "self_contained_evidence": {
     "tables": 34,
     "charts": 11,
     "candidates": 26,
     "paired_refinements": 18,
-    "report_numeric_checks": 780
-  }
+    "report_numeric_checks": 780,
+    "additional_numeric_checks": 1711
+  },
+  "full_review_receipt": "full_report_review.json"
 }
