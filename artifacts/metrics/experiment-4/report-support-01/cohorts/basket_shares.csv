@@ -1,7 +1,0 @@
-partition,basket,n,share_pct
-training,1 item,53424,89.83957219251337
-training,2-3 items,5448,9.161537685400061
-training,4+ items,594,0.9988901220865705
-terminal,1 item,14124,90.45148895292988
-terminal,2-3 items,1346,8.6199167467179
-terminal,4+ items,145,0.9285943003522255

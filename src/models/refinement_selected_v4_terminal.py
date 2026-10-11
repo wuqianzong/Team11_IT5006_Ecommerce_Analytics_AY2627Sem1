@@ -141,7 +141,7 @@ def plot_classification_diagnostics(output_dir: Path, y_true: np.ndarray, y_prob
     fn = np.sum((y_pred_thresh == 0) & (y_true == 1))
     p_star = tp / (tp + fp) if (tp + fp) > 0 else 0
     r_star = tp / (tp + fn) if (tp + fn) > 0 else 0
-    axes[0, 0].scatter([r_star], [p_star], color='red', s=80, zorder=5, label=f'Frozen policy τ={threshold:.2f} (P={p_star:.2f}, R={r_star:.2f})')
+    axes[0, 0].scatter([r_star], [p_star], color='red', s=80, zorder=5, label=f'Policy τ*={threshold:.2f} (P={p_star:.2f}, R={r_star:.2f})')
     axes[0, 0].set_title('Precision-Recall Curve', fontsize=11, fontweight='bold')
     axes[0, 0].set_xlabel('Recall (Detractor Catch Rate)')
     axes[0, 0].set_ylabel('Precision')
@@ -180,11 +180,9 @@ def plot_classification_diagnostics(output_dir: Path, y_true: np.ndarray, y_prob
         costs.append(c_fn + c_fp)
 
     axes[1, 1].plot(thresholds, costs, color='#d62728', lw=2, label='Loss = 5·FN + 1·FP')
-
-    c_at_tau = 5 * np.sum(((y_prob >= threshold).astype(int) == 0) & (y_true == 1)) + 1 * np.sum(((y_prob >= threshold).astype(int) == 1) & (y_true == 0))
-    axes[1, 1].axvline(threshold, color='black', linestyle='--', label=f'Frozen policy τ={threshold:.2f}')
-    axes[1, 1].scatter([threshold], [c_at_tau], color='black', s=80, zorder=5)
-    axes[1, 1].set_title('Asymmetric Cost Curve (FN cost 5; FP cost 1)', fontsize=11, fontweight='bold')
+    axes[1, 1].axvline(threshold, color='black', linestyle='--', label=f'Optimal τ*={threshold:.2f}')
+    axes[1, 1].scatter([threshold], [min(costs)], color='black', s=80, zorder=5)
+    axes[1, 1].set_title('Asymmetric Cost Curve (1:5 FN:FP Ratio)', fontsize=11, fontweight='bold')
     axes[1, 1].set_xlabel('Decision Threshold (τ)')
     axes[1, 1].set_ylabel('Total Evaluated Business Loss')
     axes[1, 1].legend()

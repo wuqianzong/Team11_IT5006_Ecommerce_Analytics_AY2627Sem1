@@ -1,8 +1,0 @@
-task,included,reason,n
-classification,False,contributing_label_timestamp_missing_or_inconsistent,2
-classification,False,existing_task_ineligible,81
-classification,False,zero_items_cart_ineligible,87
-classification,True,included,15769
-regression,False,existing_task_ineligible,237
-regression,False,zero_items_cart_ineligible,87
-regression,True,included,15615

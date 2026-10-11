@@ -1,1 +1,0 @@
-{"status":"failed","reason":"Default CSV float parsing moved a probability across its exact threshold boundary. Verification now uses round_trip parsing; model fits and decisions are unchanged."}

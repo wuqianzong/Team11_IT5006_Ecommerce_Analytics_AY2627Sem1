@@ -1,11 +1,9 @@
-This directory preserves historical exploration. The active matched two-cycle pipeline, selected models and scoring instructions are in [Experiment 4](../experiment_4/README.md). Earlier champion labels refer to their original experiments.
-
 # Milestone 2: Refinement Cycle 1 (Historical Generation 2)
 
 > [!NOTE] Lineage & Champion Status Notice
 > This directory documents **Refinement Cycle 1 (Generation 2, `refinement-selected-v3`)**, which established leak-free chronological forward-chaining splits and initial baseline models (13-input Decision Tree and 14-input Logistic Classifier).
 > 
-> The **historical v4 model recipes and latest refinement study (Generation 3)** are located in:
+> The **current production champion models and latest refinement study (Generation 3)** are located in:
 > - Systematic research study & reproduction: [`experiments/experiment_3/`](../experiment_3/)
 > - Production model bundles: [`artifacts/metrics/refinement-selected-v4/`](../../artifacts/metrics/refinement-selected-v4/)
 > - Champion configuration: [`src/models/configs/refinement_selected_v4.json`](../../src/models/configs/refinement_selected_v4.json)

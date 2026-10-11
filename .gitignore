@@ -9,7 +9,6 @@ __pycache__/
 # Virtual environments
 .env
 .venv
-.venv-experiment4/
 env/
 venv/
 ENV/
@@ -32,7 +31,6 @@ archive/
 !/README.md
 !/experiments/refinement_cycle1/README.md
 !/experiments/experiment_3/*.md
-!/experiments/experiment_4/README.md
 !/notebooks/README.md
 !/data/business/ml/README.md
 /docs/*
@@ -99,10 +97,6 @@ archive/
 !/artifacts/metrics/refinement-selected-v3/development_diagnostics/*.png
 !/artifacts/metrics/refinement-selected-v3/development_diagnostics/*.csv
 !/artifacts/metrics/refinement-selected-v4/
-!/artifacts/metrics/experiment-4/
-/artifacts/metrics/experiment-4/*
-!/artifacts/metrics/experiment-4/run-01/
-!/artifacts/metrics/experiment-4/report-support-01/
 /artifacts/metrics/refinement-selected-v4/*
 !/artifacts/metrics/refinement-selected-v4/configuration.json
 !/artifacts/metrics/refinement-selected-v4/frozen_decision_policy.json
