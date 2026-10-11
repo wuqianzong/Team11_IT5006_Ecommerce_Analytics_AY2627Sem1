@@ -1,9 +1,16 @@
 {
-  "shared_report_sha256": "1040259b6c8f020edd3c624655d7d41cebe5faf9218918fd136f7847b2afa0c8",
-  "repository_report_sha256": "1040259b6c8f020edd3c624655d7d41cebe5faf9218918fd136f7847b2afa0c8",
-  "report_primary_evidence": "summary.csv, paired_comparisons.csv, train_validation_terminal.csv, terminal_metrics.csv, decision_policy.json; raw cohort summaries reproduced by experiments.experiment_4.cohort_summary",
-  "current_appendix": "C",
+  "shared_report_sha256": "c696e6e04e41e345be0f11e034a0e96ac9c64bede1e710ec571d1012912ef190",
+  "repository_report_sha256": "c696e6e04e41e345be0f11e034a0e96ac9c64bede1e710ec571d1012912ef190",
+  "report_primary_evidence": "run-01 comparative metrics, paired comparisons, memberships and predictions; report-support-01 independently verified tables and charts derived without fitting",
+  "current_appendix": "B\u2013E",
   "historical_evidence_preserved": true,
-  "report_presentation": "one logical pipeline with two modelling cycles; implementation history retained in repository",
-  "user_accepted_baseline_sha256": "63774a795b5a375769c3992a6593443d09d47cf04f2e903e401b315d597ff454"
+  "report_presentation": "one logical pipeline with two modelling cycles and self-contained analytical evidence; implementation history retained in repository",
+  "user_accepted_baseline_sha256": "bade71c48f38015df18147a5a6bd7c6d1d4930822a989f3531b8e2b430ff0d43",
+  "self_contained_evidence": {
+    "tables": 34,
+    "charts": 11,
+    "candidates": 26,
+    "paired_refinements": 18,
+    "report_numeric_checks": 780
+  }
 }

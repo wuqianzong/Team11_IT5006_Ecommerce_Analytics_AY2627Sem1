@@ -4,7 +4,7 @@ This repository contains the Olist e-commerce dashboard and the Milestone 2 pred
 
 ## Start here: current report and evidence
 
-- [Word report with tracked changes](docs/reports/Team11_Phase2_IT5006_AY2627Sem1_final.docx): Sections 4–5 present the matched modelling cycles; Section 7 and Appendix C present final diagnostics. Appendix D covers cohort distributions and Appendix E points to this reproduction guide.
+- [Word report with tracked changes](docs/reports/Team11_Phase2_IT5006_AY2627Sem1_final.docx): Sections 4–5 present the matched modelling cycles. Appendices B–E include the population accounting, all current model configurations and comparisons, fold evidence, final diagnostics and complete cohort summaries needed to audit the reasoning within the report. Appendix F points to this reproduction guide.
 - [Notebook 10](notebooks/10_matched_two_cycle_pipeline.ipynb): walkthrough of the saved split checks, two modelling cycles, model selection, final results and scoring. It reads saved evidence and does not retrain models.
 - [Experiment 4 guide](experiments/experiment_4/README.md): protocol, implementation, reproduction and interpretation.
 - [Saved evidence](artifacts/metrics/experiment-4/run-01/): all 130 validation-fold models/predictions and 26 final reference bundles/predictions, plus comparison tables and verification records.
@@ -72,7 +72,7 @@ This performs **130 fold fits and 26 final fits**. The original run took approxi
 
 The summarizer creates paired-comparison tables, split checks, selected subgroup results, train/validation/terminal comparisons and three diagnostic figures under the new run directory. It summarizes saved predictions without retraining. Reproduction does not change the active configuration, which continues to point to the accepted `run-01` bundles.
 
-To reproduce the raw feature, state, basket, seller and target distribution summaries in the report's Appendix D without fitting models:
+To reproduce the raw feature, state, basket, seller and target distribution summaries in the report's Appendix E without fitting models:
 
 ```bash
 python -m experiments.experiment_4.cohort_summary --run artifacts/metrics/experiment-4/run-01 --output artifacts/generated/report-cohort-summary-01
@@ -97,6 +97,14 @@ python -m src.models.experiment4_score --task classification --input artifacts/g
 ```
 
 This is an interface demonstration, not another evaluation. The scorer uses the active configuration, verifies bundle hashes and requires unique, non-null `order_id` values plus the model's constructed predictor columns. It does not fit models and refuses to overwrite an existing scoring output. Use fresh output names when repeating the demonstration. Classification output includes the frozen experimental rule; interpret it with the negative policy result above.
+
+The complete self-contained report evidence, including current comparison charts, full selected-input metadata, policy alternatives, calibration, error tails and permutation diagnostics, is saved separately in `artifacts/metrics/experiment-4/report-support-01/`. Reproduce it without fitting models, using a fresh directory:
+
+```bash
+MPLCONFIGDIR=/tmp/it5006-mpl OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m experiments.experiment_4.report_support --run artifacts/metrics/experiment-4/run-01 --output artifacts/generated/report-support-reproduction-01
+```
+
+The command checks all 26 candidate validation-fold and terminal metrics against saved predictions. Permutation diagnostics use full validation rows and selected saved fold models; they do not change the fitted pipeline or model selection. See the [evidence guide](experiments/experiment_4/README.md) for diagnostic definitions.
 
 ## Locate the evidence behind the report
 

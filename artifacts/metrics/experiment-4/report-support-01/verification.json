@@ -1,0 +1,205 @@
+{
+  "status": "passed",
+  "no_new_fits": true,
+  "feature_input_sha256": "0964e4e1711c40d107d4dfc7ac7982081114d4f8a09f9bd5a9ba25d028a89d67",
+  "verified_candidates": [
+    {
+      "task": "regression",
+      "candidate": "core_dummy",
+      "validated_terminal_and_folds": true
+    },
+    {
+      "task": "regression",
+      "candidate": "core_plain",
+      "validated_terminal_and_folds": true
+    },
+    {
+      "task": "regression",
+      "candidate": "core_tree",
+      "validated_terminal_and_folds": true
+    },
+    {
+      "task": "regression",
+      "candidate": "core_forest",
+      "validated_terminal_and_folds": true
+    },
+    {
+      "task": "regression",
+      "candidate": "expanded_raw_plain",
+      "validated_terminal_and_folds": true
+    },
+    {
+      "task": "regression",
+      "candidate": "expanded_raw_tree",
+      "validated_terminal_and_folds": true
+    },
+    {
+      "task": "regression",
+      "candidate": "expanded_raw_forest",
+      "validated_terminal_and_folds": true
+    },
+    {
+      "task": "regression",
+      "candidate": "expanded_inputlog_plain",
+      "validated_terminal_and_folds": true
+    },
+    {
+      "task": "regression",
+      "candidate": "expanded_inputlog_forest",
+      "validated_terminal_and_folds": true
+    },
+    {
+      "task": "regression",
+      "candidate": "expanded_log_plain",
+      "validated_terminal_and_folds": true
+    },
+    {
+      "task": "regression",
+      "candidate": "expanded_log_regularized",
+      "validated_terminal_and_folds": true
+    },
+    {
+      "task": "regression",
+      "candidate": "expanded_log_tree",
+      "validated_terminal_and_folds": true
+    },
+    {
+      "task": "regression",
+      "candidate": "expanded_log_forest",
+      "validated_terminal_and_folds": true
+    },
+    {
+      "task": "regression",
+      "candidate": "expanded_log_forest_leaf50",
+      "validated_terminal_and_folds": true
+    },
+    {
+      "task": "regression",
+      "candidate": "expanded_log_forest_clip60",
+      "validated_terminal_and_folds": true
+    },
+    {
+      "task": "classification",
+      "candidate": "core_dummy",
+      "validated_terminal_and_folds": true
+    },
+    {
+      "task": "classification",
+      "candidate": "core_plain",
+      "validated_terminal_and_folds": true
+    },
+    {
+      "task": "classification",
+      "candidate": "core_tree",
+      "validated_terminal_and_folds": true
+    },
+    {
+      "task": "classification",
+      "candidate": "core_forest",
+      "validated_terminal_and_folds": true
+    },
+    {
+      "task": "classification",
+      "candidate": "expanded_raw_plain",
+      "validated_terminal_and_folds": true
+    },
+    {
+      "task": "classification",
+      "candidate": "expanded_raw_tree",
+      "validated_terminal_and_folds": true
+    },
+    {
+      "task": "classification",
+      "candidate": "expanded_raw_forest",
+      "validated_terminal_and_folds": true
+    },
+    {
+      "task": "classification",
+      "candidate": "expanded_inputlog_plain",
+      "validated_terminal_and_folds": true
+    },
+    {
+      "task": "classification",
+      "candidate": "expanded_inputlog_regularized",
+      "validated_terminal_and_folds": true
+    },
+    {
+      "task": "classification",
+      "candidate": "expanded_inputlog_tree",
+      "validated_terminal_and_folds": true
+    },
+    {
+      "task": "classification",
+      "candidate": "expanded_inputlog_forest",
+      "validated_terminal_and_folds": true
+    }
+  ],
+  "permutation": {
+    "folds": 5,
+    "repeats": 3,
+    "full_validation_rows": true,
+    "seed_rule": "42 + zero-based fold*1000 + feature_index*10 + repeat"
+  },
+  "output_sha256": {
+    "terminal_eligibility_counts.csv": "ff095dec47907bcbaa69189b682324bacfafc8a79874135d8acb5b974c72f1b1",
+    "population_flow.csv": "7b7fe34b1b6ae072b7614f4e99f336e04c088360cc98b44ddb299bc26329cedf",
+    "calibration.csv": "b272c08ac0f653cbb308fea5a1f4b8da4c22f093e778386975ba034a2c295297",
+    "catalogue.csv": "eef27fa92d93e7543d7b532e220f21ffcb5506dceb7e23767b4e6d0b0e3d7175",
+    "all_input_categorical.csv": "88150dcc80e38e2ec80cc4bc8c655701f66b8a84095f13bfd91117f098890b13",
+    "chart_statistics.json": "034ea5e367bae0b748e7ca77de2914410a97f75448e8ae057108b0cd86a0cfe5",
+    "policy_comparison.csv": "4e269e66decc4f5deeb0f681fef310d41e81c8ca2eb22bf82cae70c7d4db5fc6",
+    "permutation_summary.csv": "b130294c3f16ce14ea3bbfbb4bbf4b7685696439317512af16f8dde0268b0333",
+    "fold_support.csv": "a1147ce664865d71890debdc7d0c078b6a20f76e94e891b5c521dc4463266bdf",
+    "all_input_numeric.csv": "02b84aecaf752b749d1ba8e89cc6a493bd8f6d8d07a482859b7cc2c8f3afab5d",
+    "permutation_details.csv": "da095c00d52029f368b5407e4db00cee6277d710423d8dfe0eb0c4fe90d54e33",
+    "monthly_subgroups.csv": "db4d6ed9925caa54119550dbe873983f0a732a0226dec20181255ab9264675e2",
+    "regression_errors.csv": "dfddee866415103f092b4de62dbd4f8b2b03c762b00661e59bde8f1a3f8f9dca",
+    "extra_subgroups.csv": "a5151c3c55c18e90d08eae0137098e09fbfee7ea380c0164adb6d0179abf154c",
+    "exclusion_counts.csv": "dd1f0749e0f5ea84b01f6b56dfa44312b37283036f5933bb02e89cb1fd6031e9",
+    "cohorts/seller_stats.csv": "ab885d60ca70aefda31f43c9ffe76f8cd7352554fe9d45b4585450fbdf9c7229",
+    "cohorts/state_shares.csv": "b459245218f244d213a08b0f956f4cbf807345420d76949af50e4f7a7a2dd746",
+    "cohorts/numeric_stats.csv": "3aab798940418af20543f66b27266e21f91fb64dd1fe33ccc52328fec4d2dff6",
+    "cohorts/basket_shares.csv": "70c81c1a2798b04f9573469103984a912a3e8866c3c1c97e0b24859689ea5736",
+    "cohorts/verification.json": "57db6dd40f559c0872ab1d99d1d3193ffdbe691581c777be990ff2dc4b2f18b2",
+    "cohorts/target_stats.csv": "a5fb4c95181f049e8aed8901de6136ed3e3b1614f996a0567264f4e4f8f9df88",
+    "figures/classification_permutation.png": "59d909a059fae2b04f0aadd6712d6f5a98b887f24fc952ba946eb7445e025853",
+    "figures/permutation.png": "d80134faeece31b5a931011d93f7ca41dd72738b55561af40d1daa77f9fecd97",
+    "figures/classification_comparison.png": "84b0384b6ac87181fb4a6bc50db89ca5cb0687f5c32dbe179ac3bd7a405cc871",
+    "figures/target_tail.png": "a8dc81aa10ef4527b18290ace3a58555eab9f77ce996022b4e27bbe1580abccc",
+    "figures/policy_calibration.png": "3b69d6ac6c19ac7cb7bc438c929841fd69e5d01e6fd72b0f42f8ddd645197517",
+    "figures/regression_comparison.png": "07cb3176f6787eee78717e60f4dd6832b6f28d34324cfa9e36eb85b4f1c063d4",
+    "figures/regression_permutation.png": "f38dfcad19e8408fcb2336eac182dd5d6c23fd1660e8dc8ea5931ad885c7605a",
+    "figures/input_skewness.png": "1bac454d7f7a352aa92e041f81a41d40c83a4771057d61c2ad9dd4e712409cbd"
+  },
+  "fresh_reproduction_byte_identical": {
+    "terminal_eligibility_counts.csv": true,
+    "population_flow.csv": true,
+    "calibration.csv": true,
+    "catalogue.csv": true,
+    "all_input_categorical.csv": true,
+    "chart_statistics.json": true,
+    "policy_comparison.csv": true,
+    "permutation_summary.csv": true,
+    "fold_support.csv": true,
+    "all_input_numeric.csv": true,
+    "permutation_details.csv": true,
+    "monthly_subgroups.csv": true,
+    "regression_errors.csv": true,
+    "extra_subgroups.csv": true,
+    "exclusion_counts.csv": true,
+    "cohorts/seller_stats.csv": true,
+    "cohorts/state_shares.csv": true,
+    "cohorts/numeric_stats.csv": true,
+    "cohorts/basket_shares.csv": true,
+    "cohorts/target_stats.csv": true,
+    "figures/classification_permutation.png": true,
+    "figures/permutation.png": true,
+    "figures/classification_comparison.png": true,
+    "figures/target_tail.png": true,
+    "figures/policy_calibration.png": true,
+    "figures/regression_comparison.png": true,
+    "figures/regression_permutation.png": true,
+    "figures/input_skewness.png": true
+  },
+  "source_sha256": "fecb9a2f1fb47ec2548d5e254cb9e42f3489c7047adaee15fd9bdb135a74499b"
+}

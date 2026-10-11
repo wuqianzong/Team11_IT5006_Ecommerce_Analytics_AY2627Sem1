@@ -37,6 +37,14 @@ python -m experiments.experiment_4.cohort_summary --run artifacts/metrics/experi
 
 This checks the accepted feature-input hash, selects rows using the saved training/terminal order identifiers, and writes raw numeric, state, basket, seller and target summaries to a fresh directory.
 
+The self-contained report tables and new charts are published in `artifacts/metrics/experiment-4/report-support-01/`. Reproduce them without retraining:
+
+```bash
+MPLCONFIGDIR=/tmp/it5006-mpl OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m experiments.experiment_4.report_support --run artifacts/metrics/experiment-4/run-01 --output artifacts/generated/report-support-reproduction-01
+```
+
+This independently recomputes every candidate's five validation-fold and terminal metrics from saved predictions. It also derives population accounting, policy alternatives, fixed-bin calibration, error tails, monthly/distance slices, full raw selected-input summaries and readable comparison charts. Permutation importance uses the selected saved model for each full validation fold, three shuffles per raw input, and deterministic seeds; mean importance and SD summarize the five fold means. It is descriptive and does not change feature or model selection. These derived artifacts do not overwrite the accepted fit run. Figures disclose display limits and retain outliers in evaluation metrics.
+
 ## Active zero-fit scoring
 
 `src/models/configs/active_pipeline.json` identifies the selected bundles. `src.models.experiment4_score` validates checksums, required columns and order identifiers before scoring:

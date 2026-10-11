@@ -102,6 +102,7 @@ archive/
 !/artifacts/metrics/experiment-4/
 /artifacts/metrics/experiment-4/*
 !/artifacts/metrics/experiment-4/run-01/
+!/artifacts/metrics/experiment-4/report-support-01/
 /artifacts/metrics/refinement-selected-v4/*
 !/artifacts/metrics/refinement-selected-v4/configuration.json
 !/artifacts/metrics/refinement-selected-v4/frozen_decision_policy.json

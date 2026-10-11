@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "feature_input_sha256": "0964e4e1711c40d107d4dfc7ac7982081114d4f8a09f9bd5a9ba25d028a89d67",
+  "cohort_counts": {
+    "regression": {
+      "training": 59466,
+      "terminal": 15615
+    },
+    "classification": {
+      "training": 59740,
+      "terminal": 15769
+    }
+  },
+  "no_new_fits": true
+}
