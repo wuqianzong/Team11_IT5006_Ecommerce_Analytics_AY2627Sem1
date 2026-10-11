@@ -4,6 +4,6 @@ The shared Word report and repository Word copy are maintained with tracked chan
 
 The selected regression model is the transformed 11-feature forest with minimum leaf 50 and no clipping. Classification uses 12-feature regularized Logistic Regression. Its development-selected threshold has higher terminal illustrative loss than no alerts; the report records this negative result and does not recommend deployment.
 
-The report Markdown and existing PDF remain historical versions while human revision is pending. Do not regenerate the tracked Word report from them. Condensation, Markdown synchronization and submission PDF generation remain deferred.
+The report Markdown and existing PDF remain historical versions while human revision is pending. Do not regenerate the tracked Word report from them. The main body has been condensed around decisions, reasoning and conclusions, with detailed process evidence retained in the appendices. Two compact main-body tables summarize baseline and selected-model primary metrics. Markdown synchronization and submission PDF generation remain deferred.
 
 Current fitted evidence: `artifacts/metrics/experiment-4/run-01/`. Derived self-contained report evidence: `artifacts/metrics/experiment-4/report-support-01/`, reproduced without new fits by `experiments.experiment_4.report_support`. Active scorer: `src.models.experiment4_score`. Active configuration: `src/models/configs/active_pipeline.json`. Preserve archived v4 receipts.
