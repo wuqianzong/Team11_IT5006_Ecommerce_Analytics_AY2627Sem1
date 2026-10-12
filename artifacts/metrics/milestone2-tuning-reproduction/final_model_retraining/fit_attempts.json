@@ -1,0 +1,116 @@
+[
+  {
+    "fold": 0,
+    "phase": "development_confirmation",
+    "status": "completed",
+    "task": "regression"
+  },
+  {
+    "fold": 1,
+    "phase": "development_confirmation",
+    "status": "completed",
+    "task": "regression"
+  },
+  {
+    "fold": 2,
+    "phase": "development_confirmation",
+    "status": "completed",
+    "task": "regression"
+  },
+  {
+    "fold": 3,
+    "phase": "development_confirmation",
+    "status": "completed",
+    "task": "regression"
+  },
+  {
+    "fold": 4,
+    "phase": "development_confirmation",
+    "status": "completed",
+    "task": "regression"
+  },
+  {
+    "fold": 0,
+    "phase": "development_confirmation",
+    "status": "completed",
+    "task": "classification"
+  },
+  {
+    "fold": 1,
+    "phase": "development_confirmation",
+    "status": "completed",
+    "task": "classification"
+  },
+  {
+    "fold": 2,
+    "phase": "development_confirmation",
+    "status": "completed",
+    "task": "classification"
+  },
+  {
+    "fold": 3,
+    "phase": "development_confirmation",
+    "status": "completed",
+    "task": "classification"
+  },
+  {
+    "fold": 4,
+    "phase": "development_confirmation",
+    "status": "completed",
+    "task": "classification"
+  },
+  {
+    "phase": "final_fit",
+    "role": "selected",
+    "status": "completed",
+    "task": "regression"
+  },
+  {
+    "phase": "final_fit",
+    "role": "dummy",
+    "status": "completed",
+    "task": "regression"
+  },
+  {
+    "phase": "final_fit",
+    "role": "linear",
+    "status": "completed",
+    "task": "regression"
+  },
+  {
+    "phase": "final_fit",
+    "role": "forest",
+    "status": "completed",
+    "task": "regression"
+  },
+  {
+    "phase": "final_fit",
+    "role": "selected",
+    "status": "completed",
+    "task": "classification"
+  },
+  {
+    "phase": "final_fit",
+    "role": "dummy",
+    "status": "completed",
+    "task": "classification"
+  },
+  {
+    "phase": "final_fit",
+    "role": "linear",
+    "status": "completed",
+    "task": "classification"
+  },
+  {
+    "phase": "final_fit",
+    "role": "forest",
+    "status": "completed",
+    "task": "classification"
+  },
+  {
+    "phase": "final_fit",
+    "role": "tree",
+    "status": "completed",
+    "task": "classification"
+  }
+]

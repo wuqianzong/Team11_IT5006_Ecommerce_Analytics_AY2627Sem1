@@ -1,0 +1,4 @@
+regime,task,winner,parameters,score,runner_up,winning_margin
+current,Classification (Detractor),Random Forest,"{'model__max_depth': 14, 'model__min_samples_leaf': 20}",0.2587824336225712,Logistic Regression,0.0034022275874099894
+current,Regression (Lead Time),Random Forest,"{'regressor__model__max_depth': 14, 'regressor__model__min_samples_leaf': 20}",4.717947272349551,Ridge Linear,0.07619741875601616
+historical,Classification (Detractor),Random Forest,"{'model__max_depth': 14, 'model__min_samples_leaf': 20}",0.3064231521804632,Logistic Regression,0.0064389619630009776

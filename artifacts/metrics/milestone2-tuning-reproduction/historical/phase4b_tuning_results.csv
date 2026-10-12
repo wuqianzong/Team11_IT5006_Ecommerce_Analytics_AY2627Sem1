@@ -1,0 +1,4 @@
+task,model_family,best_hyperparameters,best_cv_score,scoring_metric,tuning_time_s
+Classification (Detractor),Logistic Regression,C=0.01,0.29998419021746225,average_precision,13.867828845977783
+Classification (Detractor),Decision Tree,"{'model__max_depth': 10, 'model__min_samples_leaf': 200}",0.2842804137890395,average_precision,25.32342028617859
+Classification (Detractor),Random Forest,"{'model__max_depth': 14, 'model__min_samples_leaf': 20}",0.3064231521804632,average_precision,27.732319831848145

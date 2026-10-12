@@ -1,0 +1,8 @@
+{
+  "current_configurations": 55,
+  "historical_classification_configurations": 27,
+  "same_classification_parameters": true,
+  "historical_classification_reproduces_report": true,
+  "final_evidence": "Frozen-model no-fit verification; not a new independent test.",
+  "classification_setups_differ_in_cohort_and_features": true
+}

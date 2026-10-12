@@ -233,6 +233,37 @@ python -m src.models.refinement_selected_v4_terminal \
   --run artifacts/reproduction/v4-rebuilt --acknowledge-previously-inspected-terminal
 ```
 
+### Reproduce both grouped-CV tuning setups
+
+```bash
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python experiments/experiment_3/reproduce_tuning.py \
+  --output artifacts/reproduction/tuning-both
+```
+
+Use the pinned Milestone 2 environment and an unused output directory. This runs
+55 current configurations (11 regression / 12 classification predictors) and 27
+historical classification configurations (14 predictors, including zero-item
+orders). Each uses the original five customer-grouped folds. It exports all
+parameters, fold training/validation scores, means, population SDs, ranks and
+selected configurations, then verifies the frozen final results without fitting
+on terminal labels. It does not replace accepted model bundles or report evidence.
+
+The two classification setups use the same saved folds and parameter grids:
+
+| Setup | Predictors | Development orders | Logistic AP | Tree AP | Forest AP |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Historical screening | 14, including `has_items` and `freight_ratio_missing` | 78,938, including 604 zero-item orders | 0.29998 | 0.28428 | 0.30642 |
+| Current screening | 12, excluding those two flags | 78,334, with zero-item orders excluded | 0.25538 | 0.23877 | 0.25878 |
+
+Both select the same parameters and rank forest first, logistic second and tree
+third. The forest's AP margin over logistic is 0.00644 and 0.00340 respectively.
+Because both the cohort and feature list differ, this comparison does not isolate
+the effect of either change. The historical scores correspond to the saved
+screening table; the current setup applies the zero-item leakage-remediation rule.
+Final chronological and terminal evaluation are separate stages, and their metrics
+reproduce exactly after retraining. Detailed grids and provenance are published in
+`artifacts/metrics/milestone2-tuning-reproduction/`.
+
 For research-stage grouped comparisons and tuning, see
 [`experiments/experiment_3/README.md`](experiments/experiment_3/README.md).
 Their outputs are exploratory screening evidence, separate from the chronological

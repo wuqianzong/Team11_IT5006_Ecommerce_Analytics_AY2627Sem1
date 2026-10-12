@@ -1,0 +1,80 @@
+{
+  "created_utc": "2026-10-12T07:50:22.103856+00:00",
+  "python": "3.13.5",
+  "packages": {
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scipy": "1.15.3",
+    "scikit-learn": "1.7.2",
+    "joblib": "1.5.2"
+  },
+  "seed": 42,
+  "cv": "saved five-fold customer-grouped development assignments",
+  "data_hashes": {
+    "quality_report.json": "159f40a7dadc83aad9729672faea8c380d709c17ac27b260ff1eedabab053a9e",
+    "zip_centroids.csv": "465d3bd702cd3117623a7d364613569875e97195648d836f5552ef25e110f46a",
+    "orders_ml_features.csv": "0964e4e1711c40d107d4dfc7ac7982081114d4f8a09f9bd5a9ba25d028a89d67",
+    "split_assignments.csv": "61a84e18be7c8eeae57f74e2eb08b3f5bd082524850934b7cd68b7d3674069d2",
+    "split_report.json": "8ddf76bf3b7f2c636f9cd0a22d10e676fcf989b2af172a294c78d34aaaa1bb8c",
+    "cv_assignments.csv": "8a3fd8540aebed918eabb11c5d10285d28d13aeeee6a6e07074b6b3defdb95cf",
+    "feature_schema.json": "35f53124fcfc6e301aed9bd0f6c9e12810c3da24e48c0621e0adadd31191f7a1",
+    "dataset_manifest.json": "55537e4c2c40b97caf1e71d700d09997eaac487609ba928b165b496049f6225b"
+  },
+  "source_hashes": {
+    "experiments/experiment_3/reproduce_tuning.py": "f8cc92884378ad7bface48eae2461d5275607c7d583edf8afc60b84f2976d09b",
+    "experiments/experiment_3/run_phase4_transforms_and_tuning.py": "db41dac67a1f226b198ffffd4a03e41e20d9093e252ff8900b6b0f3d0ee33ddd"
+  },
+  "regression_features": [
+    "n_items",
+    "n_products",
+    "total_price",
+    "total_freight",
+    "freight_ratio",
+    "customer_state",
+    "purchase_month",
+    "purchase_dayofweek",
+    "purchase_hour",
+    "distance_km_max",
+    "distance_missing_fraction"
+  ],
+  "current_classification_features": [
+    "n_items",
+    "n_products",
+    "total_price",
+    "total_freight",
+    "freight_ratio",
+    "customer_state",
+    "purchase_month",
+    "purchase_dayofweek",
+    "purchase_hour",
+    "n_sellers",
+    "primary_seller_state",
+    "interstate_share"
+  ],
+  "historical_classification_features": [
+    "n_items",
+    "has_items",
+    "n_products",
+    "total_price",
+    "total_freight",
+    "freight_ratio",
+    "freight_ratio_missing",
+    "customer_state",
+    "purchase_month",
+    "purchase_dayofweek",
+    "purchase_hour",
+    "n_sellers",
+    "primary_seller_state",
+    "interstate_share"
+  ],
+  "regression_rows": 77139,
+  "current_classification_rows": 78334,
+  "historical_classification_rows": 78938,
+  "excluded_zero_item_rows": 604,
+  "order_id_digests": {
+    "regression": "2d88d343eaf52cab13490ae5ae20213f1260dfca6944918693e7fffb1fe4de92",
+    "current": "448e5a6a27a2b116472cf36964203773870f581dd21a71070acf27dd1063cf6a",
+    "historical": "f11b40f91d4a76c021dcb8f31eafa9873ca13b2adde9c5df4cb33f4d53156ff7"
+  },
+  "interpretation": "Post-submission reruns of two grouped-CV classification setups: historical (14 predictors, 78,938 eligible orders including zero-item orders) and current (12 predictors, 78,334 orders with has_items == 1). Both cohort and feature list differ; final chronological and terminal evaluation are separate stages."
+}

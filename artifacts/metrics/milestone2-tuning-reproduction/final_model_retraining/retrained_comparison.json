@@ -1,0 +1,9 @@
+{
+  "comparison_tolerance": 5e-05,
+  "all_comparison_rows_pass": true,
+  "fixed_threshold_original": 0.17,
+  "fixed_threshold_rerun": 0.17,
+  "empirical_threshold_original": 0.18215315673052437,
+  "empirical_threshold_rerun": 0.18215315673052437,
+  "canonical_evidence_unchanged": true
+}

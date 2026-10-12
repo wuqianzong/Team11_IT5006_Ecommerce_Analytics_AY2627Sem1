@@ -21,7 +21,6 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
 
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer, TransformedTargetRegressor
@@ -43,7 +42,6 @@ from src.features.contract import CATEGORICAL_COLUMNS
 from src.models.refinement_core import CORE_FEATURES
 
 OUTPUT_DIR = REPO_ROOT / "artifacts" / "metrics" / "experiment-3" / "transforms_and_tuning"
-OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # Final Selected Feature Subsets (Option 1: 9 Core -> 11 Regression / 12 Classification)
 REG_11_FEATURES = CORE_FEATURES + ["distance_km_max", "distance_missing_fraction"]
@@ -218,7 +216,28 @@ def run_phase4a_transforms_ablation(df_reg, df_clf, seed=42):
     return df_ablation
 
 
-def run_phase4b_gridsearch_tuning(df_reg, df_clf, seed=42):
+def export_grid_results(search, destination, task, model_family):
+    """Save every candidate, including five-fold scores, using positive MAE units.
+
+    Original sklearn signed score columns are retained. Human-readable metric
+    columns invert negative MAE scores only; sklearn SD uses ddof=0.
+    """
+    frame = pd.DataFrame(search.cv_results_)
+    frame["params"] = frame["params"].map(lambda value: json.dumps(value, sort_keys=True))
+    frame.insert(0, "task", task)
+    frame.insert(1, "model_family", model_family)
+    frame["metric"] = "mae_days" if task == "regression" else "average_precision"
+    direction = -1 if task == "regression" else 1
+    for column in list(frame.columns):
+        if column.endswith("_score") and column.startswith(("mean_", "split")):
+            frame[column.replace("_score", "_metric")] = direction * frame[column]
+    frame["selected"] = np.arange(len(frame)) == search.best_index_
+    frame.to_csv(destination, index=False)
+    return frame
+
+
+def run_phase4b_gridsearch_tuning(df_reg, df_clf, seed=42, *, output_dir=None,
+                                clf_features=None, classification_only=False):
     """Phase 4B: Full GridSearchCV Hyperparameter Tuning across All Candidate Models."""
     print("\n" + "=" * 80)
     print("PHASE 4B: FULL GRIDSEARCHCV HYPERPARAMETER TUNING ACROSS ALL CANDIDATE MODELS")
@@ -228,95 +247,106 @@ def run_phase4b_gridsearch_tuning(df_reg, df_clf, seed=42):
     reg_cv_splits = [(train_idx, val_idx) for _, train_idx, val_idx in fold_indices(df_reg)]
     clf_cv_splits = [(train_idx, val_idx) for _, train_idx, val_idx in fold_indices(df_clf)]
 
+    output = Path(output_dir) if output_dir is not None else OUTPUT_DIR
+    output.mkdir(parents=True, exist_ok=True)
+    classifier_features = list(clf_features or CLF_12_FEATURES)
     tuning_summary = []
+    searches = {}
 
-    # 1. Regression Tuning
-    print("\n--- Tuning Regression Models on 13 Features (with Log1p Input + Log1p Target) ---")
-    reg_preprocessor = build_preprocessor(REG_13_FEATURES, apply_log1p_num=True)
+    if not classification_only:
+        # 1. Regression Tuning
+        print("\n--- Tuning Regression Models on 11 Features (with Log1p Input + Log1p Target) ---")
+        reg_preprocessor = build_preprocessor(REG_13_FEATURES, apply_log1p_num=True)
 
-    # 1A. Ridge Regression Tuning
-    print("  [1/3] Tuning Ridge Linear Regression (alpha search)...")
-    pipe_ridge = Pipeline([("preprocess", reg_preprocessor), ("model", Ridge(random_state=seed))])
-    tgt_ridge = TransformedTargetRegressor(regressor=pipe_ridge, func=np.log1p, inverse_func=np.expm1)
-    param_grid_ridge = {
-        "regressor__model__alpha": [0.01, 0.1, 1.0, 10.0, 100.0, 500.0]
-    }
-    gs_ridge = GridSearchCV(
-        tgt_ridge, param_grid_ridge, cv=reg_cv_splits,
-        scoring="neg_mean_absolute_error", n_jobs=-1, return_train_score=True
-    )
-    t0 = time.time()
-    gs_ridge.fit(df_reg[REG_13_FEATURES], df_reg["lead_days"])
-    ridge_time = time.time() - t0
-    best_ridge_alpha = gs_ridge.best_params_["regressor__model__alpha"]
-    best_ridge_mae = -gs_ridge.best_score_
-    print(f"    Optimal alpha: {best_ridge_alpha} | Best Val MAE: {best_ridge_mae:.4f} d (fit in {ridge_time:.1f}s)")
-    tuning_summary.append({
-        "task": "Regression (Lead Time)",
-        "model_family": "Ridge Linear",
-        "best_hyperparameters": f"alpha={best_ridge_alpha}",
-        "best_cv_score": best_ridge_mae,
-        "scoring_metric": "neg_mean_absolute_error",
-        "tuning_time_s": ridge_time
-    })
+        # 1A. Ridge Regression Tuning
+        print("  [1/3] Tuning Ridge Linear Regression (alpha search)...")
+        pipe_ridge = Pipeline([("preprocess", reg_preprocessor), ("model", Ridge(random_state=seed))])
+        tgt_ridge = TransformedTargetRegressor(regressor=pipe_ridge, func=np.log1p, inverse_func=np.expm1)
+        param_grid_ridge = {
+            "regressor__model__alpha": [0.01, 0.1, 1.0, 10.0, 100.0, 500.0]
+        }
+        gs_ridge = GridSearchCV(
+            tgt_ridge, param_grid_ridge, cv=reg_cv_splits,
+            scoring="neg_mean_absolute_error", n_jobs=-1, return_train_score=True
+        )
+        t0 = time.time()
+        gs_ridge.fit(df_reg[REG_13_FEATURES], df_reg["lead_days"])
+        searches["reg_ridge"] = gs_ridge
+        export_grid_results(gs_ridge, output / "reg_ridge_grid.csv", "regression", "Ridge Linear")
+        ridge_time = time.time() - t0
+        best_ridge_alpha = gs_ridge.best_params_["regressor__model__alpha"]
+        best_ridge_mae = -gs_ridge.best_score_
+        print(f"    Optimal alpha: {best_ridge_alpha} | Best Val MAE: {best_ridge_mae:.4f} d (fit in {ridge_time:.1f}s)")
+        tuning_summary.append({
+            "task": "Regression (Lead Time)",
+            "model_family": "Ridge Linear",
+            "best_hyperparameters": f"alpha={best_ridge_alpha}",
+            "best_cv_score": best_ridge_mae,
+            "scoring_metric": "neg_mean_absolute_error",
+            "tuning_time_s": ridge_time
+        })
 
-    # 1B. Decision Tree Regression Tuning
-    print("  [2/3] Tuning Decision Tree Regressor (max_depth, min_samples_leaf)...")
-    pipe_dt = Pipeline([("preprocess", reg_preprocessor), ("model", DecisionTreeRegressor(random_state=seed))])
-    tgt_dt = TransformedTargetRegressor(regressor=pipe_dt, func=np.log1p, inverse_func=np.expm1)
-    param_grid_dt = {
-        "regressor__model__max_depth": [4, 6, 8, 10],
-        "regressor__model__min_samples_leaf": [20, 50, 100, 200]
-    }
-    gs_dt = GridSearchCV(
-        tgt_dt, param_grid_dt, cv=reg_cv_splits,
-        scoring="neg_mean_absolute_error", n_jobs=-1, return_train_score=True
-    )
-    t0 = time.time()
-    gs_dt.fit(df_reg[REG_13_FEATURES], df_reg["lead_days"])
-    dt_time = time.time() - t0
-    best_dt_params = gs_dt.best_params_
-    best_dt_mae = -gs_dt.best_score_
-    print(f"    Optimal params: {best_dt_params} | Best Val MAE: {best_dt_mae:.4f} d (fit in {dt_time:.1f}s)")
-    tuning_summary.append({
-        "task": "Regression (Lead Time)",
-        "model_family": "Decision Tree",
-        "best_hyperparameters": str(best_dt_params),
-        "best_cv_score": best_dt_mae,
-        "scoring_metric": "neg_mean_absolute_error",
-        "tuning_time_s": dt_time
-    })
+        # 1B. Decision Tree Regression Tuning
+        print("  [2/3] Tuning Decision Tree Regressor (max_depth, min_samples_leaf)...")
+        pipe_dt = Pipeline([("preprocess", reg_preprocessor), ("model", DecisionTreeRegressor(random_state=seed))])
+        tgt_dt = TransformedTargetRegressor(regressor=pipe_dt, func=np.log1p, inverse_func=np.expm1)
+        param_grid_dt = {
+            "regressor__model__max_depth": [4, 6, 8, 10],
+            "regressor__model__min_samples_leaf": [20, 50, 100, 200]
+        }
+        gs_dt = GridSearchCV(
+            tgt_dt, param_grid_dt, cv=reg_cv_splits,
+            scoring="neg_mean_absolute_error", n_jobs=-1, return_train_score=True
+        )
+        t0 = time.time()
+        gs_dt.fit(df_reg[REG_13_FEATURES], df_reg["lead_days"])
+        searches["reg_dt"] = gs_dt
+        export_grid_results(gs_dt, output / "reg_dt_grid.csv", "regression", "Decision Tree")
+        dt_time = time.time() - t0
+        best_dt_params = gs_dt.best_params_
+        best_dt_mae = -gs_dt.best_score_
+        print(f"    Optimal params: {best_dt_params} | Best Val MAE: {best_dt_mae:.4f} d (fit in {dt_time:.1f}s)")
+        tuning_summary.append({
+            "task": "Regression (Lead Time)",
+            "model_family": "Decision Tree",
+            "best_hyperparameters": str(best_dt_params),
+            "best_cv_score": best_dt_mae,
+            "scoring_metric": "neg_mean_absolute_error",
+            "tuning_time_s": dt_time
+        })
 
-    # 1C. Random Forest Regression Tuning
-    print("  [3/3] Tuning Random Forest Regressor (max_depth, min_samples_leaf)...")
-    pipe_rf = Pipeline([("preprocess", reg_preprocessor), ("model", RandomForestRegressor(n_estimators=50, random_state=seed, n_jobs=-1))])
-    tgt_rf = TransformedTargetRegressor(regressor=pipe_rf, func=np.log1p, inverse_func=np.expm1)
-    param_grid_rf = {
-        "regressor__model__max_depth": [6, 10, 14],
-        "regressor__model__min_samples_leaf": [20, 50]
-    }
-    gs_rf = GridSearchCV(
-        tgt_rf, param_grid_rf, cv=reg_cv_splits,
-        scoring="neg_mean_absolute_error", n_jobs=-1, return_train_score=True
-    )
-    t0 = time.time()
-    gs_rf.fit(df_reg[REG_13_FEATURES], df_reg["lead_days"])
-    rf_time = time.time() - t0
-    best_rf_params = gs_rf.best_params_
-    best_rf_mae = -gs_rf.best_score_
-    print(f"    Optimal params: {best_rf_params} | Best Val MAE: {best_rf_mae:.4f} d (fit in {rf_time:.1f}s)")
-    tuning_summary.append({
-        "task": "Regression (Lead Time)",
-        "model_family": "Random Forest",
-        "best_hyperparameters": str(best_rf_params),
-        "best_cv_score": best_rf_mae,
-        "scoring_metric": "neg_mean_absolute_error",
-        "tuning_time_s": rf_time
-    })
+        # 1C. Random Forest Regression Tuning
+        print("  [3/3] Tuning Random Forest Regressor (max_depth, min_samples_leaf)...")
+        pipe_rf = Pipeline([("preprocess", reg_preprocessor), ("model", RandomForestRegressor(n_estimators=50, random_state=seed, n_jobs=-1))])
+        tgt_rf = TransformedTargetRegressor(regressor=pipe_rf, func=np.log1p, inverse_func=np.expm1)
+        param_grid_rf = {
+            "regressor__model__max_depth": [6, 10, 14],
+            "regressor__model__min_samples_leaf": [20, 50]
+        }
+        gs_rf = GridSearchCV(
+            tgt_rf, param_grid_rf, cv=reg_cv_splits,
+            scoring="neg_mean_absolute_error", n_jobs=-1, return_train_score=True
+        )
+        t0 = time.time()
+        gs_rf.fit(df_reg[REG_13_FEATURES], df_reg["lead_days"])
+        searches["reg_rf"] = gs_rf
+        export_grid_results(gs_rf, output / "reg_rf_grid.csv", "regression", "Random Forest")
+        rf_time = time.time() - t0
+        best_rf_params = gs_rf.best_params_
+        best_rf_mae = -gs_rf.best_score_
+        print(f"    Optimal params: {best_rf_params} | Best Val MAE: {best_rf_mae:.4f} d (fit in {rf_time:.1f}s)")
+        tuning_summary.append({
+            "task": "Regression (Lead Time)",
+            "model_family": "Random Forest",
+            "best_hyperparameters": str(best_rf_params),
+            "best_cv_score": best_rf_mae,
+            "scoring_metric": "neg_mean_absolute_error",
+            "tuning_time_s": rf_time
+        })
 
     # 2. Classification Tuning
-    print("\n--- Tuning Classification Models on 14 Features (with Log1p Input) ---")
-    clf_preprocessor = build_preprocessor(CLF_14_FEATURES, apply_log1p_num=True)
+    print(f"\n--- Tuning Classification Models on {len(classifier_features)} Features (with Log1p Input) ---")
+    clf_preprocessor = build_preprocessor(classifier_features, apply_log1p_num=True)
 
     # 2A. Logistic Regression Tuning
     print("  [1/3] Tuning Logistic Regression (C regularization search)...")
@@ -329,7 +359,9 @@ def run_phase4b_gridsearch_tuning(df_reg, df_clf, seed=42):
         scoring="average_precision", n_jobs=-1, return_train_score=True
     )
     t0 = time.time()
-    gs_log.fit(df_clf[CLF_14_FEATURES], df_clf["is_detractor"])
+    gs_log.fit(df_clf[classifier_features], df_clf["is_detractor"])
+    searches["clf_log"] = gs_log
+    export_grid_results(gs_log, output / "clf_log_grid.csv", "classification", "Logistic Regression")
     log_time = time.time() - t0
     best_log_C = gs_log.best_params_["model__C"]
     best_log_ap = gs_log.best_score_
@@ -355,7 +387,9 @@ def run_phase4b_gridsearch_tuning(df_reg, df_clf, seed=42):
         scoring="average_precision", n_jobs=-1, return_train_score=True
     )
     t0 = time.time()
-    gs_dtc.fit(df_clf[CLF_14_FEATURES], df_clf["is_detractor"])
+    gs_dtc.fit(df_clf[classifier_features], df_clf["is_detractor"])
+    searches["clf_dt"] = gs_dtc
+    export_grid_results(gs_dtc, output / "clf_dt_grid.csv", "classification", "Decision Tree")
     dtc_time = time.time() - t0
     best_dtc_params = gs_dtc.best_params_
     best_dtc_ap = gs_dtc.best_score_
@@ -381,7 +415,9 @@ def run_phase4b_gridsearch_tuning(df_reg, df_clf, seed=42):
         scoring="average_precision", n_jobs=-1, return_train_score=True
     )
     t0 = time.time()
-    gs_rfc.fit(df_clf[CLF_14_FEATURES], df_clf["is_detractor"])
+    gs_rfc.fit(df_clf[classifier_features], df_clf["is_detractor"])
+    searches["clf_rf"] = gs_rfc
+    export_grid_results(gs_rfc, output / "clf_rf_grid.csv", "classification", "Random Forest")
     rfc_time = time.time() - t0
     best_rfc_params = gs_rfc.best_params_
     best_rfc_ap = gs_rfc.best_score_
@@ -396,19 +432,12 @@ def run_phase4b_gridsearch_tuning(df_reg, df_clf, seed=42):
     })
 
     df_tuning = pd.DataFrame(tuning_summary)
-    tuning_csv_path = OUTPUT_DIR / "phase4b_tuning_results.csv"
+    tuning_csv_path = output / "phase4b_tuning_results.csv"
     df_tuning.to_csv(tuning_csv_path, index=False)
     print(f"\nSaved Phase 4B tuning results to: {tuning_csv_path}")
 
     # Return fitted grid search models for detailed fold evaluation
-    return {
-        "reg_ridge": gs_ridge.best_estimator_,
-        "reg_dt": gs_dt.best_estimator_,
-        "reg_rf": gs_rf.best_estimator_,
-        "clf_log": gs_log.best_estimator_,
-        "clf_dt": gs_dtc.best_estimator_,
-        "clf_rf": gs_rfc.best_estimator_
-    }, df_tuning
+    return {key: search.best_estimator_ for key, search in searches.items()}, df_tuning
 
 
 def generate_default_vs_tuned_comparison(df_reg, df_clf, tuned_models, seed=42):
@@ -628,6 +657,7 @@ def generate_default_vs_tuned_comparison(df_reg, df_clf, tuned_models, seed=42):
 
 
 def main():
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     print("=" * 80)
     print("EXPERIMENT 3 — PHASE 4: TRANSFORMS & GRIDSEARCHCV MODEL TUNING")
     print("=" * 80)

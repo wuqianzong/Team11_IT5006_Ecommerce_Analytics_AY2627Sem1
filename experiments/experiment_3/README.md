@@ -123,3 +123,16 @@ python experiments/experiment_3/run_phase6_final_synthesis.py
 * **Locked Input Hashes:** Input datasets (`data/business/ml/orders_ml_features.csv` and `data/business/ml/split_assignments.csv`) are validated against canonical SHA-256 digests.
 * **Production Migration:** Following Phase 6 confirmation, the winning Experiment 3 (Option 1) configuration and feature schema (9 Core $\to$ 11 Regression / 12 Classification) have been migrated into production under `refinement-selected-v4` (`src/models/configs/refinement_selected_v4.json` and `src/models/refinement_selected_v4.py`).
 
+
+## Post-submission full-grid reproducibility
+
+Use `python experiments/experiment_3/reproduce_tuning.py --output artifacts/reproduction/tuning-both`
+in the pinned Milestone 2 environment. It exports every current candidate and an
+explicitly labelled historical 14-feature classification grid, then verifies
+frozen final evidence. The historical setup includes zero-item
+orders and two additional flags; the current setup excludes those orders and flags.
+Both select the same parameters and rank forest first, logistic second and tree
+third. Their AP scores and cohorts are recorded separately.
+See the root README and `docs/milestone2_reproduction_notes.md` for values and
+limits. This safe command writes a new output directory; the older Phase 4 main
+command still writes exploratory outputs to its fixed directory.

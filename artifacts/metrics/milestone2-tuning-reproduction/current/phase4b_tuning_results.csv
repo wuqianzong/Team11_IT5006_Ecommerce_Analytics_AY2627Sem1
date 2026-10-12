@@ -1,0 +1,7 @@
+task,model_family,best_hyperparameters,best_cv_score,scoring_metric,tuning_time_s
+Regression (Lead Time),Ridge Linear,alpha=1.0,4.794144691105567,neg_mean_absolute_error,5.533970832824707
+Regression (Lead Time),Decision Tree,"{'regressor__model__max_depth': 10, 'regressor__model__min_samples_leaf': 100}",4.856473244872147,neg_mean_absolute_error,15.963386058807373
+Regression (Lead Time),Random Forest,"{'regressor__model__max_depth': 14, 'regressor__model__min_samples_leaf': 20}",4.717947272349551,neg_mean_absolute_error,141.91499423980713
+Classification (Detractor),Logistic Regression,C=0.01,0.2553802060351612,average_precision,13.59265685081482
+Classification (Detractor),Decision Tree,"{'model__max_depth': 10, 'model__min_samples_leaf': 200}",0.23877110920927094,average_precision,23.97878408432007
+Classification (Detractor),Random Forest,"{'model__max_depth': 14, 'model__min_samples_leaf': 20}",0.25878243362257125,average_precision,30.94971013069153

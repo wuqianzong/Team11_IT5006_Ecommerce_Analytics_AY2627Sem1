@@ -205,3 +205,25 @@ archive/
 /artifacts/reproduction/
 /.venv-milestone2/
 !/docs/milestone2_reproduction_notes.md
+
+# Post-submission full grids with separate historical/current provenance.
+!/artifacts/metrics/milestone2-tuning-reproduction/
+/artifacts/metrics/milestone2-tuning-reproduction/*
+!/artifacts/metrics/milestone2-tuning-reproduction/*.csv
+!/artifacts/metrics/milestone2-tuning-reproduction/*.json
+!/artifacts/metrics/milestone2-tuning-reproduction/current/
+/artifacts/metrics/milestone2-tuning-reproduction/current/*
+!/artifacts/metrics/milestone2-tuning-reproduction/current/*.csv
+!/artifacts/metrics/milestone2-tuning-reproduction/current/*.json
+!/artifacts/metrics/milestone2-tuning-reproduction/historical/
+/artifacts/metrics/milestone2-tuning-reproduction/historical/*
+!/artifacts/metrics/milestone2-tuning-reproduction/historical/*.csv
+!/artifacts/metrics/milestone2-tuning-reproduction/historical/*.json
+!/artifacts/metrics/milestone2-tuning-reproduction/frozen_final_verification/
+/artifacts/metrics/milestone2-tuning-reproduction/frozen_final_verification/*
+!/artifacts/metrics/milestone2-tuning-reproduction/frozen_final_verification/*.csv
+!/artifacts/metrics/milestone2-tuning-reproduction/frozen_final_verification/*.json
+!/artifacts/metrics/milestone2-tuning-reproduction/final_model_retraining/
+/artifacts/metrics/milestone2-tuning-reproduction/final_model_retraining/*
+!/artifacts/metrics/milestone2-tuning-reproduction/final_model_retraining/*.csv
+!/artifacts/metrics/milestone2-tuning-reproduction/final_model_retraining/*.json
