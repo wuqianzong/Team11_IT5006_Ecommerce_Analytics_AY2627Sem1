@@ -1,0 +1,109 @@
+{
+  "canonical_evidence_unchanged": true,
+  "cohort_n": {
+    "classification": 15769,
+    "regression": 15615
+  },
+  "evidence_sha256": {
+    "build_freeze.json": "b997f8879ee40703059e5aeed68b35532a4120a30a89267f62dfbff0340f19cd",
+    "bundles/classification/dummy/bundle_manifest.json": "068f203ecccd839eb9672709b6cd9b9bf4f9b0fc5a4590ef32522eba8e8817a8",
+    "bundles/classification/dummy/decision_policy.json": "73c8e370b53125b6cc9a66573f560d50b68b86fa905e4d220abcc023f07608cd",
+    "bundles/classification/dummy/feature_schema.json": "621b5d431d3120bac65e53361b46aa698372f6c48b24e95ca0f243fc5bda43bc",
+    "bundles/classification/dummy/metadata.json": "0a852a0122bb056b029ca08ad57c8921f6a864d89e50306decdf7524ce35d500",
+    "bundles/classification/dummy/pipeline.joblib": "302d31a7a960142a8162ea55587268901e38741ff5572ce297fdd68c2ca770bf",
+    "bundles/classification/forest/bundle_manifest.json": "b6f7c0692d35ae5385940eed75ca73681815886112f9e05d8e4431e54cce5d47",
+    "bundles/classification/forest/decision_policy.json": "73c8e370b53125b6cc9a66573f560d50b68b86fa905e4d220abcc023f07608cd",
+    "bundles/classification/forest/feature_schema.json": "cb231832455e5b700ddbee4608dea9d2229a01765e78136e720b1203f0b9c6cb",
+    "bundles/classification/forest/metadata.json": "3fdfbe0a5ba06c7abb692547bed9f00212d124fafac946b2dea79e81b4229d96",
+    "bundles/classification/forest/pipeline.joblib": "096bc58923d7f6ea161c2ab93ef5f86eb6e67d6d4229c33e6d1690fcd504182f",
+    "bundles/classification/linear/bundle_manifest.json": "57bf1dc1a685cccca6863cff61b7c8756a2eb50bcdc92edc9889c84e627db944",
+    "bundles/classification/linear/decision_policy.json": "73c8e370b53125b6cc9a66573f560d50b68b86fa905e4d220abcc023f07608cd",
+    "bundles/classification/linear/feature_schema.json": "10957f41d19b94afa2150dbe2ab2c10a03ee5cbfdc592696b9d56bf12483ff82",
+    "bundles/classification/linear/metadata.json": "fe62928c751f40f7c0dc8c1cf6150d5cc97e439f85b2b0cc30c9a4a0ac6c2ef1",
+    "bundles/classification/linear/pipeline.joblib": "54322e253aaf0ad1046bbd7567b1fb8125659e64626db23174428e4f9dd00284",
+    "bundles/classification/selected/bundle_manifest.json": "310fb16a5eaee47d387e8c6394506b5c561d1dd361e52ac0986af5e39daaff70",
+    "bundles/classification/selected/decision_policy.json": "bf4edb11d3f2fa9d05d54ecbf0d4e39a98d6e40efe959c07b426a1d600f658b9",
+    "bundles/classification/selected/feature_schema.json": "c1653737bf8bcb4cfe1bb9cc2505cf719c82ef357d6a41ef7c7a9eefd691fd48",
+    "bundles/classification/selected/metadata.json": "63173e2a874edf1d05d99a288775810d94b0e25b690de08eddbb68c97831e07e",
+    "bundles/classification/selected/pipeline.joblib": "096bc58923d7f6ea161c2ab93ef5f86eb6e67d6d4229c33e6d1690fcd504182f",
+    "bundles/classification/tree/bundle_manifest.json": "174d3cd169c9f8e836af87e968abdf5c1868595ef4c697710298547b48f45e39",
+    "bundles/classification/tree/decision_policy.json": "73c8e370b53125b6cc9a66573f560d50b68b86fa905e4d220abcc023f07608cd",
+    "bundles/classification/tree/feature_schema.json": "ca28e8fc4d3d46ba31c3fadd93c2c600cb359ab74c5f7105782802e087d97a46",
+    "bundles/classification/tree/metadata.json": "1e7268fc9e7e36ef8e61c086cb9d3d41a8382c448473b8b0d1b79668efb5a3ca",
+    "bundles/classification/tree/pipeline.joblib": "9b7d2b8a1ffb1de9b666533725b14379b2650cc04ae23f30075573e1b7785d23",
+    "bundles/regression/dummy/bundle_manifest.json": "8378214a80d0a30bb6e4b2c95af4f4352b03429c27f5fed2da3932f1c2fedc7e",
+    "bundles/regression/dummy/feature_schema.json": "36a368820379da99beef141735f3c899e124df317202cbe6f9b105ac66cf44ed",
+    "bundles/regression/dummy/metadata.json": "3374775b41e4da2e7b8f182812991fb06149c727567e3e5fef4d7791d5fef921",
+    "bundles/regression/dummy/pipeline.joblib": "217d47f37a19d37d5add4814c07238c7d3f90fa6af02dfe8c427f40481a160c5",
+    "bundles/regression/forest/bundle_manifest.json": "652d25e1da4938512fa442e1bab92b19b38c6d31c4b7c20e3808ccb6593d77ce",
+    "bundles/regression/forest/feature_schema.json": "ceeafeee8740dc5bd7e4fef7b7a281b88e2a7f3322f6341b36d791c877f35134",
+    "bundles/regression/forest/metadata.json": "b19a0a7a0918af4718d96a6a9be29fe80f6bd31872940f635fdd59a141e7f0a7",
+    "bundles/regression/forest/pipeline.joblib": "c8c6713937f6f1178a34d678edcc6124f9712e51966d2c083f5f0944db6259a3",
+    "bundles/regression/linear/bundle_manifest.json": "0cf5772ebc10829b61c9c26034746cf00cb76fd2a11c670c661bd651f5d8c830",
+    "bundles/regression/linear/feature_schema.json": "75e0f25b0106fdf98d915d7ac6bcc7df6e207fbb6a236b287985209015bcf3af",
+    "bundles/regression/linear/metadata.json": "93d12d5fc008f71c9263504522dae0352b8932c1086b593fbd03d4ed24fcebdf",
+    "bundles/regression/linear/pipeline.joblib": "793f9d6dd0fb0302f069d77dca1173db4d1aed985209af1a46195df0138fb514",
+    "bundles/regression/selected/bundle_manifest.json": "9bed5f0bbff9205752eca7f6c1a2d8aceeafa05d24b9b3e4b60ea01dfcc33c40",
+    "bundles/regression/selected/feature_schema.json": "63dac1662dfd1c4052fa4f36778eea34b11c375618a5b8cf0364f0b5385f8e01",
+    "bundles/regression/selected/metadata.json": "f086a65c10f3a8c202155340dc5e9c3aa72a0286f825306638ddff9f6ef36320",
+    "bundles/regression/selected/pipeline.joblib": "23036efc06e52bd01cfd8b3a1836157335cf25d4a0ec0a1c5955ab5b0ec7f8d0",
+    "classification_development_oof.csv": "8959afd042ad4e924828df1c9ce7df17c98142a7c674b00969557821631127a4",
+    "classification_training_ids.csv": "86ea4a2ee1e21ceb191ad1ed3d766d8b8b5917423f8c5baab674d754d70a232d",
+    "configuration.json": "dd3200e0fd013ea67d23c0cff98d9dfb60f7834bac8b95f8d47fb2dd43cedb42",
+    "development_fold_metrics.csv": "d43be82987273f097da26b8b4893b74a22d9ae7d6d71d557dc6e7c8323c4eafa",
+    "frozen_decision_policy.json": "bf4edb11d3f2fa9d05d54ecbf0d4e39a98d6e40efe959c07b426a1d600f658b9",
+    "regression_training_ids.csv": "e771344cb1d030472894866059576de8adbe614a4f4170a42e07e30b16991ed0",
+    "terminal/classification_selected_predictions.csv": "87c7a7a8f13c4c50094f114e265e7e656727ddb2fe34673d0729284b5847c8f3",
+    "terminal/evaluation_freeze.json": "947c56d0d3d536d4f5211bed6fae5eafcf1c903911e72ac027e453ee959de8ad",
+    "terminal/metrics.csv": "a28f3661c007e392d6946f62aa50140cd3b4fc36663a39a87109610af8466da9",
+    "terminal/regression_selected_predictions.csv": "dae688138e1decf38c4bd0b2b63ae4452aa6168c5099042f82f91bc7b4dd4881",
+    "terminal/subgroups.csv": "8c5b15c177fa2e445c3858de93244d5444429ff628f0e475bf721de8797f10af",
+    "terminal/train_val_test_comparison.csv": "91dfea01b0cbe2996431653131c34e728f4d431fd9e06e9d6bbca575b2325e61"
+  },
+  "independent_new_test": false,
+  "meaning": "Reproduction of previously inspected submitted results, with frozen models and policy.",
+  "model_rows": 9,
+  "new_fits": 0,
+  "new_threshold_searches": 0,
+  "packages": {
+    "joblib": "1.5.2",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.7.2",
+    "scipy": "1.15.3"
+  },
+  "passed": true,
+  "prediction_checks": [
+    {
+      "column": "lead_days_prediction",
+      "max_absolute_difference": 3.552713678800501e-15,
+      "passed": true,
+      "task": "regression"
+    },
+    {
+      "column": "target",
+      "max_absolute_difference": 0.0,
+      "passed": true,
+      "task": "regression"
+    },
+    {
+      "column": "probability_1",
+      "max_absolute_difference": 9.71445146547012e-17,
+      "passed": true,
+      "task": "classification"
+    },
+    {
+      "column": "target",
+      "max_absolute_difference": 0.0,
+      "passed": true,
+      "task": "classification"
+    }
+  ],
+  "python": "3.13.5",
+  "source_sha256": {
+    "src/models/refinement_selected_v4.py": "3d18455a03d3768559ed41b77175653c669637d83624fcac518493f2f512c531",
+    "src/models/refinement_selected_v4_terminal.py": "f9035320f08b83148d90adb6c23820b58e41795c45949900f2c1d5444d895f89",
+    "src/models/refinement_selected_v4_verify.py": "16cb7c2027e8a0e7c8b66526978d1bf3c0b043a85933e38cc93abf9c6689611c"
+  },
+  "subgroup_rows": 79
+}

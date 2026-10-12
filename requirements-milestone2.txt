@@ -1,0 +1,12 @@
+# Frozen numerical/model versions from refinement-selected-v4/build_freeze.json.
+# Use this file instead of the dashboard requirements to verify Milestone 2.
+numpy==2.2.6
+pandas==2.3.3
+scipy==1.15.3
+scikit-learn==1.7.2
+joblib==1.5.2
+matplotlib==3.10.8
+# Notebook inspection/execution; these do not change fitted model weights.
+nbformat==5.10.4
+nbclient==0.10.2
+ipykernel==6.30.1

@@ -354,7 +354,21 @@ if __name__ == '__main__':
     b.add_argument('--output', type=Path, required=True, help='Destination directory for the v4 bundle')
     b.add_argument('--config', type=Path, default=CONFIG_PATH, help='Configuration JSON path')
     b.add_argument('--overwrite', action='store_true', help='Allow overwriting existing output directory')
+    s = sub.add_parser('score', help='Score an input CSV with an existing bundle; never fit')
+    s.add_argument('--bundle', type=Path, required=True)
+    s.add_argument('--input', type=Path, required=True)
+    s.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
 
     if args.command == 'build':
         build(args.output, args.config, overwrite=args.overwrite)
+    elif args.command == 'score':
+        if args.output.exists():
+            raise FileExistsError('Scoring output exists; choose a new path')
+        frame = pd.read_csv(args.input, dtype={'order_id': 'string'})
+        if 'order_id' not in frame or frame.order_id.isna().any() or frame.order_id.duplicated().any():
+            raise ValueError('Unique, nonmissing order_id values required')
+        scored = SelectedScorerV4(args.bundle).score(frame)
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        scored.to_csv(args.output, index=False)
+        print(f'Scored {len(scored)} rows without fitting: {args.output}')

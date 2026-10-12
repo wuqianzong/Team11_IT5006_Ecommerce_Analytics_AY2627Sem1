@@ -92,130 +92,149 @@ Open the printed local URL (usually `http://localhost:8501`) in your browser.
 
 ---
 
-## 🧭 Machine Learning Modeling: Three-Stage Evolution (Guide for Reviewers)
+## Milestone 2 reproduction and report evidence
 
-To ensure instructors and reviewers can easily navigate the project history without confusion, the modeling work progresses through three distinct, documented generations:
+Start here to verify the submitted Milestone 2 results. The submitted report is
+unchanged. Repository documentation below clarifies its reproduction instructions
+and records evidence corrections separately.
 
-```
-[Generation 1: Historical Baseline]    ===>    [Generation 2: Refinement Cycle 1]    ===>    [Generation 3: Refinement Cycle 2 (Champion)]
-Notebooks 04–07 (Milestone 1)                  Notebook 08 (refinement-selected-v3)          Notebook 09 & Exp 3 (refinement-selected-v4)
-• 27 raw features (collinear, κ = ∞)           • 13/14 pruned features                       • 11/12 full-rank features (Option 1, κ = 70.8)
-• Random-grouped split by customer             • Chronological forward-chaining split        • Chronological forward-chaining split
-• ⚠️ Severe temporal inversion leakage         • Customer purges + label maturity            • Customer purges + pre-checkout item gating
-• Untuned baselines                            • Baseline tree & unweighted logistic         • Tuned RF + log1p transforms + τ* = 0.17
-                                               • Regression MAE: 5.540 days                  • Regression MAE: 3.719 days (-32.9% error)
-                                               • R² = -0.360 (unreliable)                    • R² = +0.187 (strong generalization)
-```
+### 1. Install the frozen modelling environment
 
-### Comparative Lifecycle Summary
-
-| Feature / Dimension | Generation 1: Historical Baseline | Generation 2: Refinement Cycle 1 (`v3`) | Generation 3: Refinement Cycle 2 (`v4`, **Champion**) |
-| :--- | :--- | :--- | :--- |
-| **Notebook Reference** | [`notebooks/04` to `07`](notebooks/) | [`notebooks/08_refined_models_and_evidence.ipynb`](notebooks/08_refined_models_and_evidence.ipynb) | [`notebooks/09_refinement_cycle2_migration.ipynb`](notebooks/09_refinement_cycle2_migration.ipynb) |
-| **Configuration File** | `src/models/configs/stage3_baseline.json` | `src/models/configs/refinement_selected_v3.json` | `src/models/configs/refinement_selected_v4.json` |
-| **Artifact Location** | `artifacts/metrics/stage3-baseline-v1/` | `artifacts/metrics/refinement-selected-v3/` | `artifacts/metrics/refinement-selected-v4/` |
-| **Feature Set** | 27 raw predictors (collinear) | 13 (regression) / 14 (classification) | **11 (regression) / 12 (classification)**, full-rank (Option 1: pruned `has_items` & `freight_ratio_missing`) |
-| **Matrix Conditioning** | Condition number $\kappa = \infty$ (rank deficient 9) | Not analyzed | Condition number $\kappa = 70.77$ (full rank 71/71) |
-| **Validation Splitting** | Random Grouped 80/20 by `customer_unique_id` | 5-Fold Chronological Forward-Chaining | 5-Fold Chronological Forward-Chaining |
-| **Leakage Controls** | ❌ **Temporal Inversion Leakage**: future 2018 orders leaked into 2017 training | ✅ **Leak-Free**: Training strictly precedes validation; validation customers purged | ✅ **Leak-Free**: Arrow of time + customer purges + label maturity + **pre-checkout item gating** (`has_items == 1` filters 604 cancellation records) |
-| **Preprocessing** | Standard scaling & imputation only | Pipeline-encapsulated scaling & OHE | **Log1p scaling** on continuous inputs (`total_price`, `freight`, `distance`) |
-| **Target Handling** | Raw continuous lead days (right-skewed) | Raw continuous lead days | **Target Log1p + 60d Winsorization** via `TransformedTargetRegressor` |
-| **Regression Model** | Linear Regression & Untuned Tree | Decision Tree ($d=5$) | **Tuned Random Forest Regressor** ($N=50, d=14, L=20$) |
-| **Classification Model** | Logistic Regression | Unweighted Logistic Regression ($C=0.01$) | **Tuned Random Forest Classifier** ($N=50, d=14, L=20$) |
-| **Decision Policy** | Arbitrary default $\tau = 0.50$ | Default $\tau = 0.50$ | **Cost-Calibrated Optimal Threshold $\tau^* = 0.17$** ($1:5$ error cost ratio) |
-| **Holdout Regression MAE** | 7.34 days (distorted) | 5.540 days | **3.719 days** (**$-1.822$ days, $-32.9\%$ error reduction**) |
-| **Holdout Regression $R^2$** | Highly negative | $-0.3601$ | **$+0.1871$** (**swung strongly positive**) |
-| **Holdout Detractor Recall**| $4.5\%$ | $27.4\%$ | **$38.2\%$** (True Positives jumped from $42 \to 517$) |
-| **Holdout Business Error Cost** | Not optimized | $8,532$ cost units | **$8,205$ cost units** (**lowest total business loss**) |
-
----
-
-## 🔬 How to Reconstruct the Entire Modeling Pipeline
-
-Instructors and reviewers can reproduce and verify any part of the project using the methods below:
-
-### Verify report statistics without training
-
-Run `python experiments/experiment_3/verify_report_evidence.py` to recalculate the development target statistics, Table F.1 cohort statistics and unrounded drift percentages, and the zero-item partition counts. The outputs in `artifacts/metrics/report-evidence-exp3/` include the source-file checksums. This audit reads frozen data and cohort IDs; it does not fit models or select thresholds.
-
-The report's nine-feature Cycle 1 scores are in `artifacts/metrics/experiment-3/feature_importance/feature_dimension_score_comparison.csv`. Grouped-CV tuning scores are in `artifacts/metrics/experiment-3/transforms_and_tuning/phase4b_tuning_results.csv`; these are separate from the chronological confirmation in `refinement-selected-v4/development_fold_metrics.csv`. The Stage 3 dummy-classifier AP is a historical development reference, not a matched nine-feature comparison.
-
-Figures D.1/D.2 use the published `regression_11_feature_importance` and `classification_12_feature_importance` CSV/PNG pairs in that feature-importance directory. They describe the expanded-feature tree regressor and logistic classifier during feature assessment, not the final selected forests. Their error bars use population SD across five fold means; the model-score comparison CSV uses sample SD. The committed generator is `experiments/experiment_3/run_feature_expansion_importance.py`.
-
-The condition-number evidence is `artifacts/metrics/experiment-3/feature_selection/design_matrix_condition_numbers.csv`: the original 27-feature design is singular; the standardized nine-feature core has full rank and condition number 70.77. The earlier EDA CSV uses SciPy's default moment estimators; the report audit summary uses pandas bias-corrected sample skewness and excess kurtosis, with the same saved development cohort.
-
-### Method 1: The Recommended Interactive Walkthrough (Jupyter Notebooks)
-
-1. **Inspect Historical Baseline (Milestone 1)**:
-   * Run [`notebooks/04_ml_feature_engineering.ipynb`](notebooks/04_ml_feature_engineering.ipynb) to [`notebooks/07_final_evaluation_and_scoring.ipynb`](notebooks/07_final_evaluation_and_scoring.ipynb).
-   * Note the initial 27-feature baseline results and random-group split.
-2. **Inspect Cycle 1 feature screening and earlier chronological diagnostics**:
-   * Use the nine-feature rows in `artifacts/metrics/experiment-3/feature_importance/feature_dimension_score_comparison.csv` for the report's Cycle 1 grouped-CV evidence.
-   * Run [`notebooks/08_refined_models_and_evidence.ipynb`](notebooks/08_refined_models_and_evidence.ipynb).
-   * The notebook examines the earlier `refinement-selected-v3` chronological diagnostics; those scores are distinct from the report's nine-feature screening comparison.
-3. **Inspect Refinement Cycle 2 (Current Production Champion)**:
-   * Run [`notebooks/09_refinement_cycle2_migration.ipynb`](notebooks/09_refinement_cycle2_migration.ipynb).
-   * Directly loads the `refinement-selected-v4` models, executes live head-to-head comparisons, displays cost curves, and performs zero-fit production scoring on sample checkout orders.
-
----
-
-### Method 2: Command-Line One-Step Reproduction (Cycle 2 / v4 Champion)
-
-You can re-train, verify, and score the champion models directly from the command line:
+Use a separate environment for the model bundles. The original build used Python
+3.10.19; its five numerical/model package versions are recorded in
+`artifacts/metrics/refinement-selected-v4/build_freeze.json`.
 
 ```bash
-# 1. Set environment variables for reproducibility
-export OPENBLAS_NUM_THREADS=1
-export OMP_NUM_THREADS=1
-
-# 2. Build the Refinement Cycle 2 bundle (5-fold chronological confirmation + final pre-terminal fits)
-python -m src.models.refinement_selected_v4 build --output artifacts/metrics/refinement-selected-v4-reproduced
-
-# 3. Evaluate the frozen production models on the unseen terminal holdout cohort
-python -m src.models.refinement_selected_v4_terminal --run artifacts/metrics/refinement-selected-v4-reproduced --acknowledge-previously-inspected-terminal
+python3 -m venv .venv-milestone2
+source .venv-milestone2/bin/activate
+python -m pip install -r requirements-milestone2.txt
 ```
 
----
+Python 3.13.5 with these same numerical versions was also checked for no-fit
+reproduction. This is a model-verification environment; dashboard dependencies
+remain in `requirements.txt`, whose numerical pins now agree with the frozen run.
 
-### Method 3: Live No-Fit Production Batch Scoring
-
-To score new, unseen checkout transactions using the frozen production model bundles without retraining:
+### 2. Run the command printed in the submitted report
 
 ```bash
-# Score Regression (Delivery Lead Time Prediction in days):
+python -m src.models.refinement_selected_v4_terminal
+```
+
+The bare command now verifies the frozen evidence. It checks bundle and dataset
+checksums, scores all nine saved model/reference bundles, checks both selected
+models against published per-order predictions, compares all terminal metrics,
+79 subgroup rows and the train–validate–test matrix, and checks the recorded OOF
+policy costs. It performs **no model fitting or threshold selection**.
+
+Outputs go to a new directory under `artifacts/reproduction/`, never to the
+published evidence directory. Specify another unused directory if desired:
+
+```bash
+python -m src.models.refinement_selected_v4_terminal --output /tmp/milestone2-check
+```
+
+A successful run prints `PASS` and writes `verification.json`,
+`metric_comparison.csv`, predictions, diagnostic charts and cohort statistics.
+The holdout has already been inspected: this is reproduction of the reported
+results, not a new independent test. Frozen threshold 0.17 is a deployment policy;
+the recorded chronological OOF empirical threshold is about 0.1822.
+
+An archived receipt from the checked reproduction is in
+[`artifacts/metrics/milestone2-reproduction-receipt/`](artifacts/metrics/milestone2-reproduction-receipt/).
+
+### 3. Inspect the executable notebook
+
+Open [`notebooks/09_refinement_cycle2_migration.ipynb`](notebooks/09_refinement_cycle2_migration.ipynb).
+Select the Python interpreter from `.venv-milestone2` as its kernel. If using a
+separate Jupyter installation, register that environment first:
+
+```bash
+python -m ipykernel install --user --name it5006-milestone2 --display-name "IT5006 Milestone 2"
+```
+
+It shows the report's nine-feature screening, 11/12-feature tuning, chronological
+confirmation, frozen terminal verification and example scoring. It explicitly
+inspects existing fits rather than retraining. The optional training recipe is
+listed below. Notebook 08 is an earlier architecture, **not** the report's
+nine-feature Cycle 1 benchmark.
+
+### Evidence for the two cycles
+
+The report compares **two families**: linear (Ridge/logistic) and tree-based
+(single tree/random forest), with separate dummy references.
+
+| Evidence | Protocol and source |
+| --- | --- |
+| Cycle 1, 9-feature comparison | Grouped CV: `artifacts/metrics/experiment-3/feature_importance/feature_dimension_score_comparison.csv` |
+| Cycle 2 candidate tuning, Table C.2 | Grouped CV: `artifacts/metrics/experiment-3/transforms_and_tuning/phase4b_tuning_results.csv` |
+| Default versus tuned candidates, Figure C.1 | `artifacts/metrics/experiment-3/transforms_and_tuning/phase4_default_vs_tuned_comparison.csv` |
+| Selected-model chronological confirmation, Table C.1 | `artifacts/metrics/refinement-selected-v4/development_fold_metrics.csv` |
+| Common terminal comparison, Table E.2 | `artifacts/metrics/refinement-selected-v4/terminal/metrics.csv`; all saved reference bundles are included |
+| Train–validate–test, Tables E.1/F.5 | `artifacts/metrics/refinement-selected-v4/terminal/train_val_test_comparison.csv` |
+| Permutation importance, Figures D.1/D.2 | Published tree-regressor and logistic-classifier CSV/PNG files in the feature-importance directory; these do not measure final-forest importance |
+| Frozen policy and recorded OOF cost | `frozen_decision_policy.json` and `classification_development_oof.csv` in the v4 directory |
+| Cohort and target statistics, Tables A.1/F.1 | `artifacts/metrics/report-evidence-exp3/`; both final training-ID files are included |
+
+The selected terminal regression scores are MAE **3.7185 days**, RMSE **5.3085**
+and R² **0.1871**. Classification AP is **0.1823**, ROC-AUC **0.5864** and Brier
+**0.0949** on 15,769 orders. Frozen threshold 0.17 yields TP=456, FP=1,859,
+FN=1,251, precision=19.70%, recall=26.71%, F1=0.2268 and illustrative loss=8,114
+for FN=5, FP=1. The regression cohort has 15,615 orders.
+
+Grouped screening scores and chronological confirmation scores use different
+protocols. They are not a matched temporal estimate of improvement between the
+two cycles. The forest reference and selected classifier have identical ranking
+scores; applying the frozen policy changes decisions and illustrative loss, not AP.
+Condition number 70.77/rank 71 applies to the encoded **nine-feature core**, not
+all expanded-model matrices. The 27-feature matrix is singular.
+
+### 4. Verify descriptive report statistics without loading models
+
+Use an unused output directory to preserve the published audit files:
+
+```bash
+python experiments/experiment_3/verify_report_evidence.py --output /tmp/milestone2-statistics
+```
+
+This reproduces raw development target moments, Table F.1 statistics/drift and the
+zero-item decomposition. See the separate evidence notes for the submitted report's
+basket-count and classification-prevalence corrections:
+[`docs/milestone2_reproduction_notes.md`](docs/milestone2_reproduction_notes.md).
+
+### 5. Score a historical checkout example without fitting
+
+```bash
 python -m src.models.refinement_selected_v4 score \
   --bundle artifacts/metrics/refinement-selected-v4/bundles/regression/selected \
-  --input data/business/ml/sample_test_orders.csv \
-  --output artifacts/metrics/lead_days_predictions.csv
+  --input examples/milestone2_checkout_orders.csv \
+  --output /tmp/milestone2-lead-days.csv
 
-# Score Classification (Detractor Risk & Calibrated Alert Decision):
 python -m src.models.refinement_selected_v4 score \
   --bundle artifacts/metrics/refinement-selected-v4/bundles/classification/selected \
-  --input data/business/ml/sample_test_orders.csv \
-  --output artifacts/metrics/detractor_risk_predictions.csv
+  --input examples/milestone2_checkout_orders.csv \
+  --output /tmp/milestone2-detractor-risk.csv
 ```
 
----
+The example includes predictor columns only, sampled from the saved development
+data. It demonstrates scoring historical records, not a live integration.
+Existing scoring output files are refused.
 
-### Method 4: Comprehensive Experiment 3 Research Audit
+### Optional: rebuild the frozen model recipe
 
-The exhaustive 6-phase research study that generated the champion configuration is completely documented and reproducible:
-* **Study Report**: [`experiments/experiment_3/SUMMARY_REPORT.md`](experiments/experiment_3/SUMMARY_REPORT.md)
-* **Reproduction Guide**: [`experiments/experiment_3/README.md`](experiments/experiment_3/README.md)
-* **Master One-Command Runner**:
-  ```bash
-  python experiments/experiment_3/run_all.py
-  ```
+This retrains the recorded configuration and can take considerably longer than
+verification. It performs no new hyperparameter search, recomputes OOF diagnostics
+and retains deployment threshold 0.17. It does not alter the submitted bundles.
 
----
+```bash
+export OPENBLAS_NUM_THREADS=1
+export OMP_NUM_THREADS=1
+python -m src.models.refinement_selected_v4 build --output artifacts/reproduction/v4-rebuilt
+python -m src.models.refinement_selected_v4_terminal \
+  --run artifacts/reproduction/v4-rebuilt --acknowledge-previously-inspected-terminal
+```
 
-## ⚠️ Methodological Notes & Literature Integrity
-
-* **Entities: `customer_id` vs. `customer_unique_id`**:
-  * `customer_id`: single-use 1-time session transaction token.
-  * `customer_unique_id`: persistent unique identifier of the real individual customer.
-  * Over **$97\%$** of buyers on Olist are single-order customers. Models predict cold-start lead time and detractor risk for new buyers at checkout.
-* **Leakage Avoidance (Kapoor & Narayanan, 2023; Arpogaus et al., 2024)**:
-  * Downstream event columns (`order_delivered_customer_date`, `delivery_days`, `review_score`, `is_on_time`) are strictly excluded from predictors.
-  * In Refinement Cycles 1 and 2, chronological forward-chaining cross-validation guarantees that models only train on past transactions to predict future ones.
-  * Validation customer purging guarantees zero customer identity overlap between training and testing sets.
+For research-stage grouped comparisons and tuning, see
+[`experiments/experiment_3/README.md`](experiments/experiment_3/README.md).
+Their outputs are exploratory screening evidence, separate from the chronological
+confirmation and final terminal metrics. No new training is needed to verify the
+submitted scores.

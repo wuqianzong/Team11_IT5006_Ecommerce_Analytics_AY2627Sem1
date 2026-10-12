@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-12",
+  "timezone": "Asia/Shanghai",
+  "base_commit": "e61dcf111e164b5849afd0e082d8e3b447f5afbf",
+  "frozen_model_and_recipe_changes": false,
+  "submitted_report_changes": false,
+  "tracked_files_only_export_verified": true,
+  "targeted_unit_tests_passed": 11,
+  "notebook_code_cells_executed": 6,
+  "no_fit_guard_classes": 10,
+  "no_fit_guard_passed": true,
+  "numerical_package_versions": {
+    "joblib": "1.5.2",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.7.2",
+    "scipy": "1.15.3"
+  },
+  "source_sha256": {
+    "README.md": "ad962865732aa899e06a51b6352ac0140d55607cc3549c38474dfd66b0c0da48",
+    "requirements-milestone2.txt": "d5681a76490c1bf95cc1cdaa3237e3104e33d60f9e17171fa3a9f947ba5dcb98",
+    "notebooks/09_refinement_cycle2_migration.ipynb": "dd7facebdbd7f4581e42512da95533db691a3509743980b067de4730537f4dec",
+    "docs/milestone2_reproduction_notes.md": "1c47e35c50b95f7a5e2a9ef31ff3cfc8200e5eb7749828f36a6bb39f04e5dee1",
+    "src/models/tests/test_v4_verification.py": "e80ade1a7a4cdad028ef164a5517ae5c04069f5e791f9ebb165e9931dbb7b746",
+    "src/models/tests/test_refinement_terminal.py": "1170fe9059d3faf801eb3c4c300a0c96225d5de0f929aff05681c40811a3371f"
+  },
+  "meaning": "Post-submission repository reproduction repair; original model weights, policy and metrics are unchanged. Does not amend submitted report or claim a new independent test."
+}

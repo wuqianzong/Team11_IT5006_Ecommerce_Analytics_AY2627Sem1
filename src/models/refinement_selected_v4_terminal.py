@@ -170,22 +170,20 @@ def plot_classification_diagnostics(output_dir: Path, y_true: np.ndarray, y_prob
     axes[1, 0].legend()
     axes[1, 0].grid(True, alpha=0.3)
 
-    # 4. Illustrative Cost Curve vs Threshold (1:5 Error Cost Ratio)
-    thresholds = np.linspace(0.05, 0.60, 50)
-    costs = []
-    for t in thresholds:
+    # 4. Frozen policy comparison, without terminal threshold optimization.
+    costs = [int(5 * np.sum(y_true == 1))]
+    for t in [0.5, threshold]:
         yp = (y_prob >= t).astype(int)
         c_fn = 5 * np.sum((yp == 0) & (y_true == 1))
         c_fp = 1 * np.sum((yp == 1) & (y_true == 0))
         costs.append(c_fn + c_fp)
 
-    axes[1, 1].plot(thresholds, costs, color='#d62728', lw=2, label='Loss = 5·FN + 1·FP')
-    axes[1, 1].axvline(threshold, color='black', linestyle='--', label=f'Optimal τ*={threshold:.2f}')
-    axes[1, 1].scatter([threshold], [min(costs)], color='black', s=80, zorder=5)
-    axes[1, 1].set_title('Asymmetric Cost Curve (1:5 FN:FP Ratio)', fontsize=11, fontweight='bold')
-    axes[1, 1].set_xlabel('Decision Threshold (τ)')
-    axes[1, 1].set_ylabel('Total Evaluated Business Loss')
-    axes[1, 1].legend()
+    bars = axes[1, 1].bar(['No alerts', 'Default 0.50', f'Frozen {threshold:.2f}'], costs,
+                         color=['#7f7f7f', '#1f77b4', '#2ca02c'])
+    for bar, cost in zip(bars, costs):
+        axes[1, 1].text(bar.get_x()+bar.get_width()/2, cost, f'{cost:,}', ha='center', va='bottom')
+    axes[1, 1].set_title('Frozen-Policy Comparison (FN=5, FP=1)', fontsize=11, fontweight='bold')
+    axes[1, 1].set_ylabel('Illustrative loss; not measured intervention benefit')
     axes[1, 1].grid(True, alpha=0.3)
 
     plt.suptitle('Refinement Cycle 2: Review Detractor Terminal Diagnostics (RF Champion)', fontsize=13, fontweight='bold', y=0.995)
@@ -347,8 +345,17 @@ def evaluate(run_dir: Path, acknowledge: bool = False, overwrite: bool = False):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--run', type=Path, required=True, help='Path to run directory')
-    parser.add_argument('--acknowledge-previously-inspected-terminal', action='store_true', required=True)
+    parser.add_argument('--run', type=Path, help='Explicit run for the original evaluation workflow')
+    parser.add_argument('--output', type=Path, help='New output directory for no-fit verification')
+    parser.add_argument('--acknowledge-previously-inspected-terminal', action='store_true')
     parser.add_argument('--overwrite', action='store_true', help='Allow overwriting existing terminal evaluation')
     args = parser.parse_args()
-    evaluate(args.run, args.acknowledge_previously_inspected_terminal, args.overwrite)
+    if args.run is None or args.output is not None:
+        if args.overwrite:
+            parser.error('No-fit verification never overwrites evidence; choose a new --output')
+        from .refinement_selected_v4_verify import CANONICAL_RUN, verify
+        verify(args.run or CANONICAL_RUN, args.output)
+    else:
+        if not args.acknowledge_previously_inspected_terminal:
+            parser.error('Explicit --run evaluation requires --acknowledge-previously-inspected-terminal; omit --run for safe verification')
+        evaluate(args.run, args.acknowledge_previously_inspected_terminal, args.overwrite)

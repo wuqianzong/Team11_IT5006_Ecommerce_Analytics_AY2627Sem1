@@ -11,6 +11,7 @@ class TerminalTests(unittest.TestCase):
             'order_id':['pre','good','missing','early','ineligible'],
             'prediction_timestamp':['2018-05-24','2018-05-26','2018-05-26','2018-05-26','2018-05-26'],
             'eligible_regression':[1,1,1,1,0], 'eligible_classification':[1,1,1,1,0],
+            'has_items':[1,1,1,1,1],
             'regression_label_available_at':['2018-05-27','2018-05-28','2018-05-28','2018-05-25',None],
             'lead_days':[3,2,2,-1,np.nan], 'review_score_min':[4,2,1,2,np.nan],
             'is_detractor':[0,1,1,1,np.nan]})
@@ -30,6 +31,16 @@ class TerminalTests(unittest.TestCase):
     def test_mismatched_target_rejected(self):
         rows,reviews=self.frames();rows.loc[rows.order_id=='good','is_detractor']=0
         with self.assertRaises(ValueError):terminal_cohorts(rows,reviews,'2018-05-25')
+
+    def test_zero_item_order_is_excluded_from_classification(self):
+        rows, reviews = self.frames()
+        rows.loc[rows.order_id.eq('good'), 'has_items'] = 0
+        reviews.loc[reviews.order_id.eq('early'), 'review_answer_timestamp'] = '2018-05-29'
+        _, frames, eligibility = terminal_cohorts(rows, reviews, '2018-05-25')
+        self.assertNotIn('good', set(frames['classification'].order_id))
+        reason = eligibility.loc[eligibility.order_id.eq('good') &
+                                 eligibility.task.eq('classification'), 'reason'].iloc[0]
+        self.assertEqual(reason, 'zero_items_cart_ineligible')
 
     def test_identical_models_zero_paired_difference(self):
         for task,y,score in [('regression',[1,2,3,4],[1.5,1.5,3.5,3.5]),
