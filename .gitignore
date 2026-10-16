@@ -31,6 +31,7 @@ archive/
 !/README.md
 !/experiments/refinement_cycle1/README.md
 !/experiments/experiment_3/*.md
+!/experiments/experiment_5/**/*.md
 !/notebooks/README.md
 !/data/business/ml/README.md
 /docs/*
@@ -227,3 +228,7 @@ archive/
 /artifacts/metrics/milestone2-tuning-reproduction/final_model_retraining/*
 !/artifacts/metrics/milestone2-tuning-reproduction/final_model_retraining/*.csv
 !/artifacts/metrics/milestone2-tuning-reproduction/final_model_retraining/*.json
+
+# Experiment 5: personal scratch is never evidence
+/experiments/experiment_5/sandbox/*
+!/experiments/experiment_5/sandbox/.gitkeep
