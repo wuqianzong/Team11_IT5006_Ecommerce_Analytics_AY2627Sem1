@@ -95,7 +95,7 @@ experiments/experiment_5/
 │   ├── sources.md             # teacher/TA/tutorial requirements → stage mapping
 │   ├── teacher_expectation_m2.md
 │   └── protocol.yaml          # frozen numbers & rules, written by s01_problem
-├── e5lib/                     # SHARED code (platform owner; change via PR + review)
+├── e5lib/                     # SHARED code (platform owner; change via CHANGELOG + review)
 │   ├── paths.py               # all paths; no stage hard-codes a path
 │   ├── data.py                # loaders with population guard (§5.4)
 │   ├── factory.py             # the ONE pipeline factory: spec → sklearn Pipeline
@@ -157,7 +157,7 @@ To change the pipeline:
    It creates new node folders, refreshes generated parts of existing cards (owner, status and
    human-written sections are kept), rebuilds the §10 index, and lists **orphan** folders that
    are no longer in the spec. It never deletes anything; move useful work, then remove orphans
-   in a reviewed PR.
+   after review (CHANGELOG entry).
 4. Before the design is frozen, just do this freely. After freeze (`stages.json` version
    `1.0`), each change also needs a `CHANGELOG.md` entry (§9.2); cards already
    `READY_FOR_REVIEW`/`ACCEPTED` are only refreshed with `--force`.
@@ -412,8 +412,12 @@ which downstream decisions moved → those owners review.
 
 **Process**
 
-15. Work on branch `e5/<node-id>` (e.g. `e5/s06-regression`) from `milestone-3`; open a
-    PR into `milestone-3`. One gate per PR.
+15. Work directly on `milestone-3` (team decision 2026-10-17, CR-002). Pull before you
+    start and before you push; never force-push. Commit only your own node folder and
+    `sandbox/<you>/`; shared files (`spec/`, `e5lib/`, `tools/`, `CHANGELOG.md`) change only
+    through the experiment lead. Build only on upstream outputs marked `ACCEPTED`. At a
+    gate, record the commit hash in `STAGE.md` → Sign-off so the reviewer checks exactly
+    that commit.
 16. Before asking for review: `run_pipeline.py run --node <yours>` then
     `run_pipeline.py check`; fill *Review summary* and *Deviations* in `STAGE.md`;
     set status `READY_FOR_REVIEW`.
@@ -442,7 +446,7 @@ which downstream decisions moved → those owners review.
 ### 9.2 Changing something after acceptance
 
 1. Add an entry to `CHANGELOG.md`: what, why, which file(s), expected affected nodes.
-2. Team (at least one other member) approves it in the PR.
+2. Team (at least one other member) approves it; the approver is named in the CHANGELOG row.
 3. Make the change; `run_pipeline.py run --from <earliest affected node>`.
 4. Nodes whose decisions changed go `REOPENED` → re-review. Others stay ACCEPTED but
    with the new run_id.

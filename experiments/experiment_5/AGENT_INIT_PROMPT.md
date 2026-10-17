@@ -60,7 +60,8 @@ RULES THAT NEVER CHANGE (full list: README sections 0.1 and 8)
   standard output files and write _manifest.json (README sections 5.5 and 6.1).
 - Never type a metric from memory into STAGE.md, a report or slides; cite the output file
   or evidence ID.
-- Work on a branch named e5/<node-or-topic>; PRs go into milestone-3. Do not commit or
+- Work directly on milestone-3; commit only the node folder(s) in scope and your sandbox,
+  pull before committing, never force-push. Do not commit or
   push without my go-ahead.
 - At the end of a node: run_pipeline.py run --node <node>, then run_pipeline.py check;
   fill Review summary / Deviations / Open questions in STAGE.md; set READY_FOR_REVIEW.
