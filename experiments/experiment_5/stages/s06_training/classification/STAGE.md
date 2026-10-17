@@ -31,7 +31,7 @@ On the s05 folds: prior dummy, unregularised LogisticRegression, single decision
 - Identical rows and folds for every candidate
 - Preprocessing fitted inside folds
 - Simplest model of each family present
-- Step A (families on core set, raw) before step B (features, transforms, cap within a family)
+- Step A (families on core set, raw) before step B (features, transforms within a family)
 - One change at a time under the decision rule
 <!-- END GENERATED -->
 

@@ -18,7 +18,7 @@ Blueprint: `spec/blueprints/s05_partition.md` (implement only when its status is
 **Gate question:** Are folds chronological, customers purged, labels mature and classes supported?
 
 ## Purpose
-Hold out each task's test cohort (exact IDs frozen), remove development orders from customers in that test cohort, and build chronological expanding CV folds on development orders with customer purge, label maturity and class-support checks; seed 42 documented.
+Sort by purchase time; hold out each task's newest 20% as its test cohort (cutoff computed in s02 by the 80/20 rule; exact IDs frozen); remove test orders whose customer also appears in development; check test size and review share (>= 15% each) and report the prevalence gap, alerting and stopping on failure (no random fallback); build five time-ordered expanding CV folds on development orders with customer purge, label maturity and class-support checks; seed 42 documented.
 
 ## Planned outputs (`outputs/`)
 - folds.csv
@@ -27,8 +27,11 @@ Hold out each task's test cohort (exact IDs frozen), remove development orders f
 - checks.json (overlap, maturity, rows lost to maturity, class support)
 
 ## Gate criteria
-- No test-cohort order or customer in development (order_id and customer_unique_id checked)
-- Customers purged across training and validation in every fold
+- No test customer in development (repeat customers removed from test; order_id and customer_unique_id checked)
+- Test cohort >= 15% of eligible orders and >= 15% of reviewed orders
+- Never a random split
+- Five expanding folds; customers purged across training and validation in every fold
+- Every fold: max training purchase time < min validation purchase time, and no shared customer_unique_id (asserted)
 - Training outcomes available before each fold origin
 - Both classes present in every fold (classification)
 - Any boundary move logged before s06 runs

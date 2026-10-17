@@ -1,0 +1,11 @@
+# Human decisions required at pipeline gates (Experiment 5).
+# Filled by the team, never by code. Changes are logged in CHANGELOG.md.
+# s04 refuses to run until the s03 section for its task is complete (decision log G-31).
+
+s03_to_s04:
+  regression:
+    cumulative_importance_threshold: null   # 0.95 or 0.99, chosen from eda_review_pack.md
+    collinearity_drops: []                  # - {group: [...], drop: feature, rationale: "...", decided_by: name, date: YYYY-MM-DD}
+  classification:
+    cumulative_importance_threshold: null
+    collinearity_drops: []

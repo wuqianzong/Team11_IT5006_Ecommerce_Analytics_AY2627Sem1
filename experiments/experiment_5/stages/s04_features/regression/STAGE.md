@@ -18,16 +18,19 @@ Blueprint: `spec/blueprints/s04_features.md` (implement only when its status is 
 **Gate question:** Are features and recipes defined without fitting or using labels?
 
 ## Purpose
-Define, without fitting: the 27-feature baseline; log transforms and a target-cap step whose value is chosen later on the folds; the pre-registered label-free reduction to a core set (pre-cutoff orders only); encoded design-matrix rank per recipe; rationale and citations; candidate feature sets per model (including the order_estimated_delivery_date decision); the pipeline recipe per model (impute, encode, scale).
+Define, without fitting: the 27-feature baseline (numeric calendar fields); log1p for non-negative numeric features with pre-cutoff skewness > 1 and for the regression target; the pre-registered label-free reduction to a core set; feature selection by the s03 importance ranking at the team's cumulative threshold (95% or 99%, fixed before any model is fitted); encoded design-matrix rank per recipe; rationale and citations; the order_estimated_delivery_date decision; the pipeline recipe per model (impute, encode, scale).
 
 ## Planned outputs (`outputs/`)
 - feature_dictionary.csv (formula, grain, availability, missingness, rationale, citation)
 - candidate_sets.json (per model)
 - recipes.json (pipeline recipe per model)
+- reduction_rationale.csv (flagged features, team decision, rationale)
 
 ## Gate criteria
-- Reduction uses only the pre-registered label-free rule on pre-cutoff orders
-- Cap value not fixed here; candidates declared in protocol.yaml
+- Reduction and importance selection use pre-cutoff orders only, never test
+- Every collinearity drop is a recorded team decision with rationale (reduction_rationale.csv)
+- Threshold and collinearity drops read from spec/human_decisions.yaml (team-decided after s03); s04 stops if missing
+- No target cap (G-25)
 - Every retained feature has a rationale
 - order_estimated_delivery_date decision recorded
 - Nothing fitted on data

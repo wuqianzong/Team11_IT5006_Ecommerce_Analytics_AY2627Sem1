@@ -4,41 +4,94 @@
 | --- | --- |
 | Stage | s02_data (`../pipeline_design.md` → s02) |
 | Nodes | common |
-| Status | NOT STARTED |
+| Status | AGREED |
 | Owner | TBD |
-| Last agreed | — |
-| Discussion | Claude Doc "Milestone 3 pipeline stages", tab "s02" |
+| Last agreed | 2026-10-17 (team walkthrough, doc tab "Feature solution (s02–s05)") |
+| Discussion | Claude Doc "Milestone 3 pipeline stages", tab "Feature solution (s02–s05)", section s02 |
 
 ## 1. Goal and gate
-One line each, from the frozen design and `../stages.json`.
+Goal: one row per order with audit IDs, the 27 predictors, both targets with label-available
+times, and every exclusion counted.
+Gate: joins, grains, targets and leakage exclusions verified (`../stages.json`).
 
 ## 2. Inputs
-Upstream files (exact paths under `stages/*/outputs/`), data population (development or test),
-and the `protocol.yaml` keys read.
+- The Canvas copy of the nine Olist CSVs (read-only, outside Experiment 5).
+- IBGE boundary archive staged per `docs/references/geography/README.md`.
+- `spec/protocol.yaml`: the 80/20 split rule, outlier rule constants (100 days, 12 SD,
+  4,397.53 km).
+- Population: all orders. The outlier threshold statistics use orders before the test cutoff only.
 
 ## 3. Method
-Numbered steps, down to the sklearn objects and settings. Regression and classification
-differences in a short subsection.
+1. **Load.** Read the nine tables; record sha256 of every file in `data_hashes.json`.
+2. **Clean.** Declared types; ZIP prefixes as strings (leading zeros kept); categorical domain
+   checks logged, rows kept; geolocation exact duplicates dropped (counts recomputed and logged).
+   No imputation.
+3. **Geography.** ZIP centroids = median latitude/longitude per ZIP prefix and state, after the
+   IBGE Brazil boundary filter; archive and derived-geometry hashes recorded.
+4. **Join.** Orders ← customers (many-to-one on `customer_id`). Items, payments and reviews are
+   aggregated to `order_id` first, then left-joined one-to-one. Assert key uniqueness, merge
+   cardinality, and output rows = orders.
+5. **Predictors.** Build the 27 contract predictors (basket, price and freight, physical totals
+   and missing fractions, primary category and seller state, distance, interstate share,
+   calendar, payment) with the Milestone 2 formulas.
+6. **Targets.** `lead_days` = delivery − purchase in fractional days (delivered, valid
+   timestamps, > 0), label available at delivery. `is_detractor` = minimum valid review score ≤ 2,
+   label available at the last review answer. Keep the first-review label for a sensitivity
+   check.
+7. **Leakage audit** (G-30). Tag every column known / not known at checkout.
+   - Never predictors (known only after purchase): `order_status`, `order_approved_at`,
+     carrier and customer delivery dates, `shipping_limit_date`, review fields, `has_items` and
+     `freight_ratio_missing` (both encode a later cancellation). `order_estimated_delivery_date`
+     is known at checkout (use decided in s04, G-17).
+   - Date-order audit on every order: purchase ≤ approval ≤ carrier ≤ delivery; estimated date >
+     purchase; review answer > purchase. Violations logged in `audit.json`; an order whose
+     delivery is not after purchase leaves regression (step 6).
+   - Payment fields have no timestamp; "chosen at checkout" is a stated assumption.
+   - Final `order_status` defines populations only (step 8), never an input.
+8. **Populations** (G-20). Zero-item orders out of both tasks. Regression: delivered orders with
+   a valid lead time. Classification: orders not cancelled or unavailable, with a valid review;
+   targets never imputed.
+9. **Outliers** (G-21). Remove, from development and test alike: `lead_days` > max(100, mean +
+   12 × SD), with mean and SD from pre-cutoff orders only; `distance_km_max` > 4,397.53 km.
+10. **Missing installments** (G-20). Remove orders with missing `payment_installments_max`.
+11. **Test cutoff** (G-28). Per task, after step 8 and before step 9: the purchase timestamp at the
+    80% position of eligible orders, recorded in `audit.json` and added to `protocol.yaml`
+    (data-dependent layer). Not taken from Milestone 2. Step 9's outlier statistics use orders
+    before this cutoff.
 
 ## 4. Decisions
 | ID | Question | Answer | Basis | Status |
 | --- | --- | --- | --- | --- |
-| s02-D1 | | | tutorial / literature / M2 evidence | Proposed |
-
-Every row is mirrored in `decision_log.md`.
+| s02-D1 | Populations | As step 8 | G-20 | Agreed |
+| s02-D2 | Outlier removal | As step 9 | G-21 (team instruction) | Agreed |
+| s02-D3 | Missing installments | Remove; app rejects the same input | G-20 | Agreed |
+| s02-D5 | Test cutoff | Recomputed per task by the 80/20 rule | G-28 | Agreed |
+| s02-D6 | Post-purchase columns and date audit | As step 7 | G-30 | Agreed |
+| s02-D4 | Label rule | Minimum review score, first-review sensitivity | Milestone 1 TA | Agreed |
 
 ## 5. Outputs
-Each file with its columns or schema (standard shapes: README §5.5).
+- `records.csv.gz`: `order_id`, `customer_id`, `customer_unique_id`, `purchase_ts`, the 27
+  predictors, `order_estimated_delivery_date`, `lead_days`, `lead_label_ts`, `is_detractor`,
+  `is_detractor_first`, `review_label_ts`, `eligible_regression`, `eligible_classification`.
+- `exclusions.csv`: `order_id`, `task`, `reason` (one row per removed order and reason).
+- `data_hashes.json`, `audit.json` (key and cardinality checks, leakage tags, label agreement,
+  outlier threshold actually computed, counts per rule).
 
 ## 6. Checks
-Tests and assertions that prove the gate is met, including leakage checks.
+- Output rows = input orders before exclusions; `order_id` unique and non-null.
+- No predictor tagged "not known at checkout".
+- Outlier threshold computed only from orders with purchase < cutoff (assert on the timestamps).
+- Exclusion counts per rule recorded; no order silently dropped.
 
 ## 7. Milestone 2 reuse
-Exact `src/…:line` (or `experiments/…`) to copy into `e5lib/` with a provenance comment,
-and what to fix when copying.
+Copy into `e5lib/` with provenance comments: `notebooks/01_data_cleaning.ipynb` (cleaning rules),
+`src/features/aggregation.py`, `src/features/geography.py`, `src/features/build_features.py`,
+`src/features/contract.py`. Fix when copying: keep calendar fields numeric (G-22, used in s04);
+add the label-available timestamps and the new exclusion rules.
 
 ## 8. Report hooks
-Tables and figures this stage feeds (evidence IDs, report section, slide).
+Dataset and preprocessing section: tables used, join diagram, exclusion counts per rule, label
+sensitivity result.
 
 ## 9. Open questions
-Only genuine forks that need the team.
+None.

@@ -1,7 +1,7 @@
 {
   "_about": "Machine-readable stage list derived from pipeline_design.md. Edit this when the design changes, then run: python experiments/experiment_5/tools/scaffold_stages.py. Nodes = stage x task. 'purpose' may be a string or {task: string}. '{task}' in depends_on is replaced by the node's task.",
   "version": "1.0",
-  "design_version": "pipeline_design.md v1.1 (frozen 2026-10-17, CR-001; audit fixes CR-003)",
+  "design_version": "pipeline_design.md v1.2 (frozen 2026-10-17; CR-003 audit, CR-004 feature solution)",
   "stages": [
     {
       "id": "s01_problem",
@@ -37,7 +37,7 @@
       "depends_on": [
         "s01_problem/common"
       ],
-      "purpose": "Load and clean the nine Olist tables deterministically, join aggregation-first to one row per order, build both targets with label-availability timestamps, audit every column against checkout time and apply the zero-item classification rule.",
+      "purpose": "Load and clean the nine Olist tables deterministically, join aggregation-first to one row per order, build both targets with label-availability timestamps, audit every column against checkout time and apply the zero-item classification rule. Population and data-quality rules applied to development and test alike: zero-item orders out of both tasks; classification limited to orders not cancelled or unavailable with a valid review; lead_days > max(100, mean + 12 SD of pre-cutoff orders) and distance_km_max > 4,397.53 km removed as suspected data-entry errors; orders with missing payment_installments_max removed.",
       "outputs": [
         "records.csv.gz (IDs for audit + features + targets + timestamps)",
         "exclusions.csv",
@@ -48,7 +48,11 @@
         "Only row-local deterministic rules; nothing learned",
         "Every column classified as known or not known at checkout",
         "Minimum vs first review label sensitivity recorded",
-        "Input hashes recorded"
+        "Input hashes recorded",
+        "Per-task test cutoff computed by the 80/20 rule and recorded (not assumed from Milestone 2)",
+        "Outlier threshold computed on pre-cutoff orders only; every removal counted in exclusions.csv",
+        "order_status, order_approved_at, shipping_limit_date, has_items and freight_ratio_missing never predictors",
+        "Date-order audit run on every order; violations logged"
       ],
       "gate_question": "Are joins, grains, targets and leakage exclusions verified?"
     },
@@ -64,16 +68,21 @@
       "depends_on": [
         "s02_data/common"
       ],
-      "purpose": "Question-driven EDA on orders before the test cutoff: target shape and tails, outcome trends over time, feature-target relationships, missingness, outliers and collinearity among raw numeric features (correlation, VIF).",
+      "purpose": "Question-driven EDA on orders before the test cutoff: target profiles; outcome trends over time; diagnostics of all 27 features against each target (scatter, Pearson and Spearman; violins and one-hot correlations; class-conditional KDE overlap and per-feature ROC-AUC; mutual information); one importance ranking per task for s04; missingness, outliers and collinearity among raw numeric features.",
       "outputs": [
         "figures/*.png + sidecar json",
+        "target and per-feature diagnostic tables (csv)",
+        "importance_ranking.csv (per task)",
         "eda_summary.json",
         "candidate_rationale.csv (finding, evidence, change it motivates, stage that tests it)"
       ],
       "gate": [
         "No order on or after the test cutoff loaded",
         "Outcome trends shown, not volume only",
-        "Each proposed change linked to an observation"
+        "All 27 features diagnosed against the task's target",
+        "Each proposed change linked to an observation",
+        "Outputs written under the stage's outputs/, never artifacts/",
+        "Stop: eda_review_pack.md presented; team decisions recorded in spec/human_decisions.yaml before s04 runs"
       ],
       "gate_question": "Does every planned change follow from a pre-cutoff observation?"
     },
@@ -89,15 +98,18 @@
       "depends_on": [
         "s03_eda/{task}"
       ],
-      "purpose": "Define, without fitting: the 27-feature baseline; log transforms and a target-cap step whose value is chosen later on the folds; the pre-registered label-free reduction to a core set (pre-cutoff orders only); encoded design-matrix rank per recipe; rationale and citations; candidate feature sets per model (including the order_estimated_delivery_date decision); the pipeline recipe per model (impute, encode, scale).",
+      "purpose": "Define, without fitting: the 27-feature baseline (numeric calendar fields); log1p for non-negative numeric features with pre-cutoff skewness > 1 and for the regression target; the pre-registered label-free reduction to a core set; feature selection by the s03 importance ranking at the team's cumulative threshold (95% or 99%, fixed before any model is fitted); encoded design-matrix rank per recipe; rationale and citations; the order_estimated_delivery_date decision; the pipeline recipe per model (impute, encode, scale).",
       "outputs": [
         "feature_dictionary.csv (formula, grain, availability, missingness, rationale, citation)",
         "candidate_sets.json (per model)",
-        "recipes.json (pipeline recipe per model)"
+        "recipes.json (pipeline recipe per model)",
+        "reduction_rationale.csv (flagged features, team decision, rationale)"
       ],
       "gate": [
-        "Reduction uses only the pre-registered label-free rule on pre-cutoff orders",
-        "Cap value not fixed here; candidates declared in protocol.yaml",
+        "Reduction and importance selection use pre-cutoff orders only, never test",
+        "Every collinearity drop is a recorded team decision with rationale (reduction_rationale.csv)",
+        "Threshold and collinearity drops read from spec/human_decisions.yaml (team-decided after s03); s04 stops if missing",
+        "No target cap (G-25)",
         "Every retained feature has a rationale",
         "order_estimated_delivery_date decision recorded",
         "Nothing fitted on data"
@@ -116,7 +128,7 @@
       "depends_on": [
         "s02_data/common"
       ],
-      "purpose": "Hold out each task's test cohort (exact IDs frozen), remove development orders from customers in that test cohort, and build chronological expanding CV folds on development orders with customer purge, label maturity and class-support checks; seed 42 documented.",
+      "purpose": "Sort by purchase time; hold out each task's newest 20% as its test cohort (cutoff computed in s02 by the 80/20 rule; exact IDs frozen); remove test orders whose customer also appears in development; check test size and review share (>= 15% each) and report the prevalence gap, alerting and stopping on failure (no random fallback); build five time-ordered expanding CV folds on development orders with customer purge, label maturity and class-support checks; seed 42 documented.",
       "outputs": [
         "folds.csv",
         "test_manifest.csv (task-specific test cohort)",
@@ -124,8 +136,11 @@
         "checks.json (overlap, maturity, rows lost to maturity, class support)"
       ],
       "gate": [
-        "No test-cohort order or customer in development (order_id and customer_unique_id checked)",
-        "Customers purged across training and validation in every fold",
+        "No test customer in development (repeat customers removed from test; order_id and customer_unique_id checked)",
+        "Test cohort >= 15% of eligible orders and >= 15% of reviewed orders",
+        "Never a random split",
+        "Five expanding folds; customers purged across training and validation in every fold",
+        "Every fold: max training purchase time < min validation purchase time, and no shared customer_unique_id (asserted)",
         "Training outcomes available before each fold origin",
         "Both classes present in every fold (classification)",
         "Any boundary move logged before s06 runs"
@@ -146,7 +161,7 @@
         "s05_partition/{task}"
       ],
       "purpose": {
-        "regression": "On the s05 folds: median dummy, plain LinearRegression, single decision tree, random forest, each one Pipeline from the s04 recipe; residuals and learning curves; choose each model's feature set, the log transforms and the target-cap value on the folds.",
+        "regression": "On the s05 folds: median dummy, plain LinearRegression, single decision tree, random forest, each one Pipeline from the s04 recipe; residuals and learning curves; choose each model's feature set, and the log transforms on the folds.",
         "classification": "On the s05 folds: prior dummy, unregularised LogisticRegression, single decision tree, random forest, each one Pipeline from the s04 recipe; learning curves; choose each model's feature set and transforms on the folds."
       },
       "outputs": [
@@ -159,7 +174,7 @@
         "Identical rows and folds for every candidate",
         "Preprocessing fitted inside folds",
         "Simplest model of each family present",
-        "Step A (families on core set, raw) before step B (features, transforms, cap within a family)",
+        "Step A (families on core set, raw) before step B (features, transforms within a family)",
         "One change at a time under the decision rule"
       ],
       "gate_question": "Do the models run basic to complex on identical folds, with each choice justified?"
@@ -209,9 +224,9 @@
       },
       "outputs": [
         "selected_spec.json",
-        "threshold_table.csv (classification: no alerts, 0.50, 0.17, empirical optimum)",
+        "threshold_table.csv (classification: no alerts, 0.50, theoretical 1/6, empirical optimum)",
         "frozen_recipe.json",
-        "bundle/ (pipeline, threshold, schema, versions, training-ID digest, checksums)",
+        "bundle/ (pipeline, threshold, schema, versions, training-ID digest, training_profile.json for drift, checksums)",
         "metrics_long.csv (phase = test) + predictions.csv.gz"
       ],
       "gate": [
@@ -219,7 +234,8 @@
         "Persisted probability recipe is the one the threshold was chosen on",
         "Final-fit training labels available before the test cutoff",
         "Recipe and threshold frozen before the test cohort is read",
-        "Test cohort scored once"
+        "Test cohort scored once",
+        "Test metrics cover the agreed list (G-24); AP reported once as PR-AUC"
       ],
       "gate_question": "Was the recipe frozen before the test cohort was scored once?"
     },

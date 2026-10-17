@@ -18,7 +18,7 @@ Blueprint: `spec/blueprints/s02_data.md` (implement only when its status is AGRE
 **Gate question:** Are joins, grains, targets and leakage exclusions verified?
 
 ## Purpose
-Load and clean the nine Olist tables deterministically, join aggregation-first to one row per order, build both targets with label-availability timestamps, audit every column against checkout time and apply the zero-item classification rule.
+Load and clean the nine Olist tables deterministically, join aggregation-first to one row per order, build both targets with label-availability timestamps, audit every column against checkout time and apply the zero-item classification rule. Population and data-quality rules applied to development and test alike: zero-item orders out of both tasks; classification limited to orders not cancelled or unavailable with a valid review; lead_days > max(100, mean + 12 SD of pre-cutoff orders) and distance_km_max > 4,397.53 km removed as suspected data-entry errors; orders with missing payment_installments_max removed.
 
 ## Planned outputs (`outputs/`)
 - records.csv.gz (IDs for audit + features + targets + timestamps)
@@ -31,6 +31,10 @@ Load and clean the nine Olist tables deterministically, join aggregation-first t
 - Every column classified as known or not known at checkout
 - Minimum vs first review label sensitivity recorded
 - Input hashes recorded
+- Per-task test cutoff computed by the 80/20 rule and recorded (not assumed from Milestone 2)
+- Outlier threshold computed on pre-cutoff orders only; every removal counted in exclusions.csv
+- order_status, order_approved_at, shipping_limit_date, has_items and freight_ratio_missing never predictors
+- Date-order audit run on every order; violations logged
 <!-- END GENERATED -->
 
 ## Review summary (owner fills at gate; cite files, never type numbers from memory)

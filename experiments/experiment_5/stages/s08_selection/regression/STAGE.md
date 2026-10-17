@@ -22,9 +22,9 @@ Select the model on threshold-free scores against the dummy and simplest models;
 
 ## Planned outputs (`outputs/`)
 - selected_spec.json
-- threshold_table.csv (classification: no alerts, 0.50, 0.17, empirical optimum)
+- threshold_table.csv (classification: no alerts, 0.50, theoretical 1/6, empirical optimum)
 - frozen_recipe.json
-- bundle/ (pipeline, threshold, schema, versions, training-ID digest, checksums)
+- bundle/ (pipeline, threshold, schema, versions, training-ID digest, training_profile.json for drift, checksums)
 - metrics_long.csv (phase = test) + predictions.csv.gz
 
 ## Gate criteria
@@ -33,6 +33,7 @@ Select the model on threshold-free scores against the dummy and simplest models;
 - Final-fit training labels available before the test cutoff
 - Recipe and threshold frozen before the test cohort is read
 - Test cohort scored once
+- Test metrics cover the agreed list (G-24); AP reported once as PR-AUC
 <!-- END GENERATED -->
 
 ## Review summary (owner fills at gate; cite files, never type numbers from memory)

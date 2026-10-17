@@ -9,7 +9,7 @@ Branch: `milestone-3`. Owner of this protocol: team (changes follow §9).
 
 Experiment 5 is **not a new study**. It replays the Milestone 2 direction
 (Olist, two checkout-time tasks, leakage exclusions, the 27-feature candidate set,
-log transforms and target cap, linear and tree families) but executes it as **one
+log transforms, linear and tree families) but executes it as **one
 ten-stage pass in the textbook order taught in Tutorials 1–8**, with **one validation
 protocol, one pipeline factory and one evidence registry** from start to finish.
 
@@ -231,8 +231,7 @@ Holds every number that otherwise tends to drift, in two layers:
   purge and label-maturity rules, metric definitions, decision rules and tie-breaks, the
   cost assumption (FN:FP = 5:1, illustrative), search grids and budgets.
 - **Data-dependent** (each section owned by one stage, added via CHANGELOG and frozen at
-  that stage's gate, before any model result): core set, per-model candidate sets and
-  target-cap candidates (s04); exact fold boundaries and class-support threshold (s05).
+  that stage's gate, before any model result): core set and per-model candidate sets (s04); exact fold boundaries and class-support threshold (s05).
 
 Code reads values from here; **no stage hard-codes these numbers**.
 
@@ -242,7 +241,7 @@ Code reads values from here; **no stage hard-codes these numbers**.
   representation, imputation, scaling/encoding, input transforms, target treatment,
   estimator + params, calibration`. Nothing outside the spec may influence the fit.
 - `candidate_id` is a readable, stable slug from the spec, e.g.
-  `reg.core.raw.linreg`, `clf.core.raw.logit-none`, `reg.core.log1p-capNN.rf.d10-l20`.
+  `reg.core.raw.linreg`, `clf.core.raw.logit-none`, `reg.core.log1p.rf.d10-l20`.
   The same id in two stages means the identical pipeline.
 - All stages build models only via `e5lib.factory.build(spec)`. The candidate selected in
   s08 is exactly the pipeline refitted and tested once in s08 and deployed in s10.
@@ -253,8 +252,8 @@ Code reads values from here; **no stage hard-codes these numbers**.
 
 | population | Who may load it |
 | --- | --- |
-| `development` (orders before the test cutoff, 2018-05-25; CV folds built in s05) | s02 onward |
-| `test` (per task: M2 terminal cohort for that task; IDs frozen in s05; development orders of its customers are purged) | s08 final evaluation onward only |
+| `development` (orders before the task's test cutoff, computed in s02 by the 80/20 rule; CV folds built in s05) | s02 onward |
+| `test` (per task: newest 20% by the s02 cutoff, largely overlapping the M2 terminal cohort; IDs frozen in s05; orders of customers also in development are removed from it) | s08 final evaluation onward only |
 
 The loader raises if a stage loads a population it is not allowed to see. Do not
 bypass it. Test labels must not influence any choice; s08 reads them only after the
@@ -387,7 +386,8 @@ which downstream decisions moved → those owners review.
 3. Load data only through `e5lib.data.load`; never bypass the population guard.
 4. Learned preprocessing (imputation, encoding, scaling, caps from percentiles,
    model-based feature selection, calibration) is fit **inside** training folds via the
-   factory. The one declared exception is the s04 label-free reduction rule (design rule 2).
+   factory. Two declared exceptions (design rule 2): the s04 label-free reduction and the s04
+   selection by the s03 importance ranking, both on pre-cutoff orders only.
    Only deterministic, row-local formulas may run before the split.
 5. Never use test-cohort labels for any choice; s08 reads them once, after the recipe and
    threshold are frozen.
@@ -473,13 +473,13 @@ Detailed requirements: [`spec/pipeline_design.md`](spec/pipeline_design.md) (fro
 node's `STAGE.md` repeats its purpose, outputs and gate criteria.
 
 <!-- BEGIN STAGE INDEX from spec/stages.json -->
-_Generated from `spec/stages.json` v1.0 (pipeline_design.md v1.1 (frozen 2026-10-17, CR-001; audit fixes CR-003)). Do not edit by hand._
+_Generated from `spec/stages.json` v1.0 (pipeline_design.md v1.2 (frozen 2026-10-17; CR-003 audit, CR-004 feature solution)). Do not edit by hand._
 
 | Stage | Nodes | Depends on | Key outputs | Gate question |
 | --- | --- | --- | --- | --- |
 | s01_problem Problem statement | common | - | spec/protocol.yaml v1.0; task_contract.md | Are tasks, targets, metrics, cost, decision rule and budget fixed before any result? |
 | s02_data Data preprocessing | common | s01_problem | records.csv.gz; exclusions.csv; data_hashes.json | Are joins, grains, targets and leakage exclusions verified? |
-| s03_eda EDA | regression, classification | s02_data | figures/*.png + sidecar json; eda_summary.json; candidate_rationale.csv | Does every planned change follow from a pre-cutoff observation? |
+| s03_eda EDA | regression, classification | s02_data | figures/*.png + sidecar json; target and per-feature diagnostic tables; importance_ranking.csv | Does every planned change follow from a pre-cutoff observation? |
 | s04_features Features | regression, classification | s03_eda | feature_dictionary.csv; candidate_sets.json; recipes.json | Are features and recipes defined without fitting or using labels? |
 | s05_partition Partition | regression, classification | s02_data | folds.csv; test_manifest.csv; counts.json | Are folds chronological, customers purged, labels mature and classes supported? |
 | s06_training Training | regression, classification | s04_features, s05_partition | metrics_long.csv; predictions.csv.gz; figures/ | Do the models run basic to complex on identical folds, with each choice justified? |

@@ -27,10 +27,10 @@ blueprint; the stage's `STAGE.md` records how it actually ran.
 | Stage | Blueprint | Status | Open items | Last change |
 | --- | --- | --- | --- | --- |
 | s01 Problem statement | [s01_problem.md](s01_problem.md) | NOT STARTED | — | — |
-| s02 Data preprocessing | [s02_data.md](s02_data.md) | NOT STARTED | — | — |
-| s03 EDA | [s03_eda.md](s03_eda.md) | NOT STARTED | — | — |
-| s04 Features | [s04_features.md](s04_features.md) | NOT STARTED | — | — |
-| s05 Partition | [s05_partition.md](s05_partition.md) | NOT STARTED | — | — |
+| s02 Data preprocessing | [s02_data.md](s02_data.md) | AGREED | — | 2026-10-17: approved in team walkthrough |
+| s03 EDA | [s03_eda.md](s03_eda.md) | AGREED | — | 2026-10-17: approved in team walkthrough |
+| s04 Features | [s04_features.md](s04_features.md) | AGREED | Cumulative threshold (95/99%) set after s03 output | 2026-10-17: approved in team walkthrough |
+| s05 Partition | [s05_partition.md](s05_partition.md) | AGREED | — | 2026-10-17: approved in team walkthrough |
 | s06 Training | [s06_training.md](s06_training.md) | NOT STARTED | — | — |
 | s07 Tuning | [s07_tuning.md](s07_tuning.md) | NOT STARTED | — | — |
 | s08 Selection | [s08_selection.md](s08_selection.md) | NOT STARTED | — | — |
