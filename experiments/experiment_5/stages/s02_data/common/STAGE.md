@@ -13,6 +13,7 @@ writes: []  # every file run.py produces
 # s02_data / common - Data preprocessing
 
 Spec: `spec/pipeline_design.md` -> s02. Teacher/TA rows: `spec/sources.md` (search `S02`).
+Blueprint: `spec/blueprints/s02_data.md` (implement only when its status is AGREED).
 
 **Gate question:** Are joins, grains, targets and leakage exclusions verified?
 

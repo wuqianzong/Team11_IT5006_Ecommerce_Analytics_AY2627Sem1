@@ -13,6 +13,7 @@ writes: []  # every file run.py produces
 # s09_conclusion / classification - Conclusion
 
 Spec: `spec/pipeline_design.md` -> s09. Teacher/TA rows: `spec/sources.md` (search `S09`).
+Blueprint: `spec/blueprints/s09_conclusion.md` (implement only when its status is AGREED).
 
 **Gate question:** Does every conclusion follow from the test results and their limits?
 
@@ -27,6 +28,7 @@ Train-validation-test table with bootstrap confidence intervals, subgroup errors
 - conclusion.md
 
 ## Gate criteria
+- Validation scores labelled as selection scores, not generalisation estimates
 - Importance explains the selected model
 - Test cohort described as historical held-out, not unseen
 - Every recommendation traced to evidence

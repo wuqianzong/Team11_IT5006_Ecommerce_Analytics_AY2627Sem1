@@ -1,15 +1,18 @@
 {
   "_about": "Machine-readable stage list derived from pipeline_design.md. Edit this when the design changes, then run: python experiments/experiment_5/tools/scaffold_stages.py. Nodes = stage x task. 'purpose' may be a string or {task: string}. '{task}' in depends_on is replaced by the node's task.",
   "version": "1.0",
-  "design_version": "pipeline_design.md v1.0 (frozen 2026-10-17, CR-001)",
+  "design_version": "pipeline_design.md v1.1 (frozen 2026-10-17, CR-001; audit fixes CR-003)",
   "stages": [
     {
       "id": "s01_problem",
       "title": "Problem statement",
       "design_ref": "s01",
-      "tasks": ["common"],
+      "blueprint": "spec/blueprints/s01_problem.md",
+      "tasks": [
+        "common"
+      ],
       "depends_on": [],
-      "purpose": "Fix both checkout tasks, prediction time, stakeholders and their actions, targets and label rules, metrics, the illustrative FN:FP = 5:1 cost, model families, decision rule, search budget and seed 42 - before any result.",
+      "purpose": "Fix both checkout tasks, prediction time, stakeholders and their actions, targets and label rules, metrics, the illustrative FN:FP = 5:1 cost, model families, decision rule, grids, budget, seed 42 and the test cutoff (protocol layer a: pre-registered) - before any data is seen.",
       "outputs": [
         "spec/protocol.yaml v1.0 (proposed via CHANGELOG)",
         "task_contract.md (prediction time, stakeholder action, limits, metric and model rationale with verified citations)"
@@ -18,7 +21,8 @@
         "Every number later stages need is in protocol.yaml",
         "Decision rule and tie-breaks written before any result",
         "Stakeholder action stated, not only named",
-        "Every citation verified to exist and support its claim"
+        "Every citation verified to exist and support its claim",
+        "protocol.yaml separates pre-registered values from data-dependent values owned by s04 and s05"
       ],
       "gate_question": "Are tasks, targets, metrics, cost, decision rule and budget fixed before any result?"
     },
@@ -26,8 +30,13 @@
       "id": "s02_data",
       "title": "Data preprocessing",
       "design_ref": "s02",
-      "tasks": ["common"],
-      "depends_on": ["s01_problem/common"],
+      "blueprint": "spec/blueprints/s02_data.md",
+      "tasks": [
+        "common"
+      ],
+      "depends_on": [
+        "s01_problem/common"
+      ],
       "purpose": "Load and clean the nine Olist tables deterministically, join aggregation-first to one row per order, build both targets with label-availability timestamps, audit every column against checkout time and apply the zero-item classification rule.",
       "outputs": [
         "records.csv.gz (IDs for audit + features + targets + timestamps)",
@@ -47,9 +56,15 @@
       "id": "s03_eda",
       "title": "EDA",
       "design_ref": "s03",
-      "tasks": ["regression", "classification"],
-      "depends_on": ["s02_data/common"],
-      "purpose": "Question-driven EDA on pre-cutoff orders only: target shape and tails, outcome trends over time, feature-target relationships, missingness, outliers and collinearity (correlation, VIF, rank).",
+      "blueprint": "spec/blueprints/s03_eda.md",
+      "tasks": [
+        "regression",
+        "classification"
+      ],
+      "depends_on": [
+        "s02_data/common"
+      ],
+      "purpose": "Question-driven EDA on orders before the test cutoff: target shape and tails, outcome trends over time, feature-target relationships, missingness, outliers and collinearity among raw numeric features (correlation, VIF).",
       "outputs": [
         "figures/*.png + sidecar json",
         "eda_summary.json",
@@ -66,18 +81,25 @@
       "id": "s04_features",
       "title": "Features",
       "design_ref": "s04",
-      "tasks": ["regression", "classification"],
-      "depends_on": ["s03_eda/{task}"],
-      "purpose": "Define, without fitting: the 27-feature baseline; log transforms and a target-cap step whose value is chosen later on the folds; label-free reduction to a core set; rationale and citations; candidate feature sets per model; the pipeline recipe per model (impute, encode, scale).",
+      "blueprint": "spec/blueprints/s04_features.md",
+      "tasks": [
+        "regression",
+        "classification"
+      ],
+      "depends_on": [
+        "s03_eda/{task}"
+      ],
+      "purpose": "Define, without fitting: the 27-feature baseline; log transforms and a target-cap step whose value is chosen later on the folds; the pre-registered label-free reduction to a core set (pre-cutoff orders only); encoded design-matrix rank per recipe; rationale and citations; candidate feature sets per model (including the order_estimated_delivery_date decision); the pipeline recipe per model (impute, encode, scale).",
       "outputs": [
         "feature_dictionary.csv (formula, grain, availability, missingness, rationale, citation)",
         "candidate_sets.json (per model)",
         "recipes.json (pipeline recipe per model)"
       ],
       "gate": [
-        "Only label-free checks used for reduction",
+        "Reduction uses only the pre-registered label-free rule on pre-cutoff orders",
         "Cap value not fixed here; candidates declared in protocol.yaml",
         "Every retained feature has a rationale",
+        "order_estimated_delivery_date decision recorded",
         "Nothing fitted on data"
       ],
       "gate_question": "Are features and recipes defined without fitting or using labels?"
@@ -86,20 +108,27 @@
       "id": "s05_partition",
       "title": "Partition",
       "design_ref": "s05",
-      "tasks": ["regression", "classification"],
-      "depends_on": ["s04_features/{task}"],
-      "purpose": "Hold out the test cohort (exact IDs frozen) and build chronological expanding CV folds on development orders with customer purge, label maturity and class-support checks; seed 42 documented.",
+      "blueprint": "spec/blueprints/s05_partition.md",
+      "tasks": [
+        "regression",
+        "classification"
+      ],
+      "depends_on": [
+        "s02_data/common"
+      ],
+      "purpose": "Hold out each task's test cohort (exact IDs frozen), remove development orders from customers in that test cohort, and build chronological expanding CV folds on development orders with customer purge, label maturity and class-support checks; seed 42 documented.",
       "outputs": [
         "folds.csv",
-        "test_manifest.csv",
+        "test_manifest.csv (task-specific test cohort)",
         "counts.json (rows, customers, positives per fold and cohort)",
         "checks.json (overlap, maturity, rows lost to maturity, class support)"
       ],
       "gate": [
-        "No test-cohort ID in development",
-        "Customers purged across training and validation",
+        "No test-cohort order or customer in development (order_id and customer_unique_id checked)",
+        "Customers purged across training and validation in every fold",
         "Training outcomes available before each fold origin",
-        "Both classes present in every fold (classification)"
+        "Both classes present in every fold (classification)",
+        "Any boundary move logged before s06 runs"
       ],
       "gate_question": "Are folds chronological, customers purged, labels mature and classes supported?"
     },
@@ -107,8 +136,15 @@
       "id": "s06_training",
       "title": "Training",
       "design_ref": "s06",
-      "tasks": ["regression", "classification"],
-      "depends_on": ["s05_partition/{task}"],
+      "blueprint": "spec/blueprints/s06_training.md",
+      "tasks": [
+        "regression",
+        "classification"
+      ],
+      "depends_on": [
+        "s04_features/{task}",
+        "s05_partition/{task}"
+      ],
       "purpose": {
         "regression": "On the s05 folds: median dummy, plain LinearRegression, single decision tree, random forest, each one Pipeline from the s04 recipe; residuals and learning curves; choose each model's feature set, the log transforms and the target-cap value on the folds.",
         "classification": "On the s05 folds: prior dummy, unregularised LogisticRegression, single decision tree, random forest, each one Pipeline from the s04 recipe; learning curves; choose each model's feature set and transforms on the folds."
@@ -123,6 +159,7 @@
         "Identical rows and folds for every candidate",
         "Preprocessing fitted inside folds",
         "Simplest model of each family present",
+        "Step A (families on core set, raw) before step B (features, transforms, cap within a family)",
         "One change at a time under the decision rule"
       ],
       "gate_question": "Do the models run basic to complex on identical folds, with each choice justified?"
@@ -131,8 +168,14 @@
       "id": "s07_tuning",
       "title": "Tuning",
       "design_ref": "s07",
-      "tasks": ["regression", "classification"],
-      "depends_on": ["s06_training/{task}"],
+      "blueprint": "spec/blueprints/s07_tuning.md",
+      "tasks": [
+        "regression",
+        "classification"
+      ],
+      "depends_on": [
+        "s06_training/{task}"
+      ],
       "purpose": {
         "regression": "Bounded grids on the same folds: Ridge alpha; tree depth and leaf; forest depth and leaf. Every candidate a whole pipeline.",
         "classification": "Bounded grids on the same folds: logistic C; tree depth and leaf; forest depth and leaf; class weight None vs balanced. Every candidate a whole pipeline."
@@ -152,11 +195,17 @@
       "id": "s08_selection",
       "title": "Selection",
       "design_ref": "s08",
-      "tasks": ["regression", "classification"],
-      "depends_on": ["s07_tuning/{task}"],
+      "blueprint": "spec/blueprints/s08_selection.md",
+      "tasks": [
+        "regression",
+        "classification"
+      ],
+      "depends_on": [
+        "s07_tuning/{task}"
+      ],
       "purpose": {
-        "regression": "Select the model on threshold-free scores against the dummy and simplest models; freeze the recipe; fit on all development orders; score the test cohort once.",
-        "classification": "Select the model on threshold-free scores against the dummy and simplest models; check calibration; choose the threshold from out-of-fold predictions under the 5:1 cost; freeze; fit on all development orders; score the test cohort once."
+        "regression": "Select the model on threshold-free scores against the dummy and simplest models; freeze the recipe; fit on development orders with labels available before the test cutoff; score the test cohort once.",
+        "classification": "Select the model on threshold-free scores against the dummy and simplest models; calibration as a candidate component (raw by default, sigmoid variant scored on the same folds if reliability fails); threshold from the chosen probability recipe's out-of-fold predictions under the 5:1 cost; freeze; fit on development orders with labels available before the test cutoff; score the test cohort once."
       },
       "outputs": [
         "selected_spec.json",
@@ -167,6 +216,8 @@
       ],
       "gate": [
         "Model selected before the threshold",
+        "Persisted probability recipe is the one the threshold was chosen on",
+        "Final-fit training labels available before the test cutoff",
         "Recipe and threshold frozen before the test cohort is read",
         "Test cohort scored once"
       ],
@@ -176,8 +227,14 @@
       "id": "s09_conclusion",
       "title": "Conclusion",
       "design_ref": "s09",
-      "tasks": ["regression", "classification"],
-      "depends_on": ["s08_selection/{task}"],
+      "blueprint": "spec/blueprints/s09_conclusion.md",
+      "tasks": [
+        "regression",
+        "classification"
+      ],
+      "depends_on": [
+        "s08_selection/{task}"
+      ],
       "purpose": "Train-validation-test table with bootstrap confidence intervals, subgroup errors and drift, interpretation of the selected model, stakeholder actions supported by the evidence, and limitations.",
       "outputs": [
         "master_metrics.csv (train / validation / test, with CIs)",
@@ -187,6 +244,7 @@
         "conclusion.md"
       ],
       "gate": [
+        "Validation scores labelled as selection scores, not generalisation estimates",
         "Importance explains the selected model",
         "Test cohort described as historical held-out, not unseen",
         "Every recommendation traced to evidence"
@@ -197,8 +255,14 @@
       "id": "s10_release",
       "title": "Release",
       "design_ref": "s10",
-      "tasks": ["common"],
-      "depends_on": ["s09_conclusion/regression", "s09_conclusion/classification"],
+      "blueprint": "spec/blueprints/s10_release.md",
+      "tasks": [
+        "common"
+      ],
+      "depends_on": [
+        "s09_conclusion/regression",
+        "s09_conclusion/classification"
+      ],
       "purpose": "Reload parity of the bundles; team approval; lead-ordered migration with a reproduction README (README section 12); reproduction check; then the Streamlit app and dashboard, report and slides from the reproduced outputs, walkthrough notebook, and input checks with error handling.",
       "outputs": [
         "parity.json",

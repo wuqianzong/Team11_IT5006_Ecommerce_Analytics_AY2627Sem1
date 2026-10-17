@@ -13,11 +13,12 @@ writes: []  # every file run.py produces
 # s04_features / regression - Features
 
 Spec: `spec/pipeline_design.md` -> s04. Teacher/TA rows: `spec/sources.md` (search `S04`).
+Blueprint: `spec/blueprints/s04_features.md` (implement only when its status is AGREED).
 
 **Gate question:** Are features and recipes defined without fitting or using labels?
 
 ## Purpose
-Define, without fitting: the 27-feature baseline; log transforms and a target-cap step whose value is chosen later on the folds; label-free reduction to a core set; rationale and citations; candidate feature sets per model; the pipeline recipe per model (impute, encode, scale).
+Define, without fitting: the 27-feature baseline; log transforms and a target-cap step whose value is chosen later on the folds; the pre-registered label-free reduction to a core set (pre-cutoff orders only); encoded design-matrix rank per recipe; rationale and citations; candidate feature sets per model (including the order_estimated_delivery_date decision); the pipeline recipe per model (impute, encode, scale).
 
 ## Planned outputs (`outputs/`)
 - feature_dictionary.csv (formula, grain, availability, missingness, rationale, citation)
@@ -25,9 +26,10 @@ Define, without fitting: the 27-feature baseline; log transforms and a target-ca
 - recipes.json (pipeline recipe per model)
 
 ## Gate criteria
-- Only label-free checks used for reduction
+- Reduction uses only the pre-registered label-free rule on pre-cutoff orders
 - Cap value not fixed here; candidates declared in protocol.yaml
 - Every retained feature has a rationale
+- order_estimated_delivery_date decision recorded
 - Nothing fitted on data
 <!-- END GENERATED -->
 

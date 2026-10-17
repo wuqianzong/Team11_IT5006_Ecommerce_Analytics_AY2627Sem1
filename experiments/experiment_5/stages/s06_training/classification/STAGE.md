@@ -4,6 +4,7 @@ owner: TBD
 reviewer: TBD
 status: TODO
 depends_on:
+  - s04_features/classification
   - s05_partition/classification
 reads: []   # exact upstream files used
 writes: []  # every file run.py produces
@@ -13,6 +14,7 @@ writes: []  # every file run.py produces
 # s06_training / classification - Training
 
 Spec: `spec/pipeline_design.md` -> s06. Teacher/TA rows: `spec/sources.md` (search `S06`).
+Blueprint: `spec/blueprints/s06_training.md` (implement only when its status is AGREED).
 
 **Gate question:** Do the models run basic to complex on identical folds, with each choice justified?
 
@@ -29,6 +31,7 @@ On the s05 folds: prior dummy, unregularised LogisticRegression, single decision
 - Identical rows and folds for every candidate
 - Preprocessing fitted inside folds
 - Simplest model of each family present
+- Step A (families on core set, raw) before step B (features, transforms, cap within a family)
 - One change at a time under the decision rule
 <!-- END GENERATED -->
 

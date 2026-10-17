@@ -106,6 +106,8 @@ def generated_block(n: dict) -> str:
         "",
         f"Spec: `spec/pipeline_design.md` -> {n['design_ref']}. "
         f"Teacher/TA rows: `spec/sources.md` (search `{n['id'][:3].upper()}`).",
+        *([f"Blueprint: `{n['blueprint']}` (implement only when its status is AGREED)."]
+          if n.get("blueprint") else []),
         "",
         f"**Gate question:** {n['gate_question']}",
         "",

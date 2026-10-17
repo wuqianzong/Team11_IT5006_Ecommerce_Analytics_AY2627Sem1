@@ -13,11 +13,12 @@ writes: []  # every file run.py produces
 # s03_eda / regression - EDA
 
 Spec: `spec/pipeline_design.md` -> s03. Teacher/TA rows: `spec/sources.md` (search `S03`).
+Blueprint: `spec/blueprints/s03_eda.md` (implement only when its status is AGREED).
 
 **Gate question:** Does every planned change follow from a pre-cutoff observation?
 
 ## Purpose
-Question-driven EDA on pre-cutoff orders only: target shape and tails, outcome trends over time, feature-target relationships, missingness, outliers and collinearity (correlation, VIF, rank).
+Question-driven EDA on orders before the test cutoff: target shape and tails, outcome trends over time, feature-target relationships, missingness, outliers and collinearity among raw numeric features (correlation, VIF).
 
 ## Planned outputs (`outputs/`)
 - figures/*.png + sidecar json

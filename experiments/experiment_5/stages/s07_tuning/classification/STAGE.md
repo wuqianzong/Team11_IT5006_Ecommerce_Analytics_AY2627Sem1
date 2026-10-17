@@ -13,6 +13,7 @@ writes: []  # every file run.py produces
 # s07_tuning / classification - Tuning
 
 Spec: `spec/pipeline_design.md` -> s07. Teacher/TA rows: `spec/sources.md` (search `S07`).
+Blueprint: `spec/blueprints/s07_tuning.md` (implement only when its status is AGREED).
 
 **Gate question:** Is every tuned candidate a complete pipeline scored on the same folds?
 

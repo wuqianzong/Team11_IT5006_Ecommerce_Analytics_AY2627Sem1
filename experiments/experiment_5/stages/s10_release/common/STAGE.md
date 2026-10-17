@@ -14,6 +14,7 @@ writes: []  # every file run.py produces
 # s10_release / common - Release
 
 Spec: `spec/pipeline_design.md` -> s10. Teacher/TA rows: `spec/sources.md` (search `S10`).
+Blueprint: `spec/blueprints/s10_release.md` (implement only when its status is AGREED).
 
 **Gate question:** Do the app, dashboard, report and slides all trace to one reproduced release?
 

@@ -224,13 +224,17 @@ explicitly, and record their hashes).
 
 ### 5.2 `spec/protocol.yaml` — the frozen contract (written in s01_problem)
 
-Holds every number that otherwise tends to drift: tasks, positive class, eligibility,
-the 27-feature candidate list (core and per-model candidate sets are added from s04 via
-CHANGELOG), excluded columns, seed `42`, test cutoff and fold boundaries, purge and
-label-maturity rules, metric definitions, decision rules and tie-breaks, candidate
-target-cap values (no value fixed in advance), the cost assumption (FN:FP = 5:1,
-illustrative), search grids and budgets. Code reads values from here;
-**no stage hard-codes these numbers**.
+Holds every number that otherwise tends to drift, in two layers:
+
+- **Pre-registered** (fixed in s01, before any data is seen): tasks, positive class,
+  eligibility, the 27-feature candidate list, excluded columns, seed `42`, test cutoff,
+  purge and label-maturity rules, metric definitions, decision rules and tie-breaks, the
+  cost assumption (FN:FP = 5:1, illustrative), search grids and budgets.
+- **Data-dependent** (each section owned by one stage, added via CHANGELOG and frozen at
+  that stage's gate, before any model result): core set, per-model candidate sets and
+  target-cap candidates (s04); exact fold boundaries and class-support threshold (s05).
+
+Code reads values from here; **no stage hard-codes these numbers**.
 
 ### 5.3 Candidates and the pipeline factory
 
@@ -250,7 +254,7 @@ illustrative), search grids and budgets. Code reads values from here;
 | population | Who may load it |
 | --- | --- |
 | `development` (orders before the test cutoff, 2018-05-25; CV folds built in s05) | s02 onward |
-| `test` (M2 terminal cohort; IDs frozen in s05) | s08 final evaluation onward only |
+| `test` (per task: M2 terminal cohort for that task; IDs frozen in s05; development orders of its customers are purged) | s08 final evaluation onward only |
 
 The loader raises if a stage loads a population it is not allowed to see. Do not
 bypass it. Test labels must not influence any choice; s08 reads them only after the
@@ -382,7 +386,8 @@ which downstream decisions moved → those owners review.
 
 3. Load data only through `e5lib.data.load`; never bypass the population guard.
 4. Learned preprocessing (imputation, encoding, scaling, caps from percentiles,
-   feature selection, calibration) is fit **inside** training folds via the factory.
+   model-based feature selection, calibration) is fit **inside** training folds via the
+   factory. The one declared exception is the s04 label-free reduction rule (design rule 2).
    Only deterministic, row-local formulas may run before the split.
 5. Never use test-cohort labels for any choice; s08 reads them once, after the recipe and
    threshold are frozen.
@@ -468,7 +473,7 @@ Detailed requirements: [`spec/pipeline_design.md`](spec/pipeline_design.md) (fro
 node's `STAGE.md` repeats its purpose, outputs and gate criteria.
 
 <!-- BEGIN STAGE INDEX from spec/stages.json -->
-_Generated from `spec/stages.json` v1.0 (pipeline_design.md v1.0 (frozen 2026-10-17, CR-001)). Do not edit by hand._
+_Generated from `spec/stages.json` v1.0 (pipeline_design.md v1.1 (frozen 2026-10-17, CR-001; audit fixes CR-003)). Do not edit by hand._
 
 | Stage | Nodes | Depends on | Key outputs | Gate question |
 | --- | --- | --- | --- | --- |
@@ -476,8 +481,8 @@ _Generated from `spec/stages.json` v1.0 (pipeline_design.md v1.0 (frozen 2026-10
 | s02_data Data preprocessing | common | s01_problem | records.csv.gz; exclusions.csv; data_hashes.json | Are joins, grains, targets and leakage exclusions verified? |
 | s03_eda EDA | regression, classification | s02_data | figures/*.png + sidecar json; eda_summary.json; candidate_rationale.csv | Does every planned change follow from a pre-cutoff observation? |
 | s04_features Features | regression, classification | s03_eda | feature_dictionary.csv; candidate_sets.json; recipes.json | Are features and recipes defined without fitting or using labels? |
-| s05_partition Partition | regression, classification | s04_features | folds.csv; test_manifest.csv; counts.json | Are folds chronological, customers purged, labels mature and classes supported? |
-| s06_training Training | regression, classification | s05_partition | metrics_long.csv; predictions.csv.gz; figures/ | Do the models run basic to complex on identical folds, with each choice justified? |
+| s05_partition Partition | regression, classification | s02_data | folds.csv; test_manifest.csv; counts.json | Are folds chronological, customers purged, labels mature and classes supported? |
+| s06_training Training | regression, classification | s04_features, s05_partition | metrics_long.csv; predictions.csv.gz; figures/ | Do the models run basic to complex on identical folds, with each choice justified? |
 | s07_tuning Tuning | regression, classification | s06_training | grid_results.csv; predictions.csv.gz | Is every tuned candidate a complete pipeline scored on the same folds? |
 | s08_selection Selection | regression, classification | s07_tuning | selected_spec.json; threshold_table.csv; frozen_recipe.json | Was the recipe frozen before the test cohort was scored once? |
 | s09_conclusion Conclusion | regression, classification | s08_selection | master_metrics.csv; subgroups.csv; drift.csv | Does every conclusion follow from the test results and their limits? |

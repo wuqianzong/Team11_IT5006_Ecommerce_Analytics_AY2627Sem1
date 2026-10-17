@@ -13,11 +13,12 @@ writes: []  # every file run.py produces
 # s08_selection / classification - Selection
 
 Spec: `spec/pipeline_design.md` -> s08. Teacher/TA rows: `spec/sources.md` (search `S08`).
+Blueprint: `spec/blueprints/s08_selection.md` (implement only when its status is AGREED).
 
 **Gate question:** Was the recipe frozen before the test cohort was scored once?
 
 ## Purpose
-Select the model on threshold-free scores against the dummy and simplest models; check calibration; choose the threshold from out-of-fold predictions under the 5:1 cost; freeze; fit on all development orders; score the test cohort once.
+Select the model on threshold-free scores against the dummy and simplest models; calibration as a candidate component (raw by default, sigmoid variant scored on the same folds if reliability fails); threshold from the chosen probability recipe's out-of-fold predictions under the 5:1 cost; freeze; fit on development orders with labels available before the test cutoff; score the test cohort once.
 
 ## Planned outputs (`outputs/`)
 - selected_spec.json
@@ -28,6 +29,8 @@ Select the model on threshold-free scores against the dummy and simplest models;
 
 ## Gate criteria
 - Model selected before the threshold
+- Persisted probability recipe is the one the threshold was chosen on
+- Final-fit training labels available before the test cutoff
 - Recipe and threshold frozen before the test cohort is read
 - Test cohort scored once
 <!-- END GENERATED -->

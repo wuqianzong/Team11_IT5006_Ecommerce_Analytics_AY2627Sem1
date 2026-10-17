@@ -1,0 +1,40 @@
+# Stage blueprints — index
+
+A blueprint is the detailed, implementable solution for one stage of the frozen design
+([`../pipeline_design.md`](../pipeline_design.md) v1.0). Implementation follows the
+blueprint; the stage's `STAGE.md` records how it actually ran.
+
+## How blueprints are maintained
+
+- **Claude drafts and maintains them.** Each blueprint is written complete, with a
+  recommended answer for every decision and its basis (tutorial, literature, Milestone 2
+  evidence). Team input can be informal (doc comments, chat, review notes); each one is folded
+  in and recorded in the [decision log](decision_log.md).
+- **Status:** `NOT STARTED` → `DRAFT` → `DISCUSSING` → `AGREED`. Only an `AGREED` blueprint is
+  implemented. After `AGREED`, changes need a CHANGELOG change request (README §9.2).
+- **One home for every number.** Agreed values go to `spec/protocol.yaml`, or are marked
+  "chosen on the folds in sNN". A blueprint never defines a number another file also defines.
+- **Interfaces are checked.** Each stage's outputs must match the next stage's inputs (file
+  names, columns, what has already been fitted). A change to one blueprint updates the
+  blueprints it touches in the same revision.
+- **Every revision is checked** against the frozen design, the leakage rules (README §8), the
+  teacher rubric and the brief (`../sources.md`).
+- Discussion copy: the Claude Doc "Milestone 3 pipeline stages" (one tab per stage when in
+  discussion). This folder is the binding record.
+
+## Index
+
+| Stage | Blueprint | Status | Open items | Last change |
+| --- | --- | --- | --- | --- |
+| s01 Problem statement | [s01_problem.md](s01_problem.md) | NOT STARTED | — | — |
+| s02 Data preprocessing | [s02_data.md](s02_data.md) | NOT STARTED | — | — |
+| s03 EDA | [s03_eda.md](s03_eda.md) | NOT STARTED | — | — |
+| s04 Features | [s04_features.md](s04_features.md) | NOT STARTED | — | — |
+| s05 Partition | [s05_partition.md](s05_partition.md) | NOT STARTED | — | — |
+| s06 Training | [s06_training.md](s06_training.md) | NOT STARTED | — | — |
+| s07 Tuning | [s07_tuning.md](s07_tuning.md) | NOT STARTED | — | — |
+| s08 Selection | [s08_selection.md](s08_selection.md) | NOT STARTED | — | — |
+| s09 Conclusion | [s09_conclusion.md](s09_conclusion.md) | NOT STARTED | — | — |
+| s10 Release | [s10_release.md](s10_release.md) | NOT STARTED | — | — |
+
+Template for new blueprints: [`_TEMPLATE.md`](_TEMPLATE.md).
