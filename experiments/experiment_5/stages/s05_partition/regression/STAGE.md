@@ -1,0 +1,52 @@
+---
+node: s05_partition/regression
+owner: TBD
+reviewer: TBD
+status: TODO
+depends_on:
+  - s04_features/regression
+reads: []   # exact upstream files used
+writes: []  # every file run.py produces
+---
+
+<!-- BEGIN GENERATED from spec/stages.json -->
+# s05_partition / regression - Partition
+
+Spec: `spec/pipeline_design.md` -> s05. Teacher/TA rows: `spec/sources.md` (search `S05`).
+
+**Gate question:** Are folds chronological, customers purged, labels mature and classes supported?
+
+## Purpose
+Hold out the test cohort (exact IDs frozen) and build chronological expanding CV folds on development orders with customer purge, label maturity and class-support checks; seed 42 documented.
+
+## Planned outputs (`outputs/`)
+- folds.csv
+- test_manifest.csv
+- counts.json (rows, customers, positives per fold and cohort)
+- checks.json (overlap, maturity, rows lost to maturity, class support)
+
+## Gate criteria
+- No test-cohort ID in development
+- Customers purged across training and validation
+- Training outcomes available before each fold origin
+- Both classes present in every fold (classification)
+<!-- END GENERATED -->
+
+## Review summary (owner fills at gate; cite files, never type numbers from memory)
+- What was done:
+- Decision and rule applied (`outputs/decision.json`):
+- Key evidence (file -> what it shows):
+- Limitations:
+
+## Gate check (reviewer)
+- [ ] Every gate criterion above is met (note any exception)
+- [ ] `run_pipeline.py run --node` reproduces all outputs from a clean tree
+- [ ] Standard output shapes and `_manifest.json` present (README section 5.5)
+
+## Deviations from spec
+None.
+
+## Open questions
+
+## Sign-off
+- Accepted by: - date: - commit: -

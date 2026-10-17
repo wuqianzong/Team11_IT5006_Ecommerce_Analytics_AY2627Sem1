@@ -1,180 +1,207 @@
 <!-- AUTHORITATIVE Milestone 3 / Experiment 5 pipeline design. This file is the only version
      that counts; edit it here (and mirror changes in spec/stages.json, README §3.1).
-     Origin: content identical to docs/milestone3_baseline_pipeline_design_2026-10-13.txt as of
-     2026-10-16 (only headings converted to Markdown). That docs/ file is superseded and is
-     not updated. After the design freeze, changes go through README §9.2 and CHANGELOG.md. -->
+     v1.0 FROZEN 2026-10-17 by the team (CHANGELOG CR-001). It replaces the 13-stage draft
+     derived from docs/milestone3_baseline_pipeline_design_2026-10-13.txt, which is superseded
+     and not updated. After this freeze, changes go through README §9.2 and CHANGELOG.md. -->
 
-# Milestone 3 baseline pipeline design
-13 October 2026 — design only; no training or implementation changes
+# Milestone 3 baseline pipeline design — v1.0 (frozen 2026-10-17)
 
-PURPOSE
-Rebuild the Milestone 2 modelling workflow as a coherent baseline for the final report, presentation and deployed application. Retain Olist, the two checkout prediction problems, the leakage exclusions, the nine-feature core, task-specific expansions and two model families. Improve the evaluation design and evidence chain rather than introduce unrelated algorithms. No target score, winning model or threshold is assumed in advance.
+## Purpose
 
-SOURCES AND STATUS
-Directly reviewed: Tutorials 1, 2, 3, 4, 5, T07_Main, Tutorial 7 non-agentic reference solution, Tutorial 8, Week 6 deployment slides, the project brief, teacher expectations and current model/experiment source. There is no separately named Tutorial 6 notebook in the supplied tutorial folder; the supplied Week 6 training/deployment material provides that part of the mapping.
-This is an adaptation of taught principles to chronological, repeated-customer Olist data. The tutorials' random/stratified teaching splits are not copied literally where that would break chronological prediction. Nested CV, an ensemble or every taught algorithm is not mandatory for this project.
+One clean, end-to-end pass from problem statement to business conclusion, in the textbook
+order taught in Tutorials 1–8, for the two Milestone 2 checkout tasks on Olist:
 
-## A. CURRENT MILESTONE 2 PIPELINE
+- **Regression** — delivery lead time (purchase to delivery, fractional days); logistics stakeholder.
+- **Classification** — recorded low review (score ≤ 2, positive class 1); customer-experience stakeholder.
 
-### A1. Frame two checkout tasks and build order-level data.
-- Regression: delivery minus purchase timestamp, fractional days; logistics stakeholder; MAE primary, RMSE/R2 secondary.
-- Classification: recorded review score <=2; CX/support stakeholder; AP primary, ROC-AUC/Brier and threshold decisions secondary.
-- Join seven tables; use customer_unique_id for group isolation; quarantine outcome-derived predictors.
+Every Milestone 2 method is kept, but moved into this single flow; what Milestone 2 got wrong
+is corrected and what it lacked is added (see "Changes from Milestone 2" below). There is **one
+training cycle**, not two. No target score, winning model, feature set, cap value or threshold
+is assumed in advance; those are decided by evidence inside the stages below and recorded in
+`spec/protocol.yaml` or the stage's `decision.json`.
 
-### A2. Outer customer-group split and task eligibility.
-- Saved development/holdout manifests and five customer-grouped development folds.
-- Classification removes zero-item orders and has_items/freight_ratio_missing predictors.
-- Chronological fitting later restricts pre-terminal training, purges customers and checks label maturity. Terminal dates start on2018-05-25.
+## Sources and authority
 
-### A3. Development EDA and collinearity diagnostics.
-- Distribution/tail diagnostics and an outlier-treatment study.
-- Candidate27-feature correlations/design rank; define9-feature core.
-- These are descriptive/diagnostic calculations; their encoded matrix is not necessarily the final estimator's matrix.
+Project brief (Phase 3 deliverables and modelling guidelines); teacher expectations for
+Milestone 2 (used as the grading rubric; Milestone 2 TA comments were not available and are not
+waited for — team decision 2026-10-17); Milestone 1 TA feedback; Tutorials 1–8 and the Week 6
+deployment slides. The step order follows the Tutorial 7 reference solution
+(audit → protect test set → one pipeline → CV against a baseline → out-of-fold probabilities →
+threshold → fit once, evaluate once → interpret → save and reload → QA) and Tutorial 8
+(dummy → logistic → decision tree → random forest → tuning). `spec/sources.md` maps every
+requirement to a stage.
 
-### A4. Nine-feature grouped-CV family benchmarks.
-- Ridge, logistic(C=.01), simple trees and starter forests; dummy references drawn from separately saved baseline evidence.
-- This selected evidence does not begin with matched plain OLS and unregularized logistic variants.
+Adaptation: the tutorials use random or stratified splits; Olist is chronological with repeat
+customers, so this design uses a chronological test cohort and chronological, customer-purged
+CV folds, and checks class support per fold instead of stratifying.
 
-### A5. Task-specific expansion and diagnostic importance.
-- Regression:9 ->11 via maximum distance and distance-missing fraction.
-- Classification:9 ->12 via seller count, primary seller state and interstate share.
-- Grouped CV compares subsets; permutation diagnostics describe a tree regressor and logistic classifier.
+## Rules that hold in every stage
 
-### A6. Transformations and grouped hyperparameter search.
-- Input log1p and regression target log1p; search Ridge alpha, logistic C, tree depth/leaf and forest depth/leaf; forest50 trees.
-- Grouped-search preprocessing one-hot encodes calendars and scales numeric columns.
-- Regression target cap60 is not included in that tuning fit.
-- Historical and filtered classification tuning evidence are separately available in the current reproduction package.
+1. **One validation protocol.** The same chronological, customer-purged folds for every
+   candidate, from the first dummy to the last tuned model.
+2. **Defined vs fitted.** Cleaning and feature formulas are deterministic and row-local and may
+   run before the split. Anything learned from data (imputation, encoding, scaling, caps from
+   percentiles, feature selection, calibration) is *defined* as a recipe in s04 and *fitted*
+   only inside training folds through an sklearn Pipeline (Tutorials 3–4).
+3. **Test cohort protected.** The test cohort is the Milestone 2 terminal cohort (purchase on or
+   after the frozen cutoff, 2018-05-25, exact IDs frozen in s05). Steps s03–s04 use only
+   pre-cutoff orders; no step reads test labels until the final evaluation in s08.
+4. **Simplest first, one change at a time.** A more complex variant is kept only if it passes the
+   decision rule in `protocol.yaml`; otherwise the simpler one stays.
+5. **Every number comes from a stage output.** Report, slides, app and dashboard read the same
+   evidence; nothing is typed by hand.
+6. **Claims are labelled** as observation, literature-supported hypothesis, or unmeasured
+   mechanism.
 
-### A7. Separate grouped probability-calibration/cost studies.
-- Raw versus sigmoid calibration and illustrative FP:FN costs1:1,1:5,1:10.
-- This is a separate grouped study, not the chronological selected-pipeline OOF calculation.
+## The ten stages
 
-### A8. Selected-model chronological confirmation and final fitting.
-- Fixed forest architecture receives five expanding-window confirmations with customer purging and label maturity.
-- Final preprocessing uses numeric calendars, forest-specific encoding/scaling choices and a regression60-day target cap.
-- Only selected models get this chronological CV; other final references are fitted for terminal comparison.
-- Chronological OOF yields an empirical threshold; deployment threshold remains configured0.17.
+### s01 — Problem statement (common)
+Two tasks at checkout (prediction time = `order_purchase_timestamp`); stakeholder and the action
+they take (who sees which prediction, when, and what they do); targets and label rules
+(minimum-review label with a first-review sensitivity check); metrics (MAE primary, RMSE/R²
+secondary; AP primary, ROC-AUC/Brier/precision/recall/F1 secondary) and the illustrative
+FN:FP = 5:1 cost; model families (dummy references, linear/logistic, tree/forest); decision
+rule and tie-breaks; search budget; seed 42. Writes the frozen numbers to `spec/protocol.yaml`
+(via CHANGELOG) and the per-task contract.
+OUTPUT: `protocol.yaml` v1.0, `task_contract.md` (prediction time, stakeholder action, limits,
+metric and model rationale with verified citations).
+TEACHING: Tutorials 1–2; T7 reference §1.
 
-### A9. Terminal evaluation, diagnostic tables, persistence and scoring.
-- Fit pre-terminal eligible training; serialize models and metadata.
-- Score common terminal task cohorts; compare final references, decisions and79subgroups; audit distributions.
-- Current notebook is an evidence/scoring walkthrough. Bare terminal command is no-fit verification; separate build command retrains.
+### s02 — Data preprocessing (common)
+Load the Canvas copy of the nine tables and record their hashes; clean deterministically
+(types, zip prefixes as strings, geolocation de-duplication, IBGE boundary filter from
+`docs/references/geography`, invalid timestamps flagged); join aggregation-first to one row per
+order with cardinality checks; build both targets with their label-availability timestamps.
+Leakage audit of every column against checkout time — `order_estimated_delivery_date` is known
+at checkout (Milestone 2 wrongly listed it as post-checkout); zero-item orders are excluded from
+classification. IDs are kept for audit, never as predictors.
+OUTPUT: `records.csv.gz`, `exclusions.csv`, `data_hashes.json`, `audit.json` (joins, grains,
+leakage, label sensitivity).
+TEACHING: Tutorial 3; T7 reference §3; brief leakage warning.
 
-## B. WHAT TO CHANGE IN THE DESIGN
+### s03 — EDA (regression, classification; pre-cutoff orders only)
+Question-driven, before the test dates: target shape and tails; outcome trends over time
+(lead time, late rate, detractor rate, not volume only); feature–target relationships;
+missingness, outliers and collinearity (correlation, VIF, design-matrix rank). Each finding
+that motivates a later choice is listed with its evidence.
+OUTPUT: figures with sidecar data, `eda_summary.json`, `candidate_rationale.csv`.
+TEACHING: Tutorials 1–2 and 5; T7–T8 §3; Lecture 5 (multicollinearity).
 
-1. One primary validation protocol from the first learning model onward. Do not compare a grouped screening score with a chronological score as a model improvement.
-2. Matched dummy, plain linear/logistic and single-tree baselines before regularization/forest complexity. The teacher explicitly requests simplest variants.
-3. Split and reserve evaluation membership before target-driven feature/model choices or learned preprocessing. Row-local deterministic joins/formulas can precede the split; learned imputation, encoding, scaling and data-derived thresholds cannot.
-4. Treat feature set, numeric/categorical representation, imputation, transformations, target cap and estimator as one candidate pipeline. The winning candidate is exactly the pipeline subsequently confirmed, refitted and deployed.
-5. Compare interventions separately before combining them. More complexity or a cap is accepted only if development evidence supports it.
-6. Assess probability calibration before choosing an operating threshold, and make one explicit policy decision before final evaluation. Avoid competing threshold stories.
-7. Provide a confirmation stage that was not used for tuning in this run. Do not perform its evaluation and then go back and change the selected model while retaining the same confirmation claim.
-8. Generate model comparisons, report tables, captions, plots and deployed model information from one versioned evidence registry.
+### s04 — Features (regression, classification; defined, not fitted)
+In order: feature baseline (the 27 Milestone 2 candidate features); log transforms of skewed
+inputs and of the regression target, plus a **target-cap step whose value is not fixed here**
+(candidate values, including "no cap", are declared in `protocol.yaml` and chosen on the folds in
+s06; scoring always uses uncapped days); feature reduction from 27 to a core set using
+label-free checks (rank, correlation, VIF); rationale and verified citations for every retained
+feature; candidate feature sets for each model; the pipeline recipe per model (imputation with
+missing indicators, one-hot encoding with unknown handling, scaling for linear/logistic only).
+OUTPUT: `feature_dictionary.csv` (formula, grain, availability, missingness, rationale,
+citation), candidate sets per model, recipe table.
+TEACHING: Tutorials 3–5; teacher note §3.
 
-## C. PROPOSED TEXTBOOK PIPELINE
+### s05 — Partition (regression, classification)
+Partition strategy against leakage; hold out the test cohort (exact IDs frozen); chronological
+expanding CV folds on the development orders; customer purge (training customers who appear in
+validation are removed) and label maturity (training outcomes available before each fold
+origin); class support per fold (positives and prevalence; move a boundary if a fold is too
+thin); seed 42 documented.
+OUTPUT: `folds.csv`, `test_manifest.csv`, `counts.json`, `checks.json` (overlap, maturity,
+share of rows lost to maturity, class support).
+TEACHING: Tutorial 4 split before preprocessing; T7 reference §4.
 
-### STAGE0 — Freeze the analysis questions and decision criteria.
-Keep both Milestone2 targets and checkout time. Define eligible populations, positive class1, excluded post-outcome columns, stakeholders, metrics and illustrative FN5/FP1 assumption. State scope: predictions describe observed delivered/reviewed orders with available cart inputs. Do not claim a measured intervention ROI.
-Choose simplicity preference/tie handling and search budget before results. Use only linear and tree-based families, plus dummy references. No mandatory boosting, voting, stacking, NB or resampling.
-OUTPUT: problem/target/feature contract and evaluation protocol.
-TEACHING: problem scoping; Tutorials1–2; teacher notes.
+### s06 — Training, basic to complex (regression, classification)
+On the s05 folds, every model built as one Pipeline from the s04 recipe: dummy baselines
+(median / prior) → plain LinearRegression and unregularised LogisticRegression → single decision
+tree → random forest. Residual plots (regression) and learning curves diagnose under- and
+over-fitting. Each model's feature set, the log transforms and the target-cap value are chosen
+here on the folds, one change at a time, under the decision rule.
+OUTPUT: `metrics_long.csv` (train and validation per fold), out-of-fold `predictions.csv.gz`,
+diagnostics figures, `decision.json`.
+TEACHING: Tutorial 5; T7 §5–6; T8 §5 and §8–9.
 
-### STAGE1 — Construct and validate deterministic checkout records.
-Reuse the existing joins, targets and checkout features; audit keys, join cardinalities, units, duplicate review aggregation and target-availability timestamps. Define freight_ratio consistently. Apply zero-item classification eligibility before constructing any classification comparison. Retain IDs for audit, never as predictors.
-Deterministic invalid-value checks and row-local formulas do not learn from held-out distributions. Any learned missingness or outlier treatment belongs inside later folds.
-OUTPUT: versioned raw feature/target table, exclusions and data hashes.
-TEACHING: Tutorials1–3 and leakage guidance.
+### s07 — Tuning: regularise and tune (regression, classification)
+Bounded grids on the same folds. Linear family: Ridge alpha and logistic C (regularisation
+strength). Tree family: depth and minimum leaf size (and pruning if diagnostics justify it).
+Forest: depth and leaf size. Class weight (None vs balanced) is a grid option for the
+classifiers. Every grid candidate is a whole pipeline; nothing is switched after the search.
+OUTPUT: `grid_results.csv` (every configuration, fold scores, mean, SD, rank, runtime,
+convergence), finalists' out-of-fold predictions.
+TEACHING: T7–T8 GridSearchCV.
 
-### STAGE2 — Freeze partitions, customer isolation and label maturity.
-Retain the existing Milestone2 terminal cohort IDs as a historical comparison benchmark. Keep all originally held-out IDs out of development; do not silently reclaim earlier held-out rows or future development rows as extra training data. Reuse validated chronological pre-terminal membership where compatible, otherwise explicitly version changed membership.
-Use the earlier four expanding windows for development selection and the last pre-terminal window for confirmation. The confirmation interval is approximately2018-03-08 to2018-05-25 using the existing boundaries; exact timestamps and row IDs must be frozen.
-At every fit origin, training outcomes must have become available before that origin; purge training customers belonging to validation. All candidate pipelines share exactly the same task-specific rows and folds. Task eligibility can differ between regression and classification.
-If selection is frozen at confirmation start, selection-study labels must be available by that date. Confirmation labels are assessed with a predeclared follow-up/as-of rule. Record exclusions and resulting population limitations rather than using future-known training outcomes.
-Chronological ordering takes priority over randomized stratification; check both classes, fold prevalence and sample support without rearranging future orders to balance classes. If a fold lacks support, revise boundaries before fitting.
-These chronological windows have also been examined in prior work. Reserving the last window now makes it a confirmation not used for selection in the new run, not a newly blind dataset. The existing terminal cohort has already been examined: it remains a historical benchmark, not a newly untouched test. A genuinely fresh independent test requires genuinely unexamined data. Do not manufacture one by reshuffling examined records.
-OUTPUT: selection/confirmation/benchmark manifests, class counts, availability and group-overlap checks.
-TEACHING: Tutorial4 split-before-preprocessing; Tutorials7–8 protected evaluation; Olist adaptation.
+### s08 — Selection, policy and test once (regression, classification)
+Select the model first on threshold-free scores (MAE; AP, ROC-AUC, Brier), comparing finalists
+with the dummy and the simplest model of each family on the same rows. Classification only: check
+calibration on out-of-fold predictions, then choose the threshold from out-of-fold predictions
+under the 5:1 cost (compare no alerts, 0.50, the Milestone 2 value 0.17 and the empirical
+optimum). Freeze the recipe and threshold, then fit on all development orders and score the test
+cohort exactly once.
+OUTPUT: `selected_spec.json`, `threshold_table.csv`, `frozen_recipe.json`, model bundle,
+test `metrics_long.csv` and predictions.
+TEACHING: T7 reference §6–9.
 
-### STAGE3 — Question-driven EDA on selection data.
-Summarize missingness, counts, prevalence, raw lead-time distribution, seasonality, geographic/basket relationships and feature-target associations. Examine constants, correlation and the actual linear design's numerical rank. Explain legitimate long deliveries versus invalid records.
-Use this to propose a small declared set of changes. Do not fit preprocessing on all development and feed that fitted transform into CV. Do not choose variables/caps from confirmation or terminal labels.
-OUTPUT: population-labelled EDA, candidate rationale table and short hypotheses.
-TEACHING: Tutorials1–3/5/7–8.
+### s09 — Conclusion for the business (regression, classification)
+Train–validation–test table with bootstrap confidence intervals; subgroup errors (state,
+distance, basket) and training-vs-test drift; interpretation of the winner (permutation
+importance on the selected model, tree rules, coefficients and odds ratios of the plain models);
+stakeholder actions supported by the evidence, and limitations. The test cohort is described as a
+historical held-out test (Milestone 2 already scored it), not unseen data.
+OUTPUT: master metric table, `subgroups.csv`, drift table, importance and interpretation tables,
+`conclusion.md`.
+TEACHING: T7 reference §10; T2 confidence intervals; teacher note §5–6.
 
-### STAGE4 — Build one canonical pipeline factory and matched simplest baselines.
-Start with the existing9core raw features, raw regression target and unweighted classification.
-Fit median DummyRegressor and prior DummyClassifier on each training fold. Fit plain LinearRegression, plain unregularized LogisticRegression and a documented simple single tree for both tasks. The tree's depth/leaf settings are explicit starting settings, not claimed library defaults.
-Use the same data representation rules throughout selection, confirmation and final fit: for continuity with the final Milestone2 representation, calendars begin as numeric; state codes are categorical. Impute inside folds; one-hot encode states with unknown handling; scale numeric features for linear/logistic models, not as an unexplained later change. Use drop-first for intercept-based linear models; forest state encoding can use all levels if consistently declared in its family template. Diagnose the actual fitted matrix; do not inherit a condition number from a different encoding.
-Logistic penalty=None is the plain baseline; Ridge and finite-C logistic are subsequent regularized variants. Record solver, convergence and seed42.
-OUTPUT: per-fold training/validation metrics, counts, predictions and simplest-family comparison.
-TEACHING: Tutorials3/5/7–8; project brief simplest-family baseline requirement.
+### s10 — Release: migrate and deliver (common)
+Saved bundle with reload parity; team approval of the experiment; migration to the working
+folders with a reproduction README (README §12, ordered by the experiment lead); reproduction
+check that every output and number matches the release; then the Streamlit app and dashboard,
+the report and slides built from the reproduced outputs, the walkthrough notebook, and input
+checks with error handling in the app.
+OUTPUT: `parity.json`, `input_validation.json`, release tag, migration check, app and dashboard,
+report and deck drafts that cite evidence IDs, notebook.
+TEACHING: Week 6 deployment slides; T7 reference §11–14; brief Phase 3.
 
-### STAGE5 — Diagnose baselines, then test targeted features.
-Generate regression residual-versus-fitted, residual distribution and Q–Q diagnostics from development validation predictions; inspect state/distance/basket errors. For classification inspect AP/PR, ROC, Brier, prevalence and probability reliability; avoid an accuracy-only assessment.
-Compare9core with11regression/12classification inputs, holding estimator settings and preprocessing rules fixed. Feature additions are deterministic checkout formulas; any empirical feature selector is fit inside training folds.
-Compute task-specific permutation diagnostics on validation rows and identify the model they explain. Do not use a tree/logistic importance plot as the final forest's interpretation.
-OUTPUT: paired same-fold feature comparisons and diagnostic rationale.
-TEACHING: Tutorials1–2/5/7–8.
+## Changes from Milestone 2
 
-### STAGE6 — Controlled transformations and complexity progression.
-For regression compare raw target, log1p target, and log1p plus fixed60-day training-target cap. Test input logs separately so target and predictor effects can be distinguished. Evaluate all variants against original, uncapped validation lead_days. If estimating a percentile cap instead, estimate it only in each training fold. Do not automatically remove true long deliveries.
-Within the linear family compare plain models with Ridge/finite-C logistic. Within the tree family compare the documented simple tree, tuned/pruned tree and starter forest. Introduce the forest after the single-tree baseline; compare it on the same feature set and folds.
-Changes are candidates, not guaranteed improvements. Retain the simpler/raw alternative if a complex variant fails the declared decision rule.
-OUTPUT: intervention/ablation table with unchanged and changed components, per-fold deltas and decisions.
-TEACHING: Tutorials3/5/8; teacher complexity guidance.
+**Dropped:** two training cycles (now one ladder in s06); customer-grouped CV screening beside
+chronological confirmation (now chronological folds only); a separate confirmation window (CV
+plus one test, as in Tutorials 7–8); starting from 9 features (now the 27-feature baseline,
+reduced in s04 and chosen per model in s06); Cook's distance as the reason for a 60-day cap (the
+cap value is now chosen on the folds).
 
-### STAGE7 — Bounded tuning of COMPLETE pipelines.
-Tune only promising variants on the selection folds. Initial bounds can reuse Milestone2: Ridge alphas .01,.1,1,10,100,500; logistic C .001,.01,.1,1,10; tree depths4,6,8,10 and leaves20,50,100,200; forest depths6,10,14 and leaves20,50 with50trees. Pruning can use a small declared ccp_alpha grid if baseline diagnostics justify it.
-Every grid candidate includes its feature set, preprocessing and regression target treatment. No post-search switch from categorical to numeric calendars, new target cap, changed cohort or other untested configuration. If a component changes, it is a new development comparison.
-Save every configuration's parameters, fold training/validation scores, means, sample SD, rank, runtime and convergence. Keep pooled OOF AP distinct from mean-fold AP. Scores used for selection are selection scores, not an independent performance estimate.
-Compare the winner to dummy and simplest-family alternatives on identical selection rows. Freeze the model recipe provisionally; do not force the forest to win because it won Milestone2.
-OUTPUT: complete grid tables, selected full pipeline and decision record.
-TEACHING: Tutorials7–8 and brief; grid search is optional in some tutorial cells but is an appropriate bounded continuation of Milestone2.
+**Corrected:** stakeholders named but not their actions; label rule without sensitivity check;
+`order_estimated_delivery_date` misclassified; three untraceable citations (verify or drop);
+several preprocessing builders and post-search switches (one recipe per model, fitted in folds);
+dummies drawn from separate evidence (now fitted on the same folds); tuning on different folds
+from selection; calibration from a separate grouped study; two threshold stories (0.17 vs
+0.1822); importance explaining a non-selected model; recommendations beyond the evidence; numbers
+typed by hand.
 
-### STAGE8 — Interpretation, calibration and operating policy BEFORE confirmation.
-Run learning curves using deterministic nested customer-group subsets within training windows, with the same validation rows. Record actual sizes and class support; use train/validation gaps descriptively. Export rules from the actual simple tree and final-model validation permutation importance.
-Inspect selected classifier OOF calibration. Raw is the initial probability model. If testing sigmoid calibration, train its calibrator only inside the outer training population using chronology/group-respecting internal splits; assess its outer validation outputs as a complete candidate. Choose it only with documented AP/Brier/business trade-offs. No terminal-label calibration.
-Freeze the chosen probability recipe, then choose an operating threshold from its selection OOF predictions using the declared costs/capacity. Compare no alerts, exact .50, legacy .17 and the empirical development optimum. Include exact .50 explicitly; do not substitute the nearest grid point. The theoretical calibrated FP1/FN5 cutoff1/6 is a check under those assumptions, not proof an empirical score is calibrated or a measured business optimum.
-Use a deterministic threshold/tie rule; record counts, precision, recall, F1, alerts and illustrative cost. Neither .17 nor the forest is predetermined. Selection OOF reused for this decision is not independent evaluation of the selected policy.
-OUTPUT: full decision artifact specification (pipeline/calibrator/threshold/cost assumptions) and diagnostics.
-TEACHING: Tutorial7 reference solution §§7–8/10–11; Tutorial8 diagnostics.
+**Added:** outcome trends over time and feature–target relationships in EDA; plain linear and
+logistic baselines; residuals and learning curves; class weight as a tuning option; the
+train–validation–test table with confidence intervals; dashboard and app with input checks;
+approval, migration and reproduction check before any deliverable is built.
 
-### STAGE9 — Chronological confirmation of the frozen method.
-Fit the frozen recipes on the training population available at confirmation start and evaluate the reserved pre-terminal confirmation window. Include dummy and frozen plain-linear/simple-tree comparisons on the identical confirmation rows, not just the selected forest.
-Assess model improvement and the frozen policy without changing them from confirmation results. If a material issue triggers another development iteration, retire that confirmation's independent role and document the reopened selection; never silently tune against it.
-OUTPUT: matched baseline/selected confirmation table, curve/error analyses and accept/reopen decision.
-TEACHING: Tutorials4/7–8 evaluation discipline; project-specific temporal extension.
+## Decisions recorded in `protocol.yaml`, not in this design
 
-### STAGE10 — Final refit and historical benchmark evaluation.
-After confirmation, refit the unchanged recipe on all eligible pre-terminal development training whose outcomes are available at the final fit cutoff. Refit learned components using their declared training-only rules; retain the frozen threshold. Persist the complete probability/calibration construction if adopted, not just an underlying forest.
-Score the fixed Milestone2 terminal benchmark once for this frozen release and do not use those outcomes for model/policy changes. Produce matched reference comparisons, train/validation/confirmation/benchmark tables with distinct denominators, threshold confusion counts, subgroup support and limitations. Do not call old benchmark data newly unseen or silently compare a4-fold mean with Milestone2's5-fold mean as if they were identical estimands.
-If later refitting for production uses benchmark-labelled data, that creates a separately versioned deployment model and does not inherit this release's benchmark score. For this baseline, retain the evaluated pre-terminal-fit artifacts for deployment.
-OUTPUT: final release's benchmark metrics/predictions and evaluation manifest.
-TEACHING: Tutorials7–8 final fitting/evaluation; brief.
+Exact fold boundaries and the label-maturity rule for validation rows; the decision rule for
+keeping a more complex variant (proposed: mean paired per-fold delta favours it and the sign
+agrees in most folds); candidate target-cap values; grids and budget; the label rule; the
+feature lists produced by s04.
 
-### STAGE11 — Persist, reload, validate and deploy the SAME artifact.
-Save pipeline, optional calibrator, threshold, feature schema, positive-class mapping, versions, seeds, training-ID digest and checksums. Verify in-memory versus reloaded prediction parity; validate single/batch inputs, missing values, invalid values, unknown states and eligibility. Inference never fits or optimizes.
-For Milestone3, a small Streamlit application loading the frozen bundles is sufficient; FastAPI is optional, not mandatory. Prefer two task tabs, or at least one deployed task as required by the brief. Show estimated delivery days and detractor probability/alert with plain explanations and input constraints. Use held-out historical records to simulate incoming orders; a live order feed is not required. Benchmark latency only if reporting a measured latency claim.
-OUTPUT: versioned bundles, QA results, application URL/instructions and demonstration screenshots.
-TEACHING: Tutorial8 persistence; Week6 training/deployment/bulk scoring.
+## Report and presentation structure (brief Phase 3)
 
-### STAGE12 — Generate the final report and presentation from the evidence registry.
-Every table, plot and numeric statement resolves to a run ID, task, cohort, phase, candidate, metric definition and source artifact. Preserve row-level/fold data in the appendix/repo; main text carries decisions, reasons, minimal supporting comparisons and limitations.
-Tell one progression: simplest baselines -> diagnosed weaknesses -> targeted interventions -> bounded tuning -> probability/policy decision -> confirmation -> final evaluation -> stakeholder application. Show rejected changes where they explain a choice. Do not require performance to improve monotonically or promote correlations to causal impact.
-Generate one report-ready master metric table and chart coordinates; make report/slide/UI values use that same source. Validate positive class, fractions/percentages, units, rounding and threshold definitions before locking the release.
-OUTPUT: report-ready baseline package, presentation story and executable reproduction guide.
-TEACHING: Tutorials1–2 communication; Week6 application; Phase3 integration requirements.
+Executive summary → problem and stakeholder (s01) → dataset and preprocessing (s02) → EDA
+highlights (s03) → features (s04) → validation design (s05) → modelling, basic to complex (s06–s07)
+→ selection, policy and results (s08–s09) → deployment and application (s10) → business
+recommendations, limitations → references. Every number cites an evidence ID from the reproduced
+outputs.
 
-## D. PRACTICAL EXECUTION CONTRACT
+## Appendix — Milestone 2 pipeline (reference only)
 
-- Design now; implement in a separate Milestone3 version only after this design is accepted. Preserve submitted Milestone2 files and fitted artifacts.
-- Reuse raw data, join/feature formulas, eligibility rules, customer identity handling, chronology/group/maturity helper logic, baseline/tuning ranges and deployment scoring interface where appropriate.
-- Replace separate inconsistent preprocessing builders with one factory; regenerate results after material protocol changes. Never carry forward a metric because the model name or feature count matches.
-- If budget is tight, retain prior justified feature sets rather than rerun27-feature exploration; prioritize matched plain baselines, exact full-pipeline comparisons, final policy and deployment parity.
-- Minimum release evidence: contracts; membership; fold/cohort counts; baseline/ablation/full-grid tables; OOF predictions; selected-pipeline diagnostics; policy; confirmation comparisons; final benchmark predictions/subgroups; complete bundles; report-to-evidence registry.
-- No guaranteed AP/MAE improvement and no assumed unchanged winner. The deliverable is a defensible, reproducible baseline with a clear decision path.
-
-## E. REPORT/PRESENTATION STRUCTURE
-Problem and user -> dataset/checkout contract -> partition/validation diagram -> simple baselines -> EDA/diagnostic motivation -> feature/target/model interventions -> matched selection and policy -> confirmation and benchmark results -> live application -> limitations and next steps.
-The two cycles can remain as labels for narrative clarity: Cycle1 establishes the simplest matched baseline; Cycle2 evaluates targeted improvements. Both use the same task eligibility, pipeline factory, validation definitions and evidence format. They are two iterations of one pipeline, not unrelated experiments stitched together.
+Milestone 2 framed the same two tasks; built order-level data from seven tables; used
+customer-grouped development folds for screening and tuning; reduced 27 candidate features to a
+9-feature core and expanded to 11 (regression) and 12 (classification) in a second cycle; tuned
+Ridge, logistic C, trees and 50-tree forests; applied input and target log1p and a 60-day target
+cap outside tuning; ran separate grouped calibration and cost studies; confirmed only the
+selected forests on five chronological expanding windows; froze a 0.17 threshold; and scored the
+terminal cohort starting 2018-05-25. Its code and artifacts (`src/`, `artifacts/`,
+`experiments/experiment_3/`) are reference only.

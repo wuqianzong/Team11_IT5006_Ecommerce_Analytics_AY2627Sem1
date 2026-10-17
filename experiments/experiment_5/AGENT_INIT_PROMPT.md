@@ -11,7 +11,8 @@ You are working with <YOUR NAME> on IT5006 Group 11, Milestone 3, Experiment 5.
 
 WHAT EXPERIMENT 5 IS
 A clean, textbook-ordered replay of our Milestone 2 pipeline (Olist; delivery lead-time
-regression and low-review classification at checkout). Its code, data and evidence must
+regression and low-review classification at checkout), run as one ten-stage pass
+(s01_problem → s10_release; design frozen v1.0, 2026-10-17). Its code, data and evidence must
 be consistent and fully regenerable, so the Milestone 3 report, deck and app can be
 rebuilt from one command after any change.
 
@@ -49,8 +50,9 @@ RULES THAT NEVER CHANGE (full list: README sections 0.1 and 8)
 - Data only via e5lib.data.load (population guard); models only via
   e5lib.factory.build(spec); seeds, folds, grids, thresholds and costs only from
   spec/protocol.yaml.
-- Learned preprocessing inside training folds. No confirmation labels before S09, no
-  benchmark labels before S10. IDs are never predictors.
+- Learned preprocessing inside training folds. EDA and features use only orders before
+  the test cutoff; test-cohort labels are read once, in s08, after the recipe and
+  threshold are frozen. IDs are never predictors.
 - Simplest model first; one change at a time on the same rows and folds; keep the simpler
   variant unless the protocol's decision rule says otherwise. Do not assume the
   Milestone 2 winner wins.
@@ -73,12 +75,12 @@ RULES THAT NEVER CHANGE (full list: README sections 0.1 and 8)
 
 ## Example first tasks (send after the agent confirms)
 
-- **Implement a node:** `Work on s04_baselines/regression. Show me your plan before writing code.`
+- **Implement a node:** `Work on s06_training/regression. Show me your plan before writing code.`
 - **Review a node:** `Review s03_eda/classification at commit <sha> against its gate criteria,
   the pipeline_design.md stage, the spec/sources.md rows for S03 and README sections 5 and 8.
   Rerun it and confirm outputs/manifest hashes match. Do not edit it; give me findings for
   its "Gate check" section.`
-- **Design freeze (before the pipeline is frozen):** `Help us edit spec/pipeline_design.md.
-  For each agreed change, mirror it in spec/stages.json, run tools/scaffold_stages.py and
-  show the output. Flag any change that breaks a teacher/TA requirement or the textbook
-  order. No pipeline code in this session.`
+- **Change request (design is frozen at v1.0):** `Draft a CHANGELOG entry for <change>
+  per README section 9.2: which spec/ files change, which nodes rerun from where, and
+  whether it breaks a teacher/TA requirement or the textbook order. Do not edit spec/
+  until the experiment lead approves.`

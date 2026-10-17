@@ -1,342 +1,219 @@
 {
   "_about": "Machine-readable stage list derived from pipeline_design.md. Edit this when the design changes, then run: python experiments/experiment_5/tools/scaffold_stages.py. Nodes = stage x task. 'purpose' may be a string or {task: string}. '{task}' in depends_on is replaced by the node's task.",
-  "version": "0.1-draft",
-  "design_version": "pipeline_design.md 2026-10-13 (pre-freeze)",
+  "version": "1.0",
+  "design_version": "pipeline_design.md v1.0 (frozen 2026-10-17, CR-001)",
   "stages": [
     {
-      "id": "s00_contract",
-      "title": "Contract",
-      "design_ref": "STAGE0",
-      "tasks": [
-        "common"
-      ],
+      "id": "s01_problem",
+      "title": "Problem statement",
+      "design_ref": "s01",
+      "tasks": ["common"],
       "depends_on": [],
-      "purpose": "Freeze tasks, targets, positive class, eligible populations, excluded post-outcome columns, stakeholders, metrics, the illustrative FN:FP = 5:1 cost, decision/tie rules, model families and search budget - before any result.",
+      "purpose": "Fix both checkout tasks, prediction time, stakeholders and their actions, targets and label rules, metrics, the illustrative FN:FP = 5:1 cost, model families, decision rule, search budget and seed 42 - before any result.",
       "outputs": [
         "spec/protocol.yaml v1.0 (proposed via CHANGELOG)",
-        "task_contract.md (per-task prediction time, stakeholder action, limits)"
+        "task_contract.md (prediction time, stakeholder action, limits, metric and model rationale with verified citations)"
       ],
       "gate": [
         "Every number later stages need is in protocol.yaml",
-        "Decision rules and tie-breaks written before any result",
-        "Teacher/TA/brief rows for S00 in spec/sources.md satisfied",
-        "Milestone 2 TA comments added to spec/sources.md section 3.2"
+        "Decision rule and tie-breaks written before any result",
+        "Stakeholder action stated, not only named",
+        "Every citation verified to exist and support its claim"
       ],
-      "gate_question": "Are targets, populations, metrics, decision rules and budget frozen before any result?"
+      "gate_question": "Are tasks, targets, metrics, cost, decision rule and budget fixed before any result?"
     },
     {
-      "id": "s01_records",
-      "title": "Records",
-      "design_ref": "STAGE1",
-      "tasks": [
-        "common"
-      ],
-      "depends_on": [
-        "s00_contract/common"
-      ],
-      "purpose": "Build the deterministic order-level feature/target table from the Milestone 2 joins and formulas; audit keys, join cardinality, units, review aggregation, target-availability timestamps, freight_ratio and zero-item classification eligibility.",
+      "id": "s02_data",
+      "title": "Data preprocessing",
+      "design_ref": "s02",
+      "tasks": ["common"],
+      "depends_on": ["s01_problem/common"],
+      "purpose": "Load and clean the nine Olist tables deterministically, join aggregation-first to one row per order, build both targets with label-availability timestamps, audit every column against checkout time and apply the zero-item classification rule.",
       "outputs": [
         "records.csv.gz (IDs for audit + features + targets + timestamps)",
         "exclusions.csv",
-        "data_hashes.json (raw CSV sha256)",
-        "audit.json (join/grain/leakage checks)"
+        "data_hashes.json (input and IBGE boundary sha256)",
+        "audit.json (joins, grains, leakage, label sensitivity)"
       ],
       "gate": [
-        "Only row-local deterministic formulas; nothing learned",
-        "Leakage exclusions listed and checked",
-        "Label sensitivity (minimum vs first review) recorded",
-        "Raw data hashes recorded"
+        "Only row-local deterministic rules; nothing learned",
+        "Every column classified as known or not known at checkout",
+        "Minimum vs first review label sensitivity recorded",
+        "Input hashes recorded"
       ],
-      "gate_question": "Are joins, grains, units, eligibility and leakage exclusions verified?"
-    },
-    {
-      "id": "s02_partitions",
-      "title": "Partitions",
-      "design_ref": "STAGE2",
-      "tasks": [
-        "regression",
-        "classification"
-      ],
-      "depends_on": [
-        "s01_records/common"
-      ],
-      "purpose": "Freeze selection folds (four earlier expanding windows), the confirmation window (last pre-terminal window) and the Milestone 2 terminal benchmark manifest; customer purge and label maturity at every fit origin.",
-      "outputs": [
-        "selection_folds.csv",
-        "confirmation_manifest.csv",
-        "benchmark_manifest.csv",
-        "counts.json (rows, customers, positives per fold/population)",
-        "checks.json (overlap, maturity, class support)"
-      ],
-      "gate": [
-        "No Milestone 2 held-out IDs in development",
-        "Training outcomes available before each fit origin",
-        "Customers purged across train/validation",
-        "Both classes present in every fold (classification)"
-      ],
-      "gate_question": "Are windows chronological, customers purged, labels mature and both classes supported?"
+      "gate_question": "Are joins, grains, targets and leakage exclusions verified?"
     },
     {
       "id": "s03_eda",
       "title": "EDA",
-      "design_ref": "STAGE3",
-      "tasks": [
-        "regression",
-        "classification"
-      ],
-      "depends_on": [
-        "s02_partitions/{task}"
-      ],
-      "purpose": "Question-driven EDA on SELECTION data only: missingness, distributions/tails, seasonality, geography/basket relations, feature-target associations, linear design rank. Produce a small declared set of candidate changes.",
+      "design_ref": "s03",
+      "tasks": ["regression", "classification"],
+      "depends_on": ["s02_data/common"],
+      "purpose": "Question-driven EDA on pre-cutoff orders only: target shape and tails, outcome trends over time, feature-target relationships, missingness, outliers and collinearity (correlation, VIF, rank).",
       "outputs": [
         "figures/*.png + sidecar json",
-        "candidate_rationale.csv (change, observation, literature, hypothesis, stage to test)",
-        "eda_summary.json"
+        "eda_summary.json",
+        "candidate_rationale.csv (finding, evidence, change it motivates, stage that tests it)"
       ],
       "gate": [
-        "Only the selection population loaded",
-        "Each proposed change linked to an observation",
-        "Nothing fitted on all development and fed into CV"
+        "No order on or after the test cutoff loaded",
+        "Outcome trends shown, not volume only",
+        "Each proposed change linked to an observation"
       ],
-      "gate_question": "Does every planned change follow from an observed, selection-only finding?"
+      "gate_question": "Does every planned change follow from a pre-cutoff observation?"
     },
     {
-      "id": "s04_baselines",
-      "title": "Baselines",
-      "design_ref": "STAGE4",
-      "tasks": [
-        "regression",
-        "classification"
+      "id": "s04_features",
+      "title": "Features",
+      "design_ref": "s04",
+      "tasks": ["regression", "classification"],
+      "depends_on": ["s03_eda/{task}"],
+      "purpose": "Define, without fitting: the 27-feature baseline; log transforms and a target-cap step whose value is chosen later on the folds; label-free reduction to a core set; rationale and citations; candidate feature sets per model; the pipeline recipe per model (impute, encode, scale).",
+      "outputs": [
+        "feature_dictionary.csv (formula, grain, availability, missingness, rationale, citation)",
+        "candidate_sets.json (per model)",
+        "recipes.json (pipeline recipe per model)"
       ],
-      "depends_on": [
-        "s02_partitions/{task}",
-        "s03_eda/{task}"
+      "gate": [
+        "Only label-free checks used for reduction",
+        "Cap value not fixed here; candidates declared in protocol.yaml",
+        "Every retained feature has a rationale",
+        "Nothing fitted on data"
       ],
+      "gate_question": "Are features and recipes defined without fitting or using labels?"
+    },
+    {
+      "id": "s05_partition",
+      "title": "Partition",
+      "design_ref": "s05",
+      "tasks": ["regression", "classification"],
+      "depends_on": ["s04_features/{task}"],
+      "purpose": "Hold out the test cohort (exact IDs frozen) and build chronological expanding CV folds on development orders with customer purge, label maturity and class-support checks; seed 42 documented.",
+      "outputs": [
+        "folds.csv",
+        "test_manifest.csv",
+        "counts.json (rows, customers, positives per fold and cohort)",
+        "checks.json (overlap, maturity, rows lost to maturity, class support)"
+      ],
+      "gate": [
+        "No test-cohort ID in development",
+        "Customers purged across training and validation",
+        "Training outcomes available before each fold origin",
+        "Both classes present in every fold (classification)"
+      ],
+      "gate_question": "Are folds chronological, customers purged, labels mature and classes supported?"
+    },
+    {
+      "id": "s06_training",
+      "title": "Training",
+      "design_ref": "s06",
+      "tasks": ["regression", "classification"],
+      "depends_on": ["s05_partition/{task}"],
       "purpose": {
-        "regression": "Matched simplest baselines on the 9-feature core via e5lib.factory: median DummyRegressor, plain LinearRegression, documented single DecisionTreeRegressor.",
-        "classification": "Matched simplest baselines on the 9-feature core via e5lib.factory: prior DummyClassifier, unregularised LogisticRegression (penalty=None), documented single DecisionTreeClassifier."
+        "regression": "On the s05 folds: median dummy, plain LinearRegression, single decision tree, random forest, each one Pipeline from the s04 recipe; residuals and learning curves; choose each model's feature set, the log transforms and the target-cap value on the folds.",
+        "classification": "On the s05 folds: prior dummy, unregularised LogisticRegression, single decision tree, random forest, each one Pipeline from the s04 recipe; learning curves; choose each model's feature set and transforms on the folds."
       },
       "outputs": [
         "metrics_long.csv (train + validation per fold)",
-        "predictions.csv.gz (OOF)",
-        "decision.json (baseline reference per family)",
-        "design_diagnostics.json (actual fitted matrix rank/condition)"
-      ],
-      "gate": [
-        "Identical rows and folds for all candidates",
-        "Preprocessing inside folds",
-        "Solver/convergence recorded",
-        "Simplest baseline per family exists"
-      ],
-      "gate_question": "Do simplest matched baselines exist on identical rows and folds?"
-    },
-    {
-      "id": "s05_features",
-      "title": "Features",
-      "design_ref": "STAGE5",
-      "tasks": [
-        "regression",
-        "classification"
-      ],
-      "depends_on": [
-        "s04_baselines/{task}"
-      ],
-      "purpose": {
-        "regression": "Diagnose baselines (residual vs fitted, residual distribution, Q-Q, state/distance/basket errors) and compare core 9 vs 11 features with estimator and preprocessing held fixed; permutation importance on validation rows of a named model.",
-        "classification": "Diagnose baselines (AP/PR, ROC, Brier, prevalence, reliability) and compare core 9 vs 12 features with estimator and preprocessing held fixed; permutation importance on validation rows of a named model."
-      },
-      "outputs": [
-        "metrics_long.csv",
-        "paired_deltas.csv (per fold)",
-        "figures/",
-        "importance.csv (states which candidate it explains)",
+        "predictions.csv.gz (out-of-fold)",
+        "figures/ (residuals, learning curves)",
         "decision.json"
       ],
       "gate": [
-        "Only features change between paired candidates",
-        "Importance attributed to the right model"
+        "Identical rows and folds for every candidate",
+        "Preprocessing fitted inside folds",
+        "Simplest model of each family present",
+        "One change at a time under the decision rule"
       ],
-      "gate_question": "Do expansions help with estimator and preprocessing fixed?"
-    },
-    {
-      "id": "s06_interventions",
-      "title": "Interventions",
-      "design_ref": "STAGE6",
-      "tasks": [
-        "regression",
-        "classification"
-      ],
-      "depends_on": [
-        "s05_features/{task}"
-      ],
-      "purpose": {
-        "regression": "One-change-at-a-time ablations: raw vs log1p vs log1p+cap60 target (always evaluated on uncapped lead_days), input logs separately, LinearRegression vs Ridge, single tree vs pruned tree vs starter forest.",
-        "classification": "One-change-at-a-time ablations: input logs, unregularised vs finite-C logistic, single tree vs pruned tree vs starter forest."
-      },
-      "outputs": [
-        "ablation.csv (unchanged/changed component, per-fold deltas, decision)",
-        "metrics_long.csv",
-        "decision.json"
-      ],
-      "gate": [
-        "Each added complexity justified by the protocol rule",
-        "Simpler variant kept when the rule fails"
-      ],
-      "gate_question": "Is each added complexity justified one change at a time?"
+      "gate_question": "Do the models run basic to complex on identical folds, with each choice justified?"
     },
     {
       "id": "s07_tuning",
       "title": "Tuning",
-      "design_ref": "STAGE7",
-      "tasks": [
-        "regression",
-        "classification"
-      ],
-      "depends_on": [
-        "s06_interventions/{task}"
-      ],
-      "purpose": "Bounded grid search over COMPLETE pipelines on selection folds using protocol.yaml grids; compare the winner with dummy and simplest family on identical rows.",
-      "outputs": [
-        "grid_results.csv (every config: params, fold scores, mean, SD, rank, runtime, convergence)",
-        "predictions.csv.gz (OOF of finalists)",
-        "selected_spec.json",
-        "decision.json"
-      ],
-      "gate": [
-        "No post-search configuration switch",
-        "Pooled OOF vs mean-fold kept distinct",
-        "Winner compared with baselines"
-      ],
-      "gate_question": "Is the winner a complete pipeline, compared with dummy and simplest family?"
-    },
-    {
-      "id": "s08_policy",
-      "title": "Policy",
-      "design_ref": "STAGE8",
-      "tasks": [
-        "regression",
-        "classification"
-      ],
-      "depends_on": [
-        "s07_tuning/{task}"
-      ],
+      "design_ref": "s07",
+      "tasks": ["regression", "classification"],
+      "depends_on": ["s06_training/{task}"],
       "purpose": {
-        "regression": "Learning curves, interpretation (simple-tree rules, permutation importance of the selected model) and error profile; freeze the regression recipe before confirmation.",
-        "classification": "Learning curves, interpretation, calibration choice (raw vs in-training sigmoid), then threshold choice from selection OOF (no alerts, 0.50, 0.17, empirical optimum); freeze the recipe before confirmation."
+        "regression": "Bounded grids on the same folds: Ridge alpha; tree depth and leaf; forest depth and leaf. Every candidate a whole pipeline.",
+        "classification": "Bounded grids on the same folds: logistic C; tree depth and leaf; forest depth and leaf; class weight None vs balanced. Every candidate a whole pipeline."
       },
       "outputs": [
-        "learning_curve.csv + figures",
-        "calibration.csv (classification)",
-        "threshold_table.csv (classification: counts, precision, recall, F1, alerts, cost)",
+        "grid_results.csv (every config: params, fold scores, mean, SD, rank, runtime, convergence)",
+        "predictions.csv.gz (out-of-fold, finalists)"
+      ],
+      "gate": [
+        "Grids taken from protocol.yaml",
+        "No configuration switched after the search",
+        "Pooled out-of-fold and mean-fold scores kept distinct"
+      ],
+      "gate_question": "Is every tuned candidate a complete pipeline scored on the same folds?"
+    },
+    {
+      "id": "s08_selection",
+      "title": "Selection",
+      "design_ref": "s08",
+      "tasks": ["regression", "classification"],
+      "depends_on": ["s07_tuning/{task}"],
+      "purpose": {
+        "regression": "Select the model on threshold-free scores against the dummy and simplest models; freeze the recipe; fit on all development orders; score the test cohort once.",
+        "classification": "Select the model on threshold-free scores against the dummy and simplest models; check calibration; choose the threshold from out-of-fold predictions under the 5:1 cost; freeze; fit on all development orders; score the test cohort once."
+      },
+      "outputs": [
+        "selected_spec.json",
+        "threshold_table.csv (classification: no alerts, 0.50, 0.17, empirical optimum)",
         "frozen_recipe.json",
-        "decision.json"
+        "bundle/ (pipeline, threshold, schema, versions, training-ID digest, checksums)",
+        "metrics_long.csv (phase = test) + predictions.csv.gz"
       ],
       "gate": [
-        "Probability recipe frozen before threshold (classification)",
-        "Recipe frozen before S09",
-        "No confirmation/benchmark labels used"
+        "Model selected before the threshold",
+        "Recipe and threshold frozen before the test cohort is read",
+        "Test cohort scored once"
       ],
-      "gate_question": "Is the recipe (and probability/threshold policy) frozen before confirmation?"
+      "gate_question": "Was the recipe frozen before the test cohort was scored once?"
     },
     {
-      "id": "s09_confirmation",
-      "title": "Confirmation",
-      "design_ref": "STAGE9",
-      "tasks": [
-        "regression",
-        "classification"
-      ],
-      "depends_on": [
-        "s08_policy/{task}"
-      ],
-      "purpose": "Fit frozen recipes at confirmation start; evaluate the reserved confirmation window for the selected pipeline AND dummy / plain-linear / simple-tree references on identical rows.",
+      "id": "s09_conclusion",
+      "title": "Conclusion",
+      "design_ref": "s09",
+      "tasks": ["regression", "classification"],
+      "depends_on": ["s08_selection/{task}"],
+      "purpose": "Train-validation-test table with bootstrap confidence intervals, subgroup errors and drift, interpretation of the selected model, stakeholder actions supported by the evidence, and limitations.",
       "outputs": [
-        "metrics_long.csv (phase=confirmation)",
-        "predictions.csv.gz",
-        "figures/",
-        "decision.json (accept / reopen)"
+        "master_metrics.csv (train / validation / test, with CIs)",
+        "subgroups.csv",
+        "drift.csv",
+        "importance.csv (states the model it explains)",
+        "conclusion.md"
       ],
       "gate": [
-        "Recipe unchanged from S08",
-        "Matched references included",
-        "Reopen documented in CHANGELOG if triggered"
+        "Importance explains the selected model",
+        "Test cohort described as historical held-out, not unseen",
+        "Every recommendation traced to evidence"
       ],
-      "gate_question": "Does the frozen method hold up without being changed?"
+      "gate_question": "Does every conclusion follow from the test results and their limits?"
     },
     {
-      "id": "s10_benchmark",
-      "title": "Benchmark",
-      "design_ref": "STAGE10",
-      "tasks": [
-        "regression",
-        "classification"
-      ],
-      "depends_on": [
-        "s09_confirmation/{task}"
-      ],
-      "purpose": "Refit the unchanged recipe on all eligible pre-terminal training; score the Milestone 2 terminal benchmark once; subgroup and error analysis; persist complete bundles.",
+      "id": "s10_release",
+      "title": "Release",
+      "design_ref": "s10",
+      "tasks": ["common"],
+      "depends_on": ["s09_conclusion/regression", "s09_conclusion/classification"],
+      "purpose": "Reload parity of the bundles; team approval; lead-ordered migration with a reproduction README (README section 12); reproduction check; then the Streamlit app and dashboard, report and slides from the reproduced outputs, walkthrough notebook, and input checks with error handling.",
       "outputs": [
-        "bundle/ (pipeline, calibrator, threshold, schema, versions, training-ID digest, checksums)",
-        "metrics_long.csv (phase=benchmark)",
-        "predictions.csv.gz",
-        "subgroups.csv"
-      ],
-      "gate": [
-        "Benchmark scored once per release",
-        "Benchmark described as historical, not unseen",
-        "Bundle is the exact evaluated artifact"
-      ],
-      "gate_question": "Is the confirmed recipe refitted unchanged and scored once?"
-    },
-    {
-      "id": "s11_deployment",
-      "title": "Deployment",
-      "design_ref": "STAGE11",
-      "tasks": [
-        "common"
-      ],
-      "depends_on": [
-        "s10_benchmark/regression",
-        "s10_benchmark/classification"
-      ],
-      "purpose": "Reload bundles, verify in-memory vs reloaded parity, validate single/batch/missing/invalid/unknown inputs; Streamlit app with two task tabs using held-out records as simulated orders.",
-      "outputs": [
-        "app/ (Streamlit app code; runs from this node folder, loads S10 bundles from their outputs/)",
         "parity.json",
         "input_validation.json",
-        "app instructions + screenshots"
+        "migration_check.json",
+        "app/ and dashboard (inside experiments/experiment_5 until migration)",
+        "deliverables/ report and deck drafts citing evidence IDs",
+        "walkthrough notebook"
       ],
       "gate": [
-        "App loads the S10 bundle unchanged",
-        "Inference never fits",
-        "App and bundles stay inside experiments/experiment_5/ (no deployment/ changes before migration)"
+        "App loads the s08 bundle unchanged",
+        "Reproduction check matches the release before any deliverable is built",
+        "Nothing written outside experiments/experiment_5/ before the lead orders migration"
       ],
-      "gate_question": "Does the app load the same artifact and reproduce its predictions?"
-    },
-    {
-      "id": "s12_package",
-      "title": "Package",
-      "design_ref": "STAGE12",
-      "tasks": [
-        "common"
-      ],
-      "depends_on": [
-        "s11_deployment/common"
-      ],
-      "purpose": "Build evidence/build from evidence/registry.yaml; master metric table; verify every report/deck/app number against numbers.json; cut the release tag.",
-      "outputs": [
-        "evidence/build/** (via build_evidence.py)",
-        "deliverables/ report & deck drafts that cite evidence IDs",
-        "report_number_check.json",
-        "release notes"
-      ],
-      "gate": [
-        "run_pipeline.py check passes",
-        "Every report/deck number traces to an evidence ID",
-        "Story follows design section E",
-        "Nothing written outside experiments/experiment_5/; migration only on the experiment lead's instruction (README section 12)"
-      ],
-      "gate_question": "Does every number in report, deck and app trace to one release?"
+      "gate_question": "Do the app, dashboard, report and slides all trace to one reproduced release?"
     }
   ]
 }

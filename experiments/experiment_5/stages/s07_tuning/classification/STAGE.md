@@ -4,7 +4,7 @@ owner: TBD
 reviewer: TBD
 status: TODO
 depends_on:
-  - s06_interventions/classification
+  - s06_training/classification
 reads: []   # exact upstream files used
 writes: []  # every file run.py produces
 ---
@@ -12,23 +12,21 @@ writes: []  # every file run.py produces
 <!-- BEGIN GENERATED from spec/stages.json -->
 # s07_tuning / classification - Tuning
 
-Spec: `spec/pipeline_design.md` -> STAGE7. Teacher/TA rows: `spec/sources.md` (search `S07`).
+Spec: `spec/pipeline_design.md` -> s07. Teacher/TA rows: `spec/sources.md` (search `S07`).
 
-**Gate question:** Is the winner a complete pipeline, compared with dummy and simplest family?
+**Gate question:** Is every tuned candidate a complete pipeline scored on the same folds?
 
 ## Purpose
-Bounded grid search over COMPLETE pipelines on selection folds using protocol.yaml grids; compare the winner with dummy and simplest family on identical rows.
+Bounded grids on the same folds: logistic C; tree depth and leaf; forest depth and leaf; class weight None vs balanced. Every candidate a whole pipeline.
 
 ## Planned outputs (`outputs/`)
 - grid_results.csv (every config: params, fold scores, mean, SD, rank, runtime, convergence)
-- predictions.csv.gz (OOF of finalists)
-- selected_spec.json
-- decision.json
+- predictions.csv.gz (out-of-fold, finalists)
 
 ## Gate criteria
-- No post-search configuration switch
-- Pooled OOF vs mean-fold kept distinct
-- Winner compared with baselines
+- Grids taken from protocol.yaml
+- No configuration switched after the search
+- Pooled out-of-fold and mean-fold scores kept distinct
 <!-- END GENERATED -->
 
 ## Review summary (owner fills at gate; cite files, never type numbers from memory)

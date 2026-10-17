@@ -4,7 +4,7 @@ owner: TBD
 reviewer: TBD
 status: TODO
 depends_on:
-  - s02_partitions/classification
+  - s02_data/common
 reads: []   # exact upstream files used
 writes: []  # every file run.py produces
 ---
@@ -12,22 +12,22 @@ writes: []  # every file run.py produces
 <!-- BEGIN GENERATED from spec/stages.json -->
 # s03_eda / classification - EDA
 
-Spec: `spec/pipeline_design.md` -> STAGE3. Teacher/TA rows: `spec/sources.md` (search `S03`).
+Spec: `spec/pipeline_design.md` -> s03. Teacher/TA rows: `spec/sources.md` (search `S03`).
 
-**Gate question:** Does every planned change follow from an observed, selection-only finding?
+**Gate question:** Does every planned change follow from a pre-cutoff observation?
 
 ## Purpose
-Question-driven EDA on SELECTION data only: missingness, distributions/tails, seasonality, geography/basket relations, feature-target associations, linear design rank. Produce a small declared set of candidate changes.
+Question-driven EDA on pre-cutoff orders only: target shape and tails, outcome trends over time, feature-target relationships, missingness, outliers and collinearity (correlation, VIF, rank).
 
 ## Planned outputs (`outputs/`)
 - figures/*.png + sidecar json
-- candidate_rationale.csv (change, observation, literature, hypothesis, stage to test)
 - eda_summary.json
+- candidate_rationale.csv (finding, evidence, change it motivates, stage that tests it)
 
 ## Gate criteria
-- Only the selection population loaded
+- No order on or after the test cutoff loaded
+- Outcome trends shown, not volume only
 - Each proposed change linked to an observation
-- Nothing fitted on all development and fed into CV
 <!-- END GENERATED -->
 
 ## Review summary (owner fills at gate; cite files, never type numbers from memory)

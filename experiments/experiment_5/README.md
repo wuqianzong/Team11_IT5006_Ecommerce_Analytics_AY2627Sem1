@@ -1,6 +1,6 @@
 # Experiment 5 — Milestone 3 clean baseline (textbook-sequence replay of Milestone 2)
 
-Status: **PROTOCOL DRAFT v0.1 (2026-10-16) — for team discussion. No implementation yet.**
+Status: **PROTOCOL v1.0 — pipeline design frozen 2026-10-17 (CR-001). No implementation yet.**
 Branch: `milestone-3`. Owner of this protocol: team (changes follow §9).
 
 ---
@@ -8,10 +8,10 @@ Branch: `milestone-3`. Owner of this protocol: team (changes follow §9).
 ## 0. Read this first (humans and AI agents)
 
 Experiment 5 is **not a new study**. It replays the Milestone 2 direction
-(Olist, two checkout-time tasks, leakage exclusions, 9-feature core,
-task-specific 11/12-feature expansions, linear and tree families) but executes it
-in the **textbook order taught in Tutorials 1–8**, with **one validation protocol,
-one pipeline factory and one evidence registry** from start to finish.
+(Olist, two checkout-time tasks, leakage exclusions, the 27-feature candidate set,
+log transforms and target cap, linear and tree families) but executes it as **one
+ten-stage pass in the textbook order taught in Tutorials 1–8**, with **one validation
+protocol, one pipeline factory and one evidence registry** from start to finish.
 
 Its purpose is a baseline whose pipeline, code, data and evidence are
 **clear, accurate and logically connected**, so the Milestone 3 report, deck and
@@ -20,7 +20,7 @@ app can all be regenerated from one command after any change.
 **If you are an AI agent:** before editing anything, read in this order:
 
 1. this README (the rules — binding);
-2. [`spec/pipeline_design.md`](spec/pipeline_design.md) (what each stage must do — binding once frozen);
+2. [`spec/pipeline_design.md`](spec/pipeline_design.md) (what each stage must do — frozen v1.0, binding);
 3. [`spec/sources.md`](spec/sources.md) (teacher expectations, TA feedback, tutorial mapping);
 4. the `STAGE.md` of the stage/task folder you were assigned.
 
@@ -57,7 +57,7 @@ mechanisms:
 | --- | --- |
 | Numbers from different runs/protocols mixed in one report | Every output carries a **run manifest** with input/code/config hashes; the report is built only from a **release** where every stage is fresh (§6, §7) |
 | Several preprocessing builders, untested switches after search | **One pipeline factory** in `e5lib/`; a candidate is a full spec (features + preprocessing + target treatment + estimator) with a stable `candidate_id` (§5.3) |
-| Grouped screening compared with chronological confirmation | **One frozen protocol** in `spec/protocol.yaml`, written in Stage 0, used by every stage (§5.2) |
+| Grouped screening compared with chronological confirmation | **One frozen protocol** in `spec/protocol.yaml`, written in s01_problem, used by every stage (§5.2) |
 | Pipeline changed but downstream evidence not rerun | **DAG orchestrator** marks downstream stages **STALE** and reruns them; decisions that flip are sent back to review (§6) |
 | Hand-copied numbers in report/deck | **Evidence registry** maps every table/figure/number to a stage output; report/deck/app read only `evidence/build/` (§7) |
 
@@ -71,7 +71,7 @@ When documents disagree, the higher item wins:
 2. Teacher expectations ([`spec/teacher_expectation_m2.md`](spec/teacher_expectation_m2.md)) and TA feedback (summarised in `spec/sources.md`).
 3. Tutorials 1–8 sequence (mapped per stage in `spec/pipeline_design.md` and `spec/sources.md`).
 4. [`spec/pipeline_design.md`](spec/pipeline_design.md) — the agreed Milestone 3 pipeline (the authoritative copy; supersedes the `docs/` original).
-5. `spec/protocol.yaml` — the frozen numeric contract (seeds, folds, grids, decision rules). Created in Stage 0.
+5. `spec/protocol.yaml` — the frozen numeric contract (seeds, folds, grids, decision rules). Created in s01_problem.
 6. This README — process and collaboration rules.
 7. `STAGE.md` of each stage — local details only; may not contradict 1–6.
 
@@ -90,11 +90,11 @@ experiments/experiment_5/
 ├── AGENT_INIT_PROMPT.md       # general copy-paste prompt to start any teammate's agent
 ├── CHANGELOG.md               # every change request to spec/, e5lib/ or an ACCEPTED stage
 ├── spec/                      # WHAT we do (team-owned, change via §9)
-│   ├── pipeline_design.md     # THE Milestone 3 pipeline design (authoritative copy; edited until frozen)
+│   ├── pipeline_design.md     # THE Milestone 3 pipeline design (authoritative; frozen v1.0)
 │   ├── stages.json            # machine-readable stage list derived from the design (§3.1)
 │   ├── sources.md             # teacher/TA/tutorial requirements → stage mapping
 │   ├── teacher_expectation_m2.md
-│   └── protocol.yaml          # frozen numbers & rules, written by Stage 0
+│   └── protocol.yaml          # frozen numbers & rules, written by s01_problem
 ├── e5lib/                     # SHARED code (platform owner; change via PR + review)
 │   ├── paths.py               # all paths; no stage hard-codes a path
 │   ├── data.py                # loaders with population guard (§5.4)
@@ -104,12 +104,11 @@ experiments/experiment_5/
 │   ├── cv.py                  # fold iteration, customer purge, label-maturity filter
 │   └── manifest.py            # run manifest write/read, hashing, staleness check
 ├── stages/                    # HOW it ran — one folder per node, GENERATED from spec/stages.json
-│   ├── s00_contract/common/   #   (current draft list; see §10 for the live index)
-│   ├── s01_records/common/
-│   ├── s02_partitions/{regression,classification}/
-│   ├── …                      #   s03_eda … s10_benchmark, each {regression,classification}
-│   ├── s11_deployment/common/
-│   └── s12_package/common/
+│   ├── s01_problem/common/    #   (see §10 for the live index)
+│   ├── s02_data/common/
+│   ├── s03_eda/{regression,classification}/
+│   ├── …                      #   s04_features … s09_conclusion, each {regression,classification}
+│   └── s10_release/common/
 │       # every node folder has the SAME layout:
 │       #   STAGE.md     stage card: owner, status, inputs, outputs, decision rule, review
 │       #   run.py       single entry point: python -m ... run.py  (no arguments needed)
@@ -138,7 +137,7 @@ order. `common/` is used where the two tasks genuinely share one node.
 
 ### 3.1 When the pipeline design changes (including the design-freeze meeting)
 
-The structure is **not hard-wired** to the current 13 stages. The design flows one way:
+The structure is **not hard-wired** to the current 10 stages. The design flows one way:
 
 `spec/pipeline_design.md` (prose, for humans) → `spec/stages.json` (stage list, for tools)
 → `tools/scaffold_stages.py` → `stages/*/*/STAGE.md` + the §10 index.
@@ -174,10 +173,10 @@ registry. Only the list of nodes changes.
 
 | Role | Owns (may edit) | Main stages | Person |
 | --- | --- | --- | --- |
-| Platform lead | `e5lib/`, `run_pipeline.py`, `build_evidence.py`, `tests/`, S00–S02 | 0, 1, 2 | _TBD_ |
-| Regression lead | `stages/*/regression/` | 3–10 (regression) | _TBD_ |
-| Classification lead | `stages/*/classification/` | 3–10 (classification) | _TBD_ |
-| Product / report lead | `s11_deployment/` (incl. the app), `s12_package/`, `evidence/registry.yaml`, `deliverables/` | 11, 12 | _TBD_ |
+| Platform lead | `e5lib/`, `run_pipeline.py`, `build_evidence.py`, `tests/`, s01–s02 | 1, 2 | _TBD_ |
+| Regression lead | `stages/*/regression/` | 3–9 (regression) | _TBD_ |
+| Classification lead | `stages/*/classification/` | 3–9 (classification) | _TBD_ |
+| Product / report lead | `s10_release/` (app, dashboard, deliverables), `evidence/registry.yaml`, `deliverables/` | 10 | _TBD_ |
 | Experiment lead | `spec/` (with team approval), `CHANGELOG.md`, release tags; the only person who can order the migration (§12) | all | _TBD_ |
 | Reviewer of the week | — (reads, signs off) | each gate | rotates |
 
@@ -200,15 +199,15 @@ Every node declares its interface in YAML front matter. The orchestrator reads i
 
 ```yaml
 ---
-node: s04_baselines/regression
+node: s06_training/regression
 owner: <name>
 reviewer: <name>
 status: TODO            # TODO | IN_PROGRESS | READY_FOR_REVIEW | ACCEPTED | REOPENED
 depends_on:             # upstream NODES; may only read their outputs/
-  - s02_partitions/regression
-  - s03_eda/regression
+  - s05_partition/regression
 reads:                  # exact upstream files used (hashed into the manifest)
-  - stages/s02_partitions/regression/outputs/selection_folds.csv
+  - stages/s05_partition/regression/outputs/folds.csv
+  - stages/s04_features/regression/outputs/recipes.json
   - spec/protocol.yaml
 writes:                 # every file run.py produces, relative to outputs/
   - metrics_long.csv
@@ -220,16 +219,17 @@ writes:                 # every file run.py produces, relative to outputs/
 
 A node may read **only** files listed in `reads` that belong to `spec/` or to an
 upstream node's `outputs/`. Never read another node's code, sandbox, or any
-Milestone 2 artifact directly (Stage 1/2 import M2 inputs once, explicitly, and
-record their hashes).
+Milestone 2 artifact directly (s02_data and s05_partition import M2 inputs once,
+explicitly, and record their hashes).
 
-### 5.2 `spec/protocol.yaml` — the frozen contract (written in Stage 0)
+### 5.2 `spec/protocol.yaml` — the frozen contract (written in s01_problem)
 
 Holds every number that otherwise tends to drift: tasks, positive class, eligibility,
-predictor lists (core 9, regression 11, classification 12), excluded columns, seed
-`42`, fold boundaries, purge and label-maturity rules, metric definitions, decision
-rules and tie-breaks ("simpler wins within 1 SD", etc.), the cost assumption
-(FN:FP = 5:1, illustrative), search grids and budgets. Code reads values from here;
+the 27-feature candidate list (core and per-model candidate sets are added from s04 via
+CHANGELOG), excluded columns, seed `42`, test cutoff and fold boundaries, purge and
+label-maturity rules, metric definitions, decision rules and tie-breaks, candidate
+target-cap values (no value fixed in advance), the cost assumption (FN:FP = 5:1,
+illustrative), search grids and budgets. Code reads values from here;
 **no stage hard-codes these numbers**.
 
 ### 5.3 Candidates and the pipeline factory
@@ -238,10 +238,10 @@ rules and tie-breaks ("simpler wins within 1 SD", etc.), the cost assumption
   representation, imputation, scaling/encoding, input transforms, target treatment,
   estimator + params, calibration`. Nothing outside the spec may influence the fit.
 - `candidate_id` is a readable, stable slug from the spec, e.g.
-  `reg.f9.raw.linreg`, `clf.f12.raw.logit-none`, `reg.f11.log1p-cap60.rf.d10-l20`.
+  `reg.core.raw.linreg`, `clf.core.raw.logit-none`, `reg.core.log1p-capNN.rf.d10-l20`.
   The same id in two stages means the identical pipeline.
-- All stages build models only via `e5lib.factory.build(spec)`. The winner of
-  Stage 7/8 is exactly the pipeline confirmed in S09, refitted in S10 and deployed in S11.
+- All stages build models only via `e5lib.factory.build(spec)`. The candidate selected in
+  s08 is exactly the pipeline refitted and tested once in s08 and deployed in s10.
 
 ### 5.4 Population guard (leakage control)
 
@@ -249,12 +249,12 @@ rules and tie-breaks ("simpler wins within 1 SD", etc.), the cost assumption
 
 | population | Who may load it |
 | --- | --- |
-| `selection` (four earlier expanding windows) | S03–S08 |
-| `confirmation` (last pre-terminal window, ≈2018-03-08 → 2018-05-25) | S09 onward only |
-| `benchmark` (M2 terminal cohort) | S10 onward only |
+| `development` (orders before the test cutoff, 2018-05-25; CV folds built in s05) | s02 onward |
+| `test` (M2 terminal cohort; IDs frozen in s05) | s08 final evaluation onward only |
 
 The loader raises if a stage loads a population it is not allowed to see. Do not
-bypass it. Confirmation and benchmark labels must not influence any choice in S03–S08.
+bypass it. Test labels must not influence any choice; s08 reads them only after the
+recipe and threshold are frozen to `frozen_recipe.json`.
 
 ### 5.5 Standard output files
 
@@ -263,7 +263,7 @@ shapes whenever the content applies:
 
 | File | Columns / content |
 | --- | --- |
-| `metrics_long.csv` | `node, task, population, phase(train/validation/confirmation/benchmark), fold, candidate_id, metric, value, n_rows, n_pos` |
+| `metrics_long.csv` | `node, task, population, phase(train/validation/test), fold, candidate_id, metric, value, n_rows, n_pos` |
 | `predictions.csv.gz` | `order_id, task, population, fold, candidate_id, y_true, y_pred` (classification adds `p_raw`, `p_final`) |
 | `decision.json` | `question, rule (from protocol.yaml), candidates_compared, chosen, evidence_files, notes` |
 | `counts.json` | rows, customers, positives per population/fold |
@@ -294,7 +294,7 @@ python experiments/experiment_5/run_pipeline.py status
 ```
 
 ```bash
-python experiments/experiment_5/run_pipeline.py run --from s05_features
+python experiments/experiment_5/run_pipeline.py run --from s04_features
 ```
 
 ```bash
@@ -326,7 +326,7 @@ which downstream decisions moved → those owners review.
   work without rerunning, and so evidence is versioned with the code that made it.
 - Files > 50 MB are not committed; they are gitignored, regenerated by `run`, and
   their hash is still recorded in the manifest. Prefer `.csv.gz`.
-- Raw Olist CSVs are not in git; Stage 1 records their hashes so a teammate with a
+- Raw Olist CSVs are not in git; s02_data records their hashes so a teammate with a
   different copy gets a mismatch instead of silently different numbers.
 - All paths are resolved through `e5lib/paths.py` relative to the Experiment 5 root (and
   the repo root for read-only inputs). No absolute paths, no paths into working folders
@@ -339,9 +339,9 @@ which downstream decisions moved → those owners review.
 - `evidence/registry.yaml` lists every item the report/deck/app uses:
 
   ```yaml
-  - id: T5.1-reg-baselines
+  - id: T6.1-reg-training
     kind: table            # table | figure | number
-    source: stages/s04_baselines/regression/outputs/metrics_long.csv
+    source: stages/s06_training/regression/outputs/metrics_long.csv
     select: {phase: validation, metric: [mae, rmse, r2]}
     aggregate: mean_sd_by_candidate
     used_in: [report §5.1, deck slide 6]
@@ -351,10 +351,10 @@ which downstream decisions moved → those owners review.
   (`tables/*.csv|.md`, `figures/*.png`, `numbers.json`, `_release.json`) and refuses to
   build if `run_pipeline.py check` fails.
 - The report and deck cite evidence IDs; they never contain a number typed by hand.
-  A small `verify` step in S12 checks every number in the report text against
+  A small `verify` step in s10_release checks every number in the report text against
   `numbers.json`.
-- Report and deck drafts live in `deliverables/`; the S11 app lives in
-  `stages/s11_deployment/common/` and loads bundles from S10 `outputs/`. None of them
+- Report and deck drafts live in `deliverables/`; the app and dashboard live in
+  `stages/s10_release/common/` and load bundles from s08 `outputs/`. None of them
   is placed in `docs/reports/` or `deployment/` before migration (§0.1, §12).
 - A **release** is a git tag `e5-release-N` on a commit where `check` passes and
   `evidence/build/_release.json` lists every node's `run_id`. The report states which
@@ -384,7 +384,8 @@ which downstream decisions moved → those owners review.
 4. Learned preprocessing (imputation, encoding, scaling, caps from percentiles,
    feature selection, calibration) is fit **inside** training folds via the factory.
    Only deterministic, row-local formulas may run before the split.
-5. Never use confirmation or benchmark labels for any choice made in S03–S08.
+5. Never use test-cohort labels for any choice; s08 reads them once, after the recipe and
+   threshold are frozen.
 6. IDs (`order_id`, `customer_unique_id`) are for audit, never predictors.
 
 **Modelling**
@@ -411,7 +412,7 @@ which downstream decisions moved → those owners review.
 
 **Process**
 
-15. Work on branch `e5/<node-id>` (e.g. `e5/s04-regression`) from `milestone-3`; open a
+15. Work on branch `e5/<node-id>` (e.g. `e5/s06-regression`) from `milestone-3`; open a
     PR into `milestone-3`. One gate per PR.
 16. Before asking for review: `run_pipeline.py run --node <yours>` then
     `run_pipeline.py check`; fill *Review summary* and *Deviations* in `STAGE.md`;
@@ -445,64 +446,60 @@ which downstream decisions moved → those owners review.
 3. Make the change; `run_pipeline.py run --from <earliest affected node>`.
 4. Nodes whose decisions changed go `REOPENED` → re-review. Others stay ACCEPTED but
    with the new run_id.
-5. Changes to `spec/` or `e5lib/factory.py` almost always require `--from s04` or earlier.
+5. Changes to `spec/` or `e5lib/factory.py` almost always require `--from s04_features` or earlier.
 
-### 9.3 Special rule for confirmation (S09) and benchmark (S10)
+### 9.3 Special rule for the test cohort (s08)
 
-Once S09 results have been looked at, any change to S03–S08 means the confirmation
-window has been used for selection. Record this in `CHANGELOG.md` as a **reopened
-selection** and say so in the report; do not keep claiming an untouched confirmation.
-The M2 terminal benchmark is a historical benchmark, not a fresh test (see design §C,
-Stage 2), and is scored once per release.
+The test cohort is scored once per release, at the end of s08. Once its results have been
+looked at, any change to s03–s08 means the test has been used for selection: record it in
+`CHANGELOG.md` as a **reopened selection** and say so in the report. The cohort is
+Milestone 2's terminal cohort, already scored in Milestone 2, so it is always described as a
+historical held-out test, never as unseen data.
 
 ---
 
 ## 10. Stage index
 
-Detailed requirements: [`spec/pipeline_design.md`](spec/pipeline_design.md). Each
+Detailed requirements: [`spec/pipeline_design.md`](spec/pipeline_design.md) (frozen v1.0). Each
 node's `STAGE.md` repeats its purpose, outputs and gate criteria.
 
 <!-- BEGIN STAGE INDEX from spec/stages.json -->
-_Generated from `spec/stages.json` v0.1-draft (pipeline_design.md 2026-10-13 (pre-freeze)). Do not edit by hand._
+_Generated from `spec/stages.json` v1.0 (pipeline_design.md v1.0 (frozen 2026-10-17, CR-001)). Do not edit by hand._
 
 | Stage | Nodes | Depends on | Key outputs | Gate question |
 | --- | --- | --- | --- | --- |
-| s00_contract Contract | common | - | spec/protocol.yaml v1.0; task_contract.md | Are targets, populations, metrics, decision rules and budget frozen before any result? |
-| s01_records Records | common | s00_contract | records.csv.gz; exclusions.csv; data_hashes.json | Are joins, grains, units, eligibility and leakage exclusions verified? |
-| s02_partitions Partitions | regression, classification | s01_records | selection_folds.csv; confirmation_manifest.csv; benchmark_manifest.csv | Are windows chronological, customers purged, labels mature and both classes supported? |
-| s03_eda EDA | regression, classification | s02_partitions | figures/*.png + sidecar json; candidate_rationale.csv; eda_summary.json | Does every planned change follow from an observed, selection-only finding? |
-| s04_baselines Baselines | regression, classification | s02_partitions, s03_eda | metrics_long.csv; predictions.csv.gz; decision.json | Do simplest matched baselines exist on identical rows and folds? |
-| s05_features Features | regression, classification | s04_baselines | metrics_long.csv; paired_deltas.csv; figures/ | Do expansions help with estimator and preprocessing fixed? |
-| s06_interventions Interventions | regression, classification | s05_features | ablation.csv; metrics_long.csv; decision.json | Is each added complexity justified one change at a time? |
-| s07_tuning Tuning | regression, classification | s06_interventions | grid_results.csv; predictions.csv.gz; selected_spec.json | Is the winner a complete pipeline, compared with dummy and simplest family? |
-| s08_policy Policy | regression, classification | s07_tuning | learning_curve.csv + figures; calibration.csv; threshold_table.csv | Is the recipe (and probability/threshold policy) frozen before confirmation? |
-| s09_confirmation Confirmation | regression, classification | s08_policy | metrics_long.csv; predictions.csv.gz; figures/ | Does the frozen method hold up without being changed? |
-| s10_benchmark Benchmark | regression, classification | s09_confirmation | bundle/; metrics_long.csv; predictions.csv.gz | Is the confirmed recipe refitted unchanged and scored once? |
-| s11_deployment Deployment | common | s10_benchmark | app/; parity.json; input_validation.json | Does the app load the same artifact and reproduce its predictions? |
-| s12_package Package | common | s11_deployment | evidence/build/**; deliverables/ report & deck drafts that cite evidence IDs; report_number_check.json | Does every number in report, deck and app trace to one release? |
+| s01_problem Problem statement | common | - | spec/protocol.yaml v1.0; task_contract.md | Are tasks, targets, metrics, cost, decision rule and budget fixed before any result? |
+| s02_data Data preprocessing | common | s01_problem | records.csv.gz; exclusions.csv; data_hashes.json | Are joins, grains, targets and leakage exclusions verified? |
+| s03_eda EDA | regression, classification | s02_data | figures/*.png + sidecar json; eda_summary.json; candidate_rationale.csv | Does every planned change follow from a pre-cutoff observation? |
+| s04_features Features | regression, classification | s03_eda | feature_dictionary.csv; candidate_sets.json; recipes.json | Are features and recipes defined without fitting or using labels? |
+| s05_partition Partition | regression, classification | s04_features | folds.csv; test_manifest.csv; counts.json | Are folds chronological, customers purged, labels mature and classes supported? |
+| s06_training Training | regression, classification | s05_partition | metrics_long.csv; predictions.csv.gz; figures/ | Do the models run basic to complex on identical folds, with each choice justified? |
+| s07_tuning Tuning | regression, classification | s06_training | grid_results.csv; predictions.csv.gz | Is every tuned candidate a complete pipeline scored on the same folds? |
+| s08_selection Selection | regression, classification | s07_tuning | selected_spec.json; threshold_table.csv; frozen_recipe.json | Was the recipe frozen before the test cohort was scored once? |
+| s09_conclusion Conclusion | regression, classification | s08_selection | master_metrics.csv; subgroups.csv; drift.csv | Does every conclusion follow from the test results and their limits? |
+| s10_release Release | common | s09_conclusion | parity.json; input_validation.json; migration_check.json | Do the app, dashboard, report and slides all trace to one reproduced release? |
 <!-- END STAGE INDEX -->
 
 ---
 
 ## 11. Getting started (after the kickoff meeting)
 
-0. Freeze the design: edit `spec/pipeline_design.md` and `spec/stages.json`, run
-   `tools/scaffold_stages.py`, set `stages.json` `version` to `1.0`, commit.
+0. ~~Freeze the design~~ — done 2026-10-17 (CR-001): `pipeline_design.md` and
+   `stages.json` v1.0, cards regenerated.
 1. Fill roles in §4 and `owner`/`reviewer` in each `STAGE.md`.
 2. Platform lead builds `e5lib/` skeleton, `run_pipeline.py`, `build_evidence.py`
    and the contract tests (this is "Stage −1": infrastructure, no modelling).
-3. Team completes S00 together and freezes `spec/protocol.yaml` (v1.0).
+3. Team completes s01_problem together and freezes `spec/protocol.yaml` (v1.0).
 4. Proceed stage by stage through the gates in §9. Start each teammate's agent with
    [`AGENT_INIT_PROMPT.md`](AGENT_INIT_PROMPT.md).
 
 Open items for the kickoff:
 
 - [ ] Team size and role assignment (§4).
-- [ ] Milestone 2 TA comments: only Milestone 1 TA feedback is in the repo
-      (`docs/milestone1_feedback_response.md`). Add the Milestone 2 TA comments to
-      `spec/sources.md` §3 before S00 is accepted.
-- [ ] Agree the decision rule wording (e.g. "complex model must beat its family
-      baseline by > 1 fold-SD on the primary metric, else keep simpler").
+- [x] Milestone 2 TA comments: not waited for (Milestone 2 still being graded); the
+      teacher's Milestone 2 expectation note is the rubric (team decision 2026-10-17).
+- [ ] Agree the decision rule wording in s01 (proposed: mean paired per-fold delta favours
+      the complex variant and the sign agrees in most folds, else keep simpler).
 - [ ] Confirm outputs-in-git policy (§6.3) and the 50 MB limit.
 - [ ] Confirm each member has the Olist raw CSVs and the tutorials locally
       (`docs/` and `data/raw/` are not in git).
@@ -520,7 +517,8 @@ through one deliberate migration:
    nobody migrates individual stages early.
 2. **Migration plan first** (written into `CHANGELOG.md` and approved): a file-by-file map,
    e.g. `e5lib/` → `src/…`, stage `run.py` files → `src/…` or `pipelines/…`, release
-   evidence → `artifacts/…`, S11 app → `deployment/`, `deliverables/` → `docs/reports/`,
+   evidence → `artifacts/…`, s10 app and dashboard → `deployment/`, `deliverables/` →
+   `docs/reports/`, a reproduction README at the repo root,
    pinned requirements → root `requirements*.txt`, plus which Milestone 2 files are archived
    rather than overwritten.
 3. **Migrate on a dedicated branch** (`e5/migration`), changing paths only — no logic,
