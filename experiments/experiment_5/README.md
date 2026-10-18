@@ -445,17 +445,58 @@ which downstream decisions moved → those owners review.
 
 ## 9. Stage gates and change control
 
-### 9.1 Gate (end of every stage)
+### 9.1 Implementation review loop (every stage; CR-024, G-59)
 
-1. Owner runs the node(s), fills `STAGE.md` → *Review summary* (what was done, the
-   decision, key numbers **with file references**, deviations, limitations, open
-   questions) and sets `READY_FOR_REVIEW`.
-2. Team checkpoint (short meeting or async): check logic and reasoning against
-   `spec/pipeline_design.md`, the teacher/TA items mapped to this stage in
-   `spec/sources.md`, and the stage's gate checklist.
-3. Reviewer records `Accepted by <name>, <date>, commit <sha>` and sets `ACCEPTED`.
-4. Downstream nodes start from ACCEPTED upstream outputs. (Prototyping earlier in
-   `sandbox/` is fine; it is never evidence.)
+Stages are built one at a time in pipeline order (s00 platform, then s01 to s10). A stage starts
+only when every upstream stage is `ACCEPTED` and unchanged since acceptance; `run_pipeline.py`
+enforces this. Prototyping in `sandbox/` is allowed but is never evidence.
+
+**Statuses** (`STAGE.md` front matter): `TODO → IN_PROGRESS → READY_FOR_REVIEW →
+CHANGES_REQUESTED → … → ACCEPTED`, and `REOPENED` when an upstream change (§9.2) sends an accepted
+stage back for review.
+
+**One round of the loop**
+1. *Build*: code exactly as the AGREED blueprint says. Every code change names the solution ID
+   it serves (2.1, 3.4, …) and fills that row of the stage card's working log. A difference
+   from the blueprint is written as a deviation, never made silently.
+2. *Run*: `run_pipeline.py run --node sNN`. All outputs, including process evidence (design rule 8),
+   go under `stages/sNN/<task>/outputs/` with `_manifest.json`.
+3. *Pack*: code generates `stages/sNN/<task>/review/round_N/review_pack.md` with the coverage
+   table: every solution ID of the stage, each marked IMPLEMENTED, DEVIATION or MISSING. Commit
+   "sNN round N ready for review"; status `READY_FOR_REVIEW`.
+4. *Review*: the stage's tab under "Implementation reviews" in the team doc (below). Reviewers
+   approve or comment per row.
+5. *Fix*: each comment is answered in its thread; fixes become round N+1 (new commit and run).
+   Rows whose evidence hashes did not change keep their approval; changed rows are reviewed
+   again. Status `CHANGES_REQUESTED` until the next pack.
+6. *Accept*: every row Approved, no MISSING row, every check PASS. The experiment lead approves;
+   the card records the accepted round, commit, run ID, approver and date; the commit is tagged
+   `e5-sNN-accepted`; the next stage unlocks.
+
+**Evidence card** (one per solution ID, generated from output files, never typed): approved
+solution (quoted); what was done and inputs; process data (intermediate tables); results (small
+tables inline, large ones as top rows plus link; charts shown inline); expectation vs
+observation; reasoning and conclusion, each claim labelled observation / literature-supported
+hypothesis / unmeasured mechanism; deviation; checks (PASS/FAIL); links to files on GitHub pinned
+to the round's commit, evidence IDs and figure sidecars.
+
+**Team doc layout** ("Implementation reviews" tab): one tab per stage; stages that run per task
+(s03–s09) get one sub-tab per task for the evidence cards, while the stage tab holds the status
+banner, the coverage table for both tasks, the decisions for the team (s03 and s08 human gates)
+and the round history. A stage tab is created when the stage starts. Each tab has a *Current*
+layer (latest round only; the only place to read the result) and an append-only *Round history*
+(what changed, which rows were rerun, every comment and its resolution). Before a card is
+replaced, its previous version is copied into the round history. Tabs are never deleted: once
+accepted they are frozen as the record, and later changes are added as dated sections.
+
+**Records in the repo**: `review/round_N/` keeps each round's pack, coverage table and exported
+comment threads; the stage card's working log, round table and accepted result point to them.
+The report, slides, app and dashboard cite only the accepted round.
+
+**Progress view**: the Pipeline v2 chart in the team doc carries two tags per stage, design
+(APPROVED) and build (NOT STARTED, BUILDING, IN REVIEW, CHANGES, ACCEPTED, REOPENED), and a ✓ on
+each step box whose solution IDs are all approved; the chip-to-ID map sits under the chart. The
+progress table in `spec/blueprints/README.md` mirrors it.
 
 ### 9.2 Changing something after acceptance
 

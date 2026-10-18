@@ -38,3 +38,22 @@ blueprint; the stage's `STAGE.md` records how it actually ran.
 | s10 Release | [s10_release.md](s10_release.md) | AGREED | — | 2026-10-18: approved in team review (three-tab app, data scopes G-41) |
 
 Template for new blueprints: [`_TEMPLATE.md`](_TEMPLATE.md).
+
+## Implementation progress (README §9.1)
+
+Build status per stage. Updated at each status change, together with the stage card and the
+Pipeline v2 chart.
+
+| Stage | Build status | Current round | Accepted round (commit) | Review tab |
+| --- | --- | --- | --- | --- |
+| s00 Platform | NOT STARTED | — | — | — |
+| s01 Problem statement | NOT STARTED | — | — | — |
+| s02 Data preprocessing | NOT STARTED | — | — | — |
+| s03 EDA | NOT STARTED | — | — | — |
+| s04 Features | NOT STARTED | — | — | — |
+| s05 Partition | NOT STARTED | — | — | — |
+| s06 Training | NOT STARTED | — | — | — |
+| s07 Tuning | NOT STARTED | — | — | — |
+| s08 Selection | NOT STARTED | — | — | — |
+| s09 Conclusion | NOT STARTED | — | — | — |
+| s10 Release | NOT STARTED | — | — | — |

@@ -30,13 +30,32 @@ KEPT_KEYS = ("owner", "reviewer", "status", "reads", "writes")
 DEFAULT_KEPT = {
     "owner": "owner: TBD",
     "reviewer": "reviewer: TBD",
-    "status": "status: TODO",
+    "status": "status: TODO   # TODO | IN_PROGRESS | READY_FOR_REVIEW | CHANGES_REQUESTED | ACCEPTED | REOPENED",
     "reads": "reads: []   # exact upstream files used",
     "writes": "writes: []  # every file run.py produces",
 }
 LOCKED_STATUSES = {"READY_FOR_REVIEW", "ACCEPTED"}
 
 HUMAN_SECTIONS = """
+## Working log (README section 9.1; one row per solution ID, every code change names its ID)
+| ID | What was built | Commit | Evidence (files, figures) | Coverage | Round |
+| --- | --- | --- | --- | --- | --- |
+
+## Review rounds (append-only; each round has review/round_N/ and a section in the doc tab)
+| Round | Commit | Run ID | Review pack | Outcome | Date |
+| --- | --- | --- | --- | --- | --- |
+
+## Accepted result (the only result the report and slides may cite)
+- Accepted round: - commit: - run ID: - approved by: - date:
+
+## Deviations from blueprint
+None.
+
+## Open questions
+"""
+
+
+LEGACY_HUMAN_SECTIONS = """
 ## Review summary (owner fills at gate; cite files, never type numbers from memory)
 - What was done:
 - Decision and rule applied (`outputs/decision.json`):
@@ -136,6 +155,8 @@ def render_card(n: dict, old: str | None) -> str:
     if body and BEGIN in body and END in body:
         pre, rest = body.split(BEGIN, 1)
         _, post = rest.split(END, 1)
+        if post.strip() == LEGACY_HUMAN_SECTIONS.strip():
+            post = "\n" + HUMAN_SECTIONS  # untouched legacy template -> current template (CR-024)
         new_body = pre + gen + post
     else:
         new_body = "\n" + gen + "\n" + HUMAN_SECTIONS

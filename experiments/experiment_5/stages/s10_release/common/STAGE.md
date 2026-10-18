@@ -36,21 +36,18 @@ Reload parity of the bundles; team approval; lead-ordered migration with a repro
 - Nothing written outside experiments/experiment_5/ before the lead orders migration
 <!-- END GENERATED -->
 
-## Review summary (owner fills at gate; cite files, never type numbers from memory)
-- What was done:
-- Decision and rule applied (`outputs/decision.json`):
-- Key evidence (file -> what it shows):
-- Limitations:
+## Working log (README section 9.1; one row per solution ID, every code change names its ID)
+| ID | What was built | Commit | Evidence (files, figures) | Coverage | Round |
+| --- | --- | --- | --- | --- | --- |
 
-## Gate check (reviewer)
-- [ ] Every gate criterion above is met (note any exception)
-- [ ] `run_pipeline.py run --node` reproduces all outputs from a clean tree
-- [ ] Standard output shapes and `_manifest.json` present (README section 5.5)
+## Review rounds (append-only; each round has review/round_N/ and a section in the doc tab)
+| Round | Commit | Run ID | Review pack | Outcome | Date |
+| --- | --- | --- | --- | --- | --- |
 
-## Deviations from spec
+## Accepted result (the only result the report and slides may cite)
+- Accepted round: - commit: - run ID: - approved by: - date:
+
+## Deviations from blueprint
 None.
 
 ## Open questions
-
-## Sign-off
-- Accepted by: - date: - commit: -
