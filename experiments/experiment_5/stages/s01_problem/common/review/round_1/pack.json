@@ -1,0 +1,338 @@
+{
+  "stage": "s01_problem",
+  "task": "common",
+  "round": 1,
+  "code_commit": "26810a0f49cb6d53e8b129cb64f0b0ca0db9bc58",
+  "evidence_commit": "1cad146b68213621465d6129d85c39264330687e",
+  "run_id": "20261018T133930Z",
+  "dirty": false,
+  "ready": true,
+  "rows": [
+    {
+      "id": "1.1",
+      "title": "Tasks and prediction time",
+      "status": "IMPLEMENTED",
+      "checks": "\u2014",
+      "files": [
+        "protocol_preregistered.yaml",
+        "preregistered_values.csv",
+        "task_contract.md"
+      ],
+      "evidence_hashes": {
+        "protocol_preregistered.yaml": "1d733e09d969e98f9d443479be41a38042cbeb0235c9accf3a75a9ef5b8e7793",
+        "preregistered_values.csv": "3987b005e2e88182cc43c9de39f73929cd567ce08e5fc5bd526b80de00b29e1e",
+        "task_contract.md": "206e43c421d3174605137333d2f5ea33d71e23ea1d4dfcbdbb1c2119994d3e54"
+      },
+      "card": {
+        "done": "Two tasks pre-registered: lead_days (regression) and is_detractor (classification, positive class 1), both predicted at order_purchase_timestamp.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "Matches s01 1.1 and G-34 (eligible-order wording and scope limit).",
+        "label": "observation"
+      },
+      "check_detail": [],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "1.2",
+      "title": "Stakeholders and action",
+      "status": "IMPLEMENTED",
+      "checks": "\u2014",
+      "files": [
+        "protocol_preregistered.yaml",
+        "preregistered_values.csv",
+        "task_contract.md"
+      ],
+      "evidence_hashes": {
+        "protocol_preregistered.yaml": "1d733e09d969e98f9d443479be41a38042cbeb0235c9accf3a75a9ef5b8e7793",
+        "preregistered_values.csv": "3987b005e2e88182cc43c9de39f73929cd567ce08e5fc5bd526b80de00b29e1e",
+        "task_contract.md": "206e43c421d3174605137333d2f5ea33d71e23ea1d4dfcbdbb1c2119994d3e54"
+      },
+      "card": {
+        "done": "Stakeholder and action recorded per task in protocol.yaml and task_contract.md.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "Regression: logistics / fulfilment planning: expected lead time per order at checkout, to flag long-haul orders and set realistic delivery promises. Classification: customer-experience team: daily list of at-risk orders for proactive contact (status update, check with the seller).",
+        "label": "observation"
+      },
+      "check_detail": [],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "1.3",
+      "title": "Targets and populations",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "protocol_preregistered.yaml",
+        "preregistered_values.csv",
+        "task_contract.md"
+      ],
+      "evidence_hashes": {
+        "protocol_preregistered.yaml": "1d733e09d969e98f9d443479be41a38042cbeb0235c9accf3a75a9ef5b8e7793",
+        "preregistered_values.csv": "3987b005e2e88182cc43c9de39f73929cd567ce08e5fc5bd526b80de00b29e1e",
+        "task_contract.md": "206e43c421d3174605137333d2f5ea33d71e23ea1d4dfcbdbb1c2119994d3e54"
+      },
+      "card": {
+        "done": "Populations, label rule and the predictor contract recorded: 27 contract predictors, 3 excluded with reasons, 24 eligible; calendar fields numeric.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "log1p candidates are the continuous positive-scale features only (G-47); counts are treated as never-logged. This reading of G-47 is flagged for the team to confirm.",
+        "conclusion": "Feeds s02 (populations) and s03-s04 (eligible set, log candidates).",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "27 contract predictors, 3 excluded, 24 eligible",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "1.3"
+          ]
+        },
+        {
+          "name": "categorical and log candidates are eligible predictors",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "1.3"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "1.4",
+      "title": "Metrics",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "protocol_preregistered.yaml",
+        "preregistered_values.csv",
+        "task_contract.md"
+      ],
+      "evidence_hashes": {
+        "protocol_preregistered.yaml": "1d733e09d969e98f9d443479be41a38042cbeb0235c9accf3a75a9ef5b8e7793",
+        "preregistered_values.csv": "3987b005e2e88182cc43c9de39f73929cd567ce08e5fc5bd526b80de00b29e1e",
+        "task_contract.md": "206e43c421d3174605137333d2f5ea33d71e23ea1d4dfcbdbb1c2119994d3e54"
+      },
+      "card": {
+        "done": "Primary metrics: MAE (regression), AP (classification), with secondary metrics and charts; evaluation settings for s09 pre-registered.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "3 verified citations in the task contract.",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "every citation is in the verified list",
+          "passed": true,
+          "detail": "8 citations",
+          "ids": [
+            "1.4",
+            "1.5",
+            "1.7"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "1.5",
+      "title": "Cost assumption",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "protocol_preregistered.yaml",
+        "preregistered_values.csv",
+        "task_contract.md"
+      ],
+      "evidence_hashes": {
+        "protocol_preregistered.yaml": "1d733e09d969e98f9d443479be41a38042cbeb0235c9accf3a75a9ef5b8e7793",
+        "preregistered_values.csv": "3987b005e2e88182cc43c9de39f73929cd567ce08e5fc5bd526b80de00b29e1e",
+        "task_contract.md": "206e43c421d3174605137333d2f5ea33d71e23ea1d4dfcbdbb1c2119994d3e54"
+      },
+      "card": {
+        "done": "Illustrative cost FN:FP = 5:1.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "Stated as an assumption; drives the s08 threshold table (cost cutoff 1/6).",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "every citation is in the verified list",
+          "passed": true,
+          "detail": "8 citations",
+          "ids": [
+            "1.4",
+            "1.5",
+            "1.7"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "1.6",
+      "title": "Model families",
+      "status": "IMPLEMENTED",
+      "checks": "\u2014",
+      "files": [
+        "protocol_preregistered.yaml",
+        "preregistered_values.csv",
+        "task_contract.md"
+      ],
+      "evidence_hashes": {
+        "protocol_preregistered.yaml": "1d733e09d969e98f9d443479be41a38042cbeb0235c9accf3a75a9ef5b8e7793",
+        "preregistered_values.csv": "3987b005e2e88182cc43c9de39f73929cd567ce08e5fc5bd526b80de00b29e1e",
+        "task_contract.md": "206e43c421d3174605137333d2f5ea33d71e23ea1d4dfcbdbb1c2119994d3e54"
+      },
+      "card": {
+        "done": "5 regression and 4 classification estimators, with the s06 plain settings.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "No boosting, voting or stacking.",
+        "label": "observation"
+      },
+      "check_detail": [],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "1.7",
+      "title": "Decision rule",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "protocol_preregistered.yaml",
+        "preregistered_values.csv",
+        "task_contract.md"
+      ],
+      "evidence_hashes": {
+        "protocol_preregistered.yaml": "1d733e09d969e98f9d443479be41a38042cbeb0235c9accf3a75a9ef5b8e7793",
+        "preregistered_values.csv": "3987b005e2e88182cc43c9de39f73929cd567ce08e5fc5bd526b80de00b29e1e",
+        "task_contract.md": "206e43c421d3174605137333d2f5ea33d71e23ea1d4dfcbdbb1c2119994d3e54"
+      },
+      "card": {
+        "done": "One-standard-error rule, simplicity order, plain-vs-tuned comparison, fallback, s08 gate, calibration keep rule and threshold candidates pre-registered.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "e5lib.metrics.one_se_select implements the rule; its contract tests cover the simpler-within-one-SE case.",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "every citation is in the verified list",
+          "passed": true,
+          "detail": "8 citations",
+          "ids": [
+            "1.4",
+            "1.5",
+            "1.7"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "1.8",
+      "title": "Search budget",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "protocol_preregistered.yaml",
+        "preregistered_values.csv",
+        "task_contract.md"
+      ],
+      "evidence_hashes": {
+        "protocol_preregistered.yaml": "1d733e09d969e98f9d443479be41a38042cbeb0235c9accf3a75a9ef5b8e7793",
+        "preregistered_values.csv": "3987b005e2e88182cc43c9de39f73929cd567ce08e5fc5bd526b80de00b29e1e",
+        "task_contract.md": "206e43c421d3174605137333d2f5ea33d71e23ea1d4dfcbdbb1c2119994d3e54"
+      },
+      "card": {
+        "done": "Grids fixed: tree depths [4, 5, 6, 8, 10, 12, 14, 16, 18], forest depths [8, 10, 12, 14, 16, 18], leaves [20, 50, 100, 200], alpha and C [0.01, 0.1, 0.5, 1, 5, 10, 20, 50, 100]; forest 200 trees; seed 42.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "Checked against the AGREED s07 blueprint (see check).",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "grids match the AGREED s07 blueprint",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "1.8"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "1.9",
+      "title": "Outputs",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "protocol_preregistered.yaml",
+        "preregistered_values.csv"
+      ],
+      "evidence_hashes": {
+        "protocol_preregistered.yaml": "1d733e09d969e98f9d443479be41a38042cbeb0235c9accf3a75a9ef5b8e7793",
+        "preregistered_values.csv": "3987b005e2e88182cc43c9de39f73929cd567ce08e5fc5bd526b80de00b29e1e"
+      },
+      "card": {
+        "done": "spec/protocol.yaml (pre-registered layer) and task_contract.md written; the values are also listed in preregistered_values.csv for review.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "Later stages read these values through e5lib.protocol; none hard-codes them.",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "pre-registered before any later stage has outputs",
+          "passed": true,
+          "detail": "stages with outputs: none",
+          "ids": [
+            "1.9"
+          ]
+        },
+        {
+          "name": "all ten blueprints AGREED",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "1.9"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    }
+  ]
+}
