@@ -94,6 +94,7 @@ experiments/experiment_5/
 │   ├── pipeline_design.md     # THE Milestone 3 pipeline design (authoritative; frozen v1.0)
 │   ├── stages.json            # machine-readable stage list derived from the design (§3.1)
 │   ├── sources.md             # teacher/TA/tutorial requirements → stage mapping
+│   ├── team_doc/              # read-only mirror of the team doc tabs, refreshed at each acceptance (G-65)
 │   ├── teacher_expectation_m2.md
 │   └── protocol.yaml          # frozen numbers & rules, written by s01_problem
 ├── e5lib/                     # SHARED technical foundation (see §9.1; changes logged in CHANGELOG)
@@ -491,7 +492,10 @@ stage back for review.
    the stage is then committed on `milestone-3` (one commit, "sNN accepted", local; pushed only on
    the lead's instruction), its manifest checked FRESH against that commit, and the card records
    the accepted round, commit, run ID, approver and date; the commit is tagged `e5-sNN-accepted`;
-   the next stage unlocks.
+   the next stage unlocks. The same commit refreshes `spec/team_doc/`, a read-only Markdown mirror of every
+   tab of the team doc (pipeline, solutions, implementation reviews), so an auditing agent can
+   check the repository against it (G-65). The team keeps working in the commented doc; the
+   mirror is never edited or reviewed.
 
 **Evidence card** (one per solution ID, generated from output files, never typed): approved
 solution (quoted); what was done and inputs; process data (intermediate tables); results (small

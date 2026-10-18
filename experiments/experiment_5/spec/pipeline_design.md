@@ -280,7 +280,7 @@ TEACHING: Week 6 deployment slides; T7 reference §11–14; brief Phase 3.
 
 **Dropped:** two training cycles (now one ladder in s06); customer-grouped CV screening beside
 chronological confirmation (now chronological folds only); a separate confirmation window (CV
-plus one test, as in Tutorials 7–8); starting from 9 features (now the 27-feature baseline,
+plus one test, as in Tutorials 7–8); starting from 9 features (now the 24-predictor contract, G-61,
 reduced and selected by the EDA ranking in s04, one set per task used by every model); the 60-day target cap applied outside tuning and
 justified by Cook's distance (no cap now; extreme values handled by the s02 outlier rule).
 
