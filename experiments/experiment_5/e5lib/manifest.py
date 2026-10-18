@@ -103,7 +103,7 @@ def write(stage: str, task: str, reads: Iterable[Path] | None = None, seed: int 
     }
     path = assert_inside_e5(outputs_dir(stage, task) / MANIFEST)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(manifest, indent=2, sort_keys=False), encoding="utf-8")
+    path.write_text(json.dumps(manifest, indent=2, sort_keys=False), encoding="utf-8", newline="\n")
     return path
 
 

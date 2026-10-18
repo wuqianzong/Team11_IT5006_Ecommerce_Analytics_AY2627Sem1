@@ -696,6 +696,23 @@ $PY experiments/experiment_5/run_pipeline.py check
 $PY -m pytest experiments/experiment_5/tests
 ```
 
+**Windows** (PowerShell, from the repository root): the interpreter is
+`experiments\experiment_5\.venv\Scripts\python.exe`; the commands are otherwise the same.
+Outputs and manifests are byte-identical across operating systems (CR-031):
+`experiments/experiment_5/.gitattributes` checks every text file out with LF, and every writer
+in the foundation writes UTF-8 with LF line endings. A clone made before CR-031 still has CRLF
+files in the working tree; refresh the folder once (this discards uncommitted changes inside
+`experiments/experiment_5/` only; the local `.venv` is not tracked and is kept):
+
+```powershell
+git rm -r -q --cached experiments/experiment_5
+git checkout HEAD -- experiments/experiment_5
+```
+
+To audit an accepted stage without changing anything, run `status`: it must show the stage
+`FRESH`. A rerun (`run --node`) must leave every output byte-identical; only `_manifest.json`
+changes (new run ID); an auditor discards it rather than committing it.
+
 ### 13.4 When the foundation must change
 
 1. A stage review (or a bug) shows the foundation needs to change: change it, keep or extend the

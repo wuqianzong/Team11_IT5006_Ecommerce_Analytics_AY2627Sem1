@@ -62,10 +62,10 @@ def test_test_population_is_guarded(records, e5):
         data.load("records", "regression", "test", stage="s08_selection")  # before the freeze
     out = e5 / "stages" / "s08_selection" / "regression" / "outputs"
     out.mkdir(parents=True)
-    (out / "frozen_recipe.json").write_text(json.dumps({"frozen": True}), encoding="utf-8")
+    (out / "frozen_recipe.json").write_text(json.dumps({"frozen": True}), encoding="utf-8", newline="\n")
     s05 = e5 / "stages" / "s05_partition" / "regression" / "outputs"
     s05.mkdir(parents=True)
-    pd.DataFrame({"order_id": ["o7", "o8"]}).to_csv(s05 / "test_manifest.csv", index=False)
+    pd.DataFrame({"order_id": ["o7", "o8"]}).to_csv(s05 / "test_manifest.csv", index=False, lineterminator="\n")
     test = data.load("records", "regression", "test", stage="s08_selection")
     assert sorted(test["order_id"]) == ["o7", "o8"]
 
@@ -95,7 +95,7 @@ def test_data_dependent_write_does_not_stale_other_stages(e5):
     data = protocol.load()
     data["seed"] = 7
     import yaml
-    (e5 / "spec" / "protocol.yaml").write_text(yaml.safe_dump(data), encoding="utf-8")
+    (e5 / "spec" / "protocol.yaml").write_text(yaml.safe_dump(data), encoding="utf-8", newline="\n")
     state, reasons = manifest.status("s01_problem", "common")
     assert state == "STALE" and any("pre_registered" in r for r in reasons)
 
@@ -109,7 +109,9 @@ def test_contract_is_consistent():
 
 
 def test_text_io_names_an_encoding():
-    """Every read_text/write_text names encoding="utf-8", so runs do not depend on the OS locale (e.g. GBK)."""
+    """Every read_text/write_text names encoding="utf-8" (no dependence on the OS locale, e.g. GBK); every
+    write_text names newline="\\n" and every to_csv lineterminator="\\n", so output bytes are the same on
+    every OS (CR-030, CR-031)."""
     import ast
     from conftest import REAL_E5
     missing = []
@@ -120,5 +122,39 @@ def test_text_io_names_an_encoding():
             if (isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute)
                     and node.func.attr in ("read_text", "write_text")
                     and not any(k.arg == "encoding" for k in node.keywords)):
-                missing.append(f"{path.relative_to(REAL_E5)}:{node.lineno}")
+                missing.append(f"{path.relative_to(REAL_E5)}:{node.lineno} encoding")
+            needed = {"write_text": "newline", "to_csv": "lineterminator"}
+            if (isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute) and node.func.attr in needed
+                    and not any(k.arg == needed[node.func.attr] for k in node.keywords)):
+                missing.append(f"{path.relative_to(REAL_E5)}:{node.lineno} {needed[node.func.attr]}")
     assert not missing, missing
+
+
+def test_outputs_have_the_same_bytes_on_windows(e5, monkeypatch):
+    """Simulate Windows line separators: outputs must still be LF-only, and gzip output reproducible."""
+    import os
+    import pandas as pd
+    from e5lib.outputs import Writer
+    monkeypatch.setattr(os, "linesep", "\r\n")
+
+    def run():
+        w = Writer("s02_data", "common")
+        df = pd.DataFrame({"a": [1, 2], "b": ["x", "y"]})
+        w.table("plain", df, ids=("2.1",))
+        w.table("packed", df, ids=("2.1",), compress=True)
+        w.text("note.md", "line 1\nline 2\n", ids=("2.1",))
+        w.json("obj", {"k": [1, 2]}, ids=("2.1",))
+        w.finish(seed=42)
+        return {p.name: p.read_bytes() for p in w.dir.rglob("*") if p.is_file() and p.name != "_manifest.json"}
+
+    first = run()
+    assert not [n for n, b in first.items() if not n.endswith(".gz") and b"\r" in b]
+    assert run()["packed.csv.gz"] == first["packed.csv.gz"]
+
+
+def test_experiment_checks_out_with_lf():
+    import subprocess
+    from conftest import REAL_E5
+    out = subprocess.run(["git", "check-attr", "eol", "--", "e5lib/outputs.py", "stages/s01_problem/common/outputs/task_contract.md"],
+                         cwd=REAL_E5, capture_output=True, text=True).stdout
+    assert out.count("eol: lf") == 2, out

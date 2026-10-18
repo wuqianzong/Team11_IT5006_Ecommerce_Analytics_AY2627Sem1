@@ -74,12 +74,12 @@ def build(draft: bool) -> int:
         df = _select(pd.read_csv(src), item.get("select"))
         if kind == "table":
             df = _aggregate(df, item.get("aggregate"))
-            df.to_csv(out / "tables" / f"{item['id']}.csv", index=False)
+            df.to_csv(out / "tables" / f"{item['id']}.csv", index=False, lineterminator="\n")
             try:
                 md = df.to_markdown(index=False)
             except ImportError:  # tabulate not installed
                 md = df.to_string(index=False)
-            (out / "tables" / f"{item['id']}.md").write_text(md, encoding="utf-8")
+            (out / "tables" / f"{item['id']}.md").write_text(md, encoding="utf-8", newline="\n")
         elif kind == "number":
             col = item.get("value_column", "value")
             if len(df) != 1:
@@ -87,14 +87,14 @@ def build(draft: bool) -> int:
             numbers[item["id"]] = float(df[col].iloc[0])
         else:
             raise ValueError(f"{item['id']}: unknown kind {kind!r}")
-    (out / "numbers.json").write_text(json.dumps(numbers, indent=2), encoding="utf-8")
+    (out / "numbers.json").write_text(json.dumps(numbers, indent=2), encoding="utf-8", newline="\n")
     runs = {}
     for src in sources:
         parts = src.relative_to(E5).parts
         if len(parts) > 3 and parts[0] == "stages":
             m = manifest.read(parts[1], parts[2]) or {}
             runs[f"{parts[1]}/{parts[2]}"] = {"run_id": m.get("run_id"), "commit": m.get("commit")}
-    (out / "_release.json").write_text(json.dumps({"draft": draft, "nodes": runs}, indent=2), encoding="utf-8")
+    (out / "_release.json").write_text(json.dumps({"draft": draft, "nodes": runs}, indent=2), encoding="utf-8", newline="\n")
     print(f"wrote {out}")
     return 0
 

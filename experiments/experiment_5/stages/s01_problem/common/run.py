@@ -241,7 +241,7 @@ def main() -> None:
     doc = {**p, **({"data_dependent": existing["data_dependent"]} if existing and "data_dependent" in existing else {})}
     header = "# Experiment 5 protocol. Pre-registered layer written by stages/s01_problem/common/run.py (README section 5.2).\n" \
              "# Data-dependent sections are written only by their owning stage (e5lib.protocol.set_data_dependent).\n"
-    path.write_text(header + yaml.safe_dump(doc, sort_keys=False, allow_unicode=True, width=110), encoding="utf-8")
+    path.write_text(header + yaml.safe_dump(doc, sort_keys=False, allow_unicode=True, width=110), encoding="utf-8", newline="\n")
     protocol.load()  # parse back: fails loudly if the YAML is malformed
 
     all_ids = tuple(f"1.{i}" for i in range(1, 10))

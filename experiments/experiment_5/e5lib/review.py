@@ -115,10 +115,10 @@ def build_pack(stage: str, task: str, round_: int) -> Path:
 
     target = assert_inside_e5(review_dir(stage, task, round_))
     target.mkdir(parents=True, exist_ok=True)
-    (target / "review_pack.md").write_text("\n".join(lines), encoding="utf-8")
+    (target / "review_pack.md").write_text("\n".join(lines), encoding="utf-8", newline="\n")
     (target / "pack.json").write_text(json.dumps({"stage": stage, "task": task, "round": round_,
                                                   "base_commit": m.get("commit"), "run_id": m["run_id"],
                                                   "outputs": freshness,
                                                   "dirty": m.get("dirty"), "ready": ready,
-                                                  "rows": rows}, indent=2), encoding="utf-8")
+                                                  "rows": rows}, indent=2), encoding="utf-8", newline="\n")
     return target / "review_pack.md"

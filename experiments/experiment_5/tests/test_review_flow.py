@@ -34,7 +34,7 @@ def test_writer_tags_and_manifest(e5):
     index = json.loads((path.parent / "_evidence_index.json").read_text(encoding="utf-8"))
     assert index["files"]["figures/structure.png"]["ids"] == ["2.12"]
     assert manifest.status("s02_data", "common")[0] == "FRESH"
-    (path.parent / "exclusions.csv").write_text("tampered\n", encoding="utf-8")
+    (path.parent / "exclusions.csv").write_text("tampered\n", encoding="utf-8", newline="\n")
     assert manifest.status("s02_data", "common")[0] == "STALE"
 
 

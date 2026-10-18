@@ -67,7 +67,7 @@ def set_status(node: str, status: str) -> None:
         raise ValueError(status)
     path = card(node)
     text = re.sub(r"^status:\s*[A-Z_]+", f"status: {status}", path.read_text(encoding="utf-8"), count=1, flags=re.M)
-    path.write_text(text, encoding="utf-8")
+    path.write_text(text, encoding="utf-8", newline="\n")
 
 
 # ---- commands -------------------------------------------------------------------------

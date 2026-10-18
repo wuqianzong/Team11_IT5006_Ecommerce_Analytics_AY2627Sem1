@@ -1,0 +1,9 @@
+# Experiment 5: every text file is checked out with LF on every OS, so the sha256 hashes in
+# run manifests (code, protocol, outputs) match on Windows, macOS and Linux (CR-031).
+* text=auto eol=lf
+*.png binary
+*.gz binary
+*.joblib binary
+*.parquet binary
+*.pkl binary
+*.zip binary

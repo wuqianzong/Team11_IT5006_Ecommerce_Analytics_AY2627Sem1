@@ -206,7 +206,7 @@ def main() -> int:
         if not args.check:
             (folder / "outputs").mkdir(parents=True, exist_ok=True)
             (folder / "outputs" / ".gitkeep").touch()
-            card.write_text(new, encoding="utf-8")
+            card.write_text(new, encoding="utf-8", newline="\n")
 
     readme = README.read_text(encoding="utf-8")
     if IDX_BEGIN in readme and IDX_END in readme:
@@ -216,7 +216,7 @@ def main() -> int:
         if new_readme != readme:
             changes.append("update README.md stage index")
             if not args.check:
-                README.write_text(new_readme, encoding="utf-8")
+                README.write_text(new_readme, encoding="utf-8", newline="\n")
     else:
         warnings.append("README.md has no stage-index markers; index not updated")
 

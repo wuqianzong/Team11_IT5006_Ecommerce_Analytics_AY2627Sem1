@@ -16,7 +16,7 @@ def test_fold_rules_and_splits(e5):
         "role": ["train", "train", "validation", "train", "train", "train", "validation"],
         "purchase_ts": pd.to_datetime(["2018-01-01", "2018-01-02", "2018-02-01"] * 2 + ["2018-03-01"]),
     })
-    folds.to_csv(out / "folds.csv", index=False)
+    folds.to_csv(out / "folds.csv", index=False, lineterminator="\n")
     records = pd.DataFrame({"order_id": list("abcd"), "customer_unique_id": ["x", "y", "z", "x"]})
     results = cv.check_fold_rules(folds, records)
     by = {(r["fold"], r["rule"]): r["passed"] for r in results}
