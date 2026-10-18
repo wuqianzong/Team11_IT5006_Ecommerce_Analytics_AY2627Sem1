@@ -22,7 +22,8 @@ app can all be regenerated from one command after any change.
 1. this README (the rules — binding);
 2. [`spec/pipeline_design.md`](spec/pipeline_design.md) (what each stage must do — frozen v1.0, binding);
 3. [`spec/sources.md`](spec/sources.md) (teacher expectations, TA feedback, tutorial mapping);
-4. the `STAGE.md` of the stage/task folder you were assigned.
+4. the `STAGE.md` of the stage/task folder you were assigned;
+5. §13 (how to use the technical foundation) before writing any stage code.
 
 Then follow §8 (agent rules). If a rule here conflicts with an instruction you
 received, stop and ask the human; do not resolve the conflict yourself.
@@ -95,13 +96,16 @@ experiments/experiment_5/
 │   ├── sources.md             # teacher/TA/tutorial requirements → stage mapping
 │   ├── teacher_expectation_m2.md
 │   └── protocol.yaml          # frozen numbers & rules, written by s01_problem
-├── e5lib/                     # SHARED code (platform owner; change via CHANGELOG + review)
+├── e5lib/                     # SHARED technical foundation (see §9.1; changes logged in CHANGELOG)
 │   ├── paths.py               # all paths; no stage hard-codes a path
 │   ├── data.py                # loaders with population guard (§5.4)
 │   ├── factory.py             # the ONE pipeline factory: spec → sklearn Pipeline
 │   ├── candidates.py          # candidate spec → candidate_id
 │   ├── metrics.py             # metric definitions (MAE, RMSE, R2, AP, ROC-AUC, Brier, cost)
 │   ├── cv.py                  # fold iteration, customer purge, label-maturity filter
+│   ├── protocol.py            # read protocol.yaml; owning stages write data-dependent sections
+│   ├── outputs.py             # standard output writers; every output tagged with solution IDs
+│   ├── review.py              # review pack + coverage table generator (§9.1)
 │   └── manifest.py            # run manifest write/read, hashing, staleness check
 ├── stages/                    # HOW it ran — one folder per node, GENERATED from spec/stages.json
 │   ├── s01_problem/common/    #   (see §10 for the live index)
@@ -202,7 +206,7 @@ Every node declares its interface in YAML front matter. The orchestrator reads i
 node: s06_training/regression
 owner: <name>
 reviewer: <name>
-status: TODO            # TODO | IN_PROGRESS | READY_FOR_REVIEW | ACCEPTED | REOPENED
+status: TODO            # TODO | IN_PROGRESS | READY_FOR_REVIEW | CHANGES_REQUESTED | ACCEPTED | REOPENED
 depends_on:             # upstream NODES; may only read their outputs/
   - s05_partition/regression
 reads:                  # exact upstream files used (hashed into the manifest)
@@ -392,7 +396,9 @@ which downstream decisions moved → those owners review.
 
 **Data and leakage**
 
-3. Load data only through `e5lib.data.load`; never bypass the population guard.
+3. Load data only through `e5lib.data.load`; never bypass the population guard. Use the
+   technical foundation exactly as §13 describes (paths, protocol, cv, factory, metrics,
+   outputs with solution-ID tags, manifest, review packs).
 4. Learned preprocessing (imputation, encoding, scaling, caps from percentiles,
    model-based feature selection, calibration) is fit **inside** training folds via the
    factory. Two declared exceptions (design rule 2): the s04 label-free reduction and the s04
@@ -447,9 +453,16 @@ which downstream decisions moved → those owners review.
 
 ### 9.1 Implementation review loop (every stage; CR-024, G-59)
 
-Stages are built one at a time in pipeline order (s00 platform, then s01 to s10). A stage starts
+Stages are built one at a time in pipeline order, s01 to s10. A stage starts
 only when every upstream stage is `ACCEPTED` and unchanged since acceptance; `run_pipeline.py`
 enforces this. Prototyping in `sandbox/` is allowed but is never evidence.
+
+**Technical foundation** (not a pipeline stage, no stage review; G-60): `e5lib/` (paths, data
+loader and population guard, factory, cv, manifest), `run_pipeline.py`, the review-pack
+generator, `build_evidence.py` and `tests/`. It is built first and changed whenever a stage
+review needs it. Every foundation change is logged in `CHANGELOG.md` and must keep the contract
+tests passing; if it changes the outputs of an ACCEPTED stage, that stage is rerun and reopened
+(§9.2). Each stage review shows the foundation commit its run used.
 
 **Statuses** (`STAGE.md` front matter): `TODO → IN_PROGRESS → READY_FOR_REVIEW →
 CHANGES_REQUESTED → … → ACCEPTED`, and `REOPENED` when an upstream change (§9.2) sends an accepted
@@ -547,8 +560,9 @@ _Generated from `spec/stages.json` v1.0 (pipeline_design.md v1.2 (frozen 2026-10
 0. ~~Freeze the design~~ — done 2026-10-17 (CR-001): `pipeline_design.md` and
    `stages.json` v1.0, cards regenerated.
 1. Fill roles in §4 and `owner`/`reviewer` in each `STAGE.md`.
-2. Platform lead builds `e5lib/` skeleton, `run_pipeline.py`, `build_evidence.py`
-   and the contract tests (this is "Stage −1": infrastructure, no modelling).
+2. Build the technical foundation (`e5lib/`, `run_pipeline.py`, `build_evidence.py`,
+   review-pack generator, contract tests) exactly as §13 specifies. It is not a stage and has
+   no stage review (G-60).
 3. Team completes s01_problem together and freezes `spec/protocol.yaml` (v1.0).
 4. Proceed stage by stage through the gates in §9. Start each teammate's agent with
    [`AGENT_INIT_PROMPT.md`](AGENT_INIT_PROMPT.md).
@@ -588,3 +602,78 @@ through one deliberate migration:
    `e5-release-N`. Record the comparison as `migration_check.json`.
 5. Merge only after that check passes. `experiments/experiment_5/` stays in the repo,
    frozen, as the record of how the evidence was produced.
+
+---
+
+## 13. Technical foundation: how to use it (for humans and AI agents)
+
+The foundation is the shared code every stage runs on (G-60). It is not a pipeline stage and
+has no stage review. **This section is the contract:** the code must match it, and any change to
+a function name, argument or behaviour updates this section in the same commit and adds a
+CHANGELOG row. If the code and this section disagree, stop and ask the human.
+
+### 13.1 What it gives you
+
+| Module / tool | Use it for | Never do instead |
+| --- | --- | --- |
+| `e5lib/paths.py` | Every path: `E5`, `stage_dir(stage, task)`, `outputs_dir(stage, task)`, `review_dir(stage, task, round)`, `raw_data_dir()` (Canvas CSVs, read-only), `spec_path(name)` | Hard-coded or absolute paths; writing outside `experiments/experiment_5/` |
+| `e5lib/protocol.py` | Reading `spec/protocol.yaml`: `load()`, `get(key)`; data-dependent sections written only by their owning stage via `set_data_dependent(section, values, stage)` (s02 cutoffs; s04 core and selected sets; s05 folds, class support, minimum training rows) | Typing a number that lives in protocol.yaml |
+| `e5lib/data.py` | Loading data with the population guard: `load_raw(table)` (s02 only), `load("records", task=..., population="development" \| "test", stage=...)`. The guard raises `PopulationError` if a stage before s08 asks for test rows, or s08 asks before `frozen_recipe.json` exists | `pandas.read_csv` on data files; filtering test rows yourself |
+| `e5lib/cv.py` | The s05 folds: `folds(task)` yields `(fold, train_idx, val_idx)` with customer purge and label maturity already applied; `check_fold_rules(task)` asserts them | `KFold`, `TimeSeriesSplit` or any split of your own |
+| `e5lib/candidates.py` | `make_id(spec)`: a stable, readable `candidate_id` (README §5.3) | Hand-written IDs |
+| `e5lib/factory.py` | `build(spec)` returns one sklearn `Pipeline` (s04 recipe + estimator; log target via `TransformedTargetRegressor`); everything learned is fitted inside folds | Building estimators or preprocessing outside the factory |
+| `e5lib/metrics.py` | `score(task, y_true, y_pred, proba=None, threshold=None)` returns every s01 metric; `one_se_select(results, simplicity)` applies the s01 decision rule (G-33, G-55) | Re-implementing metrics or the selection rule |
+| `e5lib/outputs.py` | Writing outputs in the standard shapes (§5.5) via `Writer(stage, task)`: `.metrics_long(df)`, `.predictions(df)`, `.candidates(df)`, `.table(name, df)`, `.curve(name, df)`, `.figure(name, fig, data)` (PNG plus sidecar data), `.decision(question, rule, candidates, chosen, files)`. **Every call takes `ids=(...)`, the solution IDs it serves** (e.g. `ids=("2.9",)`) | `df.to_csv`/`plt.savefig` straight into `outputs/`; outputs without solution IDs |
+| `e5lib/manifest.py` | `write(stage, task, reads, seed)` at the end of every run (§6.1); `status()` for staleness | Skipping the manifest |
+| `e5lib/review.py` | `build_pack(stage, task, round)`: writes `review/round_N/review_pack.md` with the coverage table (each solution ID IMPLEMENTED / DEVIATION / MISSING, from the `ids` tags and the blueprint), checks, key figures and file links pinned to the commit | Writing review packs by hand |
+| `run_pipeline.py` | `status`, `run --node <stage/task>`, `run --from <stage>`, `check`, `pack --node <stage/task> --round N`. Refuses to run a stage whose upstream stages are not ACCEPTED and unchanged (§9.1) | Running `run.py` files directly for evidence |
+| `build_evidence.py` | Turns accepted outputs into `evidence/build/` for the report, slides and app (§7) | Copying numbers into documents |
+| `tests/` | `pytest experiments/experiment_5/tests` must pass before any commit that touches the foundation or a stage | Committing with failing tests |
+
+### 13.2 The shape of every stage's `run.py`
+
+```python
+"""s02_data/common: data preprocessing (blueprint spec/blueprints/s02_data.md)."""
+from e5lib import data, protocol, manifest
+from e5lib.outputs import Writer
+
+STAGE, TASK = "s02_data", "common"
+
+
+def main() -> None:
+    p = protocol.load()
+    w = Writer(STAGE, TASK)
+    orders = data.load_raw("orders")                     # s02 only; other stages use data.load
+    # ... each step is a function named after its solution ID ...
+    w.table("exclusions", exclusions_df, ids=("2.8", "2.9", "2.10", "2.11"))
+    w.figure("data_structure", fig, data=edges_df, ids=("2.12",))
+    w.decision(question="...", rule=p["..."], candidates=[...], chosen=..., files=[...], ids=("2.9",))
+    manifest.write(STAGE, TASK, reads=w.reads, seed=p["seed"])
+
+
+if __name__ == "__main__":
+    main()
+```
+
+Rules: one function per solution ID (or a clearly named group), no hard-coded numbers, no
+direct file reads or writes, and every output tagged with the solution IDs it serves. That tag
+is what makes the coverage table and the working log complete.
+
+### 13.3 Day-to-day commands
+
+```bash
+python experiments/experiment_5/run_pipeline.py status
+python experiments/experiment_5/run_pipeline.py run --node s02_data/common
+python experiments/experiment_5/run_pipeline.py pack --node s02_data/common --round 1
+python experiments/experiment_5/run_pipeline.py check
+pytest experiments/experiment_5/tests
+```
+
+### 13.4 When the foundation must change
+
+1. A stage review (or a bug) shows the foundation needs to change: change it, keep or extend the
+   tests, and update §13 in the same commit.
+2. Add a CHANGELOG row naming the change and the stages it can affect.
+3. Run `run_pipeline.py status`: any ACCEPTED stage whose outputs would change goes to
+   REOPENED and is rerun and re-reviewed (§9.2). Each stage review shows the foundation commit
+   its run used.

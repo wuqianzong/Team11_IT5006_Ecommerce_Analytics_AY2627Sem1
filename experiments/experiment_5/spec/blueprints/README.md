@@ -46,7 +46,6 @@ Pipeline v2 chart.
 
 | Stage | Build status | Current round | Accepted round (commit) | Review tab |
 | --- | --- | --- | --- | --- |
-| s00 Platform | NOT STARTED | — | — | — |
 | s01 Problem statement | NOT STARTED | — | — | — |
 | s02 Data preprocessing | NOT STARTED | — | — | — |
 | s03 EDA | NOT STARTED | — | — | — |

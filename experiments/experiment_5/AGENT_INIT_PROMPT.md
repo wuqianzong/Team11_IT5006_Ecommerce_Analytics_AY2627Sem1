@@ -17,7 +17,8 @@ be consistent and fully regenerable, so the Milestone 3 report, deck and app can
 rebuilt from one command after any change.
 
 START OF SESSION (do this now, before anything else)
-1. Read completely: experiments/experiment_5/README.md (binding protocol), then
+1. Read completely: experiments/experiment_5/README.md (binding protocol; section 13 explains
+   how to use the technical foundation), then
    spec/pipeline_design.md, spec/sources.md and spec/stages.json in that folder.
    Read spec/protocol.yaml if it exists.
 2. Run `git status` and `git branch --show-current`; report the branch and whether the
