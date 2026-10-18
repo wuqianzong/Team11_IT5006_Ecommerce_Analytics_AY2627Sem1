@@ -6,24 +6,21 @@ Coverage per solution ID: IMPLEMENTED (evidence and no failed check), DEVIATION 
 difference from the approved solution) or MISSING (no evidence). A MISSING row or a failed
 check blocks acceptance. Rows whose evidence did not change since the previous round are
 marked, so reviewers only re-check what changed.
+
+Rounds are reviewed in the team doc from the uncommitted working tree; nothing is committed until
+the stage is accepted (G-64). A round is identified by its run ID and the sha256 of every output
+(in the manifest); file links are relative paths inside the repository.
 """
 from __future__ import annotations
 
 import json
-import re
-import subprocess
 from pathlib import Path
 
 from . import manifest as manifest_mod
 from .outputs import INDEX
-from .paths import REPO, assert_inside_e5, outputs_dir, rel, review_dir, spec_path
+from .paths import assert_inside_e5, outputs_dir, rel, review_dir, spec_path
 
 STATUSES = ("IMPLEMENTED", "DEVIATION", "MISSING")
-
-
-def rel_to_e5(path: Path) -> str:
-    from .paths import E5
-    return Path(path).resolve().relative_to(E5).as_posix()
 
 
 def solution_ids(stage: str, task: str) -> list[dict]:
@@ -33,20 +30,9 @@ def solution_ids(stage: str, task: str) -> list[dict]:
     return [s for s in spec[stage] if task in s.get("tasks", [task])]
 
 
-def github_base() -> str | None:
-    try:
-        url = subprocess.run(["git", "remote", "get-url", "origin"], cwd=REPO, capture_output=True,
-                             text=True, check=True).stdout.strip()
-    except (OSError, subprocess.CalledProcessError):
-        return None
-    m = re.match(r"(?:git@github\.com:|https://github\.com/)(.+?)(?:\.git)?$", url)
-    return f"https://github.com/{m.group(1)}" if m else None
-
-
-def _link(path: str, commit: str | None, base: str | None) -> str:
-    if base and commit:
-        return f"[{Path(path).name}]({base}/blob/{commit}/{path})"
-    return f"`{path}`"
+def _link(name: str) -> str:
+    """Link from review/round_N/review_pack.md to an output file."""
+    return f"[{Path(name).name}](../../outputs/{name})"
 
 
 def coverage(stage: str, task: str) -> list[dict]:
@@ -85,22 +71,16 @@ def build_pack(stage: str, task: str, round_: int) -> Path:
     for r in rows:
         r["changed"] = (r["id"] not in prev) or (prev[r["id"]]["evidence_hashes"] != r["evidence_hashes"])
 
-    # Links point at HEAD, which must already contain this run's outputs (commit them first).
-    code_commit, base = m.get("commit"), github_base()
-    commit = manifest_mod.git("rev-parse", "HEAD") or None
-    uncommitted = manifest_mod.git("status", "--porcelain", "--", rel_to_e5(out))
-    if uncommitted:
-        raise RuntimeError(f"commit {stage}/{task} outputs before packing, so review links resolve")
+    freshness, reasons = manifest_mod.status(stage, task)
     counts = {s: sum(r["status"] == s for r in rows) for s in STATUSES}
     failed = sum(r["checks"] == "FAIL" for r in rows)
-    ready = counts["MISSING"] == 0 and failed == 0 and not m.get("dirty")
-    prefix = rel(out)
+    ready = counts["MISSING"] == 0 and failed == 0 and freshness == "FRESH"
 
     lines = [f"# Review pack: {stage}/{task}, round {round_}", "",
              "| Field | Value |", "| --- | --- |",
-             f"| Code commit (run) | `{code_commit}`{' (DIRTY: not eligible for acceptance)' if m.get('dirty') else ''} |",
-             f"| Evidence commit (links) | `{commit}` |",
              f"| Run ID | `{m['run_id']}` |",
+             f"| Base commit | `{m.get('commit')}`{' plus uncommitted changes (committed at acceptance)' if m.get('dirty') else ''} |",
+             f"| Outputs | {freshness}{': ' + '; '.join(reasons) if reasons else ''} |",
              f"| Coverage | {counts['IMPLEMENTED']} implemented, {counts['DEVIATION']} deviation, {counts['MISSING']} missing |",
              f"| Failed checks | {failed} |",
              f"| Ready for acceptance | {'yes' if ready else 'no'} |", "",
@@ -108,7 +88,7 @@ def build_pack(stage: str, task: str, round_: int) -> Path:
              "| ID | Solution step | Coverage | Checks | Changed since last round | Evidence |",
              "| --- | --- | --- | --- | --- | --- |"]
     for r in rows:
-        ev = ", ".join(_link(f"{prefix}/{f}", commit, base) for f in r["files"]) or "—"
+        ev = ", ".join(_link(f) for f in r["files"]) or "—"
         lines.append(f"| [{r['id']}](#card-{r['id'].replace('.', '-')}) | {r['title']} | {r['status']} | "
                      f"{r['checks']} | {'yes' if r['changed'] else 'no'} | {ev} |")
     lines += ["", "## Evidence cards", ""]
@@ -130,15 +110,15 @@ def build_pack(stage: str, task: str, round_: int) -> Path:
             if f.endswith(".png"):
                 lines.append(f"\n![{f}](../../outputs/{f})\n")
         if r["files"]:
-            lines.append("- **Files:** " + ", ".join(_link(f"{prefix}/{f}", commit, base) for f in r["files"]))
+            lines.append("- **Files:** " + ", ".join(_link(f) for f in r["files"]))
         lines.append("")
 
     target = assert_inside_e5(review_dir(stage, task, round_))
     target.mkdir(parents=True, exist_ok=True)
     (target / "review_pack.md").write_text("\n".join(lines))
     (target / "pack.json").write_text(json.dumps({"stage": stage, "task": task, "round": round_,
-                                                  "code_commit": code_commit, "evidence_commit": commit,
-                                                  "run_id": m["run_id"],
+                                                  "base_commit": m.get("commit"), "run_id": m["run_id"],
+                                                  "outputs": freshness,
                                                   "dirty": m.get("dirty"), "ready": ready,
                                                   "rows": rows}, indent=2))
     return target / "review_pack.md"

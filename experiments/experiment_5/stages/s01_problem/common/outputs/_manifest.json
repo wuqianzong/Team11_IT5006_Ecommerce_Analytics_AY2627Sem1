@@ -1,14 +1,15 @@
 {
   "node": "s01_problem/common",
-  "run_id": "20261018T133930Z",
-  "commit": "26810a0f49cb6d53e8b129cb64f0b0ca0db9bc58",
-  "dirty": false,
+  "run_id": "20261018T150315Z",
+  "commit": "0e8741832f5722ba94d42d5bc6d3f159c6f4be68",
+  "dirty": true,
   "code": {
-    "experiments/experiment_5/stages/s01_problem/common/run.py": "a7bcea203af9e4ccc0935bd7fe0176d708fc10d7ed4ec86247ac09cee3e2792b"
+    "experiments/experiment_5/stages/s01_problem/common/run.py": "5fa94c6636615cfae5d31b22efa961995a32a166bf9c8503be69d8ce4d163fde"
   },
   "foundation": {
     "experiments/experiment_5/e5lib/__init__.py": "cd238533adc62fa600a0d9246352bc6a0c3d5bc599ad0504a1ea10d7aa76c5fe",
     "experiments/experiment_5/e5lib/candidates.py": "5ae6bb355012a619759f36e81f9dd36784a7cededf7b2eeb431a9b5f1e0e70b4",
+    "experiments/experiment_5/e5lib/contract.py": "8e63329cfa5563df39726b272b49283ca197a8f92ab314983821f51c60c4b167",
     "experiments/experiment_5/e5lib/cv.py": "c3c5d112c87c1d62c3b21a7a65a3219baa916322e7f1d6c335eea343f4684e7c",
     "experiments/experiment_5/e5lib/data.py": "28a414d21b6ef9eaf02c32dc43625cdc9336f28c1185e359ed8bab8aff6f4ddf",
     "experiments/experiment_5/e5lib/factory.py": "8f6794fc80334e6a344096c6654e015cffe3a5ab0ff9018eea16506f9eb5ad2a",
@@ -17,18 +18,18 @@
     "experiments/experiment_5/e5lib/outputs.py": "1d6bb696c5845e8075b94df7828700ef1fdee2ae81cb2b3b244211a81e7294f4",
     "experiments/experiment_5/e5lib/paths.py": "442877594b62450bd2978147eadab6e6094ad9bbb1b4fd8124d10c79cb5adb51",
     "experiments/experiment_5/e5lib/protocol.py": "b66d8ab53a721c9ca0bd4f68d1486c9a32216bfdae9b6e463da5a199e9298272",
-    "experiments/experiment_5/e5lib/review.py": "870181de18e9aa31d3a457d664b8ffb8ee24a2ed68662fdb060ec1748838710b",
+    "experiments/experiment_5/e5lib/review.py": "0db0208903ebadb56cdd944948a88eeaeb4845f4510dc26804c67e4a6fa1f6e9",
     "experiments/experiment_5/run_pipeline.py": "749c3a9366989ec6fd2b618ad37f229bd5e7ba67e61727e83f60d6e87c8514d8"
   },
   "protocol": {
-    "pre_registered": "6c2794fae55f1ca4b81f5e0a5b26254752101dde94667adf77ea0ba4e7e09e80"
+    "pre_registered": "669d2d8c7c572c8df42cb22eeb259e547de6f54266e97c8593a1449a26d6e8b7"
   },
   "reads": {},
   "outputs": {
-    "experiments/experiment_5/stages/s01_problem/common/outputs/_evidence_index.json": "cbbb22fbbc2e593bd39b2663af1bed9a8886c7ae271377f1850b466f5b306eb0",
-    "experiments/experiment_5/stages/s01_problem/common/outputs/preregistered_values.csv": "3987b005e2e88182cc43c9de39f73929cd567ce08e5fc5bd526b80de00b29e1e",
-    "experiments/experiment_5/stages/s01_problem/common/outputs/protocol_preregistered.yaml": "1d733e09d969e98f9d443479be41a38042cbeb0235c9accf3a75a9ef5b8e7793",
-    "experiments/experiment_5/stages/s01_problem/common/outputs/task_contract.md": "206e43c421d3174605137333d2f5ea33d71e23ea1d4dfcbdbb1c2119994d3e54"
+    "experiments/experiment_5/stages/s01_problem/common/outputs/_evidence_index.json": "aa329c439e95f8cf91e9ac1276d9f7c53336ee95b50bc32cbc443248db870c88",
+    "experiments/experiment_5/stages/s01_problem/common/outputs/preregistered_values.csv": "be5770c4126dddb7d7d90d1b975c65030e0d17703c8ee17f4ecd274f70c5fc77",
+    "experiments/experiment_5/stages/s01_problem/common/outputs/protocol_preregistered.yaml": "1d873755500368094b51fd2865ffba99ceebae50dec35c1a08f91a3850b314bf",
+    "experiments/experiment_5/stages/s01_problem/common/outputs/task_contract.md": "0fd9ed8249fe89cabf969628f3aa330f82939f6456e589d2e12843d7cf9fb558"
   },
   "versions": {
     "python": "3.13.9",
@@ -41,5 +42,5 @@
     "PyYAML": "6.0.3"
   },
   "seed": 42,
-  "runtime_s": 0.09
+  "runtime_s": 0.1
 }

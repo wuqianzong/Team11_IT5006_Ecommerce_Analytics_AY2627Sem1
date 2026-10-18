@@ -28,6 +28,7 @@ populations:
   - zero-item orders excluded
   - orders with missing payment_installments_max removed
   - orders without a usable payment removed (no payment rows, or only not_defined)
+  - orders with a negative value in a log1p candidate removed (zero kept)
   regression: delivered orders with a valid lead time
   classification: orders not cancelled or unavailable, with a valid review; targets never imputed
   outliers:
@@ -36,18 +37,32 @@ populations:
     lead_days_sd_multiplier: 12
     distance_km_max_limit: 4397.53
     applies_to: development and test (G-21, audit 2 A1 kept)
-  source: s02 2.8-2.11; G-20, G-21, G-51
+  exclusions:
+    file: 's02 exclusions.csv: order_id, task, step, reason_code, reason_description; one row per removed order
+      and reason, every removal rule included'
+    reason_codes:
+      INVALID_LEAD_TIME: not delivered, or delivery time missing or not after purchase (s02 2.6, 2.8)
+      ZERO_ITEMS: order has no items (s02 2.8)
+      CANCELLED_OR_UNAVAILABLE: order cancelled or unavailable (s02 2.8)
+      NO_VALID_REVIEW: no valid review score (s02 2.8)
+      LEAD_DAYS_OUTLIER: lead_days above max(100, mean + 12 SD) of pre-cutoff orders (s02 2.9)
+      DISTANCE_OUTLIER: distance_km_max above 4,397.53 km (s02 2.9)
+      MISSING_INSTALLMENTS: payment_installments_max missing (s02 2.10)
+      NO_USABLE_PAYMENT: no payment rows, or only the not_defined payment type (s02 2.11)
+      NEGATIVE_VALUE: negative value in a log1p candidate (s02 2.13)
+    rule: one description per reason code; s02 uses only these codes
+    source: s02 2.6-2.11, 2.13; G-63
+  source: s02 2.8-2.11, 2.13; G-20, G-21, G-51, G-62
 features:
-  contract_predictors:
+  contract: e5lib/contract.py (G-61)
+  predictors:
   - n_items
-  - has_items
   - n_products
   - n_sellers
   - n_categories
   - total_price
   - total_freight
   - freight_ratio
-  - freight_ratio_missing
   - total_weight_g
   - total_volume_cm3
   - weight_missing_fraction
@@ -65,37 +80,11 @@ features:
   - primary_payment_type
   - payment_installments_max
   - n_payment_methods
-  - payment_missing
-  excluded:
+  not_in_contract:
     has_items: 'post-purchase leakage: encodes a later cancellation (G-30)'
     freight_ratio_missing: 'post-purchase leakage: encodes a later cancellation (G-30)'
     payment_missing: 'constant after the population rules: s02 2.11 removes orders without a usable payment (G-42,
       G-51)'
-  eligible:
-  - n_items
-  - n_products
-  - n_sellers
-  - n_categories
-  - total_price
-  - total_freight
-  - freight_ratio
-  - total_weight_g
-  - total_volume_cm3
-  - weight_missing_fraction
-  - volume_missing_fraction
-  - primary_category
-  - category_missing_fraction
-  - customer_state
-  - primary_seller_state
-  - distance_km_max
-  - distance_missing_fraction
-  - interstate_share
-  - purchase_month
-  - purchase_dayofweek
-  - purchase_hour
-  - primary_payment_type
-  - payment_installments_max
-  - n_payment_methods
   categorical:
   - customer_state
   - primary_seller_state
@@ -105,6 +94,19 @@ features:
   - purchase_month
   - purchase_dayofweek
   - purchase_hour
+  counts:
+  - n_items
+  - n_products
+  - n_sellers
+  - n_categories
+  - n_payment_methods
+  - payment_installments_max
+  shares:
+  - weight_missing_fraction
+  - volume_missing_fraction
+  - category_missing_fraction
+  - distance_missing_fraction
+  - interstate_share
   never_predictors:
   - order_status
   - order_approved_at
@@ -119,13 +121,18 @@ features:
     candidates:
     - total_price
     - total_freight
-    - freight_ratio
     - total_weight_g
     - total_volume_cm3
     - distance_km_max
-    never: calendar fields, 0/1 indicators, 0-1 shares and fractions, counts
+    never:
+      freight_ratio: team decision in the s01 review (G-62)
+      counts: integer counts (G-62)
+      calendar fields: numeric calendar positions (G-22, G-47)
+      shares and fractions: bounded 0-1 values (G-47)
+    missing_values: stay missing through log1p; imputed afterwards in the fold pipeline
+    negative_values: orders removed in s02 2.13 (reason NEGATIVE_VALUE)
     regression_target: true
-    source: s04 4.2; G-36, G-47
+    source: s04 4.2; G-36, G-47, G-62
   collinearity:
     abs_correlation_above: 0.9
     vif_above: 10

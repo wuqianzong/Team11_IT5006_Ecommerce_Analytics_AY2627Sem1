@@ -109,15 +109,16 @@ order with cardinality checks; build both targets with their label-availability 
 Leakage audit of every column against checkout time — `order_estimated_delivery_date` is known
 at checkout (Milestone 2 wrongly listed it as post-checkout) but is never a predictor (G-35); it
 only describes late-vs-promised trends in s03; `order_status`, `order_approved_at`,
-`shipping_limit_date`, `has_items` and `freight_ratio_missing` are never predictors (post-purchase leakage), and `payment_missing` is excluded as constant once orders without a usable payment are removed (G-42, G-51); a date-order
+`shipping_limit_date` are never predictors; `has_items` and `freight_ratio_missing` (post-purchase leakage) and `payment_missing` (constant once orders without a usable payment are removed) are not in the contract (G-42, G-51, G-61); a date-order
 audit (purchase ≤ approval ≤ carrier ≤ delivery, estimated date and review answer after purchase)
 logs violations; payment fields are assumed fixed at checkout (no timestamp in the data) (G-30). IDs are kept for audit, never as predictors.
 Test cutoff per task (G-28): after the population rules and before the outlier rule, the
 purchase timestamp at the 80% position of the task's eligible orders; recorded in `audit.json`
 and `protocol.yaml`.
 Population and data-quality rules (G-20 to G-23), applied identically to development and test
-and counted in `exclusions.csv`:
-- zero-item orders (`has_items == 0`) excluded from both tasks;
+and written to `exclusions.csv`, one row per removed order and reason with a reason code and its description (G-63):
+- zero-item orders (`n_items == 0`) excluded from both tasks;
+- orders with a negative value in a log1p candidate removed from both tasks (zero kept; G-62);
 - regression: delivered orders with valid positive lead time; classification: orders not
   cancelled or unavailable with a valid review (targets never imputed). Both are scope
   limitations: the models describe orders that end up fulfilled and reviewed;
@@ -137,7 +138,7 @@ Blueprint: [`blueprints/s03_eda.md`](blueprints/s03_eda.md)
 Question-driven, before the test dates: target profiles (`lead_days` KDE and percentile table
 incl. 1/5/25/50/75/95/99%, skewness, kurtosis; `is_detractor` bar chart with counts and shares);
 outcome trends over time (lead time, late-vs-promised rate, detractor rate by purchase month, not
-volume only); diagnostics of all 27 contract features, with the importance ranking over the 24 eligible predictors (G-42) — numeric vs `lead_days`: scatter, Pearson and
+volume only); diagnostics of the 24 contract predictors, with the importance ranking over all 24 (G-42, G-61) — numeric vs `lead_days`: scatter, Pearson and
 Spearman; categorical vs `lead_days`: violin plots and one-hot (drop-first) correlations;
 numeric vs `is_detractor`: class-conditional KDEs with overlap coefficient and per-feature
 ROC-AUC; categorical vs `is_detractor`: mutual information (seed 42); calendar fields treated as
@@ -156,12 +157,13 @@ TEACHING: Tutorials 1–2 and 5; T7–T8 §3; Lecture 5 (multicollinearity).
 
 ### s04 — Features (regression, classification; defined, not fitted)
 Blueprint: [`blueprints/s04_features.md`](blueprints/s04_features.md)
-In order: feature baseline (the 27 predictors of the Milestone 2 contract, `src/features/contract.py`,
-minus `has_items`, `freight_ratio_missing` and `payment_missing`, which leak a later cancellation
-or are constant after the population rules (G-30, G-42, G-51): 24 eligible predictors);
+In order: feature baseline (the 24 predictors of `e5lib/contract.py`, written for this experiment;
+`has_items`, `freight_ratio_missing` and `payment_missing` are not in the contract because they
+leak a later cancellation or are constant after the population rules: G-30, G-42, G-51, G-61);
 calendar fields (`purchase_month`, `purchase_dayofweek`, `purchase_hour`) kept numeric; log1p for
-continuous positive-scale features whose pre-cutoff skewness exceeds 1 (never calendar fields,
-indicators or 0–1 shares; G-47), and for the regression target. **No target cap** (team decision G-25): extreme lead times are
+`total_price`, `total_freight`, `total_weight_g`, `total_volume_cm3` and `distance_km_max` when
+their pre-cutoff skewness exceeds 1 (never `freight_ratio`, counts, calendar fields, indicators or
+0–1 shares; missing values stay missing; G-47, G-62), and for the regression target. **No target cap** (team decision G-25): extreme lead times are
 handled by the s02 outlier removal and the log target; feature reduction from the 24 eligible predictors to a core set (rule 2 exception, pre-cutoff orders only): constant
 and duplicate columns dropped automatically; highly collinear features flagged by pre-registered
 cut-offs (|correlation| > 0.9 or VIF > 10) and the team decides which to drop, with the rationale

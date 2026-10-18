@@ -17,7 +17,7 @@ tasks.classification.label_available_at,last review answer,1.1
 tasks.classification.score_meaning,risk of a 1-2 star review if the customer reviews (scope limit),1.1
 tasks.classification.stakeholder,"customer-experience team: daily list of at-risk orders for proactive contact (status update, check with the seller)",1.1
 tasks.classification.source,s01 1.1-1.3; s02 2.6; G-34,1.1
-populations.both,"zero-item orders excluded, orders with missing payment_installments_max removed, orders without a usable payment removed (no payment rows, or only not_defined)",1.3
+populations.both,"zero-item orders excluded, orders with missing payment_installments_max removed, orders without a usable payment removed (no payment rows, or only not_defined), orders with a negative value in a log1p candidate removed (zero kept)",1.3
 populations.regression,delivered orders with a valid lead time,1.3
 populations.classification,"orders not cancelled or unavailable, with a valid review; targets never imputed",1.3
 populations.outliers.lead_days_rule,"lead_days > max(100, mean + 12 * SD), mean and SD from pre-cutoff orders",1.3
@@ -25,21 +25,40 @@ populations.outliers.lead_days_floor_days,100,1.3
 populations.outliers.lead_days_sd_multiplier,12,1.3
 populations.outliers.distance_km_max_limit,4397.53,1.3
 populations.outliers.applies_to,"development and test (G-21, audit 2 A1 kept)",1.3
-populations.source,"s02 2.8-2.11; G-20, G-21, G-51",1.3
-features.contract_predictors,"n_items, has_items, n_products, n_sellers, n_categories, total_price, total_freight, freight_ratio, freight_ratio_missing, total_weight_g, total_volume_cm3, weight_missing_fraction, volume_missing_fraction, primary_category, category_missing_fraction, customer_state, primary_seller_state, distance_km_max, distance_missing_fraction, interstate_share, purchase_month, purchase_dayofweek, purchase_hour, primary_payment_type, payment_installments_max, n_payment_methods, payment_missing",1.3
-features.excluded.has_items,post-purchase leakage: encodes a later cancellation (G-30),1.3
-features.excluded.freight_ratio_missing,post-purchase leakage: encodes a later cancellation (G-30),1.3
-features.excluded.payment_missing,"constant after the population rules: s02 2.11 removes orders without a usable payment (G-42, G-51)",1.3
-features.eligible,"n_items, n_products, n_sellers, n_categories, total_price, total_freight, freight_ratio, total_weight_g, total_volume_cm3, weight_missing_fraction, volume_missing_fraction, primary_category, category_missing_fraction, customer_state, primary_seller_state, distance_km_max, distance_missing_fraction, interstate_share, purchase_month, purchase_dayofweek, purchase_hour, primary_payment_type, payment_installments_max, n_payment_methods",1.3
+populations.exclusions.file,"s02 exclusions.csv: order_id, task, step, reason_code, reason_description; one row per removed order and reason, every removal rule included",1.3
+populations.exclusions.reason_codes.INVALID_LEAD_TIME,"not delivered, or delivery time missing or not after purchase (s02 2.6, 2.8)",1.3
+populations.exclusions.reason_codes.ZERO_ITEMS,order has no items (s02 2.8),1.3
+populations.exclusions.reason_codes.CANCELLED_OR_UNAVAILABLE,order cancelled or unavailable (s02 2.8),1.3
+populations.exclusions.reason_codes.NO_VALID_REVIEW,no valid review score (s02 2.8),1.3
+populations.exclusions.reason_codes.LEAD_DAYS_OUTLIER,"lead_days above max(100, mean + 12 SD) of pre-cutoff orders (s02 2.9)",1.3
+populations.exclusions.reason_codes.DISTANCE_OUTLIER,"distance_km_max above 4,397.53 km (s02 2.9)",1.3
+populations.exclusions.reason_codes.MISSING_INSTALLMENTS,payment_installments_max missing (s02 2.10),1.3
+populations.exclusions.reason_codes.NO_USABLE_PAYMENT,"no payment rows, or only the not_defined payment type (s02 2.11)",1.3
+populations.exclusions.reason_codes.NEGATIVE_VALUE,negative value in a log1p candidate (s02 2.13),1.3
+populations.exclusions.rule,one description per reason code; s02 uses only these codes,1.3
+populations.exclusions.source,"s02 2.6-2.11, 2.13; G-63",1.3
+populations.source,"s02 2.8-2.11, 2.13; G-20, G-21, G-51, G-62",1.3
+features.contract,e5lib/contract.py (G-61),1.3
+features.predictors,"n_items, n_products, n_sellers, n_categories, total_price, total_freight, freight_ratio, total_weight_g, total_volume_cm3, weight_missing_fraction, volume_missing_fraction, primary_category, category_missing_fraction, customer_state, primary_seller_state, distance_km_max, distance_missing_fraction, interstate_share, purchase_month, purchase_dayofweek, purchase_hour, primary_payment_type, payment_installments_max, n_payment_methods",1.3
+features.not_in_contract.has_items,post-purchase leakage: encodes a later cancellation (G-30),1.3
+features.not_in_contract.freight_ratio_missing,post-purchase leakage: encodes a later cancellation (G-30),1.3
+features.not_in_contract.payment_missing,"constant after the population rules: s02 2.11 removes orders without a usable payment (G-42, G-51)",1.3
 features.categorical,"customer_state, primary_seller_state, primary_category, primary_payment_type",1.3
 features.calendar_numeric,"purchase_month, purchase_dayofweek, purchase_hour",1.3
+features.counts,"n_items, n_products, n_sellers, n_categories, n_payment_methods, payment_installments_max",1.3
+features.shares,"weight_missing_fraction, volume_missing_fraction, category_missing_fraction, distance_missing_fraction, interstate_share",1.3
 features.never_predictors,"order_status, order_approved_at, order_delivered_carrier_date, order_delivered_customer_date, shipping_limit_date, review fields, order_estimated_delivery_date",1.3
 features.log1p.skewness_threshold,1.0,1.3
 features.log1p.skewness_on,pre-cutoff development orders,1.3
-features.log1p.candidates,"total_price, total_freight, freight_ratio, total_weight_g, total_volume_cm3, distance_km_max",1.3
-features.log1p.never,"calendar fields, 0/1 indicators, 0-1 shares and fractions, counts",1.3
+features.log1p.candidates,"total_price, total_freight, total_weight_g, total_volume_cm3, distance_km_max",1.3
+features.log1p.never.freight_ratio,team decision in the s01 review (G-62),1.3
+features.log1p.never.counts,integer counts (G-62),1.3
+features.log1p.never.calendar fields,"numeric calendar positions (G-22, G-47)",1.3
+features.log1p.never.shares and fractions,bounded 0-1 values (G-47),1.3
+features.log1p.missing_values,stay missing through log1p; imputed afterwards in the fold pipeline,1.3
+features.log1p.negative_values,orders removed in s02 2.13 (reason NEGATIVE_VALUE),1.3
 features.log1p.regression_target,True,1.3
-features.log1p.source,"s04 4.2; G-36, G-47",1.3
+features.log1p.source,"s04 4.2; G-36, G-47, G-62",1.3
 features.collinearity.abs_correlation_above,0.9,1.3
 features.collinearity.vif_above,10,1.3
 features.collinearity.decided_by,team (human_decisions.yaml),1.3

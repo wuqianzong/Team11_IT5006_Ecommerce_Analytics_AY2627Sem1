@@ -23,13 +23,13 @@ Gate: features and recipes defined without fitting or using test data (`../stage
   `eda_review_pack.md`. s04 stops if these are missing.
 
 ## 3. Method
-1. **Baseline (4.1).** The 27 contract predictors minus `has_items`, `freight_ratio_missing` and
-   `payment_missing` (post-purchase leakage for the first two; constant after the population rules
-   for payment_missing, G-30, G-42, G-51): 24 eligible predictors; `purchase_month`, `purchase_dayofweek`,
+1. **Baseline (4.1).** The 24 predictors of `e5lib/contract.py` (G-61; `has_items`,
+   `freight_ratio_missing` and `payment_missing` are not in the contract: G-30, G-42, G-51); `purchase_month`, `purchase_dayofweek`,
    `purchase_hour` numeric (G-22).
-2. **Transforms (4.2).** log1p only for continuous positive-scale features (price, freight, weight,
-   volume, distance and similar) with pre-cutoff skewness > 1; calendar fields, 0/1 indicators and
-   0–1 shares are never logged (G-47); the final list is in `feature_dictionary.csv`;
+2. **Transforms (4.2).** log1p only for the contract's candidates `total_price`, `total_freight`,
+   `total_weight_g`, `total_volume_cm3`, `distance_km_max`, each when its pre-cutoff skewness > 1;
+   `freight_ratio`, counts, calendar fields, 0/1 indicators and 0–1 shares are never logged
+   (G-47, G-62); missing values stay missing through log1p and are imputed afterwards; the final list is in `feature_dictionary.csv`;
    log1p regression target (`TransformedTargetRegressor`, inverse expm1). No target cap (G-25).
 3. **Reduction (4.3).** Drop constant and duplicate columns automatically. Flag features with
    |correlation| > 0.9 or VIF > 10; the team decides which of each flagged group to drop and
@@ -56,7 +56,7 @@ Gate: features and recipes defined without fitting or using test data (`../stage
 | ID | Question | Answer | Basis | Status |
 | --- | --- | --- | --- | --- |
 | s04-D1 | Calendar type | Numeric | G-22 | Agreed |
-| s04-D2 | Skew trigger | log1p if skewness > 1, continuous positive-scale features only | G-22, G-47 | Agreed |
+| s04-D2 | Skew trigger | log1p if skewness > 1, for the five contract candidates only | G-22, G-47, G-62 | Agreed |
 | s04-D3 | Target cap | None | G-25 | Agreed |
 | s04-D4 | Collinearity drops | Flagged by cut-offs, decided by the team, recorded | G-26 | Agreed |
 | s04-D5 | Selection | EDA ranking, cumulative threshold fixed before fitting | G-19 | Agreed (threshold value pending s03 output) |

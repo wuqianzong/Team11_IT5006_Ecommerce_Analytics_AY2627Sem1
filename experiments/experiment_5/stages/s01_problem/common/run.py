@@ -11,7 +11,7 @@ import re
 import pandas as pd
 import yaml
 
-from e5lib import STAGE_ORDER, protocol
+from e5lib import STAGE_ORDER, contract, protocol
 from e5lib.outputs import Writer
 from e5lib.paths import E5, assert_inside_e5, outputs_dir, spec_path
 
@@ -28,31 +28,21 @@ CITATIONS = {  # verified against their sources (s01 1.4, 1.5, 1.7; s07 7.4)
     "breiman2001": "Breiman, L. (2001). Random forests. Machine Learning 45:5-32.",
 }
 
-CONTRACT_PREDICTORS = [  # the 27 Milestone 2 contract predictors (names only; code logic, G-29)
-    "n_items", "has_items", "n_products", "n_sellers", "n_categories",
-    "total_price", "total_freight", "freight_ratio", "freight_ratio_missing",
-    "total_weight_g", "total_volume_cm3", "weight_missing_fraction",
-    "volume_missing_fraction", "primary_category", "category_missing_fraction",
-    "customer_state", "primary_seller_state", "distance_km_max",
-    "distance_missing_fraction", "interstate_share",
-    "purchase_month", "purchase_dayofweek", "purchase_hour",
-    "primary_payment_type", "payment_installments_max", "n_payment_methods",
-    "payment_missing",
-]
-EXCLUDED = {
-    "has_items": "post-purchase leakage: encodes a later cancellation (G-30)",
-    "freight_ratio_missing": "post-purchase leakage: encodes a later cancellation (G-30)",
-    "payment_missing": "constant after the population rules: s02 2.11 removes orders without a usable payment (G-42, G-51)",
+EXCLUSION_REASONS = {  # s02 removal rules (G-63); the task column of exclusions.csv says which population lost the order
+    "INVALID_LEAD_TIME": "not delivered, or delivery time missing or not after purchase (s02 2.6, 2.8)",
+    "ZERO_ITEMS": "order has no items (s02 2.8)",
+    "CANCELLED_OR_UNAVAILABLE": "order cancelled or unavailable (s02 2.8)",
+    "NO_VALID_REVIEW": "no valid review score (s02 2.8)",
+    "LEAD_DAYS_OUTLIER": "lead_days above max(100, mean + 12 SD) of pre-cutoff orders (s02 2.9)",
+    "DISTANCE_OUTLIER": "distance_km_max above 4,397.53 km (s02 2.9)",
+    "MISSING_INSTALLMENTS": "payment_installments_max missing (s02 2.10)",
+    "NO_USABLE_PAYMENT": "no payment rows, or only the not_defined payment type (s02 2.11)",
+    "NEGATIVE_VALUE": "negative value in a log1p candidate (s02 2.13)",
 }
-CATEGORICAL = ["customer_state", "primary_seller_state", "primary_category", "primary_payment_type"]
-CALENDAR_NUMERIC = ["purchase_month", "purchase_dayofweek", "purchase_hour"]
-LOG_CANDIDATES = ["total_price", "total_freight", "freight_ratio", "total_weight_g", "total_volume_cm3",
-                  "distance_km_max"]
 GRID_C = [0.01, 0.1, 0.5, 1, 5, 10, 20, 50, 100]
 
 
 def preregistered() -> dict:
-    eligible = [c for c in CONTRACT_PREDICTORS if c not in EXCLUDED]
     return {
         "version": "1.0",
         "seed": 42,
@@ -77,27 +67,38 @@ def preregistered() -> dict:
         },
         "populations": {
             "both": ["zero-item orders excluded", "orders with missing payment_installments_max removed",
-                     "orders without a usable payment removed (no payment rows, or only not_defined)"],
+                     "orders without a usable payment removed (no payment rows, or only not_defined)",
+                     "orders with a negative value in a log1p candidate removed (zero kept)"],
             "regression": "delivered orders with a valid lead time",
             "classification": "orders not cancelled or unavailable, with a valid review; targets never imputed",
             "outliers": {"lead_days_rule": "lead_days > max(100, mean + 12 * SD), mean and SD from pre-cutoff orders",
                          "lead_days_floor_days": 100, "lead_days_sd_multiplier": 12,
                          "distance_km_max_limit": 4397.53, "applies_to": "development and test (G-21, audit 2 A1 kept)"},
-            "source": "s02 2.8-2.11; G-20, G-21, G-51",
+            "exclusions": {
+                "file": "s02 exclusions.csv: order_id, task, step, reason_code, reason_description; one row per removed order and reason, every removal rule included",
+                "reason_codes": EXCLUSION_REASONS,
+                "rule": "one description per reason code; s02 uses only these codes",
+                "source": "s02 2.6-2.11, 2.13; G-63",
+            },
+            "source": "s02 2.8-2.11, 2.13; G-20, G-21, G-51, G-62",
         },
         "features": {
-            "contract_predictors": CONTRACT_PREDICTORS,
-            "excluded": EXCLUDED,
-            "eligible": eligible,
-            "categorical": CATEGORICAL,
-            "calendar_numeric": CALENDAR_NUMERIC,
+            "contract": "e5lib/contract.py (G-61)",
+            "predictors": list(contract.PREDICTORS),
+            "not_in_contract": contract.NOT_IN_CONTRACT,
+            "categorical": list(contract.CATEGORICAL),
+            "calendar_numeric": list(contract.CALENDAR_NUMERIC),
+            "counts": list(contract.COUNTS),
+            "shares": list(contract.SHARES),
             "never_predictors": ["order_status", "order_approved_at", "order_delivered_carrier_date",
                                  "order_delivered_customer_date", "shipping_limit_date", "review fields",
                                  "order_estimated_delivery_date"],
             "log1p": {"skewness_threshold": 1.0, "skewness_on": "pre-cutoff development orders",
-                      "candidates": LOG_CANDIDATES,
-                      "never": "calendar fields, 0/1 indicators, 0-1 shares and fractions, counts",
-                      "regression_target": True, "source": "s04 4.2; G-36, G-47"},
+                      "candidates": list(contract.LOG_CANDIDATES),
+                      "never": contract.NEVER_LOGGED,
+                      "missing_values": "stay missing through log1p; imputed afterwards in the fold pipeline",
+                      "negative_values": "orders removed in s02 2.13 (reason NEGATIVE_VALUE)",
+                      "regression_target": True, "source": "s04 4.2; G-36, G-47, G-62"},
             "collinearity": {"abs_correlation_above": 0.9, "vif_above": 10, "decided_by": "team (human_decisions.yaml)",
                              "source": "s04 4.3; G-26"},
             "selection": {"ranking": {"regression": "absolute Spearman", "classification": "mutual information"},
@@ -258,11 +259,15 @@ def main() -> None:
     later = [s for s in STAGE_ORDER[1:] if any((E5 / "stages" / s).glob("*/outputs/_manifest.json"))]
     w.check("pre-registered before any later stage has outputs", not later, ids=("1.9",),
             detail=f"stages with outputs: {later or 'none'}")
-    w.check("27 contract predictors, 3 excluded, 24 eligible",
-            len(set(CONTRACT_PREDICTORS)) == 27 and set(EXCLUDED) <= set(CONTRACT_PREDICTORS)
-            and len(p["features"]["eligible"]) == 24, ids=("1.3",))
-    w.check("categorical and log candidates are eligible predictors",
-            set(CATEGORICAL + CALENDAR_NUMERIC + LOG_CANDIDATES) <= set(p["features"]["eligible"]), ids=("1.3",))
+    problems = contract.validate()
+    w.check("contract: 24 distinct predictors, groups and log1p candidates consistent", not problems, ids=("1.3",),
+            detail="; ".join(problems))
+    w.check("not-in-contract columns have a reason and are not predictors",
+            set(contract.NOT_IN_CONTRACT) == {"has_items", "freight_ratio_missing", "payment_missing"}
+            and not set(contract.NOT_IN_CONTRACT) & set(contract.PREDICTORS), ids=("1.3",))
+    w.check("one description per exclusion reason code",
+            len(EXCLUSION_REASONS) == len(set(EXCLUSION_REASONS)) and all(EXCLUSION_REASONS.values()), ids=("1.3",),
+            detail=f"{len(EXCLUSION_REASONS)} codes")
     cited = set(p["metrics"]["citations"] + p["cost"]["citations"] + p["decision_rule"]["citations"] + p["grids"]["citations"])
     w.check("every citation is in the verified list", cited <= set(CITATIONS), ids=("1.4", "1.5", "1.7"),
             detail=f"{len(cited)} citations")
@@ -283,11 +288,17 @@ def main() -> None:
               conclusion="Matches s01 1.1 and G-34 (eligible-order wording and scope limit).")
     w.explain("1.2", done="Stakeholder and action recorded per task in protocol.yaml and task_contract.md.",
               conclusion=f"Regression: {tk['regression']['stakeholder']}. Classification: {tk['classification']['stakeholder']}.")
-    w.explain("1.3", done=f"Populations, label rule and the predictor contract recorded: {len(CONTRACT_PREDICTORS)} contract "
-              f"predictors, {len(EXCLUDED)} excluded with reasons, {len(p['features']['eligible'])} eligible; calendar fields numeric.",
-              reasoning="log1p candidates are the continuous positive-scale features only (G-47); counts are treated as "
-                        "never-logged. This reading of G-47 is flagged for the team to confirm.",
-              conclusion="Feeds s02 (populations) and s03-s04 (eligible set, log candidates).")
+    w.explain("1.3", done=f"Populations, label rule and the predictor contract recorded from e5lib/contract.py: "
+              f"{len(contract.PREDICTORS)} predictors ({len(contract.CATEGORICAL)} categorical, calendar fields numeric); "
+              f"{len(contract.NOT_IN_CONTRACT)} columns listed as not in the contract with their reason; "
+              f"{len(EXCLUSION_REASONS)} exclusion reason codes for s02.",
+              reasoning="Round 2 applies the round 1 review: the contract is defined directly as the 24 predictors (G-61); "
+                        "log1p candidates are total_price, total_freight, total_weight_g, total_volume_cm3 and "
+                        "distance_km_max, while freight_ratio and counts are never logged; missing values stay missing "
+                        "through log1p; orders with a negative candidate value are removed in s02 (G-62); every s02 "
+                        "removal is written to exclusions.csv with a reason code and description (G-63).",
+              conclusion="Feeds s02 (populations, exclusion codes, the 24 predictors to build) and s03-s04 (feature groups, "
+                         "log1p candidates).")
     w.explain("1.4", done=f"Primary metrics: {p['metrics']['regression']['primary'].upper()} (regression), "
               f"{p['metrics']['classification']['primary'].upper()} (classification), with secondary metrics and charts; "
               "evaluation settings for s09 pre-registered.",

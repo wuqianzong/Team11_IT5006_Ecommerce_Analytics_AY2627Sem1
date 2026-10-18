@@ -53,7 +53,7 @@
       ]
     },
     {
-      "name": "27 contract predictors, 3 excluded, 24 eligible",
+      "name": "contract: 24 distinct predictors, groups and log1p candidates consistent",
       "passed": true,
       "detail": "",
       "ids": [
@@ -61,9 +61,17 @@
       ]
     },
     {
-      "name": "categorical and log candidates are eligible predictors",
+      "name": "not-in-contract columns have a reason and are not predictors",
       "passed": true,
       "detail": "",
+      "ids": [
+        "1.3"
+      ]
+    },
+    {
+      "name": "one description per exclusion reason code",
+      "passed": true,
+      "detail": "9 codes",
       "ids": [
         "1.3"
       ]
@@ -116,12 +124,12 @@
       "label": "observation"
     },
     "1.3": {
-      "done": "Populations, label rule and the predictor contract recorded: 27 contract predictors, 3 excluded with reasons, 24 eligible; calendar fields numeric.",
+      "done": "Populations, label rule and the predictor contract recorded from e5lib/contract.py: 24 predictors (4 categorical, calendar fields numeric); 3 columns listed as not in the contract with their reason; 9 exclusion reason codes for s02.",
       "inputs": "",
       "expectation": "",
       "observation": "",
-      "reasoning": "log1p candidates are the continuous positive-scale features only (G-47); counts are treated as never-logged. This reading of G-47 is flagged for the team to confirm.",
-      "conclusion": "Feeds s02 (populations) and s03-s04 (eligible set, log candidates).",
+      "reasoning": "Round 2 applies the round 1 review: the contract is defined directly as the 24 predictors (G-61); log1p candidates are total_price, total_freight, total_weight_g, total_volume_cm3 and distance_km_max, while freight_ratio and counts are never logged; missing values stay missing through log1p; orders with a negative candidate value are removed in s02 (G-62); every s02 removal is written to exclusions.csv with a reason code and description (G-63).",
+      "conclusion": "Feeds s02 (populations, exclusion codes, the 24 predictors to build) and s03-s04 (feature groups, log1p candidates).",
       "label": "observation"
     },
     "1.4": {

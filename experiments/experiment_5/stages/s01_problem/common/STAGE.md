@@ -2,7 +2,7 @@
 node: s01_problem/common
 owner: TBD
 reviewer: TBD
-status: READY_FOR_REVIEW
+status: ACCEPTED
 depends_on: []
 reads: []   # exact upstream files used
 writes: []  # every file run.py produces
@@ -36,7 +36,7 @@ Fix both checkout tasks, prediction time, stakeholders and their actions, target
 | --- | --- | --- | --- | --- | --- |
 | 1.1 | Tasks and prediction time: Two tasks pre-registered: lead_days (regression) and is_detractor (classification, positive class 1), both predicted at order_purchase_timestamp. | 26810a0 | protocol_preregistered.yaml, preregistered_values.csv, task_contract.md | IMPLEMENTED | 1 |
 | 1.2 | Stakeholders and action: Stakeholder and action recorded per task in protocol.yaml and task_contract.md. | 26810a0 | protocol_preregistered.yaml, preregistered_values.csv, task_contract.md | IMPLEMENTED | 1 |
-| 1.3 | Targets and populations: Populations, label rule and the predictor contract recorded: 27 contract predictors, 3 excluded with reasons, 24 eligible; calendar fields numeric. | 26810a0 | protocol_preregistered.yaml, preregistered_values.csv, task_contract.md | IMPLEMENTED | 1 |
+| 1.3 | Targets and populations: predictor contract from the new e5lib/contract.py (24 predictors, 3 columns listed as not in the contract with reasons), log1p candidates narrowed, negative-value and exclusion-record rules, 9 exclusion reason codes (G-61 to G-63). | acceptance commit (e5-s01-accepted) | protocol_preregistered.yaml, preregistered_values.csv, task_contract.md | IMPLEMENTED | 2 |
 | 1.4 | Metrics: Primary metrics: MAE (regression), AP (classification), with secondary metrics and charts; evaluation settings for s09 pre-registered. | 26810a0 | protocol_preregistered.yaml, preregistered_values.csv, task_contract.md | IMPLEMENTED | 1 |
 | 1.5 | Cost assumption: Illustrative cost FN:FP = 5:1. | 26810a0 | protocol_preregistered.yaml, preregistered_values.csv, task_contract.md | IMPLEMENTED | 1 |
 | 1.6 | Model families: 5 regression and 4 classification estimators, with the s06 plain settings. | 26810a0 | protocol_preregistered.yaml, preregistered_values.csv, task_contract.md | IMPLEMENTED | 1 |
@@ -47,10 +47,12 @@ Fix both checkout tasks, prediction time, stakeholders and their actions, target
 ## Review rounds (append-only; each round has review/round_N/ and a section in the doc tab)
 | Round | Commit | Run ID | Review pack | Outcome | Date |
 | --- | --- | --- | --- | --- | --- |
-| 1 | code 26810a0, evidence 1cad146 | 20261018T133930Z | review/round_1/review_pack.md | in review | 2026-10-18 |
+| 1 | code 26810a0, evidence 1cad146 | 20261018T133930Z | review/round_1/review_pack.md | changes requested on 1.3 (contract, log1p, exclusions) | 2026-10-18 |
+| 2 | acceptance commit (tag e5-s01-accepted) | 20261018T150315Z | review/round_2/review_pack.md | accepted: all 9 rows Approved in the doc, 7 checks PASS | 2026-10-18 |
 
 ## Accepted result (the only result the report and slides may cite)
-- Accepted round: - commit: - run ID: - approved by: - date:
+- Accepted round: 2 - commit: the "s01 accepted" commit, tag `e5-s01-accepted` - run ID: 20261018T150315Z - approved by: experiment lead (Wu Qianzong), after team review in the doc tab "Implementation reviews › s01 Problem" - date: 2026-10-18
+- Evidence: `outputs/_manifest.json` (output hashes), `review/round_2/review_pack.md`.
 
 ## Deviations from blueprint
 None.

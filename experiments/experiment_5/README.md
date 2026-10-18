@@ -8,7 +8,7 @@ Branch: `milestone-3`. Owner of this protocol: team (changes follow §9).
 ## 0. Read this first (humans and AI agents)
 
 Experiment 5 is **not a new study**. It replays the Milestone 2 direction
-(Olist, two checkout-time tasks, leakage exclusions, the 27-feature candidate set,
+(Olist, two checkout-time tasks, leakage exclusions, the feature candidate set (24 predictors here),
 log transforms, linear and tree families) but executes it as **one
 ten-stage pass in the textbook order taught in Tutorials 1–8**, with **one validation
 protocol, one pipeline factory and one evidence registry** from start to finish.
@@ -104,6 +104,7 @@ experiments/experiment_5/
 │   ├── metrics.py             # metric definitions (MAE, RMSE, R2, AP, ROC-AUC, Brier, cost)
 │   ├── cv.py                  # fold iteration, customer purge, label-maturity filter
 │   ├── protocol.py            # read protocol.yaml; owning stages write data-dependent sections
+│   ├── contract.py            # the 24-predictor contract, feature groups, log1p candidates (G-61)
 │   ├── outputs.py             # standard output writers; every output tagged with solution IDs
 │   ├── review.py              # review pack + coverage table generator (§9.1)
 │   └── manifest.py            # run manifest write/read, hashing, staleness check
@@ -231,7 +232,7 @@ explicitly, and record their hashes).
 Holds every number that otherwise tends to drift, in two layers:
 
 - **Pre-registered** (fixed in s01, before any data is seen): tasks, positive class,
-  eligibility, the 27-feature candidate list, excluded columns, seed `42`, test cutoff,
+  eligibility, the 24-predictor contract (`e5lib/contract.py`) and the columns left out of it, seed `42`, test cutoff,
   purge and label-maturity rules, metric definitions, decision rules and tie-breaks, the
   cost assumption (FN:FP = 5:1, illustrative), search grids and budgets.
 - **Data-dependent** (each section owned by one stage, added via CHANGELOG and frozen at
@@ -299,8 +300,10 @@ Each `run.py` ends by calling `e5lib.manifest.write(...)`, which records: node,
 `spec/protocol.yaml` and every file in `reads`, sha256 of every output, Python and
 package versions, seed, runtime.
 
-A run made from a **dirty** working tree is allowed for development but is
-**never** eligible for a release.
+Review rounds run from the uncommitted working tree (G-64), so their manifests are marked dirty;
+the sha256 hashes of code, foundation, protocol, inputs and outputs identify the run. At
+acceptance the stage is committed and its manifest must still be FRESH against the committed
+files; a release (`check`) needs a clean tree and every manifest FRESH.
 
 ### 6.2 Orchestrator
 
@@ -476,23 +479,26 @@ stage back for review.
 2. *Run*: `run_pipeline.py run --node sNN`. All outputs, including process evidence (design rule 8),
    go under `stages/sNN/<task>/outputs/` with `_manifest.json`.
 3. *Pack*: code generates `stages/sNN/<task>/review/round_N/review_pack.md` with the coverage
-   table: every solution ID of the stage, each marked IMPLEMENTED, DEVIATION or MISSING. Commit
-   "sNN round N ready for review"; status `READY_FOR_REVIEW`.
+   table: every solution ID of the stage, each marked IMPLEMENTED, DEVIATION or MISSING. Nothing is
+   committed or pushed for a round (G-64); status `READY_FOR_REVIEW`.
 4. *Review*: the stage's tab under "Implementation reviews" in the team doc (below). Reviewers
-   approve or comment per row.
-5. *Fix*: each comment is answered in its thread; fixes become round N+1 (new commit and run).
+   approve or comment per row there; the tab carries every value they need, so nobody opens the
+   repository.
+5. *Fix*: each comment is answered in its thread; fixes become round N+1 (new run and pack).
    Rows whose evidence hashes did not change keep their approval; changed rows are reviewed
    again. Status `CHANGES_REQUESTED` until the next pack.
 6. *Accept*: every row Approved, no MISSING row, every check PASS. The experiment lead approves;
-   the card records the accepted round, commit, run ID, approver and date; the commit is tagged
-   `e5-sNN-accepted`; the next stage unlocks.
+   the stage is then committed on `milestone-3` (one commit, "sNN accepted", local; pushed only on
+   the lead's instruction), its manifest checked FRESH against that commit, and the card records
+   the accepted round, commit, run ID, approver and date; the commit is tagged `e5-sNN-accepted`;
+   the next stage unlocks.
 
 **Evidence card** (one per solution ID, generated from output files, never typed): approved
 solution (quoted); what was done and inputs; process data (intermediate tables); results (small
 tables inline, large ones as top rows plus link; charts shown inline); expectation vs
 observation; reasoning and conclusion, each claim labelled observation / literature-supported
-hypothesis / unmeasured mechanism; deviation; checks (PASS/FAIL); links to files on GitHub pinned
-to the round's commit, evidence IDs and figure sidecars.
+hypothesis / unmeasured mechanism; deviation; checks (PASS/FAIL); file paths with the run ID and
+output hashes, evidence IDs and figure sidecars.
 
 **Team doc layout** ("Implementation reviews" tab): one tab per stage; stages that run per task
 (s03–s09) get one sub-tab per task for the evidence cards, while the stage tab holds the status
@@ -621,6 +627,7 @@ Status: built and covered by `tests/` (CR-026). The signatures below are the one
 | --- | --- | --- |
 | `e5lib/__init__.py` | `STAGE_ORDER`, `TASKS`, `stage_rank(stage)` | Comparing stage names as strings |
 | `e5lib/paths.py` | Every path: `E5`, `REPO`, `stage_dir(stage, task)`, `outputs_dir(stage, task)`, `review_dir(stage, task, round)`, `raw_data_dir()` (Canvas CSVs, read-only), `reference_dir()` (e.g. IBGE geography, read-only), `spec_path(name)`, `evidence_dir()`, `assert_inside_e5(path)`, `rel(path)` | Hard-coded or absolute paths; writing outside `experiments/experiment_5/` |
+| `e5lib/contract.py` | The predictor contract (s01 1.3; G-61, G-62): `PREDICTORS` (24), `CATEGORICAL`, `CALENDAR_NUMERIC`, `COUNTS`, `SHARES`, `LOG_CANDIDATES`, `NEVER_LOGGED`, `NOT_IN_CONTRACT` (column → reason), `numeric()`, `validate()`. s01 copies these lists into `protocol.yaml`; later stages read them from there | Typing feature lists into a stage |
 | `e5lib/protocol.py` | Reading `spec/protocol.yaml` (created by s01): `load()`, `get("dotted.key", default)`. Data-dependent sections are written only by their owner via `set_data_dependent(section, values, stage)`: `test_cutoffs` (s02); `core_set`, `selected_set` (s04); `fold_boundaries`, `class_support`, `min_training_rows` (s05). An existing value is never overwritten unless `replace=True` after a CHANGELOG entry | Typing a number that lives in protocol.yaml |
 | `e5lib/data.py` | All data access, through the population guard:<br>`load_raw(table, stage)`: raw tables, s02 only (`orders`, `order_items`, `order_payments`, `order_reviews`, `customers`, `sellers`, `products`, `geolocation`, `category_translation`);<br>`load("records", task, population, stage)`: s02 records for one task, `population` = `development` (before the task's cutoff), `test` (s08 after `frozen_recipe.json`, and later) or `all` (s05 only);<br>`upstream(source_stage, source_task, filename, stage)`: path of an earlier stage's output.<br>Breaking a rule raises `PopulationError`; every read is recorded for the manifest (`reads()`) | `pandas.read_csv` on data files; filtering test rows yourself |
 | `e5lib/cv.py` | The s05 folds: `folds(task, stage)` yields `(fold, train_order_ids, val_order_ids)`; `sklearn_splits(order_ids, task, stage)` gives positional splits for `cv=`; `check_fold_rules(folds_df, records)` asserts training-before-validation and no shared customer | `KFold`, `TimeSeriesSplit` or any split of your own |
@@ -629,7 +636,7 @@ Status: built and covered by `tests/` (CR-026). The signatures below are the one
 | `e5lib/metrics.py` | `score(task, y_true, y_pred=None, proba=None, threshold=None)` returns every s01 metric (MAE, RMSE, R², within ±3 days; AP, ROC-AUC, Brier, confusion counts, precision, recall, F1, alert rate, error rate, 5:1 cost); `fold_summary(results, metric)`; `one_se_select(results, metric, higher_is_better, simplicity)` applies the s01 rule (G-33, G-55); `PRIMARY` gives each task's primary metric | Re-implementing metrics or the selection rule |
 | `e5lib/outputs.py` | The only way to write outputs: `Writer(stage, task)` empties `outputs/` and offers `.metrics_long(df, ids)`, `.predictions(df, ids)`, `.candidates(df, ids)`, `.table(name, df, ids)`, `.curve(name, df, ids)`, `.figure(name, fig, data, ids)` (PNG plus sidecar data), `.json(name, obj, ids)`, `.text(name, content, ids)`, `.decision(question, rule, candidates, chosen, files, ids)`; review support: `.check(name, passed, ids, detail)`, `.deviation(id, text)`, `.explain(id, done=, inputs=, expectation=, observation=, reasoning=, conclusion=, label=)` (evidence-card text built from computed values); end of run: `.finish(seed)` writes `_evidence_index.json`, `decision.json` and the manifest. **Every output takes `ids=(...)`, the solution IDs it serves** | `df.to_csv`/`plt.savefig` straight into `outputs/`; outputs without solution IDs; typed numbers in card text |
 | `e5lib/manifest.py` | Called by `Writer.finish`: `write(stage, task, reads, seed)` (§6.1); `read(stage, task)`; `status(stage, task)` returns FRESH / STALE / MISSING with reasons (stage code, foundation code, protocol, inputs or outputs changed) | Skipping the manifest |
-| `e5lib/review.py` | `build_pack(stage, task, round)` (via `run_pipeline.py pack`): writes `review/round_N/review_pack.md` and `pack.json` with the coverage table over `spec/solution_ids.json` (IMPLEMENTED / DEVIATION / MISSING, PASS / FAIL checks, changed since last round), evidence cards, inline figures and file links pinned to the commit; `coverage(stage, task)` | Writing review packs by hand |
+| `e5lib/review.py` | `build_pack(stage, task, round)` (via `run_pipeline.py pack`): writes `review/round_N/review_pack.md` and `pack.json` with the coverage table over `spec/solution_ids.json` (IMPLEMENTED / DEVIATION / MISSING, PASS / FAIL checks, changed since last round), evidence cards, inline figures and relative links to the round's output files; the pack header shows the run ID, the base commit and whether the outputs are FRESH. Rounds are packed from the uncommitted working tree (G-64); `coverage(stage, task)` | Writing review packs by hand |
 | `spec/solution_ids.json` | The approved solution IDs per stage (and per task where an ID applies to one task); the coverage table is checked against it | Coverage lists kept by hand |
 | `run_pipeline.py` | `status`; `run --node <stage/task>` or `run --from <stage> [--task]` (refuses unless every upstream node is ACCEPTED and FRESH; TODO becomes IN_PROGRESS; an ACCEPTED node whose `decision.json` changes becomes REOPENED); `pack --node <stage/task> --round N` (append-only rounds; sets READY_FOR_REVIEW); `check` (all FRESH, clean tree, tests pass) | Running `run.py` files directly for evidence |
 | `build_evidence.py` | `--draft` writes `evidence/build_draft/` (not committed); without it, builds `evidence/build/` only when `check` passes, from `evidence/registry.yaml` | Copying numbers into documents |

@@ -98,3 +98,11 @@ def test_data_dependent_write_does_not_stale_other_stages(e5):
     (e5 / "spec" / "protocol.yaml").write_text(yaml.safe_dump(data))
     state, reasons = manifest.status("s01_problem", "common")
     assert state == "STALE" and any("pre_registered" in r for r in reasons)
+
+
+def test_contract_is_consistent():
+    from e5lib import contract
+    assert contract.validate() == []
+    assert len(contract.PREDICTORS) == 24
+    assert "freight_ratio" not in contract.LOG_CANDIDATES
+    assert not set(contract.NOT_IN_CONTRACT) & set(contract.PREDICTORS)

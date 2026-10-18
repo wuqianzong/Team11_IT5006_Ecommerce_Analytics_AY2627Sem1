@@ -15,7 +15,7 @@ REAL_E5 = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REAL_E5))
 
 MODULES = ["e5lib", "e5lib.paths", "e5lib.protocol", "e5lib.data", "e5lib.manifest", "e5lib.cv",
-           "e5lib.candidates", "e5lib.factory", "e5lib.metrics", "e5lib.outputs", "e5lib.review",
+           "e5lib.candidates", "e5lib.contract", "e5lib.factory", "e5lib.metrics", "e5lib.outputs", "e5lib.review",
            "run_pipeline"]
 
 

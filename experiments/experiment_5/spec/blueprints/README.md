@@ -46,7 +46,7 @@ Pipeline v2 chart.
 
 | Stage | Build status | Current round | Accepted round (commit) | Review tab |
 | --- | --- | --- | --- | --- |
-| s01 Problem statement | IN REVIEW | 1 | — | Implementation reviews › s01 Problem |
+| s01 Problem statement | ACCEPTED | 2 | 2 (tag e5-s01-accepted) | Implementation reviews › s01 Problem |
 | s02 Data preprocessing | NOT STARTED | — | — | — |
 | s03 EDA | NOT STARTED | — | — | — |
 | s04 Features | NOT STARTED | — | — | — |
