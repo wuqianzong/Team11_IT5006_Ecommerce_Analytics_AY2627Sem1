@@ -80,3 +80,21 @@ def test_other_guards(records):
         data.upstream("s06_training", "regression", "x.csv", stage="s05_partition")
     assert data.load("records", "regression", "all", stage="s05_partition").shape[0] == 9
     assert any(p.name == "records.csv.gz" for p in data.reads())
+
+
+def test_data_dependent_write_does_not_stale_other_stages(e5):
+    import pandas as pd
+    from e5lib import manifest, protocol
+    from e5lib.outputs import Writer
+    w = Writer("s01_problem", "common")
+    w.json("protocol_snapshot", protocol.load(), ids=("1.9",))
+    w.finish(seed=42)
+    assert manifest.status("s01_problem", "common")[0] == "FRESH"
+    protocol.set_data_dependent("test_cutoffs", {"regression": "2018-05-01"}, stage="s02_data")
+    assert manifest.status("s01_problem", "common")[0] == "FRESH"  # s01 never read test_cutoffs
+    data = protocol.load()
+    data["seed"] = 7
+    import yaml
+    (e5 / "spec" / "protocol.yaml").write_text(yaml.safe_dump(data))
+    state, reasons = manifest.status("s01_problem", "common")
+    assert state == "STALE" and any("pre_registered" in r for r in reasons)

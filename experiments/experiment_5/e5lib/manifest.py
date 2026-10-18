@@ -17,7 +17,7 @@ from importlib import metadata
 from pathlib import Path
 from typing import Iterable
 
-from . import data
+from . import data, protocol
 from .paths import E5, REPO, assert_inside_e5, outputs_dir, rel, spec_path, stage_dir
 
 MANIFEST = "_manifest.json"
@@ -50,15 +50,23 @@ def output_files(stage: str, task: str) -> list[Path]:
     return sorted(p for p in out.rglob("*") if p.is_file() and p.name != MANIFEST) if out.exists() else []
 
 
+# Files a run or the review process writes; they never make a run "dirty".
+GENERATED = ("stages/*/*/outputs", "stages/*/*/review", "stages/*/*/STAGE.md", "spec/protocol.yaml",
+             "evidence/build", "evidence/build_draft")
+
+
+def git(*args: str) -> str:
+    try:
+        return subprocess.run(["git", *args], cwd=E5, capture_output=True, text=True, check=True).stdout.strip()
+    except (OSError, subprocess.CalledProcessError):
+        return ""
+
+
 def git_state() -> dict[str, object]:
-    def run(*args: str) -> str:
-        try:
-            return subprocess.run(["git", *args], cwd=REPO, capture_output=True, text=True,
-                                  check=True).stdout.strip()
-        except (OSError, subprocess.CalledProcessError):
-            return ""
-    commit = run("rev-parse", "HEAD")
-    dirty = bool(run("status", "--porcelain", "--", str(E5.relative_to(REPO)) if E5.is_relative_to(REPO) else "."))
+    """HEAD commit, and whether code or spec in Experiment 5 differs from it (generated files excluded)."""
+    commit = git("rev-parse", "HEAD")
+    excludes = [f":(exclude){g}" for g in GENERATED]
+    dirty = bool(git("status", "--porcelain", "--", ".", *excludes))
     return {"commit": commit or None, "dirty": dirty}
 
 
@@ -77,13 +85,15 @@ def write(stage: str, task: str, reads: Iterable[Path] | None = None, seed: int 
     """Write outputs/_manifest.json for this run; returns its path."""
     reads = list(reads) if reads is not None else data.reads()
     protocol_path = spec_path("protocol.yaml")
+    layers = protocol.layer_hashes() if protocol_path.exists() else {}
+    used = ["pre_registered"] + [f"data_dependent.{s}" for s in protocol.used_sections()]
     manifest = {
         "node": f"{stage}/{task}",
         "run_id": datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ"),
         **git_state(),
         "code": _hash_files(code_files(stage, task)),
         "foundation": _hash_files(foundation_files()),
-        "protocol": sha256(protocol_path) if protocol_path.exists() else None,
+        "protocol": {k: layers.get(k) for k in used},
         "reads": _hash_files(reads),
         "outputs": _hash_files(output_files(stage, task)),
         "versions": versions(),
@@ -113,8 +123,10 @@ def status(stage: str, task: str) -> tuple[str, list[str]]:
     if m.get("foundation") != _hash_files(foundation_files()):
         reasons.append("foundation code changed")
     protocol_path = spec_path("protocol.yaml")
-    if m["protocol"] != (sha256(protocol_path) if protocol_path.exists() else None):
-        reasons.append("protocol.yaml changed")
+    layers = protocol.layer_hashes() if protocol_path.exists() else {}
+    for layer, digest in (m.get("protocol") or {}).items():
+        if layers.get(layer) != digest:
+            reasons.append(f"protocol.yaml {layer} changed")
     for path_str, digest in m["reads"].items():
         p = REPO / path_str
         if not p.exists() or sha256(p) != digest:

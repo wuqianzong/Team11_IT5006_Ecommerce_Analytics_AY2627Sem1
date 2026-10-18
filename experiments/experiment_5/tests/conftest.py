@@ -44,6 +44,7 @@ def e5(tmp_path, monkeypatch):
         else:
             importlib.import_module(name)
     sys.modules["e5lib.data"]._READS.clear()
+    sys.modules["e5lib.protocol"]._USED_SECTIONS.clear()
     return root
 
 

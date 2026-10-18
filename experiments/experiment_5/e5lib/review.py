@@ -21,6 +21,11 @@ from .paths import REPO, assert_inside_e5, outputs_dir, rel, review_dir, spec_pa
 STATUSES = ("IMPLEMENTED", "DEVIATION", "MISSING")
 
 
+def rel_to_e5(path: Path) -> str:
+    from .paths import E5
+    return Path(path).resolve().relative_to(E5).as_posix()
+
+
 def solution_ids(stage: str, task: str) -> list[dict]:
     spec = json.loads(spec_path("solution_ids.json").read_text())
     if stage not in spec:
@@ -80,7 +85,12 @@ def build_pack(stage: str, task: str, round_: int) -> Path:
     for r in rows:
         r["changed"] = (r["id"] not in prev) or (prev[r["id"]]["evidence_hashes"] != r["evidence_hashes"])
 
-    commit, base = m.get("commit"), github_base()
+    # Links point at HEAD, which must already contain this run's outputs (commit them first).
+    code_commit, base = m.get("commit"), github_base()
+    commit = manifest_mod.git("rev-parse", "HEAD") or None
+    uncommitted = manifest_mod.git("status", "--porcelain", "--", rel_to_e5(out))
+    if uncommitted:
+        raise RuntimeError(f"commit {stage}/{task} outputs before packing, so review links resolve")
     counts = {s: sum(r["status"] == s for r in rows) for s in STATUSES}
     failed = sum(r["checks"] == "FAIL" for r in rows)
     ready = counts["MISSING"] == 0 and failed == 0 and not m.get("dirty")
@@ -88,7 +98,8 @@ def build_pack(stage: str, task: str, round_: int) -> Path:
 
     lines = [f"# Review pack: {stage}/{task}, round {round_}", "",
              "| Field | Value |", "| --- | --- |",
-             f"| Commit | `{commit}`{' (DIRTY: not eligible for acceptance)' if m.get('dirty') else ''} |",
+             f"| Code commit (run) | `{code_commit}`{' (DIRTY: not eligible for acceptance)' if m.get('dirty') else ''} |",
+             f"| Evidence commit (links) | `{commit}` |",
              f"| Run ID | `{m['run_id']}` |",
              f"| Coverage | {counts['IMPLEMENTED']} implemented, {counts['DEVIATION']} deviation, {counts['MISSING']} missing |",
              f"| Failed checks | {failed} |",
@@ -126,7 +137,8 @@ def build_pack(stage: str, task: str, round_: int) -> Path:
     target.mkdir(parents=True, exist_ok=True)
     (target / "review_pack.md").write_text("\n".join(lines))
     (target / "pack.json").write_text(json.dumps({"stage": stage, "task": task, "round": round_,
-                                                  "commit": commit, "run_id": m["run_id"],
+                                                  "code_commit": code_commit, "evidence_commit": commit,
+                                                  "run_id": m["run_id"],
                                                   "dirty": m.get("dirty"), "ready": ready,
                                                   "rows": rows}, indent=2))
     return target / "review_pack.md"
