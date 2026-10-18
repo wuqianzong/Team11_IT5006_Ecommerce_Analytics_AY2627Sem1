@@ -24,7 +24,7 @@ Sort by purchase time; hold out each task's newest 20% as its test cohort (cutof
 - folds.csv
 - test_manifest.csv (task-specific test cohort)
 - counts.json (rows, customers, positives per fold and cohort)
-- checks.json (customer purge, maturity, rows lost to maturity, class support)
+- checks.json (customer purge, maturity, rows lost to maturity, class support, minimum training rows)
 
 ## Gate criteria
 - No test customer in development (repeat customers removed from test; order_id and customer_unique_id checked)

@@ -24,7 +24,8 @@ Gate: features and recipes defined without fitting or using test data (`../stage
 
 ## 3. Method
 1. **Baseline (4.1).** The 27 contract predictors minus `has_items`, `freight_ratio_missing` and
-   `payment_missing` (post-purchase leakage or constant, G-30, G-42): 24 eligible predictors; `purchase_month`, `purchase_dayofweek`,
+   `payment_missing` (post-purchase leakage for the first two; constant after the population rules
+   for payment_missing, G-30, G-42, G-51): 24 eligible predictors; `purchase_month`, `purchase_dayofweek`,
    `purchase_hour` numeric (G-22).
 2. **Transforms (4.2).** log1p only for continuous positive-scale features (price, freight, weight,
    volume, distance and similar) with pre-cutoff skewness > 1; calendar fields, 0/1 indicators and

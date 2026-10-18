@@ -133,7 +133,7 @@
         "folds.csv",
         "test_manifest.csv (task-specific test cohort)",
         "counts.json (rows, customers, positives per fold and cohort)",
-        "checks.json (customer purge, maturity, rows lost to maturity, class support)"
+        "checks.json (customer purge, maturity, rows lost to maturity, class support, minimum training rows)"
       ],
       "gate": [
         "No test customer in development (repeat customers removed from test; order_id and customer_unique_id checked)",

@@ -25,6 +25,8 @@ Gate: every conclusion follows from the test results and their limits.
    - training scores (fold mean);
    - validation selection scores (fold mean ± SD);
    - test scores with 95% bootstrap intervals (1,000 resamples of test orders, seed 42).
+   - Classification also reports the absolute number of detractors in the test cohort and the
+     width of each confidence interval, so the 15% share rule is not read as "enough" (G-54).
 2. **Gain over baselines (9.2).** Winner vs the dummy and vs the plain model on test, with an
    interval on the difference (paired bootstrap).
 3. **Error analysis (9.3; G-40).**

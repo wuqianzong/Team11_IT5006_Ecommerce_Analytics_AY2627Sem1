@@ -231,7 +231,7 @@ Holds every number that otherwise tends to drift, in two layers:
   purge and label-maturity rules, metric definitions, decision rules and tie-breaks, the
   cost assumption (FN:FP = 5:1, illustrative), search grids and budgets.
 - **Data-dependent** (each section owned by one stage, added via CHANGELOG and frozen at
-  that stage's gate, before any model result): core set and the selected set per task (s04); exact fold boundaries and class-support threshold (s05).
+  that stage's gate, before any model result): core set and the selected set per task (s04); exact fold boundaries, class-support threshold and minimum training rows per fold (s05).
 
 Code reads values from here; **no stage hard-codes these numbers**.
 

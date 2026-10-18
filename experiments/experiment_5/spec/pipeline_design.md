@@ -1,6 +1,6 @@
 <!-- AUTHORITATIVE Milestone 3 / Experiment 5 pipeline design. This file is the only version
      that counts; edit it here (and mirror changes in spec/stages.json, README §3.1).
-     v1.0 FROZEN 2026-10-17 by the team (CHANGELOG CR-001); v1.1 audit fixes (CR-003); v1.2 team feature-solution decisions (CR-004 to CR-009); rule 8 evidence retention (CR-013); s01 decision rule (CR-014); promised lead days dropped (CR-015); log transforms fixed, no s06 Step B (CR-016); s06–s07 agreed (CR-017); test cohort wording and s08 selection rule (CR-018); s08 agreed with human gates (CR-019); s09–s10 agreed (CR-020); audit 2 decisions (CR-021). It replaces the 13-stage draft
+     v1.0 FROZEN 2026-10-17 by the team (CHANGELOG CR-001); v1.1 audit fixes (CR-003); v1.2 team feature-solution decisions (CR-004 to CR-009); rule 8 evidence retention (CR-013); s01 decision rule (CR-014); promised lead days dropped (CR-015); log transforms fixed, no s06 Step B (CR-016); s06–s07 agreed (CR-017); test cohort wording and s08 selection rule (CR-018); s08 agreed with human gates (CR-019); s09–s10 agreed (CR-020); audit 2 decisions (CR-021); audit 3 decisions (CR-022). It replaces the 13-stage draft
      derived from docs/milestone3_baseline_pipeline_design_2026-10-13.txt, which is superseded
      and not updated. After this freeze, changes go through README §9.2 and CHANGELOG.md. -->
 
@@ -109,7 +109,7 @@ order with cardinality checks; build both targets with their label-availability 
 Leakage audit of every column against checkout time — `order_estimated_delivery_date` is known
 at checkout (Milestone 2 wrongly listed it as post-checkout) but is never a predictor (G-35); it
 only describes late-vs-promised trends in s03; `order_status`, `order_approved_at`,
-`shipping_limit_date`, `has_items`, `freight_ratio_missing` and `payment_missing` are never predictors (G-42); a date-order
+`shipping_limit_date`, `has_items` and `freight_ratio_missing` are never predictors (post-purchase leakage), and `payment_missing` is excluded as constant once orders without a usable payment are removed (G-42, G-51); a date-order
 audit (purchase ≤ approval ≤ carrier ≤ delivery, estimated date and review answer after purchase)
 logs violations; payment fields are assumed fixed at checkout (no timestamp in the data) (G-30). IDs are kept for audit, never as predictors.
 Test cutoff per task (G-28): after the population rules and before the outlier rule, the
@@ -124,7 +124,8 @@ and counted in `exclusions.csv`:
 - suspected data-entry errors removed: `lead_days` > max(100, mean + 12 × SD), with mean and SD
   computed on pre-cutoff orders only, or `distance_km_max` > 4,397.53 km;
 - orders with missing `payment_installments_max` removed (the app's input checks reject the
-  same case).
+  same case);
+- orders without a usable payment (no payment rows, or only `not_defined`) removed (G-51).
 OUTPUT: `records.csv.gz`, `exclusions.csv`, `data_hashes.json`, `audit.json` (joins, grains,
 leakage, label sensitivity).
 TEACHING: Tutorial 3; T7 reference §3; brief leakage warning.
@@ -155,7 +156,7 @@ TEACHING: Tutorials 1–2 and 5; T7–T8 §3; Lecture 5 (multicollinearity).
 Blueprint: [`blueprints/s04_features.md`](blueprints/s04_features.md)
 In order: feature baseline (the 27 predictors of the Milestone 2 contract, `src/features/contract.py`,
 minus `has_items`, `freight_ratio_missing` and `payment_missing`, which leak a later cancellation
-or are constant (G-30, G-42): 24 eligible predictors);
+or are constant after the population rules (G-30, G-42, G-51): 24 eligible predictors);
 calendar fields (`purchase_month`, `purchase_dayofweek`, `purchase_hour`) kept numeric; log1p for
 continuous positive-scale features whose pre-cutoff skewness exceeds 1 (never calendar fields,
 indicators or 0–1 shares; G-47), and for the regression target. **No target cap** (team decision G-25): extreme lead times are
@@ -296,7 +297,7 @@ approval, migration and reproduction check before any deliverable is built.
 
 ## Decisions recorded in `protocol.yaml`, not in this design
 
-Two layers (see s01). Data-dependent: exact fold boundaries, class-support threshold and the
+Two layers (see s01). Data-dependent: exact fold boundaries, class-support threshold, minimum training rows per fold (G-53) and the
 label-maturity rule for validation rows (s05); core set and selected set (s04).
 Pre-registered (s01): the decision rule for
 keeping a more complex variant (one-standard-error rule: the simplest candidate whose mean

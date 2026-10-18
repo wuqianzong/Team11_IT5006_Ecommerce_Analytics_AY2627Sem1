@@ -6,7 +6,7 @@
 | Nodes | regression, classification |
 | Status | AGREED |
 | Owner | TBD |
-| Last agreed | 2026-10-18 (wording, CR-018; audit 2, CR-021); first 2026-10-17 (team walkthrough, doc tab "Feature solution (s02–s05)") |
+| Last agreed | 2026-10-18 (wording, CR-018; audit 2, CR-021; audit 3, CR-022); first 2026-10-17 (team walkthrough, doc tab "Feature solution (s02–s05)") |
 | Discussion | Claude Doc "Milestone 3 pipeline stages", tab "Feature solution (s02–s05)", section s05 |
 
 ## 1. Goal and gate
@@ -17,7 +17,7 @@ Gate: folds chronological, customers purged, labels mature, classes supported (`
 ## 2. Inputs
 - `stages/s02_data/common/outputs/records.csv.gz` (task-eligible rows, after all s02 rules).
 - `spec/protocol.yaml`: per-task test cutoff (computed in s02), number of folds (5), minimum
-  positives per fold, seed 42.
+  training rows per fold, minimum positives per fold, seed 42.
 - Depends on s02 only (not on s03–s04).
 
 ## 3. Method
@@ -42,7 +42,9 @@ Gate: folds chronological, customers purged, labels mature, classes supported (`
    delivery, `is_detractor` at the last review answer). Training rows: label observable before
    their fold's validation block starts. Validation rows: label observable before the task's test
    cutoff. Dropped rows counted per fold.
-8. **Class support (5.8).** Positives and prevalence per fold, training and validation; minimum
+8. **Class support and training size (5.8).** Every fold's training part holds at least the
+   minimum number of rows pre-registered in `protocol.yaml`, for both tasks (G-53).
+   Classification also: positives and prevalence per fold, training and validation; minimum
    count from `protocol.yaml`. A boundary may move only before s06 runs, logged in CHANGELOG.
 
 ## 4. Decisions
@@ -67,6 +69,7 @@ Gate: folds chronological, customers purged, labels mature, classes supported (`
 - Every fold: max training purchase time < min validation purchase time.
 - Every fold: no shared `customer_unique_id` between training and validation.
 - Every fold: every training label observable before the validation block starts.
+- Every fold, both tasks: training rows ≥ the pre-registered minimum (G-53).
 - Classification: both classes present in every fold's training and validation parts, at or
   above the minimum count.
 - Test size checks per task as step 4 (G-46).

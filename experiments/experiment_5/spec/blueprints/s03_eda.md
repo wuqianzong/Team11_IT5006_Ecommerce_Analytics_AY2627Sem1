@@ -37,7 +37,9 @@ Gate: every planned change follows from a pre-cutoff observation (`../stages.jso
 8. **Importance ranking (3.8).** One measure per task, so cumulative shares are meaningful:
    absolute Spearman (regression), mutual information (classification). Only the 24 eligible
    predictors are ranked, so cumulative shares are over the selection pool (G-42); the three
-   excluded features stay in the diagnostic tables, marked "excluded (leakage)".
+   excluded features stay in the diagnostic tables, each marked with its reason: "excluded
+   (post-purchase leakage)" for has_items and freight_ratio_missing, "excluded (constant after
+   population rules)" for payment_missing.
    Also report missingness, outliers and correlation/VIF among raw numeric features.
 9. **Human gate (G-31).** Stop here. Build `eda_review_pack.md` (every table and figure above, plus
    the flagged collinear groups and the cumulative-importance curve with the 95% and 99% cut
@@ -65,7 +67,8 @@ Gate: every planned change follows from a pre-cutoff observation (`../stages.jso
 ## 6. Checks
 - Assert max purchase timestamp < the task's test cutoff (from `protocol.yaml`).
 - All 27 features present in the diagnostic tables.
-- Cumulative share in `importance_ranking.csv` ends at 1.0 over the 24 eligible predictors.
+- `importance_ranking.csv` has exactly 24 rows (the eligible predictors) and its cumulative share
+  ends at 1.0.
 - s04 refuses to run if `spec/human_decisions.yaml` lacks the s03 decisions for its task.
 
 ## 7. Milestone 2 reuse

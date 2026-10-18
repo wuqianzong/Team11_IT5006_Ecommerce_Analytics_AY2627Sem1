@@ -36,8 +36,9 @@ plain model stays. Both families are still tuned and reported.
    - `refit=False`, `return_train_score=True`, seed 42.
    Best per family = the simplest configuration within one standard error of the best mean (s01
    1.7). Simpler means higher alpha, lower C, shallower depth, then larger leaf. That
-   configuration is then kept only if it also passes the rule against the family's plain s06
-   model.
+   configuration is then compared with the family's plain s06 model by the same one-SE rule: if
+   the plain model's mean is within one SE of the tuned configuration's mean, the plain model is
+   kept (G-55).
 3. **Overfitting check (7.6).** Report the train–validation gap for every configuration. Flag the
    chosen configuration if the gap is large while a simpler one is within the decision rule.
 
@@ -45,7 +46,7 @@ plain model stays. Both families are still tuned and reported.
 | ID | Question | Answer | Basis | Status |
 | --- | --- | --- | --- | --- |
 | s07-D1 | Grids | As 7.1–7.4 | G-37, G-43; Tutorials 5, 7–8 | Agreed |
-| s07-D2 | Best per family | One-SE rule, then must beat the plain s06 model | G-33; teacher note §4 | Agreed |
+| s07-D2 | Best per family | One-SE rule; plain s06 model kept if within one SE of the tuned one | G-33, G-55; teacher note §4 | Agreed |
 | s07-D3 | Class weight | Grid option for classifiers | G-05 | Agreed |
 | s07-D4 | Forest size | 200 trees | Breiman 2001, *Machine Learning* 45:5–32 (verified) | Agreed |
 

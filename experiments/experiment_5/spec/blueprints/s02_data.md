@@ -6,11 +6,11 @@
 | Nodes | common |
 | Status | AGREED |
 | Owner | TBD |
-| Last agreed | 2026-10-17 (team walkthrough, doc tab "Feature solution (s02–s05)") |
+| Last agreed | 2026-10-18 (audit 3, CR-022); first 2026-10-17 (team walkthrough, doc tab "Feature solution (s02–s05)") |
 | Discussion | Claude Doc "Milestone 3 pipeline stages", tab "Feature solution (s02–s05)", section s02 |
 
 ## 1. Goal and gate
-Goal: one row per order with audit IDs, the 27 contract predictors (24 eligible after leakage exclusions), both targets with label-available
+Goal: one row per order with audit IDs, the 27 contract predictors (24 eligible after leakage or constant exclusions), both targets with label-available
 times, and every exclusion counted.
 Gate: joins, grains, targets and leakage exclusions verified (`../stages.json`).
 
@@ -39,10 +39,11 @@ Gate: joins, grains, targets and leakage exclusions verified (`../stages.json`).
    label available at the last review answer. Keep the first-review label for a sensitivity
    check.
 7. **Leakage audit** (G-30). Tag every column known / not known at checkout.
-   - Never predictors (known only after purchase): `order_status`, `order_approved_at`,
-     carrier and customer delivery dates, `shipping_limit_date`, review fields, `has_items`,
-     `freight_ratio_missing` and `payment_missing` (all three encode a later cancellation or
-     are constant after the population rules; G-42). `order_estimated_delivery_date`
+   - Never predictors, post-purchase leakage (known only after purchase): `order_status`,
+     `order_approved_at`, carrier and customer delivery dates, `shipping_limit_date`, review
+     fields, `has_items` and `freight_ratio_missing` (both encode a later cancellation).
+   - Never a predictor, constant after the population rules: `payment_missing` (known at
+     checkout, but always 0 once step 11 has removed orders without a usable payment; G-42, G-51). `order_estimated_delivery_date`
      is known at checkout but is never a predictor (G-35); it is kept in `records.csv.gz` only for
      the s03 late-vs-promised trend.
    - Date-order audit on every order: purchase ≤ approval ≤ carrier ≤ delivery; estimated date >
@@ -58,7 +59,10 @@ Gate: joins, grains, targets and leakage exclusions verified (`../stages.json`).
    The number of orders this removes on or after each task's test cutoff is recorded in
    `exclusions.csv` and stated in the s09 limitations (audit 2 A1, rule kept by the team).
 10. **Missing installments** (G-20). Remove orders with missing `payment_installments_max`.
-11. **Test cutoff** (G-28). Per task, after step 8 and before step 9: the purchase timestamp at the
+11. **Missing payment** (G-51). Remove orders without a usable payment (no payment rows, or only
+    the `not_defined` payment type) from both tasks; count logged in `exclusions.csv`; the app
+    rejects the same input.
+12. **Test cutoff** (G-28). Per task, after step 8 and before step 9: the purchase timestamp at the
     80% position of eligible orders, recorded in `audit.json` and added to `protocol.yaml`
     (data-dependent layer). Not taken from Milestone 2. Step 9's outlier statistics use orders
     before this cutoff.
@@ -69,6 +73,7 @@ Gate: joins, grains, targets and leakage exclusions verified (`../stages.json`).
 | s02-D1 | Populations | As step 8 | G-20 | Agreed |
 | s02-D2 | Outlier removal | As step 9 | G-21 (team instruction) | Agreed |
 | s02-D3 | Missing installments | Remove; app rejects the same input | G-20 | Agreed |
+| s02-D7 | Missing payment | Remove orders without a usable payment (2.11); payment_missing becomes constant and is excluded as constant | G-51 | Agreed |
 | s02-D5 | Test cutoff | Recomputed per task by the 80/20 rule | G-28 | Agreed |
 | s02-D6 | Post-purchase columns and date audit | As step 7 | G-30 | Agreed |
 | s02-D4 | Label rule | Minimum review score, first-review sensitivity | Milestone 1 TA | Agreed |

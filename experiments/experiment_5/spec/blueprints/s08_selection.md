@@ -39,11 +39,10 @@ Gate: recipe and threshold frozen before the test cohort is read; test scored on
      - or revisit s03–s04.
    - Validation scores are reported as selection scores, not generalisation estimates (G-10).
 3. **Calibration, classification (8.3).** Reliability curve and Brier score on the chosen model's
-   out-of-fold probabilities. Raw probabilities by default. If they are poorly calibrated, a
-   sigmoid variant (`CalibratedClassifierCV`, time-ordered inner splits inside each training
-   fold) is scored as a full candidate. It is kept only if mean Brier improves and mean AP stays within one fold SE of the raw model
-   (G-45)
-   (G-16).
+   out-of-fold probabilities. Raw probabilities by default. A sigmoid variant
+   (`CalibratedClassifierCV`, time-ordered inner splits inside each training fold) is always
+   scored as a full candidate, with no trigger to decide (G-52). It is kept only if mean Brier
+   improves and mean AP stays within one fold SE of the raw model (G-16, G-45).
 4. **Threshold, classification (8.4): hard stop.**
    - Candidates, from the out-of-fold probabilities of the chosen recipe: no alerts, 0.50, the
      theoretical cost cutoff 1/6 = C_FP/(C_FP+C_FN) (Elkan 2001), and the empirical minimum of
@@ -71,7 +70,7 @@ Gate: recipe and threshold frozen before the test cohort is read; test scored on
 | --- | --- | --- | --- | --- |
 | s08-D1 | Model choice | One-SE rule recommends; team confirms at a gate; override = deviation CR | G-33, G-39, G-44 | Agreed |
 | s08-D2 | Grid-edge winner | Team widens grid (CR) or revisits s03–s04 | G-39 | Agreed |
-| s08-D3 | Calibration | Raw default; sigmoid kept if Brier improves and AP within one SE | G-16, G-45 | Agreed |
+| s08-D3 | Calibration | Sigmoid always scored; kept if Brier improves and AP within one SE | G-16, G-45, G-52 | Agreed |
 | s08-D4 | Threshold | Hard stop; team chooses from the trade-off table; optional alert cap | G-39; Elkan 2001 | Agreed |
 | s08-D5 | Test | Once, after freeze, with references | G-06, G-24 | Agreed |
 

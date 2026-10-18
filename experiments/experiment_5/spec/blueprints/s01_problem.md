@@ -71,6 +71,9 @@ Gate: tasks, targets, metrics, cost, decision rule and budget fixed before any r
      2009, *The Elements of Statistical Learning*, §7.10. Industry practice: glmnet
      `lambda.1se` (Friedman, Hastie & Tibshirani 2010, *J. Stat. Softw.* 33(1)); scikit-learn
      example "Balance model complexity and cross-validated score".
+   - The alert threshold is not part of this rule: it is a business judgement at the s08 hard stop
+     (G-39). Default recommendation: minimise the illustrative cost, subject to the daily alert
+     cap (G-56).
 8. **Search budget (1.8).** Grids are fixed in s07 (one per family, listed there). The random
    forest uses 200 trees; seed 42 everywhere. No new grid points are added after results are
    seen.
