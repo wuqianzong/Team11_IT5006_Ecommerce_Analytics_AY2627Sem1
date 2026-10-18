@@ -1,6 +1,6 @@
 <!-- AUTHORITATIVE Milestone 3 / Experiment 5 pipeline design. This file is the only version
      that counts; edit it here (and mirror changes in spec/stages.json, README §3.1).
-     v1.0 FROZEN 2026-10-17 by the team (CHANGELOG CR-001); v1.1 audit fixes (CR-003); v1.2 team feature-solution decisions (CR-004 to CR-009); rule 8 evidence retention (CR-013); s01 decision rule (CR-014); promised lead days dropped (CR-015); log transforms fixed, no s06 Step B (CR-016); s06–s07 agreed (CR-017); test cohort wording and s08 selection rule (CR-018); s08 agreed with human gates (CR-019); s09–s10 agreed (CR-020); audit 2 decisions (CR-021); audit 3 decisions (CR-022). It replaces the 13-stage draft
+     v1.0 FROZEN 2026-10-17 by the team (CHANGELOG CR-001); v1.1 audit fixes (CR-003); v1.2 team feature-solution decisions (CR-004 to CR-009); rule 8 evidence retention (CR-013); s01 decision rule (CR-014); promised lead days dropped (CR-015); log transforms fixed, no s06 Step B (CR-016); s06–s07 agreed (CR-017); test cohort wording and s08 selection rule (CR-018); s08 agreed with human gates (CR-019); s09–s10 agreed (CR-020); audit 2 decisions (CR-021); audit 3 decisions (CR-022); data documentation (CR-023). It replaces the 13-stage draft
      derived from docs/milestone3_baseline_pipeline_design_2026-10-13.txt, which is superseded
      and not updated. After this freeze, changes go through README §9.2 and CHANGELOG.md. -->
 
@@ -127,7 +127,9 @@ and counted in `exclusions.csv`:
   same case);
 - orders without a usable payment (no payment rows, or only `not_defined`) removed (G-51).
 OUTPUT: `records.csv.gz`, `exclusions.csv`, `data_hashes.json`, `audit.json` (joins, grains,
-leakage, label sensitivity).
+leakage, label sensitivity), and the generated data documentation following the NIBRS model the
+teacher shared: `data_dictionary.csv` (every raw and derived column: type, nullable, grain,
+missing-value meaning, known at checkout, eligibility) and the table-structure diagram (G-58).
 TEACHING: Tutorial 3; T7 reference §3; brief leakage warning.
 
 ### s03 — EDA (regression, classification; pre-cutoff orders only)

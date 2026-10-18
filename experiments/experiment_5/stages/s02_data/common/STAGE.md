@@ -25,12 +25,15 @@ Load and clean the nine Olist tables deterministically, join aggregation-first t
 - exclusions.csv
 - data_hashes.json (input and IBGE boundary sha256)
 - audit.json (joins, grains, leakage, label sensitivity)
+- data_dictionary.csv (every raw and derived column; NIBRS model, G-58)
+- figures/data_structure.png (tables, keys, one-to-many links, aggregate-first join)
 
 ## Gate criteria
 - Only row-local deterministic rules; nothing learned
 - Every column classified as known or not known at checkout
 - Minimum vs first review label sensitivity recorded
 - Input hashes recorded
+- Data dictionary covers every raw and derived column and matches the leakage tags (G-58)
 - Per-task test cutoff computed by the 80/20 rule and recorded (not assumed from Milestone 2)
 - Outlier threshold computed on pre-cutoff orders only; every removal counted in exclusions.csv
 - order_status, order_approved_at, shipping_limit_date, has_items, freight_ratio_missing and payment_missing never predictors

@@ -54,7 +54,8 @@ Deadlines: slides locked 4 Nov; report and ZIP due 8 Nov.
      | Score | One order with an interval from test residual quantiles; bulk CSV | One order with risk score, risk band and alert flag; bulk CSV | s08 bundle (inference only) |
      | Data health | Drift table and training period; out-of-profile input warning | Same | s09 9.4, `training_profile.json` |
 
-   - Input checks with clear errors: types, ranges, unknown states, no items, missing
+   - Input checks read types, allowed values and ranges from the s02 `data_dictionary.csv`
+     (G-58), with clear errors: types, ranges, unknown states, no items, missing
      installments, impossible distance.
    - Inference never fits. The app is deployed on Streamlit Cloud, and the live URL is tested
      before submission.

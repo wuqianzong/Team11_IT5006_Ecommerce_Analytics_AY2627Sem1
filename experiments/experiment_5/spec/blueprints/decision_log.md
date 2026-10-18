@@ -6,6 +6,7 @@ Status: Proposed (in a draft) · Agreed · Superseded (link the replacing row).
 
 | ID | Date | Stage | Decision | Raised by | Basis | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| G-58 | 2026-10-18 | s02, s04, s10 | Data documentation following the NIBRS model shared by the teacher: s02 generates data_dictionary.csv (every raw and derived column: type, nullable, grain, source, missing-value meaning, known at checkout, eligibility, comment) and a table-structure diagram with one-to-many links and the aggregate-first join; s04's feature dictionary extends it; s10 app input checks read it. NIBRS data itself not used | Team (teacher material) | docs/references/NIBRS; Milestone 1 TA (joins) | Agreed |
 | G-57 | 2026-10-18 | s09 | Audit 3 item 4 rejected by the team: no added limitation line about per-order bootstrap intervals (follows the C3 rejection, G-50) | Team (audit 3) | — | Rejected |
 | G-56 | 2026-10-18 | s01, s08 | The alert threshold is a business judgement at the s08 hard stop, not part of the one-SE rule; default recommendation: minimise the illustrative cost subject to the daily alert cap | Team (audit 3 item 7) | G-39 | Agreed |
 | G-55 | 2026-10-18 | s07 | The tuned family winner is compared with the plain s06 model by the one-SE rule: if the plain model's mean is within one SE of the tuned mean, the plain model is kept | Team (audit 3 item 6) | G-33 | Agreed |

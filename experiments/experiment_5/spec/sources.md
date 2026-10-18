@@ -68,6 +68,12 @@ Full text: [`teacher_expectation_m2.md`](teacher_expectation_m2.md).
 Not used. Milestone 2 is still being graded; on 2026-10-17 the team decided not to wait.
 The teacher's Milestone 2 expectation note (§1) is the rubric the TAs grade against.
 
+## 3.3 Teacher reference material
+
+| Source | Used for | Stage |
+| --- | --- | --- |
+| NIBRS data dictionary and structure diagram (`docs/references/NIBRS/`, shared by the teacher) | Model for documenting the data: column-level dictionary, missing-value meaning, table structure with one-to-many links. The NIBRS data itself is not used | S02 (data_dictionary.csv, structure diagram), S04, S10 (report, app input checks) |
+
 ## 4. Tutorial sequence → stages
 
 | Tutorial | Topic used | Stages |

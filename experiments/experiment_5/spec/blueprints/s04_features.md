@@ -65,7 +65,7 @@ Gate: features and recipes defined without fitting or using test data (`../stage
 
 ## 5. Outputs (per task, under `stages/s04_features/<task>/outputs/`)
 - `feature_dictionary.csv`: feature, formula, grain, availability, missingness, transform, kept,
-  reason, citation.
+  reason, citation; it extends the s02 `data_dictionary.csv` for the model features (G-58).
 - `reduction_rationale.csv`: feature, flagged by (r / VIF / constant / duplicate), paired with,
   team decision, rationale, decided by, date.
 - `selected_features.json`: the task's selected feature list, used by every family (G-49).
