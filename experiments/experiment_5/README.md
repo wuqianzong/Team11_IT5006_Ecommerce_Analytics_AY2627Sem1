@@ -276,6 +276,7 @@ shapes whenever the content applies:
 | `counts.json` | rows, customers, positives per population/fold |
 | `figures/*.png` | each figure has a sidecar `*.json` with the data/coordinates used |
 | `_manifest.json` | written by `e5lib.manifest` (§6.1) |
+| `_evidence_index.json` | written by `Writer.finish`: solution-ID tags per file, checks, deviations and evidence-card text (§13) |
 | `candidates.csv` | every option considered for a decision: `candidate_id, description, kept (yes/no), reason, evidence_files` (design rule 8) |
 | `curves/*.csv` | data behind threshold, calibration, learning and validation curves, one row per point |
 
@@ -560,9 +561,9 @@ _Generated from `spec/stages.json` v1.0 (pipeline_design.md v1.2 (frozen 2026-10
 0. ~~Freeze the design~~ — done 2026-10-17 (CR-001): `pipeline_design.md` and
    `stages.json` v1.0, cards regenerated.
 1. Fill roles in §4 and `owner`/`reviewer` in each `STAGE.md`.
-2. Build the technical foundation (`e5lib/`, `run_pipeline.py`, `build_evidence.py`,
-   review-pack generator, contract tests) exactly as §13 specifies. It is not a stage and has
-   no stage review (G-60).
+2. ~~Build the technical foundation~~ — done 2026-10-18 (CR-026): `e5lib/`, `run_pipeline.py`,
+   `build_evidence.py`, review-pack generator and contract tests, as §13 documents. It is not a
+   stage and has no stage review (G-60).
 3. Team completes s01_problem together and freezes `spec/protocol.yaml` (v1.0).
 4. Proceed stage by stage through the gates in §9. Start each teammate's agent with
    [`AGENT_INIT_PROMPT.md`](AGENT_INIT_PROMPT.md).
@@ -614,27 +615,31 @@ CHANGELOG row. If the code and this section disagree, stop and ask the human.
 
 ### 13.1 What it gives you
 
+Status: built and covered by `tests/` (CR-026). The signatures below are the ones in the code.
+
 | Module / tool | Use it for | Never do instead |
 | --- | --- | --- |
-| `e5lib/paths.py` | Every path: `E5`, `stage_dir(stage, task)`, `outputs_dir(stage, task)`, `review_dir(stage, task, round)`, `raw_data_dir()` (Canvas CSVs, read-only), `spec_path(name)` | Hard-coded or absolute paths; writing outside `experiments/experiment_5/` |
-| `e5lib/protocol.py` | Reading `spec/protocol.yaml`: `load()`, `get(key)`; data-dependent sections written only by their owning stage via `set_data_dependent(section, values, stage)` (s02 cutoffs; s04 core and selected sets; s05 folds, class support, minimum training rows) | Typing a number that lives in protocol.yaml |
-| `e5lib/data.py` | Loading data with the population guard: `load_raw(table)` (s02 only), `load("records", task=..., population="development" \| "test", stage=...)`. The guard raises `PopulationError` if a stage before s08 asks for test rows, or s08 asks before `frozen_recipe.json` exists | `pandas.read_csv` on data files; filtering test rows yourself |
-| `e5lib/cv.py` | The s05 folds: `folds(task)` yields `(fold, train_idx, val_idx)` with customer purge and label maturity already applied; `check_fold_rules(task)` asserts them | `KFold`, `TimeSeriesSplit` or any split of your own |
-| `e5lib/candidates.py` | `make_id(spec)`: a stable, readable `candidate_id` (README §5.3) | Hand-written IDs |
-| `e5lib/factory.py` | `build(spec)` returns one sklearn `Pipeline` (s04 recipe + estimator; log target via `TransformedTargetRegressor`); everything learned is fitted inside folds | Building estimators or preprocessing outside the factory |
-| `e5lib/metrics.py` | `score(task, y_true, y_pred, proba=None, threshold=None)` returns every s01 metric; `one_se_select(results, simplicity)` applies the s01 decision rule (G-33, G-55) | Re-implementing metrics or the selection rule |
-| `e5lib/outputs.py` | Writing outputs in the standard shapes (§5.5) via `Writer(stage, task)`: `.metrics_long(df)`, `.predictions(df)`, `.candidates(df)`, `.table(name, df)`, `.curve(name, df)`, `.figure(name, fig, data)` (PNG plus sidecar data), `.decision(question, rule, candidates, chosen, files)`. **Every call takes `ids=(...)`, the solution IDs it serves** (e.g. `ids=("2.9",)`) | `df.to_csv`/`plt.savefig` straight into `outputs/`; outputs without solution IDs |
-| `e5lib/manifest.py` | `write(stage, task, reads, seed)` at the end of every run (§6.1); `status()` for staleness | Skipping the manifest |
-| `e5lib/review.py` | `build_pack(stage, task, round)`: writes `review/round_N/review_pack.md` with the coverage table (each solution ID IMPLEMENTED / DEVIATION / MISSING, from the `ids` tags and the blueprint), checks, key figures and file links pinned to the commit | Writing review packs by hand |
-| `run_pipeline.py` | `status`, `run --node <stage/task>`, `run --from <stage>`, `check`, `pack --node <stage/task> --round N`. Refuses to run a stage whose upstream stages are not ACCEPTED and unchanged (§9.1) | Running `run.py` files directly for evidence |
-| `build_evidence.py` | Turns accepted outputs into `evidence/build/` for the report, slides and app (§7) | Copying numbers into documents |
-| `tests/` | `pytest experiments/experiment_5/tests` must pass before any commit that touches the foundation or a stage | Committing with failing tests |
+| `e5lib/__init__.py` | `STAGE_ORDER`, `TASKS`, `stage_rank(stage)` | Comparing stage names as strings |
+| `e5lib/paths.py` | Every path: `E5`, `REPO`, `stage_dir(stage, task)`, `outputs_dir(stage, task)`, `review_dir(stage, task, round)`, `raw_data_dir()` (Canvas CSVs, read-only), `reference_dir()` (e.g. IBGE geography, read-only), `spec_path(name)`, `evidence_dir()`, `assert_inside_e5(path)`, `rel(path)` | Hard-coded or absolute paths; writing outside `experiments/experiment_5/` |
+| `e5lib/protocol.py` | Reading `spec/protocol.yaml` (created by s01): `load()`, `get("dotted.key", default)`. Data-dependent sections are written only by their owner via `set_data_dependent(section, values, stage)`: `test_cutoffs` (s02); `core_set`, `selected_set` (s04); `fold_boundaries`, `class_support`, `min_training_rows` (s05). An existing value is never overwritten unless `replace=True` after a CHANGELOG entry | Typing a number that lives in protocol.yaml |
+| `e5lib/data.py` | All data access, through the population guard:<br>`load_raw(table, stage)`: raw tables, s02 only (`orders`, `order_items`, `order_payments`, `order_reviews`, `customers`, `sellers`, `products`, `geolocation`, `category_translation`);<br>`load("records", task, population, stage)`: s02 records for one task, `population` = `development` (before the task's cutoff), `test` (s08 after `frozen_recipe.json`, and later) or `all` (s05 only);<br>`upstream(source_stage, source_task, filename, stage)`: path of an earlier stage's output.<br>Breaking a rule raises `PopulationError`; every read is recorded for the manifest (`reads()`) | `pandas.read_csv` on data files; filtering test rows yourself |
+| `e5lib/cv.py` | The s05 folds: `folds(task, stage)` yields `(fold, train_order_ids, val_order_ids)`; `sklearn_splits(order_ids, task, stage)` gives positional splits for `cv=`; `check_fold_rules(folds_df, records)` asserts training-before-validation and no shared customer | `KFold`, `TimeSeriesSplit` or any split of your own |
+| `e5lib/candidates.py` | `make_id(spec)`: stable, readable `candidate_id`, e.g. `reg.sel.log.ridge.alpha=10` (§5.3) | Hand-written IDs |
+| `e5lib/factory.py` | `build(spec)` returns one unfitted sklearn estimator; `feature_columns(spec)` lists the columns it reads. Spec keys: `task`, `numeric`, `categorical`, `log_inputs`, `estimator` (`dummy_median`, `linear`, `ridge`, `tree_reg`, `forest_reg`, `dummy_prior`, `logistic`, `tree_clf`, `forest_clf`), `params`, `route_median`, `log_target`, `calibration` (`"sigmoid"`; rows sorted by purchase time), `random_state`. Imputation with missing indicators, one-hot (drop-first and scaling for linear/logistic only), route-median imputer, log target and calibration are all fitted inside `.fit()` | Building estimators or preprocessing outside the factory |
+| `e5lib/metrics.py` | `score(task, y_true, y_pred=None, proba=None, threshold=None)` returns every s01 metric (MAE, RMSE, R², within ±3 days; AP, ROC-AUC, Brier, confusion counts, precision, recall, F1, alert rate, error rate, 5:1 cost); `fold_summary(results, metric)`; `one_se_select(results, metric, higher_is_better, simplicity)` applies the s01 rule (G-33, G-55); `PRIMARY` gives each task's primary metric | Re-implementing metrics or the selection rule |
+| `e5lib/outputs.py` | The only way to write outputs: `Writer(stage, task)` empties `outputs/` and offers `.metrics_long(df, ids)`, `.predictions(df, ids)`, `.candidates(df, ids)`, `.table(name, df, ids)`, `.curve(name, df, ids)`, `.figure(name, fig, data, ids)` (PNG plus sidecar data), `.json(name, obj, ids)`, `.text(name, content, ids)`, `.decision(question, rule, candidates, chosen, files, ids)`; review support: `.check(name, passed, ids, detail)`, `.deviation(id, text)`, `.explain(id, done=, inputs=, expectation=, observation=, reasoning=, conclusion=, label=)` (evidence-card text built from computed values); end of run: `.finish(seed)` writes `_evidence_index.json`, `decision.json` and the manifest. **Every output takes `ids=(...)`, the solution IDs it serves** | `df.to_csv`/`plt.savefig` straight into `outputs/`; outputs without solution IDs; typed numbers in card text |
+| `e5lib/manifest.py` | Called by `Writer.finish`: `write(stage, task, reads, seed)` (§6.1); `read(stage, task)`; `status(stage, task)` returns FRESH / STALE / MISSING with reasons (stage code, foundation code, protocol, inputs or outputs changed) | Skipping the manifest |
+| `e5lib/review.py` | `build_pack(stage, task, round)` (via `run_pipeline.py pack`): writes `review/round_N/review_pack.md` and `pack.json` with the coverage table over `spec/solution_ids.json` (IMPLEMENTED / DEVIATION / MISSING, PASS / FAIL checks, changed since last round), evidence cards, inline figures and file links pinned to the commit; `coverage(stage, task)` | Writing review packs by hand |
+| `spec/solution_ids.json` | The approved solution IDs per stage (and per task where an ID applies to one task); the coverage table is checked against it | Coverage lists kept by hand |
+| `run_pipeline.py` | `status`; `run --node <stage/task>` or `run --from <stage> [--task]` (refuses unless every upstream node is ACCEPTED and FRESH; TODO becomes IN_PROGRESS; an ACCEPTED node whose `decision.json` changes becomes REOPENED); `pack --node <stage/task> --round N` (append-only rounds; sets READY_FOR_REVIEW); `check` (all FRESH, clean tree, tests pass) | Running `run.py` files directly for evidence |
+| `build_evidence.py` | `--draft` writes `evidence/build_draft/` (not committed); without it, builds `evidence/build/` only when `check` passes, from `evidence/registry.yaml` | Copying numbers into documents |
+| `tests/` | Contract tests on a throwaway copy of the folder: guards, protocol ownership, folds, factory, metrics and the one-SE rule, writer tags, manifests, review packs and the run gate | Committing with failing tests |
 
 ### 13.2 The shape of every stage's `run.py`
 
 ```python
 """s02_data/common: data preprocessing (blueprint spec/blueprints/s02_data.md)."""
-from e5lib import data, protocol, manifest
+from e5lib import data, protocol
 from e5lib.outputs import Writer
 
 STAGE, TASK = "s02_data", "common"
@@ -642,13 +647,15 @@ STAGE, TASK = "s02_data", "common"
 
 def main() -> None:
     p = protocol.load()
-    w = Writer(STAGE, TASK)
-    orders = data.load_raw("orders")                     # s02 only; other stages use data.load
-    # ... each step is a function named after its solution ID ...
+    w = Writer(STAGE, TASK)                               # starts from an empty outputs/
+    orders = data.load_raw("orders", stage=STAGE)         # s02 only; later stages use data.load
+    # ... one function per solution ID, each tagging its outputs ...
     w.table("exclusions", exclusions_df, ids=("2.8", "2.9", "2.10", "2.11"))
     w.figure("data_structure", fig, data=edges_df, ids=("2.12",))
+    w.check("rows equal orders", n_rows == n_orders, ids=("2.4",), detail=f"{n_rows} rows")
+    w.explain("2.9", expectation="...", observation=f"{n_removed} orders removed", conclusion="...")
     w.decision(question="...", rule=p["..."], candidates=[...], chosen=..., files=[...], ids=("2.9",))
-    manifest.write(STAGE, TASK, reads=w.reads, seed=p["seed"])
+    w.finish(seed=p["seed"])                              # evidence index + manifest
 
 
 if __name__ == "__main__":
@@ -656,17 +663,30 @@ if __name__ == "__main__":
 ```
 
 Rules: one function per solution ID (or a clearly named group), no hard-coded numbers, no
-direct file reads or writes, and every output tagged with the solution IDs it serves. That tag
-is what makes the coverage table and the working log complete.
+direct file reads or writes, every output tagged with the solution IDs it serves, and card text
+built from computed values. The tags are what make the coverage table and the working log
+complete.
 
 ### 13.3 Day-to-day commands
 
+One-time setup (the environment lives inside the Experiment 5 folder and is not committed):
+
 ```bash
-python experiments/experiment_5/run_pipeline.py status
-python experiments/experiment_5/run_pipeline.py run --node s02_data/common
-python experiments/experiment_5/run_pipeline.py pack --node s02_data/common --round 1
-python experiments/experiment_5/run_pipeline.py check
-pytest experiments/experiment_5/tests
+python3 -m venv experiments/experiment_5/.venv
+```
+
+```bash
+experiments/experiment_5/.venv/bin/pip install -r experiments/experiment_5/requirements.txt
+```
+
+Then, with `PY=experiments/experiment_5/.venv/bin/python`:
+
+```bash
+$PY experiments/experiment_5/run_pipeline.py status
+$PY experiments/experiment_5/run_pipeline.py run --node s02_data/common
+$PY experiments/experiment_5/run_pipeline.py pack --node s02_data/common --round 1
+$PY experiments/experiment_5/run_pipeline.py check
+$PY -m pytest experiments/experiment_5/tests
 ```
 
 ### 13.4 When the foundation must change

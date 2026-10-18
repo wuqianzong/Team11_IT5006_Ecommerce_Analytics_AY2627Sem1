@@ -1,0 +1,107 @@
+{
+  "_comment": "Approved solution IDs per stage (doc tabs 'Feature solution' and 'Model solution'). The review pack checks every ID that applies to a task. 'tasks' limits an ID to one task. Retired IDs (4.5, 6.3) are omitted. Changes follow README section 9.2.",
+  "s01_problem": [
+    {"id": "1.1", "title": "Tasks and prediction time"},
+    {"id": "1.2", "title": "Stakeholders and action"},
+    {"id": "1.3", "title": "Targets and populations"},
+    {"id": "1.4", "title": "Metrics"},
+    {"id": "1.5", "title": "Cost assumption"},
+    {"id": "1.6", "title": "Model families"},
+    {"id": "1.7", "title": "Decision rule"},
+    {"id": "1.8", "title": "Search budget"},
+    {"id": "1.9", "title": "Outputs"}
+  ],
+  "s02_data": [
+    {"id": "2.1", "title": "Load"},
+    {"id": "2.2", "title": "Clean"},
+    {"id": "2.3", "title": "Geography"},
+    {"id": "2.4", "title": "Join"},
+    {"id": "2.5", "title": "Predictors"},
+    {"id": "2.6", "title": "Targets"},
+    {"id": "2.7", "title": "Leakage audit"},
+    {"id": "2.8", "title": "Populations"},
+    {"id": "2.9", "title": "Outliers"},
+    {"id": "2.10", "title": "Missing installments"},
+    {"id": "2.11", "title": "Missing payment"},
+    {"id": "2.12", "title": "Data documentation"}
+  ],
+  "s03_eda": [
+    {"id": "3.1", "title": "Regression target", "tasks": ["regression"]},
+    {"id": "3.2", "title": "Classification target", "tasks": ["classification"]},
+    {"id": "3.3", "title": "Outcome trends"},
+    {"id": "3.4", "title": "Numeric features vs lead_days", "tasks": ["regression"]},
+    {"id": "3.5", "title": "Categorical features vs lead_days", "tasks": ["regression"]},
+    {"id": "3.6", "title": "Numeric features vs is_detractor", "tasks": ["classification"]},
+    {"id": "3.7", "title": "Categorical features vs is_detractor", "tasks": ["classification"]},
+    {"id": "3.8", "title": "Importance ranking"},
+    {"id": "3.9", "title": "Human gate (review pack for s04 decisions)"}
+  ],
+  "s04_features": [
+    {"id": "4.1", "title": "Baseline"},
+    {"id": "4.2", "title": "Transforms"},
+    {"id": "4.3", "title": "Reduction"},
+    {"id": "4.4", "title": "Selection"},
+    {"id": "4.6", "title": "Rationale"},
+    {"id": "4.7", "title": "Selected set"},
+    {"id": "4.8", "title": "Pipeline recipe"}
+  ],
+  "s05_partition": [
+    {"id": "5.1", "title": "Order"},
+    {"id": "5.2", "title": "Test cohort"},
+    {"id": "5.3", "title": "Test-side purge"},
+    {"id": "5.4", "title": "Test checks"},
+    {"id": "5.5", "title": "CV folds"},
+    {"id": "5.6", "title": "Fold customer purge"},
+    {"id": "5.7", "title": "Label maturity"},
+    {"id": "5.8", "title": "Class support and training size"}
+  ],
+  "s06_training": [
+    {"id": "6.1", "title": "Pipeline factory"},
+    {"id": "6.2", "title": "Families, basic to complex"},
+    {"id": "6.4", "title": "Scores recorded"},
+    {"id": "6.5", "title": "Residual diagnostics", "tasks": ["regression"]},
+    {"id": "6.6", "title": "Classification diagnostics", "tasks": ["classification"]},
+    {"id": "6.7", "title": "Learning curves and design matrix"},
+    {"id": "6.8", "title": "Outputs"}
+  ],
+  "s07_tuning": [
+    {"id": "7.1", "title": "Linear (regression)", "tasks": ["regression"]},
+    {"id": "7.2", "title": "Logistic (classification)", "tasks": ["classification"]},
+    {"id": "7.3", "title": "Decision tree"},
+    {"id": "7.4", "title": "Random forest"},
+    {"id": "7.5", "title": "Search method"},
+    {"id": "7.6", "title": "Overfitting check"},
+    {"id": "7.7", "title": "Outputs"}
+  ],
+  "s08_selection": [
+    {"id": "8.1", "title": "Finalists"},
+    {"id": "8.2", "title": "Choose the model"},
+    {"id": "8.3", "title": "Calibration", "tasks": ["classification"]},
+    {"id": "8.4", "title": "Threshold", "tasks": ["classification"]},
+    {"id": "8.5", "title": "Freeze"},
+    {"id": "8.6", "title": "Final fit"},
+    {"id": "8.7", "title": "Test once"},
+    {"id": "8.8", "title": "Bundle"}
+  ],
+  "s09_conclusion": [
+    {"id": "9.1", "title": "Train-validation-test table"},
+    {"id": "9.2", "title": "Gain over baselines"},
+    {"id": "9.3", "title": "Error analysis"},
+    {"id": "9.4", "title": "Drift"},
+    {"id": "9.5", "title": "Interpretation"},
+    {"id": "9.6", "title": "Label sensitivity", "tasks": ["classification"]},
+    {"id": "9.7", "title": "Business conclusions"},
+    {"id": "9.8", "title": "Limitations"}
+  ],
+  "s10_release": [
+    {"id": "10.1", "title": "Reload parity"},
+    {"id": "10.2", "title": "Approval"},
+    {"id": "10.3", "title": "Migration"},
+    {"id": "10.4", "title": "Reproduction check"},
+    {"id": "10.5", "title": "Streamlit app"},
+    {"id": "10.6", "title": "Dashboard"},
+    {"id": "10.7", "title": "Report and slides"},
+    {"id": "10.8", "title": "Walkthrough notebook"},
+    {"id": "10.9", "title": "Outputs"}
+  ]
+}
