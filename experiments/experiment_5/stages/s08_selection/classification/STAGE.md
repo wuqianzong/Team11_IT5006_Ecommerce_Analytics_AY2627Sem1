@@ -28,6 +28,7 @@ Select the model on threshold-free scores against the dummy and simplest models;
 - metrics_long.csv (phase = test) + predictions.csv.gz
 
 ## Gate criteria
+- Team decisions for model choice and threshold recorded in spec/human_decisions.yaml (G-39)
 - Model selected before the threshold
 - Persisted probability recipe is the one the threshold was chosen on
 - Final-fit training labels available before the test cutoff

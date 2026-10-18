@@ -1,6 +1,6 @@
 <!-- AUTHORITATIVE Milestone 3 / Experiment 5 pipeline design. This file is the only version
      that counts; edit it here (and mirror changes in spec/stages.json, README §3.1).
-     v1.0 FROZEN 2026-10-17 by the team (CHANGELOG CR-001); v1.1 audit fixes (CR-003); v1.2 team feature-solution decisions (CR-004 to CR-009). It replaces the 13-stage draft
+     v1.0 FROZEN 2026-10-17 by the team (CHANGELOG CR-001); v1.1 audit fixes (CR-003); v1.2 team feature-solution decisions (CR-004 to CR-009); rule 8 evidence retention (CR-013); s01 decision rule (CR-014); promised lead days dropped (CR-015); log transforms fixed, no s06 Step B (CR-016); s06–s07 agreed (CR-017); test cohort wording and s08 selection rule (CR-018); s08 agreed with human gates (CR-019); s09–s10 agreed (CR-020). It replaces the 13-stage draft
      derived from docs/milestone3_baseline_pipeline_design_2026-10-13.txt, which is superseded
      and not updated. After this freeze, changes go through README §9.2 and CHANGELOG.md. -->
 
@@ -51,17 +51,14 @@ CV folds, and checks class support per fold instead of stratifying.
    folds, so CV scores of the selected set are optimistic; the report says so.
 3. **Test cohorts protected.** Each task has its own test cohort: its newest 20% of eligible
    orders by purchase time. The cutoff is recomputed from the data in s02 by the 80/20 rule, not
-   taken from Milestone 2 (G-28); exact IDs frozen in s05. It is expected to fall near
-   Milestone 2's 2018-05-25, so the cohort largely overlaps the Milestone 2 terminal cohort and
-   is described as historical. Test orders from customers who also
+   taken from Milestone 2 (G-28); exact IDs frozen in s05. No Experiment 5 decision sees it
+   before s08, so it is a new held-out test (G-38). Test orders from customers who also
    appear in development are removed from the test cohort (test-boundary customer purge; team
    decision G-18), so each test cohort contains new customers only.
    Steps s03–s04 use only orders before the test cutoff (date rule; the purge, applied in s05,
    matters for model fitting); no step reads test labels until the final evaluation in s08.
 4. **Honest estimates.** CV scores are selection scores, used to choose and reported as such,
-   never as a generalisation estimate. The test cohorts give the only held-out estimate; they
-   were scored in Milestone 2, so they are described as historical held-out tests, not unseen
-   data.
+   never as a generalisation estimate. The test cohorts give the only held-out estimate (G-38).
 5. **Simplest first, one change at a time.** A more complex variant is kept only if it passes the
    decision rule in `protocol.yaml`; otherwise the simpler one stays.
 6. **Every number comes from a stage output.** Report, slides, app and dashboard read the same
@@ -70,6 +67,15 @@ CV folds, and checks class support per fold instead of stratifying.
    may be reused as logic only (G-29).
 7. **Claims are labelled** as observation, literature-supported hypothesis, or unmeasured
    mechanism.
+8. **Evidence is kept, not recomputed** (G-32). Every stage, the reproduction run included, stores
+   what it produced as files that can be read without rerunning any model: the intermediate
+   results behind each decision as well as the final one (every candidate's per-fold scores and
+   out-of-fold predictions, every grid cell, rejected options with the reason, threshold and
+   calibration curves, EDA tables), every figure as PNG plus a sidecar with its plotted data,
+   fitted bundles for finalists and the release model, and `decision.json` naming the files it
+   used. Nothing is overwritten in place: earlier runs stay retrievable by git commit and
+   release tag. The report, slides, app and dashboard read these stored files through the
+   evidence registry, never a fresh model run.
 
 ## The ten stages
 
@@ -100,7 +106,8 @@ Load the Canvas copy of the nine tables and record their hashes; clean determini
 `docs/references/geography`, invalid timestamps flagged); join aggregation-first to one row per
 order with cardinality checks; build both targets with their label-availability timestamps.
 Leakage audit of every column against checkout time — `order_estimated_delivery_date` is known
-at checkout (Milestone 2 wrongly listed it as post-checkout); `order_status`, `order_approved_at`,
+at checkout (Milestone 2 wrongly listed it as post-checkout) but is never a predictor (G-35); it
+only describes late-vs-promised trends in s03; `order_status`, `order_approved_at`,
 `shipping_limit_date`, `has_items` and `freight_ratio_missing` are never predictors; a date-order
 audit (purchase ≤ approval ≤ carrier ≤ delivery, estimated date and review answer after purchase)
 logs violations; payment fields are assumed fixed at checkout (no timestamp in the data) (G-30). IDs are kept for audit, never as predictors.
@@ -156,10 +163,9 @@ recorded in `reduction_rationale.csv` and stated in the report (G-26), plus the 
 for each recipe; feature selection by the s03 importance ranking: keep the features that reach
 the team's cumulative-importance threshold (95% or 99%), chosen by the team from the ranking
 before any model is fitted (rule 2 exception b); rationale and verified citations for every
-retained feature; candidate feature sets for each model; a decision on
-`order_estimated_delivery_date` (known at checkout, absent from the 27 baseline): recommended as
-an added candidate feature (promised lead days) tested on the folds in s06, and as a business
-reference for regression (Olist's own promise); the pipeline recipe per model (imputation with
+retained feature; candidate feature sets for each model; `order_estimated_delivery_date` is not
+used as a feature or a reference model (G-35: in production the promised date would come from
+the task 1 prediction itself); the pipeline recipe per model (imputation with
 missing indicators — `distance_km_max` takes the route median, customer_state × primary_seller_state
 with customer_state then global fallbacks, after log1p, fitted inside training folds (G-27) — one-hot encoding with unknown handling, scaling for linear/logistic only).
 OUTPUT: `feature_dictionary.csv` (formula, grain, availability, missingness, rationale,
@@ -180,7 +186,7 @@ anti-temporal-leakage rule (training only earlier than validation, asserted per 
 their fold's validation block starts, validation rows before the task's test cutoff; dropped
 rows counted per fold); class support per fold (positives and prevalence; move a boundary if a fold is too
 thin); seed 42 documented.
-OUTPUT: `folds.csv`, `test_manifest.csv`, `counts.json`, `checks.json` (overlap, maturity,
+OUTPUT: `folds.csv`, `test_manifest.csv`, `counts.json`, `checks.json` (customer purge, maturity,
 share of rows lost to maturity, class support).
 Partitioning needs only s02 records, so s05 does not depend on s03–s04; s06 depends on both
 s04 (recipes) and s05 (folds).
@@ -191,11 +197,10 @@ Blueprint: [`blueprints/s06_training.md`](blueprints/s06_training.md)
 On the s05 folds, every model built as one Pipeline from the s04 recipe: dummy baselines
 (median / prior) → plain LinearRegression and unregularised LogisticRegression → single decision
 tree → random forest. Residual plots (regression) and learning curves diagnose under- and
-over-fitting. Comparison order, so every change has one cause: (A) on the core set with raw
-target and inputs, compare the families dummy → linear/logistic → tree → forest; (B) within each
-family, holding the model fixed, compare candidate feature sets, then input logs, then the
-target transform (regression), one at a time, each kept only if it passes the
-decision rule. Both steps use the same folds.
+over-fitting. All models use the s04 selected feature set with the s04 log transforms always on
+(log1p on inputs with pre-cutoff skewness > 1 and on the regression target; G-36), and the
+families are compared in order dummy → linear/logistic → tree → forest under the decision rule.
+Feature set and transforms are fixed by s04 and not tested on the folds.
 OUTPUT: `metrics_long.csv` (train and validation per fold), out-of-fold `predictions.csv.gz`,
 diagnostics figures, `decision.json`.
 TEACHING: Tutorial 5; T7 §5–6; T8 §5 and §8–9.
@@ -203,8 +208,9 @@ TEACHING: Tutorial 5; T7 §5–6; T8 §5 and §8–9.
 ### s07 — Tuning: regularise and tune (regression, classification)
 Blueprint: [`blueprints/s07_tuning.md`](blueprints/s07_tuning.md)
 Bounded grids on the same folds. Linear family: Ridge alpha and logistic C (regularisation
-strength). Tree family: depth and minimum leaf size (and pruning if diagnostics justify it).
-Forest: depth and leaf size. Class weight (None vs balanced) is a grid option for the
+strength). Tree family and forest: depth and minimum leaf size (same grid).
+Grids fixed before any result (blueprint s07). Best per family = simplest configuration within
+one standard error of the best mean (s01 rule), kept only if it beats the family's plain s06 model. Class weight (None vs balanced) is a grid option for the
 classifiers. Every grid candidate is a whole pipeline; nothing is switched after the search.
 OUTPUT: `grid_results.csv` (every configuration, fold scores, mean, SD, rank, runtime,
 convergence), finalists' out-of-fold predictions.
@@ -213,12 +219,16 @@ TEACHING: T7–T8 GridSearchCV.
 ### s08 — Selection, policy and test once (regression, classification)
 Blueprint: [`blueprints/s08_selection.md`](blueprints/s08_selection.md)
 Select the model first on threshold-free scores (MAE; AP, ROC-AUC, Brier), comparing finalists
-with the dummy and the simplest model of each family on the same rows. Classification only:
+with the dummy and the simplest model of each family on the same rows. The s01 one-SE rule gives
+the recommendation; the team confirms it at a human gate, and resolves any grid-edge winner by
+widening the grid (change request) or revisiting s03–s04 (G-39). Classification only:
 calibration is a candidate component, raw by default. If the out-of-fold reliability check fails,
 a sigmoid-calibrated variant (calibrator fitted inside each training fold on time-ordered inner
 splits) is scored as a complete candidate on the same folds; the chosen probability recipe is the
 one persisted. Then choose the threshold from that recipe's out-of-fold predictions under the 5:1
-cost (compare no alerts, 0.50, the theoretical cost cutoff 1/6 and the empirical optimum). Freeze the
+cost (compare no alerts, 0.50, the theoretical cost cutoff 1/6 and the empirical optimum). This
+is a hard stop: the team picks the threshold from a table of alert volume, error rate and extra
+false alarms per extra detractor caught, with an optional daily alert cap (G-39). Freeze the
 recipe and threshold, then fit on the development orders whose labels were available before the
 test cutoff (final-fit label maturity) and score each task's test cohort
 exactly once.
@@ -226,18 +236,20 @@ Test metrics (G-24): regression MAE, RMSE, R², share within ±3 days; classific
 reported once), ROC-AUC, Brier, confusion matrix, precision, recall and F1 at the threshold,
 illustrative cost, and the prevalence baseline. The bundle also stores training-data metadata
 for drift checks (numeric distributions; category shares).
-OUTPUT: `selected_spec.json`, `threshold_table.csv`, `frozen_recipe.json`, model bundle (with
+OUTPUT: `selection_review_pack.md`, `selected_spec.json`, `threshold_table.csv`, `frozen_recipe.json`, model bundle (with
 `training_profile.json`),
 test `metrics_long.csv` and predictions.
 TEACHING: T7 reference §6–9.
 
 ### s09 — Conclusion for the business (regression, classification)
 Blueprint: [`blueprints/s09_conclusion.md`](blueprints/s09_conclusion.md)
-Train–validation–test table with bootstrap confidence intervals; subgroup errors (state,
-distance, basket) and training-vs-test drift; interpretation of the winner (permutation
-importance on the selected model, tree rules, coefficients and odds ratios of the plain models);
-stakeholder actions supported by the evidence, and limitations. The test cohort is described as a
-historical held-out test (Milestone 2 already scored it), not unseen data.
+Train–validation–test table with bootstrap confidence intervals; subgroup errors (regression by
+customer state, distance, basket, month; classification by customer state, judged only where the
+test cohort has more than 100 detractors, with a pooled aggregate) and training-vs-test drift;
+interpretation of the winner (permutation importance on the selected model, tree rules,
+coefficients and odds ratios of the plain models) with an EDA consistency check that alerts the
+team on divergence and never changes the frozen pipeline (G-40);
+stakeholder actions supported by the evidence, and limitations. The test cohort is the held-out test of this experiment, scored once in s08.
 OUTPUT: master metric table, `subgroups.csv`, drift table, importance and interpretation tables,
 `conclusion.md`.
 TEACHING: T7 reference §10; T2 confidence intervals; teacher note §5–6.
@@ -246,10 +258,12 @@ TEACHING: T7 reference §10; T2 confidence intervals; teacher note §5–6.
 Blueprint: [`blueprints/s10_release.md`](blueprints/s10_release.md)
 Saved bundle with reload parity; team approval of the experiment; migration to the working
 folders with a reproduction README (README §12, ordered by the experiment lead); reproduction
-check that every output and number matches the release; then the Streamlit app and dashboard,
+check that every output and number matches the release; then one Streamlit app with three tabs
+(the Phase 1 business dashboard on its own descriptive data scope, and lead-time and detractor-risk
+model tabs that read only pipeline outputs; G-41),
 the report and slides built from the reproduced outputs, the walkthrough notebook, and input
 checks with error handling in the app.
-OUTPUT: `parity.json`, `input_validation.json`, release tag, migration check, app and dashboard,
+OUTPUT: `parity.json`, `input_validation.json`, `app_sources.json`, release tag, migration check, app,
 report and deck drafts that cite evidence IDs, notebook.
 TEACHING: Week 6 deployment slides; T7 reference §11–14; brief Phase 3.
 
@@ -258,7 +272,7 @@ TEACHING: Week 6 deployment slides; T7 reference §11–14; brief Phase 3.
 **Dropped:** two training cycles (now one ladder in s06); customer-grouped CV screening beside
 chronological confirmation (now chronological folds only); a separate confirmation window (CV
 plus one test, as in Tutorials 7–8); starting from 9 features (now the 27-feature baseline,
-reduced in s04 and chosen per model in s06); the 60-day target cap applied outside tuning and
+reduced and selected by the EDA ranking in s04, one set per task used by every model); the 60-day target cap applied outside tuning and
 justified by Cook's distance (no cap now; extreme values handled by the s02 outlier rule).
 
 **Corrected:** stakeholders named but not their actions; test-boundary customer purge and
@@ -281,8 +295,8 @@ approval, migration and reproduction check before any deliverable is built.
 Two layers (see s01). Data-dependent: exact fold boundaries, class-support threshold and the
 label-maturity rule for validation rows (s05); core set and candidate sets (s04).
 Pre-registered (s01): the decision rule for
-keeping a more complex variant (proposed: mean paired per-fold delta favours it and the sign
-agrees in most folds); grids and budget; the label rule; seed; the 80/20 split rule.
+keeping a more complex variant (one-standard-error rule: the simplest candidate whose mean
+primary metric is within one standard error of the best, G-33); grids and budget; the label rule; seed; the 80/20 split rule.
 
 ## Report and presentation structure (brief Phase 3)
 

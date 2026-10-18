@@ -30,6 +30,7 @@ Reload parity of the bundles; team approval; lead-ordered migration with a repro
 - walkthrough notebook
 
 ## Gate criteria
+- Every table and chart in the model tabs traced to a stage output in app_sources.json; business dashboard tab labelled as its own descriptive scope (G-41)
 - App loads the s08 bundle unchanged
 - Reproduction check matches the release before any deliverable is built
 - Nothing written outside experiments/experiment_5/ before the lead orders migration

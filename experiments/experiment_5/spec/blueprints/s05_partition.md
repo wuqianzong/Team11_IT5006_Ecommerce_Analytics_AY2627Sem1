@@ -6,7 +6,7 @@
 | Nodes | regression, classification |
 | Status | AGREED |
 | Owner | TBD |
-| Last agreed | 2026-10-17 (team walkthrough, doc tab "Feature solution (s02–s05)") |
+| Last agreed | 2026-10-18 (wording, CR-018); first 2026-10-17 (team walkthrough, doc tab "Feature solution (s02–s05)") |
 | Discussion | Claude Doc "Milestone 3 pipeline stages", tab "Feature solution (s02–s05)", section s05 |
 
 ## 1. Goal and gate
@@ -23,8 +23,8 @@ Gate: folds chronological, customers purged, labels mature, classes supported (`
 ## 3. Method
 1. **Order (5.1).** Sort each task's eligible orders by purchase timestamp, earliest first.
 2. **Test cohort (5.2).** Orders on or after the task's s02 cutoff (the 80% position, G-28); exact
-   `order_id`s frozen in `test_manifest.csv`. Measure and record the overlap with Milestone 2's
-   terminal cohort; if large, describe the cohort as historical.
+   `order_id`s frozen in `test_manifest.csv`. The cohort is defined only by this experiment's
+   data and rules (G-38).
 3. **Test-side purge (5.3, G-18).** Remove test orders whose `customer_unique_id` appears in
    development; log the count. The test cohort is new customers only.
 4. **Test checks (5.4).** Test keeps ≥ 15% of eligible orders and ≥ 15% of reviewed orders;
@@ -56,8 +56,7 @@ Gate: folds chronological, customers purged, labels mature, classes supported (`
 - `test_manifest.csv`: `order_id`, `customer_unique_id`, `purchase_ts`.
 - `folds.csv`: `order_id`, `fold`, `role` (train / validation), `purchase_ts`.
 - `counts.json`: rows, customers, positives per fold and per cohort; purge and maturity drops.
-- `checks.json`: per-fold assertions and results; test-size and review-share checks; overlap with
-  the Milestone 2 terminal cohort.
+- `checks.json`: per-fold assertions and results; test-size and review-share checks.
 
 ## 6. Checks (asserted, run fails if any is false)
 - No test `order_id` or `customer_unique_id` in development.

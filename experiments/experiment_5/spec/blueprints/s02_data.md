@@ -42,7 +42,8 @@ Gate: joins, grains, targets and leakage exclusions verified (`../stages.json`).
    - Never predictors (known only after purchase): `order_status`, `order_approved_at`,
      carrier and customer delivery dates, `shipping_limit_date`, review fields, `has_items` and
      `freight_ratio_missing` (both encode a later cancellation). `order_estimated_delivery_date`
-     is known at checkout (use decided in s04, G-17).
+     is known at checkout but is never a predictor (G-35); it is kept in `records.csv.gz` only for
+     the s03 late-vs-promised trend.
    - Date-order audit on every order: purchase ≤ approval ≤ carrier ≤ delivery; estimated date >
      purchase; review answer > purchase. Violations logged in `audit.json`; an order whose
      delivery is not after purchase leaves regression (step 6).

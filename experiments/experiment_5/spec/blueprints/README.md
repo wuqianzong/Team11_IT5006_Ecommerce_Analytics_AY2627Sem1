@@ -26,15 +26,15 @@ blueprint; the stage's `STAGE.md` records how it actually ran.
 
 | Stage | Blueprint | Status | Open items | Last change |
 | --- | --- | --- | --- | --- |
-| s01 Problem statement | [s01_problem.md](s01_problem.md) | NOT STARTED | — | — |
+| s01 Problem statement | [s01_problem.md](s01_problem.md) | AGREED | — | 2026-10-18: approved in team review (one-SE decision rule, eligible-order task wording) |
 | s02 Data preprocessing | [s02_data.md](s02_data.md) | AGREED | — | 2026-10-17: approved in team walkthrough |
 | s03 EDA | [s03_eda.md](s03_eda.md) | AGREED | — | 2026-10-17: approved in team walkthrough |
 | s04 Features | [s04_features.md](s04_features.md) | AGREED | Cumulative threshold (95/99%) set after s03 output | 2026-10-17: approved in team walkthrough |
 | s05 Partition | [s05_partition.md](s05_partition.md) | AGREED | — | 2026-10-17: approved in team walkthrough |
-| s06 Training | [s06_training.md](s06_training.md) | NOT STARTED | — | — |
-| s07 Tuning | [s07_tuning.md](s07_tuning.md) | NOT STARTED | — | — |
-| s08 Selection | [s08_selection.md](s08_selection.md) | NOT STARTED | — | — |
-| s09 Conclusion | [s09_conclusion.md](s09_conclusion.md) | NOT STARTED | — | — |
-| s10 Release | [s10_release.md](s10_release.md) | NOT STARTED | — | — |
+| s06 Training | [s06_training.md](s06_training.md) | AGREED | — | 2026-10-18: approved in team review (families only; log transforms fixed, G-36) |
+| s07 Tuning | [s07_tuning.md](s07_tuning.md) | AGREED | — | 2026-10-18: approved in team review (grids G-37; one-SE selection) |
+| s08 Selection | [s08_selection.md](s08_selection.md) | AGREED | — | 2026-10-18: approved in team review (human gates for model and threshold, G-39) |
+| s09 Conclusion | [s09_conclusion.md](s09_conclusion.md) | AGREED | — | 2026-10-18: approved in team review (state slices with 100-detractor rule; EDA consistency check G-40) |
+| s10 Release | [s10_release.md](s10_release.md) | AGREED | — | 2026-10-18: approved in team review (three-tab app, data scopes G-41) |
 
 Template for new blueprints: [`_TEMPLATE.md`](_TEMPLATE.md).

@@ -19,7 +19,7 @@ Blueprint: `spec/blueprints/s06_training.md` (implement only when its status is 
 **Gate question:** Do the models run basic to complex on identical folds, with each choice justified?
 
 ## Purpose
-On the s05 folds: prior dummy, unregularised LogisticRegression, single decision tree, random forest, each one Pipeline from the s04 recipe; learning curves; choose each model's feature set and transforms on the folds.
+On the s05 folds: prior dummy, unregularised LogisticRegression, single decision tree, random forest, each one Pipeline from the s04 recipe; learning curves; feature set and log transforms fixed by s04 (always on, G-36).
 
 ## Planned outputs (`outputs/`)
 - metrics_long.csv (train + validation per fold)
@@ -31,8 +31,8 @@ On the s05 folds: prior dummy, unregularised LogisticRegression, single decision
 - Identical rows and folds for every candidate
 - Preprocessing fitted inside folds
 - Simplest model of each family present
-- Step A (families on core set, raw) before step B (features, transforms within a family)
-- One change at a time under the decision rule
+- Every model uses the s04 selected features with log transforms on (G-36); no feature or transform testing on the folds
+- Each more complex family kept only under the s01 decision rule
 <!-- END GENERATED -->
 
 ## Review summary (owner fills at gate; cite files, never type numbers from memory)

@@ -30,7 +30,7 @@ Train-validation-test table with bootstrap confidence intervals, subgroup errors
 ## Gate criteria
 - Validation scores labelled as selection scores, not generalisation estimates
 - Importance explains the selected model
-- Test cohort described as historical held-out, not unseen
+- Test cohort described as this experiment's held-out test, scored once in s08 (G-38)
 - Every recommendation traced to evidence
 <!-- END GENERATED -->
 

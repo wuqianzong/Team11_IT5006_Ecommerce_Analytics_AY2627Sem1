@@ -6,7 +6,7 @@
 | Nodes | regression, classification |
 | Status | AGREED |
 | Owner | TBD |
-| Last agreed | 2026-10-17 (team walkthrough, doc tab "Feature solution (s02–s05)") |
+| Last agreed | 2026-10-18 (4.5 deleted, CR-015); first agreed 2026-10-17 (team walkthrough, doc tab "Feature solution (s02–s05)") |
 | Discussion | Claude Doc "Milestone 3 pipeline stages", tab "Feature solution (s02–s05)", section s04 |
 
 ## 1. Goal and gate
@@ -35,12 +35,12 @@ Gate: features and recipes defined without fitting or using test data (`../stage
 4. **Selection (4.4).** Walk the s03 ranking and keep features until the cumulative share reaches the
    team's threshold (G-19, declared exception: computed once on pre-cutoff data; CV scores of the
    chosen set are optimistic and the report says so).
-5. **Extra candidate (4.5).** "Promised lead days" = `order_estimated_delivery_date` − purchase,
-   in days (known at checkout). Candidate feature, kept only if it wins on the folds in s06; also a
-   regression reference model (Olist's own promise) (G-17).
+5. **Extra candidate (4.5): deleted** (G-35, CR-015). `order_estimated_delivery_date` is neither a
+   feature nor a reference model: in production the promised date would be set from the task 1
+   prediction itself, which differs in nature from Olist's own estimate.
 6. **Rationale (4.6).** For each kept feature: formula, grain, checkout availability,
    missingness, hypothesised signal, verified citation.
-7. **Candidate sets (4.7).** Per model family: the selected set, with and without 4.5.
+7. **Candidate sets (4.7).** Per model family: the selected set.
 8. **Pipeline recipe (4.8).** Per family:
    - numeric: median imputation with missing indicators; `distance_km_max` instead takes the route
      median (customer_state × primary_seller_state, fallback customer_state, then global), after
@@ -57,7 +57,7 @@ Gate: features and recipes defined without fitting or using test data (`../stage
 | s04-D3 | Target cap | None | G-25 | Agreed |
 | s04-D4 | Collinearity drops | Flagged by cut-offs, decided by the team, recorded | G-26 | Agreed |
 | s04-D5 | Selection | EDA ranking, cumulative threshold fixed before fitting | G-19 | Agreed (threshold value pending s03 output) |
-| s04-D6 | Promised lead days | Candidate feature and regression reference | G-17 | Agreed |
+| s04-D6 | Promised lead days | Not used (deleted 2026-10-18) | G-35 (supersedes G-17) | Agreed |
 | s04-D7 | Missing distance | Route median in folds | G-27 | Agreed |
 
 ## 5. Outputs (per task, under `stages/s04_features/<task>/outputs/`)
@@ -65,7 +65,7 @@ Gate: features and recipes defined without fitting or using test data (`../stage
   reason, citation.
 - `reduction_rationale.csv`: feature, flagged by (r / VIF / constant / duplicate), paired with,
   team decision, rationale, decided by, date.
-- `candidate_sets.json`: family → feature list (with / without promised lead days).
+- `candidate_sets.json`: family → feature list.
 - `recipes.json`: family → imputation, encoding, scaling, transforms.
 
 ## 6. Checks

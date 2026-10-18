@@ -98,7 +98,7 @@
       "depends_on": [
         "s03_eda/{task}"
       ],
-      "purpose": "Define, without fitting: the 27-feature baseline (numeric calendar fields); log1p for non-negative numeric features with pre-cutoff skewness > 1 and for the regression target; the pre-registered label-free reduction to a core set; feature selection by the s03 importance ranking at the team's cumulative threshold (95% or 99%, fixed before any model is fitted); encoded design-matrix rank per recipe; rationale and citations; the order_estimated_delivery_date decision; the pipeline recipe per model (impute, encode, scale).",
+      "purpose": "Define, without fitting: the 27-feature baseline (numeric calendar fields); log1p for non-negative numeric features with pre-cutoff skewness > 1 and for the regression target; the pre-registered label-free reduction to a core set; feature selection by the s03 importance ranking at the team's cumulative threshold (95% or 99%, fixed before any model is fitted); encoded design-matrix rank per recipe; rationale and citations; order_estimated_delivery_date never a feature (G-35); the pipeline recipe per model (impute, encode, scale).",
       "outputs": [
         "feature_dictionary.csv (formula, grain, availability, missingness, rationale, citation)",
         "candidate_sets.json (per model)",
@@ -111,7 +111,7 @@
         "Threshold and collinearity drops read from spec/human_decisions.yaml (team-decided after s03); s04 stops if missing",
         "No target cap (G-25)",
         "Every retained feature has a rationale",
-        "order_estimated_delivery_date decision recorded",
+        "order_estimated_delivery_date not used as a feature or reference (G-35)",
         "Nothing fitted on data"
       ],
       "gate_question": "Are features and recipes defined without fitting or using labels?"
@@ -133,7 +133,7 @@
         "folds.csv",
         "test_manifest.csv (task-specific test cohort)",
         "counts.json (rows, customers, positives per fold and cohort)",
-        "checks.json (overlap, maturity, rows lost to maturity, class support)"
+        "checks.json (customer purge, maturity, rows lost to maturity, class support)"
       ],
       "gate": [
         "No test customer in development (repeat customers removed from test; order_id and customer_unique_id checked)",
@@ -161,8 +161,8 @@
         "s05_partition/{task}"
       ],
       "purpose": {
-        "regression": "On the s05 folds: median dummy, plain LinearRegression, single decision tree, random forest, each one Pipeline from the s04 recipe; residuals and learning curves; choose each model's feature set, and the log transforms on the folds.",
-        "classification": "On the s05 folds: prior dummy, unregularised LogisticRegression, single decision tree, random forest, each one Pipeline from the s04 recipe; learning curves; choose each model's feature set and transforms on the folds."
+        "regression": "On the s05 folds: median dummy, plain LinearRegression, single decision tree, random forest, each one Pipeline from the s04 recipe; residuals and learning curves; feature set and log transforms fixed by s04 (always on, G-36).",
+        "classification": "On the s05 folds: prior dummy, unregularised LogisticRegression, single decision tree, random forest, each one Pipeline from the s04 recipe; learning curves; feature set and log transforms fixed by s04 (always on, G-36)."
       },
       "outputs": [
         "metrics_long.csv (train + validation per fold)",
@@ -174,8 +174,8 @@
         "Identical rows and folds for every candidate",
         "Preprocessing fitted inside folds",
         "Simplest model of each family present",
-        "Step A (families on core set, raw) before step B (features, transforms within a family)",
-        "One change at a time under the decision rule"
+        "Every model uses the s04 selected features with log transforms on (G-36); no feature or transform testing on the folds",
+        "Each more complex family kept only under the s01 decision rule"
       ],
       "gate_question": "Do the models run basic to complex on identical folds, with each choice justified?"
     },
@@ -230,6 +230,7 @@
         "metrics_long.csv (phase = test) + predictions.csv.gz"
       ],
       "gate": [
+        "Team decisions for model choice and threshold recorded in spec/human_decisions.yaml (G-39)",
         "Model selected before the threshold",
         "Persisted probability recipe is the one the threshold was chosen on",
         "Final-fit training labels available before the test cutoff",
@@ -262,7 +263,7 @@
       "gate": [
         "Validation scores labelled as selection scores, not generalisation estimates",
         "Importance explains the selected model",
-        "Test cohort described as historical held-out, not unseen",
+        "Test cohort described as this experiment's held-out test, scored once in s08 (G-38)",
         "Every recommendation traced to evidence"
       ],
       "gate_question": "Does every conclusion follow from the test results and their limits?"
@@ -289,6 +290,7 @@
         "walkthrough notebook"
       ],
       "gate": [
+        "Every table and chart in the model tabs traced to a stage output in app_sources.json; business dashboard tab labelled as its own descriptive scope (G-41)",
         "App loads the s08 bundle unchanged",
         "Reproduction check matches the release before any deliverable is built",
         "Nothing written outside experiments/experiment_5/ before the lead orders migration"

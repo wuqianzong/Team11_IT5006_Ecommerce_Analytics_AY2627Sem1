@@ -1,6 +1,7 @@
 # Human decisions required at pipeline gates (Experiment 5).
 # Filled by the team, never by code. Changes are logged in CHANGELOG.md.
 # s04 refuses to run until the s03 section for its task is complete (decision log G-31).
+# s08 stops at two gates until the s08 section for its task is complete (G-39).
 
 s03_to_s04:
   regression:
@@ -9,3 +10,10 @@ s03_to_s04:
   classification:
     cumulative_importance_threshold: null
     collinearity_drops: []
+
+s08:
+  regression:
+    model: null            # {chosen: candidate_id, recommended: candidate_id, rationale: "...", grid_edge_action: none|widen_grid|revisit_s03_s04, decided_by: name, date: YYYY-MM-DD}
+  classification:
+    model: null
+    threshold: null        # {value: 0.xx, daily_alert_cap: null|int, rationale: "...", decided_by: name, date: YYYY-MM-DD}
