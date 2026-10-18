@@ -94,19 +94,19 @@ class Writer:
         png, side, meta = f"figures/{name}.png", f"figures/{name}.csv", f"figures/{name}.json"
         fig.savefig(self._path(png), dpi=150, bbox_inches="tight")
         data.to_csv(self._path(side), index=False)
-        self._path(meta).write_text(json.dumps({"title": title or name, "ids": _ids(ids), "data": side}, indent=2))
+        self._path(meta).write_text(json.dumps({"title": title or name, "ids": _ids(ids), "data": side}, indent=2), encoding="utf-8")
         for rel, kind in ((png, "figure"), (side, "figure_data"), (meta, "figure_meta")):
             self._tag(rel, _ids(ids), kind)
         return self.dir / png
 
     def json(self, name: str, obj: Any, ids) -> Path:
         rel = f"{name}.json"
-        self._path(rel).write_text(json.dumps(obj, indent=2, default=str))
+        self._path(rel).write_text(json.dumps(obj, indent=2, default=str), encoding="utf-8")
         self._tag(rel, _ids(ids), "json")
         return self.dir / rel
 
     def text(self, name: str, content: str, ids) -> Path:
-        self._path(name).write_text(content)
+        self._path(name).write_text(content, encoding="utf-8")
         self._tag(name, _ids(ids), "text")
         return self.dir / name
 
@@ -141,5 +141,5 @@ class Writer:
             ids = sorted({i for d in self._decisions for i in d["ids"]})
             self.json("decision", self._decisions, ids)
         self.index["checks_failed"] = [c["name"] for c in self.index["checks"] if not c["passed"]]
-        self._path(INDEX).write_text(json.dumps(self.index, indent=2))
+        self._path(INDEX).write_text(json.dumps(self.index, indent=2), encoding="utf-8")
         return manifest.write(self.stage, self.task, reads=data.reads(), seed=seed, extra=extra)

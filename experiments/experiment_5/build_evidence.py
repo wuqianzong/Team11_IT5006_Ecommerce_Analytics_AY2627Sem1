@@ -54,7 +54,7 @@ def build(draft: bool) -> int:
             print("refusing to build release evidence: run_pipeline.py check failed (use --draft for drafts)")
             return 1
     registry_path = E5 / "evidence" / "registry.yaml"
-    items = yaml.safe_load(registry_path.read_text()) if registry_path.exists() else []
+    items = yaml.safe_load(registry_path.read_text(encoding="utf-8")) if registry_path.exists() else []
     out = assert_inside_e5(E5 / "evidence" / ("build_draft" if draft else "build"))
     if out.exists():
         shutil.rmtree(out)
@@ -79,7 +79,7 @@ def build(draft: bool) -> int:
                 md = df.to_markdown(index=False)
             except ImportError:  # tabulate not installed
                 md = df.to_string(index=False)
-            (out / "tables" / f"{item['id']}.md").write_text(md)
+            (out / "tables" / f"{item['id']}.md").write_text(md, encoding="utf-8")
         elif kind == "number":
             col = item.get("value_column", "value")
             if len(df) != 1:
@@ -87,14 +87,14 @@ def build(draft: bool) -> int:
             numbers[item["id"]] = float(df[col].iloc[0])
         else:
             raise ValueError(f"{item['id']}: unknown kind {kind!r}")
-    (out / "numbers.json").write_text(json.dumps(numbers, indent=2))
+    (out / "numbers.json").write_text(json.dumps(numbers, indent=2), encoding="utf-8")
     runs = {}
     for src in sources:
         parts = src.relative_to(E5).parts
         if len(parts) > 3 and parts[0] == "stages":
             m = manifest.read(parts[1], parts[2]) or {}
             runs[f"{parts[1]}/{parts[2]}"] = {"run_id": m.get("run_id"), "commit": m.get("commit")}
-    (out / "_release.json").write_text(json.dumps({"draft": draft, "nodes": runs}, indent=2))
+    (out / "_release.json").write_text(json.dumps({"draft": draft, "nodes": runs}, indent=2), encoding="utf-8")
     print(f"wrote {out}")
     return 0
 

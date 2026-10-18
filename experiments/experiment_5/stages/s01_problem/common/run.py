@@ -237,11 +237,11 @@ def main() -> None:
 
     # 1.9 Outputs: write the pre-registered layer, keeping any data-dependent sections.
     path = assert_inside_e5(spec_path("protocol.yaml"))
-    existing = yaml.safe_load(path.read_text()) if path.exists() else {}
+    existing = yaml.safe_load(path.read_text(encoding="utf-8")) if path.exists() else {}
     doc = {**p, **({"data_dependent": existing["data_dependent"]} if existing and "data_dependent" in existing else {})}
     header = "# Experiment 5 protocol. Pre-registered layer written by stages/s01_problem/common/run.py (README section 5.2).\n" \
              "# Data-dependent sections are written only by their owning stage (e5lib.protocol.set_data_dependent).\n"
-    path.write_text(header + yaml.safe_dump(doc, sort_keys=False, allow_unicode=True, width=110))
+    path.write_text(header + yaml.safe_dump(doc, sort_keys=False, allow_unicode=True, width=110), encoding="utf-8")
     protocol.load()  # parse back: fails loudly if the YAML is malformed
 
     all_ids = tuple(f"1.{i}" for i in range(1, 10))
@@ -271,12 +271,12 @@ def main() -> None:
     cited = set(p["metrics"]["citations"] + p["cost"]["citations"] + p["decision_rule"]["citations"] + p["grids"]["citations"])
     w.check("every citation is in the verified list", cited <= set(CITATIONS), ids=("1.4", "1.5", "1.7"),
             detail=f"{len(cited)} citations")
-    s07 = (E5 / "spec" / "blueprints" / "s07_tuning.md").read_text()
+    s07 = (E5 / "spec" / "blueprints" / "s07_tuning.md").read_text(encoding="utf-8")
     grid_text = lambda xs: ", ".join(f"{x:g}" if isinstance(x, float) else str(x) for x in xs)  # noqa: E731
     in_blueprint = all(grid_text(g) in s07 for g in (GRID_C, p["grids"]["tree"]["max_depth"],
                                                      p["grids"]["forest"]["max_depth"], p["grids"]["tree"]["min_samples_leaf"]))
     w.check("grids match the AGREED s07 blueprint", in_blueprint, ids=("1.8",))
-    index = (E5 / "spec" / "blueprints" / "README.md").read_text()
+    index = (E5 / "spec" / "blueprints" / "README.md").read_text(encoding="utf-8")
     agreed = all(re.search(rf"\| {s[:3]} [^|]+\| \[[^\]]+\]\([^)]+\) \| AGREED", index) for s in STAGE_ORDER)
     w.check("all ten blueprints AGREED", agreed, ids=("1.9",))
 

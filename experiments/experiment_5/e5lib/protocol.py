@@ -61,7 +61,7 @@ def load() -> dict[str, Any]:
     path = _path()
     if not path.exists():
         raise ProtocolError(f"{path} not found: it is created by s01_problem (README section 5.2)")
-    data = yaml.safe_load(path.read_text()) or {}
+    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
     if not isinstance(data, dict):
         raise ProtocolError("protocol.yaml must be a mapping at the top level")
     return data
@@ -110,4 +110,4 @@ def set_data_dependent(section: str, values: Any, stage: str, *, replace: bool =
         "set_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
     path = assert_inside_e5(_path())
-    path.write_text(yaml.safe_dump(data, sort_keys=False, allow_unicode=True))
+    path.write_text(yaml.safe_dump(data, sort_keys=False, allow_unicode=True), encoding="utf-8")

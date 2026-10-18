@@ -24,7 +24,7 @@ STATUSES = ("IMPLEMENTED", "DEVIATION", "MISSING")
 
 
 def solution_ids(stage: str, task: str) -> list[dict]:
-    spec = json.loads(spec_path("solution_ids.json").read_text())
+    spec = json.loads(spec_path("solution_ids.json").read_text(encoding="utf-8"))
     if stage not in spec:
         raise KeyError(f"no solution IDs listed for {stage}")
     return [s for s in spec[stage] if task in s.get("tasks", [task])]
@@ -37,7 +37,7 @@ def _link(name: str) -> str:
 
 def coverage(stage: str, task: str) -> list[dict]:
     out = outputs_dir(stage, task)
-    index = json.loads((out / INDEX).read_text())
+    index = json.loads((out / INDEX).read_text(encoding="utf-8"))
     m = manifest_mod.read(stage, task) or {}
     hashes = m.get("outputs", {})
     rows = []
@@ -67,7 +67,7 @@ def build_pack(stage: str, task: str, round_: int) -> Path:
         raise FileNotFoundError(f"{stage}/{task} has no manifest: run the stage first")
     rows = coverage(stage, task)
     prev_file = review_dir(stage, task, round_ - 1) / "pack.json" if round_ > 1 else None
-    prev = {r["id"]: r for r in json.loads(prev_file.read_text())["rows"]} if prev_file and prev_file.exists() else {}
+    prev = {r["id"]: r for r in json.loads(prev_file.read_text(encoding="utf-8"))["rows"]} if prev_file and prev_file.exists() else {}
     for r in rows:
         r["changed"] = (r["id"] not in prev) or (prev[r["id"]]["evidence_hashes"] != r["evidence_hashes"])
 
@@ -115,10 +115,10 @@ def build_pack(stage: str, task: str, round_: int) -> Path:
 
     target = assert_inside_e5(review_dir(stage, task, round_))
     target.mkdir(parents=True, exist_ok=True)
-    (target / "review_pack.md").write_text("\n".join(lines))
+    (target / "review_pack.md").write_text("\n".join(lines), encoding="utf-8")
     (target / "pack.json").write_text(json.dumps({"stage": stage, "task": task, "round": round_,
                                                   "base_commit": m.get("commit"), "run_id": m["run_id"],
                                                   "outputs": freshness,
                                                   "dirty": m.get("dirty"), "ready": ready,
-                                                  "rows": rows}, indent=2))
+                                                  "rows": rows}, indent=2), encoding="utf-8")
     return target / "review_pack.md"

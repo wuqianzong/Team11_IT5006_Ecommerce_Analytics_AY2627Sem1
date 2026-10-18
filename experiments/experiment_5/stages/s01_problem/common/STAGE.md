@@ -53,6 +53,7 @@ Fix both checkout tasks, prediction time, stakeholders and their actions, target
 ## Accepted result (the only result the report and slides may cite)
 - Accepted round: 2 - commit: the "s01 accepted" commit, tag `e5-s01-accepted` - run ID: 20261018T150315Z - approved by: experiment lead (Wu Qianzong), after team review in the doc tab "Implementation reviews › s01 Problem" - date: 2026-10-18
 - Evidence: `outputs/_manifest.json` (output hashes), `review/round_2/review_pack.md`.
+- 2026-10-19: rerun as run 20261018T164754Z after the foundation encoding fix (CR-030); every output byte-identical to the accepted run, decision unchanged, so the acceptance stands.
 
 ## Deviations from blueprint
 None.

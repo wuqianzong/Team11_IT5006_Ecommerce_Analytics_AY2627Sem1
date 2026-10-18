@@ -103,13 +103,13 @@ def write(stage: str, task: str, reads: Iterable[Path] | None = None, seed: int 
     }
     path = assert_inside_e5(outputs_dir(stage, task) / MANIFEST)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(manifest, indent=2, sort_keys=False))
+    path.write_text(json.dumps(manifest, indent=2, sort_keys=False), encoding="utf-8")
     return path
 
 
 def read(stage: str, task: str) -> dict | None:
     path = outputs_dir(stage, task) / MANIFEST
-    return json.loads(path.read_text()) if path.exists() else None
+    return json.loads(path.read_text(encoding="utf-8")) if path.exists() else None
 
 
 def status(stage: str, task: str) -> tuple[str, list[str]]:

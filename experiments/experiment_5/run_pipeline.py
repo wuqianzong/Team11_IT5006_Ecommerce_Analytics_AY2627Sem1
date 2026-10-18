@@ -29,7 +29,7 @@ STATUSES = ("TODO", "IN_PROGRESS", "READY_FOR_REVIEW", "CHANGES_REQUESTED", "ACC
 
 # ---- nodes and stage cards ------------------------------------------------------------
 def nodes() -> list[dict]:
-    spec = json.loads((E5 / "spec" / "stages.json").read_text())
+    spec = json.loads((E5 / "spec" / "stages.json").read_text(encoding="utf-8"))
     out = []
     for st in spec["stages"]:
         for task in st["tasks"]:
@@ -58,7 +58,7 @@ def card(node: str) -> Path:
 
 
 def get_status(node: str) -> str:
-    m = re.search(r"^status:\s*([A-Z_]+)", card(node).read_text(), re.M)
+    m = re.search(r"^status:\s*([A-Z_]+)", card(node).read_text(encoding="utf-8"), re.M)
     return m.group(1) if m else "TODO"
 
 
@@ -66,8 +66,8 @@ def set_status(node: str, status: str) -> None:
     if status not in STATUSES:
         raise ValueError(status)
     path = card(node)
-    text = re.sub(r"^status:\s*[A-Z_]+", f"status: {status}", path.read_text(), count=1, flags=re.M)
-    path.write_text(text)
+    text = re.sub(r"^status:\s*[A-Z_]+", f"status: {status}", path.read_text(encoding="utf-8"), count=1, flags=re.M)
+    path.write_text(text, encoding="utf-8")
 
 
 # ---- commands -------------------------------------------------------------------------
@@ -106,14 +106,14 @@ def run_node(node: str) -> int:
         print(f"{node}: no run.py yet")
         return 2
     decision = outputs_dir(stage, task) / "decision.json"
-    before = decision.read_text() if decision.exists() else None
+    before = decision.read_text(encoding="utf-8") if decision.exists() else None
     env = {**os.environ, "PYTHONPATH": str(E5) + os.pathsep + os.environ.get("PYTHONPATH", "")}
     print(f"running {node}")
     rc = subprocess.run([sys.executable, str(script)], cwd=E5, env=env).returncode
     if rc != 0:
         print(f"{node} failed (exit {rc})")
         return rc
-    after = decision.read_text() if decision.exists() else None
+    after = decision.read_text(encoding="utf-8") if decision.exists() else None
     status = get_status(node)
     if status == "ACCEPTED" and before != after:
         set_status(node, "REOPENED")

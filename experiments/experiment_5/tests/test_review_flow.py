@@ -29,12 +29,12 @@ def _stage_run(e5, round_=1, value=1):
 def test_writer_tags_and_manifest(e5):
     from e5lib import manifest
     path = _stage_run(e5)
-    m = json.loads(path.read_text())
+    m = json.loads(path.read_text(encoding="utf-8"))
     assert m["node"] == "s02_data/common" and m["seed"] == 42
-    index = json.loads((path.parent / "_evidence_index.json").read_text())
+    index = json.loads((path.parent / "_evidence_index.json").read_text(encoding="utf-8"))
     assert index["files"]["figures/structure.png"]["ids"] == ["2.12"]
     assert manifest.status("s02_data", "common")[0] == "FRESH"
-    (path.parent / "exclusions.csv").write_text("tampered\n")
+    (path.parent / "exclusions.csv").write_text("tampered\n", encoding="utf-8")
     assert manifest.status("s02_data", "common")[0] == "STALE"
 
 
@@ -51,16 +51,16 @@ def test_review_pack_coverage_and_rounds(e5):
     from e5lib import review
     _stage_run(e5, value=1)
     md = review.build_pack("s02_data", "common", 1)
-    pack = json.loads((md.parent / "pack.json").read_text())
+    pack = json.loads((md.parent / "pack.json").read_text(encoding="utf-8"))
     status = {r["id"]: r["status"] for r in pack["rows"]}
     checks = {r["id"]: r["checks"] for r in pack["rows"]}
     assert status["2.9"] == "IMPLEMENTED" and status["2.3"] == "DEVIATION" and status["2.1"] == "MISSING"
     assert checks["2.4"] == "PASS"
     assert not pack["ready"]  # MISSING rows block acceptance
-    text = md.read_text()
+    text = md.read_text(encoding="utf-8")
     assert "| [2.1](#card-2-1) | Load | MISSING |" in text and "![figures/structure.png]" in text
     _stage_run(e5, value=7)  # round 2: changed evidence and a failed check
-    pack2 = json.loads((review.build_pack("s02_data", "common", 2).parent / "pack.json").read_text())
+    pack2 = json.loads((review.build_pack("s02_data", "common", 2).parent / "pack.json").read_text(encoding="utf-8"))
     rows2 = {r["id"]: r for r in pack2["rows"]}
     assert rows2["2.9"]["changed"] and not rows2["2.1"]["changed"]
     assert rows2["2.7"]["checks"] == "FAIL"

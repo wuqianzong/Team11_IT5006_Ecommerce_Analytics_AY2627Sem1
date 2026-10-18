@@ -78,7 +78,7 @@ None.
 
 
 def load_nodes() -> list[dict]:
-    spec = json.loads(SPEC.read_text())
+    spec = json.loads(SPEC.read_text(encoding="utf-8"))
     nodes, seen_ids = [], set()
     for st in spec["stages"]:
         if st["id"] in seen_ids:
@@ -164,7 +164,7 @@ def render_card(n: dict, old: str | None) -> str:
 
 
 def stage_index(nodes: list[dict]) -> str:
-    spec = json.loads(SPEC.read_text())
+    spec = json.loads(SPEC.read_text(encoding="utf-8"))
     rows = [
         IDX_BEGIN,
         f"_Generated from `spec/stages.json` v{spec['version']} ({spec['design_version']}). Do not edit by hand._",
@@ -193,7 +193,7 @@ def main() -> int:
     for n in nodes:
         folder = STAGES / n["id"] / n["task"]
         card = folder / "STAGE.md"
-        old = card.read_text() if card.exists() else None
+        old = card.read_text(encoding="utf-8") if card.exists() else None
         new = render_card(n, old)
         if old == new:
             continue
@@ -206,9 +206,9 @@ def main() -> int:
         if not args.check:
             (folder / "outputs").mkdir(parents=True, exist_ok=True)
             (folder / "outputs" / ".gitkeep").touch()
-            card.write_text(new)
+            card.write_text(new, encoding="utf-8")
 
-    readme = README.read_text()
+    readme = README.read_text(encoding="utf-8")
     if IDX_BEGIN in readme and IDX_END in readme:
         pre, rest = readme.split(IDX_BEGIN, 1)
         _, post = rest.split(IDX_END, 1)
@@ -216,7 +216,7 @@ def main() -> int:
         if new_readme != readme:
             changes.append("update README.md stage index")
             if not args.check:
-                README.write_text(new_readme)
+                README.write_text(new_readme, encoding="utf-8")
     else:
         warnings.append("README.md has no stage-index markers; index not updated")
 

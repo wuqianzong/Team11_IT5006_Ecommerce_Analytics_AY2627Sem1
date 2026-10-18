@@ -62,7 +62,7 @@ def test_test_population_is_guarded(records, e5):
         data.load("records", "regression", "test", stage="s08_selection")  # before the freeze
     out = e5 / "stages" / "s08_selection" / "regression" / "outputs"
     out.mkdir(parents=True)
-    (out / "frozen_recipe.json").write_text(json.dumps({"frozen": True}))
+    (out / "frozen_recipe.json").write_text(json.dumps({"frozen": True}), encoding="utf-8")
     s05 = e5 / "stages" / "s05_partition" / "regression" / "outputs"
     s05.mkdir(parents=True)
     pd.DataFrame({"order_id": ["o7", "o8"]}).to_csv(s05 / "test_manifest.csv", index=False)
@@ -95,7 +95,7 @@ def test_data_dependent_write_does_not_stale_other_stages(e5):
     data = protocol.load()
     data["seed"] = 7
     import yaml
-    (e5 / "spec" / "protocol.yaml").write_text(yaml.safe_dump(data))
+    (e5 / "spec" / "protocol.yaml").write_text(yaml.safe_dump(data), encoding="utf-8")
     state, reasons = manifest.status("s01_problem", "common")
     assert state == "STALE" and any("pre_registered" in r for r in reasons)
 
@@ -106,3 +106,19 @@ def test_contract_is_consistent():
     assert len(contract.PREDICTORS) == 24
     assert "freight_ratio" not in contract.LOG_CANDIDATES
     assert not set(contract.NOT_IN_CONTRACT) & set(contract.PREDICTORS)
+
+
+def test_text_io_names_an_encoding():
+    """Every read_text/write_text names encoding="utf-8", so runs do not depend on the OS locale (e.g. GBK)."""
+    import ast
+    from conftest import REAL_E5
+    missing = []
+    for path in REAL_E5.rglob("*.py"):
+        if ".venv" in path.parts:
+            continue
+        for node in ast.walk(ast.parse(path.read_text(encoding="utf-8"))):
+            if (isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute)
+                    and node.func.attr in ("read_text", "write_text")
+                    and not any(k.arg == "encoding" for k in node.keywords)):
+                missing.append(f"{path.relative_to(REAL_E5)}:{node.lineno}")
+    assert not missing, missing
