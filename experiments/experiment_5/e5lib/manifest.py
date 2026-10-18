@@ -51,8 +51,8 @@ def output_files(stage: str, task: str) -> list[Path]:
 
 
 # Files a run or the review process writes; they never make a run "dirty".
-GENERATED = ("stages/*/*/outputs", "stages/*/*/review", "stages/*/*/STAGE.md", "spec/protocol.yaml",
-             "evidence/build", "evidence/build_draft")
+GENERATED = ("stages/*/*/outputs/**", "stages/*/*/review/**", "stages/*/*/STAGE.md", "spec/protocol.yaml",
+             "evidence/build/**", "evidence/build_draft/**")
 
 
 def git(*args: str) -> str:
@@ -65,7 +65,7 @@ def git(*args: str) -> str:
 def git_state() -> dict[str, object]:
     """HEAD commit, and whether code or spec in Experiment 5 differs from it (generated files excluded)."""
     commit = git("rev-parse", "HEAD")
-    excludes = [f":(exclude){g}" for g in GENERATED]
+    excludes = [f":(exclude,glob){g}" for g in GENERATED]
     dirty = bool(git("status", "--porcelain", "--", ".", *excludes))
     return {"commit": commit or None, "dirty": dirty}
 
