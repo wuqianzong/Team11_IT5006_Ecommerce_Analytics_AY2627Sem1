@@ -1,0 +1,133 @@
+key,value,solution_id
+version,1.0,1.9
+seed,42,1.8
+prediction_time.column,order_purchase_timestamp,1.1
+prediction_time.source,s01 1.1,1.1
+tasks.regression.target,lead_days,1.1
+tasks.regression.unit,days,1.1
+tasks.regression.definition,"order_delivered_customer_date - order_purchase_timestamp, fractional days; delivered orders with a valid lead time > 0",1.1
+tasks.regression.label_available_at,delivery,1.1
+tasks.regression.stakeholder,"logistics / fulfilment planning: expected lead time per order at checkout, to flag long-haul orders and set realistic delivery promises",1.1
+tasks.regression.source,s01 1.1-1.3; s02 2.6,1.1
+tasks.classification.target,is_detractor,1.1
+tasks.classification.positive_class,1,1.1
+tasks.classification.definition,"minimum valid review score <= 2 for an eligible order (not cancelled or unavailable, and reviewed)",1.1
+tasks.classification.sensitivity_label,is_detractor_first (first review only),1.1
+tasks.classification.label_available_at,last review answer,1.1
+tasks.classification.score_meaning,risk of a 1-2 star review if the customer reviews (scope limit),1.1
+tasks.classification.stakeholder,"customer-experience team: daily list of at-risk orders for proactive contact (status update, check with the seller)",1.1
+tasks.classification.source,s01 1.1-1.3; s02 2.6; G-34,1.1
+populations.both,"zero-item orders excluded, orders with missing payment_installments_max removed, orders without a usable payment removed (no payment rows, or only not_defined)",1.3
+populations.regression,delivered orders with a valid lead time,1.3
+populations.classification,"orders not cancelled or unavailable, with a valid review; targets never imputed",1.3
+populations.outliers.lead_days_rule,"lead_days > max(100, mean + 12 * SD), mean and SD from pre-cutoff orders",1.3
+populations.outliers.lead_days_floor_days,100,1.3
+populations.outliers.lead_days_sd_multiplier,12,1.3
+populations.outliers.distance_km_max_limit,4397.53,1.3
+populations.outliers.applies_to,"development and test (G-21, audit 2 A1 kept)",1.3
+populations.source,"s02 2.8-2.11; G-20, G-21, G-51",1.3
+features.contract_predictors,"n_items, has_items, n_products, n_sellers, n_categories, total_price, total_freight, freight_ratio, freight_ratio_missing, total_weight_g, total_volume_cm3, weight_missing_fraction, volume_missing_fraction, primary_category, category_missing_fraction, customer_state, primary_seller_state, distance_km_max, distance_missing_fraction, interstate_share, purchase_month, purchase_dayofweek, purchase_hour, primary_payment_type, payment_installments_max, n_payment_methods, payment_missing",1.3
+features.excluded.has_items,post-purchase leakage: encodes a later cancellation (G-30),1.3
+features.excluded.freight_ratio_missing,post-purchase leakage: encodes a later cancellation (G-30),1.3
+features.excluded.payment_missing,"constant after the population rules: s02 2.11 removes orders without a usable payment (G-42, G-51)",1.3
+features.eligible,"n_items, n_products, n_sellers, n_categories, total_price, total_freight, freight_ratio, total_weight_g, total_volume_cm3, weight_missing_fraction, volume_missing_fraction, primary_category, category_missing_fraction, customer_state, primary_seller_state, distance_km_max, distance_missing_fraction, interstate_share, purchase_month, purchase_dayofweek, purchase_hour, primary_payment_type, payment_installments_max, n_payment_methods",1.3
+features.categorical,"customer_state, primary_seller_state, primary_category, primary_payment_type",1.3
+features.calendar_numeric,"purchase_month, purchase_dayofweek, purchase_hour",1.3
+features.never_predictors,"order_status, order_approved_at, order_delivered_carrier_date, order_delivered_customer_date, shipping_limit_date, review fields, order_estimated_delivery_date",1.3
+features.log1p.skewness_threshold,1.0,1.3
+features.log1p.skewness_on,pre-cutoff development orders,1.3
+features.log1p.candidates,"total_price, total_freight, freight_ratio, total_weight_g, total_volume_cm3, distance_km_max",1.3
+features.log1p.never,"calendar fields, 0/1 indicators, 0-1 shares and fractions, counts",1.3
+features.log1p.regression_target,True,1.3
+features.log1p.source,"s04 4.2; G-36, G-47",1.3
+features.collinearity.abs_correlation_above,0.9,1.3
+features.collinearity.vif_above,10,1.3
+features.collinearity.decided_by,team (human_decisions.yaml),1.3
+features.collinearity.source,s04 4.3; G-26,1.3
+features.selection.ranking.regression,absolute Spearman,1.3
+features.selection.ranking.classification,mutual information,1.3
+features.selection.cumulative_threshold_options,"0.95, 0.99",1.3
+features.selection.decided_by,team after s03 (G-31),1.3
+features.selection.source,"s03 3.8, s04 4.4; G-19, G-42",1.3
+features.route_median.column,distance_km_max,1.3
+features.route_median.keys,"['customer_state', 'primary_seller_state'], ['customer_state']",1.3
+features.route_median.source,s04 4.8; G-27,1.3
+split.test_share,0.2,1.3
+split.rule,newest 20% of each task's eligible orders by purchase time; cutoff computed in s02,1.3
+split.test_side_customer_purge,True,1.3
+split.size_checks.regression.min_share_of_eligible_delivered,0.15,1.3
+split.size_checks.classification.min_share_of_eligible_reviewed,0.15,1.3
+split.size_checks.classification.min_share_of_detractors,0.15,1.3
+split.random_fallback,False,1.3
+split.name,new-customer time-ordered holdout,1.3
+split.source,"s05 5.2-5.4; G-18, G-28, G-46, G-48",1.3
+cv.n_folds,5,1.7
+cv.scheme,"expanding, time-ordered, equal-sized validation blocks by order count",1.7
+cv.fold_customer_purge,training side,1.7
+cv.label_maturity,True,1.7
+cv.data_dependent_in_s05,"fold_boundaries, class_support, min_training_rows",1.7
+cv.source,"s05 5.5-5.8; G-23, G-53",1.7
+metrics.regression.primary,mae,1.4
+metrics.regression.secondary,"rmse, r2, within_3d",1.4
+metrics.classification.primary,ap,1.4
+metrics.classification.secondary,"roc_auc, brier, precision, recall, f1, confusion_matrix",1.4
+metrics.classification.never_alone,accuracy,1.4
+metrics.charts,"precision-recall and ROC curves out-of-fold (s06 6.6) and on test (s09), with curve data",1.4
+metrics.citations,"willmott2005, saito2015, brier1950",1.4
+metrics.source,s01 1.4; G-24,1.4
+cost.fn,5,1.5
+cost.fp,1,1.5
+cost.nature,"illustrative assumption, never measured ROI",1.5
+cost.citations,elkan2001,1.5
+cost.source,s01 1.5,1.5
+families.regression,"dummy_median, linear, ridge, tree_reg, forest_reg",1.6
+families.classification,"dummy_prior, logistic, tree_clf, forest_clf",1.6
+families.excluded,"boosting, voting, stacking",1.6
+families.s06_settings.logistic,"unregularised (C = inf), lbfgs, max_iter 5000",1.6
+families.s06_settings.tree.max_depth,5,1.6
+families.s06_settings.tree.min_samples_leaf,100,1.6
+families.s06_settings.forest.n_estimators,200,1.6
+families.s06_settings.forest.max_depth,10,1.6
+families.s06_settings.forest.min_samples_leaf,50,1.6
+families.s06_settings.forest.max_features,sqrt,1.6
+families.source,s01 1.6; s06 6.2,1.6
+decision_rule.name,one-standard-error rule,1.7
+decision_rule.statement,keep the simplest candidate whose fold-mean primary metric is within one standard error of the best mean; SE = fold SD / sqrt(5); ties go to the simpler,1.7
+decision_rule.simplicity_order,"dummy, linear/logistic, single tree, forest",1.7
+decision_rule.within_family_simpler,"higher alpha, lower C, shallower depth, then larger leaf",1.7
+decision_rule.plain_vs_tuned,the plain s06 model is kept if it is within one SE of the tuned configuration (G-55),1.7
+decision_rule.fallback,"if no complex variant passes, the best simple model goes forward; if nothing beats the dummy, the dummy is the result",1.7
+decision_rule.s08_gate,"the rule recommends; the team confirms; an override is a logged protocol deviation (G-39, G-44)",1.7
+decision_rule.paired_differences,reported as description only,1.7
+decision_rule.citations,"breiman1984, hastie2009, friedman2010",1.7
+decision_rule.source,"s01 1.7; G-33, G-44, G-55",1.7
+grids.ridge_alpha,"0.01, 0.1, 0.5, 1, 5, 10, 20, 50, 100",1.8
+grids.logistic_C,"0.01, 0.1, 0.5, 1, 5, 10, 20, 50, 100",1.8
+grids.logistic_penalty,l2,1.8
+grids.tree.max_depth,"4, 5, 6, 8, 10, 12, 14, 16, 18",1.8
+grids.tree.min_samples_leaf,"20, 50, 100, 200",1.8
+grids.forest.max_depth,"8, 10, 12, 14, 16, 18",1.8
+grids.forest.min_samples_leaf,"20, 50, 100, 200",1.8
+grids.forest.n_estimators,200,1.8
+grids.forest.max_features,sqrt,1.8
+grids.class_weight,"None, balanced",1.8
+grids.rule,fixed before any tuning result; no grid points added after results are seen,1.8
+grids.citations,breiman2001,1.8
+grids.source,"s01 1.8; s07 7.1-7.4; G-37, G-43",1.8
+calibration.method,sigmoid,1.7
+calibration.always_scored,True,1.7
+calibration.keep_if,mean Brier improves and mean AP stays within one fold SE of the raw model,1.7
+calibration.source,"s08 8.3; G-16, G-45, G-52",1.7
+threshold.candidates,"no alerts, 0.5, 1/6 (cost cutoff), empirical minimum of 5*FN + FP",1.7
+threshold.ties,higher threshold (fewer alerts),1.7
+threshold.chosen_by,team at the s08 hard stop,1.7
+threshold.default_recommendation,minimise the illustrative cost subject to the daily alert cap,1.7
+threshold.source,"s08 8.4; G-39, G-56",1.7
+evaluation.bootstrap_resamples,1000,1.4
+evaluation.confidence,0.95,1.4
+evaluation.resample_unit,"test order (G-50, C3 rejected)",1.4
+evaluation.classification_slice_min_detractors,100,1.4
+evaluation.regression_slice_min_orders,100,1.4
+evaluation.eda_consistency_alert.spearman_below,0.5,1.4
+evaluation.eda_consistency_alert.top10_overlap_below,5,1.4
+evaluation.source,"s09 9.1-9.5; G-40, G-54",1.4

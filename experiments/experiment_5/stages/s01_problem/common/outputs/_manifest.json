@@ -1,0 +1,45 @@
+{
+  "node": "s01_problem/common",
+  "run_id": "20261018T133930Z",
+  "commit": "26810a0f49cb6d53e8b129cb64f0b0ca0db9bc58",
+  "dirty": false,
+  "code": {
+    "experiments/experiment_5/stages/s01_problem/common/run.py": "a7bcea203af9e4ccc0935bd7fe0176d708fc10d7ed4ec86247ac09cee3e2792b"
+  },
+  "foundation": {
+    "experiments/experiment_5/e5lib/__init__.py": "cd238533adc62fa600a0d9246352bc6a0c3d5bc599ad0504a1ea10d7aa76c5fe",
+    "experiments/experiment_5/e5lib/candidates.py": "5ae6bb355012a619759f36e81f9dd36784a7cededf7b2eeb431a9b5f1e0e70b4",
+    "experiments/experiment_5/e5lib/cv.py": "c3c5d112c87c1d62c3b21a7a65a3219baa916322e7f1d6c335eea343f4684e7c",
+    "experiments/experiment_5/e5lib/data.py": "28a414d21b6ef9eaf02c32dc43625cdc9336f28c1185e359ed8bab8aff6f4ddf",
+    "experiments/experiment_5/e5lib/factory.py": "8f6794fc80334e6a344096c6654e015cffe3a5ab0ff9018eea16506f9eb5ad2a",
+    "experiments/experiment_5/e5lib/manifest.py": "9179f3432256a22cdf4874b051f08650e121837c6d59ca80c2ff82739fb680f8",
+    "experiments/experiment_5/e5lib/metrics.py": "7b1ba93591c5303fd46564380cfd37038cf10dcd3012feb5088c04dd702064ef",
+    "experiments/experiment_5/e5lib/outputs.py": "1d6bb696c5845e8075b94df7828700ef1fdee2ae81cb2b3b244211a81e7294f4",
+    "experiments/experiment_5/e5lib/paths.py": "442877594b62450bd2978147eadab6e6094ad9bbb1b4fd8124d10c79cb5adb51",
+    "experiments/experiment_5/e5lib/protocol.py": "b66d8ab53a721c9ca0bd4f68d1486c9a32216bfdae9b6e463da5a199e9298272",
+    "experiments/experiment_5/e5lib/review.py": "870181de18e9aa31d3a457d664b8ffb8ee24a2ed68662fdb060ec1748838710b",
+    "experiments/experiment_5/run_pipeline.py": "749c3a9366989ec6fd2b618ad37f229bd5e7ba67e61727e83f60d6e87c8514d8"
+  },
+  "protocol": {
+    "pre_registered": "6c2794fae55f1ca4b81f5e0a5b26254752101dde94667adf77ea0ba4e7e09e80"
+  },
+  "reads": {},
+  "outputs": {
+    "experiments/experiment_5/stages/s01_problem/common/outputs/_evidence_index.json": "cbbb22fbbc2e593bd39b2663af1bed9a8886c7ae271377f1850b466f5b306eb0",
+    "experiments/experiment_5/stages/s01_problem/common/outputs/preregistered_values.csv": "3987b005e2e88182cc43c9de39f73929cd567ce08e5fc5bd526b80de00b29e1e",
+    "experiments/experiment_5/stages/s01_problem/common/outputs/protocol_preregistered.yaml": "1d733e09d969e98f9d443479be41a38042cbeb0235c9accf3a75a9ef5b8e7793",
+    "experiments/experiment_5/stages/s01_problem/common/outputs/task_contract.md": "206e43c421d3174605137333d2f5ea33d71e23ea1d4dfcbdbb1c2119994d3e54"
+  },
+  "versions": {
+    "python": "3.13.9",
+    "numpy": "2.4.2",
+    "pandas": "3.0.1",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.1",
+    "joblib": "1.6.0",
+    "matplotlib": "3.11.2",
+    "PyYAML": "6.0.3"
+  },
+  "seed": 42,
+  "runtime_s": 0.09
+}
