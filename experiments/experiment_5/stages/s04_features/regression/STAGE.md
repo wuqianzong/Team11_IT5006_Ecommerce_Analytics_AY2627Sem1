@@ -18,11 +18,11 @@ Blueprint: `spec/blueprints/s04_features.md` (implement only when its status is 
 **Gate question:** Are features and recipes defined without fitting or using labels?
 
 ## Purpose
-Define, without fitting: the 27-feature baseline (numeric calendar fields); log1p for non-negative numeric features with pre-cutoff skewness > 1 and for the regression target; the pre-registered label-free reduction to a core set; feature selection by the s03 importance ranking at the team's cumulative threshold (95% or 99%, fixed before any model is fitted); encoded design-matrix rank per recipe; rationale and citations; order_estimated_delivery_date never a feature (G-35); the pipeline recipe per model (impute, encode, scale).
+Define, without fitting: the 27-feature baseline (numeric calendar fields); log1p for continuous positive-scale features with pre-cutoff skewness > 1 (G-47) and for the regression target; the pre-registered label-free reduction to a core set; feature selection by the s03 importance ranking at the team's cumulative threshold (95% or 99%, fixed before any model is fitted); encoded design-matrix rank per recipe; rationale and citations; order_estimated_delivery_date never a feature (G-35); the pipeline recipe per model (impute, encode, scale).
 
 ## Planned outputs (`outputs/`)
 - feature_dictionary.csv (formula, grain, availability, missingness, rationale, citation)
-- candidate_sets.json (per model)
+- selected_features.json (one set per task, all families)
 - recipes.json (pipeline recipe per model)
 - reduction_rationale.csv (flagged features, team decision, rationale)
 

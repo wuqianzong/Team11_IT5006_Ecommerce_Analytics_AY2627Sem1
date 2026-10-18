@@ -231,7 +231,7 @@ Holds every number that otherwise tends to drift, in two layers:
   purge and label-maturity rules, metric definitions, decision rules and tie-breaks, the
   cost assumption (FN:FP = 5:1, illustrative), search grids and budgets.
 - **Data-dependent** (each section owned by one stage, added via CHANGELOG and frozen at
-  that stage's gate, before any model result): core set and per-model candidate sets (s04); exact fold boundaries and class-support threshold (s05).
+  that stage's gate, before any model result): core set and the selected set per task (s04); exact fold boundaries and class-support threshold (s05).
 
 Code reads values from here; **no stage hard-codes these numbers**.
 
@@ -472,7 +472,8 @@ The test cohort is scored once per release, at the end of s08. Once its results 
 looked at, any change to s03–s08 means the test has been used for selection: record it in
 `CHANGELOG.md` as a **reopened selection** and say so in the report. Experiment 5 is
 independent of earlier milestones (G-29): its test cohort is defined and scored only here, so it
-is described as a held-out test cohort, unseen by every Experiment 5 decision (G-38).
+is described as a new-customer time-ordered holdout with its actual share, unseen by every
+Experiment 5 decision (G-38, G-48).
 
 ---
 
@@ -489,7 +490,7 @@ _Generated from `spec/stages.json` v1.0 (pipeline_design.md v1.2 (frozen 2026-10
 | s01_problem Problem statement | common | - | spec/protocol.yaml v1.0; task_contract.md | Are tasks, targets, metrics, cost, decision rule and budget fixed before any result? |
 | s02_data Data preprocessing | common | s01_problem | records.csv.gz; exclusions.csv; data_hashes.json | Are joins, grains, targets and leakage exclusions verified? |
 | s03_eda EDA | regression, classification | s02_data | figures/*.png + sidecar json; target and per-feature diagnostic tables; importance_ranking.csv | Does every planned change follow from a pre-cutoff observation? |
-| s04_features Features | regression, classification | s03_eda | feature_dictionary.csv; candidate_sets.json; recipes.json | Are features and recipes defined without fitting or using labels? |
+| s04_features Features | regression, classification | s03_eda | feature_dictionary.csv; selected_features.json; recipes.json | Are features and recipes defined without fitting or using labels? |
 | s05_partition Partition | regression, classification | s02_data | folds.csv; test_manifest.csv; counts.json | Are folds chronological, customers purged, labels mature and classes supported? |
 | s06_training Training | regression, classification | s04_features, s05_partition | metrics_long.csv; predictions.csv.gz; figures/ | Do the models run basic to complex on identical folds, with each choice justified? |
 | s07_tuning Tuning | regression, classification | s06_training | grid_results.csv; predictions.csv.gz | Is every tuned candidate a complete pipeline scored on the same folds? |

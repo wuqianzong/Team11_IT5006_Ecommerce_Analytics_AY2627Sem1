@@ -51,7 +51,7 @@
         "Input hashes recorded",
         "Per-task test cutoff computed by the 80/20 rule and recorded (not assumed from Milestone 2)",
         "Outlier threshold computed on pre-cutoff orders only; every removal counted in exclusions.csv",
-        "order_status, order_approved_at, shipping_limit_date, has_items and freight_ratio_missing never predictors",
+        "order_status, order_approved_at, shipping_limit_date, has_items, freight_ratio_missing and payment_missing never predictors",
         "Date-order audit run on every order; violations logged"
       ],
       "gate_question": "Are joins, grains, targets and leakage exclusions verified?"
@@ -68,7 +68,7 @@
       "depends_on": [
         "s02_data/common"
       ],
-      "purpose": "Question-driven EDA on orders before the test cutoff: target profiles; outcome trends over time; diagnostics of all 27 features against each target (scatter, Pearson and Spearman; violins and one-hot correlations; class-conditional KDE overlap and per-feature ROC-AUC; mutual information); one importance ranking per task for s04; missingness, outliers and collinearity among raw numeric features.",
+      "purpose": "Question-driven EDA on orders before the test cutoff: target profiles; outcome trends over time; diagnostics of all 27 contract features against each target, importance ranking over the 24 eligible predictors (G-42) (scatter, Pearson and Spearman; violins and one-hot correlations; class-conditional KDE overlap and per-feature ROC-AUC; mutual information); one importance ranking per task for s04; missingness, outliers and collinearity among raw numeric features.",
       "outputs": [
         "figures/*.png + sidecar json",
         "target and per-feature diagnostic tables (csv)",
@@ -98,10 +98,10 @@
       "depends_on": [
         "s03_eda/{task}"
       ],
-      "purpose": "Define, without fitting: the 27-feature baseline (numeric calendar fields); log1p for non-negative numeric features with pre-cutoff skewness > 1 and for the regression target; the pre-registered label-free reduction to a core set; feature selection by the s03 importance ranking at the team's cumulative threshold (95% or 99%, fixed before any model is fitted); encoded design-matrix rank per recipe; rationale and citations; order_estimated_delivery_date never a feature (G-35); the pipeline recipe per model (impute, encode, scale).",
+      "purpose": "Define, without fitting: the 27-feature baseline (numeric calendar fields); log1p for continuous positive-scale features with pre-cutoff skewness > 1 (G-47) and for the regression target; the pre-registered label-free reduction to a core set; feature selection by the s03 importance ranking at the team's cumulative threshold (95% or 99%, fixed before any model is fitted); encoded design-matrix rank per recipe; rationale and citations; order_estimated_delivery_date never a feature (G-35); the pipeline recipe per model (impute, encode, scale).",
       "outputs": [
         "feature_dictionary.csv (formula, grain, availability, missingness, rationale, citation)",
-        "candidate_sets.json (per model)",
+        "selected_features.json (one set per task, all families)",
         "recipes.json (pipeline recipe per model)",
         "reduction_rationale.csv (flagged features, team decision, rationale)"
       ],
@@ -128,7 +128,7 @@
       "depends_on": [
         "s02_data/common"
       ],
-      "purpose": "Sort by purchase time; hold out each task's newest 20% as its test cohort (cutoff computed in s02 by the 80/20 rule; exact IDs frozen); remove test orders whose customer also appears in development; check test size and review share (>= 15% each) and report the prevalence gap, alerting and stopping on failure (no random fallback); build five time-ordered expanding CV folds on development orders with customer purge, label maturity and class-support checks; seed 42 documented.",
+      "purpose": "Sort by purchase time; hold out each task's newest 20% as its test cohort (cutoff computed in s02 by the 80/20 rule; exact IDs frozen); remove test orders whose customer also appears in development; check test size per task (regression >= 15% of eligible delivered orders; classification >= 15% of eligible reviewed orders and of all eligible detractors) and report the prevalence gap, alerting and stopping on failure (no random fallback); build five time-ordered expanding CV folds on development orders with customer purge, label maturity and class-support checks; seed 42 documented.",
       "outputs": [
         "folds.csv",
         "test_manifest.csv (task-specific test cohort)",
@@ -137,7 +137,7 @@
       ],
       "gate": [
         "No test customer in development (repeat customers removed from test; order_id and customer_unique_id checked)",
-        "Test cohort >= 15% of eligible orders and >= 15% of reviewed orders",
+        "Test size checks per task (G-46)",
         "Never a random split",
         "Five expanding folds; customers purged across training and validation in every fold",
         "Every fold: max training purchase time < min validation purchase time, and no shared customer_unique_id (asserted)",

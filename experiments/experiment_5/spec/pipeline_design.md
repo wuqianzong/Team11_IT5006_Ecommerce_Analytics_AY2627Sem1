@@ -1,6 +1,6 @@
 <!-- AUTHORITATIVE Milestone 3 / Experiment 5 pipeline design. This file is the only version
      that counts; edit it here (and mirror changes in spec/stages.json, README §3.1).
-     v1.0 FROZEN 2026-10-17 by the team (CHANGELOG CR-001); v1.1 audit fixes (CR-003); v1.2 team feature-solution decisions (CR-004 to CR-009); rule 8 evidence retention (CR-013); s01 decision rule (CR-014); promised lead days dropped (CR-015); log transforms fixed, no s06 Step B (CR-016); s06–s07 agreed (CR-017); test cohort wording and s08 selection rule (CR-018); s08 agreed with human gates (CR-019); s09–s10 agreed (CR-020). It replaces the 13-stage draft
+     v1.0 FROZEN 2026-10-17 by the team (CHANGELOG CR-001); v1.1 audit fixes (CR-003); v1.2 team feature-solution decisions (CR-004 to CR-009); rule 8 evidence retention (CR-013); s01 decision rule (CR-014); promised lead days dropped (CR-015); log transforms fixed, no s06 Step B (CR-016); s06–s07 agreed (CR-017); test cohort wording and s08 selection rule (CR-018); s08 agreed with human gates (CR-019); s09–s10 agreed (CR-020); audit 2 decisions (CR-021). It replaces the 13-stage draft
      derived from docs/milestone3_baseline_pipeline_design_2026-10-13.txt, which is superseded
      and not updated. After this freeze, changes go through README §9.2 and CHANGELOG.md. -->
 
@@ -45,14 +45,15 @@ CV folds, and checks class support per fold instead of stratifying.
    *fitted* only inside training folds through an sklearn Pipeline (Tutorials 3–4).
    Two declared exceptions, both computed once on orders before the test cutoff (never on
    test rows), pre-registered as fixed rules and reported as limitations:
-   (a) the s04 label-free reduction from 27 features to a core set (correlation, VIF, constant or
+   (a) the s04 label-free reduction from the 24 eligible predictors to a core set (correlation, VIF, constant or
    duplicate columns); (b) the s04 feature selection by the s03 importance ranking (team
    decision G-19). Exception (b) uses development labels, including those of later validation
    folds, so CV scores of the selected set are optimistic; the report says so.
 3. **Test cohorts protected.** Each task has its own test cohort: its newest 20% of eligible
    orders by purchase time. The cutoff is recomputed from the data in s02 by the 80/20 rule, not
    taken from Milestone 2 (G-28); exact IDs frozen in s05. No Experiment 5 decision sees it
-   before s08, so it is a new held-out test (G-38). Test orders from customers who also
+   before s08, so it is a new held-out test, named a "new-customer time-ordered holdout" with its
+   actual share after the purge (G-38, G-48). Test orders from customers who also
    appear in development are removed from the test cohort (test-boundary customer purge; team
    decision G-18), so each test cohort contains new customers only.
    Steps s03–s04 use only orders before the test cutoff (date rule; the purge, applied in s05,
@@ -108,7 +109,7 @@ order with cardinality checks; build both targets with their label-availability 
 Leakage audit of every column against checkout time — `order_estimated_delivery_date` is known
 at checkout (Milestone 2 wrongly listed it as post-checkout) but is never a predictor (G-35); it
 only describes late-vs-promised trends in s03; `order_status`, `order_approved_at`,
-`shipping_limit_date`, `has_items` and `freight_ratio_missing` are never predictors; a date-order
+`shipping_limit_date`, `has_items`, `freight_ratio_missing` and `payment_missing` are never predictors (G-42); a date-order
 audit (purchase ≤ approval ≤ carrier ≤ delivery, estimated date and review answer after purchase)
 logs violations; payment fields are assumed fixed at checkout (no timestamp in the data) (G-30). IDs are kept for audit, never as predictors.
 Test cutoff per task (G-28): after the population rules and before the outlier rule, the
@@ -133,7 +134,7 @@ Blueprint: [`blueprints/s03_eda.md`](blueprints/s03_eda.md)
 Question-driven, before the test dates: target profiles (`lead_days` KDE and percentile table
 incl. 1/5/25/50/75/95/99%, skewness, kurtosis; `is_detractor` bar chart with counts and shares);
 outcome trends over time (lead time, late-vs-promised rate, detractor rate by purchase month, not
-volume only); diagnostics of all 27 features — numeric vs `lead_days`: scatter, Pearson and
+volume only); diagnostics of all 27 contract features, with the importance ranking over the 24 eligible predictors (G-42) — numeric vs `lead_days`: scatter, Pearson and
 Spearman; categorical vs `lead_days`: violin plots and one-hot (drop-first) correlations;
 numeric vs `is_detractor`: class-conditional KDEs with overlap coefficient and per-feature
 ROC-AUC; categorical vs `is_detractor`: mutual information (seed 42); calendar fields treated as
@@ -153,31 +154,34 @@ TEACHING: Tutorials 1–2 and 5; T7–T8 §3; Lecture 5 (multicollinearity).
 ### s04 — Features (regression, classification; defined, not fitted)
 Blueprint: [`blueprints/s04_features.md`](blueprints/s04_features.md)
 In order: feature baseline (the 27 predictors of the Milestone 2 contract, `src/features/contract.py`,
-minus `has_items` and `freight_ratio_missing`, which leak a later cancellation (G-30));
+minus `has_items`, `freight_ratio_missing` and `payment_missing`, which leak a later cancellation
+or are constant (G-30, G-42): 24 eligible predictors);
 calendar fields (`purchase_month`, `purchase_dayofweek`, `purchase_hour`) kept numeric; log1p for
-every non-negative numeric feature whose pre-cutoff skewness exceeds 1, and for the regression target. **No target cap** (team decision G-25): extreme lead times are
-handled by the s02 outlier removal and the log target; feature reduction from 27 to a core set (rule 2 exception, pre-cutoff orders only): constant
+continuous positive-scale features whose pre-cutoff skewness exceeds 1 (never calendar fields,
+indicators or 0–1 shares; G-47), and for the regression target. **No target cap** (team decision G-25): extreme lead times are
+handled by the s02 outlier removal and the log target; feature reduction from the 24 eligible predictors to a core set (rule 2 exception, pre-cutoff orders only): constant
 and duplicate columns dropped automatically; highly collinear features flagged by pre-registered
 cut-offs (|correlation| > 0.9 or VIF > 10) and the team decides which to drop, with the rationale
 recorded in `reduction_rationale.csv` and stated in the report (G-26), plus the encoded design-matrix rank and condition number
 for each recipe; feature selection by the s03 importance ranking: keep the features that reach
 the team's cumulative-importance threshold (95% or 99%), chosen by the team from the ranking
 before any model is fitted (rule 2 exception b); rationale and verified citations for every
-retained feature; candidate feature sets for each model; `order_estimated_delivery_date` is not
+retained feature; one selected set per task, used by every model family (G-49); `order_estimated_delivery_date` is not
 used as a feature or a reference model (G-35: in production the promised date would come from
 the task 1 prediction itself); the pipeline recipe per model (imputation with
 missing indicators — `distance_km_max` takes the route median, customer_state × primary_seller_state
 with customer_state then global fallbacks, after log1p, fitted inside training folds (G-27) — one-hot encoding with unknown handling, scaling for linear/logistic only).
 OUTPUT: `feature_dictionary.csv` (formula, grain, availability, missingness, rationale,
-citation), candidate sets per model, recipe table.
+citation), `selected_features.json`, recipe table.
 TEACHING: Tutorials 3–5; teacher note §3.
 
 ### s05 — Partition (regression, classification; depends on s02 only)
 Blueprint: [`blueprints/s05_partition.md`](blueprints/s05_partition.md)
 Partition strategy against leakage; sort by purchase time and hold out each task's newest 20%
 as its test cohort, using the cutoff computed in s02 (exact IDs frozen); remove from the test cohort any order whose customer also appears in
-development; check that the test cohort keeps at least 15% of eligible orders and at least 15%
-of reviewed orders, and report the train–test prevalence gap (a chronological split is checked,
+development; check per task that the test cohort keeps at least 15% of eligible delivered orders
+(regression) or at least 15% of eligible reviewed orders and of all eligible detractors
+(classification) (G-46), and report the train–test prevalence gap (a chronological split is checked,
 not stratified). If a check fails, alert the team and stop — never fall back to a random split.
 Five time-ordered, expanding CV folds on the development orders (`TimeSeriesSplit` style, n = 5); customer purge (training orders whose `customer_unique_id` appears in
 the validation block are removed; no customer on both sides, asserted per fold) and the
@@ -293,7 +297,7 @@ approval, migration and reproduction check before any deliverable is built.
 ## Decisions recorded in `protocol.yaml`, not in this design
 
 Two layers (see s01). Data-dependent: exact fold boundaries, class-support threshold and the
-label-maturity rule for validation rows (s05); core set and candidate sets (s04).
+label-maturity rule for validation rows (s05); core set and selected set (s04).
 Pre-registered (s01): the decision rule for
 keeping a more complex variant (one-standard-error rule: the simplest candidate whose mean
 primary metric is within one standard error of the best, G-33); grids and budget; the label rule; seed; the 80/20 split rule.

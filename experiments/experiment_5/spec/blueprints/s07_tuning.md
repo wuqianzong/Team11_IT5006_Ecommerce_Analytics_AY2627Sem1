@@ -27,8 +27,8 @@ plain model stays. Both families are still tuned and reported.
    | --- | --- | --- |
    | 7.1 | Linear (regression) | `Ridge(alpha)`: 0.01, 0.1, 0.5, 1, 5, 10, 20, 50, 100 |
    | 7.2 | Logistic (classification) | `LogisticRegression(C)` with L2: 0.01, 0.1, 0.5, 1, 5, 10, 20, 50, 100; `class_weight`: None, balanced |
-   | 7.3 | Decision tree | max_depth: 8, 10, 12, 14, 16, 18; min_samples_leaf: 20, 50, 100, 200; classifier also `class_weight`: None, balanced |
-   | 7.4 | Random forest | Same grid as the tree; 200 trees; max_features='sqrt' |
+   | 7.3 | Decision tree | max_depth: 4, 5, 6, 8, 10, 12, 14, 16, 18 (G-43; includes the s06 depth 5); min_samples_leaf: 20, 50, 100, 200; classifier also `class_weight`: None, balanced |
+   | 7.4 | Random forest | max_depth: 8, 10, 12, 14, 16, 18; min_samples_leaf: 20, 50, 100, 200; classifier also `class_weight`: None, balanced; 200 trees; max_features='sqrt' |
 
 2. **Search (7.5).** `GridSearchCV` over the full Pipeline with `cv` = the s05 fold iterator, and
    these settings:
@@ -44,7 +44,7 @@ plain model stays. Both families are still tuned and reported.
 ## 4. Decisions
 | ID | Question | Answer | Basis | Status |
 | --- | --- | --- | --- | --- |
-| s07-D1 | Grids | As 7.1–7.4 | G-37; Tutorials 5, 7–8 | Agreed |
+| s07-D1 | Grids | As 7.1–7.4 | G-37, G-43; Tutorials 5, 7–8 | Agreed |
 | s07-D2 | Best per family | One-SE rule, then must beat the plain s06 model | G-33; teacher note §4 | Agreed |
 | s07-D3 | Class weight | Grid option for classifiers | G-05 | Agreed |
 | s07-D4 | Forest size | 200 trees | Breiman 2001, *Machine Learning* 45:5–32 (verified) | Agreed |

@@ -18,7 +18,7 @@ Blueprint: `spec/blueprints/s03_eda.md` (implement only when its status is AGREE
 **Gate question:** Does every planned change follow from a pre-cutoff observation?
 
 ## Purpose
-Question-driven EDA on orders before the test cutoff: target profiles; outcome trends over time; diagnostics of all 27 features against each target (scatter, Pearson and Spearman; violins and one-hot correlations; class-conditional KDE overlap and per-feature ROC-AUC; mutual information); one importance ranking per task for s04; missingness, outliers and collinearity among raw numeric features.
+Question-driven EDA on orders before the test cutoff: target profiles; outcome trends over time; diagnostics of all 27 contract features against each target, importance ranking over the 24 eligible predictors (G-42) (scatter, Pearson and Spearman; violins and one-hot correlations; class-conditional KDE overlap and per-feature ROC-AUC; mutual information); one importance ranking per task for s04; missingness, outliers and collinearity among raw numeric features.
 
 ## Planned outputs (`outputs/`)
 - figures/*.png + sidecar json

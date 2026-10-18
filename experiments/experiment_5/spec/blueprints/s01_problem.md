@@ -65,7 +65,8 @@ Gate: tasks, targets, metrics, cost, decision rule and budget fixed before any r
    - Paired per-fold differences are reported alongside, as description only.
    - Fallback: if no complex variant passes, the best simple model goes forward. If no model
      beats the dummy, the dummy is the reported result ("no signal at checkout").
-   - The rule is fixed before any result and never loosened afterwards.
+   - The rule is fixed before any result and never loosened afterwards. A team override at the
+     s08 gate is a logged protocol deviation, reported beside the one-SE choice (G-44).
    - Literature: Breiman, Friedman, Olshen & Stone 1984 (CART); Hastie, Tibshirani & Friedman
      2009, *The Elements of Statistical Learning*, §7.10. Industry practice: glmnet
      `lambda.1se` (Friedman, Hastie & Tibshirani 2010, *J. Stat. Softw.* 33(1)); scikit-learn

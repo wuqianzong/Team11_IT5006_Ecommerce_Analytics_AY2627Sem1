@@ -62,7 +62,8 @@ Gate: every conclusion follows from the test results and their limits.
      Retailing*.
 8. **Limitations (9.8).** Checkout-only information; fulfilled and reviewed populations;
    optimistic CV from the EDA-based selection; illustrative cost; no causal claims. The test
-   cohort is this experiment's own held-out test (G-38).
+   cohort is a new-customer time-ordered holdout, stated with its actual share (G-48); the number
+   of test-period orders removed by the s02 lead-time outlier rule is stated (audit 2 A1).
 
 ## 4. Decisions
 | ID | Question | Answer | Basis | Status |
@@ -70,7 +71,7 @@ Gate: every conclusion follows from the test results and their limits.
 | s09-D1 | Slices | Customer state; judged only with > 100 detractors; pooled aggregate | G-40 | Agreed |
 | s09-D2 | Importance check | EDA vs model ranking; alert only, no silent change | G-40 | Agreed |
 | s09-D3 | Permutation importance data | Test cohort, description only | Open item (team ticked) | Agreed |
-| s09-D4 | Test cohort wording | New held-out test of this experiment | G-38 | Agreed |
+| s09-D4 | Test cohort wording | New-customer time-ordered holdout with its actual share | G-38, G-48 | Agreed |
 
 ## 5. Outputs (per task, under `stages/s09_conclusion/<task>/outputs/`)
 - Master metric table, `subgroups.csv` (with the judged / too-few flag and the aggregates),

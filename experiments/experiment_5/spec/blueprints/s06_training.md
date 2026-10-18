@@ -17,7 +17,7 @@ Gate: models run basic to complex on identical folds, with each choice justified
 
 ## 2. Inputs
 - `stages/s02_data/common/outputs/records.csv.gz` (development rows only).
-- `stages/s04_features/<task>/outputs/candidate_sets.json` (the selected set) and `recipes.json`.
+- `stages/s04_features/<task>/outputs/selected_features.json` (the selected set) and `recipes.json`.
 - `stages/s05_partition/<task>/outputs/folds.csv`.
 - `spec/protocol.yaml`: decision rule (s01), seed 42.
 
@@ -32,7 +32,8 @@ Gate: models run basic to complex on identical folds, with each choice justified
      validation or test rows.
 2. **Families, basic to complex (6.2).** Each task uses its s04 selected feature set (4.4)
    through the s04 recipe (4.8), with the s04 4.2 log transforms always on: log1p on inputs with
-   pre-cutoff skewness > 1, and on the regression target (G-36). In order:
+   pre-cutoff skewness > 1 (continuous positive-scale features only, G-47), and on the regression
+   target (G-36). In order:
    - `DummyRegressor(strategy='median')` / `DummyClassifier(strategy='prior')`;
    - plain `LinearRegression` / `LogisticRegression(penalty=None, solver='lbfgs', max_iter=5000)`;
    - `DecisionTree` (max_depth=5, min_samples_leaf=100);

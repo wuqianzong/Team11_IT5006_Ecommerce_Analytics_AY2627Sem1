@@ -10,8 +10,8 @@
 | Discussion | Claude Doc "Milestone 3 pipeline stages", tab "Feature solution (s02–s05)", section s03 |
 
 ## 1. Goal and gate
-Goal: describe the targets and all 27 features against each target on pre-cutoff orders, and
-produce one importance ranking per task for s04.
+Goal: describe the targets and all 27 contract features against each target on pre-cutoff orders,
+and produce one importance ranking per task over the 24 eligible predictors for s04 (G-42).
 Gate: every planned change follows from a pre-cutoff observation (`../stages.json`).
 
 ## 2. Inputs
@@ -35,7 +35,9 @@ Gate: every planned change follows from a pre-cutoff observation (`../stages.jso
 7. **Categorical features vs `is_detractor` (3.7).** `mutual_info_classif`, discrete features,
    `random_state=42`.
 8. **Importance ranking (3.8).** One measure per task, so cumulative shares are meaningful:
-   absolute Spearman (regression), mutual information (classification), all 27 features ranked.
+   absolute Spearman (regression), mutual information (classification). Only the 24 eligible
+   predictors are ranked, so cumulative shares are over the selection pool (G-42); the three
+   excluded features stay in the diagnostic tables, marked "excluded (leakage)".
    Also report missingness, outliers and correlation/VIF among raw numeric features.
 9. **Human gate (G-31).** Stop here. Build `eda_review_pack.md` (every table and figure above, plus
    the flagged collinear groups and the cumulative-importance curve with the 95% and 99% cut
@@ -63,7 +65,7 @@ Gate: every planned change follows from a pre-cutoff observation (`../stages.jso
 ## 6. Checks
 - Assert max purchase timestamp < the task's test cutoff (from `protocol.yaml`).
 - All 27 features present in the diagnostic tables.
-- Cumulative share in `importance_ranking.csv` ends at 1.0.
+- Cumulative share in `importance_ranking.csv` ends at 1.0 over the 24 eligible predictors.
 - s04 refuses to run if `spec/human_decisions.yaml` lacks the s03 decisions for its task.
 
 ## 7. Milestone 2 reuse

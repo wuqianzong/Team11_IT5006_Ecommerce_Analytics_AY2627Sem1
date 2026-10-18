@@ -6,7 +6,7 @@
 | Nodes | regression, classification |
 | Status | AGREED |
 | Owner | TBD |
-| Last agreed | 2026-10-18 (wording, CR-018); first 2026-10-17 (team walkthrough, doc tab "Feature solution (s02–s05)") |
+| Last agreed | 2026-10-18 (wording, CR-018; audit 2, CR-021); first 2026-10-17 (team walkthrough, doc tab "Feature solution (s02–s05)") |
 | Discussion | Claude Doc "Milestone 3 pipeline stages", tab "Feature solution (s02–s05)", section s05 |
 
 ## 1. Goal and gate
@@ -26,9 +26,12 @@ Gate: folds chronological, customers purged, labels mature, classes supported (`
    `order_id`s frozen in `test_manifest.csv`. The cohort is defined only by this experiment's
    data and rules (G-38).
 3. **Test-side purge (5.3, G-18).** Remove test orders whose `customer_unique_id` appears in
-   development; log the count. The test cohort is new customers only.
-4. **Test checks (5.4).** Test keeps ≥ 15% of eligible orders and ≥ 15% of reviewed orders;
-   report the train–test prevalence gap. On failure: alert and stop. Never a random split.
+   development; log the count. The test cohort is new customers only and is named everywhere a
+   "new-customer time-ordered holdout", always stated with its actual share of eligible orders
+   after the purge and the share the purge removed (G-48).
+4. **Test checks (5.4), per task (G-46).** Regression: test keeps ≥ 15% of eligible delivered
+   orders. Classification: test keeps ≥ 15% of eligible reviewed orders and ≥ 15% of all eligible
+   detractors. Report the train–test prevalence gap. On failure: alert and stop. Never a random split.
 5. **CV folds (5.5).** Five expanding, time-ordered folds on development (`TimeSeriesSplit`
    style, equal-sized validation blocks by order count); boundary dates written to
    `protocol.yaml`. Anti-temporal-leakage rule: training holds only orders purchased before the
@@ -55,7 +58,8 @@ Gate: folds chronological, customers purged, labels mature, classes supported (`
 ## 5. Outputs (per task, under `stages/s05_partition/<task>/outputs/`)
 - `test_manifest.csv`: `order_id`, `customer_unique_id`, `purchase_ts`.
 - `folds.csv`: `order_id`, `fold`, `role` (train / validation), `purchase_ts`.
-- `counts.json`: rows, customers, positives per fold and per cohort; purge and maturity drops.
+- `counts.json`: rows, customers, positives per fold and per cohort; purge and maturity drops;
+  test share of eligible orders after the purge (G-48).
 - `checks.json`: per-fold assertions and results; test-size and review-share checks.
 
 ## 6. Checks (asserted, run fails if any is false)
@@ -65,7 +69,7 @@ Gate: folds chronological, customers purged, labels mature, classes supported (`
 - Every fold: every training label observable before the validation block starts.
 - Classification: both classes present in every fold's training and validation parts, at or
   above the minimum count.
-- Test ≥ 15% of eligible and of reviewed orders.
+- Test size checks per task as step 4 (G-46).
 
 ## 7. Milestone 2 reuse
 `src/models/refinement_temporal.py` (window, purge and maturity logic) copied into `e5lib/cv.py`

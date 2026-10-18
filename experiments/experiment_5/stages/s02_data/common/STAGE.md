@@ -33,7 +33,7 @@ Load and clean the nine Olist tables deterministically, join aggregation-first t
 - Input hashes recorded
 - Per-task test cutoff computed by the 80/20 rule and recorded (not assumed from Milestone 2)
 - Outlier threshold computed on pre-cutoff orders only; every removal counted in exclusions.csv
-- order_status, order_approved_at, shipping_limit_date, has_items and freight_ratio_missing never predictors
+- order_status, order_approved_at, shipping_limit_date, has_items, freight_ratio_missing and payment_missing never predictors
 - Date-order audit run on every order; violations logged
 <!-- END GENERATED -->
 

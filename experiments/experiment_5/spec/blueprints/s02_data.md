@@ -10,7 +10,7 @@
 | Discussion | Claude Doc "Milestone 3 pipeline stages", tab "Feature solution (s02–s05)", section s02 |
 
 ## 1. Goal and gate
-Goal: one row per order with audit IDs, the 27 predictors, both targets with label-available
+Goal: one row per order with audit IDs, the 27 contract predictors (24 eligible after leakage exclusions), both targets with label-available
 times, and every exclusion counted.
 Gate: joins, grains, targets and leakage exclusions verified (`../stages.json`).
 
@@ -40,8 +40,9 @@ Gate: joins, grains, targets and leakage exclusions verified (`../stages.json`).
    check.
 7. **Leakage audit** (G-30). Tag every column known / not known at checkout.
    - Never predictors (known only after purchase): `order_status`, `order_approved_at`,
-     carrier and customer delivery dates, `shipping_limit_date`, review fields, `has_items` and
-     `freight_ratio_missing` (both encode a later cancellation). `order_estimated_delivery_date`
+     carrier and customer delivery dates, `shipping_limit_date`, review fields, `has_items`,
+     `freight_ratio_missing` and `payment_missing` (all three encode a later cancellation or
+     are constant after the population rules; G-42). `order_estimated_delivery_date`
      is known at checkout but is never a predictor (G-35); it is kept in `records.csv.gz` only for
      the s03 late-vs-promised trend.
    - Date-order audit on every order: purchase ≤ approval ≤ carrier ≤ delivery; estimated date >
@@ -54,6 +55,8 @@ Gate: joins, grains, targets and leakage exclusions verified (`../stages.json`).
    targets never imputed.
 9. **Outliers** (G-21). Remove, from development and test alike: `lead_days` > max(100, mean +
    12 × SD), with mean and SD from pre-cutoff orders only; `distance_km_max` > 4,397.53 km.
+   The number of orders this removes on or after each task's test cutoff is recorded in
+   `exclusions.csv` and stated in the s09 limitations (audit 2 A1, rule kept by the team).
 10. **Missing installments** (G-20). Remove orders with missing `payment_installments_max`.
 11. **Test cutoff** (G-28). Per task, after step 8 and before step 9: the purchase timestamp at the
     80% position of eligible orders, recorded in `audit.json` and added to `protocol.yaml`
@@ -72,7 +75,7 @@ Gate: joins, grains, targets and leakage exclusions verified (`../stages.json`).
 
 ## 5. Outputs
 - `records.csv.gz`: `order_id`, `customer_id`, `customer_unique_id`, `purchase_ts`, the 27
-  predictors, `order_estimated_delivery_date`, `lead_days`, `lead_label_ts`, `is_detractor`,
+  predictors (each flagged eligible / excluded), `order_estimated_delivery_date`, `lead_days`, `lead_label_ts`, `is_detractor`,
   `is_detractor_first`, `review_label_ts`, `eligible_regression`, `eligible_classification`.
 - `exclusions.csv`: `order_id`, `task`, `reason` (one row per removed order and reason).
 - `data_hashes.json`, `audit.json` (key and cardinality checks, leakage tags, label agreement,
