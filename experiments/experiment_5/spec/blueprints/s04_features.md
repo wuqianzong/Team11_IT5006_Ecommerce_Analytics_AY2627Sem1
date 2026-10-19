@@ -25,9 +25,10 @@ Gate: features and recipes defined without fitting or using test data (`../stage
 ## 3. Method
 1. **Baseline (4.1).** The 24 predictors of `e5lib/contract.py` (G-61; `has_items`,
    `freight_ratio_missing` and `payment_missing` are not in the contract: G-30, G-42, G-51); `purchase_month`, `purchase_dayofweek`,
-   `purchase_hour` numeric (G-22).
+   `purchase_hour` numeric (G-22). The classification adds the three candidates adopted at the s03 gate (G-70): product_photos_qty, product_description_lenght, seller_prior_review_mean.
 2. **Transforms (4.2).** log1p only for the contract's candidates `total_price`, `total_freight`,
    `total_weight_g`, `total_volume_cm3`, `distance_km_max`, each when its pre-cutoff skewness > 1;
+   for classification also `product_description_lenght` (same skewness rule; pre-cutoff skewness 2.04 in s03 3.10); `product_photos_qty` (a count) and `seller_prior_review_mean` (a 1–5 rating) are never logged (G-70);
    `freight_ratio`, counts, calendar fields, 0/1 indicators and 0–1 shares are never logged
    (G-47, G-62); missing values stay missing through log1p and are imputed afterwards; the final list is in `feature_dictionary.csv`;
    log1p regression target (`TransformedTargetRegressor`, inverse expm1). No target cap (G-25).
@@ -56,7 +57,7 @@ Gate: features and recipes defined without fitting or using test data (`../stage
 | ID | Question | Answer | Basis | Status |
 | --- | --- | --- | --- | --- |
 | s04-D1 | Calendar type | Numeric | G-22 | Agreed |
-| s04-D2 | Skew trigger | log1p if skewness > 1, for the five contract candidates only | G-22, G-47, G-62 | Agreed |
+| s04-D2 | Skew trigger | log1p if skewness > 1, for the five contract candidates and, for classification, product_description_lenght (G-70) | G-22, G-47, G-62 | Agreed |
 | s04-D3 | Target cap | None | G-25 | Agreed |
 | s04-D4 | Collinearity drops | Flagged by cut-offs, decided by the team, recorded | G-26 | Agreed |
 | s04-D5 | Selection | EDA ranking, cumulative threshold fixed before fitting | G-19 | Agreed (threshold value pending s03 output) |

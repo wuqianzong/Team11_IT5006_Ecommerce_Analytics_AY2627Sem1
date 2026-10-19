@@ -5,7 +5,7 @@ them, never review or comment on them, and never treat a change here as a decisi
 artifact `21432fd4-4cc0-4d68-8fa2-4e0414fffe5e`), so an auditing agent can check the repository
 against the documents the team approved without access to the doc (G-65).
 
-- **Exported:** 2026-10-19, after s03 was ACCEPTED (CR-039). Earlier exports: after s01 (CR-032) and s02 (CR-035).
+- **Exported:** 2026-10-19, after s03 was ACCEPTED (CR-039); pipeline, feature and model tabs refreshed for CR-040. Earlier exports: after s01 (CR-032) and s02 (CR-035).
 - **Refreshed:** in the same commit that accepts each stage (README §9.1 step 6). Files are
   replaced, never edited by hand; git history keeps every earlier snapshot.
 - **What is not here:** comment threads (their outcomes are in the decision log and the stage
@@ -18,9 +18,9 @@ against the documents the team approved without access to the doc (G-65).
 
 | Doc tab | File | Doc revision |
 | --- | --- | --- |
-| Pipeline v2 (frozen) | [pipeline_v2.md](pipeline_v2.md) | 37 |
-| Feature solution (s02–s05, frozen) | [feature_solution_s02-s05.md](feature_solution_s02-s05.md) | 116 |
-| Model solution (s01, s06–s10) | [model_solution_s01_s06-s10.md](model_solution_s01_s06-s10.md) | 199 |
+| Pipeline v2 (frozen) | [pipeline_v2.md](pipeline_v2.md) | 39 |
+| Feature solution (s02–s05, frozen) | [feature_solution_s02-s05.md](feature_solution_s02-s05.md) | 120 |
+| Model solution (s01, s06–s10) | [model_solution_s01_s06-s10.md](model_solution_s01_s06-s10.md) | 200 |
 | Implementation reviews | [implementation_reviews.md](implementation_reviews.md) | 26 |
 | Implementation reviews › s01 Problem | [implementation_review_s01_problem.md](implementation_review_s01_problem.md) | 19 |
 | Implementation reviews › s02 Data | [implementation_review_s02_data.md](implementation_review_s02_data.md) | 23 |

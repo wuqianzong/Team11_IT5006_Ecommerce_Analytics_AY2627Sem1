@@ -32,7 +32,7 @@ The test cohort is held out in step 5, and steps 3–4 already exclude its dates
 - Two training cycles → one basic-to-complex ladder in step 6.
 - Customer-grouped CV screening beside chronological confirmation → chronological folds only.
 - A separate confirmation window → not needed; CV folds plus one test, as in Tutorials 7–8.
-- Starting from 9 features → step 4 starts from the 24-predictor contract (G-61), reduces it, then selects one set per task by the EDA ranking; step 6 uses that set for every model.
+- Starting from 9 features → step 4 starts from the 24-predictor contract (G-61; classification adds three candidates adopted at the s03 gate, G-70), reduces it, then selects one set per task by the EDA ranking; step 6 uses that set for every model.
 - Cook's distance as the reason for the 60-day cap → no target cap; extreme lead times are handled by the step 2 outlier rule and the log target.
 
 **Corrected (amber)**
@@ -47,7 +47,7 @@ The test cohort is held out in step 5, and steps 3–4 already exclude its dates
 - Step 9: importance explains the selected model; recommendations stay within the evidence (Milestone 2's hubs, buffers and vouchers were never tested).
 - Step 10: once the experiment is approved, it is migrated to the working folders with a reproduction README; only after the reproduction check matches the release do the dashboard, report and slides get built, citing the reproduced outputs and never typed numbers.
 
-**Audit fixes (design v1.1, CR-003):** each task has its own test cohort, and development orders from its customers are removed. The final fit uses only labels available before the test cutoff. Cross-validation scores are reported as selection scores only. The reduction from the 24 contract predictors to a core set is a declared label-free exception. Partition depends only on the data step. Training compares families only; the feature set and log transforms are fixed in step 4. Calibration is a candidate component. Using `order_estimated_delivery_date` as a candidate feature was proposed, then dropped on 18 Oct (G-35).
+**Audit fixes (design v1.1, CR-003):** each task has its own test cohort, and development orders from its customers are removed. The final fit uses only labels available before the test cutoff. Cross-validation scores are reported as selection scores only. The reduction from each task's pool (the 24 contract predictors; classification adds three candidates adopted at the s03 gate, G-70) to a core set is a declared label-free exception. Partition depends only on the data step. Training compares families only; the feature set and log transforms are fixed in step 4. Calibration is a candidate component. Using `order_estimated_delivery_date` as a candidate feature was proposed, then dropped on 18 Oct (G-35).
 
 **Evidence rule (design rule 8, CR-013, proposed):** every step, the reproduction in step 10 included, stores its results as files that can be read without rerunning any model. This covers the intermediate evidence behind each decision as well as the final choice:
 

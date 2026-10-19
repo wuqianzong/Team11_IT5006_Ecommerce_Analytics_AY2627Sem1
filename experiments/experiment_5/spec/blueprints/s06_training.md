@@ -33,7 +33,8 @@ Gate: models run basic to complex on identical folds, with each choice justified
 2. **Families, basic to complex (6.2).** Each task uses its s04 selected feature set (4.4)
    through the s04 recipe (4.8), with the s04 4.2 log transforms always on: log1p on inputs with
    pre-cutoff skewness > 1 (only the five contract candidates total_price, total_freight,
-   total_weight_g, total_volume_cm3, distance_km_max; G-47, G-62), and on the regression
+   total_weight_g, total_volume_cm3, distance_km_max, plus product_description_lenght for
+   classification; G-47, G-62, G-70), and on the regression
    target (G-36). In order:
    - `DummyRegressor(strategy='median')` / `DummyClassifier(strategy='prior')`;
    - plain `LinearRegression` / `LogisticRegression(penalty=None, solver='lbfgs', max_iter=5000)`;

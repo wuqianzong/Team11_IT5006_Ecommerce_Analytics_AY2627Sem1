@@ -172,10 +172,10 @@ pool adds the three candidates adopted at the s03 gate, G-70, read from `spec/hu
 `has_items`, `freight_ratio_missing` and `payment_missing` are not in the contract because they
 leak a later cancellation or are constant after the population rules: G-30, G-42, G-51, G-61);
 calendar fields (`purchase_month`, `purchase_dayofweek`, `purchase_hour`) kept numeric; log1p for
-`total_price`, `total_freight`, `total_weight_g`, `total_volume_cm3` and `distance_km_max` when
-their pre-cutoff skewness exceeds 1 (never `freight_ratio`, counts, calendar fields, indicators or
+`total_price`, `total_freight`, `total_weight_g`, `total_volume_cm3` and `distance_km_max` (and, for
+classification, `product_description_lenght`, G-70) when their pre-cutoff skewness exceeds 1 (never `freight_ratio`, counts, calendar fields, indicators or
 0–1 shares; missing values stay missing; G-47, G-62), and for the regression target. **No target cap** (team decision G-25): extreme lead times are
-handled by the s02 outlier removal and the log target; feature reduction from the 24 contract predictors to a core set (rule 2 exception, pre-cutoff orders only): constant
+handled by the s02 outlier removal and the log target; feature reduction from the task's pool (24 contract predictors; classification + 3 adopted, G-70) to a core set (rule 2 exception, pre-cutoff orders only): constant
 and duplicate columns dropped automatically; highly collinear features flagged by pre-registered
 cut-offs (|correlation| > 0.9 or VIF > 10) and the team decides which to drop, with the rationale
 recorded in `reduction_rationale.csv` and stated in the report (G-26), plus the encoded design-matrix rank and condition number
