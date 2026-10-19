@@ -205,7 +205,8 @@ def main() -> int:
         changes.append(("create" if old is None else "update") + f" {card.relative_to(E5)}")
         if not args.check:
             (folder / "outputs").mkdir(parents=True, exist_ok=True)
-            (folder / "outputs" / ".gitkeep").touch()
+            if not (folder / "outputs" / "_manifest.json").exists():  # a run's outputs are never touched
+                (folder / "outputs" / ".gitkeep").touch()
             card.write_text(new, encoding="utf-8", newline="\n")
 
     readme = README.read_text(encoding="utf-8")

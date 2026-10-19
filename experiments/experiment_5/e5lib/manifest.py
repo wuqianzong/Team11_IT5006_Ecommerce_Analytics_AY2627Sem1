@@ -21,7 +21,7 @@ from . import data, protocol
 from .paths import E5, REPO, assert_inside_e5, outputs_dir, rel, spec_path, stage_dir
 
 MANIFEST = "_manifest.json"
-PACKAGES = ("numpy", "pandas", "scikit-learn", "scipy", "joblib", "matplotlib", "PyYAML")
+PACKAGES = ("numpy", "pandas", "scikit-learn", "scipy", "joblib", "matplotlib", "PyYAML", "shapely")
 _STARTED = time.time()
 
 

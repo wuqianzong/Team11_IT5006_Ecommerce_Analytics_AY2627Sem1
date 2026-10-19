@@ -329,3 +329,10 @@ evaluation:
     spearman_below: 0.5
     top10_overlap_below: 5
   source: s09 9.1-9.5; G-40, G-54
+data_dependent:
+  test_cutoffs:
+    values:
+      regression: '2018-05-26 18:18:03'
+      classification: '2018-05-25 18:44:28'
+    set_by: s02_data
+    set_at: '2026-10-19T05:38:37Z'

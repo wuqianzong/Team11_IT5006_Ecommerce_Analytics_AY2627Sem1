@@ -3,6 +3,7 @@
 The only way a stage gets data:
 
 - load_raw(table, stage): the nine Canvas CSVs, s02_data only;
+- reference(relpath, stage): a staged reference file (IBGE geography), s02_data only;
 - load(name, task, population, stage): the s02 records, filtered to a population;
 - upstream(source_stage, source_task, filename, stage): a file from an earlier stage's outputs.
 
@@ -18,7 +19,7 @@ import pandas as pd
 
 from . import TASKS, stage_rank
 from . import protocol
-from .paths import outputs_dir, raw_data_dir
+from .paths import outputs_dir, raw_data_dir, reference_dir
 
 RAW_FILES = {
     "customers": "olist_customers_dataset.csv",
@@ -61,6 +62,13 @@ def load_raw(table: str, stage: str, **read_csv_kwargs) -> pd.DataFrame:
         raise KeyError(f"unknown raw table {table!r}; expected one of {sorted(RAW_FILES)}")
     path = _record(raw_data_dir() / RAW_FILES[table])
     return pd.read_csv(path, **read_csv_kwargs)
+
+
+def reference(relpath: str, stage: str) -> Path:
+    """Path of a staged reference file (e.g. geography/BR_Pais_2024.zip), s02_data only; recorded."""
+    if stage != "s02_data":
+        raise PopulationError(f"only s02_data reads reference data, not {stage}")
+    return _record(reference_dir() / relpath)
 
 
 def upstream(source_stage: str, source_task: str, filename: str, stage: str) -> Path:

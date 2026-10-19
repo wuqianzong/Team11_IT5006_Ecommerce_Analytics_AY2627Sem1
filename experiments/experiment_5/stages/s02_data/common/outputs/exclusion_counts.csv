@@ -1,0 +1,15 @@
+task,step,reason_code,reason_description,orders
+regression,"2.6, 2.8",INVALID_LEAD_TIME,"not delivered, or delivery time missing or not after purchase (s02 2.6, 2.8)",2971
+regression,2.8,ZERO_ITEMS,order has no items (s02 2.8),775
+classification,2.8,ZERO_ITEMS,order has no items (s02 2.8),775
+classification,2.8,CANCELLED_OR_UNAVAILABLE,order cancelled or unavailable (s02 2.8),1234
+classification,2.8,NO_VALID_REVIEW,no valid review score (s02 2.8),768
+regression,2.10,MISSING_INSTALLMENTS,payment_installments_max missing (s02 2.10),6
+classification,2.10,MISSING_INSTALLMENTS,payment_installments_max missing (s02 2.10),6
+regression,2.11,NO_USABLE_PAYMENT,"no payment rows, or only the not_defined payment type (s02 2.11)",4
+classification,2.11,NO_USABLE_PAYMENT,"no payment rows, or only the not_defined payment type (s02 2.11)",4
+regression,2.13,NEGATIVE_VALUE,negative value in a log1p candidate (s02 2.13),0
+classification,2.13,NEGATIVE_VALUE,negative value in a log1p candidate (s02 2.13),0
+regression,2.9,LEAD_DAYS_OUTLIER,"lead_days above max(100, mean + 12 SD) of pre-cutoff orders (s02 2.9)",35
+regression,2.9,DISTANCE_OUTLIER,"distance_km_max above 4,397.53 km (s02 2.9)",0
+classification,2.9,DISTANCE_OUTLIER,"distance_km_max above 4,397.53 km (s02 2.9)",0

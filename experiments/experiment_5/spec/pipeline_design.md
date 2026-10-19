@@ -45,7 +45,7 @@ CV folds, and checks class support per fold instead of stratifying.
    *fitted* only inside training folds through an sklearn Pipeline (Tutorials 3–4).
    Two declared exceptions, both computed once on orders before the test cutoff (never on
    test rows), pre-registered as fixed rules and reported as limitations:
-   (a) the s04 label-free reduction from the 24 eligible predictors to a core set (correlation, VIF, constant or
+   (a) the s04 label-free reduction from the 24 contract predictors to a core set (correlation, VIF, constant or
    duplicate columns); (b) the s04 feature selection by the s03 importance ranking (team
    decision G-19). Exception (b) uses development labels, including those of later validation
    folds, so CV scores of the selected set are optimistic; the report says so.
@@ -112,7 +112,7 @@ only describes late-vs-promised trends in s03; `order_status`, `order_approved_a
 `shipping_limit_date` are never predictors; `has_items` and `freight_ratio_missing` (post-purchase leakage) and `payment_missing` (constant once orders without a usable payment are removed) are not in the contract (G-42, G-51, G-61); a date-order
 audit (purchase ≤ approval ≤ carrier ≤ delivery, estimated date and review answer after purchase)
 logs violations; payment fields are assumed fixed at checkout (no timestamp in the data) (G-30). IDs are kept for audit, never as predictors.
-Test cutoff per task (G-28): after the population rules and before the outlier rule, the
+Test cutoff per task (G-28, G-67): after the row-local population rules and before the outlier rule, the
 purchase timestamp at the 80% position of the task's eligible orders; recorded in `audit.json`
 and `protocol.yaml`.
 Population and data-quality rules (G-20 to G-23), applied identically to development and test
@@ -123,7 +123,8 @@ and written to `exclusions.csv`, one row per removed order and reason with a rea
   cancelled or unavailable with a valid review (targets never imputed). Both are scope
   limitations: the models describe orders that end up fulfilled and reviewed;
 - suspected data-entry errors removed: `lead_days` > max(100, mean + 12 × SD), with mean and SD
-  computed on pre-cutoff orders only, or `distance_km_max` > 4,397.53 km;
+  computed on pre-cutoff orders only (regression population only, G-66), or `distance_km_max` >
+  4,397.53 km (both tasks);
 - orders with missing `payment_installments_max` removed (the app's input checks reject the
   same case);
 - orders without a usable payment (no payment rows, or only `not_defined`) removed (G-51).
@@ -164,7 +165,7 @@ calendar fields (`purchase_month`, `purchase_dayofweek`, `purchase_hour`) kept n
 `total_price`, `total_freight`, `total_weight_g`, `total_volume_cm3` and `distance_km_max` when
 their pre-cutoff skewness exceeds 1 (never `freight_ratio`, counts, calendar fields, indicators or
 0–1 shares; missing values stay missing; G-47, G-62), and for the regression target. **No target cap** (team decision G-25): extreme lead times are
-handled by the s02 outlier removal and the log target; feature reduction from the 24 eligible predictors to a core set (rule 2 exception, pre-cutoff orders only): constant
+handled by the s02 outlier removal and the log target; feature reduction from the 24 contract predictors to a core set (rule 2 exception, pre-cutoff orders only): constant
 and duplicate columns dropped automatically; highly collinear features flagged by pre-registered
 cut-offs (|correlation| > 0.9 or VIF > 10) and the team decides which to drop, with the rationale
 recorded in `reduction_rationale.csv` and stated in the report (G-26), plus the encoded design-matrix rank and condition number

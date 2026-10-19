@@ -45,9 +45,9 @@
   },
   "checks": [
     {
-      "name": "pre-registered before any later stage has outputs",
+      "name": "later stages used this pre-registered layer",
       "passed": true,
-      "detail": "stages with outputs: none",
+      "detail": "later nodes with outputs: 1; using a different layer: none",
       "ids": [
         "1.9"
       ]

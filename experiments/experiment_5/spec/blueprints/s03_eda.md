@@ -11,7 +11,7 @@
 
 ## 1. Goal and gate
 Goal: describe the targets and the 24 contract predictors against each target on pre-cutoff orders,
-and produce one importance ranking per task over the 24 eligible predictors for s04 (G-42).
+and produce one importance ranking per task over the 24 contract predictors for s04 (G-42, G-61).
 Gate: every planned change follows from a pre-cutoff observation (`../stages.json`).
 
 ## 2. Inputs
@@ -64,7 +64,7 @@ Gate: every planned change follows from a pre-cutoff observation (`../stages.jso
 ## 6. Checks
 - Assert max purchase timestamp < the task's test cutoff (from `protocol.yaml`).
 - All 24 contract predictors present in the diagnostic tables.
-- `importance_ranking.csv` has exactly 24 rows (the eligible predictors) and its cumulative share
+- `importance_ranking.csv` has exactly 24 rows (the contract predictors) and its cumulative share
   ends at 1.0.
 - s04 refuses to run if `spec/human_decisions.yaml` lacks the s03 decisions for its task.
 

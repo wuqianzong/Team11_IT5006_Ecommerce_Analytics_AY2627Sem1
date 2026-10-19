@@ -40,8 +40,9 @@ def raw_data_dir() -> Path:
 
 
 def reference_dir() -> Path:
-    """Read-only reference material (e.g. IBGE geography) outside Experiment 5."""
-    return REPO / "docs" / "references"
+    """Read-only staged reference data outside Experiment 5 (IBGE geography under geography/,
+    staged per docs/references/geography/README.md)."""
+    return REPO / "data" / "reference"
 
 
 def spec_path(name: str) -> Path:

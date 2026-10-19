@@ -1,0 +1,498 @@
+{
+  "cleaning": {
+    "orders": {
+      "rows_raw": 99441,
+      "columns": [
+        "order_id",
+        "customer_id",
+        "order_status",
+        "order_purchase_timestamp",
+        "order_approved_at",
+        "order_delivered_carrier_date",
+        "order_delivered_customer_date",
+        "order_estimated_delivery_date"
+      ],
+      "domain_violations": {
+        "order_status": []
+      },
+      "rows_clean": 99441,
+      "nulls": {
+        "order_id": 0,
+        "customer_id": 0,
+        "order_status": 0,
+        "order_purchase_timestamp": 0,
+        "order_approved_at": 160,
+        "order_delivered_carrier_date": 1783,
+        "order_delivered_customer_date": 2965,
+        "order_estimated_delivery_date": 0
+      }
+    },
+    "order_items": {
+      "rows_raw": 112650,
+      "columns": [
+        "order_id",
+        "order_item_id",
+        "product_id",
+        "seller_id",
+        "shipping_limit_date",
+        "price",
+        "freight_value"
+      ],
+      "domain_violations": {},
+      "rows_clean": 112650,
+      "nulls": {
+        "order_id": 0,
+        "order_item_id": 0,
+        "product_id": 0,
+        "seller_id": 0,
+        "shipping_limit_date": 0,
+        "price": 0,
+        "freight_value": 0
+      }
+    },
+    "order_payments": {
+      "rows_raw": 103886,
+      "columns": [
+        "order_id",
+        "payment_sequential",
+        "payment_type",
+        "payment_installments",
+        "payment_value"
+      ],
+      "domain_violations": {
+        "payment_type": []
+      },
+      "rows_clean": 103886,
+      "nulls": {
+        "order_id": 0,
+        "payment_sequential": 0,
+        "payment_type": 0,
+        "payment_installments": 0,
+        "payment_value": 0
+      }
+    },
+    "order_reviews": {
+      "rows_raw": 99224,
+      "columns": [
+        "review_id",
+        "order_id",
+        "review_score",
+        "review_comment_title",
+        "review_comment_message",
+        "review_creation_date",
+        "review_answer_timestamp"
+      ],
+      "domain_violations": {},
+      "rows_clean": 99224,
+      "nulls": {
+        "review_id": 0,
+        "order_id": 0,
+        "review_score": 0,
+        "review_comment_title": 87656,
+        "review_comment_message": 58247,
+        "review_creation_date": 0,
+        "review_answer_timestamp": 0
+      }
+    },
+    "customers": {
+      "rows_raw": 99441,
+      "columns": [
+        "customer_id",
+        "customer_unique_id",
+        "customer_zip_code_prefix",
+        "customer_city",
+        "customer_state"
+      ],
+      "domain_violations": {
+        "customer_state": []
+      },
+      "rows_clean": 99441,
+      "nulls": {
+        "customer_id": 0,
+        "customer_unique_id": 0,
+        "customer_zip_code_prefix": 0,
+        "customer_city": 0,
+        "customer_state": 0
+      }
+    },
+    "sellers": {
+      "rows_raw": 3095,
+      "columns": [
+        "seller_id",
+        "seller_zip_code_prefix",
+        "seller_city",
+        "seller_state"
+      ],
+      "domain_violations": {
+        "seller_state": []
+      },
+      "rows_clean": 3095,
+      "nulls": {
+        "seller_id": 0,
+        "seller_zip_code_prefix": 0,
+        "seller_city": 0,
+        "seller_state": 0
+      }
+    },
+    "products": {
+      "rows_raw": 32951,
+      "columns": [
+        "product_id",
+        "product_category_name",
+        "product_name_lenght",
+        "product_description_lenght",
+        "product_photos_qty",
+        "product_weight_g",
+        "product_length_cm",
+        "product_height_cm",
+        "product_width_cm"
+      ],
+      "domain_violations": {},
+      "rows_clean": 32951,
+      "nulls": {
+        "product_id": 0,
+        "product_category_name": 610,
+        "product_name_lenght": 610,
+        "product_description_lenght": 610,
+        "product_photos_qty": 610,
+        "product_weight_g": 2,
+        "product_length_cm": 2,
+        "product_height_cm": 2,
+        "product_width_cm": 2
+      }
+    },
+    "geolocation": {
+      "rows_raw": 1000163,
+      "columns": [
+        "geolocation_zip_code_prefix",
+        "geolocation_lat",
+        "geolocation_lng",
+        "geolocation_city",
+        "geolocation_state"
+      ],
+      "exact_duplicates_dropped": 261831,
+      "domain_violations": {
+        "geolocation_state": []
+      },
+      "rows_clean": 738332,
+      "nulls": {
+        "geolocation_zip_code_prefix": 0,
+        "geolocation_lat": 0,
+        "geolocation_lng": 0,
+        "geolocation_city": 0,
+        "geolocation_state": 0
+      }
+    },
+    "category_translation": {
+      "rows_raw": 71,
+      "columns": [
+        "product_category_name",
+        "product_category_name_english"
+      ],
+      "domain_violations": {},
+      "rows_clean": 71,
+      "nulls": {
+        "product_category_name": 0,
+        "product_category_name_english": 0
+      }
+    }
+  },
+  "key_checks": {
+    "orders key order_id unique and non-null": {
+      "passed": true,
+      "detail": "0 duplicates, 0 nulls"
+    },
+    "customers key customer_id unique and non-null": {
+      "passed": true,
+      "detail": "0 duplicates, 0 nulls"
+    },
+    "products key product_id unique and non-null": {
+      "passed": true,
+      "detail": "0 duplicates, 0 nulls"
+    },
+    "sellers key seller_id unique and non-null": {
+      "passed": true,
+      "detail": "0 duplicates, 0 nulls"
+    },
+    "category_translation key product_category_name unique and non-null": {
+      "passed": true,
+      "detail": "0 duplicates, 0 nulls"
+    },
+    "order_items key ['order_id', 'order_item_id'] unique and non-null": {
+      "passed": true,
+      "detail": "0 duplicates, 0 nulls"
+    },
+    "order_payments key ['order_id', 'payment_sequential'] unique and non-null": {
+      "passed": true,
+      "detail": "0 duplicates, 0 nulls"
+    },
+    "output rows = orders": {
+      "passed": true,
+      "detail": "99441 rows, 99441 orders"
+    },
+    "every order has a customer": {
+      "passed": true,
+      "detail": "0 without"
+    }
+  },
+  "geography": {
+    "boundary": {
+      "boundary_version": "BR_Pais_2024",
+      "archive_sha256": "e84c4d4ab199e646b5a180e0f5b7a991fe4c3d424dff8ae3dcf4495992c128d5",
+      "derived_geometry_sha256": "779cd7671fd8ff7a09ebf2de063eec0ee1dd72003af576a8a8cb8f2c436d803b",
+      "original_crs": "EPSG:4674",
+      "target_crs": "EPSG:4326",
+      "repair": "none (invalid geometry rejected; zero-buffer policy)",
+      "shapely": "2.1.2"
+    },
+    "filter": {
+      "rows": 738332,
+      "accepted": 738303,
+      "first_failure_reasons": {
+        "outside_polygon": 29
+      },
+      "keys": 19023,
+      "keys_by_status": {
+        "resolved": 19015,
+        "median_outside_polygon": 4,
+        "no_surviving_coordinates": 4
+      }
+    }
+  },
+  "leakage_tags": {
+    "orders.order_id": "yes",
+    "orders.customer_id": "yes",
+    "orders.order_status": "no",
+    "orders.order_purchase_timestamp": "yes",
+    "orders.order_approved_at": "no",
+    "orders.order_delivered_carrier_date": "no",
+    "orders.order_delivered_customer_date": "no",
+    "orders.order_estimated_delivery_date": "yes",
+    "order_items.order_id": "yes",
+    "order_items.order_item_id": "yes",
+    "order_items.product_id": "yes",
+    "order_items.seller_id": "yes",
+    "order_items.shipping_limit_date": "no",
+    "order_items.price": "yes",
+    "order_items.freight_value": "yes",
+    "order_payments.order_id": "yes",
+    "order_payments.payment_sequential": "yes",
+    "order_payments.payment_type": "yes",
+    "order_payments.payment_installments": "yes",
+    "order_payments.payment_value": "yes",
+    "order_reviews.review_id": "yes",
+    "order_reviews.order_id": "yes",
+    "order_reviews.review_score": "no",
+    "order_reviews.review_comment_title": "no",
+    "order_reviews.review_comment_message": "no",
+    "order_reviews.review_creation_date": "no",
+    "order_reviews.review_answer_timestamp": "no",
+    "customers.customer_id": "yes",
+    "customers.customer_unique_id": "yes",
+    "customers.customer_zip_code_prefix": "yes",
+    "customers.customer_city": "yes",
+    "customers.customer_state": "yes",
+    "sellers.seller_id": "yes",
+    "sellers.seller_zip_code_prefix": "yes",
+    "sellers.seller_city": "yes",
+    "sellers.seller_state": "yes",
+    "products.product_id": "yes",
+    "products.product_category_name": "yes",
+    "products.product_name_lenght": "yes",
+    "products.product_description_lenght": "yes",
+    "products.product_photos_qty": "yes",
+    "products.product_weight_g": "yes",
+    "products.product_length_cm": "yes",
+    "products.product_height_cm": "yes",
+    "products.product_width_cm": "yes",
+    "geolocation.geolocation_zip_code_prefix": "yes",
+    "geolocation.geolocation_lat": "yes",
+    "geolocation.geolocation_lng": "yes",
+    "geolocation.geolocation_city": "yes",
+    "geolocation.geolocation_state": "yes",
+    "category_translation.product_category_name": "yes",
+    "category_translation.product_category_name_english": "yes",
+    "records.order_id": "yes",
+    "records.customer_id": "yes",
+    "records.customer_unique_id": "yes",
+    "records.purchase_ts": "yes",
+    "records.n_items": "yes",
+    "records.n_products": "yes",
+    "records.n_sellers": "yes",
+    "records.n_categories": "yes",
+    "records.total_price": "yes",
+    "records.total_freight": "yes",
+    "records.freight_ratio": "yes",
+    "records.total_weight_g": "yes",
+    "records.total_volume_cm3": "yes",
+    "records.weight_missing_fraction": "yes",
+    "records.volume_missing_fraction": "yes",
+    "records.primary_category": "yes",
+    "records.category_missing_fraction": "yes",
+    "records.customer_state": "yes",
+    "records.primary_seller_state": "yes",
+    "records.distance_km_max": "yes",
+    "records.distance_missing_fraction": "yes",
+    "records.interstate_share": "yes",
+    "records.purchase_month": "yes",
+    "records.purchase_dayofweek": "yes",
+    "records.purchase_hour": "yes",
+    "records.primary_payment_type": "yes",
+    "records.payment_installments_max": "yes",
+    "records.n_payment_methods": "yes",
+    "records.order_estimated_delivery_date": "yes",
+    "records.lead_days": "no",
+    "records.lead_label_ts": "no",
+    "records.is_detractor": "no",
+    "records.is_detractor_first": "no",
+    "records.review_label_ts": "no",
+    "records.eligible_regression": "n/a",
+    "records.eligible_classification": "n/a"
+  },
+  "date_order_violations": {
+    "order_purchase_timestamp <= order_approved_at": 0,
+    "order_approved_at <= order_delivered_carrier_date": 1359,
+    "order_delivered_carrier_date <= order_delivered_customer_date": 23,
+    "order_estimated_delivery_date > order_purchase_timestamp": 0,
+    "first review answer > order_purchase_timestamp": 63,
+    "order_delivered_customer_date > order_purchase_timestamp (delivered orders)": 0
+  },
+  "label_agreement": {
+    "orders_with_valid_review": 98673,
+    "min_and_first_label_agree": 98615,
+    "orders_with_more_than_one_review": 547
+  },
+  "test_cutoffs": {
+    "regression": "2018-05-26 18:18:03",
+    "classification": "2018-05-25 18:44:28"
+  },
+  "outlier_threshold": {
+    "lead_days_threshold": 133.9098095235762,
+    "pre_cutoff_mean": 13.50851947551341,
+    "pre_cutoff_sd": 10.033440837338565,
+    "rule": "lead_days > max(100, mean + 12 * SD), mean and SD from pre-cutoff orders",
+    "distance_km_max_limit": 4397.53,
+    "statistics_latest_purchase_ts": "2018-05-26 18:16:57"
+  },
+  "outlier_removals_on_or_after_cutoff": [
+    {
+      "task": "regression",
+      "outlier_removals_on_or_after_cutoff": 1
+    },
+    {
+      "task": "classification",
+      "outlier_removals_on_or_after_cutoff": 0
+    }
+  ],
+  "exclusion_counts": [
+    {
+      "task": "regression",
+      "step": "2.6, 2.8",
+      "reason_code": "INVALID_LEAD_TIME",
+      "reason_description": "not delivered, or delivery time missing or not after purchase (s02 2.6, 2.8)",
+      "orders": 2971
+    },
+    {
+      "task": "regression",
+      "step": "2.8",
+      "reason_code": "ZERO_ITEMS",
+      "reason_description": "order has no items (s02 2.8)",
+      "orders": 775
+    },
+    {
+      "task": "classification",
+      "step": "2.8",
+      "reason_code": "ZERO_ITEMS",
+      "reason_description": "order has no items (s02 2.8)",
+      "orders": 775
+    },
+    {
+      "task": "classification",
+      "step": "2.8",
+      "reason_code": "CANCELLED_OR_UNAVAILABLE",
+      "reason_description": "order cancelled or unavailable (s02 2.8)",
+      "orders": 1234
+    },
+    {
+      "task": "classification",
+      "step": "2.8",
+      "reason_code": "NO_VALID_REVIEW",
+      "reason_description": "no valid review score (s02 2.8)",
+      "orders": 768
+    },
+    {
+      "task": "regression",
+      "step": "2.10",
+      "reason_code": "MISSING_INSTALLMENTS",
+      "reason_description": "payment_installments_max missing (s02 2.10)",
+      "orders": 6
+    },
+    {
+      "task": "classification",
+      "step": "2.10",
+      "reason_code": "MISSING_INSTALLMENTS",
+      "reason_description": "payment_installments_max missing (s02 2.10)",
+      "orders": 6
+    },
+    {
+      "task": "regression",
+      "step": "2.11",
+      "reason_code": "NO_USABLE_PAYMENT",
+      "reason_description": "no payment rows, or only the not_defined payment type (s02 2.11)",
+      "orders": 4
+    },
+    {
+      "task": "classification",
+      "step": "2.11",
+      "reason_code": "NO_USABLE_PAYMENT",
+      "reason_description": "no payment rows, or only the not_defined payment type (s02 2.11)",
+      "orders": 4
+    },
+    {
+      "task": "regression",
+      "step": "2.13",
+      "reason_code": "NEGATIVE_VALUE",
+      "reason_description": "negative value in a log1p candidate (s02 2.13)",
+      "orders": 0
+    },
+    {
+      "task": "classification",
+      "step": "2.13",
+      "reason_code": "NEGATIVE_VALUE",
+      "reason_description": "negative value in a log1p candidate (s02 2.13)",
+      "orders": 0
+    },
+    {
+      "task": "regression",
+      "step": "2.9",
+      "reason_code": "LEAD_DAYS_OUTLIER",
+      "reason_description": "lead_days above max(100, mean + 12 SD) of pre-cutoff orders (s02 2.9)",
+      "orders": 35
+    },
+    {
+      "task": "regression",
+      "step": "2.9",
+      "reason_code": "DISTANCE_OUTLIER",
+      "reason_description": "distance_km_max above 4,397.53 km (s02 2.9)",
+      "orders": 0
+    },
+    {
+      "task": "classification",
+      "step": "2.9",
+      "reason_code": "DISTANCE_OUTLIER",
+      "reason_description": "distance_km_max above 4,397.53 km (s02 2.9)",
+      "orders": 0
+    }
+  ],
+  "population_sizes": {
+    "regression": {
+      "eligible": 96432,
+      "eligible_before_cutoff": 77139
+    },
+    "classification": {
+      "eligible": 97464,
+      "eligible_before_cutoff": 77971
+    }
+  },
+  "payment_assumption": "payment fields have no timestamp; chosen at checkout is a stated assumption"
+}

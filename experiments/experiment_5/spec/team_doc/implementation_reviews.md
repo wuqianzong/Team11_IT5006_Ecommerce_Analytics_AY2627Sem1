@@ -1,6 +1,6 @@
 # Implementation reviews
 
-Stages are built and reviewed one at a time, in pipeline order, s01 to s10. A stage starts only when every upstream stage is ACCEPTED. The technical foundation (shared code, run gate, guards, tests) is built first and is not reviewed as a stage; it changes whenever a stage review needs it, and every change is logged (G-60). The binding rules are in README §9.1 (CR-024, G-59). s01 is ACCEPTED; s02 is next.
+Stages are built and reviewed one at a time, in pipeline order, s01 to s10. A stage starts only when every upstream stage is ACCEPTED. The technical foundation (shared code, run gate, guards, tests) is built first and is not reviewed as a stage; it changes whenever a stage review needs it, and every change is logged (G-60). The binding rules are in README §9.1 (CR-024, G-59). s01 and s02 are ACCEPTED; s03 is next.
 
 ## Progress
 
@@ -9,7 +9,7 @@ This table mirrors the build tags on the Pipeline v2 chart and the progress tabl
 | Stage | Build status | Current round | Accepted round (commit) | Review tab |
 | --- | --- | --- | --- | --- |
 | s01 Problem statement | ACCEPTED | 2 | 2 (453896d, tag e5-s01-accepted) | s01 Problem |
-| s02 Data preprocessing | NOT STARTED | — | — | — |
+| s02 Data preprocessing | ACCEPTED | 2 | 2 (tag e5-s02-accepted) | s02 Data |
 | s03 EDA | NOT STARTED | — | — | — |
 | s04 Features | NOT STARTED | — | — | — |
 | s05 Partition | NOT STARTED | — | — | — |

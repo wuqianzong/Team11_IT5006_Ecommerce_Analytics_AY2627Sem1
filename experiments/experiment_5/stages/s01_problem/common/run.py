@@ -6,6 +6,7 @@ entry, named in its `source`. No Olist file is read here.
 """
 from __future__ import annotations
 
+import json
 import re
 
 import pandas as pd
@@ -256,9 +257,15 @@ def main() -> None:
     w.text("task_contract.md", task_contract(p), ids=("1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8"))
 
     # Checks (s01 section 6 and gate).
-    later = [s for s in STAGE_ORDER[1:] if any((E5 / "stages" / s).glob("*/outputs/_manifest.json"))]
-    w.check("pre-registered before any later stage has outputs", not later, ids=("1.9",),
-            detail=f"stages with outputs: {later or 'none'}")
+    # Pre-registration holds if every later stage that has run used this exact pre-registered layer
+    # (rerun-safe: s01 may be rerun after later stages exist, e.g. after a foundation change).
+    current = protocol.layer_hashes()["pre_registered"]
+    used = {m.parent.parent.parent.name + "/" + m.parent.parent.name:
+            json.loads(m.read_text(encoding="utf-8")).get("protocol", {}).get("pre_registered")
+            for s in STAGE_ORDER[1:] for m in (E5 / "stages" / s).glob("*/outputs/_manifest.json")}
+    differ = sorted(n for n, h in used.items() if h != current)
+    w.check("later stages used this pre-registered layer", not differ, ids=("1.9",),
+            detail=f"later nodes with outputs: {len(used)}; using a different layer: {differ or 'none'}")
     problems = contract.validate()
     w.check("contract: 24 distinct predictors, groups and log1p candidates consistent", not problems, ids=("1.3",),
             detail="; ".join(problems))

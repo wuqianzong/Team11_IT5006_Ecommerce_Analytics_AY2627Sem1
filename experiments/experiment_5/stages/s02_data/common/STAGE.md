@@ -2,7 +2,7 @@
 node: s02_data/common
 owner: TBD
 reviewer: TBD
-status: TODO
+status: ACCEPTED
 depends_on:
   - s01_problem/common
 reads: []   # exact upstream files used
@@ -36,22 +36,40 @@ Load and clean the nine Olist tables deterministically, join aggregation-first t
 - Data dictionary covers every raw and derived column and matches the leakage tags (G-58)
 - Per-task test cutoff computed by the 80/20 rule and recorded (not assumed from Milestone 2)
 - Outlier threshold computed on pre-cutoff orders only; every removal counted in exclusions.csv
-- order_status, order_approved_at, shipping_limit_date, has_items, freight_ratio_missing and payment_missing never predictors
+- order_status, order_approved_at, shipping_limit_date never predictors; has_items, freight_ratio_missing and payment_missing not in the 24-predictor contract (G-61)
 - Date-order audit run on every order; violations logged
 <!-- END GENERATED -->
 
 ## Working log (README section 9.1; one row per solution ID, every code change names its ID)
 | ID | What was built | Commit | Evidence (files, figures) | Coverage | Round |
 | --- | --- | --- | --- | --- | --- |
+| 2.1 | Load: Nine raw tables read with declared types; sha256 of every file and of the IBGE archive, derived geometry and manifest in data_hashes.json (12 files). | acceptance commit (e5-s02-accepted) | data_hashes.json | IMPLEMENTED | 1 |
+| 2.2 | Clean: Declared types per the Milestone 2 cleaning schema; ZIP prefixes read as strings; categorical domains checked (violations kept, listed in audit.json); geolocation exact duplicates dropped: 261,831 of 1,000,163 rows. No i | acceptance commit (e5-s02-accepted) | audit.json | IMPLEMENTED | 1 |
+| 2.3 | Geography: ZIP/state median centroids after the IBGE boundary filter: 738,303 of 738,332 geolocation rows accepted; 19,023 keys, by status {'resolved': 19015, 'median_outside_polygon': 4, 'no_surviving_coordinates': 4}. | acceptance commit (e5-s02-accepted) | zip_centroids.csv, data_hashes.json, audit.json | IMPLEMENTED | 1 |
+| 2.4 | Join: Items, payments and reviews aggregated to order_id first, then left-joined one-to-one (pandas validate); output rows 99,441 = orders 99,441. | acceptance commit (e5-s02-accepted) | records.csv.gz, audit.json | IMPLEMENTED | 1 |
+| 2.5 | Predictors: The 24 predictors of e5lib/contract.py built with the Milestone 2 formulas; calendar fields numeric; has_items, freight_ratio_missing and payment_missing not built. | acceptance commit (e5-s02-accepted) | records.csv.gz | IMPLEMENTED | 1 |
+| 2.6 | Targets: lead_days for delivered orders with delivery after purchase; is_detractor from the minimum valid score; first-review label kept. Min and first labels agree on 98,615 of 98,673 reviewed orders. | acceptance commit (e5-s02-accepted) | records.csv.gz, audit.json | IMPLEMENTED | 1 |
+| 2.7 | Leakage audit: Every raw and records column tagged known / not known at checkout (data_dictionary.csv, audit.json); date-order violations logged: {'order_purchase_timestamp <= order_approved_at': 0, 'order_approved_at <= order_delivere | acceptance commit (e5-s02-accepted) | data_dictionary.csv, audit.json | IMPLEMENTED | 1 |
+| 2.8 | Populations: Population rules applied per task and written to exclusions.csv; counts in exclusion_counts.csv. Test cutoffs (80/20 on eligible orders after the population rules, before the outlier rule): {'regression': '2018-05-26 18: | acceptance commit (e5-s02-accepted) | records.csv.gz, exclusions.csv, exclusion_counts.csv | IMPLEMENTED | 1 |
+| 2.9 | Outliers: Lead-time threshold max(100, mean + 12 SD) = 133.91 days from pre-cutoff regression orders (mean 13.51, SD 10.03); distance limit 4397.53 km. Removals on or after each cutoff: [{'task': 'regression', 'outlier_removals_on | acceptance commit (e5-s02-accepted) | exclusions.csv, exclusion_counts.csv, audit.json | IMPLEMENTED | 1 |
+| 2.10 | Missing installments: Orders with no usable payment_installments_max removed from both tasks (MISSING_INSTALLMENTS). | acceptance commit (e5-s02-accepted) | exclusions.csv, exclusion_counts.csv | IMPLEMENTED | 1 |
+| 2.11 | Missing payment: Orders with no payment rows or only not_defined types removed from both tasks (NO_USABLE_PAYMENT). | acceptance commit (e5-s02-accepted) | exclusions.csv, exclusion_counts.csv | IMPLEMENTED | 1 |
+| 2.12 | Data documentation: data_dictionary.csv: 91 rows (every raw and records column, plus the three columns not in the contract); figures/data_structure.png with its link table. | acceptance commit (e5-s02-accepted) | data_dictionary.csv, figures/data_structure.png, figures/data_structure.csv, figures/data_structure.json | IMPLEMENTED | 1 |
+| 2.13 | Negative values: Orders with a negative value in ['total_price', 'total_freight', 'total_weight_g', 'total_volume_cm3', 'distance_km_max'] removed from both tasks (NEGATIVE_VALUE); zero kept. | acceptance commit (e5-s02-accepted) | exclusions.csv, exclusion_counts.csv | IMPLEMENTED | 1 |
 
 ## Review rounds (append-only; each round has review/round_N/ and a section in the doc tab)
 | Round | Commit | Run ID | Review pack | Outcome | Date |
 | --- | --- | --- | --- | --- | --- |
+| 1 | uncommitted on 123cf32 (G-64) | 20261019T054216Z | review/round_1/review_pack.md | all 13 rows approved; 4 decisions accepted with the stage (G-66, G-67); promised card 2.7 line | 2026-10-19 |
+| 2 | acceptance commit (tag e5-s02-accepted) | 20261019T072845Z | review/round_2/review_pack.md | accepted: card 2.7 text only, every data output identical to round 1 | 2026-10-19 |
 
 ## Accepted result (the only result the report and slides may cite)
-- Accepted round: - commit: - run ID: - approved by: - date:
+- Accepted round: 2 - commit: the "s02 accepted" commit, tag `e5-s02-accepted` - run ID: 20261019T072845Z - approved by: experiment lead (Wu Qianzong), after team review in the doc tab "Implementation reviews › s02 Data" - date: 2026-10-19
+- Evidence: `outputs/_manifest.json`, `review/round_2/review_pack.md`; test cutoffs in `spec/protocol.yaml` (data_dependent.test_cutoffs).
 
 ## Deviations from blueprint
 None.
 
 ## Open questions
+- Resolved: lead-time outliers from regression only, distance outliers from both tasks (G-66).
+- Resolved: test cutoff after the row-local population rules, before the outlier rule (G-67).

@@ -235,3 +235,7 @@
 - Comments and resolutions: none yet.
 
 * Outcome: all 9 rows Approved by the team; accepted by the experiment lead. Committed as `453896d`, tagged `e5-s01-accepted`; the run's manifest is FRESH against that commit (CR-029).
+
+### Later change — 2026-10-19 (after acceptance)
+
+- s01 was rerun after foundation changes (CR-030, CR-031, CR-033); every value output is byte-identical. The 1.9 check "pre-registered before any later stage has outputs" failed on reruns once s02 existed, so it is now "later stages used this pre-registered layer" (each later manifest's pre-registered hash must equal s01's). The lead confirms this in the s02 review (decision 3). The tables above show round 2 as accepted.

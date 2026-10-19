@@ -1,0 +1,551 @@
+{
+  "stage": "s02_data",
+  "task": "common",
+  "round": 2,
+  "base_commit": "123cf32ca5ec6ff821eca5f8af4ba4d615157cec",
+  "run_id": "20261019T072845Z",
+  "outputs": "FRESH",
+  "dirty": true,
+  "ready": true,
+  "rows": [
+    {
+      "id": "2.1",
+      "title": "Load",
+      "status": "IMPLEMENTED",
+      "checks": "\u2014",
+      "files": [
+        "data_hashes.json"
+      ],
+      "evidence_hashes": {
+        "data_hashes.json": "3868ea837d04f0734624dd9ba3fc19ca9c5d4176eb51aa88f8a9cdd3ca8fa0fe"
+      },
+      "card": {
+        "done": "Nine raw tables read with declared types; sha256 of every file and of the IBGE archive, derived geometry and manifest in data_hashes.json (12 files).",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [],
+      "deviation": "",
+      "changed": false
+    },
+    {
+      "id": "2.2",
+      "title": "Clean",
+      "status": "IMPLEMENTED",
+      "checks": "\u2014",
+      "files": [
+        "audit.json"
+      ],
+      "evidence_hashes": {
+        "audit.json": "5872c967cbcd5cfcd3971dcdd49290d09421f7d02d6a1132f17ff4bd7501d35c"
+      },
+      "card": {
+        "done": "Declared types per the Milestone 2 cleaning schema; ZIP prefixes read as strings; categorical domains checked (violations kept, listed in audit.json); geolocation exact duplicates dropped: 261,831 of 1,000,163 rows. No imputation.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [],
+      "deviation": "",
+      "changed": false
+    },
+    {
+      "id": "2.3",
+      "title": "Geography",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "zip_centroids.csv",
+        "data_hashes.json",
+        "audit.json"
+      ],
+      "evidence_hashes": {
+        "zip_centroids.csv": "6ed8dda5d3639baae8e444ec7ead05f85f8bdbf4bb89e557e121f9bccee8608b",
+        "data_hashes.json": "3868ea837d04f0734624dd9ba3fc19ca9c5d4176eb51aa88f8a9cdd3ca8fa0fe",
+        "audit.json": "5872c967cbcd5cfcd3971dcdd49290d09421f7d02d6a1132f17ff4bd7501d35c"
+      },
+      "card": {
+        "done": "ZIP/state median centroids after the IBGE boundary filter: 738,303 of 738,332 geolocation rows accepted; 19,023 keys, by status {'resolved': 19015, 'median_outside_polygon': 4, 'no_surviving_coordinates': 4}.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "Archive and derived geometry match the pinned hashes.",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "IBGE boundary hashes verified",
+          "passed": true,
+          "detail": "archive e84c4d4ab199",
+          "ids": [
+            "2.3"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": false
+    },
+    {
+      "id": "2.4",
+      "title": "Join",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "records.csv.gz",
+        "audit.json"
+      ],
+      "evidence_hashes": {
+        "records.csv.gz": "a00e53592e8d9ecc57eda3dbf1af589775794d85d1ea2c52dce44d04cd9bd524",
+        "audit.json": "5872c967cbcd5cfcd3971dcdd49290d09421f7d02d6a1132f17ff4bd7501d35c"
+      },
+      "card": {
+        "done": "Items, payments and reviews aggregated to order_id first, then left-joined one-to-one (pandas validate); output rows 99,441 = orders 99,441.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "orders key order_id unique and non-null",
+          "passed": true,
+          "detail": "0 duplicates, 0 nulls",
+          "ids": [
+            "2.4"
+          ]
+        },
+        {
+          "name": "customers key customer_id unique and non-null",
+          "passed": true,
+          "detail": "0 duplicates, 0 nulls",
+          "ids": [
+            "2.4"
+          ]
+        },
+        {
+          "name": "products key product_id unique and non-null",
+          "passed": true,
+          "detail": "0 duplicates, 0 nulls",
+          "ids": [
+            "2.4"
+          ]
+        },
+        {
+          "name": "sellers key seller_id unique and non-null",
+          "passed": true,
+          "detail": "0 duplicates, 0 nulls",
+          "ids": [
+            "2.4"
+          ]
+        },
+        {
+          "name": "category_translation key product_category_name unique and non-null",
+          "passed": true,
+          "detail": "0 duplicates, 0 nulls",
+          "ids": [
+            "2.4"
+          ]
+        },
+        {
+          "name": "order_items key ['order_id', 'order_item_id'] unique and non-null",
+          "passed": true,
+          "detail": "0 duplicates, 0 nulls",
+          "ids": [
+            "2.4"
+          ]
+        },
+        {
+          "name": "order_payments key ['order_id', 'payment_sequential'] unique and non-null",
+          "passed": true,
+          "detail": "0 duplicates, 0 nulls",
+          "ids": [
+            "2.4"
+          ]
+        },
+        {
+          "name": "output rows = orders",
+          "passed": true,
+          "detail": "99441 rows, 99441 orders",
+          "ids": [
+            "2.4"
+          ]
+        },
+        {
+          "name": "every order has a customer",
+          "passed": true,
+          "detail": "0 without",
+          "ids": [
+            "2.4"
+          ]
+        },
+        {
+          "name": "order_id unique and non-null in records",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "2.4"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": false
+    },
+    {
+      "id": "2.5",
+      "title": "Predictors",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "records.csv.gz"
+      ],
+      "evidence_hashes": {
+        "records.csv.gz": "a00e53592e8d9ecc57eda3dbf1af589775794d85d1ea2c52dce44d04cd9bd524"
+      },
+      "card": {
+        "done": "The 24 predictors of e5lib/contract.py built with the Milestone 2 formulas; calendar fields numeric; has_items, freight_ratio_missing and payment_missing not built.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "records hold exactly the 24 contract predictors",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "2.5"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": false
+    },
+    {
+      "id": "2.6",
+      "title": "Targets",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "records.csv.gz",
+        "audit.json"
+      ],
+      "evidence_hashes": {
+        "records.csv.gz": "a00e53592e8d9ecc57eda3dbf1af589775794d85d1ea2c52dce44d04cd9bd524",
+        "audit.json": "5872c967cbcd5cfcd3971dcdd49290d09421f7d02d6a1132f17ff4bd7501d35c"
+      },
+      "card": {
+        "done": "lead_days for delivered orders with delivery after purchase; is_detractor from the minimum valid score; first-review label kept. Min and first labels agree on 98,615 of 98,673 reviewed orders.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "eligible orders have their target",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "2.6"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": false
+    },
+    {
+      "id": "2.7",
+      "title": "Leakage audit",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "data_dictionary.csv",
+        "audit.json"
+      ],
+      "evidence_hashes": {
+        "data_dictionary.csv": "b76b819b0b956c900f27cefab653c2e56a23389fbfcd1e4d29ad5b65ac64f2aa",
+        "audit.json": "5872c967cbcd5cfcd3971dcdd49290d09421f7d02d6a1132f17ff4bd7501d35c"
+      },
+      "card": {
+        "done": "Every raw and records column tagged known / not known at checkout (data_dictionary.csv, audit.json); date-order violations logged: {'order_purchase_timestamp <= order_approved_at': 0, 'order_approved_at <= order_delivered_carrier_date': 1359, 'order_delivered_carrier_date <= order_delivered_customer_date': 23, 'order_estimated_delivery_date > order_purchase_timestamp': 0, 'first review answer > order_purchase_timestamp': 63, 'order_delivered_customer_date > order_purchase_timestamp (delivered orders)': 0}.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "Zero-item orders are excluded from both tasks (ZERO_ITEMS, step 2.8): items can be removed after checkout, so a zero item count would leak a later cancellation. For the same reason has_items is not in the contract (G-30, G-61).",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "no predictor tagged not known at checkout",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "2.7"
+          ]
+        },
+        {
+          "name": "data dictionary tags match the audit leakage tags",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "2.7",
+            "2.12"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": false
+    },
+    {
+      "id": "2.8",
+      "title": "Populations",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "records.csv.gz",
+        "exclusions.csv",
+        "exclusion_counts.csv"
+      ],
+      "evidence_hashes": {
+        "records.csv.gz": "a00e53592e8d9ecc57eda3dbf1af589775794d85d1ea2c52dce44d04cd9bd524",
+        "exclusions.csv": "a4bc60900df347e7e0e7543969de8a6357885b6d1b0e573311398dfa76164dc1",
+        "exclusion_counts.csv": "fe414cd2116bfc70c6578b270fe2c595c11966554f8bc3e36cdc3b242b368e82"
+      },
+      "card": {
+        "done": "Population rules applied per task and written to exclusions.csv; counts in exclusion_counts.csv. Test cutoffs (80/20 on eligible orders after the population rules, before the outlier rule): {'regression': '2018-05-26 18:18:03', 'classification': '2018-05-25 18:44:28'}.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "Lead-time outliers are applied to the regression population only, because lead_days exists only for delivered orders; distance outliers apply to both tasks. Flagged for the team to confirm.",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "every reason code has its pre-registered description",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "2.8",
+            "2.13"
+          ]
+        },
+        {
+          "name": "no order silently dropped: every ineligible order has an exclusion row",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "2.8"
+          ]
+        },
+        {
+          "name": "test cutoffs recorded in protocol.yaml",
+          "passed": true,
+          "detail": "{'regression': '2018-05-26 18:18:03', 'classification': '2018-05-25 18:44:28'}",
+          "ids": [
+            "2.8"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": false
+    },
+    {
+      "id": "2.9",
+      "title": "Outliers",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "exclusions.csv",
+        "exclusion_counts.csv",
+        "audit.json"
+      ],
+      "evidence_hashes": {
+        "exclusions.csv": "a4bc60900df347e7e0e7543969de8a6357885b6d1b0e573311398dfa76164dc1",
+        "exclusion_counts.csv": "fe414cd2116bfc70c6578b270fe2c595c11966554f8bc3e36cdc3b242b368e82",
+        "audit.json": "5872c967cbcd5cfcd3971dcdd49290d09421f7d02d6a1132f17ff4bd7501d35c"
+      },
+      "card": {
+        "done": "Lead-time threshold max(100, mean + 12 SD) = 133.91 days from pre-cutoff regression orders (mean 13.51, SD 10.03); distance limit 4397.53 km. Removals on or after each cutoff: [{'task': 'regression', 'outlier_removals_on_or_after_cutoff': 1}, {'task': 'classification', 'outlier_removals_on_or_after_cutoff': 0}].",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "outlier statistics use only pre-cutoff orders",
+          "passed": true,
+          "detail": "latest purchase used 2018-05-26 18:16:57, cutoff 2018-05-26 18:18:03",
+          "ids": [
+            "2.9"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": false
+    },
+    {
+      "id": "2.10",
+      "title": "Missing installments",
+      "status": "IMPLEMENTED",
+      "checks": "\u2014",
+      "files": [
+        "exclusions.csv",
+        "exclusion_counts.csv"
+      ],
+      "evidence_hashes": {
+        "exclusions.csv": "a4bc60900df347e7e0e7543969de8a6357885b6d1b0e573311398dfa76164dc1",
+        "exclusion_counts.csv": "fe414cd2116bfc70c6578b270fe2c595c11966554f8bc3e36cdc3b242b368e82"
+      },
+      "card": {
+        "done": "Orders with no usable payment_installments_max removed from both tasks (MISSING_INSTALLMENTS).",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [],
+      "deviation": "",
+      "changed": false
+    },
+    {
+      "id": "2.11",
+      "title": "Missing payment",
+      "status": "IMPLEMENTED",
+      "checks": "\u2014",
+      "files": [
+        "exclusions.csv",
+        "exclusion_counts.csv"
+      ],
+      "evidence_hashes": {
+        "exclusions.csv": "a4bc60900df347e7e0e7543969de8a6357885b6d1b0e573311398dfa76164dc1",
+        "exclusion_counts.csv": "fe414cd2116bfc70c6578b270fe2c595c11966554f8bc3e36cdc3b242b368e82"
+      },
+      "card": {
+        "done": "Orders with no payment rows or only not_defined types removed from both tasks (NO_USABLE_PAYMENT).",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [],
+      "deviation": "",
+      "changed": false
+    },
+    {
+      "id": "2.12",
+      "title": "Data documentation",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "data_dictionary.csv",
+        "figures/data_structure.png",
+        "figures/data_structure.csv",
+        "figures/data_structure.json"
+      ],
+      "evidence_hashes": {
+        "data_dictionary.csv": "b76b819b0b956c900f27cefab653c2e56a23389fbfcd1e4d29ad5b65ac64f2aa",
+        "figures/data_structure.png": "12d6b834c2358dc4cff2453419d080fb756ff31beac23298a6d5ba395996b954",
+        "figures/data_structure.csv": "c54274ab2696fccc24abfe96c7c953527364ee807908252f6809071527e76009",
+        "figures/data_structure.json": "3337de2022aa921e298c21d43a323be1c5042d4839305f103702569306fe3b01"
+      },
+      "card": {
+        "done": "data_dictionary.csv: 91 rows (every raw and records column, plus the three columns not in the contract); figures/data_structure.png with its link table.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "data dictionary: one row per raw and records column",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "2.12"
+          ]
+        },
+        {
+          "name": "data dictionary tags match the audit leakage tags",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "2.7",
+            "2.12"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": false
+    },
+    {
+      "id": "2.13",
+      "title": "Negative values",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "exclusions.csv",
+        "exclusion_counts.csv"
+      ],
+      "evidence_hashes": {
+        "exclusions.csv": "a4bc60900df347e7e0e7543969de8a6357885b6d1b0e573311398dfa76164dc1",
+        "exclusion_counts.csv": "fe414cd2116bfc70c6578b270fe2c595c11966554f8bc3e36cdc3b242b368e82"
+      },
+      "card": {
+        "done": "Orders with a negative value in ['total_price', 'total_freight', 'total_weight_g', 'total_volume_cm3', 'distance_km_max'] removed from both tasks (NEGATIVE_VALUE); zero kept.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "every reason code has its pre-registered description",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "2.8",
+            "2.13"
+          ]
+        },
+        {
+          "name": "eligible orders have no negative log1p candidate",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "2.13"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": false
+    }
+  ]
+}

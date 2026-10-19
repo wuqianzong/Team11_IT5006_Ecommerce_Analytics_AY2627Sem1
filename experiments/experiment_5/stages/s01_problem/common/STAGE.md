@@ -54,7 +54,8 @@ Fix both checkout tasks, prediction time, stakeholders and their actions, target
 - Accepted round: 2 - commit: the "s01 accepted" commit, tag `e5-s01-accepted` - run ID: 20261018T150315Z - approved by: experiment lead (Wu Qianzong), after team review in the doc tab "Implementation reviews › s01 Problem" - date: 2026-10-18
 - Evidence: `outputs/_manifest.json` (output hashes), `review/round_2/review_pack.md`.
 - 2026-10-19: rerun as run 20261018T164754Z after the foundation encoding fix (CR-030); every output byte-identical to the accepted run, decision unchanged, so the acceptance stands.
-- 2026-10-19: rerun as run 20261018T165122Z after the line-ending fix (CR-031); outputs byte-identical again, acceptance stands. On Windows, `status` shows FRESH after the one-time refresh in README §13.3.
+- 2026-10-19: rerun as run 20261018T165122Z after the line-ending fix (CR-031); outputs byte-identical again, acceptance stands.
+- 2026-10-19: rerun as run 20261019T054239Z after the s02 foundation additions (CR-033). The 1.9 check "pre-registered before any later stage has outputs" failed on any rerun once s02 existed; it is now "later stages used this pre-registered layer" (compares each later manifest's pre-registered hash). protocol.yaml and every value output are byte-identical; only the check name and detail in _evidence_index.json changed. Confirmed with the s02 acceptance (decision 3). On Windows, `status` shows FRESH after the one-time refresh in README §13.3.
 
 ## Deviations from blueprint
 None.

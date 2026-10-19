@@ -1,0 +1,92 @@
+table,column,type,nullable,grain,source,missing_meaning,known_at_checkout,label_available_at,eligibility,comment
+orders,order_id,str,False,order,olist_orders_dataset.csv:order_id,never missing,yes,,raw input,
+orders,customer_id,str,False,order,olist_orders_dataset.csv:customer_id,never missing,yes,,raw input,
+orders,order_status,category,False,order,olist_orders_dataset.csv:order_status,never missing,no,,raw input,"final status, set after purchase; defines populations only"
+orders,order_purchase_timestamp,datetime,False,order,olist_orders_dataset.csv:order_purchase_timestamp,never missing,yes,,raw input,
+orders,order_approved_at,datetime,True,order,olist_orders_dataset.csv:order_approved_at,not approved,no,,raw input,payment approval happens after purchase
+orders,order_delivered_carrier_date,datetime,True,order,olist_orders_dataset.csv:order_delivered_carrier_date,not handed to carrier,no,,raw input,after purchase
+orders,order_delivered_customer_date,datetime,True,order,olist_orders_dataset.csv:order_delivered_customer_date,not delivered,no,,raw input,after purchase; the regression label
+orders,order_estimated_delivery_date,datetime,False,order,olist_orders_dataset.csv:order_estimated_delivery_date,never missing,yes,,raw input,known at checkout but never a predictor (G-35); kept for the s03 late-vs-promised trend
+order_items,order_id,str,False,order item,olist_order_items_dataset.csv:order_id,never missing,yes,,raw input,
+order_items,order_item_id,int,False,order item,olist_order_items_dataset.csv:order_item_id,never missing,yes,,raw input,
+order_items,product_id,str,False,order item,olist_order_items_dataset.csv:product_id,never missing,yes,,raw input,
+order_items,seller_id,str,False,order item,olist_order_items_dataset.csv:seller_id,never missing,yes,,raw input,
+order_items,shipping_limit_date,datetime,False,order item,olist_order_items_dataset.csv:shipping_limit_date,never missing,no,,raw input,set by the seller after purchase
+order_items,price,float,False,order item,olist_order_items_dataset.csv:price,never missing,yes,,raw input,
+order_items,freight_value,float,False,order item,olist_order_items_dataset.csv:freight_value,never missing,yes,,raw input,
+order_payments,order_id,str,False,payment line,olist_order_payments_dataset.csv:order_id,never missing,yes,,raw input,
+order_payments,payment_sequential,int,False,payment line,olist_order_payments_dataset.csv:payment_sequential,never missing,yes,,raw input,
+order_payments,payment_type,category,False,payment line,olist_order_payments_dataset.csv:payment_type,never missing,yes,,raw input,assumed chosen at checkout (no timestamp)
+order_payments,payment_installments,int,False,payment line,olist_order_payments_dataset.csv:payment_installments,never missing,yes,,raw input,assumed chosen at checkout (no timestamp)
+order_payments,payment_value,float,False,payment line,olist_order_payments_dataset.csv:payment_value,never missing,yes,,raw input,assumed chosen at checkout (no timestamp)
+order_reviews,review_id,str,False,review,olist_order_reviews_dataset.csv:review_id,never missing,yes,,raw input,
+order_reviews,order_id,str,False,review,olist_order_reviews_dataset.csv:order_id,never missing,yes,,raw input,
+order_reviews,review_score,int,False,review,olist_order_reviews_dataset.csv:review_score,never missing,no,,raw input,review fields exist only after delivery
+order_reviews,review_comment_title,str,True,review,olist_order_reviews_dataset.csv:review_comment_title,no comment,no,,raw input,review fields exist only after delivery
+order_reviews,review_comment_message,str,True,review,olist_order_reviews_dataset.csv:review_comment_message,no comment,no,,raw input,review fields exist only after delivery
+order_reviews,review_creation_date,datetime,False,review,olist_order_reviews_dataset.csv:review_creation_date,never missing,no,,raw input,review fields exist only after delivery
+order_reviews,review_answer_timestamp,datetime,False,review,olist_order_reviews_dataset.csv:review_answer_timestamp,never missing,no,,raw input,review fields exist only after delivery
+customers,customer_id,str,False,customer (per order),olist_customers_dataset.csv:customer_id,never missing,yes,,raw input,
+customers,customer_unique_id,str,False,customer (per order),olist_customers_dataset.csv:customer_unique_id,never missing,yes,,raw input,
+customers,customer_zip_code_prefix,str,False,customer (per order),olist_customers_dataset.csv:customer_zip_code_prefix,never missing,yes,,raw input,
+customers,customer_city,str,False,customer (per order),olist_customers_dataset.csv:customer_city,never missing,yes,,raw input,
+customers,customer_state,category,False,customer (per order),olist_customers_dataset.csv:customer_state,never missing,yes,,raw input,
+sellers,seller_id,str,False,seller,olist_sellers_dataset.csv:seller_id,never missing,yes,,raw input,
+sellers,seller_zip_code_prefix,str,False,seller,olist_sellers_dataset.csv:seller_zip_code_prefix,never missing,yes,,raw input,
+sellers,seller_city,str,False,seller,olist_sellers_dataset.csv:seller_city,never missing,yes,,raw input,
+sellers,seller_state,category,False,seller,olist_sellers_dataset.csv:seller_state,never missing,yes,,raw input,
+products,product_id,str,False,product,olist_products_dataset.csv:product_id,never missing,yes,,raw input,
+products,product_category_name,str,True,product,olist_products_dataset.csv:product_category_name,unknown category,yes,,raw input,
+products,product_name_lenght,float,True,product,olist_products_dataset.csv:product_name_lenght,missing,yes,,raw input,
+products,product_description_lenght,float,True,product,olist_products_dataset.csv:product_description_lenght,missing,yes,,raw input,
+products,product_photos_qty,float,True,product,olist_products_dataset.csv:product_photos_qty,missing,yes,,raw input,
+products,product_weight_g,float,True,product,olist_products_dataset.csv:product_weight_g,missing measurement,yes,,raw input,
+products,product_length_cm,float,True,product,olist_products_dataset.csv:product_length_cm,missing measurement,yes,,raw input,
+products,product_height_cm,float,True,product,olist_products_dataset.csv:product_height_cm,missing measurement,yes,,raw input,
+products,product_width_cm,float,True,product,olist_products_dataset.csv:product_width_cm,missing measurement,yes,,raw input,
+geolocation,geolocation_zip_code_prefix,str,False,"geolocation row (ZIP prefix, city)",olist_geolocation_dataset.csv:geolocation_zip_code_prefix,never missing,yes,,raw input,
+geolocation,geolocation_lat,float,False,"geolocation row (ZIP prefix, city)",olist_geolocation_dataset.csv:geolocation_lat,never missing,yes,,raw input,
+geolocation,geolocation_lng,float,False,"geolocation row (ZIP prefix, city)",olist_geolocation_dataset.csv:geolocation_lng,never missing,yes,,raw input,
+geolocation,geolocation_city,str,False,"geolocation row (ZIP prefix, city)",olist_geolocation_dataset.csv:geolocation_city,never missing,yes,,raw input,
+geolocation,geolocation_state,category,False,"geolocation row (ZIP prefix, city)",olist_geolocation_dataset.csv:geolocation_state,never missing,yes,,raw input,
+category_translation,product_category_name,str,False,product category,product_category_name_translation.csv:product_category_name,unknown category,yes,,raw input,
+category_translation,product_category_name_english,str,False,product category,product_category_name_translation.csv:product_category_name_english,never missing,yes,,raw input,
+records,order_id,string,False,order,orders.order_id,never missing,yes,,identifier,unique key
+records,customer_id,string,False,order,orders.customer_id,never missing,yes,,identifier,"session key, audit only"
+records,customer_unique_id,string,False,customer,customers.customer_unique_id,never missing,yes,,identifier,persistent customer key; purges in s05
+records,purchase_ts,datetime64[us],False,order,orders.order_purchase_timestamp,never missing,yes,,prediction time,checkout time; test cutoffs compare against it
+records,n_items,int64,False,order,order_items.order_item_id (count),never missing,yes,,predictor (contract),
+records,n_products,int64,False,order,order_items.product_id (distinct),never missing,yes,,predictor (contract),
+records,n_sellers,int64,False,order,order_items.seller_id (distinct),never missing,yes,,predictor (contract),
+records,n_categories,int64,False,order,"products.category (distinct, English)",never missing,yes,,predictor (contract),
+records,total_price,float64,True,order,order_items.price (sum; missing if any item invalid),missing (imputed later in the fold pipeline),yes,,predictor (contract),log1p candidate (s04 4.2)
+records,total_freight,float64,True,order,order_items.freight_value (sum; missing if any item invalid),missing (imputed later in the fold pipeline),yes,,predictor (contract),log1p candidate (s04 4.2)
+records,freight_ratio,float64,True,order,total_freight / total_price,missing (imputed later in the fold pipeline),yes,,predictor (contract),
+records,total_weight_g,float64,True,order,products.product_weight_g (sum),missing (imputed later in the fold pipeline),yes,,predictor (contract),log1p candidate (s04 4.2)
+records,total_volume_cm3,float64,True,order,products length x height x width (sum),missing (imputed later in the fold pipeline),yes,,predictor (contract),log1p candidate (s04 4.2)
+records,weight_missing_fraction,float64,True,order,share of items without a valid weight,missing (imputed later in the fold pipeline),yes,,predictor (contract),
+records,volume_missing_fraction,float64,True,order,share of items without valid dimensions,missing (imputed later in the fold pipeline),yes,,predictor (contract),
+records,primary_category,string,False,order,category of the highest-priced item (English),never missing,yes,,predictor (contract),
+records,category_missing_fraction,float64,True,order,share of items without a translated category,missing (imputed later in the fold pipeline),yes,,predictor (contract),
+records,customer_state,str,False,order,customers.customer_state,never missing,yes,,predictor (contract),
+records,primary_seller_state,str,False,order,sellers.seller_state of the primary item,never missing,yes,,predictor (contract),
+records,distance_km_max,float64,True,order,max haversine customer-seller distance over distinct sellers (IBGE-filtered ZIP centroids),missing (imputed later in the fold pipeline),yes,,predictor (contract),log1p candidate (s04 4.2)
+records,distance_missing_fraction,float64,True,order,share of distinct sellers without a resolved distance,missing (imputed later in the fold pipeline),yes,,predictor (contract),
+records,interstate_share,float64,True,order,share of distinct sellers in another state,missing (imputed later in the fold pipeline),yes,,predictor (contract),
+records,purchase_month,int32,False,order,"orders.order_purchase_timestamp (month, numeric)",never missing,yes,,predictor (contract),
+records,purchase_dayofweek,int32,False,order,"orders.order_purchase_timestamp (Monday = 0, numeric)",never missing,yes,,predictor (contract),
+records,purchase_hour,int32,False,order,"orders.order_purchase_timestamp (hour, numeric)",never missing,yes,,predictor (contract),
+records,primary_payment_type,object,False,order,order_payments (type with the largest usable value),never missing,yes,,predictor (contract),
+records,payment_installments_max,float64,True,order,order_payments.payment_installments (max over usable lines),missing (imputed later in the fold pipeline),yes,,predictor (contract),
+records,n_payment_methods,int64,False,order,order_payments.payment_type (distinct usable),never missing,yes,,predictor (contract),
+records,order_estimated_delivery_date,datetime64[us],False,order,orders.order_estimated_delivery_date,not set,yes,,description only,never a predictor (G-35); s03 trend only
+records,lead_days,float64,True,order,orders.order_delivered_customer_date - order_purchase_timestamp,not delivered or invalid,no,lead_label_ts,target (regression),fractional days; label available at delivery
+records,lead_label_ts,datetime64[us],True,order,orders.order_delivered_customer_date,no valid lead time,no,,label time,when lead_days becomes known
+records,is_detractor,Int64,True,order,order_reviews.review_score (minimum valid),no valid review,no,review_label_ts,target (classification),1 if minimum valid score <= 2
+records,is_detractor_first,Int64,True,order,order_reviews.review_score (first review),no valid review,no,review_label_ts,sensitivity label,first review by creation date (s09 9.6)
+records,review_label_ts,datetime64[us],True,order,order_reviews.review_answer_timestamp (latest valid),no valid review,no,,label time,when is_detractor becomes known
+records,eligible_regression,int64,False,order,s02 rules 2.6-2.13,never missing,n/a,,eligibility,1 if the order is in the regression population after every rule
+records,eligible_classification,int64,False,order,s02 rules 2.6-2.13,never missing,n/a,,eligibility,1 if the order is in the classification population after every rule
+not built,has_items,,,order,,,no,,not in the contract,post-purchase leakage: encodes a later cancellation (G-30)
+not built,freight_ratio_missing,,,order,,,no,,not in the contract,post-purchase leakage: encodes a later cancellation (G-30)
+not built,payment_missing,,,order,,,yes,,not in the contract,"constant after the population rules: s02 2.11 removes orders without a usable payment (G-42, G-51)"

@@ -18,7 +18,7 @@ Blueprint: `spec/blueprints/s04_features.md` (implement only when its status is 
 **Gate question:** Are features and recipes defined without fitting or using labels?
 
 ## Purpose
-Define, without fitting: the 27-feature baseline (numeric calendar fields); log1p for continuous positive-scale features with pre-cutoff skewness > 1 (G-47) and for the regression target; the pre-registered label-free reduction to a core set; feature selection by the s03 importance ranking at the team's cumulative threshold (95% or 99%, fixed before any model is fitted); encoded design-matrix rank per recipe; rationale and citations; order_estimated_delivery_date never a feature (G-35); the pipeline recipe per model (impute, encode, scale).
+Define, without fitting: the 24-predictor baseline from e5lib/contract.py (G-61; numeric calendar fields); log1p for the five contract candidates with pre-cutoff skewness > 1 (G-47, G-62) and for the regression target; the pre-registered label-free reduction to a core set; feature selection by the s03 importance ranking at the team's cumulative threshold (95% or 99%, fixed before any model is fitted); encoded design-matrix rank per recipe; rationale and citations; order_estimated_delivery_date never a feature (G-35); the pipeline recipe per model (impute, encode, scale).
 
 ## Planned outputs (`outputs/`)
 - feature_dictionary.csv (formula, grain, availability, missingness, rationale, citation)
@@ -51,3 +51,6 @@ Define, without fitting: the 27-feature baseline (numeric calendar fields); log1
 None.
 
 ## Open questions
+
+- Review tab must show a feature × task table (24 contract predictors; kept for regression, kept for classification, reason), built from both feature_dictionary.csv files (promised to Henry in the s02 review, 2.12).
+- Review tab must have a section "Imputation inside the folds": per feature the rule (median + missing indicator; route median with fallbacks for distance_km_max; "Unknown" for categoricals), the order (log1p, then impute) and, per fold, the learned medians and the counts filled in training and validation, taken from the fitted pipelines (Henry, s02 review 2.12).

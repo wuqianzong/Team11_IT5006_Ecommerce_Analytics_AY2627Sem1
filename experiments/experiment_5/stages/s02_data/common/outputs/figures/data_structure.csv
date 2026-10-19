@@ -1,0 +1,10 @@
+from_table,to_table,key,cardinality
+customers,orders,customer_id,one-to-many
+orders,order_items,order_id,one-to-many
+orders,order_payments,order_id,one-to-many
+orders,order_reviews,order_id,one-to-many
+products,order_items,product_id,one-to-many
+sellers,order_items,seller_id,one-to-many
+category_translation,products,product_category_name,one-to-many
+geolocation,customers,zip prefix + state (median centroid),many-to-one lookup
+geolocation,sellers,zip prefix + state (median centroid),many-to-one lookup

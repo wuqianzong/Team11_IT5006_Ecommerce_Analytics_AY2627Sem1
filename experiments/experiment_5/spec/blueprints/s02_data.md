@@ -59,6 +59,8 @@ Gate: joins, grains, targets and leakage exclusions verified (`../stages.json`).
    12 × SD), with mean and SD from pre-cutoff orders only; `distance_km_max` > 4,397.53 km.
    The number of orders this removes on or after each task's test cutoff is recorded in
    `exclusions.csv` and stated in the s09 limitations (audit 2 A1, rule kept by the team).
+   The lead-time rule removes orders from the regression population only (lead_days exists only
+   for delivered orders); the distance rule removes them from both tasks (G-66).
 10. **Missing installments** (G-20). Remove orders with missing `payment_installments_max`.
 11. **Missing payment** (G-51). Remove orders without a usable payment (no payment rows, or only
     the `not_defined` payment type) from both tasks; count logged in `exclusions.csv`; the app
@@ -67,7 +69,8 @@ Gate: joins, grains, targets and leakage exclusions verified (`../stages.json`).
     value in a log1p candidate (`total_price`, `total_freight`, `total_weight_g`,
     `total_volume_cm3`, `distance_km_max`); zero is kept (log1p(0) = 0) and missing values stay
     missing. Applied with steps 10–11.
-13. **Test cutoff** (G-28). Per task, after step 8 and before step 9: the purchase timestamp at the
+13. **Test cutoff** (G-28, G-67). Per task, after every row-local population rule (steps 6, 8, 10,
+    11, 12) and before the outlier rule (step 9): the purchase timestamp at the
     80% position of eligible orders, recorded in `audit.json` and added to `protocol.yaml`
     (data-dependent layer). Not taken from Milestone 2. Step 9's outlier statistics use orders
     before this cutoff.
@@ -90,6 +93,7 @@ Gate: joins, grains, targets and leakage exclusions verified (`../stages.json`).
 | s02-D2 | Outlier removal | As step 9 | G-21 (team instruction) | Agreed |
 | s02-D3 | Missing installments | Remove; app rejects the same input | G-20 | Agreed |
 | s02-D8 | Data documentation | Generated data dictionary and structure diagram (NIBRS model) | G-58 | Agreed |
+| s02-D11 | Outlier scope and cutoff placement | Lead-time outliers leave regression only, distance outliers both tasks (G-66); cutoff after the row-local rules, before the outlier rule (G-67) | s02 review round 1 | Agreed |
 | s02-D9 | Negative values | Remove orders with a negative log1p candidate value (2.13); zero kept | G-62 | Agreed |
 | s02-D10 | Exclusion record | Every removal rule writes exclusions.csv rows with a reason code and its one description | G-63 | Agreed |
 | s02-D7 | Missing payment | Remove orders without a usable payment (2.11); payment_missing becomes constant and is excluded as constant | G-51 | Agreed |
