@@ -1,0 +1,486 @@
+{
+  "stage": "s03_eda",
+  "task": "classification",
+  "round": 4,
+  "base_commit": "aca98ac99b1a7a21ae26076f070de91a73d6e7b1",
+  "run_id": "20261019T163353Z",
+  "outputs": "FRESH",
+  "dirty": false,
+  "ready": true,
+  "rows": [
+    {
+      "id": "3.2",
+      "title": "Classification target",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "target_classification_is_detractor.csv",
+        "figures/target_is_detractor_bar.png",
+        "figures/target_is_detractor_bar.csv",
+        "figures/target_is_detractor_bar.json",
+        "eda_summary.json"
+      ],
+      "evidence_hashes": {
+        "target_classification_is_detractor.csv": "6d12abd2ebfda6db9ddb13bc58325b02eebd4b92818e605d08b8bea025778c85",
+        "figures/target_is_detractor_bar.png": "21c9051bf2821478884293f279191c9ccd816b9322cd19ecd847b6d94940e3eb",
+        "figures/target_is_detractor_bar.csv": "6d12abd2ebfda6db9ddb13bc58325b02eebd4b92818e605d08b8bea025778c85",
+        "figures/target_is_detractor_bar.json": "6e31e73925fc27aa97ea9a4e0e7d8e296ac6cf69ee0e251071727924a2e907e2",
+        "eda_summary.json": "5f597f840fd932e94f07bc64682787a5e7788ccfe1bc00b65e290ad1e12a4030"
+      },
+      "card": {
+        "done": "77,965 pre-cutoff orders: 11,550 low reviews (score <= 2, 14.81%) and 66,415 normal reviews (score >= 3, 85.19%).",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "Imbalanced target: average precision is read against the prevalence baseline.",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "no order on or after the test cutoff loaded",
+          "passed": true,
+          "detail": "latest purchase 2018-05-25 18:35:11, cutoff 2018-05-25 18:43:19",
+          "ids": [
+            "3.2",
+            "3.3",
+            "3.8"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "3.3",
+      "title": "Outcome trends",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "outcome_trends.csv",
+        "figures/outcome_trends.png",
+        "figures/outcome_trends.csv",
+        "figures/outcome_trends.json",
+        "eda_summary.json"
+      ],
+      "evidence_hashes": {
+        "outcome_trends.csv": "7cdfdeb9f1674b6506e3584ec921188929f6a22afe67442219aeb9f84a95c204",
+        "figures/outcome_trends.png": "194cd6800122591a16b01021a84f79d7ffbb7e5b389b4d24ba4eab46a6349a2c",
+        "figures/outcome_trends.csv": "7cdfdeb9f1674b6506e3584ec921188929f6a22afe67442219aeb9f84a95c204",
+        "figures/outcome_trends.json": "d1938af706a67c49f40c3739e5d7f722264d1f361efd1f74f33db1c4d03fadde",
+        "eda_summary.json": "5f597f840fd932e94f07bc64682787a5e7788ccfe1bc00b65e290ad1e12a4030"
+      },
+      "card": {
+        "done": "20 purchase months; over the 18 months with at least 100 orders: detractor rate 10.7% to 22.5%, late-vs-promised rate 0.8% to 21.1%, median lead time 8.9 to 17.9 days; every month is in the table with its counts.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "Late is delivery after order_estimated_delivery_date, used here only as a description (G-35).",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "no order on or after the test cutoff loaded",
+          "passed": true,
+          "detail": "latest purchase 2018-05-25 18:35:11, cutoff 2018-05-25 18:43:19",
+          "ids": [
+            "3.2",
+            "3.3",
+            "3.8"
+          ]
+        },
+        {
+          "name": "outcome trends show outcomes, not volume only",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "3.3"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "3.6",
+      "title": "Numeric features vs is_detractor",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "numeric_feature_target_is_detractor.csv",
+        "figures/numeric_vs_is_detractor.png",
+        "figures/numeric_vs_is_detractor.csv",
+        "figures/numeric_vs_is_detractor.json"
+      ],
+      "evidence_hashes": {
+        "numeric_feature_target_is_detractor.csv": "04ed8554473be33d4f957e8119e7fb9adae2244b93aa7512157d23337af81fb8",
+        "figures/numeric_vs_is_detractor.png": "a43ad673af45d4a9bd687d5000109d4d3e74c0872193cf011706b4f786bdffdf",
+        "figures/numeric_vs_is_detractor.csv": "2b252000721d4db2e4306426f42335f72eac2d11f41b5ebf215ca395c68157bc",
+        "figures/numeric_vs_is_detractor.json": "46a53ed6b0005456937dbea78c1c47377628c66a0464105506500e6622e4bf8e"
+      },
+      "card": {
+        "done": "20 numeric predictors: class-conditional distributions with the overlap coefficient (KDE for continuous features, class frequencies for features with at most 30 values), per-feature ROC-AUC and mutual information on the same rows; lowest overlap: total_freight (86.6%, ROC-AUC 0.587).",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "A KDE smears an integer count into values that cannot occur, so features with few values use the class frequencies; the five log1p candidates use the KDE on the log1p scale (the coefficient does not change under a monotone transform). Flagged for the team (decision 2).",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "all 24 contract predictors diagnosed against is_detractor",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "3.6",
+            "3.7"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "3.7",
+      "title": "Categorical features vs is_detractor",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "categorical_feature_target_is_detractor.csv",
+        "figures/categorical_vs_is_detractor.png",
+        "figures/categorical_vs_is_detractor.csv",
+        "figures/categorical_vs_is_detractor.json"
+      ],
+      "evidence_hashes": {
+        "categorical_feature_target_is_detractor.csv": "1238a8f278833bba62bb8776d7187ef6b506a347d3ef3308fa5dda6659ec349f",
+        "figures/categorical_vs_is_detractor.png": "5ed3bf78555853f229962766fe25b94ae49f32c8ac6f3d2c5e247219c4a81354",
+        "figures/categorical_vs_is_detractor.csv": "5fddc6a116ecf6f9cc4352027fc57f325ef43b099d7d517669a481c8d95e50f6",
+        "figures/categorical_vs_is_detractor.json": "58f39581a883c2f08261fb3df6b991f27f645a75a168b59e70e01cc4837f4d50"
+      },
+      "card": {
+        "done": "Four categorical predictors: mutual_info_classif (discrete, seed 42) and per-level detractor rates; calendar fields shown per level for the plots only. MI: customer_state 0.0050, primary_seller_state 0.0009, primary_category 0.0026, primary_payment_type 0.0000 nats.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "all 24 contract predictors diagnosed against is_detractor",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "3.6",
+            "3.7"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "3.8",
+      "title": "Importance ranking",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "feature_quality.csv",
+        "collinear_pairs.csv",
+        "numeric_correlations.csv",
+        "figures/numeric_correlation_heatmap.png",
+        "figures/numeric_correlation_heatmap.csv",
+        "figures/numeric_correlation_heatmap.json",
+        "importance_ranking.csv",
+        "figures/cumulative_importance.png",
+        "figures/cumulative_importance.csv",
+        "figures/cumulative_importance.json",
+        "candidate_rationale.csv",
+        "eda_summary.json",
+        "decision.json"
+      ],
+      "evidence_hashes": {
+        "feature_quality.csv": "c68005c6b44d7c9ce7171d34797f0f9d76eea210d2c1e4b87829d5d59c41b957",
+        "collinear_pairs.csv": "a61a855e47426f04a4cf0319fb989594cb10debf46357fab0908f567e6b87ead",
+        "numeric_correlations.csv": "90efe115d50f3da58a3cd22da018a7ac3fd680d0d0e765791f017a34e405fe66",
+        "figures/numeric_correlation_heatmap.png": "c61b4877ffc466822c1ab9eb2deb7ec9e9927310da7836abdc32e18afedd62a9",
+        "figures/numeric_correlation_heatmap.csv": "90efe115d50f3da58a3cd22da018a7ac3fd680d0d0e765791f017a34e405fe66",
+        "figures/numeric_correlation_heatmap.json": "d0d31b96cbb1f783efd2f665259d48e5183f5f0999a8de35d9e5b6e63f3fd37a",
+        "importance_ranking.csv": "85f4e961b535035c50b71c9269dbf690b602541e603284f3593d4b04bae576c0",
+        "figures/cumulative_importance.png": "d06fe0453f5d6c0992568babf089d70b79b5058737fdaf1b350d6cf3369108fd",
+        "figures/cumulative_importance.csv": "85f4e961b535035c50b71c9269dbf690b602541e603284f3593d4b04bae576c0",
+        "figures/cumulative_importance.json": "8eeb6827455cfbb67590ddac569571796f0deb7a90ac45eaf0331a52daf03bd9",
+        "candidate_rationale.csv": "f74837b0dbce249c764c3cd8d99de4a4fe464061badeea26e6f9e3c6de0a3e81",
+        "eda_summary.json": "5f597f840fd932e94f07bc64682787a5e7788ccfe1bc00b65e290ad1e12a4030",
+        "decision.json": "ec8d5bf7123b5a9addf099889598a20f1fd195ee151493b3a212aeb7174b9148"
+      },
+      "card": {
+        "done": "Ranking over the 24 contract predictors by mutual information (discrete estimator for categorical features and features with at most 30 values, k-NN estimator for the rest): top 5 ['total_volume_cm3', 'total_freight', 'freight_ratio', 'total_price', 'n_items']; cut points {'0.95': 14, '0.99': 17}. Missingness, IQR outliers, Pearson/Spearman matrix and VIF on 77,040 complete rows; flagged groups: []; identical columns: [('weight_missing_fraction', 'volume_missing_fraction')].",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "no order on or after the test cutoff loaded",
+          "passed": true,
+          "detail": "latest purchase 2018-05-25 18:35:11, cutoff 2018-05-25 18:43:19",
+          "ids": [
+            "3.2",
+            "3.3",
+            "3.8"
+          ]
+        },
+        {
+          "name": "importance_ranking has the 24 contract predictors and ends at cumulative share 1.0",
+          "passed": true,
+          "detail": "24 rows",
+          "ids": [
+            "3.8"
+          ]
+        },
+        {
+          "name": "ranking measure is the pre-registered one",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "3.8"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "3.9",
+      "title": "Human gate (review pack for s04 decisions)",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "figures/cumulative_importance.png",
+        "figures/cumulative_importance.csv",
+        "figures/cumulative_importance.json",
+        "eda_review_pack.md"
+      ],
+      "evidence_hashes": {
+        "figures/cumulative_importance.png": "d06fe0453f5d6c0992568babf089d70b79b5058737fdaf1b350d6cf3369108fd",
+        "figures/cumulative_importance.csv": "85f4e961b535035c50b71c9269dbf690b602541e603284f3593d4b04bae576c0",
+        "figures/cumulative_importance.json": "8eeb6827455cfbb67590ddac569571796f0deb7a90ac45eaf0331a52daf03bd9",
+        "eda_review_pack.md": "477f4b1f7e75bfdf886b7d1169c6333bfe03fb1f303aaec3738fd8ea3a05fc74"
+      },
+      "card": {
+        "done": "eda_review_pack.md lists every table and figure above, the ranking with both cut points, the flagged collinear groups and the YAML block the team fills in spec/human_decisions.yaml.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "Stop: s04 waits for the team's threshold and collinearity decisions (G-31).",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "review pack lists both cut points and every flagged group",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "3.9"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "3.10",
+      "title": "Candidate screen: product fields and extended ranking (G-68)",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "figures/candidate_screen.png",
+        "figures/candidate_screen.csv",
+        "figures/candidate_screen.json",
+        "candidate_screen_3_10.csv",
+        "candidate_ranking_extended.csv",
+        "candidate_collinear_pairs.csv",
+        "figures/candidate_ranking_extended.png",
+        "figures/candidate_ranking_extended.csv",
+        "figures/candidate_ranking_extended.json",
+        "eda_summary.json"
+      ],
+      "evidence_hashes": {
+        "figures/candidate_screen.png": "be7e7bccdefbbaebc968918785072505da4b3aac92be53e8d1b8808c54a94893",
+        "figures/candidate_screen.csv": "ffbcc410c2dfbaa71747212be9749c49be1e72c18e668f7c8deaf3f75cc8d027",
+        "figures/candidate_screen.json": "1d69de9392cfacd97b2d788af4dd45bba14401046f9b6ea8d6cea16fa047aa32",
+        "candidate_screen_3_10.csv": "b871889e35f185f7108af4ba9cfef591cc985a102147950b516b06ac462f4431",
+        "candidate_ranking_extended.csv": "ac455dff4f4a16b076a30e7cb9132d483e6717ba6c720ff914aa098430f79050",
+        "candidate_collinear_pairs.csv": "094cc42cd49078bdfbde040dcb3e4dfa01242f328b1d7850185bc58e09ff3ef8",
+        "figures/candidate_ranking_extended.png": "f96203f5fa7dd697189d1865afd7e1bd4d174607fe28bba04e62f505e8589e10",
+        "figures/candidate_ranking_extended.csv": "ac455dff4f4a16b076a30e7cb9132d483e6717ba6c720ff914aa098430f79050",
+        "figures/candidate_ranking_extended.json": "06dda9c82d6c5d85d95fd841f40334aecec4866569379ed69a72516f3450cb7d",
+        "eda_summary.json": "5f597f840fd932e94f07bc64682787a5e7788ccfe1bc00b65e290ad1e12a4030"
+      },
+      "card": {
+        "done": "Screening columns (not predictors) diagnosed against is_detractor with the 3.6 measures; numeric ones also with skewness, correlation with the 20 numeric predictors and VIF in the extended numeric set. Product fields (primary item): product_photos_qty: rank 27, MI 0.0006, ROC-AUC 0.480, overlap 96.3%; product_description_lenght: rank 9, MI 0.0052, ROC-AUC 0.492, overlap 97.8%; product_name_lenght: rank 20, MI 0.0023, ROC-AUC 0.504, overlap 97.2%. Extended ranking over 24 + 12 candidates; cut points {'0.95': 23, '0.99': 27} (official 3.8 ranking unchanged at 24).",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "The extended ranking shows where each candidate would enter; s04 recomputes the cumulative share over the agreed pool (24 + adopted candidates). Screening on pre-cutoff orders and then choosing is a post-hoc addition; the report says so.",
+        "conclusion": "Team decision at the gate: adopt or drop each candidate (human_decisions.yaml).",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "candidate screen 3.10 covers every product candidate",
+          "passed": true,
+          "detail": "3 candidates",
+          "ids": [
+            "3.10"
+          ]
+        },
+        {
+          "name": "extended ranking holds the 24 predictors and every candidate, ends at 1.0; official ranking unchanged at 24",
+          "passed": true,
+          "detail": "36 rows",
+          "ids": [
+            "3.10"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "3.11",
+      "title": "Candidate screen: promised delivery days (G-69)",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "figures/candidate_screen_promise.png",
+        "figures/candidate_screen_promise.csv",
+        "figures/candidate_screen_promise.json",
+        "candidate_screen_3_11.csv",
+        "eda_summary.json"
+      ],
+      "evidence_hashes": {
+        "figures/candidate_screen_promise.png": "e5f6af39091b559c5ff9cb845fff7cd3250c35d4917270874ef88a851fd95628",
+        "figures/candidate_screen_promise.csv": "955a3b0c28f79c99111086c3d3bf24ba99f5322e841a70d8659547a894b6642e",
+        "figures/candidate_screen_promise.json": "53e4cc1d83b23aa4b0c682b20a0155d1347364e5d72cd798abef308d8f15b576",
+        "candidate_screen_3_11.csv": "74e447ffd5056c9f2ffcb93a4df6f90a29aab6f1c20119d350144e7f189398a7",
+        "eda_summary.json": "5f597f840fd932e94f07bc64682787a5e7788ccfe1bc00b65e290ad1e12a4030"
+      },
+      "card": {
+        "done": "Screening columns (not predictors) diagnosed against is_detractor with the 3.6 measures; numeric ones also with skewness, correlation with the 20 numeric predictors and VIF in the extended numeric set. Promised delivery days: est_delivery_days: rank 16, MI 0.0032, ROC-AUC 0.539, overlap 95.0%.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "G-35 is reopened for this screen only. Olist's own promise is measured here; in production the promise would come from the task 1 prediction, so if adopted the classifier trains on out-of-fold task 1 predictions, which makes classification s06 depend on regression s06.",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "candidate screen 3.11 covers every promise candidate",
+          "passed": true,
+          "detail": "1 candidates",
+          "ids": [
+            "3.11"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "3.12",
+      "title": "Candidate screen: regions (G-69)",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "figures/candidate_screen_region.png",
+        "figures/candidate_screen_region.csv",
+        "figures/candidate_screen_region.json",
+        "candidate_screen_3_12.csv",
+        "candidate_screen_levels.csv",
+        "eda_summary.json"
+      ],
+      "evidence_hashes": {
+        "figures/candidate_screen_region.png": "72b298139e0a4581280bccd92083ec43526803bd8763673752cb52fc324d2a3c",
+        "figures/candidate_screen_region.csv": "a0e8369a66bad7dac67876bd263e5eefe3ed44673f0671b8afe3fd1bf1e077ee",
+        "figures/candidate_screen_region.json": "38336ede95b0c6c2ac41bcb615516e416b5c9e60cdd0ad1458ac335c0b96df8e",
+        "candidate_screen_3_12.csv": "ea8725fe5d127a37f4300753d93f0215e41144a461dcfeb54eedabc2f29c1327",
+        "candidate_screen_levels.csv": "a0e8369a66bad7dac67876bd263e5eefe3ed44673f0671b8afe3fd1bf1e077ee",
+        "eda_summary.json": "5f597f840fd932e94f07bc64682787a5e7788ccfe1bc00b65e290ad1e12a4030"
+      },
+      "card": {
+        "done": "Screening columns (not predictors) diagnosed against is_detractor with the 3.6 measures; numeric ones also with skewness, correlation with the 20 numeric predictors and VIF in the extended numeric set. Regions (IBGE macro-regions; pair = customer>seller): customer_region: rank 24, MI 0.0012, overlap 95.4%; seller_region: rank 30, MI 0.0002, overlap 97.9%; region_pair: rank 21, MI 0.0018, overlap 95.0%. Per-level detractor rates in candidate_screen_levels.csv.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "A region has 5 levels instead of 27 states, so each level holds more orders; the pair captures logistics corridors. Mutual information with many levels is biased upward, so compare the region and state values with that in mind.",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "candidate screen 3.12 covers every region candidate",
+          "passed": true,
+          "detail": "3 candidates",
+          "ids": [
+            "3.12"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "3.13",
+      "title": "Candidate screen: seller history at checkout (G-69)",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "figures/candidate_screen_seller_history.png",
+        "figures/candidate_screen_seller_history.csv",
+        "figures/candidate_screen_seller_history.json",
+        "candidate_screen_3_13.csv",
+        "candidate_collinear_pairs.csv",
+        "eda_summary.json"
+      ],
+      "evidence_hashes": {
+        "figures/candidate_screen_seller_history.png": "f70828b7e36a8530f80195ed06a0e9c97ba71104070f37a2e7a57301ccbc4c39",
+        "figures/candidate_screen_seller_history.csv": "dd0e3083b147c027bca998711634198f264afa84d0cc7269a65d221676919317",
+        "figures/candidate_screen_seller_history.json": "b23c69f3b274ac8c36b057fde7dc814addc85f405d2f8dd5fddf11e294c1e7d3",
+        "candidate_screen_3_13.csv": "a7a63c18fdad41974531941b634117c1916f4840bac71906f7a1e1c608976ed5",
+        "candidate_collinear_pairs.csv": "094cc42cd49078bdfbde040dcb3e4dfa01242f328b1d7850185bc58e09ff3ef8",
+        "eda_summary.json": "5f597f840fd932e94f07bc64682787a5e7788ccfe1bc00b65e290ad1e12a4030"
+      },
+      "card": {
+        "done": "Screening columns (not predictors) diagnosed against is_detractor with the 3.6 measures; numeric ones also with skewness, correlation with the 20 numeric predictors and VIF in the extended numeric set. Seller history at checkout: seller_prior_review_mean: rank 2, MI 0.0094, ROC-AUC 0.441, overlap 90.5%; seller_prior_review_count: rank 23, MI 0.0014, ROC-AUC 0.507, overlap 96.2%; seller_prior_detractor_share: rank 8, MI 0.0059, ROC-AUC 0.557, overlap 90.5%; seller_prior_delivered_count: rank 19, MI 0.0024, ROC-AUC 0.506, overlap 96.2%; seller_prior_late_share: rank 6, MI 0.0075, ROC-AUC 0.536, overlap 90.0%.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "Only the primary seller's events strictly before the purchase second count (reviews at their answer time, deliveries at delivery time) and the order's own events never count; s02 checks this against a direct recomputation on 2,000 orders. Sellers without history are missing, with the counts at 0.",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "candidate screen 3.13 covers every seller_history candidate",
+          "passed": true,
+          "detail": "5 candidates",
+          "ids": [
+            "3.13"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    }
+  ]
+}

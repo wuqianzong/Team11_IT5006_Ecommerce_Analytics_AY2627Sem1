@@ -376,7 +376,7 @@
   },
   "test_cutoffs": {
     "regression": "2018-05-26 18:18:03",
-    "classification": "2018-05-25 18:44:28"
+    "classification": "2018-05-25 18:43:19"
   },
   "outlier_threshold": {
     "lead_days_threshold": 133.9098095235762,
@@ -431,6 +431,13 @@
       "reason_code": "NO_VALID_REVIEW",
       "reason_description": "no valid review score (s02 2.8)",
       "orders": 768
+    },
+    {
+      "task": "classification",
+      "step": "2.8",
+      "reason_code": "INVALID_REVIEW_TIME",
+      "reason_description": "a valid review answered at or before the purchase time, a data error (s02 2.8; G-71)",
+      "orders": 63
     },
     {
       "task": "regression",
@@ -502,8 +509,8 @@
       "eligible_before_cutoff": 77139
     },
     "classification": {
-      "eligible": 97464,
-      "eligible_before_cutoff": 77971
+      "eligible": 97457,
+      "eligible_before_cutoff": 77965
     }
   },
   "payment_assumption": "payment fields have no timestamp; chosen at checkout is a stated assumption"

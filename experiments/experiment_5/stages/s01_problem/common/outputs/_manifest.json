@@ -1,10 +1,10 @@
 {
   "node": "s01_problem/common",
-  "run_id": "20261019T154524Z",
-  "commit": "90bf5e76e7d50527ecba35207ed28ad5d4ea8a75",
-  "dirty": true,
+  "run_id": "20261019T163354Z",
+  "commit": "aca98ac99b1a7a21ae26076f070de91a73d6e7b1",
+  "dirty": false,
   "code": {
-    "experiments/experiment_5/stages/s01_problem/common/run.py": "13f19039c22dcb911db5b1ddef5c7bfff266ebd1bc3cf45a06495dda9ed21fd9"
+    "experiments/experiment_5/stages/s01_problem/common/run.py": "1b2222f7116716fc10376eb23e20c607c58e67119e0b5ecbfd5af2c2cdfd7b4f"
   },
   "foundation": {
     "experiments/experiment_5/e5lib/__init__.py": "cd238533adc62fa600a0d9246352bc6a0c3d5bc599ad0504a1ea10d7aa76c5fe",
@@ -24,17 +24,17 @@
     "experiments/experiment_5/e5lib/paths.py": "0e734f058878c897ef2020f1bf286772f1e8871247f4d36d9cfa311fe877b660",
     "experiments/experiment_5/e5lib/protocol.py": "900e556c163cb112c7b533311f5e635052090bea2554b1abe0c10010ca65e96d",
     "experiments/experiment_5/e5lib/review.py": "fc47e1fbebddfdc377f0e7a43c87cef92accf158437cb929ad6557e86c9df48d",
-    "experiments/experiment_5/e5lib/seller_history.py": "d5ef6eb6d3fc7bd1d1d1ba3df3ddf5c03f0e3bedafbaee9b1c1e6b50d9e1aa58",
+    "experiments/experiment_5/e5lib/seller_history.py": "fde34f2e3560d851e66a57adb300a652fc8c2fde6f9a7d9d0d8e6a163436dc3e",
     "experiments/experiment_5/run_pipeline.py": "38625fed4ceda4990a3b7dc86a2146d1a5eb89c9feac6948381dcbf7c1d589cf"
   },
   "protocol": {
-    "pre_registered": "c358bb20d82f5c80fa9110e1cd1089085b1fe1a793b129a38a084f816fdfcaca"
+    "pre_registered": "216a717b2cb3f1c1c8cf105f5811aa307ac6e712031381254955be26414736b3"
   },
   "reads": {},
   "outputs": {
-    "experiments/experiment_5/stages/s01_problem/common/outputs/_evidence_index.json": "28eae4d4b2788e1935181e5ee0bc04796f8abf45cbd446af931a23e0f2a8be0a",
-    "experiments/experiment_5/stages/s01_problem/common/outputs/preregistered_values.csv": "91c47376ec9986c34233707c560a550facc2e56d804e44bb6682b459da8a96e2",
-    "experiments/experiment_5/stages/s01_problem/common/outputs/protocol_preregistered.yaml": "4200b22a893bc21035faf8da663cf61308b68e398a8cd96a01fe48096cfc6173",
+    "experiments/experiment_5/stages/s01_problem/common/outputs/_evidence_index.json": "d2a0f0aad087d548a69df9277a870a6bed3d2eb362989555e7cb7c3e0c9c3ac0",
+    "experiments/experiment_5/stages/s01_problem/common/outputs/preregistered_values.csv": "2d5785831ae709859fbbfd560d1735e83544176fa46e7094f382a12bedd9d44d",
+    "experiments/experiment_5/stages/s01_problem/common/outputs/protocol_preregistered.yaml": "5c7bae246acd5ef60f2552d52b8f795fb4cf18479ceb6729afff6003ca91e534",
     "experiments/experiment_5/stages/s01_problem/common/outputs/task_contract.md": "0fd9ed8249fe89cabf969628f3aa330f82939f6456e589d2e12843d7cf9fb558"
   },
   "versions": {
@@ -49,5 +49,5 @@
     "shapely": "2.1.2"
   },
   "seed": 42,
-  "runtime_s": 0.12
+  "runtime_s": 0.11
 }

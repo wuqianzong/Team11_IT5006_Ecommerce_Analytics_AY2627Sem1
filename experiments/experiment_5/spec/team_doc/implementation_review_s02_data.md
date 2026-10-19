@@ -1,8 +1,362 @@
 # s02 Data — implementation review
 
-**ACCEPTED · round 2 · 2026-10-19** · run `20261019T072845Z` · tag `e5-s02-accepted` · all 13 rows Approved · 21 checks, all PASS · approved by the experiment lead. Round 2 only adds the zero-item reasoning to card 2.7; every data output is identical to round 1. This tab is frozen as the record of the s02 review; s03 may start.
+> **How to read this tab.** Part A is the final, accepted state of s02 (run `20261019T163328Z`, CR-042, 2026-10-20); the report, slides and later stages use only Part A. Part B is the review record of rounds 1–2 and the dated addenda (CR-037, CR-038), kept unchanged; their run IDs and numbers are superseded.
 
-## Current (round 2; data values identical to round 1, so the cards show the round 1 run)
+# Part A — Final result (accepted, cite this)
+
+**ACCEPTED** · run `20261019T163328Z` on commit aca98ac, clean tree · coverage 13 of 13 IMPLEMENTED · 25 checks, all PASS · test cutoffs (spec/protocol.yaml data\_dependent): regression 2018-05-26 18:18:03, classification 2018-05-25 18:43:19.
+
+## What CR-042 changed (2026-10-20)
+
+- **New population rule (G-71, external audit H-03).** An order with a review answered at or before its purchase leaves classification (2.8, INVALID\_REVIEW\_TIME): the timing is impossible, so its label is not trusted. New check: every eligible classification order has its reviews answered after purchase.
+- **Seller history (G-69, G-71).** seller\_prior\_\* columns never count such a review, for any order; still equal to the direct recomputation on 2,000 random orders.
+- **Effect.** Classification eligible 97,464 → 97,457, pre-cutoff 77,971 → 77,965; classification test cutoff 2018-05-25 18:44:28 → 18:43:19. Regression unchanged.
+- **Wording (audits M-04, L-02).** The data dictionary has 103 rows (the round 1 text said 91, before the screening columns); stage-card rows are no longer truncated.
+
+## Checks (final run)
+
+| Check | Result | Detail | IDs |
+| --- | --- | --- | --- |
+| orders key order\_id unique and non-null | PASS | 0 duplicates, 0 nulls | 2.4 |
+| customers key customer\_id unique and non-null | PASS | 0 duplicates, 0 nulls | 2.4 |
+| products key product\_id unique and non-null | PASS | 0 duplicates, 0 nulls | 2.4 |
+| sellers key seller\_id unique and non-null | PASS | 0 duplicates, 0 nulls | 2.4 |
+| category\_translation key product\_category\_name unique and non-null | PASS | 0 duplicates, 0 nulls | 2.4 |
+| order\_items key \['order\_id', 'order\_item\_id'\] unique and non-null | PASS | 0 duplicates, 0 nulls | 2.4 |
+| order\_payments key \['order\_id', 'payment\_sequential'\] unique and non-null | PASS | 0 duplicates, 0 nulls | 2.4 |
+| output rows = orders | PASS | 99441 rows, 99441 orders | 2.4 |
+| every order has a customer | PASS | 0 without | 2.4 |
+| order\_id unique and non-null in records | PASS | — | 2.4 |
+| records hold exactly the 24 contract predictors | PASS | — | 2.5 |
+| screening candidates built, known at checkout, numeric ones non-negative (G-68, G-69) | PASS | \['product\_photos\_qty', 'product\_description\_lenght', 'product\_name\_lenght', 'est\_delivery\_days', 'customer\_region', 'seller\_region', 'region\_pair', 'seller\_prior\_review\_mean', 'seller\_prior\_review\_count', 'seller\_prior\_detractor\_share', 'seller\_prior\_delivered\_count', 'seller\_prior\_late\_share'\]; missing: product\_photos\_qty 2,190, product\_description\_lenght 2,190, product\_name\_lenght 2,190, est\_delivery\_days 0, customer\_region 0, seller\_region 0, region\_pair 0, seller\_prior\_review\_mean 6,985, seller\_prior\_review\_count 775, seller\_prior\_detractor\_share 6,985, seller\_prior\_delivered\_count 775, seller\_prior\_late\_share 6,397 | 2.5, 2.7 |
+| seller history equals a direct per-order recomputation (2,000 random orders, strict time, own order excluded) | PASS | sample seed 42 | 2.5, 2.7 |
+| est\_delivery\_days after purchase on every order; region columns complete | PASS | min est\_delivery\_days 1.649 | 2.5 |
+| no predictor tagged not known at checkout | PASS | — | 2.7 |
+| data dictionary: one row per raw and records column | PASS | — | 2.12 |
+| data dictionary tags match the audit leakage tags | PASS | — | 2.7, 2.12 |
+| outlier statistics use only pre-cutoff orders | PASS | latest purchase used 2018-05-26 18:16:57, cutoff 2018-05-26 18:18:03 | 2.9 |
+| every reason code has its pre-registered description | PASS | — | 2.8, 2.13 |
+| no order silently dropped: every ineligible order has an exclusion row | PASS | — | 2.8 |
+| eligible orders have their target | PASS | — | 2.6 |
+| eligible classification orders have every review answered after purchase (G-71) | PASS | 63 orders with a review answered at or before purchase | 2.7, 2.8 |
+| eligible orders have no negative log1p candidate | PASS | — | 2.13 |
+| IBGE boundary hashes verified | PASS | archive e84c4d4ab199 | 2.3 |
+| test cutoffs recorded in protocol.yaml | PASS | {'regression': '2018-05-26 18:18:03', 'classification': '2018-05-25 18:43:19'} | 2.8 |
+
+## Evidence cards (final run)
+
+### 2.1 Load
+
+**Approved solution:** Canvas copy of the 9 Olist tables; sha256 of each file in `data_hashes.json`
+
+**What was done:** Nine raw tables read with declared types; sha256 of every file and of the IBGE archive, derived geometry and manifest in data\_hashes.json (12 files).
+
+| File | sha256 (first 16) |
+| --- | --- |
+| data/raw/olist\_orders\_dataset.csv | 8df58ef3d2d7e994… |
+| data/raw/olist\_order\_items\_dataset.csv | 0bc4d068c4fe38cb… |
+| data/raw/olist\_order\_payments\_dataset.csv | 4f713964f2815dbb… |
+| data/raw/olist\_order\_reviews\_dataset.csv | 81336b6e5183133b… |
+| data/raw/olist\_customers\_dataset.csv | 983a422239e1712d… |
+| data/raw/olist\_sellers\_dataset.csv | 1f643d2b950373b8… |
+| data/raw/olist\_products\_dataset.csv | 3e6569628a17fbc7… |
+| data/raw/olist\_geolocation\_dataset.csv | b514f6fc991b9566… |
+| data/raw/product\_category\_name\_translation.csv | 9da093e114e51753… |
+| data/reference/geography/BR\_Pais\_2024.zip | e84c4d4ab199e646… |
+| data/reference/geography/BR\_Pais\_2024\_4326.geojson | 779cd7671fd8ff7a… |
+| data/reference/geography/boundary\_manifest.json | 76ae80bf1408c96d… |
+
+**Files** (stages/s02\_data/common/outputs/, run 20261019T163328Z): data\_hashes.json
+
+### 2.2 Clean
+
+**Approved solution:** Declared types; ZIP prefixes kept as strings (leading zeros); categorical domain checks logged, rows kept; geolocation exact duplicates dropped (counts recomputed and logged). No imputation
+
+**What was done:** Declared types per the Milestone 2 cleaning schema; ZIP prefixes read as strings; categorical domains checked (violations kept, listed in audit.json); geolocation exact duplicates dropped: 261,831 of 1,000,163 rows. No imputation.
+
+| Table | Raw rows | Clean rows | Exact duplicates dropped | Columns with nulls (count) |
+| --- | --- | --- | --- | --- |
+| orders | 99,441 | 99,441 | 0 | order\_approved\_at 160, order\_delivered\_carrier\_date 1,783, order\_delivered\_customer\_date 2,965 |
+| order\_items | 112,650 | 112,650 | 0 | none |
+| order\_payments | 103,886 | 103,886 | 0 | none |
+| order\_reviews | 99,224 | 99,224 | 0 | review\_comment\_title 87,656, review\_comment\_message 58,247 |
+| customers | 99,441 | 99,441 | 0 | none |
+| sellers | 3,095 | 3,095 | 0 | none |
+| products | 32,951 | 32,951 | 0 | product\_category\_name 610, product\_name\_lenght 610, product\_description\_lenght 610, product\_photos\_qty 610, product\_weight\_g 2, product\_length\_cm 2, product\_height\_cm 2, product\_width\_cm 2 |
+| geolocation | 1,000,163 | 738,332 | 261,831 | none |
+| category\_translation | 71 | 71 | 0 | none |
+
+**Files** (stages/s02\_data/common/outputs/, run 20261019T163328Z): audit.json
+
+### 2.3 Geography
+
+**Approved solution:** ZIP centroids = median lat/lng per ZIP prefix and state, after the IBGE Brazil boundary filter (archive hash recorded)
+
+**What was done:** ZIP/state median centroids after the IBGE boundary filter: 738,303 of 738,332 geolocation rows accepted; 19,023 keys, by status {'resolved': 19015, 'median\_outside\_polygon': 4, 'no\_surviving\_coordinates': 4}.
+
+**Conclusion:** Archive and derived geometry match the pinned hashes.
+
+| Key | Value |
+| --- | --- |
+| Geolocation rows (after de-duplication) | 738,332 |
+| Accepted (inside IBGE boundary) | 738,303 |
+| First failure reasons | {'outside\_polygon': 29} |
+| ZIP/state keys | 19,023 |
+| Keys by status | {'resolved': 19015, 'median\_outside\_polygon': 4, 'no\_surviving\_coordinates': 4} |
+| Boundary | BR\_Pais\_2024, EPSG:4674 to EPSG:4326, repair: none (invalid geometry rejected; zero-buffer policy) |
+| Archive sha256 | e84c4d4ab199e646… |
+
+**Files** (stages/s02\_data/common/outputs/, run 20261019T163328Z): zip\_centroids.csv, data\_hashes.json, audit.json
+
+### 2.4 Join
+
+**Approved solution:** Orders ← customers (many-to-one on `customer_id`); items, payments and reviews aggregated to `order_id` first, then left-joined one-to-one; key-uniqueness and merge-cardinality checks; output rows = orders
+
+**What was done:** Items, payments and reviews aggregated to order\_id first, then left-joined one-to-one (pandas validate); output rows 99,441 = orders 99,441.
+
+| Join check | Result | Detail |
+| --- | --- | --- |
+| orders key order\_id unique and non-null | PASS | 0 duplicates, 0 nulls |
+| customers key customer\_id unique and non-null | PASS | 0 duplicates, 0 nulls |
+| products key product\_id unique and non-null | PASS | 0 duplicates, 0 nulls |
+| sellers key seller\_id unique and non-null | PASS | 0 duplicates, 0 nulls |
+| category\_translation key product\_category\_name unique and non-null | PASS | 0 duplicates, 0 nulls |
+| order\_items key \['order\_id', 'order\_item\_id'\] unique and non-null | PASS | 0 duplicates, 0 nulls |
+| order\_payments key \['order\_id', 'payment\_sequential'\] unique and non-null | PASS | 0 duplicates, 0 nulls |
+| output rows = orders | PASS | 99441 rows, 99441 orders |
+| every order has a customer | PASS | 0 without |
+
+**Files** (stages/s02\_data/common/outputs/, run 20261019T163328Z): records.csv.gz, audit.json
+
+### 2.5 Predictors
+
+**Approved solution:** The 24 predictors of e5lib/contract.py (G-61; has\_items, freight\_ratio\_missing and payment\_missing are not in the contract and are not built): basket (items, products, sellers, categories), price and freight, physical totals and missing fractions, primary category and seller state, distance, interstate share, calendar, payment
+
+**What was done:** The 24 predictors of e5lib/contract.py built with the Milestone 2 formulas; calendar fields numeric; has\_items, freight\_ratio\_missing and payment\_missing not built. Screening candidates (G-68, classification only, not predictors): product\_photos\_qty, product\_description\_lenght, product\_name\_lenght, est\_delivery\_days, customer\_region, seller\_region, region\_pair, seller\_prior\_review\_mean, seller\_prior\_review\_count, seller\_prior\_detractor\_share, seller\_prior\_delivered\_count, seller\_prior\_late\_share. Product fields from the primary item; est\_delivery\_days = estimated delivery date minus purchase; regions are the IBGE macro-regions of the customer and primary-seller states and their pair; seller history uses only the primary seller's events strictly before purchase, own order excluded.
+
+All 99,441 orders, before any exclusion (description of the built columns only; target analysis is s03, pre-cutoff).
+
+| Predictor | Type | Non-missing | Min / median / max (numeric) or levels | Top levels |
+| --- | --- | --- | --- | --- |
+| n\_items | numeric | 99,441 | 0 / 1 / 21 |  |
+| n\_products | numeric | 99,441 | 0 / 1 / 8 |  |
+| n\_sellers | numeric | 99,441 | 0 / 1 / 5 |  |
+| n\_categories | numeric | 99,441 | 0 / 1 / 3 |  |
+| total\_price | numeric | 98,666 | 0.85 / 86.9 / 1.344e+04 |  |
+| total\_freight | numeric | 98,666 | 0 / 17.17 / 1795 |  |
+| freight\_ratio | numeric | 98,666 | 0 / 0.2244 / 21.45 |  |
+| total\_weight\_g | numeric | 98,644 | 2 / 750 / 1.844e+05 |  |
+| total\_volume\_cm3 | numeric | 98,650 | 168 / 7260 / 1.476e+06 |  |
+| weight\_missing\_fraction | numeric | 98,666 | 0 / 0 / 1 |  |
+| volume\_missing\_fraction | numeric | 98,666 | 0 / 0 / 1 |  |
+| primary\_category | categorical | 99,441 | 72 | bed\_bath\_table 9,328; health\_beauty 8,801; sports\_leisure 7,683 |
+| category\_missing\_fraction | numeric | 98,666 | 0 / 0 / 1 |  |
+| customer\_state | categorical | 99,441 | 27 | SP 41,746; RJ 12,852; MG 11,635 |
+| primary\_seller\_state | categorical | 99,441 | 24 | SP 69,939; MG 7,858; PR 7,605 |
+| distance\_km\_max | numeric | 97,534 | 0 / 434.8 / 3579 |  |
+| distance\_missing\_fraction | numeric | 98,666 | 0 / 0 / 1 |  |
+| interstate\_share | numeric | 98,666 | 0 / 1 / 1 |  |
+| purchase\_month | numeric | 99,441 | 1 / 6 / 12 |  |
+| purchase\_dayofweek | numeric | 99,441 | 0 / 3 / 6 |  |
+| purchase\_hour | numeric | 99,441 | 0 / 15 / 23 |  |
+| primary\_payment\_type | categorical | 99,441 | 5 | credit\_card 74,935; boleto 19,784; voucher 3,191 |
+| payment\_installments\_max | numeric | 99,435 | 1 / 2 / 24 |  |
+| n\_payment\_methods | numeric | 99,441 | 0 / 1 / 2 |  |
+
+**Files** (stages/s02\_data/common/outputs/, run 20261019T163328Z): records.csv.gz
+
+### 2.6 Targets
+
+**Approved solution:** `lead_days` = delivery − purchase in fractional days (delivered, valid, > 0), available at delivery. `is_detractor` = minimum valid review score ≤ 2, available at the last review answer; first-review label kept for a sensitivity check
+
+**What was done:** lead\_days for delivered orders with delivery after purchase; is\_detractor from the minimum valid score; first-review label kept. Min and first labels agree on 98,615 of 98,673 reviewed orders.
+
+| Key | Value |
+| --- | --- |
+| Orders with a valid lead time (lead\_days) | 96,470 |
+| Orders with a valid review label (is\_detractor) | 98,673 |
+| Minimum-review and first-review labels agree | 98,615 |
+| Orders with more than one review | 547 |
+
+**Files** (stages/s02\_data/common/outputs/, run 20261019T163328Z): records.csv.gz, audit.json
+
+### 2.7 Leakage audit
+
+**Approved solution:** Every column tagged known / not known at checkout. Delivery dates, `order_status` and review fields are never predictors; `order_estimated_delivery_date` is known at checkout but is never a predictor: in production the promised date would come from the task 1 prediction (G-35). It is used only to describe late-vs-promised trends in s03. Also never predictors, because they are only known after purchase: order\_approved\_at, shipping\_limit\_date, has\_items and freight\_ratio\_missing (post-purchase leakage: both encode a later cancellation). payment\_missing is known at checkout but excluded as constant, because 2.11 removes every order without a usable payment (G-42, G-51). Date-order audit on every order: purchase ≤ approval ≤ carrier ≤ delivery, estimated date > purchase, review answer > purchase; violations are logged, and an order whose delivery is not after purchase leaves regression (2.6). Payment fields carry no timestamp, so "chosen at checkout" is a stated assumption. Final order\_status is used only to define populations (2.8), never as an input (G-30)
+
+**What was done:** Every raw and records column tagged known / not known at checkout (data\_dictionary.csv, audit.json); date-order violations logged: {'order\_purchase\_timestamp <= order\_approved\_at': 0, 'order\_approved\_at <= order\_delivered\_carrier\_date': 1359, 'order\_delivered\_carrier\_date <= order\_delivered\_customer\_date': 23, 'order\_estimated\_delivery\_date > order\_purchase\_timestamp': 0, 'first review answer > order\_purchase\_timestamp': 63, 'order\_delivered\_customer\_date > order\_purchase\_timestamp (delivered orders)': 0}.
+
+**Reasoning:** Zero-item orders are excluded from both tasks (ZERO\_ITEMS, step 2.8): items can be removed after checkout, so a zero item count would leak a later cancellation. For the same reason has\_items is not in the contract (G-30, G-61).
+
+| Date-order rule | Orders violating |
+| --- | --- |
+| order\_purchase\_timestamp <= order\_approved\_at | 0 |
+| order\_approved\_at <= order\_delivered\_carrier\_date | 1359 |
+| order\_delivered\_carrier\_date <= order\_delivered\_customer\_date | 23 |
+| order\_estimated\_delivery\_date > order\_purchase\_timestamp | 0 |
+| first review answer > order\_purchase\_timestamp | 63 |
+| order\_delivered\_customer\_date > order\_purchase\_timestamp (delivered orders) | 0 |
+
+Raw columns tagged not known at checkout: orders.order\_status, orders.order\_approved\_at, orders.order\_delivered\_carrier\_date, orders.order\_delivered\_customer\_date, order\_items.shipping\_limit\_date, order\_reviews.review\_score, order\_reviews.review\_comment\_title, order\_reviews.review\_comment\_message, order\_reviews.review\_creation\_date, order\_reviews.review\_answer\_timestamp. In records, only the targets and their label times are not known at checkout; every predictor is known at checkout (check).
+
+**Files** (stages/s02\_data/common/outputs/, run 20261019T163328Z): data\_dictionary.csv, audit.json
+
+### 2.8 Populations
+
+**Approved solution:** Zero-item orders out of both tasks. Regression: delivered orders with a valid lead time. Classification: orders not cancelled or unavailable, with a valid review; targets never imputed. Stated as a scope limit in the report
+
+**What was done:** Population rules applied per task and written to exclusions.csv; counts in exclusion\_counts.csv. Test cutoffs (80/20 on eligible orders after the population rules, before the outlier rule): {'regression': '2018-05-26 18:18:03', 'classification': '2018-05-25 18:43:19'}.
+
+**Reasoning:** Lead-time outliers are applied to the regression population only, because lead\_days exists only for delivered orders; distance outliers apply to both tasks. Flagged for the team to confirm.
+
+| task | reason\_code | reason\_description | orders |
+| --- | --- | --- | --- |
+| regression | INVALID\_LEAD\_TIME | not delivered, or delivery time missing or not after purchase (s02 2.6, 2.8) | 2971 |
+| regression | ZERO\_ITEMS | order has no items (s02 2.8) | 775 |
+| classification | ZERO\_ITEMS | order has no items (s02 2.8) | 775 |
+| classification | CANCELLED\_OR\_UNAVAILABLE | order cancelled or unavailable (s02 2.8) | 1234 |
+| classification | NO\_VALID\_REVIEW | no valid review score (s02 2.8) | 768 |
+| classification | INVALID\_REVIEW\_TIME | a valid review answered at or before the purchase time, a data error (s02 2.8; G-71) | 63 |
+
+| Task | Test cutoff (purchase\_ts) | Eligible after every rule | Eligible before cutoff |
+| --- | --- | --- | --- |
+| regression | 2018-05-26 18:18:03 | 96,432 | 77,139 |
+| classification | 2018-05-25 18:43:19 | 97,457 | 77,965 |
+
+**Files** (stages/s02\_data/common/outputs/, run 20261019T163328Z): records.csv.gz, exclusions.csv, exclusion\_counts.csv
+
+### 2.9 Outliers
+
+**Approved solution:** Removed as suspected data-entry errors, in development and test alike: `lead_days` > max(100, mean + 12 × SD of pre-cutoff orders); `distance_km_max` > 4,397.53 km. Threshold and removal counts computed in s02 and logged. The lead-time rule removes orders from regression only, the distance rule from both tasks (G-66)
+
+**What was done:** Lead-time threshold max(100, mean + 12 SD) = 133.91 days from pre-cutoff regression orders (mean 13.51, SD 10.03); distance limit 4397.53 km. Removals on or after each cutoff: \[{'task': 'regression', 'outlier\_removals\_on\_or\_after\_cutoff': 1}, {'task': 'classification', 'outlier\_removals\_on\_or\_after\_cutoff': 0}\].
+
+| Key | Value |
+| --- | --- |
+| Rule | lead\_days > max(100, mean + 12 \* SD), mean and SD from pre-cutoff orders |
+| Pre-cutoff mean / SD (days) | 13.51 / 10.03 |
+| Lead-days threshold (days) | 133.91 |
+| Latest purchase used for the statistics | 2018-05-26 18:16:57 |
+| Distance limit (km) | 4397.53 |
+
+| task | reason\_code | orders |
+| --- | --- | --- |
+| regression | LEAD\_DAYS\_OUTLIER | 35 |
+| regression | DISTANCE\_OUTLIER | 0 |
+| classification | DISTANCE\_OUTLIER | 0 |
+
+Removals on or after each task's cutoff: regression 1; classification 0.
+
+**Files** (stages/s02\_data/common/outputs/, run 20261019T163328Z): exclusions.csv, exclusion\_counts.csv, audit.json
+
+### 2.10 Missing installments
+
+**Approved solution:** Orders with missing `payment_installments_max` removed (count logged); the app rejects the same input
+
+**What was done:** Orders with no usable payment\_installments\_max removed from both tasks (MISSING\_INSTALLMENTS).
+
+| task | reason\_code | reason\_description | orders |
+| --- | --- | --- | --- |
+| regression | MISSING\_INSTALLMENTS | payment\_installments\_max missing (s02 2.10) | 6 |
+| classification | MISSING\_INSTALLMENTS | payment\_installments\_max missing (s02 2.10) | 6 |
+
+**Files** (stages/s02\_data/common/outputs/, run 20261019T163328Z): exclusions.csv, exclusion\_counts.csv
+
+### 2.11 Missing payment
+
+**Approved solution:** Orders without a usable payment (no payment rows, or only the not\_defined payment type) removed from both tasks (count logged); the app rejects the same input. payment\_missing is then always 0 and is excluded as constant
+
+**What was done:** Orders with no payment rows or only not\_defined types removed from both tasks (NO\_USABLE\_PAYMENT).
+
+| task | reason\_code | reason\_description | orders |
+| --- | --- | --- | --- |
+| regression | NO\_USABLE\_PAYMENT | no payment rows, or only the not\_defined payment type (s02 2.11) | 4 |
+| classification | NO\_USABLE\_PAYMENT | no payment rows, or only the not\_defined payment type (s02 2.11) | 4 |
+
+**Files** (stages/s02\_data/common/outputs/, run 20261019T163328Z): exclusions.csv, exclusion\_counts.csv
+
+### 2.12 Data documentation
+
+**Approved solution:** Generated by the s02 code, following the NIBRS model the teacher shared. data\_dictionary.csv: one row per column of the 9 raw tables and of records.csv.gz, with type, nullable, grain, source, meaning of a missing value (missing / zero / unknown / not applicable), known at checkout, eligibility and a comment. figures/data\_structure.png: the tables, their keys and one-to-many links, and the aggregate-first join to one row per order. Used by the report, the s04 feature dictionary and the s10 app input checks
+
+**What was done:** data\_dictionary.csv: 103 rows (every raw and records column, plus the three columns not in the contract); figures/data\_structure.png with its link table.
+
+&#91;image: Data structure\]
+
+data\_dictionary.csv has 103 rows: every column of the 9 raw tables, of records.csv.gz, and the 3 columns not in the contract. The records and not-built rows:
+
+| table | column | known\_at\_checkout | eligibility | missing\_meaning | label\_available\_at |
+| --- | --- | --- | --- | --- | --- |
+| records | order\_id | yes | identifier | never missing |  |
+| records | customer\_id | yes | identifier | never missing |  |
+| records | customer\_unique\_id | yes | identifier | never missing |  |
+| records | purchase\_ts | yes | prediction time | never missing |  |
+| records | n\_items | yes | predictor (contract) | never missing |  |
+| records | n\_products | yes | predictor (contract) | never missing |  |
+| records | n\_sellers | yes | predictor (contract) | never missing |  |
+| records | n\_categories | yes | predictor (contract) | never missing |  |
+| records | total\_price | yes | predictor (contract) | missing (imputed later in the fold pipeline) |  |
+| records | total\_freight | yes | predictor (contract) | missing (imputed later in the fold pipeline) |  |
+| records | freight\_ratio | yes | predictor (contract) | missing (imputed later in the fold pipeline) |  |
+| records | total\_weight\_g | yes | predictor (contract) | missing (imputed later in the fold pipeline) |  |
+| records | total\_volume\_cm3 | yes | predictor (contract) | missing (imputed later in the fold pipeline) |  |
+| records | weight\_missing\_fraction | yes | predictor (contract) | missing (imputed later in the fold pipeline) |  |
+| records | volume\_missing\_fraction | yes | predictor (contract) | missing (imputed later in the fold pipeline) |  |
+| records | primary\_category | yes | predictor (contract) | never missing |  |
+| records | category\_missing\_fraction | yes | predictor (contract) | missing (imputed later in the fold pipeline) |  |
+| records | customer\_state | yes | predictor (contract) | never missing |  |
+| records | primary\_seller\_state | yes | predictor (contract) | never missing |  |
+| records | distance\_km\_max | yes | predictor (contract) | missing (imputed later in the fold pipeline) |  |
+| records | distance\_missing\_fraction | yes | predictor (contract) | missing (imputed later in the fold pipeline) |  |
+| records | interstate\_share | yes | predictor (contract) | missing (imputed later in the fold pipeline) |  |
+| records | purchase\_month | yes | predictor (contract) | never missing |  |
+| records | purchase\_dayofweek | yes | predictor (contract) | never missing |  |
+| records | purchase\_hour | yes | predictor (contract) | never missing |  |
+| records | primary\_payment\_type | yes | predictor (contract) | never missing |  |
+| records | payment\_installments\_max | yes | predictor (contract) | missing (imputed later in the fold pipeline) |  |
+| records | n\_payment\_methods | yes | predictor (contract) | never missing |  |
+| records | product\_photos\_qty | yes | screening candidate (classification only, G-68) | missing (product without a catalogue value) |  |
+| records | product\_description\_lenght | yes | screening candidate (classification only, G-68) | missing (product without a catalogue value) |  |
+| records | product\_name\_lenght | yes | screening candidate (classification only, G-68) | missing (product without a catalogue value) |  |
+| records | est\_delivery\_days | yes | screening candidate (classification only, G-68) | never missing |  |
+| records | customer\_region | yes | screening candidate (classification only, G-68) | never missing |  |
+| records | seller\_region | yes | screening candidate (classification only, G-68) | never missing |  |
+| records | region\_pair | yes | screening candidate (classification only, G-68) | never missing |  |
+| records | seller\_prior\_review\_mean | yes | screening candidate (classification only, G-68) | missing (product without a catalogue value) |  |
+| records | seller\_prior\_review\_count | yes | screening candidate (classification only, G-68) | missing (product without a catalogue value) |  |
+| records | seller\_prior\_detractor\_share | yes | screening candidate (classification only, G-68) | missing (product without a catalogue value) |  |
+| records | seller\_prior\_delivered\_count | yes | screening candidate (classification only, G-68) | missing (product without a catalogue value) |  |
+| records | seller\_prior\_late\_share | yes | screening candidate (classification only, G-68) | missing (product without a catalogue value) |  |
+| records | order\_estimated\_delivery\_date | yes | description only | not set |  |
+| records | lead\_days | no | target (regression) | not delivered or invalid | lead\_label\_ts |
+| records | lead\_label\_ts | no | label time | no valid lead time |  |
+| records | is\_detractor | no | target (classification) | no valid review | review\_label\_ts |
+| records | is\_detractor\_first | no | sensitivity label | no valid review | review\_label\_ts |
+| records | review\_label\_ts | no | label time | no valid review |  |
+| records | eligible\_regression |  | eligibility | never missing |  |
+| records | eligible\_classification |  | eligibility | never missing |  |
+| not built | has\_items | no | not in the contract |  |  |
+| not built | freight\_ratio\_missing | no | not in the contract |  |  |
+| not built | payment\_missing | yes | not in the contract |  |  |
+
+**Files** (stages/s02\_data/common/outputs/, run 20261019T163328Z): data\_dictionary.csv, figures/data\_structure.png, figures/data\_structure.csv, figures/data\_structure.json
+
+### 2.13 Negative values
+
+**Approved solution:** Orders with a negative value in a log1p candidate (total\_price, total\_freight, total\_weight\_g, total\_volume\_cm3, distance\_km\_max) removed from both tasks; zero kept, missing values stay missing. Every s02 removal rule writes exclusions.csv rows with step, reason\_code and reason\_description, one description per code pre-registered in protocol.yaml (G-63)
+
+**What was done:** Orders with a negative value in \['total\_price', 'total\_freight', 'total\_weight\_g', 'total\_volume\_cm3', 'distance\_km\_max'\] removed from both tasks (NEGATIVE\_VALUE); zero kept.
+
+| task | reason\_code | reason\_description | orders |
+| --- | --- | --- | --- |
+| regression | NEGATIVE\_VALUE | negative value in a log1p candidate (s02 2.13) | 0 |
+| classification | NEGATIVE\_VALUE | negative value in a log1p candidate (s02 2.13) | 0 |
+
+**Files** (stages/s02\_data/common/outputs/, run 20261019T163328Z): exclusions.csv, exclusion\_counts.csv
+
+# Part B — Review record (history: rounds 1–2 and addenda, do not cite)
+
+## Round 2 review (as accepted 2026-10-19, run 20261019T072845Z; values superseded by Part A)
 
 ### Coverage
 
@@ -386,3 +740,10 @@ Approved by the experiment lead; reviewed together with s03 round 3. s02 stays A
 - **2.7 / 2.12:** all tagged known at checkout; one data-dictionary row each.
 - **New checks:** seller history equals a direct per-order recomputation on 2,000 random orders (seed 42): PASS. est\_delivery\_days after purchase on every order (minimum 1.649 days) and region columns complete: PASS.
 - Populations, exclusions and both test cutoffs are unchanged. G-35 is reopened only for the s03 classification screen of est\_delivery\_days.
+
+## Addendum — 2026-10-20: CR-042 (G-71)
+
+Approved by the experiment lead after the external audit of s01–s03.
+
+- New rule 2.8 INVALID\_REVIEW\_TIME: orders with a review answered at or before purchase leave classification; seller history never counts such reviews; new check.
+- Rerun on a clean tree (commit aca98ac). The result is Part A at the top of this tab; s02 stays ACCEPTED (no decision changed).

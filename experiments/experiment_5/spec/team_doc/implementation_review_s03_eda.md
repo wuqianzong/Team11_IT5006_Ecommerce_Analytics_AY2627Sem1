@@ -1,10 +1,59 @@
 # s03 EDA — implementation review
 
-**ACCEPTED · round 3 · 2026-10-19 · tag e5-s03-accepted · approved by the experiment lead** · runs `20261019T151309Z` (regression) and `20261019T151336Z` (classification) · coverage 6 of 6 (regression) and 10 of 10 (classification, candidate screen 3.10–3.13) IMPLEMENTED, 0 MISSING · 6 + 11 checks, all PASS. Evidence cards are in the two sub-tabs; approve rows here and comment anywhere. Nothing is committed until s03 is accepted (G-64). s03 ends at the human gate: s04 runs only after the team records its decisions (G-31).
+> **How to read this tab.** Part A is the final, accepted state of s03 (CR-042, 2026-10-20); the report, slides and s04 use only Part A and the Part A sections of the two sub-tabs. Part B is the review record of rounds 1–3 (review table, decisions, comments), kept unchanged; its run IDs and numbers are superseded.
 
-**Gate decisions recorded in spec/human\_decisions.yaml (G-70):** threshold 99% for both tasks (as a share); no collinearity drop (none flagged in either pool; weight\_missing\_fraction = volume\_missing\_fraction goes by the s04 duplicate rule). Classification pool = the 24 contract predictors + product\_photos\_qty, product\_description\_lenght and seller\_prior\_review\_mean (the seller rating customers see at checkout). Every other screening column stays out; est\_delivery\_days was not adopted, so G-35 holds for modelling. Method decisions 1–4 below were accepted with the stage. The rows still Open (and 3.6, marked Change and answered by 3.10–3.13) were set to Approved on the experiment lead's acceptance. This tab is frozen as the record of the s03 review; s04 may start.
+# Part A — Final result (accepted, cite this)
 
-## Current (round 3)
+**ACCEPTED** · regression run `20261019T163336Z` (values identical to round 3) · classification run `20261019T163353Z` (round 4, CR-042) · both on commit aca98ac, clean tree · coverage 6 of 6 and 10 of 10 IMPLEMENTED · 6 + 11 checks, all PASS · tag e5-s03-accepted.
+
+## Gate decisions (spec/human\_decisions.yaml, G-70)
+
+| Decision | Regression | Classification |
+| --- | --- | --- |
+| Feature pool (`e5lib.contract.pool(task)`) | 24 contract predictors | 27 = 24 contract predictors + product\_photos\_qty, product\_description\_lenght, seller\_prior\_review\_mean |
+| Ranking measure | absolute Spearman (rank correlation ratio for the 4 categorical) | mutual information |
+| Cumulative-importance threshold | 99% | 99% |
+| Features inside 99% (s04 computes this officially) | 18 of 24 | 19 of 27 |
+| Collinearity drops | none (identical missing-fraction pair: s04 duplicate rule) | none (same) |
+| Screening candidates not adopted | — | product\_name\_lenght, est\_delivery\_days (G-35 holds), customer\_region, seller\_region, region\_pair, seller\_prior\_review\_count, seller\_prior\_detractor\_share, seller\_prior\_delivered\_count, seller\_prior\_late\_share |
+
+**Regression, inside 99%:** distance\_km\_max, customer\_state, interstate\_share, total\_freight, primary\_category, freight\_ratio, total\_price, primary\_seller\_state, total\_weight\_g, primary\_payment\_type, total\_volume\_cm3, n\_sellers, payment\_installments\_max, purchase\_dayofweek, n\_products, purchase\_month, n\_items, n\_categories.
+
+**Classification, inside 99% of the pool:** total\_volume\_cm3, seller\_prior\_review\_mean, total\_freight, freight\_ratio, total\_price, n\_items, product\_description\_lenght, customer\_state, total\_weight\_g, n\_products, n\_sellers, purchase\_month, distance\_km\_max, primary\_category, interstate\_share, n\_categories, primary\_seller\_state, payment\_installments\_max, product\_photos\_qty.
+
+Evidence: the Part A sections of the sub-tabs “s03 › regression” and “s03 › classification”; files under stages/s03\_eda/\<task>/outputs/.
+
+## What CR-042 changed (2026-10-20)
+
+- **Data error fixed (G-71, external audit H-03).** A review answered at or before its own order's purchase is impossible. s02 now removes such orders from classification (INVALID\_REVIEW\_TIME) and seller history never counts such a review. Classification pre-cutoff orders 77,971 → 77,965; classification test cutoff 2018-05-25 18:44:28 → 18:43:19; seller\_prior\_review\_mean MI 0.0104 → 0.0094 (still rank 2 of 36).
+- **Decisions unchanged.** The 99% cut of the classification pool keeps the same 19 features (order of near-tied features shifted); regression values are byte-identical. s03 classification was re-accepted as round 4 by the experiment lead (README 9.2).
+- **s04 ranking specified (audit H-02).** s04 walks the pool ranking (the extended ranking filtered to the pool, re-normalised) and checks that the ranked set equals `contract.pool(task)`.
+
+## Checks (final runs)
+
+| Task | Check | Result | Detail | IDs |
+| --- | --- | --- | --- | --- |
+| regression | no order on or after the test cutoff loaded | PASS | latest purchase 2018-05-26 18:16:57, cutoff 2018-05-26 18:18:03 | 3.1, 3.3, 3.8 |
+| regression | all 24 contract predictors diagnosed against lead\_days | PASS | — | 3.4, 3.5 |
+| regression | importance\_ranking has the 24 contract predictors and ends at cumulative share 1.0 | PASS | 24 rows | 3.8 |
+| regression | ranking measure is the pre-registered one | PASS | — | 3.8 |
+| regression | outcome trends show outcomes, not volume only | PASS | — | 3.3 |
+| regression | review pack lists both cut points and every flagged group | PASS | — | 3.9 |
+| classification | no order on or after the test cutoff loaded | PASS | latest purchase 2018-05-25 18:35:11, cutoff 2018-05-25 18:43:19 | 3.2, 3.3, 3.8 |
+| classification | all 24 contract predictors diagnosed against is\_detractor | PASS | — | 3.6, 3.7 |
+| classification | importance\_ranking has the 24 contract predictors and ends at cumulative share 1.0 | PASS | 24 rows | 3.8 |
+| classification | ranking measure is the pre-registered one | PASS | — | 3.8 |
+| classification | outcome trends show outcomes, not volume only | PASS | — | 3.3 |
+| classification | review pack lists both cut points and every flagged group | PASS | — | 3.9 |
+| classification | candidate screen 3.10 covers every product candidate | PASS | 3 candidates | 3.10 |
+| classification | candidate screen 3.11 covers every promise candidate | PASS | 1 candidates | 3.11 |
+| classification | candidate screen 3.12 covers every region candidate | PASS | 3 candidates | 3.12 |
+| classification | candidate screen 3.13 covers every seller\_history candidate | PASS | 5 candidates | 3.13 |
+| classification | extended ranking holds the 24 predictors and every candidate, ends at 1.0; official ranking unchanged at 24 | PASS | 36 rows | 3.10 |
+
+# Part B — Review record (history: rounds 1–3, do not cite)
+
+## Round 3 review (as accepted 2026-10-19; values superseded by Part A)
 
 ### Coverage
 
@@ -96,3 +145,10 @@ Recommendation from the Feature solution tab: 95%, with 99% only if 95% drops a 
 - Classification cards 3.11–3.13 new; 3.10 extended to every candidate (the round 2 card is kept at the end of the classification sub-tab). Regression unchanged (every evidence hash equals round 2). Runs 20261019T151309Z and 20261019T151336Z; 40 tests pass.
 
 * Outcome: accepted by the experiment lead on 2026-10-19 (CR-039, G-70). Adopted after the round 3 advice: seller\_prior\_review\_mean only of the seller history (the rating customers see; detractor share is near-duplicate of the mean, Spearman −0.87, and late share is not shown to customers). Committed and tagged e5-s03-accepted together with the s01 and s02 changes of CR-037 and CR-038.
+
+### Round 4 — 2026-10-20 (CR-042, classification only)
+
+- External audit of s01–s03 validated; the experiment lead asked to rectify what was not correct and decided the result (“decide for me”).
+- Fix G-71: reviews answered at or before their own order's purchase are a data error; such orders leave classification and such reviews no longer count in seller history. s01–s03 rerun on a clean tree (commit aca98ac).
+- Classification decision.json changed only in the order of near-tied features (REOPENED by the orchestrator); the 99% pool selection, adopted candidates and every gate decision are unchanged, so round 4 was accepted. Regression values byte-identical, stays accepted.
+- The tabs were restructured: Part A (final result) on top, Part B (this review record) below.

@@ -1,8 +1,50 @@
 # s01 Problem — implementation review
 
-**ACCEPTED · round 2 · 2026-10-18** · run `20261018T150315Z` · commit `453896d` (tag `e5-s01-accepted`) · all 9 rows Approved · 7 checks, all PASS · approved by the experiment lead. This tab is frozen as the record of the s01 review; s02 may start.
+> **How to read this tab.** Part A is the final, accepted state of s01 (run `20261019T163354Z`, CR-042, 2026-10-20). Part B is the review record of rounds 1–2 and the dated addenda, kept unchanged. The evidence cards in Part B are still correct apart from the additions listed in Part A.
 
-## Current (round 2)
+# Part A — Final result (accepted, cite this)
+
+**ACCEPTED** · run `20261019T163354Z` on commit aca98ac, clean tree · 8 checks, all PASS · spec/protocol.yaml pre-registered layer · tag e5-s01-accepted.
+
+## Changes since the round 2 acceptance (each approved by the experiment lead)
+
+| Change | What it added to protocol.yaml | Values of the round 2 cards |
+| --- | --- | --- |
+| CR-033 | check 1.9 renamed to “later stages used this pre-registered layer” (rerun-safe) | unchanged |
+| CR-037 (G-68), CR-038 (G-69) | features.screening\_candidates: 12 classification-only screening columns (not predictors); adoption recorded at the s03 gate (G-70) | unchanged |
+| CR-042 (G-71) | exclusion reason code INVALID\_REVIEW\_TIME | unchanged |
+
+## Exclusion reason codes (final)
+
+| Code | Description |
+| --- | --- |
+| INVALID\_LEAD\_TIME | not delivered, or delivery time missing or not after purchase (s02 2.6, 2.8) |
+| ZERO\_ITEMS | order has no items (s02 2.8) |
+| CANCELLED\_OR\_UNAVAILABLE | order cancelled or unavailable (s02 2.8) |
+| NO\_VALID\_REVIEW | no valid review score (s02 2.8) |
+| INVALID\_REVIEW\_TIME | a valid review answered at or before the purchase time, a data error (s02 2.8; G-71) |
+| LEAD\_DAYS\_OUTLIER | lead\_days above max(100, mean + 12 SD) of pre-cutoff orders (s02 2.9) |
+| DISTANCE\_OUTLIER | distance\_km\_max above 4,397.53 km (s02 2.9) |
+| MISSING\_INSTALLMENTS | payment\_installments\_max missing (s02 2.10) |
+| NO\_USABLE\_PAYMENT | no payment rows, or only the not\_defined payment type (s02 2.11) |
+| NEGATIVE\_VALUE | negative value in a log1p candidate (s02 2.13) |
+
+## Checks (final run)
+
+| Check | Result | Detail | IDs |
+| --- | --- | --- | --- |
+| later stages used this pre-registered layer | PASS | later nodes with outputs: 3; using a different layer: none | 1.9 |
+| contract: 24 distinct predictors, groups and log1p candidates consistent | PASS | — | 1.3 |
+| screening candidates are task-scoped and outside the 24 predictors | PASS | \['product\_photos\_qty', 'product\_description\_lenght', 'product\_name\_lenght', 'est\_delivery\_days', 'customer\_region', 'seller\_region', 'region\_pair', 'seller\_prior\_review\_mean', 'seller\_prior\_review\_count', 'seller\_prior\_detractor\_share', 'seller\_prior\_delivered\_count', 'seller\_prior\_late\_share'\] | 1.3 |
+| not-in-contract columns have a reason and are not predictors | PASS | — | 1.3 |
+| one description per exclusion reason code | PASS | 10 codes | 1.3 |
+| every citation is in the verified list | PASS | 8 citations | 1.4, 1.5, 1.7 |
+| grids match the AGREED s07 blueprint | PASS | — | 1.8 |
+| all ten blueprints AGREED | PASS | — | 1.9 |
+
+# Part B — Review record (history: rounds 1–2 and addenda)
+
+## Round 2 review (as accepted 2026-10-18, run 20261018T150315Z)
 
 ### Coverage
 
@@ -254,3 +296,9 @@ Approved by the experiment lead; reviewed together with s03 round 3. s01 stays A
 
 - **1.3:** features.screening\_candidates gains est\_delivery\_days, customer\_region, seller\_region, region\_pair and five seller\_prior\_\* columns; each entry now names its group (the s03 card that screens it), kind and planned transform. Added notes: est\_delivery\_days is screened for classification only (G-35 reopened for this screen) and, if adopted, trains on out-of-fold task 1 predictions; the seller-history time rule.
 - Adopted at the s03 gate so far: product\_photos\_qty, product\_description\_lenght (human\_decisions.yaml).
+
+## Addendum — 2026-10-20: CR-042 (G-71)
+
+Approved by the experiment lead after the external audit of s01–s03.
+
+- protocol.yaml gains the exclusion reason code INVALID\_REVIEW\_TIME (a review answered at or before purchase is a data error); every other value unchanged. Rerun on a clean tree (commit aca98ac); s01 stays ACCEPTED. The final state is Part A at the top of this tab.

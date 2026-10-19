@@ -1,25 +1,25 @@
 feature,measure,value,rank,share,cumulative_share,method,type
-total_freight,mutual information,0.01076723866713003,1,0.13161860684471097,0.13161860684471097,"mutual_info_classif, continuous (k-NN, k=3)",numeric
-freight_ratio,mutual information,0.00995631692401644,2,0.12170590839078652,0.2533245152354975,"mutual_info_classif, continuous (k-NN, k=3)",numeric
-total_volume_cm3,mutual information,0.009160959148148962,3,0.11198346370101088,0.36530797893650835,"mutual_info_classif, continuous (k-NN, k=3)",numeric
-total_price,mutual information,0.008272158675874497,4,0.1011187765198111,0.46642675545631945,"mutual_info_classif, continuous (k-NN, k=3)",numeric
-n_items,mutual information,0.007306065197065611,5,0.08930926047826887,0.5557360159345883,"mutual_info_classif, discrete (contingency)",numeric
-total_weight_g,mutual information,0.0058338937270119295,6,0.07131345264719355,0.6270494685817819,"mutual_info_classif, continuous (k-NN, k=3)",numeric
-customer_state,mutual information,0.0050467506700532525,7,0.061691424590857816,0.6887408931726398,"mutual_info_classif, discrete (contingency)",categorical
-n_products,mutual information,0.0044348790415928725,8,0.05421191254552616,0.7429528057181659,"mutual_info_classif, discrete (contingency)",numeric
-n_sellers,mutual information,0.004089599969704668,9,0.04999122497469204,0.7929440306928579,"mutual_info_classif, discrete (contingency)",numeric
-purchase_month,mutual information,0.003905849309534734,10,0.04774505892914927,0.8406890896220072,"mutual_info_classif, discrete (contingency)",numeric
-distance_km_max,mutual information,0.003652669248130236,11,0.04465018864781644,0.8853392782698236,"mutual_info_classif, continuous (k-NN, k=3)",numeric
-primary_category,mutual information,0.002638518410628724,12,0.03225321998306177,0.9175924982528854,"mutual_info_classif, discrete (contingency)",categorical
-interstate_share,mutual information,0.0026152147004370185,13,0.03196835568641451,0.9495608539392999,"mutual_info_classif, discrete (contingency)",numeric
-n_categories,mutual information,0.0015401118842513547,14,0.018826310705730553,0.9683871646450305,"mutual_info_classif, discrete (contingency)",numeric
-primary_seller_state,mutual information,0.000907931688081301,15,0.011098546952454616,0.9794857115974851,"mutual_info_classif, discrete (contingency)",categorical
-payment_installments_max,mutual information,0.0007952535452219543,16,0.009721170575513065,0.9892068821729981,"mutual_info_classif, discrete (contingency)",numeric
-category_missing_fraction,mutual information,0.00042301099791950124,17,0.0051708817782708215,0.994377763951269,"mutual_info_classif, discrete (contingency)",numeric
-purchase_hour,mutual information,0.0003137979764456433,18,0.0038358630069703662,0.9982136269582393,"mutual_info_classif, discrete (contingency)",numeric
-purchase_dayofweek,mutual information,0.00010507671351495107,19,0.0012844565883803358,0.9994980835466197,"mutual_info_classif, discrete (contingency)",numeric
-distance_missing_fraction,mutual information,2.9141410683629625e-05,20,0.0003562242831468006,0.9998543078297666,"mutual_info_classif, discrete (contingency)",numeric
-primary_payment_type,mutual information,8.450990586618065e-06,21,0.00010330481582655566,0.9999576126455931,"mutual_info_classif, discrete (contingency)",categorical
-volume_missing_fraction,mutual information,1.175895589892301e-06,22,1.4374134736043477e-05,0.9999719867803292,"mutual_info_classif, discrete (contingency)",numeric
-weight_missing_fraction,mutual information,1.175895589892301e-06,23,1.4374134736043477e-05,0.9999863609150652,"mutual_info_classif, discrete (contingency)",numeric
-n_payment_methods,mutual information,1.1157638438452633e-06,24,1.3639084934833803e-05,1.0,"mutual_info_classif, discrete (contingency)",numeric
+total_volume_cm3,mutual information,0.010396669657036117,1,0.13231123287292576,0.13231123287292576,"mutual_info_classif, continuous (k-NN, k=3)",numeric
+total_freight,mutual information,0.009325603809119842,2,0.11868051770155542,0.2509917505744812,"mutual_info_classif, continuous (k-NN, k=3)",numeric
+freight_ratio,mutual information,0.008200509923170785,3,0.1043622250118415,0.3553539755863227,"mutual_info_classif, continuous (k-NN, k=3)",numeric
+total_price,mutual information,0.007880600014471328,4,0.10029095259244283,0.45564492817876556,"mutual_info_classif, continuous (k-NN, k=3)",numeric
+n_items,mutual information,0.007311735785094509,5,0.09305141050742376,0.5486963386861893,"mutual_info_classif, discrete (contingency)",numeric
+customer_state,mutual information,0.005046929852121314,6,0.06422878988998393,0.6129251285761732,"mutual_info_classif, discrete (contingency)",categorical
+total_weight_g,mutual information,0.0048485537929290334,7,0.06170419481963466,0.6746293233958078,"mutual_info_classif, continuous (k-NN, k=3)",numeric
+n_products,mutual information,0.004437472473844468,8,0.05647264684000854,0.7311019702358164,"mutual_info_classif, discrete (contingency)",numeric
+n_sellers,mutual information,0.004091260567558744,9,0.05206664706632633,0.7831686173021427,"mutual_info_classif, discrete (contingency)",numeric
+purchase_month,mutual information,0.003905630244468508,10,0.049704258174798295,0.832872875476941,"mutual_info_classif, discrete (contingency)",numeric
+distance_km_max,mutual information,0.003745417866874323,11,0.047665345917290596,0.8805382213942315,"mutual_info_classif, continuous (k-NN, k=3)",numeric
+primary_category,mutual information,0.002634295457992697,12,0.03352485856494224,0.9140630799591738,"mutual_info_classif, discrete (contingency)",categorical
+interstate_share,mutual information,0.002617976410166851,13,0.03331717731619845,0.9473802572753722,"mutual_info_classif, discrete (contingency)",numeric
+n_categories,mutual information,0.0015410294199821948,14,0.019611616909776898,0.9669918741851491,"mutual_info_classif, discrete (contingency)",numeric
+primary_seller_state,mutual information,0.000908754413510131,15,0.011565089667811529,0.9785569638529606,"mutual_info_classif, discrete (contingency)",categorical
+payment_installments_max,mutual information,0.0007985138509398627,16,0.010162134180387172,0.9887190980333478,"mutual_info_classif, discrete (contingency)",numeric
+category_missing_fraction,mutual information,0.0004233306362165512,17,0.00538743657713365,0.9941065346104815,"mutual_info_classif, discrete (contingency)",numeric
+purchase_hour,mutual information,0.0003174709847208446,18,0.004040233918692336,0.9981467685291738,"mutual_info_classif, discrete (contingency)",numeric
+purchase_dayofweek,mutual information,0.00010539723096886222,19,0.0013413177518288276,0.9994880862810026,"mutual_info_classif, discrete (contingency)",numeric
+distance_missing_fraction,mutual information,2.9067080281254705e-05,20,0.00036991665166800247,0.9998580029326706,"mutual_info_classif, discrete (contingency)",numeric
+primary_payment_type,mutual information,7.710459322971333e-06,21,9.812568954217543e-05,0.9999561286222127,"mutual_info_classif, discrete (contingency)",categorical
+volume_missing_fraction,mutual information,1.1785388404687803e-06,22,1.4998449706971488e-05,0.9999711270719197,"mutual_info_classif, discrete (contingency)",numeric
+weight_missing_fraction,mutual information,1.1785388404687803e-06,23,1.4998449706971488e-05,0.9999861255216267,"mutual_info_classif, discrete (contingency)",numeric
+n_payment_methods,mutual information,1.0902201209826712e-06,24,1.3874478373222627e-05,1.0,"mutual_info_classif, discrete (contingency)",numeric

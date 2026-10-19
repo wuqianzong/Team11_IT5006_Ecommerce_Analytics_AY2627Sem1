@@ -30,6 +30,7 @@ populations.exclusions.reason_codes.INVALID_LEAD_TIME,"not delivered, or deliver
 populations.exclusions.reason_codes.ZERO_ITEMS,order has no items (s02 2.8),1.3
 populations.exclusions.reason_codes.CANCELLED_OR_UNAVAILABLE,order cancelled or unavailable (s02 2.8),1.3
 populations.exclusions.reason_codes.NO_VALID_REVIEW,no valid review score (s02 2.8),1.3
+populations.exclusions.reason_codes.INVALID_REVIEW_TIME,"a valid review answered at or before the purchase time, a data error (s02 2.8; G-71)",1.3
 populations.exclusions.reason_codes.LEAD_DAYS_OUTLIER,"lead_days above max(100, mean + 12 SD) of pre-cutoff orders (s02 2.9)",1.3
 populations.exclusions.reason_codes.DISTANCE_OUTLIER,"distance_km_max above 4,397.53 km (s02 2.9)",1.3
 populations.exclusions.reason_codes.MISSING_INSTALLMENTS,payment_installments_max missing (s02 2.10),1.3

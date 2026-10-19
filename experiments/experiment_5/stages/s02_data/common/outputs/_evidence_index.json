@@ -254,6 +254,15 @@
       ]
     },
     {
+      "name": "eligible classification orders have every review answered after purchase (G-71)",
+      "passed": true,
+      "detail": "63 orders with a review answered at or before purchase",
+      "ids": [
+        "2.7",
+        "2.8"
+      ]
+    },
+    {
       "name": "eligible orders have no negative log1p candidate",
       "passed": true,
       "detail": "",
@@ -272,7 +281,7 @@
     {
       "name": "test cutoffs recorded in protocol.yaml",
       "passed": true,
-      "detail": "{'regression': '2018-05-26 18:18:03', 'classification': '2018-05-25 18:44:28'}",
+      "detail": "{'regression': '2018-05-26 18:18:03', 'classification': '2018-05-25 18:43:19'}",
       "ids": [
         "2.8"
       ]
@@ -344,7 +353,7 @@
       "label": "observation"
     },
     "2.8": {
-      "done": "Population rules applied per task and written to exclusions.csv; counts in exclusion_counts.csv. Test cutoffs (80/20 on eligible orders after the population rules, before the outlier rule): {'regression': '2018-05-26 18:18:03', 'classification': '2018-05-25 18:44:28'}.",
+      "done": "Population rules applied per task and written to exclusions.csv; counts in exclusion_counts.csv. Test cutoffs (80/20 on eligible orders after the population rules, before the outlier rule): {'regression': '2018-05-26 18:18:03', 'classification': '2018-05-25 18:43:19'}.",
       "inputs": "",
       "expectation": "",
       "observation": "",

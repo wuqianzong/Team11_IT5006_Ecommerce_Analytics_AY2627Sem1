@@ -1,8 +1,8 @@
 {
   "node": "s03_eda/regression",
-  "run_id": "20261019T154505Z",
-  "commit": "90bf5e76e7d50527ecba35207ed28ad5d4ea8a75",
-  "dirty": true,
+  "run_id": "20261019T163336Z",
+  "commit": "aca98ac99b1a7a21ae26076f070de91a73d6e7b1",
+  "dirty": false,
   "code": {
     "experiments/experiment_5/stages/s03_eda/regression/run.py": "275dad57c6b3ef9a24dd9f6a040475fea4b9635502aedde433b54f624f1c8d5b"
   },
@@ -24,15 +24,15 @@
     "experiments/experiment_5/e5lib/paths.py": "0e734f058878c897ef2020f1bf286772f1e8871247f4d36d9cfa311fe877b660",
     "experiments/experiment_5/e5lib/protocol.py": "900e556c163cb112c7b533311f5e635052090bea2554b1abe0c10010ca65e96d",
     "experiments/experiment_5/e5lib/review.py": "fc47e1fbebddfdc377f0e7a43c87cef92accf158437cb929ad6557e86c9df48d",
-    "experiments/experiment_5/e5lib/seller_history.py": "d5ef6eb6d3fc7bd1d1d1ba3df3ddf5c03f0e3bedafbaee9b1c1e6b50d9e1aa58",
+    "experiments/experiment_5/e5lib/seller_history.py": "fde34f2e3560d851e66a57adb300a652fc8c2fde6f9a7d9d0d8e6a163436dc3e",
     "experiments/experiment_5/run_pipeline.py": "38625fed4ceda4990a3b7dc86a2146d1a5eb89c9feac6948381dcbf7c1d589cf"
   },
   "protocol": {
-    "pre_registered": "c358bb20d82f5c80fa9110e1cd1089085b1fe1a793b129a38a084f816fdfcaca",
-    "data_dependent.test_cutoffs": "e223eddf31d4107868430a8f7a490caacb759fad72f7014700bd0c5982dad22f"
+    "pre_registered": "216a717b2cb3f1c1c8cf105f5811aa307ac6e712031381254955be26414736b3",
+    "data_dependent.test_cutoffs": "93f26043640c89c9725eeba61fc23cd7816fe4d956b089c14561a0ada0c6f2b9"
   },
   "reads": {
-    "experiments/experiment_5/stages/s02_data/common/outputs/records.csv.gz": "ac25b59f8c55c2e42187b0976fc6bb55d7510b5df807bc80f34cd90b1a25cc83"
+    "experiments/experiment_5/stages/s02_data/common/outputs/records.csv.gz": "d11c6ce4121acec25d7e5c355f7a1b6c2fbe102ff8079c88add9c86e8d0a5e74"
   },
   "outputs": {
     "experiments/experiment_5/stages/s03_eda/regression/outputs/_evidence_index.json": "57013b750b5d0b66934f3e120297582f650dc7a19bbf46db990215ae64526e62",
@@ -79,5 +79,5 @@
     "shapely": "2.1.2"
   },
   "seed": 42,
-  "runtime_s": 6.38
+  "runtime_s": 5.84
 }

@@ -4,6 +4,7 @@ regression,2.8,ZERO_ITEMS,order has no items (s02 2.8),775
 classification,2.8,ZERO_ITEMS,order has no items (s02 2.8),775
 classification,2.8,CANCELLED_OR_UNAVAILABLE,order cancelled or unavailable (s02 2.8),1234
 classification,2.8,NO_VALID_REVIEW,no valid review score (s02 2.8),768
+classification,2.8,INVALID_REVIEW_TIME,"a valid review answered at or before the purchase time, a data error (s02 2.8; G-71)",63
 regression,2.10,MISSING_INSTALLMENTS,payment_installments_max missing (s02 2.10),6
 classification,2.10,MISSING_INSTALLMENTS,payment_installments_max missing (s02 2.10),6
 regression,2.11,NO_USABLE_PAYMENT,"no payment rows, or only the not_defined payment type (s02 2.11)",4

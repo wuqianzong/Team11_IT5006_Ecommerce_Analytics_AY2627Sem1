@@ -48,7 +48,7 @@ Pipeline v2 chart.
 | --- | --- | --- | --- | --- |
 | s01 Problem statement | ACCEPTED | 2 | 2 (tag e5-s01-accepted) | Implementation reviews › s01 Problem |
 | s02 Data preprocessing | ACCEPTED | 2 | 2 (tag e5-s02-accepted) | Implementation reviews › s02 Data |
-| s03 EDA | ACCEPTED | 3 | 3 (tag e5-s03-accepted) | Implementation reviews › s03 EDA (sub-tabs: regression, classification) |
+| s03 EDA | ACCEPTED | 4 | regression 3, classification 4 (CR-042; tag e5-s03-accepted) | Implementation reviews › s03 EDA (sub-tabs: regression, classification) |
 | s04 Features | NOT STARTED | — | — | — |
 | s05 Partition | NOT STARTED | — | — | — |
 | s06 Training | NOT STARTED | — | — | — |

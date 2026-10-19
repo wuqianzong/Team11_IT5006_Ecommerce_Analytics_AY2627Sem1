@@ -328,7 +328,7 @@
     {
       "name": "no order on or after the test cutoff loaded",
       "passed": true,
-      "detail": "latest purchase 2018-05-25 18:43:19, cutoff 2018-05-25 18:44:28",
+      "detail": "latest purchase 2018-05-25 18:35:11, cutoff 2018-05-25 18:43:19",
       "ids": [
         "3.2",
         "3.3",
@@ -420,7 +420,7 @@
   "deviations": {},
   "cards": {
     "3.2": {
-      "done": "77,971 pre-cutoff orders: 11,554 low reviews (score <= 2, 14.82%) and 66,417 normal reviews (score >= 3, 85.18%).",
+      "done": "77,965 pre-cutoff orders: 11,550 low reviews (score <= 2, 14.81%) and 66,415 normal reviews (score >= 3, 85.19%).",
       "inputs": "",
       "expectation": "",
       "observation": "",
@@ -456,7 +456,7 @@
       "label": "observation"
     },
     "3.8": {
-      "done": "Ranking over the 24 contract predictors by mutual information (discrete estimator for categorical features and features with at most 30 values, k-NN estimator for the rest): top 5 ['total_freight', 'freight_ratio', 'total_volume_cm3', 'total_price', 'n_items']; cut points {'0.95': 14, '0.99': 17}. Missingness, IQR outliers, Pearson/Spearman matrix and VIF on 77,046 complete rows; flagged groups: []; identical columns: [('weight_missing_fraction', 'volume_missing_fraction')].",
+      "done": "Ranking over the 24 contract predictors by mutual information (discrete estimator for categorical features and features with at most 30 values, k-NN estimator for the rest): top 5 ['total_volume_cm3', 'total_freight', 'freight_ratio', 'total_price', 'n_items']; cut points {'0.95': 14, '0.99': 17}. Missingness, IQR outliers, Pearson/Spearman matrix and VIF on 77,040 complete rows; flagged groups: []; identical columns: [('weight_missing_fraction', 'volume_missing_fraction')].",
       "inputs": "",
       "expectation": "",
       "observation": "",
@@ -465,7 +465,7 @@
       "label": "observation"
     },
     "3.10": {
-      "done": "Screening columns (not predictors) diagnosed against is_detractor with the 3.6 measures; numeric ones also with skewness, correlation with the 20 numeric predictors and VIF in the extended numeric set. Product fields (primary item): product_photos_qty: rank 27, MI 0.0006, ROC-AUC 0.480, overlap 96.3%; product_description_lenght: rank 11, MI 0.0047, ROC-AUC 0.492, overlap 97.8%; product_name_lenght: rank 26, MI 0.0007, ROC-AUC 0.504, overlap 97.2%. Extended ranking over 24 + 12 candidates; cut points {'0.95': 22, '0.99': 27} (official 3.8 ranking unchanged at 24).",
+      "done": "Screening columns (not predictors) diagnosed against is_detractor with the 3.6 measures; numeric ones also with skewness, correlation with the 20 numeric predictors and VIF in the extended numeric set. Product fields (primary item): product_photos_qty: rank 27, MI 0.0006, ROC-AUC 0.480, overlap 96.3%; product_description_lenght: rank 9, MI 0.0052, ROC-AUC 0.492, overlap 97.8%; product_name_lenght: rank 20, MI 0.0023, ROC-AUC 0.504, overlap 97.2%. Extended ranking over 24 + 12 candidates; cut points {'0.95': 23, '0.99': 27} (official 3.8 ranking unchanged at 24).",
       "inputs": "",
       "expectation": "",
       "observation": "",
@@ -474,7 +474,7 @@
       "label": "observation"
     },
     "3.11": {
-      "done": "Screening columns (not predictors) diagnosed against is_detractor with the 3.6 measures; numeric ones also with skewness, correlation with the 20 numeric predictors and VIF in the extended numeric set. Promised delivery days: est_delivery_days: rank 16, MI 0.0031, ROC-AUC 0.539, overlap 95.0%.",
+      "done": "Screening columns (not predictors) diagnosed against is_detractor with the 3.6 measures; numeric ones also with skewness, correlation with the 20 numeric predictors and VIF in the extended numeric set. Promised delivery days: est_delivery_days: rank 16, MI 0.0032, ROC-AUC 0.539, overlap 95.0%.",
       "inputs": "",
       "expectation": "",
       "observation": "",
@@ -483,7 +483,7 @@
       "label": "observation"
     },
     "3.12": {
-      "done": "Screening columns (not predictors) diagnosed against is_detractor with the 3.6 measures; numeric ones also with skewness, correlation with the 20 numeric predictors and VIF in the extended numeric set. Regions (IBGE macro-regions; pair = customer>seller): customer_region: rank 23, MI 0.0012, overlap 95.4%; seller_region: rank 30, MI 0.0002, overlap 97.9%; region_pair: rank 21, MI 0.0018, overlap 95.0%. Per-level detractor rates in candidate_screen_levels.csv.",
+      "done": "Screening columns (not predictors) diagnosed against is_detractor with the 3.6 measures; numeric ones also with skewness, correlation with the 20 numeric predictors and VIF in the extended numeric set. Regions (IBGE macro-regions; pair = customer>seller): customer_region: rank 24, MI 0.0012, overlap 95.4%; seller_region: rank 30, MI 0.0002, overlap 97.9%; region_pair: rank 21, MI 0.0018, overlap 95.0%. Per-level detractor rates in candidate_screen_levels.csv.",
       "inputs": "",
       "expectation": "",
       "observation": "",
@@ -492,7 +492,7 @@
       "label": "observation"
     },
     "3.13": {
-      "done": "Screening columns (not predictors) diagnosed against is_detractor with the 3.6 measures; numeric ones also with skewness, correlation with the 20 numeric predictors and VIF in the extended numeric set. Seller history at checkout: seller_prior_review_mean: rank 2, MI 0.0104, ROC-AUC 0.441, overlap 90.5%; seller_prior_review_count: rank 18, MI 0.0028, ROC-AUC 0.507, overlap 96.2%; seller_prior_detractor_share: rank 6, MI 0.0081, ROC-AUC 0.557, overlap 90.5%; seller_prior_delivered_count: rank 17, MI 0.0029, ROC-AUC 0.506, overlap 96.2%; seller_prior_late_share: rank 8, MI 0.0067, ROC-AUC 0.536, overlap 90.0%.",
+      "done": "Screening columns (not predictors) diagnosed against is_detractor with the 3.6 measures; numeric ones also with skewness, correlation with the 20 numeric predictors and VIF in the extended numeric set. Seller history at checkout: seller_prior_review_mean: rank 2, MI 0.0094, ROC-AUC 0.441, overlap 90.5%; seller_prior_review_count: rank 23, MI 0.0014, ROC-AUC 0.507, overlap 96.2%; seller_prior_detractor_share: rank 8, MI 0.0059, ROC-AUC 0.557, overlap 90.5%; seller_prior_delivered_count: rank 19, MI 0.0024, ROC-AUC 0.506, overlap 96.2%; seller_prior_late_share: rank 6, MI 0.0075, ROC-AUC 0.536, overlap 90.0%.",
       "inputs": "",
       "expectation": "",
       "observation": "",
