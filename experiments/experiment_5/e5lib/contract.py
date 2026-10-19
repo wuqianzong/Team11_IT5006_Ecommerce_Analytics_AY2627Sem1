@@ -109,6 +109,34 @@ NOT_IN_CONTRACT = {
 }
 
 
+def adopted(task: str) -> tuple[str, ...]:
+    """Screening candidates adopted into the task's selection pool at the s03 gate (G-70).
+
+    Read from spec/human_decisions.yaml (s03_to_s04.<task>.adopted_candidates), the one place the
+    team records the adoption; each name must be a screening candidate of that task.
+    """
+    import yaml
+
+    from .paths import spec_path
+    hd = yaml.safe_load(spec_path("human_decisions.yaml").read_text(encoding="utf-8")) or {}
+    rows = ((hd.get("s03_to_s04") or {}).get(task) or {}).get("adopted_candidates") or []
+    names = tuple(r["feature"] for r in rows)
+    unknown = set(names) - set(screening(task))
+    if unknown:
+        raise ValueError(f"adopted_candidates for {task} are not screening candidates: {sorted(unknown)}")
+    return names
+
+
+def pool(task: str) -> tuple[str, ...]:
+    """The task's selection pool for s04: the 24 contract predictors plus the adopted candidates.
+
+    The single source every later stage uses for the feature set it may select from (G-70):
+    regression = the 24; classification = the 24 + product_photos_qty, product_description_lenght,
+    seller_prior_review_mean. s04 selects from this pool by the 99% threshold.
+    """
+    return tuple(PREDICTORS) + adopted(task)
+
+
 def numeric() -> tuple[str, ...]:
     return tuple(c for c in PREDICTORS if c not in CATEGORICAL)
 

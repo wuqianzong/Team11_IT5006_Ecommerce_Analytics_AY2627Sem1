@@ -4,6 +4,8 @@ Round 3 (cards 3.11–3.13 new, 3.10 extended to every candidate; cards 3.2–3.
 
 **Accepted 2026-10-19 (G-70).** Adopted into the classification pool: product\_photos\_qty, product\_description\_lenght (3.10) and seller\_prior\_review\_mean (3.13, the seller rating customers see at checkout). Not adopted: product\_name\_lenght, est\_delivery\_days (G-35 holds), the three region columns and the other four seller-history columns. Threshold 99%.
 
+> **Final classification feature pool (G-70, CR-041). Use this, nothing else on this tab.** The 24 contract predictors + product\_photos\_qty, product\_description\_lenght, seller\_prior\_review\_mean = 27 features. In code the only source is `e5lib.contract.pool("classification")`, which reads spec/human\_decisions.yaml and is pinned by a test. s04 selects from this pool at the 99% threshold. The extended rankings below (24 + 3 in round 2, 24 + 12 in round 3) are screening evidence, not the feature set.
+
 ## 3.2 Classification target
 
 **Approved solution:** `is_detractor` bar chart; counts, share of low reviews (≤ 2) and normal reviews (≥ 3)
@@ -468,6 +470,8 @@ Flagged collinear groups needing a team decision: none. Identical columns, dropp
 # Round history: card 3.10 as of round 2 (superseded by round 3)
 
 Kept unchanged as the record; the current 3.10 card is above.
+
+> **Superseded. Not the feature set.** This round 2 table predates the seller history (round 3) and the adoption decision. The final pool is in the box at the top of this tab.
 
 ## 3.10 Candidate screen (G-68) — new in round 2
 

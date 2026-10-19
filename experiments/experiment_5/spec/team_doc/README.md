@@ -5,7 +5,7 @@ them, never review or comment on them, and never treat a change here as a decisi
 artifact `21432fd4-4cc0-4d68-8fa2-4e0414fffe5e`), so an auditing agent can check the repository
 against the documents the team approved without access to the doc (G-65).
 
-- **Exported:** 2026-10-19, after s03 was ACCEPTED (CR-039); pipeline, feature and model tabs refreshed for CR-040. Earlier exports: after s01 (CR-032) and s02 (CR-035).
+- **Exported:** 2026-10-19, after s03 was ACCEPTED (CR-039); pipeline, feature and model tabs refreshed for CR-040; classification review tab refreshed for CR-041. Earlier exports: after s01 (CR-032) and s02 (CR-035).
 - **Refreshed:** in the same commit that accepts each stage (README §9.1 step 6). Files are
   replaced, never edited by hand; git history keeps every earlier snapshot.
 - **What is not here:** comment threads (their outcomes are in the decision log and the stage
@@ -26,4 +26,4 @@ against the documents the team approved without access to the doc (G-65).
 | Implementation reviews › s02 Data | [implementation_review_s02_data.md](implementation_review_s02_data.md) | 23 |
 | Implementation reviews › s03 EDA | [implementation_review_s03_eda.md](implementation_review_s03_eda.md) | 28 |
 | Implementation reviews › s03 EDA › regression | [implementation_review_s03_eda_regression.md](implementation_review_s03_eda_regression.md) | 5 |
-| Implementation reviews › s03 EDA › classification | [implementation_review_s03_eda_classification.md](implementation_review_s03_eda_classification.md) | 10 |
+| Implementation reviews › s03 EDA › classification | [implementation_review_s03_eda_classification.md](implementation_review_s03_eda_classification.md) | 11 |
