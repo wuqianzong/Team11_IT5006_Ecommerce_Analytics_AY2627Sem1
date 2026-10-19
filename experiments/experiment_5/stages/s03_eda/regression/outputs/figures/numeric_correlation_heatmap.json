@@ -1,0 +1,7 @@
+{
+  "title": "Correlation among raw numeric features",
+  "ids": [
+    "3.8"
+  ],
+  "data": "figures/numeric_correlation_heatmap.csv"
+}

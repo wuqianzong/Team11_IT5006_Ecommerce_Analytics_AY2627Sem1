@@ -1,0 +1,7 @@
+{
+  "title": "Detractor rate by level",
+  "ids": [
+    "3.7"
+  ],
+  "data": "figures/categorical_vs_is_detractor.csv"
+}

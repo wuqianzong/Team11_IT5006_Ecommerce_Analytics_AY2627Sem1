@@ -71,7 +71,7 @@
       "depends_on": [
         "s02_data/common"
       ],
-      "purpose": "Question-driven EDA on orders before the test cutoff: target profiles; outcome trends over time; diagnostics of the 24 contract predictors against each target, importance ranking over all 24 (G-42, G-61) (scatter, Pearson and Spearman; violins and one-hot correlations; class-conditional KDE overlap and per-feature ROC-AUC; mutual information); one importance ranking per task for s04; missingness, outliers and collinearity among raw numeric features.",
+      "purpose": "Question-driven EDA on orders before the test cutoff: target profiles; outcome trends over time; diagnostics of the 24 contract predictors against each target, importance ranking over all 24 (G-42, G-61) (scatter, Pearson and Spearman; violins and one-hot correlations; class-conditional KDE overlap and per-feature ROC-AUC; mutual information); one importance ranking per task for s04; missingness, outliers and collinearity among raw numeric features; classification only: candidate screen of the s02 screening columns (3.10-3.13, G-68, G-69) with an extended ranking, adoption decided by the team at the gate (G-70).",
       "outputs": [
         "figures/*.png + sidecar json",
         "target and per-feature diagnostic tables (csv)",
@@ -83,6 +83,7 @@
         "No order on or after the test cutoff loaded",
         "Outcome trends shown, not volume only",
         "All 24 contract predictors diagnosed against the task's target",
+        "Classification: every screening candidate diagnosed; adoption recorded in spec/human_decisions.yaml (adopted_candidates)",
         "Each proposed change linked to an observation",
         "Outputs written under the stage's outputs/, never artifacts/",
         "Stop: eda_review_pack.md presented; team decisions recorded in spec/human_decisions.yaml before s04 runs"
@@ -101,7 +102,7 @@
       "depends_on": [
         "s03_eda/{task}"
       ],
-      "purpose": "Define, without fitting: the 24-predictor baseline from e5lib/contract.py (G-61; numeric calendar fields); log1p for the five contract candidates with pre-cutoff skewness > 1 (G-47, G-62) and for the regression target; the pre-registered label-free reduction to a core set; feature selection by the s03 importance ranking at the team's cumulative threshold (95% or 99%, fixed before any model is fitted); encoded design-matrix rank per recipe; rationale and citations; order_estimated_delivery_date never a feature (G-35); the pipeline recipe per model (impute, encode, scale).",
+      "purpose": "Define, without fitting: the 24-predictor baseline from e5lib/contract.py (G-61; numeric calendar fields), plus for classification the candidates adopted at the s03 gate (G-70: product_photos_qty, product_description_lenght, seller_prior_review_mean); log1p for the five contract candidates with pre-cutoff skewness > 1 (G-47, G-62) and for the regression target; the pre-registered label-free reduction to a core set; feature selection by the s03 importance ranking at the team's cumulative threshold (95% or 99%, fixed before any model is fitted); encoded design-matrix rank per recipe; rationale and citations; order_estimated_delivery_date never a feature (G-35); the pipeline recipe per model (impute, encode, scale).",
       "outputs": [
         "feature_dictionary.csv (formula, grain, availability, missingness, rationale, citation)",
         "selected_features.json (one set per task, all families)",

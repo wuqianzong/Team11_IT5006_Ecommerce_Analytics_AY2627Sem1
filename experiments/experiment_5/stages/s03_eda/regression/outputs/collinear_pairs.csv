@@ -1,0 +1,2 @@
+feature_a,feature_b,pearson,spearman,identical
+weight_missing_fraction,volume_missing_fraction,1.0,1.0,True

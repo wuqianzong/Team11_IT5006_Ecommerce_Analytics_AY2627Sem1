@@ -1,0 +1,8 @@
+{
+  "title": "Cumulative importance with cut points",
+  "ids": [
+    "3.8",
+    "3.9"
+  ],
+  "data": "figures/cumulative_importance.csv"
+}

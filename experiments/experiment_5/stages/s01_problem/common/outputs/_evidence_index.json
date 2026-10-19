@@ -47,7 +47,7 @@
     {
       "name": "later stages used this pre-registered layer",
       "passed": true,
-      "detail": "later nodes with outputs: 1; using a different layer: none",
+      "detail": "later nodes with outputs: 3; using a different layer: none",
       "ids": [
         "1.9"
       ]
@@ -56,6 +56,14 @@
       "name": "contract: 24 distinct predictors, groups and log1p candidates consistent",
       "passed": true,
       "detail": "",
+      "ids": [
+        "1.3"
+      ]
+    },
+    {
+      "name": "screening candidates are task-scoped and outside the 24 predictors",
+      "passed": true,
+      "detail": "['product_photos_qty', 'product_description_lenght', 'product_name_lenght', 'est_delivery_days', 'customer_region', 'seller_region', 'region_pair', 'seller_prior_review_mean', 'seller_prior_review_count', 'seller_prior_detractor_share', 'seller_prior_delivered_count', 'seller_prior_late_share']",
       "ids": [
         "1.3"
       ]

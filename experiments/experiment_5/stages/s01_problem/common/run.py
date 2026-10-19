@@ -105,6 +105,20 @@ def preregistered() -> dict:
             "selection": {"ranking": {"regression": "absolute Spearman", "classification": "mutual information"},
                           "cumulative_threshold_options": [0.95, 0.99], "decided_by": "team after s03 (G-31)",
                           "source": "s03 3.8, s04 4.4; G-19, G-42"},
+            "screening_candidates": {"columns": contract.SCREENING_CANDIDATES,
+                                     "order_level_rule": "value of the primary item (highest price, then lowest "
+                                                         "order_item_id), as for primary_category",
+                                     "role": "screened in s03 for the named task only; enter that task's selection "
+                                             "pool only if adopted at the s03 gate (human_decisions.yaml)",
+                                     "assumption": "catalogue fields fixed at checkout (stated limitation)",
+                                     "added_after_eda": "s03 round 1 and 2 reviews; disclosed as a post-hoc addition",
+                                     "promise_note": "est_delivery_days is screened for classification only (G-35 "
+                                                     "reopened for this screen); if adopted, training uses out-of-fold "
+                                                     "task 1 predictions, as production would",
+                                     "seller_history_rule": "events of the primary seller strictly before purchase_ts "
+                                                            "(to the second), own order excluded by order_id; reviews "
+                                                            "at their answer time, deliveries at delivery time",
+                                     "source": "G-68, G-69"},
             "route_median": {"column": "distance_km_max",
                              "keys": [["customer_state", "primary_seller_state"], ["customer_state"]],
                              "source": "s04 4.8; G-27"},
@@ -269,6 +283,9 @@ def main() -> None:
     problems = contract.validate()
     w.check("contract: 24 distinct predictors, groups and log1p candidates consistent", not problems, ids=("1.3",),
             detail="; ".join(problems))
+    w.check("screening candidates are task-scoped and outside the 24 predictors",
+            set(contract.SCREENING_CANDIDATES) <= {"classification"} and not set(contract.all_screening()) & set(contract.PREDICTORS),
+            ids=("1.3",), detail=f"{list(contract.all_screening())}")
     w.check("not-in-contract columns have a reason and are not predictors",
             set(contract.NOT_IN_CONTRACT) == {"has_items", "freight_ratio_missing", "payment_missing"}
             and not set(contract.NOT_IN_CONTRACT) & set(contract.PREDICTORS), ids=("1.3",))

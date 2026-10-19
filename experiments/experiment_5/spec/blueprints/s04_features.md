@@ -43,7 +43,7 @@ Gate: features and recipes defined without fitting or using test data (`../stage
    prediction itself, which differs in nature from Olist's own estimate.
 6. **Rationale (4.6).** For each kept feature: formula, grain, checkout availability,
    missingness, hypothesised signal, verified citation.
-7. **Selected set (4.7).** One per task, used by every model family (G-49).
+7. **Selected set (4.7).** One per task, used by every model family (G-49). The classification pool is the 24 contract predictors plus the screening candidates adopted at the s03 gate (G-68, G-70): product_photos_qty (scaled, never logged), product_description_lenght (log1p if pre-cutoff skewness > 1) and seller_prior_review_mean (the seller rating customers see at checkout; scaled, missing for sellers without an earlier review, imputed in folds with a missing indicator); regression stays at the 24. Thresholds: 99% for both tasks (human_decisions.yaml). est_delivery_days was screened (G-69) and not adopted (G-70), so G-35 holds and classification s06 does not depend on regression s06.
 8. **Pipeline recipe (4.8).** Per family:
    - numeric: median imputation with missing indicators; `distance_km_max` instead takes the route
      median (customer_state × primary_seller_state, fallback customer_state, then global), after

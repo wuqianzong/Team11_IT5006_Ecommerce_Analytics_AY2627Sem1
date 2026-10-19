@@ -1,0 +1,83 @@
+{
+  "node": "s03_eda/regression",
+  "run_id": "20261019T151309Z",
+  "commit": "f4b7cbf6691d63496b56bcdcbc88f49ac34cf1a9",
+  "dirty": true,
+  "code": {
+    "experiments/experiment_5/stages/s03_eda/regression/run.py": "275dad57c6b3ef9a24dd9f6a040475fea4b9635502aedde433b54f624f1c8d5b"
+  },
+  "foundation": {
+    "experiments/experiment_5/e5lib/__init__.py": "cd238533adc62fa600a0d9246352bc6a0c3d5bc599ad0504a1ea10d7aa76c5fe",
+    "experiments/experiment_5/e5lib/aggregation.py": "2493264c6df5cebdc211c9df15e6d64b4d90bfe4ad005263dcd5b1a9e8faf9d5",
+    "experiments/experiment_5/e5lib/candidates.py": "5ae6bb355012a619759f36e81f9dd36784a7cededf7b2eeb431a9b5f1e0e70b4",
+    "experiments/experiment_5/e5lib/cleaning.py": "20836a85b51a58127af73d260bae6071682b1a254eeb22802ae7f3a1ecb3c471",
+    "experiments/experiment_5/e5lib/contract.py": "101dbba2176ffb985a6d7a90442f49f9b1f2cecbd4310cc96514a320a21b6b25",
+    "experiments/experiment_5/e5lib/cv.py": "c3c5d112c87c1d62c3b21a7a65a3219baa916322e7f1d6c335eea343f4684e7c",
+    "experiments/experiment_5/e5lib/data.py": "12348f910bc66f91137b71b81ef2a507b2d9e146bfb54fbd58039e9db83008a0",
+    "experiments/experiment_5/e5lib/eda.py": "edca505b81b8e72f299a01bce6fba2611c0408437348cd542cdab40428260d4c",
+    "experiments/experiment_5/e5lib/eda_sections.py": "f8fbdb191b537e84efe0052c83361a18252f5c6e1faf622049b8cfb84e1ca3d1",
+    "experiments/experiment_5/e5lib/factory.py": "8f6794fc80334e6a344096c6654e015cffe3a5ab0ff9018eea16506f9eb5ad2a",
+    "experiments/experiment_5/e5lib/geography.py": "d7ca545020d12f70d23225e3611c7ae2ac2d67be10f04aa21931fc48c3b75b97",
+    "experiments/experiment_5/e5lib/manifest.py": "9c398fbacb56bf6b087dca0aa1fb9208a62695b7e38bfb2b7fa4495727ed4340",
+    "experiments/experiment_5/e5lib/metrics.py": "7b1ba93591c5303fd46564380cfd37038cf10dcd3012feb5088c04dd702064ef",
+    "experiments/experiment_5/e5lib/outputs.py": "2647b0d277a804a7775dacf977f96993a652ebf2ac0ab951ae7ebebc182dce29",
+    "experiments/experiment_5/e5lib/paths.py": "0e734f058878c897ef2020f1bf286772f1e8871247f4d36d9cfa311fe877b660",
+    "experiments/experiment_5/e5lib/protocol.py": "900e556c163cb112c7b533311f5e635052090bea2554b1abe0c10010ca65e96d",
+    "experiments/experiment_5/e5lib/review.py": "fc47e1fbebddfdc377f0e7a43c87cef92accf158437cb929ad6557e86c9df48d",
+    "experiments/experiment_5/e5lib/seller_history.py": "d5ef6eb6d3fc7bd1d1d1ba3df3ddf5c03f0e3bedafbaee9b1c1e6b50d9e1aa58",
+    "experiments/experiment_5/run_pipeline.py": "38625fed4ceda4990a3b7dc86a2146d1a5eb89c9feac6948381dcbf7c1d589cf"
+  },
+  "protocol": {
+    "pre_registered": "c358bb20d82f5c80fa9110e1cd1089085b1fe1a793b129a38a084f816fdfcaca",
+    "data_dependent.test_cutoffs": "e223eddf31d4107868430a8f7a490caacb759fad72f7014700bd0c5982dad22f"
+  },
+  "reads": {
+    "experiments/experiment_5/stages/s02_data/common/outputs/records.csv.gz": "ac25b59f8c55c2e42187b0976fc6bb55d7510b5df807bc80f34cd90b1a25cc83"
+  },
+  "outputs": {
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/_evidence_index.json": "57013b750b5d0b66934f3e120297582f650dc7a19bbf46db990215ae64526e62",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/candidate_rationale.csv": "7ca0e25e2ef71aea70ea047c72a740e4d73bf7332555b0cc0da1997534e5b6dc",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/categorical_feature_target_lead_days.csv": "f2c266a42cfe5103119db87f4038ad4f6c33e4ccf87f1c6730ab0b672627ecc1",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/collinear_pairs.csv": "a61a855e47426f04a4cf0319fb989594cb10debf46357fab0908f567e6b87ead",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/decision.json": "609092ac7e34a4f956e7132c9d8fd5cdb86b78f087b9a604613458fdb09c4a0c",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/eda_review_pack.md": "0bf014d6197bbb8943b78191df3c3b4ba3500b92455cf721ffeb8eba07f85bfa",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/eda_summary.json": "abbbd12743c1d61e540be976ccd928cfbef4e7099a9637caf8d3e021a45f34a1",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/feature_quality.csv": "e0f9f3508cfc9f3bcdf7895f1e84f4dae416e8fb44c8e6f8d255e2d873e36c28",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/categorical_vs_lead_days.csv": "fa210d001eb90daae23afecb51221ac27f8170e47b0cde211eb743090530b7d5",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/categorical_vs_lead_days.json": "a3e8d62e48a4bc9f93b2973eecbc221c4a2f44201d2530ac4101189a4da34da5",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/categorical_vs_lead_days.png": "c2a9fcf38436cf2cd774f0785d328655c884697539a7d8c9c8e4c104f144b470",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/cumulative_importance.csv": "7ccfe28f860a3507c5b99f20481d39a6186cfd39b84115316f5b6d21137b54a7",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/cumulative_importance.json": "8eeb6827455cfbb67590ddac569571796f0deb7a90ac45eaf0331a52daf03bd9",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/cumulative_importance.png": "4dc485e686239836499852bcad178f81de96b662106d3f7a2ae48b2403bf750a",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/numeric_correlation_heatmap.csv": "957230d7b58c362b9ee0bf1bff5435b165da1fbf1c82571feccc22b249d4b50f",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/numeric_correlation_heatmap.json": "d0d31b96cbb1f783efd2f665259d48e5183f5f0999a8de35d9e5b6e63f3fd37a",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/numeric_correlation_heatmap.png": "d43ba0bed267dbdc8d1f0ad0fcfd3af6575776dda99f9fc8321f4c9f4c5056ce",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/numeric_vs_lead_days.csv": "6e8022d8664b8fbde2598d774ba91328f11e05973d29bc0d32fc65b5a632c630",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/numeric_vs_lead_days.json": "4b508fed553c9e80644a336c4c2d301900c3be3e9d0736a71c5a68f203828317",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/numeric_vs_lead_days.png": "61d3d16fa8c61dbf4a8dd637bc37008341e4c19a9c9b45f49423f85e586fc783",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/outcome_trends.csv": "29f652cb310f8017b66cdce88850a38f5020cd1b93a4f343d426bc59058d4bcd",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/outcome_trends.json": "d1938af706a67c49f40c3739e5d7f722264d1f361efd1f74f33db1c4d03fadde",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/outcome_trends.png": "010cc1baae5b7c7af8de0007c65ad8a1c6c45b0105ae03bee8c0b228e576e969",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/target_lead_days_kde.csv": "430e5d19513a29fb3380765a4ff6bd519f0804a11c3f9afb0b3bff20e08885a3",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/target_lead_days_kde.json": "428353b4589ad0a3ddd2063dc14d7098a491d7dac759b485a70877ba6c766afa",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/target_lead_days_kde.png": "20f1e37cce164ecffa99f3dd05a8cdb8674d062155dbf5e81d895cb7188108a1",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/importance_ranking.csv": "7ccfe28f860a3507c5b99f20481d39a6186cfd39b84115316f5b6d21137b54a7",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/numeric_correlations.csv": "957230d7b58c362b9ee0bf1bff5435b165da1fbf1c82571feccc22b249d4b50f",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/numeric_feature_target_lead_days.csv": "6279928a221bae1ee293b1eae8ac2ec233f1a230a86ae406bf08aac740843670",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/outcome_trends.csv": "29f652cb310f8017b66cdce88850a38f5020cd1b93a4f343d426bc59058d4bcd",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/target_regression_lead_days.csv": "206c5db99c838f7022501385e245c324ce601bbe7de11bb64060bbb8707b93b8"
+  },
+  "versions": {
+    "python": "3.13.9",
+    "numpy": "2.4.2",
+    "pandas": "3.0.1",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.1",
+    "joblib": "1.6.0",
+    "matplotlib": "3.11.2",
+    "PyYAML": "6.0.3",
+    "shapely": "2.1.2"
+  },
+  "seed": 42,
+  "runtime_s": 8.51
+}

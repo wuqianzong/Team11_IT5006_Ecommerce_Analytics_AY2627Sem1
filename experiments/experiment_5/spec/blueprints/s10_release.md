@@ -56,7 +56,9 @@ Deadlines: slides locked 4 Nov; report and ZIP due 8 Nov.
 
    - Input checks read types, allowed values and ranges from the s02 `data_dictionary.csv`
      (G-58), with clear errors: types, ranges, unknown states, no items, missing
-     installments, impossible distance.
+     installments, impossible distance. The detractor-risk tab also takes the classification inputs
+     adopted at the s03 gate (G-70): the main product's photo count and description length, and the seller's
+     rating at checkout (looked up from reviews answered before the order; blank for a new seller).
    - Inference never fits. The app is deployed on Streamlit Cloud, and the live URL is tested
      before submission.
 6. **Report and slides (10.7).**

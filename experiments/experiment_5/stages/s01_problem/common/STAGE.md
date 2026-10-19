@@ -57,6 +57,10 @@ Fix both checkout tasks, prediction time, stakeholders and their actions, target
 - 2026-10-19: rerun as run 20261018T165122Z after the line-ending fix (CR-031); outputs byte-identical again, acceptance stands.
 - 2026-10-19: rerun as run 20261019T054239Z after the s02 foundation additions (CR-033). The 1.9 check "pre-registered before any later stage has outputs" failed on any rerun once s02 existed; it is now "later stages used this pre-registered layer" (compares each later manifest's pre-registered hash). protocol.yaml and every value output are byte-identical; only the check name and detail in _evidence_index.json changed. Confirmed with the s02 acceptance (decision 3). On Windows, `status` shows FRESH after the one-time refresh in README §13.3.
 
+## Changes after acceptance (README section 9.2)
+- 2026-10-19, CR-037 (G-68): protocol.yaml pre-registered layer gains features.screening_candidates (three catalogue fields, classification only, not predictors) from e5lib/contract.py SCREENING_CANDIDATES; new check that they stay outside the 24. Rerun 20261019T140139Z; all other values unchanged. Approved by the experiment lead; reviewed with s03 round 2 in the doc (dated addendum on this stage's tab). Status stays ACCEPTED (no decision.json changed).
+- 2026-10-19, CR-038 (G-69): protocol.yaml screening_candidates gain the promise, region and seller-history entries with group and kind, a promise note (G-35 reopened for the screen) and the seller-history rule. Rerun 20261019T151352Z. Approved by the experiment lead; reviewed with s03 round 3. Status stays ACCEPTED.
+
 ## Deviations from blueprint
 None.
 

@@ -45,7 +45,8 @@ CV folds, and checks class support per fold instead of stratifying.
    *fitted* only inside training folds through an sklearn Pipeline (Tutorials 3–4).
    Two declared exceptions, both computed once on orders before the test cutoff (never on
    test rows), pre-registered as fixed rules and reported as limitations:
-   (a) the s04 label-free reduction from the 24 contract predictors to a core set (correlation, VIF, constant or
+   (a) the s04 label-free reduction from the task's selection pool (the 24 contract predictors; classification adds
+   the three candidates adopted at the s03 gate, G-70) to a core set (correlation, VIF, constant or
    duplicate columns); (b) the s04 feature selection by the s03 importance ranking (team
    decision G-19). Exception (b) uses development labels, including those of later validation
    folds, so CV scores of the selected set are optimistic; the report says so.
@@ -112,6 +113,10 @@ only describes late-vs-promised trends in s03; `order_status`, `order_approved_a
 `shipping_limit_date` are never predictors; `has_items` and `freight_ratio_missing` (post-purchase leakage) and `payment_missing` (constant once orders without a usable payment are removed) are not in the contract (G-42, G-51, G-61); a date-order
 audit (purchase ≤ approval ≤ carrier ≤ delivery, estimated date and review answer after purchase)
 logs violations; payment fields are assumed fixed at checkout (no timestamp in the data) (G-30). IDs are kept for audit, never as predictors.
+Screening columns for the s03 classification candidate screen (G-68, G-69; not predictors unless adopted at the s03 gate):
+three catalogue fields of the primary item (catalogue fields assumed fixed at checkout), `est_delivery_days`, the IBGE
+macro-regions and their pair, and the primary seller's history at checkout (only events strictly before the purchase
+second, own order excluded, checked against a direct recomputation).
 Test cutoff per task (G-28, G-67): after the row-local population rules and before the outlier rule, the
 purchase timestamp at the 80% position of the task's eligible orders; recorded in `audit.json`
 and `protocol.yaml`.
@@ -144,6 +149,10 @@ Spearman; categorical vs `lead_days`: violin plots and one-hot (drop-first) corr
 numeric vs `is_detractor`: class-conditional KDEs with overlap coefficient and per-feature
 ROC-AUC; categorical vs `is_detractor`: mutual information (seed 42); calendar fields treated as
 categorical for plots only. One importance ranking per task is produced here for s04 (G-19).
+Classification also screens the s02 screening columns (3.10–3.13: product fields, promised delivery days, regions,
+seller history) with the same measures and an extended ranking; the team adopted three of them into the
+classification pool at the gate (G-70): product_photos_qty (scaled, never logged), product_description_lenght (log1p if pre-cutoff skewness > 1) and seller_prior_review_mean (the seller rating customers see at checkout; scaled, missing for sellers without an earlier review, imputed in folds with a missing indicator). The rest stay screening columns only;
+`est_delivery_days` was screened (G-35 reopened for the screen only) and not adopted, so G-35 holds for modelling.
 **Human gate (G-31):** implementation stops after s03; every EDA table and figure is presented to
 the team in `eda_review_pack.md`, and s04 runs only after the team records its decisions
 (cumulative-importance threshold, collinearity drops) in `spec/human_decisions.yaml`.
@@ -158,7 +167,8 @@ TEACHING: Tutorials 1–2 and 5; T7–T8 §3; Lecture 5 (multicollinearity).
 
 ### s04 — Features (regression, classification; defined, not fitted)
 Blueprint: [`blueprints/s04_features.md`](blueprints/s04_features.md)
-In order: feature baseline (the 24 predictors of `e5lib/contract.py`, written for this experiment;
+In order: feature baseline (the 24 predictors of `e5lib/contract.py`, written for this experiment; the classification
+pool adds the three candidates adopted at the s03 gate, G-70, read from `spec/human_decisions.yaml`;
 `has_items`, `freight_ratio_missing` and `payment_missing` are not in the contract because they
 leak a later cancellation or are constant after the population rules: G-30, G-42, G-51, G-61);
 calendar fields (`purchase_month`, `purchase_dayofweek`, `purchase_hour`) kept numeric; log1p for

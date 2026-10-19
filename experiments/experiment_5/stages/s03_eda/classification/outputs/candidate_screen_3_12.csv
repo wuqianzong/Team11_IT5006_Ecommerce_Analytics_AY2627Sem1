@@ -1,0 +1,4 @@
+feature,kind,n,missing_share,levels,overlap_coefficient,overlap_method,roc_auc,direction,mutual_information,mi_estimator,skewness,planned_transform,most_correlated_predictor,spearman_with_it,mean_class_0,mean_class_1,card,vif_in_extended_set,rank_in_extended,inside_95_cut,inside_99_cut
+customer_region,categorical,77971,0.0,5,0.9544383590182067,discrete frequencies of the levels,,,0.0011792155720985152,discrete (contingency),,"one-hot (drop-first for linear/logistic), unknown level handled",,,,,3.12,,23,False,True
+seller_region,categorical,77971,0.0,5,0.978937381094588,discrete frequencies of the levels,,,0.00023545491852147325,discrete (contingency),,"one-hot (drop-first for linear/logistic), unknown level handled",,,,,3.12,,30,False,False
+region_pair,categorical,77971,0.0,23,0.9498513268524362,discrete frequencies of the levels,,,0.0018446036714998577,discrete (contingency),,"one-hot (drop-first for linear/logistic), unknown level handled",,,,,3.12,,21,True,True

@@ -1,0 +1,345 @@
+{
+  "stage": "s03_eda",
+  "task": "classification",
+  "round": 2,
+  "base_commit": "f4b7cbf6691d63496b56bcdcbc88f49ac34cf1a9",
+  "run_id": "20261019T140130Z",
+  "outputs": "FRESH",
+  "dirty": true,
+  "ready": true,
+  "rows": [
+    {
+      "id": "3.2",
+      "title": "Classification target",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "target_classification_is_detractor.csv",
+        "figures/target_is_detractor_bar.png",
+        "figures/target_is_detractor_bar.csv",
+        "figures/target_is_detractor_bar.json",
+        "eda_summary.json"
+      ],
+      "evidence_hashes": {
+        "target_classification_is_detractor.csv": "e5f21d7f41b0db93419d6c6f2c3903a42d4e9784a7ead01d75fb62db1fe9147f",
+        "figures/target_is_detractor_bar.png": "6de17f932d0dd75960b43379e1515ec8e2f79dcedf71f42fb4fdd6ec5bc27d1d",
+        "figures/target_is_detractor_bar.csv": "e5f21d7f41b0db93419d6c6f2c3903a42d4e9784a7ead01d75fb62db1fe9147f",
+        "figures/target_is_detractor_bar.json": "6e31e73925fc27aa97ea9a4e0e7d8e296ac6cf69ee0e251071727924a2e907e2",
+        "eda_summary.json": "f9602986f93d07f2e014f5f765ea8f63ed16658ee5e0165057007b375c8ab5cb"
+      },
+      "card": {
+        "done": "77,971 pre-cutoff orders: 11,554 low reviews (score <= 2, 14.82%) and 66,417 normal reviews (score >= 3, 85.18%).",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "Imbalanced target: average precision is read against the prevalence baseline.",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "no order on or after the test cutoff loaded",
+          "passed": true,
+          "detail": "latest purchase 2018-05-25 18:43:19, cutoff 2018-05-25 18:44:28",
+          "ids": [
+            "3.2",
+            "3.3",
+            "3.8"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "3.3",
+      "title": "Outcome trends",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "outcome_trends.csv",
+        "figures/outcome_trends.png",
+        "figures/outcome_trends.csv",
+        "figures/outcome_trends.json",
+        "eda_summary.json"
+      ],
+      "evidence_hashes": {
+        "outcome_trends.csv": "b92402c6fb3c5464e5aeaae829d7fb61b84a117b891d93f77a2642d50faf56fc",
+        "figures/outcome_trends.png": "9bd71e3c7825422f9f56486a296c05a5245938827f4c139e94e48b24b6479251",
+        "figures/outcome_trends.csv": "b92402c6fb3c5464e5aeaae829d7fb61b84a117b891d93f77a2642d50faf56fc",
+        "figures/outcome_trends.json": "d1938af706a67c49f40c3739e5d7f722264d1f361efd1f74f33db1c4d03fadde",
+        "eda_summary.json": "f9602986f93d07f2e014f5f765ea8f63ed16658ee5e0165057007b375c8ab5cb"
+      },
+      "card": {
+        "done": "20 purchase months; over the 18 months with at least 100 orders: detractor rate 10.7% to 22.5%, late-vs-promised rate 0.8% to 21.1%, median lead time 8.9 to 17.9 days; every month is in the table with its counts.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "Late is delivery after order_estimated_delivery_date, used here only as a description (G-35).",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "no order on or after the test cutoff loaded",
+          "passed": true,
+          "detail": "latest purchase 2018-05-25 18:43:19, cutoff 2018-05-25 18:44:28",
+          "ids": [
+            "3.2",
+            "3.3",
+            "3.8"
+          ]
+        },
+        {
+          "name": "outcome trends show outcomes, not volume only",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "3.3"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "3.6",
+      "title": "Numeric features vs is_detractor",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "numeric_feature_target_is_detractor.csv",
+        "figures/numeric_vs_is_detractor.png",
+        "figures/numeric_vs_is_detractor.csv",
+        "figures/numeric_vs_is_detractor.json"
+      ],
+      "evidence_hashes": {
+        "numeric_feature_target_is_detractor.csv": "9060c5eef23b777d82d4949e3cdbd1092cd075b3732ee5895f6135439a06eef6",
+        "figures/numeric_vs_is_detractor.png": "d9d4490651ed73e678c885bf15b06a6f15c31b28029efc2d7f1fdd3af124bd6b",
+        "figures/numeric_vs_is_detractor.csv": "cb860f22d3fd2eeb66f5e13e708662988183fe7ab19fa4d51ebf5035161d46d0",
+        "figures/numeric_vs_is_detractor.json": "46a53ed6b0005456937dbea78c1c47377628c66a0464105506500e6622e4bf8e"
+      },
+      "card": {
+        "done": "20 numeric predictors: class-conditional distributions with the overlap coefficient (KDE for continuous features, class frequencies for features with at most 30 values), per-feature ROC-AUC and mutual information on the same rows; lowest overlap: total_freight (86.6%, ROC-AUC 0.587).",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "A KDE smears an integer count into values that cannot occur, so features with few values use the class frequencies; the five log1p candidates use the KDE on the log1p scale (the coefficient does not change under a monotone transform). Flagged for the team (decision 2).",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "all 24 contract predictors diagnosed against is_detractor",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "3.6",
+            "3.7"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": false
+    },
+    {
+      "id": "3.7",
+      "title": "Categorical features vs is_detractor",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "categorical_feature_target_is_detractor.csv",
+        "figures/categorical_vs_is_detractor.png",
+        "figures/categorical_vs_is_detractor.csv",
+        "figures/categorical_vs_is_detractor.json"
+      ],
+      "evidence_hashes": {
+        "categorical_feature_target_is_detractor.csv": "dd596ebd20432d7a0f8c801b8c9ca71f1751982e1ea7a4ba82f30a710339d55a",
+        "figures/categorical_vs_is_detractor.png": "dc0cd898061c8fcb034734b1ff1b580a0cb9d6f8d4a4d88a863fdcf0ee2883cf",
+        "figures/categorical_vs_is_detractor.csv": "141c04329e1a7b501a660b4666eb5a993bab5bdd9888861e39206e146d70e76e",
+        "figures/categorical_vs_is_detractor.json": "58f39581a883c2f08261fb3df6b991f27f645a75a168b59e70e01cc4837f4d50"
+      },
+      "card": {
+        "done": "Four categorical predictors: mutual_info_classif (discrete, seed 42) and per-level detractor rates; calendar fields shown per level for the plots only. MI: customer_state 0.0050, primary_seller_state 0.0009, primary_category 0.0026, primary_payment_type 0.0000 nats.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "all 24 contract predictors diagnosed against is_detractor",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "3.6",
+            "3.7"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": false
+    },
+    {
+      "id": "3.8",
+      "title": "Importance ranking",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "feature_quality.csv",
+        "collinear_pairs.csv",
+        "numeric_correlations.csv",
+        "figures/numeric_correlation_heatmap.png",
+        "figures/numeric_correlation_heatmap.csv",
+        "figures/numeric_correlation_heatmap.json",
+        "importance_ranking.csv",
+        "figures/cumulative_importance.png",
+        "figures/cumulative_importance.csv",
+        "figures/cumulative_importance.json",
+        "candidate_rationale.csv",
+        "eda_summary.json",
+        "decision.json"
+      ],
+      "evidence_hashes": {
+        "feature_quality.csv": "d61ee7d649170c8e877ea2c88e0681c3f1627c50278ed4d6d7afc074b15eef20",
+        "collinear_pairs.csv": "a61a855e47426f04a4cf0319fb989594cb10debf46357fab0908f567e6b87ead",
+        "numeric_correlations.csv": "46ae97ae633f182daf7eb782ba68adff660c84d9d3476c9d9eaac8444e94fdc1",
+        "figures/numeric_correlation_heatmap.png": "c61b4877ffc466822c1ab9eb2deb7ec9e9927310da7836abdc32e18afedd62a9",
+        "figures/numeric_correlation_heatmap.csv": "46ae97ae633f182daf7eb782ba68adff660c84d9d3476c9d9eaac8444e94fdc1",
+        "figures/numeric_correlation_heatmap.json": "d0d31b96cbb1f783efd2f665259d48e5183f5f0999a8de35d9e5b6e63f3fd37a",
+        "importance_ranking.csv": "6b928ca408758299c2224d2581d02223e975453e222a2c9372602e9bdb031ef0",
+        "figures/cumulative_importance.png": "b429b1e207f2c22ec6c0091fb8f292213d341609ed06c346fa6207aeafda526b",
+        "figures/cumulative_importance.csv": "6b928ca408758299c2224d2581d02223e975453e222a2c9372602e9bdb031ef0",
+        "figures/cumulative_importance.json": "8eeb6827455cfbb67590ddac569571796f0deb7a90ac45eaf0331a52daf03bd9",
+        "candidate_rationale.csv": "9a44c82a0402863bccafbdfe7ad73ce06aa04a2e5f13075df54d793a42bd09fe",
+        "eda_summary.json": "f9602986f93d07f2e014f5f765ea8f63ed16658ee5e0165057007b375c8ab5cb",
+        "decision.json": "50b42b0573d8319c1292d0dc62b028d1e403fc9d885afdac61549350571e8a61"
+      },
+      "card": {
+        "done": "Ranking over the 24 contract predictors by mutual information (discrete estimator for categorical features and features with at most 30 values, k-NN estimator for the rest): top 5 ['total_freight', 'freight_ratio', 'total_volume_cm3', 'total_price', 'n_items']; cut points {'0.95': 14, '0.99': 17}. Missingness, IQR outliers, Pearson/Spearman matrix and VIF on 77,046 complete rows; flagged groups: []; identical columns: [('weight_missing_fraction', 'volume_missing_fraction')].",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "no order on or after the test cutoff loaded",
+          "passed": true,
+          "detail": "latest purchase 2018-05-25 18:43:19, cutoff 2018-05-25 18:44:28",
+          "ids": [
+            "3.2",
+            "3.3",
+            "3.8"
+          ]
+        },
+        {
+          "name": "importance_ranking has the 24 contract predictors and ends at cumulative share 1.0",
+          "passed": true,
+          "detail": "24 rows",
+          "ids": [
+            "3.8"
+          ]
+        },
+        {
+          "name": "ranking measure is the pre-registered one",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "3.8"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "3.9",
+      "title": "Human gate (review pack for s04 decisions)",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "figures/cumulative_importance.png",
+        "figures/cumulative_importance.csv",
+        "figures/cumulative_importance.json",
+        "eda_review_pack.md"
+      ],
+      "evidence_hashes": {
+        "figures/cumulative_importance.png": "b429b1e207f2c22ec6c0091fb8f292213d341609ed06c346fa6207aeafda526b",
+        "figures/cumulative_importance.csv": "6b928ca408758299c2224d2581d02223e975453e222a2c9372602e9bdb031ef0",
+        "figures/cumulative_importance.json": "8eeb6827455cfbb67590ddac569571796f0deb7a90ac45eaf0331a52daf03bd9",
+        "eda_review_pack.md": "393af498e0b9290a58e406da654d90e1f8b6e8632e39b17d4a5597234c71e2b5"
+      },
+      "card": {
+        "done": "eda_review_pack.md lists every table and figure above, the ranking with both cut points, the flagged collinear groups and the YAML block the team fills in spec/human_decisions.yaml.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "Stop: s04 waits for the team's threshold and collinearity decisions (G-31).",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "review pack lists both cut points and every flagged group",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "3.9"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "3.10",
+      "title": "Candidate screen (G-68)",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "candidate_screen_is_detractor.csv",
+        "candidate_ranking_extended.csv",
+        "candidate_collinear_pairs.csv",
+        "figures/candidate_screen.png",
+        "figures/candidate_screen.csv",
+        "figures/candidate_screen.json",
+        "eda_summary.json"
+      ],
+      "evidence_hashes": {
+        "candidate_screen_is_detractor.csv": "e13b1c7323337696e0a05c73eeec6209fc549bd94fe6982e4442be6d344e9a9c",
+        "candidate_ranking_extended.csv": "6dcb93c9abb3c09f7b23eb5a55d8f0276d131fb787530b5637ccfaa4d3b2da6f",
+        "candidate_collinear_pairs.csv": "7396026480f86638cfbe7b31081be4d709e7063c81061e7f702880f6993c80d5",
+        "figures/candidate_screen.png": "5db3adc0bd95c55e7bea6afffe1a9982204ef0bdc61e4eaf3f42ea5b4077d357",
+        "figures/candidate_screen.csv": "9431c89dd10aa3672024c1f0257809c61cb24ee6764aa4678502f2159998146e",
+        "figures/candidate_screen.json": "47ade27443f5cf35460efa4aedd3aa19a2d302b29c1dfe79fa33228588e4f247",
+        "eda_summary.json": "f9602986f93d07f2e014f5f765ea8f63ed16658ee5e0165057007b375c8ab5cb"
+      },
+      "card": {
+        "done": "Screening candidates ['product_photos_qty', 'product_description_lenght', 'product_name_lenght'] (G-68: value of the primary item; not predictors) diagnosed against is_detractor with the 3.6 measures (overlap, ROC-AUC, mutual information), skewness for the planned transform, correlation with the 20 numeric predictors and VIF in the extended numeric set. Extended ranking over 24 + 3: candidate ranks product_photos_qty 19, product_description_lenght 8, product_name_lenght 18 of 27; extended cut points {'0.95': 15, '0.99': 20} (official ranking unchanged at 24). ROC-AUC: product_photos_qty 0.480, product_description_lenght 0.492, product_name_lenght 0.504.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "The official 3.8 ranking stays over the 24 contract predictors so the agreed selection pool is unchanged; the extended ranking shows where each candidate would enter if adopted. Screening on pre-cutoff orders and then choosing is a post-hoc addition; the report says so.",
+        "conclusion": "Team decision at the gate: adopt or drop each candidate (human_decisions.yaml).",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "candidate screen covers every classification candidate; extended ranking ends at 1.0; official ranking unchanged at 24",
+          "passed": true,
+          "detail": "3 candidates, 27 rows in the extended ranking",
+          "ids": [
+            "3.10"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    }
+  ]
+}

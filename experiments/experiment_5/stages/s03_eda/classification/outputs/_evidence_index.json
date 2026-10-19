@@ -1,0 +1,514 @@
+{
+  "node": "s03_eda/classification",
+  "files": {
+    "target_classification_is_detractor.csv": {
+      "ids": [
+        "3.2"
+      ],
+      "kind": "table"
+    },
+    "figures/target_is_detractor_bar.png": {
+      "ids": [
+        "3.2"
+      ],
+      "kind": "figure"
+    },
+    "figures/target_is_detractor_bar.csv": {
+      "ids": [
+        "3.2"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/target_is_detractor_bar.json": {
+      "ids": [
+        "3.2"
+      ],
+      "kind": "figure_meta"
+    },
+    "outcome_trends.csv": {
+      "ids": [
+        "3.3"
+      ],
+      "kind": "table"
+    },
+    "figures/outcome_trends.png": {
+      "ids": [
+        "3.3"
+      ],
+      "kind": "figure"
+    },
+    "figures/outcome_trends.csv": {
+      "ids": [
+        "3.3"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/outcome_trends.json": {
+      "ids": [
+        "3.3"
+      ],
+      "kind": "figure_meta"
+    },
+    "numeric_feature_target_is_detractor.csv": {
+      "ids": [
+        "3.6"
+      ],
+      "kind": "table"
+    },
+    "figures/numeric_vs_is_detractor.png": {
+      "ids": [
+        "3.6"
+      ],
+      "kind": "figure"
+    },
+    "figures/numeric_vs_is_detractor.csv": {
+      "ids": [
+        "3.6"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/numeric_vs_is_detractor.json": {
+      "ids": [
+        "3.6"
+      ],
+      "kind": "figure_meta"
+    },
+    "categorical_feature_target_is_detractor.csv": {
+      "ids": [
+        "3.7"
+      ],
+      "kind": "table"
+    },
+    "figures/categorical_vs_is_detractor.png": {
+      "ids": [
+        "3.7"
+      ],
+      "kind": "figure"
+    },
+    "figures/categorical_vs_is_detractor.csv": {
+      "ids": [
+        "3.7"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/categorical_vs_is_detractor.json": {
+      "ids": [
+        "3.7"
+      ],
+      "kind": "figure_meta"
+    },
+    "feature_quality.csv": {
+      "ids": [
+        "3.8"
+      ],
+      "kind": "table"
+    },
+    "collinear_pairs.csv": {
+      "ids": [
+        "3.8"
+      ],
+      "kind": "table"
+    },
+    "numeric_correlations.csv": {
+      "ids": [
+        "3.8"
+      ],
+      "kind": "table"
+    },
+    "figures/numeric_correlation_heatmap.png": {
+      "ids": [
+        "3.8"
+      ],
+      "kind": "figure"
+    },
+    "figures/numeric_correlation_heatmap.csv": {
+      "ids": [
+        "3.8"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/numeric_correlation_heatmap.json": {
+      "ids": [
+        "3.8"
+      ],
+      "kind": "figure_meta"
+    },
+    "importance_ranking.csv": {
+      "ids": [
+        "3.8"
+      ],
+      "kind": "table"
+    },
+    "figures/cumulative_importance.png": {
+      "ids": [
+        "3.8",
+        "3.9"
+      ],
+      "kind": "figure"
+    },
+    "figures/cumulative_importance.csv": {
+      "ids": [
+        "3.8",
+        "3.9"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/cumulative_importance.json": {
+      "ids": [
+        "3.8",
+        "3.9"
+      ],
+      "kind": "figure_meta"
+    },
+    "figures/candidate_screen.png": {
+      "ids": [
+        "3.10"
+      ],
+      "kind": "figure"
+    },
+    "figures/candidate_screen.csv": {
+      "ids": [
+        "3.10"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/candidate_screen.json": {
+      "ids": [
+        "3.10"
+      ],
+      "kind": "figure_meta"
+    },
+    "figures/candidate_screen_promise.png": {
+      "ids": [
+        "3.11"
+      ],
+      "kind": "figure"
+    },
+    "figures/candidate_screen_promise.csv": {
+      "ids": [
+        "3.11"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/candidate_screen_promise.json": {
+      "ids": [
+        "3.11"
+      ],
+      "kind": "figure_meta"
+    },
+    "figures/candidate_screen_region.png": {
+      "ids": [
+        "3.12"
+      ],
+      "kind": "figure"
+    },
+    "figures/candidate_screen_region.csv": {
+      "ids": [
+        "3.12"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/candidate_screen_region.json": {
+      "ids": [
+        "3.12"
+      ],
+      "kind": "figure_meta"
+    },
+    "figures/candidate_screen_seller_history.png": {
+      "ids": [
+        "3.13"
+      ],
+      "kind": "figure"
+    },
+    "figures/candidate_screen_seller_history.csv": {
+      "ids": [
+        "3.13"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/candidate_screen_seller_history.json": {
+      "ids": [
+        "3.13"
+      ],
+      "kind": "figure_meta"
+    },
+    "candidate_screen_3_10.csv": {
+      "ids": [
+        "3.10"
+      ],
+      "kind": "table"
+    },
+    "candidate_screen_3_11.csv": {
+      "ids": [
+        "3.11"
+      ],
+      "kind": "table"
+    },
+    "candidate_screen_3_12.csv": {
+      "ids": [
+        "3.12"
+      ],
+      "kind": "table"
+    },
+    "candidate_screen_3_13.csv": {
+      "ids": [
+        "3.13"
+      ],
+      "kind": "table"
+    },
+    "candidate_screen_levels.csv": {
+      "ids": [
+        "3.12"
+      ],
+      "kind": "table"
+    },
+    "candidate_ranking_extended.csv": {
+      "ids": [
+        "3.10"
+      ],
+      "kind": "table"
+    },
+    "candidate_collinear_pairs.csv": {
+      "ids": [
+        "3.10",
+        "3.13"
+      ],
+      "kind": "table"
+    },
+    "figures/candidate_ranking_extended.png": {
+      "ids": [
+        "3.10"
+      ],
+      "kind": "figure"
+    },
+    "figures/candidate_ranking_extended.csv": {
+      "ids": [
+        "3.10"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/candidate_ranking_extended.json": {
+      "ids": [
+        "3.10"
+      ],
+      "kind": "figure_meta"
+    },
+    "candidate_rationale.csv": {
+      "ids": [
+        "3.8"
+      ],
+      "kind": "table"
+    },
+    "eda_summary.json": {
+      "ids": [
+        "3.2",
+        "3.3",
+        "3.8",
+        "3.10",
+        "3.11",
+        "3.12",
+        "3.13"
+      ],
+      "kind": "json"
+    },
+    "eda_review_pack.md": {
+      "ids": [
+        "3.9"
+      ],
+      "kind": "text"
+    },
+    "decision.json": {
+      "ids": [
+        "3.8"
+      ],
+      "kind": "json"
+    }
+  },
+  "checks": [
+    {
+      "name": "no order on or after the test cutoff loaded",
+      "passed": true,
+      "detail": "latest purchase 2018-05-25 18:43:19, cutoff 2018-05-25 18:44:28",
+      "ids": [
+        "3.2",
+        "3.3",
+        "3.8"
+      ]
+    },
+    {
+      "name": "all 24 contract predictors diagnosed against is_detractor",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "3.6",
+        "3.7"
+      ]
+    },
+    {
+      "name": "importance_ranking has the 24 contract predictors and ends at cumulative share 1.0",
+      "passed": true,
+      "detail": "24 rows",
+      "ids": [
+        "3.8"
+      ]
+    },
+    {
+      "name": "ranking measure is the pre-registered one",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "3.8"
+      ]
+    },
+    {
+      "name": "outcome trends show outcomes, not volume only",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "3.3"
+      ]
+    },
+    {
+      "name": "review pack lists both cut points and every flagged group",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "3.9"
+      ]
+    },
+    {
+      "name": "candidate screen 3.10 covers every product candidate",
+      "passed": true,
+      "detail": "3 candidates",
+      "ids": [
+        "3.10"
+      ]
+    },
+    {
+      "name": "candidate screen 3.11 covers every promise candidate",
+      "passed": true,
+      "detail": "1 candidates",
+      "ids": [
+        "3.11"
+      ]
+    },
+    {
+      "name": "candidate screen 3.12 covers every region candidate",
+      "passed": true,
+      "detail": "3 candidates",
+      "ids": [
+        "3.12"
+      ]
+    },
+    {
+      "name": "candidate screen 3.13 covers every seller_history candidate",
+      "passed": true,
+      "detail": "5 candidates",
+      "ids": [
+        "3.13"
+      ]
+    },
+    {
+      "name": "extended ranking holds the 24 predictors and every candidate, ends at 1.0; official ranking unchanged at 24",
+      "passed": true,
+      "detail": "36 rows",
+      "ids": [
+        "3.10"
+      ]
+    }
+  ],
+  "deviations": {},
+  "cards": {
+    "3.2": {
+      "done": "77,971 pre-cutoff orders: 11,554 low reviews (score <= 2, 14.82%) and 66,417 normal reviews (score >= 3, 85.18%).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "Imbalanced target: average precision is read against the prevalence baseline.",
+      "label": "observation"
+    },
+    "3.3": {
+      "done": "20 purchase months; over the 18 months with at least 100 orders: detractor rate 10.7% to 22.5%, late-vs-promised rate 0.8% to 21.1%, median lead time 8.9 to 17.9 days; every month is in the table with its counts.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "Late is delivery after order_estimated_delivery_date, used here only as a description (G-35).",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "3.6": {
+      "done": "20 numeric predictors: class-conditional distributions with the overlap coefficient (KDE for continuous features, class frequencies for features with at most 30 values), per-feature ROC-AUC and mutual information on the same rows; lowest overlap: total_freight (86.6%, ROC-AUC 0.587).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "A KDE smears an integer count into values that cannot occur, so features with few values use the class frequencies; the five log1p candidates use the KDE on the log1p scale (the coefficient does not change under a monotone transform). Flagged for the team (decision 2).",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "3.7": {
+      "done": "Four categorical predictors: mutual_info_classif (discrete, seed 42) and per-level detractor rates; calendar fields shown per level for the plots only. MI: customer_state 0.0050, primary_seller_state 0.0009, primary_category 0.0026, primary_payment_type 0.0000 nats.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "3.8": {
+      "done": "Ranking over the 24 contract predictors by mutual information (discrete estimator for categorical features and features with at most 30 values, k-NN estimator for the rest): top 5 ['total_freight', 'freight_ratio', 'total_volume_cm3', 'total_price', 'n_items']; cut points {'0.95': 14, '0.99': 17}. Missingness, IQR outliers, Pearson/Spearman matrix and VIF on 77,046 complete rows; flagged groups: []; identical columns: [('weight_missing_fraction', 'volume_missing_fraction')].",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "3.10": {
+      "done": "Screening columns (not predictors) diagnosed against is_detractor with the 3.6 measures; numeric ones also with skewness, correlation with the 20 numeric predictors and VIF in the extended numeric set. Product fields (primary item): product_photos_qty: rank 27, MI 0.0006, ROC-AUC 0.480, overlap 96.3%; product_description_lenght: rank 11, MI 0.0047, ROC-AUC 0.492, overlap 97.8%; product_name_lenght: rank 26, MI 0.0007, ROC-AUC 0.504, overlap 97.2%. Extended ranking over 24 + 12 candidates; cut points {'0.95': 22, '0.99': 27} (official 3.8 ranking unchanged at 24).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "The extended ranking shows where each candidate would enter; s04 recomputes the cumulative share over the agreed pool (24 + adopted candidates). Screening on pre-cutoff orders and then choosing is a post-hoc addition; the report says so.",
+      "conclusion": "Team decision at the gate: adopt or drop each candidate (human_decisions.yaml).",
+      "label": "observation"
+    },
+    "3.11": {
+      "done": "Screening columns (not predictors) diagnosed against is_detractor with the 3.6 measures; numeric ones also with skewness, correlation with the 20 numeric predictors and VIF in the extended numeric set. Promised delivery days: est_delivery_days: rank 16, MI 0.0031, ROC-AUC 0.539, overlap 95.0%.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "G-35 is reopened for this screen only. Olist's own promise is measured here; in production the promise would come from the task 1 prediction, so if adopted the classifier trains on out-of-fold task 1 predictions, which makes classification s06 depend on regression s06.",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "3.12": {
+      "done": "Screening columns (not predictors) diagnosed against is_detractor with the 3.6 measures; numeric ones also with skewness, correlation with the 20 numeric predictors and VIF in the extended numeric set. Regions (IBGE macro-regions; pair = customer>seller): customer_region: rank 23, MI 0.0012, overlap 95.4%; seller_region: rank 30, MI 0.0002, overlap 97.9%; region_pair: rank 21, MI 0.0018, overlap 95.0%. Per-level detractor rates in candidate_screen_levels.csv.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "A region has 5 levels instead of 27 states, so each level holds more orders; the pair captures logistics corridors. Mutual information with many levels is biased upward, so compare the region and state values with that in mind.",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "3.13": {
+      "done": "Screening columns (not predictors) diagnosed against is_detractor with the 3.6 measures; numeric ones also with skewness, correlation with the 20 numeric predictors and VIF in the extended numeric set. Seller history at checkout: seller_prior_review_mean: rank 2, MI 0.0104, ROC-AUC 0.441, overlap 90.5%; seller_prior_review_count: rank 18, MI 0.0028, ROC-AUC 0.507, overlap 96.2%; seller_prior_detractor_share: rank 6, MI 0.0081, ROC-AUC 0.557, overlap 90.5%; seller_prior_delivered_count: rank 17, MI 0.0029, ROC-AUC 0.506, overlap 96.2%; seller_prior_late_share: rank 8, MI 0.0067, ROC-AUC 0.536, overlap 90.0%.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "Only the primary seller's events strictly before the purchase second count (reviews at their answer time, deliveries at delivery time) and the order's own events never count; s02 checks this against a direct recomputation on 2,000 orders. Sellers without history are missing, with the counts at 0.",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "3.9": {
+      "done": "eda_review_pack.md lists every table and figure above, the ranking with both cut points, the flagged collinear groups and the YAML block the team fills in spec/human_decisions.yaml.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "Stop: s04 waits for the team's threshold and collinearity decisions (G-31).",
+      "label": "observation"
+    }
+  },
+  "checks_failed": []
+}

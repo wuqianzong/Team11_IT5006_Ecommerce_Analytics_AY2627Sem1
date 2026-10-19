@@ -1,0 +1,40 @@
+[
+  {
+    "question": "importance ranking for s04 selection",
+    "rule": "mutual information over the 24 contract predictors (3.8)",
+    "candidates_compared": "24 contract predictors",
+    "chosen": [
+      "total_freight",
+      "freight_ratio",
+      "total_volume_cm3",
+      "total_price",
+      "n_items",
+      "total_weight_g",
+      "customer_state",
+      "n_products",
+      "n_sellers",
+      "purchase_month",
+      "distance_km_max",
+      "primary_category",
+      "interstate_share",
+      "n_categories",
+      "primary_seller_state",
+      "payment_installments_max",
+      "category_missing_fraction",
+      "purchase_hour",
+      "purchase_dayofweek",
+      "distance_missing_fraction",
+      "primary_payment_type",
+      "volume_missing_fraction",
+      "weight_missing_fraction",
+      "n_payment_methods"
+    ],
+    "evidence_files": [
+      "importance_ranking.csv"
+    ],
+    "notes": "cut points {'0.95': 14, '0.99': 17}; threshold chosen by the team (G-31)",
+    "ids": [
+      "3.8"
+    ]
+  }
+]

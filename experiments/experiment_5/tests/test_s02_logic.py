@@ -28,13 +28,17 @@ def test_items_primary_and_missing_totals():
     from e5lib.aggregation import aggregate_items
     prod = pd.DataFrame({"product_id": ["p1", "p2"], "english_category": ["toys", None],
                          "product_weight_g": [100.0, None], "product_length_cm": [10.0, 10.0],
-                         "product_height_cm": [10.0, 10.0], "product_width_cm": [10.0, 10.0]})
+                         "product_height_cm": [10.0, 10.0], "product_width_cm": [10.0, 10.0],
+                         "product_photos_qty": [1.0, 4.0], "product_description_lenght": [200.0, None],
+                         "product_name_lenght": [40.0, 50.0]})
     it = pd.DataFrame({"order_id": ["a", "a"], "order_item_id": [1, 2], "product_id": ["p1", "p2"],
                        "seller_id": ["s1", "s2"], "price": [10.0, 30.0], "freight_value": [5.0, 5.0]})
     agg, primary, pairs = aggregate_items(prod, it)
     assert agg.loc["a", "total_price"] == 40 and pd.isna(agg.loc["a", "total_weight_g"])
     assert agg.loc["a", "weight_missing_fraction"] == 0.5 and primary.loc["a", "primary_seller_id"] == "s2"
     assert len(pairs) == 2 and "has_items" not in agg.columns
+    # screening candidates come from the primary (highest-price) item, missing stays missing (G-68)
+    assert primary.loc["a", "product_photos_qty"] == 4 and pd.isna(primary.loc["a", "product_description_lenght"])
 
 
 def test_zip_and_haversine():

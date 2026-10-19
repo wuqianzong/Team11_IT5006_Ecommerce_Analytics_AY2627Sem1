@@ -1,0 +1,301 @@
+{
+  "node": "s03_eda/regression",
+  "files": {
+    "target_regression_lead_days.csv": {
+      "ids": [
+        "3.1"
+      ],
+      "kind": "table"
+    },
+    "figures/target_lead_days_kde.png": {
+      "ids": [
+        "3.1"
+      ],
+      "kind": "figure"
+    },
+    "figures/target_lead_days_kde.csv": {
+      "ids": [
+        "3.1"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/target_lead_days_kde.json": {
+      "ids": [
+        "3.1"
+      ],
+      "kind": "figure_meta"
+    },
+    "outcome_trends.csv": {
+      "ids": [
+        "3.3"
+      ],
+      "kind": "table"
+    },
+    "figures/outcome_trends.png": {
+      "ids": [
+        "3.3"
+      ],
+      "kind": "figure"
+    },
+    "figures/outcome_trends.csv": {
+      "ids": [
+        "3.3"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/outcome_trends.json": {
+      "ids": [
+        "3.3"
+      ],
+      "kind": "figure_meta"
+    },
+    "numeric_feature_target_lead_days.csv": {
+      "ids": [
+        "3.4"
+      ],
+      "kind": "table"
+    },
+    "figures/numeric_vs_lead_days.png": {
+      "ids": [
+        "3.4"
+      ],
+      "kind": "figure"
+    },
+    "figures/numeric_vs_lead_days.csv": {
+      "ids": [
+        "3.4"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/numeric_vs_lead_days.json": {
+      "ids": [
+        "3.4"
+      ],
+      "kind": "figure_meta"
+    },
+    "categorical_feature_target_lead_days.csv": {
+      "ids": [
+        "3.5"
+      ],
+      "kind": "table"
+    },
+    "figures/categorical_vs_lead_days.png": {
+      "ids": [
+        "3.5"
+      ],
+      "kind": "figure"
+    },
+    "figures/categorical_vs_lead_days.csv": {
+      "ids": [
+        "3.5"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/categorical_vs_lead_days.json": {
+      "ids": [
+        "3.5"
+      ],
+      "kind": "figure_meta"
+    },
+    "feature_quality.csv": {
+      "ids": [
+        "3.8"
+      ],
+      "kind": "table"
+    },
+    "collinear_pairs.csv": {
+      "ids": [
+        "3.8"
+      ],
+      "kind": "table"
+    },
+    "numeric_correlations.csv": {
+      "ids": [
+        "3.8"
+      ],
+      "kind": "table"
+    },
+    "figures/numeric_correlation_heatmap.png": {
+      "ids": [
+        "3.8"
+      ],
+      "kind": "figure"
+    },
+    "figures/numeric_correlation_heatmap.csv": {
+      "ids": [
+        "3.8"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/numeric_correlation_heatmap.json": {
+      "ids": [
+        "3.8"
+      ],
+      "kind": "figure_meta"
+    },
+    "importance_ranking.csv": {
+      "ids": [
+        "3.8"
+      ],
+      "kind": "table"
+    },
+    "figures/cumulative_importance.png": {
+      "ids": [
+        "3.8",
+        "3.9"
+      ],
+      "kind": "figure"
+    },
+    "figures/cumulative_importance.csv": {
+      "ids": [
+        "3.8",
+        "3.9"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/cumulative_importance.json": {
+      "ids": [
+        "3.8",
+        "3.9"
+      ],
+      "kind": "figure_meta"
+    },
+    "candidate_rationale.csv": {
+      "ids": [
+        "3.8"
+      ],
+      "kind": "table"
+    },
+    "eda_summary.json": {
+      "ids": [
+        "3.1",
+        "3.3",
+        "3.8"
+      ],
+      "kind": "json"
+    },
+    "eda_review_pack.md": {
+      "ids": [
+        "3.9"
+      ],
+      "kind": "text"
+    },
+    "decision.json": {
+      "ids": [
+        "3.8"
+      ],
+      "kind": "json"
+    }
+  },
+  "checks": [
+    {
+      "name": "no order on or after the test cutoff loaded",
+      "passed": true,
+      "detail": "latest purchase 2018-05-26 18:16:57, cutoff 2018-05-26 18:18:03",
+      "ids": [
+        "3.1",
+        "3.3",
+        "3.8"
+      ]
+    },
+    {
+      "name": "all 24 contract predictors diagnosed against lead_days",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "3.4",
+        "3.5"
+      ]
+    },
+    {
+      "name": "importance_ranking has the 24 contract predictors and ends at cumulative share 1.0",
+      "passed": true,
+      "detail": "24 rows",
+      "ids": [
+        "3.8"
+      ]
+    },
+    {
+      "name": "ranking measure is the pre-registered one",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "3.8"
+      ]
+    },
+    {
+      "name": "outcome trends show outcomes, not volume only",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "3.3"
+      ]
+    },
+    {
+      "name": "review pack lists both cut points and every flagged group",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "3.9"
+      ]
+    }
+  ],
+  "deviations": {},
+  "cards": {
+    "3.1": {
+      "done": "lead_days profile on 77,139 pre-cutoff orders: median 11.18, mean 13.44, SD 9.46, p99 47.38, max 133.24 days; skewness 2.40, excess kurtosis 11.55.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "Right-skewed target: supports the pre-registered log1p target (G-36).",
+      "label": "observation"
+    },
+    "3.3": {
+      "done": "19 purchase months; over the 18 months with at least 100 orders: median lead time 9.0 to 17.9 days, late-vs-promised rate 1.1% to 21.4%, detractor rate 9.5% to 21.2%; every month is in the table with its counts.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "Late is delivery after order_estimated_delivery_date, used here only as a description (G-35).",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "3.4": {
+      "done": "20 numeric predictors: Pearson and Spearman with lead_days on the rows where the feature is present, plus each feature's percentile profile; strongest |Spearman|: distance_km_max (0.539). Scatter panels use 2,000 random orders each (seed 42); log1p x-axis for the five log1p candidates (plot only).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "3.5": {
+      "done": "Four categorical predictors: per-level median, IQR and mean of lead_days, drop-first dummy correlations (reference level = first in sorted order), and one rank correlation ratio per feature; the three calendar fields are shown per level for the plots only and stay numeric.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "Spearman needs an ordered feature, so a nominal feature gets the rank correlation ratio (square root of the Kruskal-Wallis epsilon-squared): the same 0-1 scale as |Spearman| on the ranked target. Flagged for the team to confirm (decision 1).",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "3.8": {
+      "done": "Ranking over the 24 contract predictors by absolute Spearman (rank correlation ratio for the four categorical ones): top 5 ['distance_km_max', 'customer_state', 'interstate_share', 'total_freight', 'primary_category']; cut points {'0.95': 14, '0.99': 18} (features needed for each cumulative share). Missingness, IQR outliers, Pearson/Spearman matrix and VIF on 76,233 complete rows; flagged groups: []; identical columns: [('weight_missing_fraction', 'volume_missing_fraction')].",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "3.9": {
+      "done": "eda_review_pack.md lists every table and figure above, the ranking with both cut points, the flagged collinear groups and the YAML block the team fills in spec/human_decisions.yaml.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "Stop: s04 waits for the team's threshold and collinearity decisions (G-31).",
+      "label": "observation"
+    }
+  },
+  "checks_failed": []
+}

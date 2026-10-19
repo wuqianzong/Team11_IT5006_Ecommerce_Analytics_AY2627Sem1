@@ -366,3 +366,23 @@ data\_dictionary.csv has 91 rows: every column of the 9 raw tables, of records.c
 - Run 20261019T072845Z. Card 2.7 gains the zero-item reasoning promised in the 2.7 thread; no data output changed (all evidence hashes equal round 1).
 - Comments answered in their threads: NO\_VALID\_REVIEW meaning, is\_detractor\_first and the label agreement, the 133.91-day threshold, order\_estimated\_delivery\_date (description only), the zero-item rule, the eligibility rules, distance\_missing\_fraction, the route-median fill, primary\_category translation. Two requests recorded for the s04 review tab: a feature × task table and evidence of imputation inside the folds.
 - Outcome: all 13 rows Approved; accepted by the experiment lead; committed and tagged e5-s02-accepted (CR-035).
+
+## Addendum — 2026-10-19, CR-037 (G-68): classification screening columns
+
+Approved by the experiment lead after the s03 round 1 review; reviewed together with s03 round 2. s02 stays ACCEPTED. Run 20261019T140111Z.
+
+- **2.5:** records.csv.gz gains product\_photos\_qty, product\_description\_lenght and product\_name\_lenght, each the value of the primary item (highest price, then lowest order\_item\_id: the primary\_category rule). Missing stays missing. They are screening columns for s03 classification, not predictors; the 24-predictor contract is unchanged.
+- **2.7:** all three tagged known at checkout, under the existing assumption that catalogue fields are fixed at checkout (stated limitation).
+- **2.12:** data\_dictionary.csv gains one row per column (role "screening candidate (classification only, G-68)").
+- **New check (2.5, 2.7):** screening candidates built from the primary item, known at checkout and non-negative: PASS.
+- Populations, exclusions.csv, exclusion\_counts.csv and both test cutoffs are unchanged.
+
+## Addendum — 2026-10-19, CR-038 (G-69): second set of classification screening columns
+
+Approved by the experiment lead; reviewed together with s03 round 3. s02 stays ACCEPTED. Run 20261019T151257Z.
+
+- **2.5:** records gain est\_delivery\_days (estimated delivery date minus purchase, days), customer\_region and seller\_region (IBGE macro-regions of customer\_state and primary\_seller\_state), region\_pair (customer>seller), and the primary seller's history at checkout: seller\_prior\_review\_mean, seller\_prior\_review\_count, seller\_prior\_detractor\_share, seller\_prior\_delivered\_count, seller\_prior\_late\_share.
+- **Seller-history rule:** only the primary seller's events strictly before the purchase second count (reviews at their answer time, deliveries at their delivery time); the order's own events never count (matched by order\_id, because 63 orders have a review answered before their recorded purchase, 2.7); an earlier order counts for its primary seller; sellers without history are missing with counts at 0.
+- **2.7 / 2.12:** all tagged known at checkout; one data-dictionary row each.
+- **New checks:** seller history equals a direct per-order recomputation on 2,000 random orders (seed 42): PASS. est\_delivery\_days after purchase on every order (minimum 1.649 days) and region columns complete: PASS.
+- Populations, exclusions and both test cutoffs are unchanged. G-35 is reopened only for the s03 classification screen of est\_delivery\_days.

@@ -5,7 +5,8 @@ Each fact table is collapsed to one row per order_id on its own, so no item x pa
 product is ever formed. Changes for Experiment 5: has_items, freight_ratio_missing and
 payment_missing are not built (not in the contract, G-61); payments also report whether the
 order has a usable payment type (s02 2.11, G-51); reviews also give the first-review label and
-the label-available timestamp (s02 2.6).
+the label-available timestamp (s02 2.6); the primary item also carries the catalogue fields
+screened in s03 (PRIMARY_PRODUCT_FIELDS, G-68).
 """
 from __future__ import annotations
 
@@ -13,6 +14,9 @@ import numpy as np
 import pandas as pd
 
 from .cleaning import UNKNOWN, USABLE_PAYMENT_TYPES
+
+# Catalogue fields taken from the primary item (screening candidates, G-68).
+PRIMARY_PRODUCT_FIELDS = ("product_photos_qty", "product_description_lenght", "product_name_lenght")
 
 
 def resolve_english_category(products: pd.DataFrame, translation: pd.DataFrame) -> pd.DataFrame:
@@ -26,7 +30,8 @@ def resolve_english_category(products: pd.DataFrame, translation: pd.DataFrame) 
 def aggregate_items(products_cat: pd.DataFrame, items: pd.DataFrame):
     """(item features per order, primary item per order, distinct order-seller pairs)."""
     it = items.merge(products_cat[["product_id", "english_category", "product_weight_g",
-                                   "product_length_cm", "product_height_cm", "product_width_cm"]],
+                                   "product_length_cm", "product_height_cm", "product_width_cm",
+                                   *PRIMARY_PRODUCT_FIELDS]],
                      on="product_id", how="left", validate="many_to_one")
     price, freight = it["price"].astype(float), it["freight_value"].astype(float)
     weight = it["product_weight_g"].astype(float)
@@ -66,7 +71,7 @@ def aggregate_items(products_cat: pd.DataFrame, items: pd.DataFrame):
     # Primary item: highest price (missing last), then lowest order_item_id.
     primary = (it.sort_values(["order_id", "price", "order_item_id"], ascending=[True, False, True],
                               na_position="last", kind="mergesort")
-               .drop_duplicates("order_id").set_index("order_id")[["seller_id", "english_category"]]
+               .drop_duplicates("order_id").set_index("order_id")[["seller_id", "english_category", *PRIMARY_PRODUCT_FIELDS]]
                .rename(columns={"seller_id": "primary_seller_id", "english_category": "primary_category"}))
     pairs = it[["order_id", "seller_id"]].dropna().drop_duplicates().reset_index(drop=True)
     keep = ["n_items", "n_products", "n_sellers", "n_categories", "total_price", "total_freight",

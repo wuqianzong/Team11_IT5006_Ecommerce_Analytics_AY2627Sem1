@@ -16,7 +16,8 @@ import pandas as pd  # noqa: E402
 
 from e5lib import contract, data, protocol  # noqa: E402
 from e5lib.aggregation import aggregate_items, aggregate_payments, aggregate_reviews, resolve_english_category  # noqa: E402
-from e5lib.cleaning import TABLES, UNKNOWN, load_clean, normalize_state  # noqa: E402
+from e5lib.cleaning import REGION_OF, TABLES, UNKNOWN, load_clean, normalize_state  # noqa: E402
+from e5lib.seller_history import brute_force, seller_history  # noqa: E402
 from e5lib.geography import distance_features, load_boundary, zip_centroids  # noqa: E402
 from e5lib.manifest import sha256  # noqa: E402
 from e5lib.outputs import Writer  # noqa: E402
@@ -103,8 +104,9 @@ PREDICTOR_SOURCE = {
     "payment_installments_max": "order_payments.payment_installments (max over usable lines)",
     "n_payment_methods": "order_payments.payment_type (distinct usable)",
 }
+SCREEN = contract.all_screening()  # screening candidates (G-68), not predictors
 RECORD_COLUMNS = (["order_id", "customer_id", "customer_unique_id", "purchase_ts"] + list(contract.PREDICTORS)
-                  + ["order_estimated_delivery_date", "lead_days", "lead_label_ts", "is_detractor",
+                  + list(SCREEN) + ["order_estimated_delivery_date", "lead_days", "lead_label_ts", "is_detractor",
                      "is_detractor_first", "review_label_ts", "eligible_regression", "eligible_classification"])
 
 
@@ -166,6 +168,24 @@ def main() -> None:
     pt = base["order_purchase_timestamp"]
     base["purchase_ts"] = pt
     base["purchase_month"], base["purchase_dayofweek"], base["purchase_hour"] = pt.dt.month, pt.dt.dayofweek, pt.dt.hour
+
+    # Screening candidates (G-68, G-69): promise, regions, seller history at checkout ---------------
+    base["est_delivery_days"] = (base["order_estimated_delivery_date"] - pt).dt.total_seconds() / 86400.0
+    base["customer_region"] = base["customer_state"].map(REGION_OF).fillna(UNKNOWN)
+    base["seller_region"] = base["primary_seller_state"].map(REGION_OF).fillna(UNKNOWN)
+    base["region_pair"] = base["customer_region"] + ">" + base["seller_region"]
+    hist_orders = pd.DataFrame({"order_id": base["order_id"], "seller_id": base["primary_seller_id"], "purchase_ts": pt})
+    delivered_rows = (base["order_status"] == "delivered") & base["order_delivered_customer_date"].notna()
+    hist_deliveries = pd.DataFrame({"order_id": base.loc[delivered_rows, "order_id"],
+                                    "delivered_ts": base.loc[delivered_rows, "order_delivered_customer_date"],
+                                    "estimated_ts": base.loc[delivered_rows, "order_estimated_delivery_date"]})
+    hist = seller_history(hist_orders, t["order_reviews"], hist_deliveries)
+    for c in hist.columns:
+        base[c] = hist[c]
+    sample = hist_orders["order_id"].sample(n=2000, random_state=int(p["seed"])).to_numpy()
+    slow = brute_force(hist_orders, t["order_reviews"], hist_deliveries, sample)
+    fast = hist.set_index(hist_orders["order_id"]).loc[sample]
+    hist_ok = bool(np.allclose(fast.to_numpy(float), slow.to_numpy(float), equal_nan=True, rtol=0, atol=1e-12))
 
     # 2.6 Targets ------------------------------------------------------------------------------
     delivered = base["order_delivered_customer_date"]
@@ -278,7 +298,14 @@ def main() -> None:
                        "known_at_checkout": known, "label_available_at": "", "eligibility": "raw input",
                        "comment": not_known or KNOWN_NOTE.get((name, col), "")})
     for col in RECORD_COLUMNS:
-        if col in contract.PREDICTORS:
+        if col in SCREEN:
+            task = [t for t, cols in contract.SCREENING_CANDIDATES.items() if col in cols]
+            grain, source, known = "order", contract.SCREENING_CANDIDATES[task[0]][col]["source"], "yes"
+            role = f"screening candidate ({', '.join(task)} only, G-68)"
+            miss = "missing (product without a catalogue value)" if rec[col].isna().any() else "never missing"
+            comment = ("not a predictor unless adopted at the s03 gate; catalogue fields assumed fixed at checkout; "
+                       + contract.SCREENING_CANDIDATES[task[0]][col]["transform"])
+        elif col in contract.PREDICTORS:
             grain, source, known, role = "order", PREDICTOR_SOURCE[col], "yes", "predictor (contract)"
             miss = "missing (imputed later in the fold pipeline)" if rec[col].isna().any() else "never missing"
             comment = ("log1p candidate (s04 4.2)" if col in contract.LOG_CANDIDATES else "")
@@ -350,6 +377,17 @@ def main() -> None:
     w.check("order_id unique and non-null in records", rec["order_id"].is_unique and rec["order_id"].notna().all(), ids=("2.4",))
     w.check("records hold exactly the 24 contract predictors", [c for c in rec.columns if c in contract.PREDICTORS]
             == list(contract.PREDICTORS) and not set(contract.NOT_IN_CONTRACT) & set(rec.columns), ids=("2.5",))
+    w.check("screening candidates built, known at checkout, numeric ones non-negative (G-68, G-69)",
+            all(c in rec.columns and leak[f"records.{c}"] == "yes" for c in SCREEN)
+            and not (rec[[c for c in SCREEN if contract.SCREENING_CANDIDATES["classification"][c]["kind"] == "numeric"]] < 0).any().any()
+            and not set(SCREEN) & set(contract.PREDICTORS),
+            ids=("2.5", "2.7"), detail=f"{list(SCREEN)}; missing: "
+            + ", ".join(f"{c} {int(rec[c].isna().sum()):,}" for c in SCREEN))
+    w.check("seller history equals a direct per-order recomputation (2,000 random orders, strict time, own order excluded)",
+            hist_ok, ids=("2.5", "2.7"), detail=f"sample seed {p['seed']}")
+    w.check("est_delivery_days after purchase on every order; region columns complete",
+            bool((rec["est_delivery_days"] > 0).all()) and not rec[["customer_region", "seller_region", "region_pair"]].isna().any().any(),
+            ids=("2.5",), detail=f"min est_delivery_days {rec['est_delivery_days'].min():.3f}")
     w.check("no predictor tagged not known at checkout",
             all(leak[f"records.{c}"] == "yes" for c in contract.PREDICTORS), ids=("2.7",))
     w.check("data dictionary: one row per raw and records column",
@@ -387,7 +425,11 @@ def main() -> None:
     w.explain("2.4", done="Items, payments and reviews aggregated to order_id first, then left-joined one-to-one "
               f"(pandas validate); output rows {len(rec):,} = orders {len(orders):,}.")
     w.explain("2.5", done="The 24 predictors of e5lib/contract.py built with the Milestone 2 formulas; calendar fields "
-              "numeric; has_items, freight_ratio_missing and payment_missing not built.")
+              "numeric; has_items, freight_ratio_missing and payment_missing not built. Screening candidates (G-68, "
+              f"classification only, not predictors): {', '.join(SCREEN)}. Product fields from the primary item; "
+              "est_delivery_days = estimated delivery date minus purchase; regions are the IBGE macro-regions of the "
+              "customer and primary-seller states and their pair; seller history uses only the primary seller's events "
+              "strictly before purchase, own order excluded.")
     w.explain("2.6", done=f"lead_days for delivered orders with delivery after purchase; is_detractor from the minimum "
               f"valid score; first-review label kept. Min and first labels agree on "
               f"{label_agreement['min_and_first_label_agree']:,} of {label_agreement['orders_with_valid_review']:,} reviewed orders.")

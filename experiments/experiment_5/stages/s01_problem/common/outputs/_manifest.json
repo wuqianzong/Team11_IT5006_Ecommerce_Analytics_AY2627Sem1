@@ -1,19 +1,21 @@
 {
   "node": "s01_problem/common",
-  "run_id": "20261019T054239Z",
-  "commit": "123cf32ca5ec6ff821eca5f8af4ba4d615157cec",
+  "run_id": "20261019T151352Z",
+  "commit": "f4b7cbf6691d63496b56bcdcbc88f49ac34cf1a9",
   "dirty": true,
   "code": {
-    "experiments/experiment_5/stages/s01_problem/common/run.py": "ca921075d775a929bd422a0011ea04904a3367df2050536e88565afd71b27bbb"
+    "experiments/experiment_5/stages/s01_problem/common/run.py": "13f19039c22dcb911db5b1ddef5c7bfff266ebd1bc3cf45a06495dda9ed21fd9"
   },
   "foundation": {
     "experiments/experiment_5/e5lib/__init__.py": "cd238533adc62fa600a0d9246352bc6a0c3d5bc599ad0504a1ea10d7aa76c5fe",
-    "experiments/experiment_5/e5lib/aggregation.py": "d236d386ed95dad88f1eeb3c576d9f6d3a98aa443556fd1ffd864941c9cd66ff",
+    "experiments/experiment_5/e5lib/aggregation.py": "2493264c6df5cebdc211c9df15e6d64b4d90bfe4ad005263dcd5b1a9e8faf9d5",
     "experiments/experiment_5/e5lib/candidates.py": "5ae6bb355012a619759f36e81f9dd36784a7cededf7b2eeb431a9b5f1e0e70b4",
-    "experiments/experiment_5/e5lib/cleaning.py": "3ef3ca09e4a1a9485b94c18748108c8b628133ac551ce5b013ab84617fc922bc",
-    "experiments/experiment_5/e5lib/contract.py": "8e63329cfa5563df39726b272b49283ca197a8f92ab314983821f51c60c4b167",
+    "experiments/experiment_5/e5lib/cleaning.py": "20836a85b51a58127af73d260bae6071682b1a254eeb22802ae7f3a1ecb3c471",
+    "experiments/experiment_5/e5lib/contract.py": "101dbba2176ffb985a6d7a90442f49f9b1f2cecbd4310cc96514a320a21b6b25",
     "experiments/experiment_5/e5lib/cv.py": "c3c5d112c87c1d62c3b21a7a65a3219baa916322e7f1d6c335eea343f4684e7c",
     "experiments/experiment_5/e5lib/data.py": "12348f910bc66f91137b71b81ef2a507b2d9e146bfb54fbd58039e9db83008a0",
+    "experiments/experiment_5/e5lib/eda.py": "edca505b81b8e72f299a01bce6fba2611c0408437348cd542cdab40428260d4c",
+    "experiments/experiment_5/e5lib/eda_sections.py": "f8fbdb191b537e84efe0052c83361a18252f5c6e1faf622049b8cfb84e1ca3d1",
     "experiments/experiment_5/e5lib/factory.py": "8f6794fc80334e6a344096c6654e015cffe3a5ab0ff9018eea16506f9eb5ad2a",
     "experiments/experiment_5/e5lib/geography.py": "d7ca545020d12f70d23225e3611c7ae2ac2d67be10f04aa21931fc48c3b75b97",
     "experiments/experiment_5/e5lib/manifest.py": "9c398fbacb56bf6b087dca0aa1fb9208a62695b7e38bfb2b7fa4495727ed4340",
@@ -22,16 +24,17 @@
     "experiments/experiment_5/e5lib/paths.py": "0e734f058878c897ef2020f1bf286772f1e8871247f4d36d9cfa311fe877b660",
     "experiments/experiment_5/e5lib/protocol.py": "900e556c163cb112c7b533311f5e635052090bea2554b1abe0c10010ca65e96d",
     "experiments/experiment_5/e5lib/review.py": "fc47e1fbebddfdc377f0e7a43c87cef92accf158437cb929ad6557e86c9df48d",
+    "experiments/experiment_5/e5lib/seller_history.py": "d5ef6eb6d3fc7bd1d1d1ba3df3ddf5c03f0e3bedafbaee9b1c1e6b50d9e1aa58",
     "experiments/experiment_5/run_pipeline.py": "38625fed4ceda4990a3b7dc86a2146d1a5eb89c9feac6948381dcbf7c1d589cf"
   },
   "protocol": {
-    "pre_registered": "669d2d8c7c572c8df42cb22eeb259e547de6f54266e97c8593a1449a26d6e8b7"
+    "pre_registered": "c358bb20d82f5c80fa9110e1cd1089085b1fe1a793b129a38a084f816fdfcaca"
   },
   "reads": {},
   "outputs": {
-    "experiments/experiment_5/stages/s01_problem/common/outputs/_evidence_index.json": "78532c82b01cf42a832c25c5a97f5b4eadccd7509e758698d230c3fb6043ca25",
-    "experiments/experiment_5/stages/s01_problem/common/outputs/preregistered_values.csv": "be5770c4126dddb7d7d90d1b975c65030e0d17703c8ee17f4ecd274f70c5fc77",
-    "experiments/experiment_5/stages/s01_problem/common/outputs/protocol_preregistered.yaml": "1d873755500368094b51fd2865ffba99ceebae50dec35c1a08f91a3850b314bf",
+    "experiments/experiment_5/stages/s01_problem/common/outputs/_evidence_index.json": "28eae4d4b2788e1935181e5ee0bc04796f8abf45cbd446af931a23e0f2a8be0a",
+    "experiments/experiment_5/stages/s01_problem/common/outputs/preregistered_values.csv": "91c47376ec9986c34233707c560a550facc2e56d804e44bb6682b459da8a96e2",
+    "experiments/experiment_5/stages/s01_problem/common/outputs/protocol_preregistered.yaml": "4200b22a893bc21035faf8da663cf61308b68e398a8cd96a01fe48096cfc6173",
     "experiments/experiment_5/stages/s01_problem/common/outputs/task_contract.md": "0fd9ed8249fe89cabf969628f3aa330f82939f6456e589d2e12843d7cf9fb558"
   },
   "versions": {
@@ -46,5 +49,5 @@
     "shapely": "2.1.2"
   },
   "seed": 42,
-  "runtime_s": 0.16
+  "runtime_s": 0.11
 }

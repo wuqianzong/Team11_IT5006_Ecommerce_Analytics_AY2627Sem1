@@ -1,0 +1,40 @@
+[
+  {
+    "question": "importance ranking for s04 selection",
+    "rule": "absolute Spearman over the 24 contract predictors (3.8)",
+    "candidates_compared": "24 contract predictors",
+    "chosen": [
+      "distance_km_max",
+      "customer_state",
+      "interstate_share",
+      "total_freight",
+      "primary_category",
+      "freight_ratio",
+      "total_price",
+      "primary_seller_state",
+      "total_weight_g",
+      "primary_payment_type",
+      "total_volume_cm3",
+      "n_sellers",
+      "payment_installments_max",
+      "purchase_dayofweek",
+      "n_products",
+      "purchase_month",
+      "n_items",
+      "n_categories",
+      "distance_missing_fraction",
+      "category_missing_fraction",
+      "n_payment_methods",
+      "volume_missing_fraction",
+      "weight_missing_fraction",
+      "purchase_hour"
+    ],
+    "evidence_files": [
+      "importance_ranking.csv"
+    ],
+    "notes": "cut points {'0.95': 14, '0.99': 18}; threshold chosen by the team (G-31)",
+    "ids": [
+      "3.8"
+    ]
+  }
+]

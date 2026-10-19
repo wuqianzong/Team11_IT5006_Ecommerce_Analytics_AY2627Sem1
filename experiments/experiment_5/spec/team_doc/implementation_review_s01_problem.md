@@ -239,3 +239,18 @@
 ### Later change — 2026-10-19 (after acceptance)
 
 - s01 was rerun after foundation changes (CR-030, CR-031, CR-033); every value output is byte-identical. The 1.9 check "pre-registered before any later stage has outputs" failed on reruns once s02 existed, so it is now "later stages used this pre-registered layer" (each later manifest's pre-registered hash must equal s01's). The lead confirms this in the s02 review (decision 3). The tables above show round 2 as accepted.
+
+## Addendum — 2026-10-19, CR-037 (G-68): screening candidates registered
+
+Approved by the experiment lead after the s03 round 1 review; reviewed together with s03 round 2. s01 stays ACCEPTED. Run 20261019T140139Z.
+
+- **1.3:** protocol.yaml (pre-registered layer) gains features.screening\_candidates from e5lib/contract.py: product\_photos\_qty (scaled, never logged), product\_description\_lenght and product\_name\_lenght (log1p if pre-cutoff skewness > 1, then scaled), classification only, value of the primary item. They are not predictors; a candidate enters the classification selection pool only if the team adopts it at the s03 gate.
+- The addition was made after the first EDA and is disclosed as post-hoc in the report, with the assumption that catalogue fields are fixed at checkout.
+- **New check (1.3):** screening candidates are task-scoped and outside the 24 predictors: PASS. All other pre-registered values are unchanged.
+
+## Addendum — 2026-10-19, CR-038 (G-69): more screening candidates
+
+Approved by the experiment lead; reviewed together with s03 round 3. s01 stays ACCEPTED. Run 20261019T151352Z.
+
+- **1.3:** features.screening\_candidates gains est\_delivery\_days, customer\_region, seller\_region, region\_pair and five seller\_prior\_\* columns; each entry now names its group (the s03 card that screens it), kind and planned transform. Added notes: est\_delivery\_days is screened for classification only (G-35 reopened for this screen) and, if adopted, trains on out-of-fold task 1 predictions; the seller-history time rule.
+- Adopted at the s03 gate so far: product\_photos\_qty, product\_description\_lenght (human\_decisions.yaml).

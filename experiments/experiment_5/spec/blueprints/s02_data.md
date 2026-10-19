@@ -35,6 +35,11 @@ Gate: joins, grains, targets and leakage exclusions verified (`../stages.json`).
    physical totals and missing fractions, primary category and seller state, distance,
    interstate share, calendar, payment) with the Milestone 2 formulas (G-61). `has_items`,
    `freight_ratio_missing` and `payment_missing` are not in the contract and are not built.
+   Also built, as screening columns for s03 classification only (not predictors; G-68, CR-037):
+   `product_photos_qty`, `product_description_lenght`, `product_name_lenght`, each the value of the
+   primary item; catalogue fields are assumed fixed at checkout. CR-038 (G-69) adds est_delivery_days,
+   customer_region, seller_region, region_pair and the seller_prior_* history columns (events of the primary
+   seller strictly before purchase, own order excluded; checked against a direct recomputation).
 6. **Targets.** `lead_days` = delivery − purchase in fractional days (delivered, valid
    timestamps, > 0), label available at delivery. `is_detractor` = minimum valid review score ≤ 2,
    label available at the last review answer. Keep the first-review label for a sensitivity

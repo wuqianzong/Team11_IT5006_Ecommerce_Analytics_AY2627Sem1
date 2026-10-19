@@ -2,7 +2,7 @@
 node: s03_eda/regression
 owner: TBD
 reviewer: TBD
-status: TODO
+status: ACCEPTED
 depends_on:
   - s02_data/common
 reads: []   # exact upstream files used
@@ -18,7 +18,7 @@ Blueprint: `spec/blueprints/s03_eda.md` (implement only when its status is AGREE
 **Gate question:** Does every planned change follow from a pre-cutoff observation?
 
 ## Purpose
-Question-driven EDA on orders before the test cutoff: target profiles; outcome trends over time; diagnostics of the 24 contract predictors against each target, importance ranking over all 24 (G-42, G-61) (scatter, Pearson and Spearman; violins and one-hot correlations; class-conditional KDE overlap and per-feature ROC-AUC; mutual information); one importance ranking per task for s04; missingness, outliers and collinearity among raw numeric features.
+Question-driven EDA on orders before the test cutoff: target profiles; outcome trends over time; diagnostics of the 24 contract predictors against each target, importance ranking over all 24 (G-42, G-61) (scatter, Pearson and Spearman; violins and one-hot correlations; class-conditional KDE overlap and per-feature ROC-AUC; mutual information); one importance ranking per task for s04; missingness, outliers and collinearity among raw numeric features; classification only: candidate screen of the s02 screening columns (3.10-3.13, G-68, G-69) with an extended ranking, adoption decided by the team at the gate (G-70).
 
 ## Planned outputs (`outputs/`)
 - figures/*.png + sidecar json
@@ -31,6 +31,7 @@ Question-driven EDA on orders before the test cutoff: target profiles; outcome t
 - No order on or after the test cutoff loaded
 - Outcome trends shown, not volume only
 - All 24 contract predictors diagnosed against the task's target
+- Classification: every screening candidate diagnosed; adoption recorded in spec/human_decisions.yaml (adopted_candidates)
 - Each proposed change linked to an observation
 - Outputs written under the stage's outputs/, never artifacts/
 - Stop: eda_review_pack.md presented; team decisions recorded in spec/human_decisions.yaml before s04 runs
@@ -39,15 +40,26 @@ Question-driven EDA on orders before the test cutoff: target profiles; outcome t
 ## Working log (README section 9.1; one row per solution ID, every code change names its ID)
 | ID | What was built | Commit | Evidence (files, figures) | Coverage | Round |
 | --- | --- | --- | --- | --- | --- |
+| 3.1 | Regression target: lead_days profile on 77,139 pre-cutoff orders: median 11.18, mean 13.44, SD 9.46, p99 47.38, max 133.24 days; skewness 2.40, excess kurtosis 11.55. | acceptance commit (e5-s03-accepted) | target_regression_lead_days.csv, figures/target_lead_days_kde.png, eda_summary.json | IMPLEMENTED | 1 |
+| 3.3 | Outcome trends: 19 purchase months; over the 18 months with at least 100 orders: median lead time 9.0 to 17.9 days, late-vs-promised rate 1.1% to 21.4%, detractor rate 9.5% to 21.2%; every month is in the table with its counts. | acceptance commit (e5-s03-accepted) | outcome_trends.csv, figures/outcome_trends.png, eda_summary.json | IMPLEMENTED | 1 |
+| 3.4 | Numeric features vs lead_days: 20 numeric predictors: Pearson and Spearman with lead_days on the rows where the feature is present, plus each feature's percentile profile; strongest |Spearman|: distance_km_max (0.539). Scatter panels use 2,000 random  | acceptance commit (e5-s03-accepted) | numeric_feature_target_lead_days.csv, figures/numeric_vs_lead_days.png | IMPLEMENTED | 1 |
+| 3.5 | Categorical features vs lead_days: Four categorical predictors: per-level median, IQR and mean of lead_days, drop-first dummy correlations (reference level = first in sorted order), and one rank correlation ratio per feature; the three calendar fields are | acceptance commit (e5-s03-accepted) | categorical_feature_target_lead_days.csv, figures/categorical_vs_lead_days.png | IMPLEMENTED | 1 |
+| 3.8 | Importance ranking: Ranking over the 24 contract predictors by absolute Spearman (rank correlation ratio for the four categorical ones): top 5 ['distance_km_max', 'customer_state', 'interstate_share', 'total_freight', 'primary_category']; c | acceptance commit (e5-s03-accepted) | feature_quality.csv, collinear_pairs.csv, numeric_correlations.csv, figures/numeric_correlation_heatmap.png, importance_ranking.csv, figures/cumulative_importance.png, candidate_rationale.csv, eda_summary.json, decision.json | IMPLEMENTED | 1 |
+| 3.9 | Human gate (review pack for s04 decisions): eda_review_pack.md lists every table and figure above, the ranking with both cut points, the flagged collinear groups and the YAML block the team fills in spec/human_decisions.yaml. | acceptance commit (e5-s03-accepted) | figures/cumulative_importance.png, eda_review_pack.md | IMPLEMENTED | 1 |
 
 ## Review rounds (append-only; each round has review/round_N/ and a section in the doc tab)
 | Round | Commit | Run ID | Review pack | Outcome | Date |
 | --- | --- | --- | --- | --- | --- |
+| 1 | uncommitted on f4b7cbf (G-64) | 20261019T081153Z | review/round_1/review_pack.md | comments answered; Henry: 3.1–3.4 agree, thresholds proposed (regression 99%/18; classification 99%/17, open until the screen); candidate screen requested | 2026-10-19 |
+| 2 | uncommitted on f4b7cbf (G-64) | 20261019T140119Z | review/round_2/review_pack.md | reviewed: all rows unchanged (evidence hashes equal round 1); rerun only because s02 records gained the classification screening columns | 2026-10-19 |
+| 3 | acceptance commit (tag e5-s03-accepted) | 20261019T151309Z | review/round_3/review_pack.md | accepted: all rows unchanged (evidence hashes equal round 2) | 2026-10-19 |
 
 ## Accepted result (the only result the report and slides may cite)
-- Accepted round: - commit: - run ID: - approved by: - date:
+- Accepted round: 3 - commit: the "s03 accepted" commit, tag `e5-s03-accepted` - run ID: 20261019T151309Z - approved by: experiment lead (Wu Qianzong), after team review in the doc tab "Implementation reviews › s03 EDA" - date: 2026-10-19
+- Gate decisions (spec/human_decisions.yaml, G-70): threshold 99%; no collinearity drop.
 
 ## Deviations from blueprint
 None.
 
 ## Open questions
+- Resolved at acceptance (G-70): thresholds, collinearity, method decisions 1-4.

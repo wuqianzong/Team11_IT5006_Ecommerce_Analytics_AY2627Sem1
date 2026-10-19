@@ -68,6 +68,61 @@ features.selection.ranking.classification,mutual information,1.3
 features.selection.cumulative_threshold_options,"0.95, 0.99",1.3
 features.selection.decided_by,team after s03 (G-31),1.3
 features.selection.source,"s03 3.8, s04 4.4; G-19, G-42",1.3
+features.screening_candidates.columns.classification.product_photos_qty.group,product,1.3
+features.screening_candidates.columns.classification.product_photos_qty.kind,numeric,1.3
+features.screening_candidates.columns.classification.product_photos_qty.source,products.product_photos_qty of the primary item,1.3
+features.screening_candidates.columns.classification.product_photos_qty.transform,"scaled, never logged (count)",1.3
+features.screening_candidates.columns.classification.product_description_lenght.group,product,1.3
+features.screening_candidates.columns.classification.product_description_lenght.kind,numeric,1.3
+features.screening_candidates.columns.classification.product_description_lenght.source,products.product_description_lenght of the primary item,1.3
+features.screening_candidates.columns.classification.product_description_lenght.transform,"log1p if pre-cutoff skewness > 1, then scaled",1.3
+features.screening_candidates.columns.classification.product_name_lenght.group,product,1.3
+features.screening_candidates.columns.classification.product_name_lenght.kind,numeric,1.3
+features.screening_candidates.columns.classification.product_name_lenght.source,products.product_name_lenght of the primary item,1.3
+features.screening_candidates.columns.classification.product_name_lenght.transform,"log1p if pre-cutoff skewness > 1, then scaled",1.3
+features.screening_candidates.columns.classification.est_delivery_days.group,promise,1.3
+features.screening_candidates.columns.classification.est_delivery_days.kind,numeric,1.3
+features.screening_candidates.columns.classification.est_delivery_days.source,orders.order_estimated_delivery_date - order_purchase_timestamp (days),1.3
+features.screening_candidates.columns.classification.est_delivery_days.transform,"log1p if pre-cutoff skewness > 1, then scaled; in production fed by the task 1 prediction, so if adopted the classifier trains on out-of-fold task 1 predictions (G-69)",1.3
+features.screening_candidates.columns.classification.customer_region.group,region,1.3
+features.screening_candidates.columns.classification.customer_region.kind,categorical,1.3
+features.screening_candidates.columns.classification.customer_region.source,IBGE macro-region of customer_state,1.3
+features.screening_candidates.columns.classification.customer_region.transform,"one-hot (drop-first for linear/logistic), unknown level handled",1.3
+features.screening_candidates.columns.classification.seller_region.group,region,1.3
+features.screening_candidates.columns.classification.seller_region.kind,categorical,1.3
+features.screening_candidates.columns.classification.seller_region.source,IBGE macro-region of primary_seller_state,1.3
+features.screening_candidates.columns.classification.seller_region.transform,"one-hot (drop-first for linear/logistic), unknown level handled",1.3
+features.screening_candidates.columns.classification.region_pair.group,region,1.3
+features.screening_candidates.columns.classification.region_pair.kind,categorical,1.3
+features.screening_candidates.columns.classification.region_pair.source,customer_region > seller_region (route between macro-regions),1.3
+features.screening_candidates.columns.classification.region_pair.transform,"one-hot (drop-first for linear/logistic), unknown level handled",1.3
+features.screening_candidates.columns.classification.seller_prior_review_mean.group,seller_history,1.3
+features.screening_candidates.columns.classification.seller_prior_review_mean.kind,numeric,1.3
+features.screening_candidates.columns.classification.seller_prior_review_mean.source,"mean valid review score of the primary seller's earlier orders, reviews answered strictly before this purchase (own order excluded)",1.3
+features.screening_candidates.columns.classification.seller_prior_review_mean.transform,scaled; missing for sellers without an earlier review (imputed in folds with a missing indicator),1.3
+features.screening_candidates.columns.classification.seller_prior_review_count.group,seller_history,1.3
+features.screening_candidates.columns.classification.seller_prior_review_count.kind,numeric,1.3
+features.screening_candidates.columns.classification.seller_prior_review_count.source,number of those reviews,1.3
+features.screening_candidates.columns.classification.seller_prior_review_count.transform,"log1p if pre-cutoff skewness > 1, then scaled",1.3
+features.screening_candidates.columns.classification.seller_prior_detractor_share.group,seller_history,1.3
+features.screening_candidates.columns.classification.seller_prior_detractor_share.kind,numeric,1.3
+features.screening_candidates.columns.classification.seller_prior_detractor_share.source,share of those reviews with score <= 2,1.3
+features.screening_candidates.columns.classification.seller_prior_detractor_share.transform,"scaled, never logged (share); missing as for the mean",1.3
+features.screening_candidates.columns.classification.seller_prior_delivered_count.group,seller_history,1.3
+features.screening_candidates.columns.classification.seller_prior_delivered_count.kind,numeric,1.3
+features.screening_candidates.columns.classification.seller_prior_delivered_count.source,number of the primary seller's earlier orders delivered strictly before this purchase,1.3
+features.screening_candidates.columns.classification.seller_prior_delivered_count.transform,"log1p if pre-cutoff skewness > 1, then scaled",1.3
+features.screening_candidates.columns.classification.seller_prior_late_share.group,seller_history,1.3
+features.screening_candidates.columns.classification.seller_prior_late_share.kind,numeric,1.3
+features.screening_candidates.columns.classification.seller_prior_late_share.source,share of those deliveries after their estimated delivery date,1.3
+features.screening_candidates.columns.classification.seller_prior_late_share.transform,"scaled, never logged (share); missing when no earlier delivery",1.3
+features.screening_candidates.order_level_rule,"value of the primary item (highest price, then lowest order_item_id), as for primary_category",1.3
+features.screening_candidates.role,screened in s03 for the named task only; enter that task's selection pool only if adopted at the s03 gate (human_decisions.yaml),1.3
+features.screening_candidates.assumption,catalogue fields fixed at checkout (stated limitation),1.3
+features.screening_candidates.added_after_eda,s03 round 1 and 2 reviews; disclosed as a post-hoc addition,1.3
+features.screening_candidates.promise_note,"est_delivery_days is screened for classification only (G-35 reopened for this screen); if adopted, training uses out-of-fold task 1 predictions, as production would",1.3
+features.screening_candidates.seller_history_rule,"events of the primary seller strictly before purchase_ts (to the second), own order excluded by order_id; reviews at their answer time, deliveries at delivery time",1.3
+features.screening_candidates.source,"G-68, G-69",1.3
 features.route_median.column,distance_km_max,1.3
 features.route_median.keys,"['customer_state', 'primary_seller_state'], ['customer_state']",1.3
 features.route_median.source,s04 4.8; G-27,1.3

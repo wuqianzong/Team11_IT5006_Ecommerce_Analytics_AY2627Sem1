@@ -16,6 +16,15 @@ BR_STATES = frozenset({
     "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA",
     "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO",
 })
+# IBGE macro-regions (screening candidates, G-69).
+BR_REGIONS = {
+    "North": ("AC", "AM", "AP", "PA", "RO", "RR", "TO"),
+    "Northeast": ("AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE"),
+    "Center-West": ("DF", "GO", "MS", "MT"),
+    "Southeast": ("ES", "MG", "RJ", "SP"),
+    "South": ("PR", "RS", "SC"),
+}
+REGION_OF = {s: r for r, states in BR_REGIONS.items() for s in states}
 ORDER_STATUS = frozenset({"approved", "canceled", "created", "delivered", "invoiced",
                           "processing", "shipped", "unavailable"})
 PAYMENT_TYPE = frozenset({"boleto", "credit_card", "debit_card", "not_defined", "voucher"})

@@ -5,11 +5,16 @@
 
 s03_to_s04:
   regression:
-    cumulative_importance_threshold: null   # 0.95 or 0.99, chosen from eda_review_pack.md
-    collinearity_drops: []                  # - {group: [...], drop: feature, rationale: "...", decided_by: name, date: YYYY-MM-DD}
+    cumulative_importance_threshold: 0.99   # 0.95 or 0.99, chosen from eda_review_pack.md; Henry (keeps purchase_month, festival season), accepted by the experiment lead with s03, 2026-10-19
+    collinearity_drops: []                  # none flagged among the 24 (weight/volume_missing_fraction are identical: s04 duplicate rule). Format: - {group: [...], drop: feature, rationale: "...", decided_by: name, date: YYYY-MM-DD}
   classification:
-    cumulative_importance_threshold: null
-    collinearity_drops: []
+    cumulative_importance_threshold: 0.99   # Henry (a share, not a feature count, because the pool changed during the review), accepted by the experiment lead with s03, 2026-10-19
+    collinearity_drops: []                  # none flagged in the pool (24 + adopted); the seller count pair was not adopted
+    adopted_candidates:                     # screening candidates adopted into the selection pool (G-68, G-69): - {feature: ..., rationale: "...", decided_by: name, date: YYYY-MM-DD}
+      - {feature: product_photos_qty, rationale: "kept for the classification pool after the 3.10 screen; ranked with the pool at the s04 threshold", decided_by: "Henry; experiment lead (Wu Qianzong)", date: 2026-10-19}
+      - {feature: product_description_lenght, rationale: "kept for the classification pool after the 3.10 screen; ranked with the pool at the s04 threshold", decided_by: "Henry; experiment lead (Wu Qianzong)", date: 2026-10-19}
+      - {feature: seller_prior_review_mean, rationale: "the seller rating customers see at checkout; strongest screened signal (3.13); detractor share (Spearman -0.87 with the mean) and late share are not shown to customers and added nothing in a scratch check", decided_by: "experiment lead (Wu Qianzong)", date: 2026-10-19}
+    not_adopted: [product_name_lenght, est_delivery_days, customer_region, seller_region, region_pair, seller_prior_review_count, seller_prior_detractor_share, seller_prior_delivered_count, seller_prior_late_share]   # screened in 3.10-3.13, stay screening columns only (G-70)
 
 s08:
   regression:

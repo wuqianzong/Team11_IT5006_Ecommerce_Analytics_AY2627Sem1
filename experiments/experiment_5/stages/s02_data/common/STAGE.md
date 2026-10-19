@@ -67,6 +67,10 @@ Load and clean the nine Olist tables deterministically, join aggregation-first t
 - Accepted round: 2 - commit: the "s02 accepted" commit, tag `e5-s02-accepted` - run ID: 20261019T072845Z - approved by: experiment lead (Wu Qianzong), after team review in the doc tab "Implementation reviews › s02 Data" - date: 2026-10-19
 - Evidence: `outputs/_manifest.json`, `review/round_2/review_pack.md`; test cutoffs in `spec/protocol.yaml` (data_dependent.test_cutoffs).
 
+## Changes after acceptance (README section 9.2)
+- 2026-10-19, CR-037 (G-68): records.csv.gz gains product_photos_qty, product_description_lenght and product_name_lenght (value of the primary item, missing stays missing), tagged known at checkout, with data dictionary rows and a new check (2.5, 2.7, 2.12). Populations, exclusions and test cutoffs unchanged. Rerun 20261019T140111Z. Approved by the experiment lead; reviewed with s03 round 2 in the doc (dated addendum on this stage's tab). Status stays ACCEPTED (no decision.json changed).
+- 2026-10-19, CR-038 (G-69): records gain est_delivery_days, customer_region, seller_region, region_pair and five seller_prior_* columns; new checks: seller history equals a direct recomputation on 2,000 random orders, est_delivery_days after purchase and regions complete. Populations, exclusions and test cutoffs unchanged. Rerun 20261019T151257Z. Approved by the experiment lead; reviewed with s03 round 3. Status stays ACCEPTED.
+
 ## Deviations from blueprint
 None.
 

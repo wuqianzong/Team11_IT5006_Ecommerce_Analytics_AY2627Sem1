@@ -170,6 +170,32 @@
       ]
     },
     {
+      "name": "screening candidates built, known at checkout, numeric ones non-negative (G-68, G-69)",
+      "passed": true,
+      "detail": "['product_photos_qty', 'product_description_lenght', 'product_name_lenght', 'est_delivery_days', 'customer_region', 'seller_region', 'region_pair', 'seller_prior_review_mean', 'seller_prior_review_count', 'seller_prior_detractor_share', 'seller_prior_delivered_count', 'seller_prior_late_share']; missing: product_photos_qty 2,190, product_description_lenght 2,190, product_name_lenght 2,190, est_delivery_days 0, customer_region 0, seller_region 0, region_pair 0, seller_prior_review_mean 6,985, seller_prior_review_count 775, seller_prior_detractor_share 6,985, seller_prior_delivered_count 775, seller_prior_late_share 6,397",
+      "ids": [
+        "2.5",
+        "2.7"
+      ]
+    },
+    {
+      "name": "seller history equals a direct per-order recomputation (2,000 random orders, strict time, own order excluded)",
+      "passed": true,
+      "detail": "sample seed 42",
+      "ids": [
+        "2.5",
+        "2.7"
+      ]
+    },
+    {
+      "name": "est_delivery_days after purchase on every order; region columns complete",
+      "passed": true,
+      "detail": "min est_delivery_days 1.649",
+      "ids": [
+        "2.5"
+      ]
+    },
+    {
       "name": "no predictor tagged not known at checkout",
       "passed": true,
       "detail": "",
@@ -291,7 +317,7 @@
       "label": "observation"
     },
     "2.5": {
-      "done": "The 24 predictors of e5lib/contract.py built with the Milestone 2 formulas; calendar fields numeric; has_items, freight_ratio_missing and payment_missing not built.",
+      "done": "The 24 predictors of e5lib/contract.py built with the Milestone 2 formulas; calendar fields numeric; has_items, freight_ratio_missing and payment_missing not built. Screening candidates (G-68, classification only, not predictors): product_photos_qty, product_description_lenght, product_name_lenght, est_delivery_days, customer_region, seller_region, region_pair, seller_prior_review_mean, seller_prior_review_count, seller_prior_detractor_share, seller_prior_delivered_count, seller_prior_late_share. Product fields from the primary item; est_delivery_days = estimated delivery date minus purchase; regions are the IBGE macro-regions of the customer and primary-seller states and their pair; seller history uses only the primary seller's events strictly before purchase, own order excluded.",
       "inputs": "",
       "expectation": "",
       "observation": "",
@@ -354,7 +380,7 @@
       "label": "observation"
     },
     "2.12": {
-      "done": "data_dictionary.csv: 91 rows (every raw and records column, plus the three columns not in the contract); figures/data_structure.png with its link table.",
+      "done": "data_dictionary.csv: 103 rows (every raw and records column, plus the three columns not in the contract); figures/data_structure.png with its link table.",
       "inputs": "",
       "expectation": "",
       "observation": "",

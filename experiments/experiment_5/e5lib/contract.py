@@ -41,6 +41,66 @@ NEVER_LOGGED = {
     "shares and fractions": "bounded 0-1 values (G-47)",
 }
 
+# Screening candidates (G-68): built in s02 and screened in s03 classification only; not predictors.
+# A candidate enters the classification selection pool only if the team adopts it at the s03 gate
+# (human_decisions.yaml). Order-level rule: the value of the primary item (highest price, then lowest
+# order_item_id), as for primary_category. Catalogue fields are assumed fixed at checkout (limitation).
+# CR-038 (G-69) adds the promise, region and seller-history groups. Each entry names its group (the s03
+# card that screens it), its kind and the transform planned if it is adopted.
+_LOG = "log1p if pre-cutoff skewness > 1, then scaled"
+_ONEHOT = "one-hot (drop-first for linear/logistic), unknown level handled"
+SCREENING_CANDIDATES = {
+    "classification": {
+        "product_photos_qty": {"group": "product", "kind": "numeric",
+                               "source": "products.product_photos_qty of the primary item",
+                               "transform": "scaled, never logged (count)"},
+        "product_description_lenght": {"group": "product", "kind": "numeric",
+                                       "source": "products.product_description_lenght of the primary item",
+                                       "transform": _LOG},
+        "product_name_lenght": {"group": "product", "kind": "numeric",
+                                "source": "products.product_name_lenght of the primary item", "transform": _LOG},
+        "est_delivery_days": {"group": "promise", "kind": "numeric",
+                              "source": "orders.order_estimated_delivery_date - order_purchase_timestamp (days)",
+                              "transform": _LOG + "; in production fed by the task 1 prediction, so if adopted the "
+                                           "classifier trains on out-of-fold task 1 predictions (G-69)"},
+        "customer_region": {"group": "region", "kind": "categorical",
+                            "source": "IBGE macro-region of customer_state", "transform": _ONEHOT},
+        "seller_region": {"group": "region", "kind": "categorical",
+                          "source": "IBGE macro-region of primary_seller_state", "transform": _ONEHOT},
+        "region_pair": {"group": "region", "kind": "categorical",
+                        "source": "customer_region > seller_region (route between macro-regions)", "transform": _ONEHOT},
+        "seller_prior_review_mean": {"group": "seller_history", "kind": "numeric",
+                                     "source": "mean valid review score of the primary seller's earlier orders, reviews "
+                                               "answered strictly before this purchase (own order excluded)",
+                                     "transform": "scaled; missing for sellers without an earlier review (imputed in "
+                                                  "folds with a missing indicator)"},
+        "seller_prior_review_count": {"group": "seller_history", "kind": "numeric",
+                                      "source": "number of those reviews", "transform": _LOG},
+        "seller_prior_detractor_share": {"group": "seller_history", "kind": "numeric",
+                                         "source": "share of those reviews with score <= 2",
+                                         "transform": "scaled, never logged (share); missing as for the mean"},
+        "seller_prior_delivered_count": {"group": "seller_history", "kind": "numeric",
+                                         "source": "number of the primary seller's earlier orders delivered strictly "
+                                                   "before this purchase", "transform": _LOG},
+        "seller_prior_late_share": {"group": "seller_history", "kind": "numeric",
+                                    "source": "share of those deliveries after their estimated delivery date",
+                                    "transform": "scaled, never logged (share); missing when no earlier delivery"},
+    },
+}
+
+
+def screening(task: str) -> tuple[str, ...]:
+    return tuple(SCREENING_CANDIDATES.get(task, {}))
+
+
+def screening_group(task: str, group: str) -> tuple[str, ...]:
+    return tuple(c for c, m in SCREENING_CANDIDATES.get(task, {}).items() if m["group"] == group)
+
+
+def all_screening() -> tuple[str, ...]:
+    return tuple(dict.fromkeys(c for t in SCREENING_CANDIDATES.values() for c in t))
+
+
 # Columns that are not in the contract, kept here so the reason stays documented.
 NOT_IN_CONTRACT = {
     "has_items": "post-purchase leakage: encodes a later cancellation (G-30)",
@@ -67,4 +127,6 @@ def validate() -> list[str]:
         problems.append("a never-logged column is a log1p candidate")
     if set(NOT_IN_CONTRACT) & set(PREDICTORS):
         problems.append("a column is both in and out of the contract")
+    if set(all_screening()) & (set(PREDICTORS) | set(NOT_IN_CONTRACT)):
+        problems.append("a screening candidate is already a predictor or listed as not in the contract")
     return problems

@@ -1,0 +1,7 @@
+{
+  "title": "Categorical features vs lead_days (violins)",
+  "ids": [
+    "3.5"
+  ],
+  "data": "figures/categorical_vs_lead_days.csv"
+}

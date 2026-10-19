@@ -1,0 +1,25 @@
+feature,measure,value,rank,share,cumulative_share,method,type
+distance_km_max,absolute Spearman,0.5393161012591062,1,0.18653838329599567,0.18653838329599567,|Spearman|,numeric
+customer_state,absolute Spearman,0.5045289355143308,2,0.1745062158114157,0.3610445991074114,rank correlation ratio (Spearman scale),categorical
+interstate_share,absolute Spearman,0.4981542857646793,3,0.17230135514509765,0.533345954252509,|Spearman|,numeric
+total_freight,absolute Spearman,0.4048026527509339,4,0.14001293901998918,0.6733588932724981,|Spearman|,numeric
+primary_category,absolute Spearman,0.14541650916402726,5,0.050296589441101866,0.7236554827135999,rank correlation ratio (Spearman scale),categorical
+freight_ratio,absolute Spearman,0.13167710871369082,6,0.04554441248684713,0.7691998952004471,|Spearman|,numeric
+total_price,absolute Spearman,0.09350337978968248,7,0.03234090222405416,0.8015407974245012,|Spearman|,numeric
+primary_seller_state,absolute Spearman,0.09099256527461085,8,0.031472462955684226,0.8330132603801854,rank correlation ratio (Spearman scale),categorical
+total_weight_g,absolute Spearman,0.07744533364886425,9,0.026786753258340967,0.8598000136385264,|Spearman|,numeric
+primary_payment_type,absolute Spearman,0.07160243860171046,10,0.0247658156424981,0.8845658292810246,rank correlation ratio (Spearman scale),categorical
+total_volume_cm3,absolute Spearman,0.05788483880336709,11,0.020021179086848365,0.904587008367873,|Spearman|,numeric
+n_sellers,absolute Spearman,0.04869363216266349,12,0.01684212913211216,0.9214291374999851,|Spearman|,numeric
+payment_installments_max,absolute Spearman,0.04756475611031717,13,0.016451674047877472,0.9378808115478626,|Spearman|,numeric
+purchase_dayofweek,absolute Spearman,0.04368859947134536,14,0.015110990928742369,0.952991802476605,|Spearman|,numeric
+n_products,absolute Spearman,0.039527569983447176,15,0.013671776131135979,0.966663578607741,|Spearman|,numeric
+purchase_month,absolute Spearman,0.03113101477001658,16,0.010767579814519033,0.97743115842226,|Spearman|,numeric
+n_items,absolute Spearman,0.027474163538852882,17,0.009502749940123123,0.9869339083623831,|Spearman|,numeric
+n_categories,absolute Spearman,0.013041903397990863,18,0.004510927022731255,0.9914448353851144,|Spearman|,numeric
+distance_missing_fraction,absolute Spearman,0.009831938341009415,19,0.003400665914694574,0.994845501299809,|Spearman|,numeric
+category_missing_fraction,absolute Spearman,0.006000465517422084,20,0.002075438011270364,0.9969209393110794,|Spearman|,numeric
+n_payment_methods,absolute Spearman,0.0029413314614203027,21,0.0010173462543952322,0.9979382855654746,|Spearman|,numeric
+volume_missing_fraction,absolute Spearman,0.0021842768115086474,22,0.0007554965708209062,0.9986937821362954,|Spearman|,numeric
+weight_missing_fraction,absolute Spearman,0.0021842768115086474,23,0.0007554965708209062,0.9994492787071163,|Spearman|,numeric
+purchase_hour,absolute Spearman,0.0015922345595070552,24,0.0005507212928837861,1.0,|Spearman|,numeric

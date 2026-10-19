@@ -43,6 +43,9 @@ Gate: every planned change follows from a pre-cutoff observation (`../stages.jso
    points marked) and present it to the team. The pipeline does not run s04 until the team
    records its decisions in `spec/human_decisions.yaml` (threshold; feature dropped from each
    flagged group, with rationale) via CHANGELOG.
+10. **Candidate screen (3.10, classification only; G-68, CR-037).** The screening candidates of `e5lib/contract.py` (product_photos_qty, product_description_lenght, product_name_lenght; value of the primary item) get the 3.6 measures, skewness, correlation with the 20 numeric predictors and VIF in the extended set, and an extended mutual-information ranking over 24 + candidates with its cut points. The official 3.8 ranking stays at 24 rows. The team adopts or drops each candidate at the gate (`adopted_candidates` in `spec/human_decisions.yaml`).
+
+11. **Second candidate screen (3.11-3.13, classification only; G-69, CR-038).** 3.11 promised delivery days (G-35 reopened for this screen), 3.12 IBGE macro-regions and the region pair, 3.13 the primary seller's history strictly before checkout. Same measures as 3.10; categorical candidates get mutual information, level-frequency overlap and per-level detractor rates. 3.10 carries the extended ranking over 24 + every candidate.
 
 ## 4. Decisions
 | ID | Question | Answer | Basis | Status |
@@ -60,6 +63,7 @@ Gate: every planned change follows from a pre-cutoff observation (`../stages.jso
 - `importance_ranking.csv` (feature, measure, value, rank, cumulative share)
 - `eda_summary.json`, `candidate_rationale.csv`, `figures/*.png` with sidecar `*.json`
 - `eda_review_pack.md` (the human-review pack for the s03 → s04 gate)
+- Classification only (3.10): `candidate_screen_is_detractor.csv`, `candidate_ranking_extended.csv`, `candidate_collinear_pairs.csv`, `figures/candidate_screen.png`
 
 ## 6. Checks
 - Assert max purchase timestamp < the task's test cutoff (from `protocol.yaml`).
