@@ -39,13 +39,14 @@ Gate: joins, grains, targets and leakage exclusions verified (`../stages.json`).
    `product_photos_qty`, `product_description_lenght`, `product_name_lenght`, each the value of the
    primary item; catalogue fields are assumed fixed at checkout. CR-038 (G-69) adds est_delivery_days,
    customer_region, seller_region, region_pair and the seller_prior_* history columns (events of the primary
-   seller strictly before purchase, own order excluded; checked against a direct recomputation).
+   seller strictly before purchase, own order excluded, reviews answered at or before their own order's
+   purchase never counted (G-71); checked against a direct recomputation).
 6. **Targets.** `lead_days` = delivery − purchase in fractional days (delivered, valid
    timestamps, > 0), label available at delivery. `is_detractor` = minimum valid review score ≤ 2,
    label available at the last review answer. Keep the first-review label for a sensitivity
    check.
 7. **Leakage audit** (G-30). Tag every column known / not known at checkout.
-   - Never predictors, post-purchase leakage (known only after purchase): `order_status`,
+   - Never predictors (post-purchase leakage, or constant after the population rules): `order_status`,
      `order_approved_at`, carrier and customer delivery dates, `shipping_limit_date`, review
      fields. `has_items` and `freight_ratio_missing` would encode a later cancellation and
      `payment_missing` would be constant after step 11, so none of them is in the contract
@@ -59,7 +60,8 @@ Gate: joins, grains, targets and leakage exclusions verified (`../stages.json`).
    - Final `order_status` defines populations only (step 8), never an input.
 8. **Populations** (G-20). Zero-item orders out of both tasks. Regression: delivered orders with
    a valid lead time. Classification: orders not cancelled or unavailable, with a valid review;
-   targets never imputed.
+   targets never imputed. An order with a review answered at or before its purchase leaves
+   classification (INVALID_REVIEW_TIME, G-71): the timing is impossible, so its label is not trusted.
 9. **Outliers** (G-21). Remove, from development and test alike: `lead_days` > max(100, mean +
    12 × SD), with mean and SD from pre-cutoff orders only; `distance_km_max` > 4,397.53 km.
    The number of orders this removes on or after each task's test cutoff is recorded in

@@ -14,7 +14,7 @@ def _data():
                             "review_score": [5, 1, 4, 3],
                             "review_answer_timestamp": [ts("2018-01-05 10:00:00"),  # exactly o2's purchase: not before
                                                         ts("2018-01-08 00:00:00"),
-                                                        ts("2018-01-09 00:00:00"),  # o3's own review, before its purchase
+                                                        ts("2018-01-09 00:00:00"),  # o3's review before its purchase: invalid (G-71)
                                                         ts("2018-01-20")]})
     deliveries = pd.DataFrame({"order_id": ["o1", "o2"], "delivered_ts": [ts("2018-01-04"), ts("2018-01-09 12:00:00")],
                                "estimated_ts": [ts("2018-01-03"), ts("2018-01-20")]})
@@ -32,8 +32,8 @@ def test_strict_time_own_order_and_cold_start():
     # o3: o1 (5) and o2 (1) count; o3's own early review does not
     assert h.loc["o3", "seller_prior_review_count"] == 2 and h.loc["o3", "seller_prior_review_mean"] == 3.0
     assert h.loc["o3", "seller_prior_detractor_share"] == 0.5 and h.loc["o3", "seller_prior_late_share"] == 0.5
-    # o4 (same second as o3, other order) sees o3's own review too
-    assert h.loc["o4", "seller_prior_review_count"] == 3
+    # o4 (same second as o3) does not see o3's review either: answered before o3 was bought (G-71)
+    assert h.loc["o4", "seller_prior_review_count"] == 2
     assert h.loc["o5"].isna().all()  # no seller (zero-item order): history unknown
 
 

@@ -34,6 +34,7 @@ EXCLUSION_REASONS = {  # s02 removal rules (G-63); the task column of exclusions
     "ZERO_ITEMS": "order has no items (s02 2.8)",
     "CANCELLED_OR_UNAVAILABLE": "order cancelled or unavailable (s02 2.8)",
     "NO_VALID_REVIEW": "no valid review score (s02 2.8)",
+    "INVALID_REVIEW_TIME": "a valid review answered at or before the purchase time, a data error (s02 2.8; G-71)",
     "LEAD_DAYS_OUTLIER": "lead_days above max(100, mean + 12 SD) of pre-cutoff orders (s02 2.9)",
     "DISTANCE_OUTLIER": "distance_km_max above 4,397.53 km (s02 2.9)",
     "MISSING_INSTALLMENTS": "payment_installments_max missing (s02 2.10)",

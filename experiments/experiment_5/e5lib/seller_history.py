@@ -7,9 +7,9 @@ s that happened strictly before t (to the second) count, and the order's own eve
 - delivery events: every delivered order of s, at its customer-delivery timestamp, late when the
   delivery is after its estimated delivery date.
 
-An earlier order is attributed to its primary seller (the primary_category rule). The order's own
-events are removed by order_id, because some reviews carry an answer timestamp before their order's
-recorded purchase (s02 2.7 date audit).
+An earlier order is attributed to its primary seller (the primary_category rule). A review answered at
+or before its own order's purchase is a data error (s02 2.7 date audit; G-71) and is never counted for
+any order. The order's own events are also removed by order_id.
 """
 from __future__ import annotations
 
@@ -44,8 +44,10 @@ def seller_history(orders: pd.DataFrame, reviews: pd.DataFrame, deliveries: pd.D
     deliveries: order_id, delivered_ts, estimated_ts (delivered orders only).
     Returns the COLUMNS, indexed like orders."""
     seller_of = orders.set_index("order_id")["seller_id"]
+    purchase_of = orders.set_index("order_id")["purchase_ts"]
     score = reviews["review_score"].astype(float)
     valid = score.notna() & (score % 1 == 0) & (score >= 1) & (score <= 5) & reviews["review_answer_timestamp"].notna()
+    valid &= reviews["review_answer_timestamp"] > reviews["order_id"].map(purchase_of)  # G-71: drop impossible timing
     rv = pd.DataFrame({"order_id": reviews.loc[valid, "order_id"].to_numpy(),
                        "ts": reviews.loc[valid, "review_answer_timestamp"].to_numpy(),
                        "score": score[valid].to_numpy(), "n": 1.0,
@@ -71,6 +73,7 @@ def brute_force(orders: pd.DataFrame, reviews: pd.DataFrame, deliveries: pd.Data
     o = orders.set_index("order_id")
     score = reviews["review_score"].astype(float)
     valid = score.notna() & (score % 1 == 0) & (score >= 1) & (score <= 5) & reviews["review_answer_timestamp"].notna()
+    valid &= reviews["review_answer_timestamp"] > reviews["order_id"].map(o["purchase_ts"])  # G-71
     rv = reviews[valid].assign(seller_id=lambda x: x["order_id"].map(seller_of), s=score[valid])
     dv = deliveries.assign(seller_id=lambda x: x["order_id"].map(seller_of))
     rows = {}

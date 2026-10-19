@@ -309,7 +309,9 @@ package versions, seed, runtime.
 Review rounds run from the uncommitted working tree (G-64), so their manifests are marked dirty;
 the sha256 hashes of code, foundation, protocol, inputs and outputs identify the run. At
 acceptance the stage is committed and its manifest must still be FRESH against the committed
-files; a release (`check`) needs a clean tree and every manifest FRESH.
+files; a release (`check`) needs a clean tree and every manifest FRESH. Since CR-042 an acceptance
+is two steps, so the cited run has `dirty: false`: commit the code and spec, rerun the changed nodes
+on that clean tree, then commit their outputs, review pack and stage card.
 
 ### 6.2 Orchestrator
 
@@ -726,6 +728,12 @@ git checkout HEAD -- experiments/experiment_5
 To audit an accepted stage without changing anything, run `status`: it must show the stage
 `FRESH`. A rerun (`run --node`) must leave every output byte-identical; only `_manifest.json`
 changes (new run ID); an auditor discards it rather than committing it.
+
+The raw CSVs in `data/raw/` are outside this folder and its `.gitattributes`, so git may check them
+out with CRLF on Windows (or with `core.autocrlf`). The accepted input hashes were taken on LF bytes, so such a
+checkout makes every stage `STALE` (input changed) although the data are the same (CR-042, audit
+H-01, L-01). Check out `data/raw/` with LF (for example `git -c core.autocrlf=false checkout -- data/raw`)
+before running `status`; this folder never writes there.
 
 ### 13.4 When the foundation must change
 

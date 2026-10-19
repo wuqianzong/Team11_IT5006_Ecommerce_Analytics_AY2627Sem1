@@ -16,7 +16,11 @@ Gate: features and recipes defined without fitting or using test data (`../stage
 
 ## 2. Inputs
 - `stages/s02_data/common/outputs/records.csv.gz` (pre-cutoff, task-eligible rows only).
-- `stages/s03_eda/<task>/outputs/importance_ranking.csv` and the raw collinearity tables.
+- `stages/s03_eda/<task>/outputs/importance_ranking.csv` (regression; it covers exactly the pool) and, for
+  classification, `candidate_ranking_extended.csv` (24 predictors + 12 screening candidates), plus the raw
+  collinearity tables. The ranking s04 walks is the task's pool, `e5lib.contract.pool(task)`: the rows of
+  the extended ranking whose feature is in the pool, with the shares re-normalised to sum to 1 (each
+  feature's mutual information is computed on its own, so filtering is exact; CR-042, audit H-02).
 - `spec/protocol.yaml`: skewness trigger (1.0), collinearity cut-offs (|r| > 0.9, VIF > 10).
 - `spec/human_decisions.yaml` (G-31): the team's cumulative-importance threshold (95% or 99%) and
   the feature dropped from each flagged collinear group, with rationale, recorded after reviewing
@@ -36,7 +40,7 @@ Gate: features and recipes defined without fitting or using test data (`../stage
    |correlation| > 0.9 or VIF > 10; the team decides which of each flagged group to drop and
    records the decision and rationale in `reduction_rationale.csv` (G-26). Report the encoded
    design-matrix rank and condition number per recipe.
-4. **Selection (4.4).** Walk the s03 ranking and keep features until the cumulative share reaches the
+4. **Selection (4.4).** Walk the pool ranking (section 2) and keep features until the cumulative share reaches the
    team's threshold (G-19, declared exception: computed once on pre-cutoff data; CV scores of the
    chosen set are optimistic and the report says so).
 5. **Extra candidate (4.5): deleted** (G-35, CR-015). `order_estimated_delivery_date` is neither a
@@ -77,6 +81,9 @@ Gate: features and recipes defined without fitting or using test data (`../stage
 - No fitted object is saved in this stage's outputs.
 - Every feature dropped for collinearity has a row in `reduction_rationale.csv`.
 - The cumulative threshold is recorded in `protocol.yaml` before s06 has any output.
+- The ranked feature set equals `e5lib.contract.pool(task)` exactly, and its shares sum to 1 (CR-042, audits H-02, M-03).
+- `feature_dictionary.csv` is the authoritative description of every pool feature, adopted candidates
+  included; the s02 data dictionary describes them as screening columns only (CR-042, audit M-02).
 
 ## 7. Milestone 2 reuse
 `src/models/refinement_selected_v4.py` (log1p + median imputation pattern) and

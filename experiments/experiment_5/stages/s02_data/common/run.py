@@ -214,6 +214,9 @@ def main() -> None:
         "ZERO_ITEMS": ("2.8", base["n_items"] == 0, TASKS),
         "CANCELLED_OR_UNAVAILABLE": ("2.8", base["order_status"].isin(["canceled", "unavailable"]), ("classification",)),
         "NO_VALID_REVIEW": ("2.8", base["is_detractor"].isna(), ("classification",)),
+        # G-71: a review answered at or before its own order's purchase is a data error; the label of such an
+        # order is not trusted (classification only).
+        "INVALID_REVIEW_TIME": ("2.8", base["is_detractor"].notna() & (ans <= pt), ("classification",)),
         "MISSING_INSTALLMENTS": ("2.10", base["payment_installments_max"].isna(), TASKS),
         "NO_USABLE_PAYMENT": ("2.11", ~base["has_usable_type"], TASKS),
         "NEGATIVE_VALUE": ("2.13", (base[cand] < 0).any(axis=1), TASKS),
@@ -406,6 +409,10 @@ def main() -> None:
             all(ineligible[task] == set(excl.loc[excl.task == task, "order_id"]) for task in TASKS), ids=("2.8",))
     w.check("eligible orders have their target", rec.loc[rec.eligible_regression == 1, "lead_days"].notna().all()
             and rec.loc[rec.eligible_classification == 1, "is_detractor"].notna().all(), ids=("2.6",))
+    bad_review_time = set(base.loc[ans <= pt, "order_id"])
+    w.check("eligible classification orders have every review answered after purchase (G-71)",
+            not rec.loc[rec.eligible_classification == 1, "order_id"].isin(bad_review_time).any(), ids=("2.7", "2.8"),
+            detail=f"{len(bad_review_time):,} orders with a review answered at or before purchase")
     w.check("eligible orders have no negative log1p candidate",
             not (rec.loc[(rec.eligible_regression == 1) | (rec.eligible_classification == 1), cand] < 0).any().any(), ids=("2.13",))
     w.check("IBGE boundary hashes verified", True, ids=("2.3",), detail=f"archive {boundary['archive_sha256'][:12]}")

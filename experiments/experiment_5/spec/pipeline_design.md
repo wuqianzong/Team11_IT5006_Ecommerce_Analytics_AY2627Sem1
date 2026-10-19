@@ -116,7 +116,8 @@ logs violations; payment fields are assumed fixed at checkout (no timestamp in t
 Screening columns for the s03 classification candidate screen (G-68, G-69; not predictors unless adopted at the s03 gate):
 three catalogue fields of the primary item (catalogue fields assumed fixed at checkout), `est_delivery_days`, the IBGE
 macro-regions and their pair, and the primary seller's history at checkout (only events strictly before the purchase
-second, own order excluded, checked against a direct recomputation).
+second, own order excluded, reviews answered at or before their own order's purchase never counted (G-71),
+checked against a direct recomputation).
 Test cutoff per task (G-28, G-67): after the row-local population rules and before the outlier rule, the
 purchase timestamp at the 80% position of the task's eligible orders; recorded in `audit.json`
 and `protocol.yaml`.
@@ -125,7 +126,7 @@ and written to `exclusions.csv`, one row per removed order and reason with a rea
 - zero-item orders (`n_items == 0`) excluded from both tasks;
 - orders with a negative value in a log1p candidate removed from both tasks (zero kept; G-62);
 - regression: delivered orders with valid positive lead time; classification: orders not
-  cancelled or unavailable with a valid review (targets never imputed). Both are scope
+  cancelled or unavailable with a valid review answered after purchase (G-71; targets never imputed). Both are scope
   limitations: the models describe orders that end up fulfilled and reviewed;
 - suspected data-entry errors removed: `lead_days` > max(100, mean + 12 × SD), with mean and SD
   computed on pre-cutoff orders only (regression population only, G-66), or `distance_km_max` >
