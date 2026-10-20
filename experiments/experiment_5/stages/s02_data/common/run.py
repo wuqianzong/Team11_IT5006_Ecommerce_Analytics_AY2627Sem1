@@ -174,16 +174,22 @@ def main() -> None:
     base["customer_region"] = base["customer_state"].map(REGION_OF).fillna(UNKNOWN)
     base["seller_region"] = base["primary_seller_state"].map(REGION_OF).fillna(UNKNOWN)
     base["region_pair"] = base["customer_region"] + ">" + base["seller_region"]
+    # G-72: orders before the data start are too thin to be representative; their reviews and deliveries
+    # never enter any seller's history.
+    data_start = pd.Timestamp(p["populations"]["data_start"])
+    early = set(base.loc[pt < data_start, "order_id"])
+    hist_reviews = t["order_reviews"][~t["order_reviews"]["order_id"].isin(early)]
     hist_orders = pd.DataFrame({"order_id": base["order_id"], "seller_id": base["primary_seller_id"], "purchase_ts": pt})
-    delivered_rows = (base["order_status"] == "delivered") & base["order_delivered_customer_date"].notna()
+    delivered_rows = ((base["order_status"] == "delivered") & base["order_delivered_customer_date"].notna()
+                      & (pt >= data_start))
     hist_deliveries = pd.DataFrame({"order_id": base.loc[delivered_rows, "order_id"],
                                     "delivered_ts": base.loc[delivered_rows, "order_delivered_customer_date"],
                                     "estimated_ts": base.loc[delivered_rows, "order_estimated_delivery_date"]})
-    hist = seller_history(hist_orders, t["order_reviews"], hist_deliveries)
+    hist = seller_history(hist_orders, hist_reviews, hist_deliveries)
     for c in hist.columns:
         base[c] = hist[c]
     sample = hist_orders["order_id"].sample(n=2000, random_state=int(p["seed"])).to_numpy()
-    slow = brute_force(hist_orders, t["order_reviews"], hist_deliveries, sample)
+    slow = brute_force(hist_orders, hist_reviews, hist_deliveries, sample)
     fast = hist.set_index(hist_orders["order_id"]).loc[sample]
     hist_ok = bool(np.allclose(fast.to_numpy(float), slow.to_numpy(float), equal_nan=True, rtol=0, atol=1e-12))
 
@@ -210,6 +216,7 @@ def main() -> None:
     # 2.8, 2.10, 2.11, 2.13: population rules (row-local) ---------------------------------------
     cand = list(p["features"]["log1p"]["candidates"])
     rule = {
+        "BEFORE_DATA_START": ("2.8", pt < data_start, TASKS),  # G-72
         "INVALID_LEAD_TIME": ("2.6, 2.8", ~lead_ok, ("regression",)),
         "ZERO_ITEMS": ("2.8", base["n_items"] == 0, TASKS),
         "CANCELLED_OR_UNAVAILABLE": ("2.8", base["order_status"].isin(["canceled", "unavailable"]), ("classification",)),
@@ -409,6 +416,10 @@ def main() -> None:
             all(ineligible[task] == set(excl.loc[excl.task == task, "order_id"]) for task in TASKS), ids=("2.8",))
     w.check("eligible orders have their target", rec.loc[rec.eligible_regression == 1, "lead_days"].notna().all()
             and rec.loc[rec.eligible_classification == 1, "is_detractor"].notna().all(), ids=("2.6",))
+    w.check("no eligible order before the data start; seller history uses no review or delivery of such an order (G-72)",
+            not ((rec.eligible_regression == 1) | (rec.eligible_classification == 1))[rec["purchase_ts"] < data_start].any()
+            and not hist_reviews["order_id"].isin(early).any() and not hist_deliveries["order_id"].isin(early).any(),
+            ids=("2.5", "2.8"), detail=f"data start {data_start}; {len(early):,} orders before it")
     bad_review_time = set(base.loc[ans <= pt, "order_id"])
     w.check("eligible classification orders have every review answered after purchase (G-71)",
             not rec.loc[rec.eligible_classification == 1, "order_id"].isin(bad_review_time).any(), ids=("2.7", "2.8"),

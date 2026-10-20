@@ -123,6 +123,8 @@ purchase timestamp at the 80% position of the task's eligible orders; recorded i
 and `protocol.yaml`.
 Population and data-quality rules (G-20 to G-23), applied identically to development and test
 and written to `exclusions.csv`, one row per removed order and reason with a reason code and its description (G-63):
+- orders purchased before 2017-01-01 00:00:00 excluded from both tasks and from seller history: the 2016
+  months are too thin to be representative (G-72);
 - zero-item orders (`n_items == 0`) excluded from both tasks;
 - orders with a negative value in a log1p candidate removed from both tasks (zero kept; G-62);
 - regression: delivered orders with valid positive lead time; classification: orders not

@@ -58,7 +58,9 @@ Gate: joins, grains, targets and leakage exclusions verified (`../stages.json`).
      delivery is not after purchase leaves regression (step 6).
    - Payment fields have no timestamp; "chosen at checkout" is a stated assumption.
    - Final `order_status` defines populations only (step 8), never an input.
-8. **Populations** (G-20). Zero-item orders out of both tasks. Regression: delivered orders with
+8. **Populations** (G-20). Orders purchased before 2017-01-01 00:00:00 out of both tasks
+   (BEFORE_DATA_START, G-72): the 2016 months are too thin to be representative; their reviews and
+   deliveries never count in seller history. Zero-item orders out of both tasks. Regression: delivered orders with
    a valid lead time. Classification: orders not cancelled or unavailable, with a valid review;
    targets never imputed. An order with a review answered at or before its purchase leaves
    classification (INVALID_REVIEW_TIME, G-71): the timing is impossible, so its label is not trusted.

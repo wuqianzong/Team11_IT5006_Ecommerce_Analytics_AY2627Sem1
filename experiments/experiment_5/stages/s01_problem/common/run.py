@@ -30,6 +30,7 @@ CITATIONS = {  # verified against their sources (s01 1.4, 1.5, 1.7; s07 7.4)
 }
 
 EXCLUSION_REASONS = {  # s02 removal rules (G-63); the task column of exclusions.csv says which population lost the order
+    "BEFORE_DATA_START": "purchased before the data start 2017-01-01 00:00:00; the 2016 months are too thin to be representative (s02 2.8; G-72)",
     "INVALID_LEAD_TIME": "not delivered, or delivery time missing or not after purchase (s02 2.6, 2.8)",
     "ZERO_ITEMS": "order has no items (s02 2.8)",
     "CANCELLED_OR_UNAVAILABLE": "order cancelled or unavailable (s02 2.8)",
@@ -68,7 +69,11 @@ def preregistered() -> dict:
             },
         },
         "populations": {
-            "both": ["zero-item orders excluded", "orders with missing payment_installments_max removed",
+            "data_start": "2017-01-01 00:00:00",
+            "data_start_rule": ("orders purchased before data_start leave both tasks and never count in seller history: "
+                                "the 2016 months are too thin to be representative (G-72)"),
+            "both": ["orders purchased before data_start excluded (G-72)",
+                     "zero-item orders excluded", "orders with missing payment_installments_max removed",
                      "orders without a usable payment removed (no payment rows, or only not_defined)",
                      "orders with a negative value in a log1p candidate removed (zero kept)"],
             "regression": "delivered orders with a valid lead time",
