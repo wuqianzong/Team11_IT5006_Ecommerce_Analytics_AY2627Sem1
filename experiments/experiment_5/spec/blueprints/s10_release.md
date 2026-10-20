@@ -93,7 +93,9 @@ report and deck drafts, notebook, release notes.
 bundle or `data/business/ml` file is used.
 
 ## 8. Report hooks
-Deployment section (app screenshots, URL, usage), reproducibility appendix.
+Deployment section (app screenshots, URL, usage), reproducibility appendix. The report appendix also
+carries the items the team asked for in the s04 and s05 reviews: recipe table, derived-feature formulas,
+fold boundary tables and partition diagrams (see s04 and s05 report hooks).
 
 ## 9. Open questions
 None.

@@ -39,7 +39,9 @@ Gate: features and recipes defined without fitting or using test data (`../stage
 3. **Reduction (4.3).** Drop constant and duplicate columns automatically. Flag features with
    |correlation| > 0.9 or VIF > 10; the team decides which of each flagged group to drop and
    records the decision and rationale in `reduction_rationale.csv` (G-26). Report the encoded
-   design-matrix rank and condition number per recipe.
+   design-matrix rank and condition number per recipe. The duplicate rule also applies to the
+   encoded columns inside each training fold (factory step `dedupe`; G-73), e.g. the identical
+   missing indicators of fields that are always missing together.
 4. **Selection (4.4).** Walk the pool ranking (section 2) and keep features until the cumulative share reaches the
    team's threshold (G-19, declared exception: computed once on pre-cutoff data; CV scores of the
    chosen set are optimistic and the report says so).
@@ -47,7 +49,9 @@ Gate: features and recipes defined without fitting or using test data (`../stage
    feature nor a reference model: in production the promised date would be set from the task 1
    prediction itself, which differs in nature from Olist's own estimate.
 6. **Rationale (4.6).** For each kept feature: formula, grain, checkout availability,
-   missingness, hypothesised signal, verified citation.
+   missingness, hypothesised signal, verified citation. Citations only from sources checked in
+   this experiment, never from earlier experiments; a signal without one is stated as an
+   unmeasured mechanism (G-76).
 7. **Selected set (4.7).** One per task, used by every model family (G-49). The classification pool is the 24 contract predictors plus the screening candidates adopted at the s03 gate (G-68, G-70): product_photos_qty (scaled, never logged), product_description_lenght (log1p if pre-cutoff skewness > 1) and seller_prior_review_mean (the seller rating customers see at checkout; scaled, missing for sellers without an earlier review, imputed in folds with a missing indicator); regression stays at the 24. Thresholds: 99% for both tasks (human_decisions.yaml). s04 reads the pool only through `e5lib.contract.pool(task)`, never a hand-written list. est_delivery_days was screened (G-69) and not adopted (G-70), so G-35 holds and classification s06 does not depend on regression s06.
 8. **Pipeline recipe (4.8).** Per family:
    - numeric: median imputation with missing indicators; `distance_km_max` instead takes the route
@@ -93,7 +97,9 @@ provenance. Fix when copying: calendar fields numeric throughout (remove the str
 
 ## 8. Report hooks
 Feature engineering section: feature dictionary, reduction rationale table, selection threshold
-and its stated limitation.
+and its stated limitation. Appendix (Henry, s04 review): the pipeline recipe table per family
+(recipes.json) and the derived features with their formulas (missing indicators: 1 if the parent is
+missing, else 0; distance_km_max_missing from the route-median step), from feature_dictionary.csv.
 
 ## 9. Open questions
 - Cumulative-importance threshold (95% or 99%): set by the team once the s03 ranking exists.

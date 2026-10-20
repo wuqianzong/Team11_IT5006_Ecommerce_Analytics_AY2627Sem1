@@ -111,3 +111,20 @@ def set_data_dependent(section: str, values: Any, stage: str, *, replace: bool =
     }
     path = assert_inside_e5(_path())
     path.write_text(yaml.safe_dump(data, sort_keys=False, allow_unicode=True), encoding="utf-8", newline="\n")
+
+
+def set_task_entry(section: str, task: str, value: Any, stage: str) -> None:
+    """Record one task's entry in a data-dependent section owned by `stage` (values keyed by task).
+
+    Adding a task's entry is not a change. Changing an existing entry raises: it needs a CHANGELOG
+    entry and an explicit set_data_dependent(..., replace=True).
+    """
+    current = dict(get(f"data_dependent.{section}.values", {}) or {})
+    if current.get(task) == value:
+        _USED_SECTIONS.add(section)
+        return
+    if task in current:
+        raise ProtocolError(f"data_dependent.{section}.{task} differs from the recorded value; "
+                            "changing it needs a CHANGELOG entry and replace=True")
+    current[task] = value
+    set_data_dependent(section, current, stage=stage, replace=len(current) > 1)

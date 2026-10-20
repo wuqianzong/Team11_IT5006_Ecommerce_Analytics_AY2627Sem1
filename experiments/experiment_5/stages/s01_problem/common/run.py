@@ -140,6 +140,10 @@ def preregistered() -> dict:
         },
         "cv": {"n_folds": 5, "scheme": "expanding, time-ordered, equal-sized validation blocks by order count",
                "fold_customer_purge": "training side", "label_maturity": True,
+               "minimums": {"training_rows_per_fold": 10000, "positives_per_part": 100,
+                            "rule": "every fold's training part keeps at least training_rows_per_fold rows (both tasks); "
+                                    "classification: training and validation parts each keep at least positives_per_part "
+                                    "detractors; set before any fold is built (G-53, G-74)"},
                "data_dependent_in_s05": ["fold_boundaries", "class_support", "min_training_rows"],
                "source": "s05 5.5-5.8; G-23, G-53"},
         "metrics": {

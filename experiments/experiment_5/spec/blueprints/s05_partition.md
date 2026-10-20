@@ -43,9 +43,10 @@ Gate: folds chronological, customers purged, labels mature, classes supported (`
    their fold's validation block starts. Validation rows: label observable before the task's test
    cutoff. Dropped rows counted per fold.
 8. **Class support and training size (5.8).** Every fold's training part holds at least the
-   minimum number of rows pre-registered in `protocol.yaml`, for both tasks (G-53).
+   minimum number of rows pre-registered in `protocol.yaml` (cv.minimums: 10,000), for both tasks
+   (G-53, G-74).
    Classification also: positives and prevalence per fold, training and validation; minimum
-   count from `protocol.yaml`. A boundary may move only before s06 runs, logged in CHANGELOG.
+   count from `protocol.yaml` (100 detractors per training and validation part, G-74). A boundary may move only before s06 runs, logged in CHANGELOG.
 
 ## 4. Decisions
 | ID | Question | Answer | Basis | Status |
@@ -81,7 +82,8 @@ equal-sized blocks instead of calendar windows; no Milestone 2 dates or counts.
 
 ## 8. Report hooks
 Validation design section: partition diagram, fold sizes and prevalence, purge and maturity
-counts, test-cohort description.
+counts, test-cohort description. Appendix (Henry, s05 review): the fold boundary table
+(fold_summary.csv) and the partition diagram of each task.
 
 ## 9. Open questions
 None.

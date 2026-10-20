@@ -16,6 +16,11 @@ s03_to_s04:
       - {feature: seller_prior_review_mean, rationale: "the seller rating customers see at checkout; strongest screened signal (3.13); detractor share (Spearman -0.87 with the mean) and late share are not shown to customers and added nothing in a scratch check", decided_by: "experiment lead (Wu Qianzong)", date: 2026-10-19}
     not_adopted: [product_name_lenght, est_delivery_days, customer_region, seller_region, region_pair, seller_prior_review_count, seller_prior_detractor_share, seller_prior_delivered_count, seller_prior_late_share]   # screened in 3.10-3.13, stay screening columns only (G-70)
 
+s05:
+  classification:
+    accepted_test_check_deviations:   # a failed G-46 size check the team accepts instead of moving the cutoff (G-75)
+      - {check: min_share_of_detractors, observed: "1,968 of 13,488 eligible detractors = 14.59%", required: 0.15, rationale: "1,968 test detractors are enough to evaluate the classifier; moving the cutoff after seeing the shares would be a post-hoc change. Reported in s09 with the absolute count (G-54)", decided_by: "experiment lead (Wu Qianzong)", date: 2026-10-20}
+
 s08:
   regression:
     model: null            # {chosen: candidate_id, recommended: candidate_id, rationale: "...", grid_edge_action: none|widen_grid|revisit_s03_s04, decided_by: name, date: YYYY-MM-DD}

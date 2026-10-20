@@ -256,6 +256,12 @@ cv:
   scheme: expanding, time-ordered, equal-sized validation blocks by order count
   fold_customer_purge: training side
   label_maturity: true
+  minimums:
+    training_rows_per_fold: 10000
+    positives_per_part: 100
+    rule: 'every fold''s training part keeps at least training_rows_per_fold rows (both tasks); classification:
+      training and validation parts each keep at least positives_per_part detractors; set before any fold is built
+      (G-53, G-74)'
   data_dependent_in_s05:
   - fold_boundaries
   - class_support
@@ -418,3 +424,183 @@ data_dependent:
       classification: '2018-05-26 12:16:34'
     set_by: s02_data
     set_at: '2026-10-20T05:29:58Z'
+  core_set:
+    values:
+      regression:
+      - n_items
+      - n_products
+      - n_sellers
+      - n_categories
+      - total_price
+      - total_freight
+      - freight_ratio
+      - total_weight_g
+      - total_volume_cm3
+      - volume_missing_fraction
+      - primary_category
+      - category_missing_fraction
+      - customer_state
+      - primary_seller_state
+      - distance_km_max
+      - distance_missing_fraction
+      - interstate_share
+      - purchase_month
+      - purchase_dayofweek
+      - purchase_hour
+      - primary_payment_type
+      - payment_installments_max
+      - n_payment_methods
+      classification:
+      - n_items
+      - n_products
+      - n_sellers
+      - n_categories
+      - total_price
+      - total_freight
+      - freight_ratio
+      - total_weight_g
+      - total_volume_cm3
+      - volume_missing_fraction
+      - primary_category
+      - category_missing_fraction
+      - customer_state
+      - primary_seller_state
+      - distance_km_max
+      - distance_missing_fraction
+      - interstate_share
+      - purchase_month
+      - purchase_dayofweek
+      - purchase_hour
+      - primary_payment_type
+      - payment_installments_max
+      - n_payment_methods
+      - product_photos_qty
+      - product_description_lenght
+      - seller_prior_review_mean
+    set_by: s04_features
+    set_at: '2026-10-20T06:21:36Z'
+  selected_set:
+    values:
+      regression:
+        threshold: 0.99
+        features:
+        - distance_km_max
+        - customer_state
+        - interstate_share
+        - total_freight
+        - primary_category
+        - freight_ratio
+        - total_price
+        - primary_seller_state
+        - total_weight_g
+        - primary_payment_type
+        - total_volume_cm3
+        - n_sellers
+        - payment_installments_max
+        - purchase_dayofweek
+        - n_products
+        - purchase_month
+        - n_items
+        - n_categories
+      classification:
+        threshold: 0.99
+        features:
+        - seller_prior_review_mean
+        - total_freight
+        - freight_ratio
+        - total_volume_cm3
+        - total_price
+        - n_items
+        - product_description_lenght
+        - customer_state
+        - total_weight_g
+        - n_products
+        - n_sellers
+        - purchase_month
+        - distance_km_max
+        - interstate_share
+        - primary_category
+        - n_categories
+        - primary_seller_state
+        - payment_installments_max
+        - product_photos_qty
+    set_by: s04_features
+    set_at: '2026-10-20T06:21:36Z'
+  fold_boundaries:
+    values:
+      regression:
+      - fold: 1
+        train_end: '2017-06-15 17:52:57'
+        validation_start: '2017-06-19 15:25:29'
+        validation_end: '2017-09-27 08:48:59'
+      - fold: 2
+        train_end: '2017-09-25 12:23:20'
+        validation_start: '2017-09-27 08:56:52'
+        validation_end: '2017-12-03 17:07:46'
+      - fold: 3
+        train_end: '2017-12-01 08:49:02'
+        validation_start: '2017-12-03 17:11:47'
+        validation_end: '2018-02-05 00:05:58'
+      - fold: 4
+        train_end: '2018-02-02 15:26:38'
+        validation_start: '2018-02-05 00:06:00'
+        validation_end: '2018-04-01 16:46:20'
+      - fold: 5
+        train_end: '2018-03-29 01:12:21'
+        validation_start: '2018-04-01 16:51:42'
+        validation_end: '2018-05-24 18:56:59'
+      classification:
+      - fold: 1
+        train_end: '2017-06-13 03:24:05'
+        validation_start: '2017-06-17 23:50:22'
+        validation_end: '2017-09-26 09:23:05'
+      - fold: 2
+        train_end: '2017-09-21 09:04:59'
+        validation_start: '2017-09-26 09:37:01'
+        validation_end: '2017-12-02 18:56:39'
+      - fold: 3
+        train_end: '2017-11-29 19:35:55'
+        validation_start: '2017-12-02 19:00:27'
+        validation_end: '2018-02-04 16:04:56'
+      - fold: 4
+        train_end: '2018-02-01 13:41:36'
+        validation_start: '2018-02-04 16:10:12'
+        validation_end: '2018-03-31 20:05:18'
+      - fold: 5
+        train_end: '2018-03-28 11:52:01'
+        validation_start: '2018-03-31 20:10:17'
+        validation_end: '2018-05-23 11:29:51'
+    set_by: s05_partition
+    set_at: '2026-10-20T07:16:38Z'
+  min_training_rows:
+    values:
+      regression:
+        required: 10000
+        observed_min: 11297
+      classification:
+        required: 10000
+        observed_min: 11077
+    set_by: s05_partition
+    set_at: '2026-10-20T07:16:38Z'
+  class_support:
+    values:
+      classification:
+        required_positives_per_part: 100
+        folds:
+        - fold: 1
+          train_positives: 1410
+          validation_positives: 1440
+        - fold: 2
+          train_positives: 2798
+          validation_positives: 1985
+        - fold: 3
+          train_positives: 3993
+          validation_positives: 1953
+        - fold: 4
+          train_positives: 6312
+          validation_positives: 2811
+        - fold: 5
+          train_positives: 8694
+          validation_positives: 1108
+    set_by: s05_partition
+    set_at: '2026-10-20T07:16:38Z'

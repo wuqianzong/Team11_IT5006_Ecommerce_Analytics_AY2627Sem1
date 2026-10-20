@@ -15,6 +15,9 @@ params          estimator settings (grids in s07)
 route_median    optional {"column": ..., "keys": [[...], [...]]}: fill a column's missing values
                 with the median of the first key group that has one, else the global median (G-27)
 log_target      regression only: fit on log1p(y), predict expm1 (G-36)
+drop_duplicates optional bool: drop encoded columns identical to an earlier column in the training
+                data (s04 4.3 duplicate rule; e.g. missing indicators of fields that are always
+                missing together)
 calibration     classification only: None | "sigmoid" (G-52). Rows must be sorted by
                 purchase time, because the inner splits are time-ordered.
 random_state    default 42
@@ -99,6 +102,31 @@ class RouteMedianImputer(BaseEstimator, TransformerMixin):
         return X
 
 
+class DropDuplicateColumns(BaseEstimator, TransformerMixin):
+    """Drop encoded columns identical to an earlier column in the fit data (s04 4.3)."""
+
+    def fit(self, X, y=None):
+        A = np.asarray(X, dtype=float)
+        self.n_features_in_ = A.shape[1]
+        seen, keep = {}, []
+        for j in range(A.shape[1]):
+            key = A[:, j].tobytes()
+            if key not in seen:
+                seen[key] = j
+                keep.append(j)
+        self.keep_ = np.array(keep, dtype=int)
+        self.dropped_ = [j for j in range(A.shape[1]) if j not in seen.values()]
+        return self
+
+    def transform(self, X):
+        return np.asarray(X, dtype=float)[:, self.keep_]
+
+    def get_feature_names_out(self, input_features=None):
+        names = np.asarray(input_features if input_features is not None
+                           else [f"x{j}" for j in range(self.n_features_in_)], dtype=object)
+        return names[self.keep_]
+
+
 def _preprocessor(spec: dict) -> ColumnTransformer:
     linear = spec["estimator"] in LINEAR
     numeric = list(spec.get("numeric", []))
@@ -150,7 +178,10 @@ def build(spec: dict):
     if spec.get("route_median"):
         rm = spec["route_median"]
         steps.append(("route_median", RouteMedianImputer(rm["column"], tuple(tuple(k) for k in rm["keys"]))))
-    steps += [("prep", _preprocessor(spec)), ("model", _estimator(name, spec.get("params"), seed))]
+    steps.append(("prep", _preprocessor(spec)))
+    if spec.get("drop_duplicates"):
+        steps.append(("dedupe", DropDuplicateColumns()))
+    steps.append(("model", _estimator(name, spec.get("params"), seed)))
     model = Pipeline(steps)
 
     if spec.get("log_target"):

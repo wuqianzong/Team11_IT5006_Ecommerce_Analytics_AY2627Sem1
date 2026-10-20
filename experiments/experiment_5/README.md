@@ -111,6 +111,7 @@ experiments/experiment_5/
 │   ├── geography.py           # s02: IBGE boundary, ZIP centroids, distances
 │   ├── seller_history.py      # s02: seller history strictly before checkout (G-69)
 │   ├── eda.py, eda_sections.py  # s03: EDA statistics and shared output sections
+│   ├── features.py            # s04: pool ranking, transforms, reduction, selection, recipes, runner
 │   ├── outputs.py             # standard output writers; every output tagged with solution IDs
 │   ├── review.py              # review pack + coverage table generator (§9.1)
 │   └── manifest.py            # run manifest write/read, hashing, staleness check
@@ -641,6 +642,7 @@ Status: built and covered by `tests/` (CR-026). The signatures below are the one
 | `e5lib/cleaning.py` | s02 only: `load_clean(table, stage)` reads one raw table with the declared Milestone 2 cleaning schema (`TABLES`), returns `(frame, log)`; `normalize_state`; `BR_STATES`, `USABLE_PAYMENT_TYPES`, `UNKNOWN` | Reading raw CSVs with pandas directly |
 | `e5lib/aggregation.py` | s02 only: `resolve_english_category`, `aggregate_items`, `aggregate_payments`, `aggregate_reviews` (order grain, Milestone 2 formulas; first-review label and label timestamps) | Joining fact tables before aggregating |
 | `e5lib/seller_history.py` | s02 only: `seller_history(orders, reviews, deliveries)`: the primary seller's review and delivery history strictly before each purchase, own order excluded (G-69); `brute_force(...)` for the s02 check | Rolling means over purchase time (leaks reviews answered after checkout) |
+| `e5lib/features.py` | s04 both nodes: `pool_ranking`, `transforms`, `reduction`, `selection`, `recipes`/`factory_spec`, `design_matrix` and the node runner `run(task)`; the pool only through `contract.pool(task)`, decisions only from human_decisions.yaml | Hand-written feature lists; fitting anything in s04 |
 | `e5lib/eda.py`, `e5lib/eda_sections.py` | s03: statistics (`profile`, `correlations`, `rank_correlation_ratio`, `overlap`, `auc`, `mutual_information`, `vif`, `collinear_groups`, `cumulative_ranking`, `cut_point`) and the shared output sections (trends, quality and collinearity, ranking, rationale, `eda_review_pack.md`, `screen_group` for candidates) | Re-implementing a statistic inside a stage |
 | `e5lib/geography.py` | s02 only: `load_boundary()` (verified IBGE polygon), `zip_centroids`, `distance_features`, `haversine_km`, `normalize_zip` | Bounding boxes or unverified boundaries |
 | `e5lib/contract.py` | The predictor contract (s01 1.3; G-61, G-62): `PREDICTORS` (24), `pool(task)` (the selection pool s04 uses: the 24 + the candidates adopted at the s03 gate, read from `spec/human_decisions.yaml`; G-70), `SCREENING_CANDIDATES` (classification screen, G-68, G-69; adoption in `spec/human_decisions.yaml`, G-70), `CATEGORICAL`, `CALENDAR_NUMERIC`, `COUNTS`, `SHARES`, `LOG_CANDIDATES`, `NEVER_LOGGED`, `NOT_IN_CONTRACT` (column → reason), `numeric()`, `validate()`. s01 copies these lists into `protocol.yaml`; later stages read them from there | Typing feature lists into a stage |

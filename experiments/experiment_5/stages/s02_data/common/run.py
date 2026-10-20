@@ -312,8 +312,12 @@ def main() -> None:
             task = [t for t, cols in contract.SCREENING_CANDIDATES.items() if col in cols]
             grain, source, known = "order", contract.SCREENING_CANDIDATES[task[0]][col]["source"], "yes"
             role = f"screening candidate ({', '.join(task)} only, G-68)"
-            miss = "missing (product without a catalogue value)" if rec[col].isna().any() else "never missing"
-            comment = ("not a predictor unless adopted at the s03 gate; catalogue fields assumed fixed at checkout; "
+            group = contract.SCREENING_CANDIDATES[task[0]][col]["group"]
+            miss = ({"product": "missing (product without a catalogue value)",
+                     "seller_history": "missing (seller without an earlier review or delivery)"}.get(group, "missing")
+                    if rec[col].isna().any() else "never missing")
+            comment = ("not a predictor unless adopted at the s03 gate; "
+                       + ("catalogue fields assumed fixed at checkout; " if group == "product" else "")
                        + contract.SCREENING_CANDIDATES[task[0]][col]["transform"])
         elif col in contract.PREDICTORS:
             grain, source, known, role = "order", PREDICTOR_SOURCE[col], "yes", "predictor (contract)"
