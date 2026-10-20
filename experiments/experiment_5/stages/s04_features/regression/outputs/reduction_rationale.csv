@@ -1,0 +1,2 @@
+feature,flagged_by,paired_with,team_decision,rationale,decided_by,date
+weight_missing_fraction,duplicate,volume_missing_fraction,drop (automatic),identical to volume_missing_fraction on every pre-cutoff order; volume_missing_fraction ranks higher (22 vs 23),rule s04 4.3,2026-10-20

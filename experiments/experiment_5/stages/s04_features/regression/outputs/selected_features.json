@@ -1,0 +1,131 @@
+{
+  "task": "regression",
+  "threshold": 0.99,
+  "ranking_measure": "absolute Spearman",
+  "pool": [
+    "n_items",
+    "n_products",
+    "n_sellers",
+    "n_categories",
+    "total_price",
+    "total_freight",
+    "freight_ratio",
+    "total_weight_g",
+    "total_volume_cm3",
+    "weight_missing_fraction",
+    "volume_missing_fraction",
+    "primary_category",
+    "category_missing_fraction",
+    "customer_state",
+    "primary_seller_state",
+    "distance_km_max",
+    "distance_missing_fraction",
+    "interstate_share",
+    "purchase_month",
+    "purchase_dayofweek",
+    "purchase_hour",
+    "primary_payment_type",
+    "payment_installments_max",
+    "n_payment_methods"
+  ],
+  "core": [
+    "n_items",
+    "n_products",
+    "n_sellers",
+    "n_categories",
+    "total_price",
+    "total_freight",
+    "freight_ratio",
+    "total_weight_g",
+    "total_volume_cm3",
+    "volume_missing_fraction",
+    "primary_category",
+    "category_missing_fraction",
+    "customer_state",
+    "primary_seller_state",
+    "distance_km_max",
+    "distance_missing_fraction",
+    "interstate_share",
+    "purchase_month",
+    "purchase_dayofweek",
+    "purchase_hour",
+    "primary_payment_type",
+    "payment_installments_max",
+    "n_payment_methods"
+  ],
+  "selected": [
+    "distance_km_max",
+    "customer_state",
+    "interstate_share",
+    "total_freight",
+    "primary_category",
+    "freight_ratio",
+    "total_price",
+    "primary_seller_state",
+    "total_weight_g",
+    "primary_payment_type",
+    "total_volume_cm3",
+    "n_sellers",
+    "payment_installments_max",
+    "purchase_dayofweek",
+    "n_products",
+    "purchase_month",
+    "n_items",
+    "n_categories"
+  ],
+  "numeric": [
+    "distance_km_max",
+    "interstate_share",
+    "total_freight",
+    "freight_ratio",
+    "total_price",
+    "total_weight_g",
+    "total_volume_cm3",
+    "n_sellers",
+    "payment_installments_max",
+    "purchase_dayofweek",
+    "n_products",
+    "purchase_month",
+    "n_items",
+    "n_categories"
+  ],
+  "categorical": [
+    "customer_state",
+    "primary_category",
+    "primary_seller_state",
+    "primary_payment_type"
+  ],
+  "log_inputs": [
+    "distance_km_max",
+    "total_freight",
+    "total_price",
+    "total_weight_g",
+    "total_volume_cm3"
+  ],
+  "route_median": {
+    "column": "distance_km_max",
+    "keys": [
+      [
+        "customer_state",
+        "primary_seller_state"
+      ],
+      [
+        "customer_state"
+      ]
+    ]
+  },
+  "derived_indicators": [
+    "distance_km_max_missing",
+    "missingindicator_total_weight_g",
+    "missingindicator_total_volume_cm3"
+  ],
+  "log_target": true,
+  "families": [
+    "dummy",
+    "linear",
+    "tree",
+    "forest"
+  ],
+  "pool_source": "e5lib.contract.pool(task)",
+  "decisions": "spec/human_decisions.yaml s03_to_s04 (G-70)"
+}

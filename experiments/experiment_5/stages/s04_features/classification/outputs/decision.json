@@ -1,0 +1,38 @@
+[
+  {
+    "question": "selected feature set",
+    "rule": "walk the core ranking (mutual information) to the cumulative threshold",
+    "candidates_compared": "26 core features",
+    "chosen": [
+      "seller_prior_review_mean",
+      "total_freight",
+      "freight_ratio",
+      "total_volume_cm3",
+      "total_price",
+      "n_items",
+      "product_description_lenght",
+      "customer_state",
+      "total_weight_g",
+      "n_products",
+      "n_sellers",
+      "purchase_month",
+      "distance_km_max",
+      "interstate_share",
+      "primary_category",
+      "n_categories",
+      "primary_seller_state",
+      "payment_installments_max",
+      "product_photos_qty"
+    ],
+    "evidence_files": [
+      "selection_ranking.csv",
+      "reduction_rationale.csv",
+      "selected_features.json"
+    ],
+    "notes": "threshold 0.99 from human_decisions.yaml",
+    "ids": [
+      "4.4",
+      "4.7"
+    ]
+  }
+]

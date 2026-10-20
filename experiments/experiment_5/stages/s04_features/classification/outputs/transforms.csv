@@ -1,0 +1,28 @@
+feature,log_candidate,skewness,log1p,rule
+n_items,False,7.525229552300925,False,"never logged: integer count (G-62, G-70)"
+n_products,False,7.725368126413643,False,"never logged: integer count (G-62, G-70)"
+n_sellers,False,10.237863399632602,False,"never logged: integer count (G-62, G-70)"
+n_categories,False,-2.2219973462911597,False,"never logged: integer count (G-62, G-70)"
+total_price,True,10.056066448530823,True,log1p because pre-cutoff skewness 10.06 > 1
+total_freight,True,8.09906263249881,True,log1p because pre-cutoff skewness 8.10 > 1
+freight_ratio,False,10.932055650871549,False,never logged: team decision in the s01 review (G-62)
+total_weight_g,True,6.594563470438208,True,log1p because pre-cutoff skewness 6.59 > 1
+total_volume_cm3,True,7.480440461634459,True,log1p because pre-cutoff skewness 7.48 > 1
+weight_missing_fraction,False,69.68276398455326,False,never logged: bounded 0-1 share (G-47)
+volume_missing_fraction,False,69.68276398455326,False,never logged: bounded 0-1 share (G-47)
+primary_category,False,,False,"categorical: one-hot, never logged"
+category_missing_fraction,False,7.527875156048976,False,never logged: bounded 0-1 share (G-47)
+customer_state,False,,False,"categorical: one-hot, never logged"
+primary_seller_state,False,,False,"categorical: one-hot, never logged"
+distance_km_max,True,1.6391282396975024,True,log1p because pre-cutoff skewness 1.64 > 1
+distance_missing_fraction,False,9.11073070412552,False,never logged: bounded 0-1 share (G-47)
+interstate_share,False,-0.6389376352272196,False,never logged: bounded 0-1 share (G-47)
+purchase_month,False,0.38385577231272966,False,"never logged: numeric calendar position (G-22, G-47)"
+purchase_dayofweek,False,0.1589586884304061,False,"never logged: numeric calendar position (G-22, G-47)"
+purchase_hour,False,-0.6062392572884101,False,"never logged: numeric calendar position (G-22, G-47)"
+primary_payment_type,False,,False,"categorical: one-hot, never logged"
+payment_installments_max,False,1.587970264377772,False,"never logged: integer count (G-62, G-70)"
+n_payment_methods,False,6.329970044006404,False,"never logged: integer count (G-62, G-70)"
+product_photos_qty,False,1.8939076605896807,False,"never logged: integer count (G-62, G-70)"
+product_description_lenght,True,2.045127583240629,True,log1p because pre-cutoff skewness 2.05 > 1
+seller_prior_review_mean,False,-1.8287182797860217,False,never logged: 1-5 rating (G-70)

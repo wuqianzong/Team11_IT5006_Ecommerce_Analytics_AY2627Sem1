@@ -51,7 +51,7 @@ Fix both checkout tasks, prediction time, stakeholders and their actions, target
 | 2 | acceptance commit (tag e5-s01-accepted) | 20261018T150315Z | review/round_2/review_pack.md | accepted: all 9 rows Approved in the doc, 7 checks PASS | 2026-10-18 |
 
 ## Accepted result (the only result the report and slides may cite)
-- **Current run to cite: 20261020T053143Z** (CR-043, 2026-10-20). The working log above shows this run's values; the lines below record the acceptance history.
+- **Current run to cite: 20261020T145622Z** (CR-048, 2026-10-20). The working log above shows this run's values; the lines below record the acceptance history.
 - Accepted round: 2 - commit: the "s01 accepted" commit, tag `e5-s01-accepted` - run ID: 20261018T150315Z - approved by: experiment lead (Wu Qianzong), after team review in the doc tab "Implementation reviews › s01 Problem" - date: 2026-10-18
 - Evidence: `outputs/_manifest.json` (output hashes), `review/round_2/review_pack.md`.
 - 2026-10-19: rerun as run 20261018T164754Z after the foundation encoding fix (CR-030); every output byte-identical to the accepted run, decision unchanged, so the acceptance stands.
@@ -63,6 +63,7 @@ Fix both checkout tasks, prediction time, stakeholders and their actions, target
 - 2026-10-19, CR-038 (G-69): protocol.yaml screening_candidates gain the promise, region and seller-history entries with group and kind, a promise note (G-35 reopened for the screen) and the seller-history rule. Rerun 20261019T151352Z. Approved by the experiment lead; reviewed with s03 round 3. Status stays ACCEPTED.
 - 2026-10-20, CR-042 (G-71, external audit): rerun 20261019T163354Z on a clean tree (dirty false); protocol.yaml gains reason code INVALID_REVIEW_TIME (G-71); every other value unchanged. Approved by the experiment lead. Status stays ACCEPTED (no decision.json changed).
 - 2026-10-20, CR-043 (G-72, data start 2017-01-01): rerun 20261020T053143Z on a clean tree (dirty false); protocol.yaml gains populations.data_start (2017-01-01 00:00:00) and reason code BEFORE_DATA_START (G-72); every other value unchanged. Approved by the experiment lead. Status stays ACCEPTED (no decision.json changed).
+- 2026-10-20, CR-044 to CR-048 (s04/s05 build): rerun 20261020T145622Z on a clean tree (commit c7114d3 and its index follow-up); protocol.yaml pre-registers cv.minimums for s05 (10,000 training rows per fold; 100 detractors per classification part; G-74); every other value unchanged. Approved by the experiment lead. Status stays ACCEPTED.
 
 ## Deviations from blueprint
 None.

@@ -1,7 +1,7 @@
 {
   "node": "s03_eda/regression",
-  "run_id": "20261020T053125Z",
-  "commit": "49998116246cd6368f77cd22487868d48ca43ce4",
+  "run_id": "20261020T145535Z",
+  "commit": "a740fe21cec5227340ecccefa38ceead301684ed",
   "dirty": false,
   "code": {
     "experiments/experiment_5/stages/s03_eda/regression/run.py": "275dad57c6b3ef9a24dd9f6a040475fea4b9635502aedde433b54f624f1c8d5b"
@@ -16,19 +16,21 @@
     "experiments/experiment_5/e5lib/data.py": "12348f910bc66f91137b71b81ef2a507b2d9e146bfb54fbd58039e9db83008a0",
     "experiments/experiment_5/e5lib/eda.py": "edca505b81b8e72f299a01bce6fba2611c0408437348cd542cdab40428260d4c",
     "experiments/experiment_5/e5lib/eda_sections.py": "f8fbdb191b537e84efe0052c83361a18252f5c6e1faf622049b8cfb84e1ca3d1",
-    "experiments/experiment_5/e5lib/factory.py": "8f6794fc80334e6a344096c6654e015cffe3a5ab0ff9018eea16506f9eb5ad2a",
+    "experiments/experiment_5/e5lib/factory.py": "60b8121e57cf9577e0b59eac7fe1a8234ec89a20189473d61847f5f4db434dc8",
+    "experiments/experiment_5/e5lib/features.py": "c641752f58d6c9bb6695013bfba8b61c93068f9a5f657558c27083d3532e6696",
     "experiments/experiment_5/e5lib/geography.py": "d7ca545020d12f70d23225e3611c7ae2ac2d67be10f04aa21931fc48c3b75b97",
     "experiments/experiment_5/e5lib/manifest.py": "9c398fbacb56bf6b087dca0aa1fb9208a62695b7e38bfb2b7fa4495727ed4340",
     "experiments/experiment_5/e5lib/metrics.py": "7b1ba93591c5303fd46564380cfd37038cf10dcd3012feb5088c04dd702064ef",
     "experiments/experiment_5/e5lib/outputs.py": "2647b0d277a804a7775dacf977f96993a652ebf2ac0ab951ae7ebebc182dce29",
+    "experiments/experiment_5/e5lib/partition.py": "6078bdb638f7df936cafd479d127a5f7d40c2a3ab3ac7472ac2e439db540279c",
     "experiments/experiment_5/e5lib/paths.py": "0e734f058878c897ef2020f1bf286772f1e8871247f4d36d9cfa311fe877b660",
-    "experiments/experiment_5/e5lib/protocol.py": "900e556c163cb112c7b533311f5e635052090bea2554b1abe0c10010ca65e96d",
+    "experiments/experiment_5/e5lib/protocol.py": "8a808be2bba657356d03dde8d2f16e85c27f7306a26cfda8963d3629863d71c1",
     "experiments/experiment_5/e5lib/review.py": "fc47e1fbebddfdc377f0e7a43c87cef92accf158437cb929ad6557e86c9df48d",
     "experiments/experiment_5/e5lib/seller_history.py": "fde34f2e3560d851e66a57adb300a652fc8c2fde6f9a7d9d0d8e6a163436dc3e",
     "experiments/experiment_5/run_pipeline.py": "38625fed4ceda4990a3b7dc86a2146d1a5eb89c9feac6948381dcbf7c1d589cf"
   },
   "protocol": {
-    "pre_registered": "ccfec6c466c8795419bff9e514d69dd83997be65dadbbb4dec497e50c33abe7a",
+    "pre_registered": "423483ea80ea8ec8a1315b06d2a9c9a508eedccd7290e47ce41fd355efc78975",
     "data_dependent.test_cutoffs": "6c2e871c7b9f47a99c3c2c30206993fcd089039d1c3c1d763d47dc59943e2a63"
   },
   "reads": {
@@ -79,5 +81,5 @@
     "shapely": "2.1.2"
   },
   "seed": 42,
-  "runtime_s": 5.79
+  "runtime_s": 6.26
 }

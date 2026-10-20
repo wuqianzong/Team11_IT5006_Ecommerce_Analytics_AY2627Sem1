@@ -64,7 +64,7 @@ Load and clean the nine Olist tables deterministically, join aggregation-first t
 | 2 | acceptance commit (tag e5-s02-accepted) | 20261019T072845Z | review/round_2/review_pack.md | accepted: card 2.7 text only, every data output identical to round 1 | 2026-10-19 |
 
 ## Accepted result (the only result the report and slides may cite)
-- **Current run to cite: 20261020T053117Z** (CR-043, 2026-10-20). The working log above shows this run's values; the lines below record the acceptance history.
+- **Current run to cite: 20261020T145526Z** (CR-048, 2026-10-20). The working log above shows this run's values; the lines below record the acceptance history.
 - Accepted round: 2 - commit: the "s02 accepted" commit, tag `e5-s02-accepted` - run ID: 20261019T072845Z - approved by: experiment lead (Wu Qianzong), after team review in the doc tab "Implementation reviews › s02 Data" - date: 2026-10-19
 - Evidence: `outputs/_manifest.json`, `review/round_2/review_pack.md`; test cutoffs in `spec/protocol.yaml` (data_dependent.test_cutoffs).
 
@@ -73,6 +73,7 @@ Load and clean the nine Olist tables deterministically, join aggregation-first t
 - 2026-10-19, CR-038 (G-69): records gain est_delivery_days, customer_region, seller_region, region_pair and five seller_prior_* columns; new checks: seller history equals a direct recomputation on 2,000 random orders, est_delivery_days after purchase and regions complete. Populations, exclusions and test cutoffs unchanged. Rerun 20261019T151257Z. Approved by the experiment lead; reviewed with s03 round 3. Status stays ACCEPTED.
 - 2026-10-20, CR-042 (G-71, external audit): rerun 20261019T163328Z on a clean tree (dirty false); classification removes orders with a review answered at or before purchase (2.8, INVALID_REVIEW_TIME, 63 orders in exclusions.csv); seller_prior_* columns no longer count such reviews; new check (G-71). Classification eligible 97,464 → 97,457, pre-cutoff 77,971 → 77,965; classification test cutoff 2018-05-25 18:44:28 → 18:43:19 (audit.json, protocol.yaml). Regression unchanged. Approved by the experiment lead. Status stays ACCEPTED (no decision.json changed).
 - 2026-10-20, CR-043 (G-72, data start 2017-01-01): rerun 20261020T053117Z on a clean tree (dirty false); orders purchased before 2017-01-01 leave both tasks (2.8, BEFORE_DATA_START, 329 orders per task in exclusion_counts.csv) and their reviews and deliveries leave the seller-history inputs; new check (G-72). Eligible regression 96,432 → 96,166, classification 97,457 → 97,170; test cutoffs regression 2018-05-26 18:18:03 → 2018-05-27 12:30:34, classification 2018-05-25 18:43:19 → 2018-05-26 12:16:34; lead-time outlier threshold 133.91 → 133.71 days (audit.json, protocol.yaml). Approved by the experiment lead. Status stays ACCEPTED (no decision.json changed).
+- 2026-10-20, CR-044 to CR-048 (s04/s05 build): rerun 20261020T145526Z on a clean tree (commit c7114d3 and its index follow-up); data_dictionary.csv: missing meaning of the seller-history screening columns corrected (it said "product without a catalogue value"), catalogue note limited to the product fields; every other output unchanged. Approved by the experiment lead. Status stays ACCEPTED.
 
 ## Deviations from blueprint
 None.

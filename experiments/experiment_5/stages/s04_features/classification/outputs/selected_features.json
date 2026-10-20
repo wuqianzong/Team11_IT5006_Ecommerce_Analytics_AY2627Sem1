@@ -1,0 +1,143 @@
+{
+  "task": "classification",
+  "threshold": 0.99,
+  "ranking_measure": "mutual information",
+  "pool": [
+    "n_items",
+    "n_products",
+    "n_sellers",
+    "n_categories",
+    "total_price",
+    "total_freight",
+    "freight_ratio",
+    "total_weight_g",
+    "total_volume_cm3",
+    "weight_missing_fraction",
+    "volume_missing_fraction",
+    "primary_category",
+    "category_missing_fraction",
+    "customer_state",
+    "primary_seller_state",
+    "distance_km_max",
+    "distance_missing_fraction",
+    "interstate_share",
+    "purchase_month",
+    "purchase_dayofweek",
+    "purchase_hour",
+    "primary_payment_type",
+    "payment_installments_max",
+    "n_payment_methods",
+    "product_photos_qty",
+    "product_description_lenght",
+    "seller_prior_review_mean"
+  ],
+  "core": [
+    "n_items",
+    "n_products",
+    "n_sellers",
+    "n_categories",
+    "total_price",
+    "total_freight",
+    "freight_ratio",
+    "total_weight_g",
+    "total_volume_cm3",
+    "volume_missing_fraction",
+    "primary_category",
+    "category_missing_fraction",
+    "customer_state",
+    "primary_seller_state",
+    "distance_km_max",
+    "distance_missing_fraction",
+    "interstate_share",
+    "purchase_month",
+    "purchase_dayofweek",
+    "purchase_hour",
+    "primary_payment_type",
+    "payment_installments_max",
+    "n_payment_methods",
+    "product_photos_qty",
+    "product_description_lenght",
+    "seller_prior_review_mean"
+  ],
+  "selected": [
+    "seller_prior_review_mean",
+    "total_freight",
+    "freight_ratio",
+    "total_volume_cm3",
+    "total_price",
+    "n_items",
+    "product_description_lenght",
+    "customer_state",
+    "total_weight_g",
+    "n_products",
+    "n_sellers",
+    "purchase_month",
+    "distance_km_max",
+    "interstate_share",
+    "primary_category",
+    "n_categories",
+    "primary_seller_state",
+    "payment_installments_max",
+    "product_photos_qty"
+  ],
+  "numeric": [
+    "seller_prior_review_mean",
+    "total_freight",
+    "freight_ratio",
+    "total_volume_cm3",
+    "total_price",
+    "n_items",
+    "product_description_lenght",
+    "total_weight_g",
+    "n_products",
+    "n_sellers",
+    "purchase_month",
+    "distance_km_max",
+    "interstate_share",
+    "n_categories",
+    "payment_installments_max",
+    "product_photos_qty"
+  ],
+  "categorical": [
+    "customer_state",
+    "primary_category",
+    "primary_seller_state"
+  ],
+  "log_inputs": [
+    "total_freight",
+    "total_volume_cm3",
+    "total_price",
+    "product_description_lenght",
+    "total_weight_g",
+    "distance_km_max"
+  ],
+  "route_median": {
+    "column": "distance_km_max",
+    "keys": [
+      [
+        "customer_state",
+        "primary_seller_state"
+      ],
+      [
+        "customer_state"
+      ]
+    ]
+  },
+  "derived_indicators": [
+    "missingindicator_seller_prior_review_mean",
+    "missingindicator_total_volume_cm3",
+    "missingindicator_product_description_lenght",
+    "missingindicator_total_weight_g",
+    "distance_km_max_missing",
+    "missingindicator_product_photos_qty"
+  ],
+  "log_target": false,
+  "families": [
+    "dummy",
+    "linear",
+    "tree",
+    "forest"
+  ],
+  "pool_source": "e5lib.contract.pool(task)",
+  "decisions": "spec/human_decisions.yaml s03_to_s04 (G-70)"
+}

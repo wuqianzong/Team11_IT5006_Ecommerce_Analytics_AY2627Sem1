@@ -1,0 +1,3 @@
+family,estimator,rows,encoded_columns,duplicates_dropped,columns,rank,full_rank,condition_number
+linear,linear,76925,138,missingindicator_total_volume_cm3,137,137,True,424.0509687029032
+tree,tree_reg,76925,142,missingindicator_total_volume_cm3,141,138,False,9.021422309233896e+16

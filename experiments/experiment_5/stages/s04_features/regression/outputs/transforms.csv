@@ -1,0 +1,25 @@
+feature,log_candidate,skewness,log1p,rule
+n_items,False,7.850739890753871,False,"never logged: integer count (G-62, G-70)"
+n_products,False,7.6783675580059,False,"never logged: integer count (G-62, G-70)"
+n_sellers,False,10.11073325842187,False,"never logged: integer count (G-62, G-70)"
+n_categories,False,-2.1500546436585246,False,"never logged: integer count (G-62, G-70)"
+total_price,True,10.134553437655734,True,log1p because pre-cutoff skewness 10.13 > 1
+total_freight,True,8.132750778346539,True,log1p because pre-cutoff skewness 8.13 > 1
+freight_ratio,False,11.008002273061319,False,never logged: team decision in the s01 review (G-62)
+total_weight_g,True,6.625673984047294,True,log1p because pre-cutoff skewness 6.63 > 1
+total_volume_cm3,True,7.396533156165109,True,log1p because pre-cutoff skewness 7.40 > 1
+weight_missing_fraction,False,69.31810800609824,False,never logged: bounded 0-1 share (G-47)
+volume_missing_fraction,False,69.31810800609824,False,never logged: bounded 0-1 share (G-47)
+primary_category,False,,False,"categorical: one-hot, never logged"
+category_missing_fraction,False,7.58889741138643,False,never logged: bounded 0-1 share (G-47)
+customer_state,False,,False,"categorical: one-hot, never logged"
+primary_seller_state,False,,False,"categorical: one-hot, never logged"
+distance_km_max,True,1.6439223498134594,True,log1p because pre-cutoff skewness 1.64 > 1
+distance_missing_fraction,False,9.166972575791819,False,never logged: bounded 0-1 share (G-47)
+interstate_share,False,-0.6343339621478324,False,never logged: bounded 0-1 share (G-47)
+purchase_month,False,0.38226016815319935,False,"never logged: numeric calendar position (G-22, G-47)"
+purchase_dayofweek,False,0.15763234851992108,False,"never logged: numeric calendar position (G-22, G-47)"
+purchase_hour,False,-0.6069363711843024,False,"never logged: numeric calendar position (G-22, G-47)"
+primary_payment_type,False,,False,"categorical: one-hot, never logged"
+payment_installments_max,False,1.5927853297236518,False,"never logged: integer count (G-62, G-70)"
+n_payment_methods,False,6.318890548638922,False,"never logged: integer count (G-62, G-70)"

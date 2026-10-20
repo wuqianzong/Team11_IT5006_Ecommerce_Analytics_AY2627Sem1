@@ -1,0 +1,28 @@
+feature,source,kind,calendar_numeric
+n_items,contract predictor,numeric,False
+n_products,contract predictor,numeric,False
+n_sellers,contract predictor,numeric,False
+n_categories,contract predictor,numeric,False
+total_price,contract predictor,numeric,False
+total_freight,contract predictor,numeric,False
+freight_ratio,contract predictor,numeric,False
+total_weight_g,contract predictor,numeric,False
+total_volume_cm3,contract predictor,numeric,False
+weight_missing_fraction,contract predictor,numeric,False
+volume_missing_fraction,contract predictor,numeric,False
+primary_category,contract predictor,categorical,False
+category_missing_fraction,contract predictor,numeric,False
+customer_state,contract predictor,categorical,False
+primary_seller_state,contract predictor,categorical,False
+distance_km_max,contract predictor,numeric,False
+distance_missing_fraction,contract predictor,numeric,False
+interstate_share,contract predictor,numeric,False
+purchase_month,contract predictor,numeric,True
+purchase_dayofweek,contract predictor,numeric,True
+purchase_hour,contract predictor,numeric,True
+primary_payment_type,contract predictor,categorical,False
+payment_installments_max,contract predictor,numeric,False
+n_payment_methods,contract predictor,numeric,False
+product_photos_qty,adopted candidate (G-70),numeric,False
+product_description_lenght,adopted candidate (G-70),numeric,False
+seller_prior_review_mean,adopted candidate (G-70),numeric,False

@@ -143,6 +143,9 @@ cv.n_folds,5,1.7
 cv.scheme,"expanding, time-ordered, equal-sized validation blocks by order count",1.7
 cv.fold_customer_purge,training side,1.7
 cv.label_maturity,True,1.7
+cv.minimums.training_rows_per_fold,10000,1.7
+cv.minimums.positives_per_part,100,1.7
+cv.minimums.rule,"every fold's training part keeps at least training_rows_per_fold rows (both tasks); classification: training and validation parts each keep at least positives_per_part detractors; set before any fold is built (G-53, G-74)",1.7
 cv.data_dependent_in_s05,"fold_boundaries, class_support, min_training_rows",1.7
 cv.source,"s05 5.5-5.8; G-23, G-53",1.7
 metrics.regression.primary,mae,1.4

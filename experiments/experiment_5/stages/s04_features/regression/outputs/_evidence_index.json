@@ -1,0 +1,251 @@
+{
+  "node": "s04_features/regression",
+  "files": {
+    "baseline_pool.csv": {
+      "ids": [
+        "4.1"
+      ],
+      "kind": "table"
+    },
+    "transforms.csv": {
+      "ids": [
+        "4.2"
+      ],
+      "kind": "table"
+    },
+    "reduction_rationale.csv": {
+      "ids": [
+        "4.3"
+      ],
+      "kind": "table"
+    },
+    "selection_ranking.csv": {
+      "ids": [
+        "4.4"
+      ],
+      "kind": "table"
+    },
+    "figures/selection_cumulative.png": {
+      "ids": [
+        "4.4"
+      ],
+      "kind": "figure"
+    },
+    "figures/selection_cumulative.csv": {
+      "ids": [
+        "4.4"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/selection_cumulative.json": {
+      "ids": [
+        "4.4"
+      ],
+      "kind": "figure_meta"
+    },
+    "recipes.json": {
+      "ids": [
+        "4.8"
+      ],
+      "kind": "json"
+    },
+    "design_matrix.csv": {
+      "ids": [
+        "4.3",
+        "4.8"
+      ],
+      "kind": "table"
+    },
+    "feature_dictionary.csv": {
+      "ids": [
+        "4.6"
+      ],
+      "kind": "table"
+    },
+    "selected_features.json": {
+      "ids": [
+        "4.7"
+      ],
+      "kind": "json"
+    },
+    "decision.json": {
+      "ids": [
+        "4.4",
+        "4.7"
+      ],
+      "kind": "json"
+    }
+  },
+  "checks": [
+    {
+      "name": "every computation reads only pre-cutoff rows",
+      "passed": true,
+      "detail": "latest purchase 2018-05-27 12:20:21, cutoff 2018-05-27 12:30:34; 76,925 rows",
+      "ids": [
+        "4.2",
+        "4.3",
+        "4.4"
+      ]
+    },
+    {
+      "name": "ranked feature set equals contract.pool(task) and shares sum to 1",
+      "passed": true,
+      "detail": "24 features, measure: absolute Spearman",
+      "ids": [
+        "4.4"
+      ]
+    },
+    {
+      "name": "threshold and collinearity drops read from human_decisions.yaml",
+      "passed": true,
+      "detail": "threshold 0.99; team drops 0",
+      "ids": [
+        "4.3",
+        "4.4"
+      ]
+    },
+    {
+      "name": "every collinearity drop has a row in reduction_rationale.csv",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "4.3"
+      ]
+    },
+    {
+      "name": "selected set and threshold recorded in protocol.yaml (data_dependent.selected_set)",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "4.7"
+      ]
+    },
+    {
+      "name": "log1p only for the log1p candidates with skewness above the trigger",
+      "passed": true,
+      "detail": "total_price 10.13, total_freight 8.13, total_weight_g 6.63, total_volume_cm3 7.40, distance_km_max 1.64",
+      "ids": [
+        "4.2"
+      ]
+    },
+    {
+      "name": "feature_dictionary covers every pool feature and every selected feature has a rationale",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "4.6"
+      ]
+    },
+    {
+      "name": "order_estimated_delivery_date and est_delivery_days are not features (G-35)",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "4.1",
+        "4.7"
+      ]
+    },
+    {
+      "name": "no target cap and no target among the features (G-25)",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "4.2"
+      ]
+    },
+    {
+      "name": "linear/logistic design matrix has full column rank after the duplicate rule",
+      "passed": true,
+      "detail": "rank 137 of 137; tree recipe (full one-hot, no scaling) is rank-deficient by design: each categorical's dummies sum to 1, which does not affect trees",
+      "ids": [
+        "4.3",
+        "4.8"
+      ]
+    },
+    {
+      "name": "no fitted object saved in the outputs",
+      "passed": true,
+      "detail": "none",
+      "ids": [
+        "4.8"
+      ]
+    },
+    {
+      "name": "every family recipe builds an estimator from e5lib.factory",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "4.8"
+      ]
+    }
+  ],
+  "deviations": {
+    "4.6": "Verified citation for 0 of 21 kept features only; the blueprint asks for one per kept feature. The others are stated as unmeasured mechanisms (no source from earlier experiments)."
+  },
+  "cards": {
+    "4.1": {
+      "done": "Pool from e5lib.contract.pool('regression'): 24 features = 24 contract predictors; 4 categorical, calendar fields numeric (G-22).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "has_items, freight_ratio_missing, payment_missing and order_estimated_delivery_date are not in the pool.",
+      "label": "observation"
+    },
+    "4.2": {
+      "done": "log1p for 5 of 5 candidates by pre-cutoff skewness > 1: total_price 10.13; total_freight 8.13; total_weight_g 6.63; total_volume_cm3 7.40; distance_km_max 1.64. Regression target log1p(lead_days), scored in days (G-36); no target cap (G-25).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "Missing values stay missing through log1p and are imputed afterwards inside the fold pipeline (G-47).",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "4.3": {
+      "done": "Core set 23 of 24: weight_missing_fraction dropped (duplicate, kept volume_missing_fraction). Team collinearity drops: 0 (none flagged in s03). Encoded design matrix: linear: 138 encoded columns, duplicates dropped [missingindicator_total_volume_cm3], 137 columns, rank 137, condition number 424; tree: 142 encoded columns, duplicates dropped [missingindicator_total_volume_cm3], 141 columns, rank 138, condition number 9.02e+16.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "Rank and condition number are measured once on pre-cutoff rows; the preprocessing fitted for this measurement is not saved. Fields that are always missing together give identical missing indicators, so the 4.3 duplicate rule is applied to the encoded columns inside each training fold (factory step 'dedupe'); the linear/logistic matrix is then full rank. The tree recipe keeps every one-hot level, so its matrix is rank-deficient by design, which does not affect trees.",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "4.4": {
+      "done": "Core ranking by absolute Spearman, re-normalised over the 23 core features; 18 kept at the 99% threshold. Dropped by the cut: distance_missing_fraction, category_missing_fraction, n_payment_methods, volume_missing_fraction, purchase_hour.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "Declared exception (G-19): the ranking is computed once on pre-cutoff orders, so CV scores of the chosen set are optimistic; the report says so.",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "4.6": {
+      "done": "feature_dictionary.csv: 27 rows (every pool feature and the derived missing indicators): formula, grain, checkout availability, missingness, transform, imputation, kept and reason, hypothesised signal and claim type; 0 rows cite a source checked in Experiment 5 (0 of 21 kept).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "Sources were re-checked in this experiment (round 3, Henry's comment): Deshpande & Pendem (2023) and Leite et al. (2024) support, at abstract level, that longer or late delivery lowers customer ratings, so the classification delivery proxies are literature-supported hypotheses. Cui et al. (2024) studies the promised delivery speed and does not support a location or distance feature, so it is not cited. Every other signal is an unmeasured mechanism, tested only by the models.",
+      "conclusion": "",
+      "label": "unmeasured mechanism"
+    },
+    "4.7": {
+      "done": "selected_features.json: 18 features (14 numeric, 4 categorical), 3 derived missing indicators, log1p inputs ['distance_km_max', 'total_freight', 'total_price', 'total_weight_g', 'total_volume_cm3']; one set used by every family (G-49).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "4.8": {
+      "done": "recipes.json: one e5lib.factory spec per family (dummy = dummy_median, linear = linear, tree = tree_reg, forest = forest_reg): log1p, median imputation with missing indicators, route median for distance_km_max, one-hot with unknown levels ignored (drop-first and StandardScaler for linear/logistic only).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "Fitted only inside each training fold in s06-s08 (G-27).",
+      "label": "observation"
+    }
+  },
+  "checks_failed": []
+}

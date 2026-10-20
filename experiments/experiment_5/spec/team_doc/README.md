@@ -5,7 +5,7 @@ them, never review or comment on them, and never treat a change here as a decisi
 artifact `21432fd4-4cc0-4d68-8fa2-4e0414fffe5e`), so an auditing agent can check the repository
 against the documents the team approved without access to the doc (G-65).
 
-- **Exported:** 2026-10-20, after CR-043 (data start 2017-01-01): the feature solution, implementation reviews and the s01, s02 and s03 review tabs; each stage review tab opens with Part A (final result, the only part to cite) above Part B (review record). Pipeline and model tabs unchanged since the CR-042 export. Earlier exports: after s01 (CR-032), s02 (CR-035), s03 (CR-039), CR-040, CR-041 and CR-042.
+- **Exported:** 2026-10-20, at the s04 acceptance (CR-044 to CR-048): every tab, with the s04 review tab and its two task sub-tabs added. Only the implementation reviews tab and the new s04 tabs changed in content; the others are re-exported unchanged. Earlier exports: after s01 (CR-032), s02 (CR-035), s03 (CR-039), CR-040, CR-041, CR-042 and CR-043.
 - **Refreshed:** in the same commit that accepts each stage (README §9.1 step 6). Files are
   replaced, never edited by hand; git history keeps every earlier snapshot.
 - **What is not here:** comment threads (their outcomes are in the decision log and the stage
@@ -19,11 +19,14 @@ against the documents the team approved without access to the doc (G-65).
 | Doc tab | File | Doc revision |
 | --- | --- | --- |
 | Pipeline v2 (frozen) | [pipeline_v2.md](pipeline_v2.md) | 39 |
-| Feature solution (s02–s05, frozen) | [feature_solution_s02-s05.md](feature_solution_s02-s05.md) | 120 |
+| Feature solution (s02–s05, frozen) | [feature_solution_s02-s05.md](feature_solution_s02-s05.md) | 123 |
 | Model solution (s01, s06–s10) | [model_solution_s01_s06-s10.md](model_solution_s01_s06-s10.md) | 200 |
-| Implementation reviews | [implementation_reviews.md](implementation_reviews.md) | 26 |
-| Implementation reviews › s01 Problem | [implementation_review_s01_problem.md](implementation_review_s01_problem.md) | 19 |
-| Implementation reviews › s02 Data | [implementation_review_s02_data.md](implementation_review_s02_data.md) | 23 |
-| Implementation reviews › s03 EDA | [implementation_review_s03_eda.md](implementation_review_s03_eda.md) | 28 |
-| Implementation reviews › s03 EDA › regression | [implementation_review_s03_eda_regression.md](implementation_review_s03_eda_regression.md) | 5 |
-| Implementation reviews › s03 EDA › classification | [implementation_review_s03_eda_classification.md](implementation_review_s03_eda_classification.md) | 11 |
+| Implementation reviews | [implementation_reviews.md](implementation_reviews.md) | 36 |
+| Implementation reviews › s01 Problem | [implementation_review_s01_problem.md](implementation_review_s01_problem.md) | 21 |
+| Implementation reviews › s02 Data | [implementation_review_s02_data.md](implementation_review_s02_data.md) | 26 |
+| Implementation reviews › s03 EDA | [implementation_review_s03_eda.md](implementation_review_s03_eda.md) | 30 |
+| Implementation reviews › s03 EDA › regression | [implementation_review_s03_eda_regression.md](implementation_review_s03_eda_regression.md) | 8 |
+| Implementation reviews › s03 EDA › classification | [implementation_review_s03_eda_classification.md](implementation_review_s03_eda_classification.md) | 15 |
+| Implementation reviews › s04 Features | [implementation_review_s04_features.md](implementation_review_s04_features.md) | 19 |
+| Implementation reviews › s04 Features › regression | [implementation_review_s04_features_regression.md](implementation_review_s04_features_regression.md) | 4 |
+| Implementation reviews › s04 Features › classification | [implementation_review_s04_features_classification.md](implementation_review_s04_features_classification.md) | 4 |

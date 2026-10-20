@@ -1,0 +1,37 @@
+[
+  {
+    "question": "selected feature set",
+    "rule": "walk the core ranking (absolute Spearman) to the cumulative threshold",
+    "candidates_compared": "23 core features",
+    "chosen": [
+      "distance_km_max",
+      "customer_state",
+      "interstate_share",
+      "total_freight",
+      "primary_category",
+      "freight_ratio",
+      "total_price",
+      "primary_seller_state",
+      "total_weight_g",
+      "primary_payment_type",
+      "total_volume_cm3",
+      "n_sellers",
+      "payment_installments_max",
+      "purchase_dayofweek",
+      "n_products",
+      "purchase_month",
+      "n_items",
+      "n_categories"
+    ],
+    "evidence_files": [
+      "selection_ranking.csv",
+      "reduction_rationale.csv",
+      "selected_features.json"
+    ],
+    "notes": "threshold 0.99 from human_decisions.yaml",
+    "ids": [
+      "4.4",
+      "4.7"
+    ]
+  }
+]

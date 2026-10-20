@@ -1,0 +1,349 @@
+{
+  "stage": "s04_features",
+  "task": "classification",
+  "round": 2,
+  "base_commit": "2602ebf06b03e55bc86b82ecb60ec8d7c5585386",
+  "run_id": "20261020T070530Z",
+  "outputs": "FRESH",
+  "dirty": true,
+  "ready": true,
+  "rows": [
+    {
+      "id": "4.1",
+      "title": "Baseline",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "baseline_pool.csv"
+      ],
+      "evidence_hashes": {
+        "baseline_pool.csv": "abd06cd8464f9da805f0d9ad9ce9968cacafea26bdf89860268439888de0c5d4"
+      },
+      "card": {
+        "done": "Pool from e5lib.contract.pool('classification'): 27 features = 24 contract predictors + 3 adopted at the s03 gate (product_description_lenght, product_photos_qty, seller_prior_review_mean); 4 categorical, calendar fields numeric (G-22).",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "has_items, freight_ratio_missing, payment_missing and order_estimated_delivery_date are not in the pool.",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "order_estimated_delivery_date and est_delivery_days are not features (G-35)",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "4.1",
+            "4.7"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": false
+    },
+    {
+      "id": "4.2",
+      "title": "Transforms",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "transforms.csv"
+      ],
+      "evidence_hashes": {
+        "transforms.csv": "34289723d40cd6f0f0bf5878374dafe60d9168bba027d7d21d9b802db42caec7"
+      },
+      "card": {
+        "done": "log1p for 6 of 6 candidates by pre-cutoff skewness > 1: total_price 10.06; total_freight 8.10; total_weight_g 6.59; total_volume_cm3 7.48; distance_km_max 1.64; product_description_lenght 2.05.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "Missing values stay missing through log1p and are imputed afterwards inside the fold pipeline (G-47).",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "every computation reads only pre-cutoff rows",
+          "passed": true,
+          "detail": "latest purchase 2018-05-26 12:12:15, cutoff 2018-05-26 12:16:34; 77,736 rows",
+          "ids": [
+            "4.2",
+            "4.3",
+            "4.4"
+          ]
+        },
+        {
+          "name": "log1p only for the log1p candidates with skewness above the trigger",
+          "passed": true,
+          "detail": "total_price 10.06, total_freight 8.10, total_weight_g 6.59, total_volume_cm3 7.48, distance_km_max 1.64, product_description_lenght 2.05",
+          "ids": [
+            "4.2"
+          ]
+        },
+        {
+          "name": "no target cap and no target among the features (G-25)",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "4.2"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": false
+    },
+    {
+      "id": "4.3",
+      "title": "Reduction",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "reduction_rationale.csv",
+        "design_matrix.csv"
+      ],
+      "evidence_hashes": {
+        "reduction_rationale.csv": "305d8499f6d58f5e549e9d365b5ff7902322c24534ee5b058e1fde311ccb2563",
+        "design_matrix.csv": "d6fd84fc9c198059b1f5c6424efc80676562128242f5fc0cac06d5b285bc3b4e"
+      },
+      "card": {
+        "done": "Core set 26 of 27: weight_missing_fraction dropped (duplicate, kept volume_missing_fraction). Team collinearity drops: 0 (none flagged in s03). Encoded design matrix: linear: 140 encoded columns, duplicates dropped [missingindicator_total_weight_g; missingindicator_product_photos_qty], 138 columns, rank 138, condition number 1.55e+03; tree: 143 encoded columns, duplicates dropped [missingindicator_total_weight_g; missingindicator_product_photos_qty], 141 columns, rank 139, condition number 7.99e+16.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "Rank and condition number are measured once on pre-cutoff rows; the preprocessing fitted for this measurement is not saved. Fields that are always missing together give identical missing indicators, so the 4.3 duplicate rule is applied to the encoded columns inside each training fold (factory step 'dedupe'); the linear/logistic matrix is then full rank. The tree recipe keeps every one-hot level, so its matrix is rank-deficient by design, which does not affect trees.",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "every computation reads only pre-cutoff rows",
+          "passed": true,
+          "detail": "latest purchase 2018-05-26 12:12:15, cutoff 2018-05-26 12:16:34; 77,736 rows",
+          "ids": [
+            "4.2",
+            "4.3",
+            "4.4"
+          ]
+        },
+        {
+          "name": "threshold and collinearity drops read from human_decisions.yaml",
+          "passed": true,
+          "detail": "threshold 0.99; team drops 0",
+          "ids": [
+            "4.3",
+            "4.4"
+          ]
+        },
+        {
+          "name": "every collinearity drop has a row in reduction_rationale.csv",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "4.3"
+          ]
+        },
+        {
+          "name": "linear/logistic design matrix has full column rank after the duplicate rule",
+          "passed": true,
+          "detail": "rank 138 of 138; tree recipe (full one-hot, no scaling) is rank-deficient by design: each categorical's dummies sum to 1, which does not affect trees",
+          "ids": [
+            "4.3",
+            "4.8"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": false
+    },
+    {
+      "id": "4.4",
+      "title": "Selection",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "selection_ranking.csv",
+        "figures/selection_cumulative.png",
+        "figures/selection_cumulative.csv",
+        "figures/selection_cumulative.json",
+        "decision.json"
+      ],
+      "evidence_hashes": {
+        "selection_ranking.csv": "72de0f48fcde1114a99f2b5f3a9aea3796346ac95113867ce620685f8e9999d4",
+        "figures/selection_cumulative.png": "bbef4a55a5002006abab454dc1ba4c78d431fdb9d448d82f0d743ea1c91c6d39",
+        "figures/selection_cumulative.csv": "72de0f48fcde1114a99f2b5f3a9aea3796346ac95113867ce620685f8e9999d4",
+        "figures/selection_cumulative.json": "0bcce2a858575279b85c302f0f36bf6ca5487c6b5fe3a16b702eef25dfdbf841",
+        "decision.json": "103a6dff27d6776794bbe4681fd0baec06b73b55022838eb238807fe5ca2abbb"
+      },
+      "card": {
+        "done": "Core ranking by mutual information, re-normalised over the 26 core features; 19 kept at the 99% threshold. Dropped by the cut: category_missing_fraction, purchase_hour, purchase_dayofweek, distance_missing_fraction, primary_payment_type, volume_missing_fraction, n_payment_methods.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "Declared exception (G-19): the ranking is computed once on pre-cutoff orders, so CV scores of the chosen set are optimistic; the report says so.",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "every computation reads only pre-cutoff rows",
+          "passed": true,
+          "detail": "latest purchase 2018-05-26 12:12:15, cutoff 2018-05-26 12:16:34; 77,736 rows",
+          "ids": [
+            "4.2",
+            "4.3",
+            "4.4"
+          ]
+        },
+        {
+          "name": "ranked feature set equals contract.pool(task) and shares sum to 1",
+          "passed": true,
+          "detail": "27 features, measure: mutual information",
+          "ids": [
+            "4.4"
+          ]
+        },
+        {
+          "name": "threshold and collinearity drops read from human_decisions.yaml",
+          "passed": true,
+          "detail": "threshold 0.99; team drops 0",
+          "ids": [
+            "4.3",
+            "4.4"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": false
+    },
+    {
+      "id": "4.6",
+      "title": "Rationale",
+      "status": "DEVIATION",
+      "checks": "PASS",
+      "files": [
+        "feature_dictionary.csv"
+      ],
+      "evidence_hashes": {
+        "feature_dictionary.csv": "b18d965e82de279c429ad1780c986c29f9829339ff2466a963bda4e041926462"
+      },
+      "card": {
+        "done": "feature_dictionary.csv: 33 rows (every pool feature and the derived missing indicators): formula, grain, checkout availability, missingness, transform, imputation, kept and reason, and the hypothesised signal.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "Every hypothesised signal is labelled an unmeasured mechanism: it is tested only by the models (s06-s08). No source from earlier experiments (Milestone 2) is used (lead comment, round 1).",
+        "conclusion": "",
+        "label": "unmeasured mechanism"
+      },
+      "check_detail": [
+        {
+          "name": "feature_dictionary covers every pool feature and every selected feature has a rationale",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "4.6"
+          ]
+        }
+      ],
+      "deviation": "No verified citation per feature: the blueprint asks for one, and sources from earlier experiments are not used (lead comment, round 1). Sources can be added only after an independent search and check.",
+      "changed": true
+    },
+    {
+      "id": "4.7",
+      "title": "Selected set",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "selected_features.json",
+        "decision.json"
+      ],
+      "evidence_hashes": {
+        "selected_features.json": "d54c7e9c320fae7896261aa51538fe38534acc2ff7b0139ff037c5977763db05",
+        "decision.json": "103a6dff27d6776794bbe4681fd0baec06b73b55022838eb238807fe5ca2abbb"
+      },
+      "card": {
+        "done": "selected_features.json: 19 features (16 numeric, 3 categorical), 6 derived missing indicators, log1p inputs ['total_freight', 'total_volume_cm3', 'total_price', 'product_description_lenght', 'total_weight_g', 'distance_km_max']; one set used by every family (G-49).",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "selected set and threshold recorded in protocol.yaml (data_dependent.selected_set)",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "4.7"
+          ]
+        },
+        {
+          "name": "order_estimated_delivery_date and est_delivery_days are not features (G-35)",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "4.1",
+            "4.7"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": false
+    },
+    {
+      "id": "4.8",
+      "title": "Pipeline recipe",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "recipes.json",
+        "design_matrix.csv"
+      ],
+      "evidence_hashes": {
+        "recipes.json": "f65e3de0adb3491173021159a3f18788c2b188057c77d17d290b41481ed88b88",
+        "design_matrix.csv": "d6fd84fc9c198059b1f5c6424efc80676562128242f5fc0cac06d5b285bc3b4e"
+      },
+      "card": {
+        "done": "recipes.json: one e5lib.factory spec per family (dummy = dummy_prior, linear = logistic, tree = tree_clf, forest = forest_clf): log1p, median imputation with missing indicators, route median for distance_km_max, one-hot with unknown levels ignored (drop-first and StandardScaler for linear/logistic only).",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "Fitted only inside each training fold in s06-s08 (G-27).",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "linear/logistic design matrix has full column rank after the duplicate rule",
+          "passed": true,
+          "detail": "rank 138 of 138; tree recipe (full one-hot, no scaling) is rank-deficient by design: each categorical's dummies sum to 1, which does not affect trees",
+          "ids": [
+            "4.3",
+            "4.8"
+          ]
+        },
+        {
+          "name": "no fitted object saved in the outputs",
+          "passed": true,
+          "detail": "none",
+          "ids": [
+            "4.8"
+          ]
+        },
+        {
+          "name": "every family recipe builds an estimator from e5lib.factory",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "4.8"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": false
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 node: s04_features/regression
 owner: TBD
 reviewer: TBD
-status: TODO
+status: ACCEPTED
 depends_on:
   - s03_eda/regression
 reads: []   # exact upstream files used
@@ -39,16 +39,27 @@ Define, without fitting: the 24-predictor baseline from e5lib/contract.py (G-61;
 ## Working log (README section 9.1; one row per solution ID, every code change names its ID)
 | ID | What was built | Commit | Evidence (files, figures) | Coverage | Round |
 | --- | --- | --- | --- | --- | --- |
+| 4.1 | Baseline: Pool from e5lib.contract.pool('regression'): 24 features = 24 contract predictors; 4 categorical, calendar fields numeric (G-22). | acceptance commit (e5-s04-accepted) | baseline_pool.csv | IMPLEMENTED | 1 |
+| 4.2 | Transforms: log1p for 5 of 5 candidates by pre-cutoff skewness > 1: total_price 10.13; total_freight 8.13; total_weight_g 6.63; total_volume_cm3 7.40; distance_km_max 1.64. Regression target log1p(lead_days), scored in days (G-36); no target cap (G-25). | acceptance commit (e5-s04-accepted) | transforms.csv | IMPLEMENTED | 1 |
+| 4.3 | Reduction: Core set 23 of 24: weight_missing_fraction dropped (duplicate, kept volume_missing_fraction). Team collinearity drops: 0 (none flagged in s03). Encoded design matrix: linear: 138 encoded columns, duplicates dropped [missingindicator_total_volume_cm3], 137 columns, rank 137, condition number 424; tree: 142 encoded columns, duplicates dropped [missingindicator_total_volume_cm3], 141 columns, rank 138, condition number 9.02e+16. | acceptance commit (e5-s04-accepted) | reduction_rationale.csv, design_matrix.csv | IMPLEMENTED | 1 |
+| 4.4 | Selection: Core ranking by absolute Spearman, re-normalised over the 23 core features; 18 kept at the 99% threshold. Dropped by the cut: distance_missing_fraction, category_missing_fraction, n_payment_methods, volume_missing_fraction, purchase_hour. | acceptance commit (e5-s04-accepted) | selection_ranking.csv, figures/selection_cumulative.png, figures/selection_cumulative.csv, figures/selection_cumulative.json, decision.json | IMPLEMENTED | 1 |
+| 4.6 | Rationale: feature_dictionary.csv: 27 rows (every pool feature and the derived missing indicators): formula, grain, checkout availability, missingness, transform, imputation, kept and reason, hypothesised signal and claim type; 0 rows cite a source checked in Experiment 5 (0 of 21 kept). | acceptance commit (e5-s04-accepted) | feature_dictionary.csv | DEVIATION | 3 |
+| 4.7 | Selected set: selected_features.json: 18 features (14 numeric, 4 categorical), 3 derived missing indicators, log1p inputs ['distance_km_max', 'total_freight', 'total_price', 'total_weight_g', 'total_volume_cm3']; one set used by every family (G-49). | acceptance commit (e5-s04-accepted) | selected_features.json, decision.json | IMPLEMENTED | 1 |
+| 4.8 | Pipeline recipe: recipes.json: one e5lib.factory spec per family (dummy = dummy_median, linear = linear, tree = tree_reg, forest = forest_reg): log1p, median imputation with missing indicators, route median for distance_km_max, one-hot with unknown levels ignored (drop-first and StandardScaler for linear/logistic only). | acceptance commit (e5-s04-accepted) | recipes.json, design_matrix.csv | IMPLEMENTED | 1 |
 
 ## Review rounds (append-only; each round has review/round_N/ and a section in the doc tab)
 | Round | Commit | Run ID | Review pack | Outcome | Date |
 | --- | --- | --- | --- | --- | --- |
+| 1 | acceptance commit (e5-s04-accepted) | 20261020T062548Z | review/round_1/review_pack.md | reviewed: lead comment on 4.6 (no reliance on earlier experiments) | 2026-10-20 |
+| 2 | acceptance commit (e5-s04-accepted) | 20261020T070535Z | review/round_2/review_pack.md | reviewed: 4.6 without Milestone 2 references; other rows unchanged | 2026-10-20 |
+| 3 | acceptance commit (e5-s04-accepted) | 20261020T124722Z | review/round_3/review_pack.md | accepted: all comments resolved (G-73, G-76 agreed; G-27 and the tree encoding kept); accepted run 20261020T145617Z on a clean tree, outputs identical to this pack | 2026-10-20 |
 
 ## Accepted result (the only result the report and slides may cite)
-- Accepted round: - commit: - run ID: - approved by: - date:
+- Accepted round: 3 - commit: the "s04 accepted" commit, tag `e5-s04-accepted` - run ID: 20261020T145617Z (clean tree, dirty false; evidence identical to review/round_3) - approved by: experiment lead (Wu Qianzong), after team review (Henry) in the doc tab "Implementation reviews › s04 Features" - date: 2026-10-20
+- Decisions: threshold 99% and no collinearity drop (G-70); duplicate encoded columns dropped in the fold (G-73); citations only from sources checked in Experiment 5 (G-76); route median for missing distance kept (G-27).
 
 ## Deviations from blueprint
-None.
+- 4.6: verified citation only for the classification delivery proxies (G-76); all other kept features are unmeasured mechanisms.
 
 ## Open questions
 

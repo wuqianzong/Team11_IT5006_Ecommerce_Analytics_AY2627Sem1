@@ -55,13 +55,14 @@ Question-driven EDA on orders before the test cutoff: target profiles; outcome t
 | 3 | acceptance commit (tag e5-s03-accepted) | 20261019T151309Z | review/round_3/review_pack.md | accepted: all rows unchanged (evidence hashes equal round 2) | 2026-10-19 |
 
 ## Accepted result (the only result the report and slides may cite)
-- **Current run to cite: 20261020T053125Z** (CR-043, 2026-10-20). The working log above shows this run's values; the lines below record the acceptance history.
+- **Current run to cite: 20261020T145535Z** (CR-048, 2026-10-20). The working log above shows this run's values; the lines below record the acceptance history.
 - Accepted round: 3 - commit: the "s03 accepted" commit, tag `e5-s03-accepted` - run ID: 20261019T151309Z - approved by: experiment lead (Wu Qianzong), after team review in the doc tab "Implementation reviews › s03 EDA" - date: 2026-10-19
 - Gate decisions (spec/human_decisions.yaml, G-70): threshold 99%; no collinearity drop.
 
 ## Changes after acceptance (README section 9.2)
 - 2026-10-20, CR-042 (G-71, external audit): rerun 20261019T163336Z on a clean tree (dirty false); every value output byte-identical; only the manifest changed. Approved by the experiment lead. Status stays ACCEPTED (no decision.json changed).
 - 2026-10-20, CR-043 (G-72, data start 2017-01-01): rerun 20261020T053125Z on a clean tree (dirty false); pre-cutoff orders 77,139 → 76,925; values shift slightly; the 95% and 99% cuts keep the same 14 and 18 features, so the gate decisions stand. Approved by the experiment lead. Status stays ACCEPTED (no decision.json changed).
+- 2026-10-20, CR-044 to CR-048 (s04/s05 build): rerun 20261020T145535Z on a clean tree (commit c7114d3 and its index follow-up); every value output unchanged (rerun after the s04/s05 foundation modules). Approved by the experiment lead. Status stays ACCEPTED.
 
 ## Deviations from blueprint
 None.

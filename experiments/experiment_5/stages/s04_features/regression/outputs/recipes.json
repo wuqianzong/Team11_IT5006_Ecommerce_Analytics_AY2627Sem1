@@ -1,0 +1,230 @@
+{
+  "dummy": {
+    "estimator": "dummy_median",
+    "spec": {
+      "task": "regression",
+      "estimator": "dummy_median",
+      "numeric": [
+        "distance_km_max",
+        "interstate_share",
+        "total_freight",
+        "freight_ratio",
+        "total_price",
+        "total_weight_g",
+        "total_volume_cm3",
+        "n_sellers",
+        "payment_installments_max",
+        "purchase_dayofweek",
+        "n_products",
+        "purchase_month",
+        "n_items",
+        "n_categories"
+      ],
+      "categorical": [
+        "customer_state",
+        "primary_category",
+        "primary_seller_state",
+        "primary_payment_type"
+      ],
+      "log_inputs": [
+        "distance_km_max",
+        "total_freight",
+        "total_price",
+        "total_weight_g",
+        "total_volume_cm3"
+      ],
+      "route_median": {
+        "column": "distance_km_max",
+        "keys": [
+          [
+            "customer_state",
+            "primary_seller_state"
+          ],
+          [
+            "customer_state"
+          ]
+        ]
+      },
+      "drop_duplicates": true,
+      "log_target": true
+    },
+    "numeric": "log1p (columns in log_inputs) then median imputation with a missing indicator per column that has missing values in the training fold",
+    "route_median": "distance_km_max: missing values filled with the median of customer_state x primary_seller_state, else customer_state, else the global median, learned in the training fold, plus distance_km_max_missing (G-27)",
+    "categorical": "missing -> 'Unknown'; one-hot, handle_unknown='ignore'",
+    "duplicates": "encoded columns identical to an earlier column in the training fold are dropped (4.3 rule; e.g. the missing indicators of fields that are always missing together)",
+    "scaling": "none",
+    "target": "log1p(lead_days), predictions expm1, scored in days (G-36)",
+    "fitted": "inside each training fold in s06-s08, never in s04"
+  },
+  "linear": {
+    "estimator": "linear",
+    "spec": {
+      "task": "regression",
+      "estimator": "linear",
+      "numeric": [
+        "distance_km_max",
+        "interstate_share",
+        "total_freight",
+        "freight_ratio",
+        "total_price",
+        "total_weight_g",
+        "total_volume_cm3",
+        "n_sellers",
+        "payment_installments_max",
+        "purchase_dayofweek",
+        "n_products",
+        "purchase_month",
+        "n_items",
+        "n_categories"
+      ],
+      "categorical": [
+        "customer_state",
+        "primary_category",
+        "primary_seller_state",
+        "primary_payment_type"
+      ],
+      "log_inputs": [
+        "distance_km_max",
+        "total_freight",
+        "total_price",
+        "total_weight_g",
+        "total_volume_cm3"
+      ],
+      "route_median": {
+        "column": "distance_km_max",
+        "keys": [
+          [
+            "customer_state",
+            "primary_seller_state"
+          ],
+          [
+            "customer_state"
+          ]
+        ]
+      },
+      "drop_duplicates": true,
+      "log_target": true
+    },
+    "numeric": "log1p (columns in log_inputs) then median imputation with a missing indicator per column that has missing values in the training fold; StandardScaler",
+    "route_median": "distance_km_max: missing values filled with the median of customer_state x primary_seller_state, else customer_state, else the global median, learned in the training fold, plus distance_km_max_missing (G-27)",
+    "categorical": "missing -> 'Unknown'; one-hot, handle_unknown='ignore', drop='first'",
+    "duplicates": "encoded columns identical to an earlier column in the training fold are dropped (4.3 rule; e.g. the missing indicators of fields that are always missing together)",
+    "scaling": "StandardScaler",
+    "target": "log1p(lead_days), predictions expm1, scored in days (G-36)",
+    "fitted": "inside each training fold in s06-s08, never in s04"
+  },
+  "tree": {
+    "estimator": "tree_reg",
+    "spec": {
+      "task": "regression",
+      "estimator": "tree_reg",
+      "numeric": [
+        "distance_km_max",
+        "interstate_share",
+        "total_freight",
+        "freight_ratio",
+        "total_price",
+        "total_weight_g",
+        "total_volume_cm3",
+        "n_sellers",
+        "payment_installments_max",
+        "purchase_dayofweek",
+        "n_products",
+        "purchase_month",
+        "n_items",
+        "n_categories"
+      ],
+      "categorical": [
+        "customer_state",
+        "primary_category",
+        "primary_seller_state",
+        "primary_payment_type"
+      ],
+      "log_inputs": [
+        "distance_km_max",
+        "total_freight",
+        "total_price",
+        "total_weight_g",
+        "total_volume_cm3"
+      ],
+      "route_median": {
+        "column": "distance_km_max",
+        "keys": [
+          [
+            "customer_state",
+            "primary_seller_state"
+          ],
+          [
+            "customer_state"
+          ]
+        ]
+      },
+      "drop_duplicates": true,
+      "log_target": true
+    },
+    "numeric": "log1p (columns in log_inputs) then median imputation with a missing indicator per column that has missing values in the training fold",
+    "route_median": "distance_km_max: missing values filled with the median of customer_state x primary_seller_state, else customer_state, else the global median, learned in the training fold, plus distance_km_max_missing (G-27)",
+    "categorical": "missing -> 'Unknown'; one-hot, handle_unknown='ignore'",
+    "duplicates": "encoded columns identical to an earlier column in the training fold are dropped (4.3 rule; e.g. the missing indicators of fields that are always missing together)",
+    "scaling": "none",
+    "target": "log1p(lead_days), predictions expm1, scored in days (G-36)",
+    "fitted": "inside each training fold in s06-s08, never in s04"
+  },
+  "forest": {
+    "estimator": "forest_reg",
+    "spec": {
+      "task": "regression",
+      "estimator": "forest_reg",
+      "numeric": [
+        "distance_km_max",
+        "interstate_share",
+        "total_freight",
+        "freight_ratio",
+        "total_price",
+        "total_weight_g",
+        "total_volume_cm3",
+        "n_sellers",
+        "payment_installments_max",
+        "purchase_dayofweek",
+        "n_products",
+        "purchase_month",
+        "n_items",
+        "n_categories"
+      ],
+      "categorical": [
+        "customer_state",
+        "primary_category",
+        "primary_seller_state",
+        "primary_payment_type"
+      ],
+      "log_inputs": [
+        "distance_km_max",
+        "total_freight",
+        "total_price",
+        "total_weight_g",
+        "total_volume_cm3"
+      ],
+      "route_median": {
+        "column": "distance_km_max",
+        "keys": [
+          [
+            "customer_state",
+            "primary_seller_state"
+          ],
+          [
+            "customer_state"
+          ]
+        ]
+      },
+      "drop_duplicates": true,
+      "log_target": true
+    },
+    "numeric": "log1p (columns in log_inputs) then median imputation with a missing indicator per column that has missing values in the training fold",
+    "route_median": "distance_km_max: missing values filled with the median of customer_state x primary_seller_state, else customer_state, else the global median, learned in the training fold, plus distance_km_max_missing (G-27)",
+    "categorical": "missing -> 'Unknown'; one-hot, handle_unknown='ignore'",
+    "duplicates": "encoded columns identical to an earlier column in the training fold are dropped (4.3 rule; e.g. the missing indicators of fields that are always missing together)",
+    "scaling": "none",
+    "target": "log1p(lead_days), predictions expm1, scored in days (G-36)",
+    "fitted": "inside each training fold in s06-s08, never in s04"
+  }
+}

@@ -61,8 +61,11 @@ Question-driven EDA on orders before the test cutoff: target profiles; outcome t
 | 5 | CR-043 commits (tag e5-s03-accepted moved) | 20261020T053142Z | review/round_5/review_pack.md | re-accepted by the experiment lead after CR-043 (G-72, data start 2017-01-01): pre-cutoff orders 77,965 → 77,736; seller_prior_review_mean MI 0.0094 → 0.0110, now rank 1 of 36; the 99% cuts keep the same 17 of 24 and the same 19 of the 27-feature pool, order of near-tied features changed; gate decisions G-70 unchanged | 2026-10-20 |
 
 ## Accepted result (the only result the report and slides may cite)
-- Accepted round: 5 (CR-043; first accepted in round 3 on 2026-10-19) - commit: the CR-043 commit, tag `e5-s03-accepted` - run ID: 20261020T053142Z (clean tree, dirty false) - approved by: experiment lead (Wu Qianzong), after team review in the doc tab "Implementation reviews › s03 EDA" - date: 2026-10-20
+- Accepted round: 5 (CR-043; first accepted in round 3 on 2026-10-19) - commit: the CR-043 commit, tag `e5-s03-accepted` - run ID: 20261020T145553Z (current run after CR-048; values unchanged) (clean tree, dirty false) - approved by: experiment lead (Wu Qianzong), after team review in the doc tab "Implementation reviews › s03 EDA" - date: 2026-10-20
 - Gate decisions (spec/human_decisions.yaml, G-70): threshold 99%; no collinearity drop; adopted candidates product_photos_qty, product_description_lenght, seller_prior_review_mean.
+
+## Changes after acceptance (README section 9.2)
+- 2026-10-20, CR-044 to CR-048 (s04/s05 build): rerun 20261020T145553Z on a clean tree (commit c7114d3 and its index follow-up); every value output unchanged (rerun after the s04/s05 foundation modules). Approved by the experiment lead. Status stays ACCEPTED.
 
 ## Deviations from blueprint
 None.
