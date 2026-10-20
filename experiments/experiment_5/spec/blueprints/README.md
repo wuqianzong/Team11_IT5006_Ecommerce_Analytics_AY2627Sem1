@@ -50,7 +50,7 @@ Pipeline v2 chart.
 | s02 Data preprocessing | ACCEPTED | 2 | 2 (tag e5-s02-accepted) | Implementation reviews › s02 Data |
 | s03 EDA | ACCEPTED | 5 | regression 3, classification 5 (CR-043; tag e5-s03-accepted) | Implementation reviews › s03 EDA (sub-tabs: regression, classification) |
 | s04 Features | ACCEPTED | 3 | 3 (tag e5-s04-accepted) | Implementation reviews › s04 Features (sub-tabs: regression, classification) |
-| s05 Partition | IN REVIEW | 2 | — | Implementation reviews › s05 Partition (sub-tabs: regression, classification); reviewed with s04 (G-74) |
+| s05 Partition | ACCEPTED | 3 | 3 (tag e5-s05-accepted) | Implementation reviews › s05 Partition (sub-tabs: regression, classification); reviewed with s04, accepted after it (G-74) |
 | s06 Training | NOT STARTED | — | — | — |
 | s07 Tuning | NOT STARTED | — | — | — |
 | s08 Selection | NOT STARTED | — | — | — |

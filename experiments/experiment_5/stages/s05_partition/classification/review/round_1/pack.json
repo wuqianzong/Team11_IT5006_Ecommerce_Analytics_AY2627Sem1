@@ -1,0 +1,333 @@
+{
+  "stage": "s05_partition",
+  "task": "classification",
+  "round": 1,
+  "base_commit": "2602ebf06b03e55bc86b82ecb60ec8d7c5585386",
+  "run_id": "20261020T073908Z",
+  "outputs": "FRESH",
+  "dirty": true,
+  "ready": true,
+  "rows": [
+    {
+      "id": "5.1",
+      "title": "Order",
+      "status": "IMPLEMENTED",
+      "checks": "\u2014",
+      "files": [],
+      "evidence_hashes": {},
+      "card": {
+        "done": "97,170 eligible classification orders sorted by purchase_ts (ties by order_id): 77,736 development orders before the s02 cutoff 2018-05-26 12:16:34, 19,434 on or after it.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "5.2",
+      "title": "Test cohort",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "test_manifest.csv",
+        "counts.json"
+      ],
+      "evidence_hashes": {
+        "test_manifest.csv": "b8afcc693e0a83eddfabfca11a0e203d9ea92bbeaefec5a5db12e867baafa043",
+        "counts.json": "34079ec2b48bac10112a541028cb1d8bb1bb6e232e4efbda891b4e322a1ca093"
+      },
+      "card": {
+        "done": "Test cohort: every eligible order purchased on or after 2018-05-26 12:16:34; after the purge 18,966 order_ids frozen in test_manifest.csv (2018-05-26 12:16:34 to 2018-08-29 15:00:37).",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "Defined only by this experiment's data and rules (G-38).",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "no test order_id or customer_unique_id in development",
+          "passed": true,
+          "detail": "468 repeat-customer test orders removed",
+          "ids": [
+            "5.2",
+            "5.3"
+          ]
+        },
+        {
+          "name": "never a random split: test is every eligible order on or after the cutoff, minus repeat customers",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "5.2"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "5.3",
+      "title": "Test-side purge",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "test_manifest.csv",
+        "counts.json"
+      ],
+      "evidence_hashes": {
+        "test_manifest.csv": "b8afcc693e0a83eddfabfca11a0e203d9ea92bbeaefec5a5db12e867baafa043",
+        "counts.json": "34079ec2b48bac10112a541028cb1d8bb1bb6e232e4efbda891b4e322a1ca093"
+      },
+      "card": {
+        "done": "468 test orders (2.41%) belong to customers who also bought in development and were removed. The new-customer time-ordered holdout holds 18,966 orders, 19.52% of eligible orders after the purge.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "no test order_id or customer_unique_id in development",
+          "passed": true,
+          "detail": "468 repeat-customer test orders removed",
+          "ids": [
+            "5.2",
+            "5.3"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "5.4",
+      "title": "Test checks",
+      "status": "DEVIATION",
+      "checks": "PASS",
+      "files": [
+        "counts.json",
+        "checks.json"
+      ],
+      "evidence_hashes": {
+        "counts.json": "34079ec2b48bac10112a541028cb1d8bb1bb6e232e4efbda891b4e322a1ca093",
+        "checks.json": "c1aef6919b1a399e4568f744bdc264905c2a0de7eaeb860e1beeee055ea0c7af"
+      },
+      "card": {
+        "done": "test keeps >= 15% of eligible reviewed orders: PASS (18,966 of 97,170 = 19.52%); test keeps >= 15% of all eligible detractors: FAIL (1,968 of 13,488 = 14.59%). Prevalence: development 14.78%, test 10.38% (gap -4.41%).",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "The test cohort is later in time; a gap here is the drift the test score has to face, not a split error. No random fallback exists.",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "test keeps >= 15% of eligible reviewed orders",
+          "passed": true,
+          "detail": "18,966 of 97,170 = 19.52%",
+          "ids": [
+            "5.4"
+          ]
+        },
+        {
+          "name": "test keeps >= 15% of all eligible detractors, or a recorded team deviation",
+          "passed": true,
+          "detail": "1,968 of 13,488 = 14.59%: below the minimum, accepted deviation G-75",
+          "ids": [
+            "5.4"
+          ]
+        }
+      ],
+      "deviation": "test keeps >= 15% of all eligible detractors: FAILED (1,968 of 13,488 = 14.59%); accepted by the team as a protocol deviation (G-75): 1,968 test detractors are enough to evaluate the classifier; moving the cutoff after seeing the shares would be a post-hoc change. Reported in s09 with the absolute count (G-54) (experiment lead (Wu Qianzong), 2026-10-20)",
+      "changed": true
+    },
+    {
+      "id": "5.5",
+      "title": "CV folds",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "folds.csv",
+        "fold_summary.csv",
+        "figures/partition_diagram.png",
+        "figures/partition_diagram.csv",
+        "figures/partition_diagram.json",
+        "checks.json"
+      ],
+      "evidence_hashes": {
+        "folds.csv": "0e92da73f7a6a54fdcbba05cb2c2cfd785e01676d959e229dcf4c6aafdb81d99",
+        "fold_summary.csv": "a9bfdea69f9db51f443332c81a60efb2449d1a1e5a272d80c20b6606181a28e5",
+        "figures/partition_diagram.png": "fc28fb7ed398c0580581df5d518d40456d29743588d9fc2f31d96771fe8f352c",
+        "figures/partition_diagram.csv": "42eaf0686cf3b135c00c44270a6ba5ca9c8e5237d62299f62cbd28e34e1d057f",
+        "figures/partition_diagram.json": "caebd4911aa7270f644ae864d79b1d861357fdf13799dc9a3cee689beafae4a5",
+        "checks.json": "c1aef6919b1a399e4568f744bdc264905c2a0de7eaeb860e1beeee055ea0c7af"
+      },
+      "card": {
+        "done": "5 expanding folds on development, validation blocks of 12,956 orders each (last block takes the remainder); boundaries written to protocol.yaml data_dependent.fold_boundaries; training strictly before validation in every fold.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "every fold: max training purchase time < min validation purchase time",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "5.5"
+          ]
+        },
+        {
+          "name": "five folds with equal-sized validation blocks before maturity drops",
+          "passed": true,
+          "detail": "12,956, 12,956, 12,956, 12,956, 12,956",
+          "ids": [
+            "5.5"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "5.6",
+      "title": "Fold customer purge",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "folds.csv",
+        "fold_summary.csv",
+        "checks.json"
+      ],
+      "evidence_hashes": {
+        "folds.csv": "0e92da73f7a6a54fdcbba05cb2c2cfd785e01676d959e229dcf4c6aafdb81d99",
+        "fold_summary.csv": "a9bfdea69f9db51f443332c81a60efb2449d1a1e5a272d80c20b6606181a28e5",
+        "checks.json": "c1aef6919b1a399e4568f744bdc264905c2a0de7eaeb860e1beeee055ea0c7af"
+      },
+      "card": {
+        "done": "Training orders whose customer_unique_id appears in the fold's validation block removed: fold 1 123, fold 2 211, fold 3 265, fold 4 251, fold 5 340 rows.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "every fold: no shared customer_unique_id between training and validation",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "5.6"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "5.7",
+      "title": "Label maturity",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "folds.csv",
+        "fold_summary.csv",
+        "checks.json"
+      ],
+      "evidence_hashes": {
+        "folds.csv": "0e92da73f7a6a54fdcbba05cb2c2cfd785e01676d959e229dcf4c6aafdb81d99",
+        "fold_summary.csv": "a9bfdea69f9db51f443332c81a60efb2449d1a1e5a272d80c20b6606181a28e5",
+        "checks.json": "c1aef6919b1a399e4568f744bdc264905c2a0de7eaeb860e1beeee055ea0c7af"
+      },
+      "card": {
+        "done": "Training rows need review_label_ts before the validation block starts; validation rows before the test cutoff. Dropped: fold 1 1,756 train / 0 validation, fold 2 2,128 train / 6 validation, fold 3 5,035 train / 15 validation, fold 4 3,640 train / 31 validation, fold 5 4,079 train / 2,705 validation.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "every fold: every training label observable before the validation block starts",
+          "passed": true,
+          "detail": "16,638 training rows dropped over the folds",
+          "ids": [
+            "5.7"
+          ]
+        },
+        {
+          "name": "every validation label observable before the test cutoff",
+          "passed": true,
+          "detail": "2,757 validation rows dropped",
+          "ids": [
+            "5.7"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "5.8",
+      "title": "Class support and training size",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "fold_summary.csv",
+        "counts.json",
+        "checks.json"
+      ],
+      "evidence_hashes": {
+        "fold_summary.csv": "a9bfdea69f9db51f443332c81a60efb2449d1a1e5a272d80c20b6606181a28e5",
+        "counts.json": "34079ec2b48bac10112a541028cb1d8bb1bb6e232e4efbda891b4e322a1ca093",
+        "checks.json": "c1aef6919b1a399e4568f744bdc264905c2a0de7eaeb860e1beeee055ea0c7af"
+      },
+      "card": {
+        "done": "Training rows per fold 11,077, 23,573, 33,568, 47,933, 60,361 (minimum 10,000, pre-registered); detractors training/validation 1,410/1,440, 2,798/1,985, 3,993/1,953, 6,312/2,811, 8,694/1,108 (minimum 100).",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "every fold: training rows >= 10,000 (G-53)",
+          "passed": true,
+          "detail": "fold 1 11,077; fold 2 23,573; fold 3 33,568; fold 4 47,933; fold 5 60,361",
+          "ids": [
+            "5.8"
+          ]
+        },
+        {
+          "name": "every fold: both classes present, >= 100 detractors in training and in validation",
+          "passed": true,
+          "detail": "fold 1 1,410/1,440; fold 2 2,798/1,985; fold 3 3,993/1,953; fold 4 6,312/2,811; fold 5 8,694/1,108",
+          "ids": [
+            "5.8"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    }
+  ]
+}

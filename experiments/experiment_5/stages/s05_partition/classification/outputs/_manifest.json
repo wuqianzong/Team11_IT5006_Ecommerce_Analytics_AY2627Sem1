@@ -1,0 +1,66 @@
+{
+  "node": "s05_partition/classification",
+  "run_id": "20261020T145612Z",
+  "commit": "a740fe21cec5227340ecccefa38ceead301684ed",
+  "dirty": false,
+  "code": {
+    "experiments/experiment_5/stages/s05_partition/classification/run.py": "349cf4648722e77684fbb2c7bdc77bcde255ce9c38c2722b19b2f3ba100fd837"
+  },
+  "foundation": {
+    "experiments/experiment_5/e5lib/__init__.py": "cd238533adc62fa600a0d9246352bc6a0c3d5bc599ad0504a1ea10d7aa76c5fe",
+    "experiments/experiment_5/e5lib/aggregation.py": "2493264c6df5cebdc211c9df15e6d64b4d90bfe4ad005263dcd5b1a9e8faf9d5",
+    "experiments/experiment_5/e5lib/candidates.py": "5ae6bb355012a619759f36e81f9dd36784a7cededf7b2eeb431a9b5f1e0e70b4",
+    "experiments/experiment_5/e5lib/cleaning.py": "20836a85b51a58127af73d260bae6071682b1a254eeb22802ae7f3a1ecb3c471",
+    "experiments/experiment_5/e5lib/contract.py": "8ca99e88230d216004909cf3ac7ded76b5445ec7e8bce6e37205f5bd664472f7",
+    "experiments/experiment_5/e5lib/cv.py": "c3c5d112c87c1d62c3b21a7a65a3219baa916322e7f1d6c335eea343f4684e7c",
+    "experiments/experiment_5/e5lib/data.py": "12348f910bc66f91137b71b81ef2a507b2d9e146bfb54fbd58039e9db83008a0",
+    "experiments/experiment_5/e5lib/eda.py": "edca505b81b8e72f299a01bce6fba2611c0408437348cd542cdab40428260d4c",
+    "experiments/experiment_5/e5lib/eda_sections.py": "f8fbdb191b537e84efe0052c83361a18252f5c6e1faf622049b8cfb84e1ca3d1",
+    "experiments/experiment_5/e5lib/factory.py": "60b8121e57cf9577e0b59eac7fe1a8234ec89a20189473d61847f5f4db434dc8",
+    "experiments/experiment_5/e5lib/features.py": "c641752f58d6c9bb6695013bfba8b61c93068f9a5f657558c27083d3532e6696",
+    "experiments/experiment_5/e5lib/geography.py": "d7ca545020d12f70d23225e3611c7ae2ac2d67be10f04aa21931fc48c3b75b97",
+    "experiments/experiment_5/e5lib/manifest.py": "9c398fbacb56bf6b087dca0aa1fb9208a62695b7e38bfb2b7fa4495727ed4340",
+    "experiments/experiment_5/e5lib/metrics.py": "7b1ba93591c5303fd46564380cfd37038cf10dcd3012feb5088c04dd702064ef",
+    "experiments/experiment_5/e5lib/outputs.py": "2647b0d277a804a7775dacf977f96993a652ebf2ac0ab951ae7ebebc182dce29",
+    "experiments/experiment_5/e5lib/partition.py": "6078bdb638f7df936cafd479d127a5f7d40c2a3ab3ac7472ac2e439db540279c",
+    "experiments/experiment_5/e5lib/paths.py": "0e734f058878c897ef2020f1bf286772f1e8871247f4d36d9cfa311fe877b660",
+    "experiments/experiment_5/e5lib/protocol.py": "8a808be2bba657356d03dde8d2f16e85c27f7306a26cfda8963d3629863d71c1",
+    "experiments/experiment_5/e5lib/review.py": "fc47e1fbebddfdc377f0e7a43c87cef92accf158437cb929ad6557e86c9df48d",
+    "experiments/experiment_5/e5lib/seller_history.py": "fde34f2e3560d851e66a57adb300a652fc8c2fde6f9a7d9d0d8e6a163436dc3e",
+    "experiments/experiment_5/run_pipeline.py": "38625fed4ceda4990a3b7dc86a2146d1a5eb89c9feac6948381dcbf7c1d589cf"
+  },
+  "protocol": {
+    "pre_registered": "423483ea80ea8ec8a1315b06d2a9c9a508eedccd7290e47ce41fd355efc78975",
+    "data_dependent.class_support": "572606f0aae1060cde6acb66897fb6464b6825436e0614571e2023b4ccf7e889",
+    "data_dependent.fold_boundaries": "533206b4c27ae8d32c9778e735202b37160ea51978c409e76ac1dc0f1a323e33",
+    "data_dependent.min_training_rows": "121908a8b1c46b267fc12c147297dd161dc9679850c644243076620f48fd5b30",
+    "data_dependent.test_cutoffs": "6c2e871c7b9f47a99c3c2c30206993fcd089039d1c3c1d763d47dc59943e2a63"
+  },
+  "reads": {
+    "experiments/experiment_5/stages/s02_data/common/outputs/records.csv.gz": "3a86d161df392891c499b9f1d88cc7d2145d94b4015721fc631dc360dcbc4f5a"
+  },
+  "outputs": {
+    "experiments/experiment_5/stages/s05_partition/classification/outputs/_evidence_index.json": "ae82fbebc79eccd41070aea20e81400e1b09235e87e5e412c3412c0205b438b8",
+    "experiments/experiment_5/stages/s05_partition/classification/outputs/checks.json": "6b1e3a55a9070a9633c030ba080767291c778e378a5cbd74bb5735081cedd620",
+    "experiments/experiment_5/stages/s05_partition/classification/outputs/counts.json": "34079ec2b48bac10112a541028cb1d8bb1bb6e232e4efbda891b4e322a1ca093",
+    "experiments/experiment_5/stages/s05_partition/classification/outputs/figures/partition_diagram.csv": "42eaf0686cf3b135c00c44270a6ba5ca9c8e5237d62299f62cbd28e34e1d057f",
+    "experiments/experiment_5/stages/s05_partition/classification/outputs/figures/partition_diagram.json": "caebd4911aa7270f644ae864d79b1d861357fdf13799dc9a3cee689beafae4a5",
+    "experiments/experiment_5/stages/s05_partition/classification/outputs/figures/partition_diagram.png": "fc28fb7ed398c0580581df5d518d40456d29743588d9fc2f31d96771fe8f352c",
+    "experiments/experiment_5/stages/s05_partition/classification/outputs/fold_summary.csv": "a9bfdea69f9db51f443332c81a60efb2449d1a1e5a272d80c20b6606181a28e5",
+    "experiments/experiment_5/stages/s05_partition/classification/outputs/folds.csv": "0e92da73f7a6a54fdcbba05cb2c2cfd785e01676d959e229dcf4c6aafdb81d99",
+    "experiments/experiment_5/stages/s05_partition/classification/outputs/test_manifest.csv": "b8afcc693e0a83eddfabfca11a0e203d9ea92bbeaefec5a5db12e867baafa043"
+  },
+  "versions": {
+    "python": "3.13.9",
+    "numpy": "2.4.2",
+    "pandas": "3.0.1",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.1",
+    "joblib": "1.6.0",
+    "matplotlib": "3.11.2",
+    "PyYAML": "6.0.3",
+    "shapely": "2.1.2"
+  },
+  "seed": 42,
+  "runtime_s": 2.75
+}

@@ -1,0 +1,217 @@
+{
+  "node": "s05_partition/regression",
+  "files": {
+    "test_manifest.csv": {
+      "ids": [
+        "5.2",
+        "5.3"
+      ],
+      "kind": "table"
+    },
+    "folds.csv": {
+      "ids": [
+        "5.5",
+        "5.6",
+        "5.7"
+      ],
+      "kind": "table"
+    },
+    "fold_summary.csv": {
+      "ids": [
+        "5.5",
+        "5.6",
+        "5.7",
+        "5.8"
+      ],
+      "kind": "table"
+    },
+    "figures/partition_diagram.png": {
+      "ids": [
+        "5.5"
+      ],
+      "kind": "figure"
+    },
+    "figures/partition_diagram.csv": {
+      "ids": [
+        "5.5"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/partition_diagram.json": {
+      "ids": [
+        "5.5"
+      ],
+      "kind": "figure_meta"
+    },
+    "counts.json": {
+      "ids": [
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.8"
+      ],
+      "kind": "json"
+    },
+    "checks.json": {
+      "ids": [
+        "5.4",
+        "5.5",
+        "5.6",
+        "5.7",
+        "5.8"
+      ],
+      "kind": "json"
+    }
+  },
+  "checks": [
+    {
+      "name": "no test order_id or customer_unique_id in development",
+      "passed": true,
+      "detail": "453 repeat-customer test orders removed",
+      "ids": [
+        "5.2",
+        "5.3"
+      ]
+    },
+    {
+      "name": "test keeps >= 15% of eligible delivered orders",
+      "passed": true,
+      "detail": "18,788 of 96,166 = 19.54%",
+      "ids": [
+        "5.4"
+      ]
+    },
+    {
+      "name": "never a random split: test is every eligible order on or after the cutoff, minus repeat customers",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "5.2"
+      ]
+    },
+    {
+      "name": "every fold: max training purchase time < min validation purchase time",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "5.5"
+      ]
+    },
+    {
+      "name": "every fold: no shared customer_unique_id between training and validation",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "5.6"
+      ]
+    },
+    {
+      "name": "every fold: every training label observable before the validation block starts",
+      "passed": true,
+      "detail": "14,207 training rows dropped over the folds",
+      "ids": [
+        "5.7"
+      ]
+    },
+    {
+      "name": "every validation label observable before the test cutoff",
+      "passed": true,
+      "detail": "2,091 validation rows dropped",
+      "ids": [
+        "5.7"
+      ]
+    },
+    {
+      "name": "every fold: training rows >= 10,000 (G-53)",
+      "passed": true,
+      "detail": "fold 1 is 11,297; fold 2 is 23,864; fold 3 is 33,927; fold 4 is 47,957; fold 5 is 59,880",
+      "ids": [
+        "5.8"
+      ]
+    },
+    {
+      "name": "five folds with equal-sized validation blocks before maturity drops",
+      "passed": true,
+      "detail": "12,820, 12,820, 12,820, 12,820, 12,820",
+      "ids": [
+        "5.5"
+      ]
+    }
+  ],
+  "deviations": {},
+  "cards": {
+    "5.1": {
+      "done": "96,166 eligible regression orders sorted by purchase_ts (ties by order_id): 76,925 development orders before the s02 cutoff 2018-05-27 12:30:34, 19,241 on or after it.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "5.2": {
+      "done": "Test cohort: every eligible order purchased on or after 2018-05-27 12:30:34; after the purge 18,788 order_ids frozen in test_manifest.csv (2018-05-27 12:30:34 to 2018-08-29 15:00:37).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "Defined only by this experiment's data and rules (G-38).",
+      "label": "observation"
+    },
+    "5.3": {
+      "done": "453 test orders (2.35%) belong to customers who also bought in development and were removed. The new-customer time-ordered holdout holds 18,788 orders, 19.54% of eligible orders after the purge.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "5.4": {
+      "done": "test keeps >= 15% of eligible delivered orders: PASS (18,788 of 96,166 = 19.54%). lead_days: development mean 13.42 / median 11.17; test mean 8.74 / median 7.43 days.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "The test cohort is later in time; a gap here is the drift the test score has to face, not a split error. No random fallback exists.",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "5.5": {
+      "done": "5 expanding folds on development, validation blocks of 12,820 orders each (last block takes the remainder); boundaries written to protocol.yaml data_dependent.fold_boundaries; training strictly before validation in every fold.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "5.6": {
+      "done": "Training orders whose customer_unique_id appears in the fold's validation block removed: fold 1 is 123, fold 2 is 209, fold 3 is 264, fold 4 is 254, fold 5 is 343 rows.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "5.7": {
+      "done": "A training order is used only if its answer (lead_days, known on its delivery date) was already known on the day its fold's validation block starts; a validation order only if its answer was known before the test cutoff. Dropped: fold 1 is 1,405 train / 0 validation, fold 2 is 1,572 train / 0 validation, fold 3 is 4,274 train / 2 validation, fold 4 is 3,074 train / 9 validation, fold 5 is 3,882 train / 2,080 validation.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "Each fold imitates training the model on the day the validation block starts. An order bought before that day but delivered (or reviewed) after it had no answer yet on that day, so learning from it would use information from the future. Most dropped rows are the last few weeks of orders before each boundary, still in transit or not yet reviewed then.",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "5.8": {
+      "done": "Training rows per fold: fold 1 is 11,297, fold 2 is 23,864, fold 3 is 33,927, fold 4 is 47,957, fold 5 is 59,880 (minimum 10,000, pre-registered).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    }
+  },
+  "checks_failed": []
+}

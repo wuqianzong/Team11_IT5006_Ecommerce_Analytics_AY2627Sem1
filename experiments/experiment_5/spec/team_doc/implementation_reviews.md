@@ -1,6 +1,6 @@
 # Implementation reviews
 
-Stages are built and reviewed one at a time, in pipeline order, s01 to s10. A stage starts only when every upstream stage is ACCEPTED. The technical foundation (shared code, run gate, guards, tests) is built first and is not reviewed as a stage; it changes whenever a stage review needs it, and every change is logged (G-60). The binding rules are in README §9.1 (CR-024, G-59). s01, s02 and s03 are ACCEPTED (s03 with the classification candidate screens, CR-037 to CR-039; s01–s03 corrected after the external audit, CR-042; data from 2017-01-01, CR-043); s04 (round 2) and s05 (round 1) are in review together, s04 to be accepted first (G-74).
+Stages are built and reviewed one at a time, in pipeline order, s01 to s10. A stage starts only when every upstream stage is ACCEPTED. The technical foundation (shared code, run gate, guards, tests) is built first and is not reviewed as a stage; it changes whenever a stage review needs it, and every change is logged (G-60). The binding rules are in README §9.1 (CR-024, G-59). s01, s02 and s03 are ACCEPTED (s03 with the classification candidate screens, CR-037 to CR-039; s01–s03 corrected after the external audit, CR-042; data from 2017-01-01, CR-043); s04 and s05 were reviewed together and are ACCEPTED, s04 first (round 3 each, G-74); s06 is next.
 
 ## Progress
 
@@ -12,7 +12,7 @@ This table mirrors the build tags on the Pipeline v2 chart and the progress tabl
 | s02 Data preprocessing | ACCEPTED | 2 | 2 (tag e5-s02-accepted) | s02 Data |
 | s03 EDA | ACCEPTED | 5 (classification, CR-043) | regression 3, classification 5 (tag e5-s03-accepted) | s03 EDA |
 | s04 Features | ACCEPTED | 3 | 3 (tag e5-s04-accepted) | s04 Features |
-| s05 Partition | IN REVIEW (with s04, G-74) | 1 | — | s05 Partition |
+| s05 Partition | ACCEPTED | 3 | 3 (tag e5-s05-accepted) | s05 Partition |
 | s06 Training&#32; | NOT STARTED | — | — | — |
 | s07 Tuning | NOT STARTED | — | — | — |
 | s08 Selection | NOT STARTED | — | — | — |
