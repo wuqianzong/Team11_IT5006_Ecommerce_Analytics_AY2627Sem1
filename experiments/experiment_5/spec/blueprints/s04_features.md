@@ -100,6 +100,11 @@ Feature engineering section: feature dictionary, reduction rationale table, sele
 and its stated limitation. Appendix (Henry, s04 review): the pipeline recipe table per family
 (recipes.json) and the derived features with their formulas (missing indicators: 1 if the parent is
 missing, else 0; distance_km_max_missing from the route-median step), from feature_dictionary.csv.
+Design-matrix table (design_matrix.csv): the linear/logistic matrix is full rank after the duplicate
+rule; the tree recipe keeps every one-hot level, so its matrix is rank-deficient with a very large
+condition number by design. Rank and condition number are linear-algebra diagnostics for the linear
+family only; trees do not invert the matrix, and the tree figure is not a model-quality measure
+(external audit of s04–s05, M-01).
 
 ## 9. Open questions
 - Cumulative-importance threshold (95% or 99%): set by the team once the s03 ranking exists.

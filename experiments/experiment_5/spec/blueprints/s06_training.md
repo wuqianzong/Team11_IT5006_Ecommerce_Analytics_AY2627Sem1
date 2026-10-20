@@ -76,7 +76,9 @@ Gate: models run basic to complex on identical folds, with each choice justified
 
 ## 8. Report hooks
 Modelling section: family ladder table (train and validation scores), residual and diagnostic
-figures, learning curves.
+figures, learning curves. Appendix (Henry, s02 review 2.12; moved from the s04 card): imputation
+inside the folds, per fold and task, read from the fitted pipelines: the learned medians and route
+medians and the number of values filled in training and validation.
 
 ## 9. Open questions
 None.

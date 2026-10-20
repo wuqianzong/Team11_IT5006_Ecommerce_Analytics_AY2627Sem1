@@ -63,5 +63,6 @@ Define, without fitting: the 24-predictor baseline from e5lib/contract.py (G-61;
 
 ## Open questions
 
-- Review tab must show a feature × task table (24 contract predictors; kept for regression, kept for classification, reason), built from both feature_dictionary.csv files (promised to Henry in the s02 review, 2.12).
-- Review tab must have a section "Imputation inside the folds": per feature the rule (median + missing indicator; route median with fallbacks for distance_km_max; "Unknown" for categoricals), the order (log1p, then impute) and, per fold, the learned medians and the counts filled in training and validation, taken from the fitted pipelines (Henry, s02 review 2.12).
+None. Both items raised in the s02 review (2.12) are closed (CR-049):
+- Feature × task table: delivered in the doc tab "Implementation reviews › s04 Features" (section "Feature × task"), built from both feature_dictionary.csv files.
+- Imputation inside the folds: the rule and order per feature are delivered in the same tab (section "Imputation inside the folds"); the learned medians and filled counts per fold need fitted pipelines and are an s06 report hook.

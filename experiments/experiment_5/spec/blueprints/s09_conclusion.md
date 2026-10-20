@@ -42,7 +42,10 @@ Gate: every conclusion follows from the test results and their limits.
      - Secondary slices, under the same 100-detractor rule: basket size (items in the order)
        and seller count (distinct sellers in the order).
 4. **Drift (9.4).** Training vs test: standardised mean differences of numeric features,
-   category-share changes and target prevalence. Flags the features that moved most.
+   category-share changes and the target of each task: regression lead time (mean, median and
+   distribution), classification prevalence. Flags the features that moved most. The test cohorts
+   are the newest period and differ from development (G-77, s05 counts.json); the report says so
+   and never describes the test cohort as drawn from the development distribution.
 5. **Interpretation (9.5; G-40).**
    - Permutation importance of the frozen model on the test cohort (description, no decisions).
    - Coefficients and odds ratios of the plain linear and logistic models.

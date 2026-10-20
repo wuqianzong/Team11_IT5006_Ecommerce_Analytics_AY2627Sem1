@@ -58,7 +58,7 @@ Sort by purchase time; hold out each task's newest 20% as its test cohort (cutof
 
 ## Accepted result (the only result the report and slides may cite)
 - Accepted round: 3 - commit: the "s05 accepted" commit, tag `e5-s05-accepted` - run ID: 20261020T145621Z (clean tree, dirty false; evidence identical to review/round_3) - approved by: experiment lead (Wu Qianzong), after team review (Henry) in the doc tab "Implementation reviews › s05 Partition" - date: 2026-10-20
-- Decisions: minimum training rows per fold and positives per part (G-74); test drift between development and test accepted.
+- Decisions: minimum training rows per fold and positives per part (G-74); test drift between development and test accepted (G-77).
 
 ## Deviations from blueprint
 None.

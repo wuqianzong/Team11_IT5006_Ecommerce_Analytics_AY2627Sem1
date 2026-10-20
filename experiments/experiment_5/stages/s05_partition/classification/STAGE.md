@@ -58,7 +58,7 @@ Sort by purchase time; hold out each task's newest 20% as its test cohort (cutof
 
 ## Accepted result (the only result the report and slides may cite)
 - Accepted round: 3 - commit: the "s05 accepted" commit, tag `e5-s05-accepted` - run ID: 20261020T145612Z (clean tree, dirty false; evidence identical to review/round_3) - approved by: experiment lead (Wu Qianzong), after team review (Henry) in the doc tab "Implementation reviews › s05 Partition" - date: 2026-10-20
-- Decisions: minimum training rows per fold and positives per part (G-74); test drift between development and test accepted; test detractor share below 15% accepted as protocol deviation G-75.
+- Decisions: minimum training rows per fold and positives per part (G-74); test drift between development and test accepted (G-77); test detractor share below 15% accepted as protocol deviation G-75.
 
 ## Deviations from blueprint
 - 5.4: the test cohort keeps 1,968 of 13,488 eligible detractors (14.59%), below the pre-registered 15% (G-46); accepted by the experiment lead as a protocol deviation (G-75, human_decisions.yaml s05), stated in s09 with the absolute count.
