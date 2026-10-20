@@ -172,7 +172,7 @@
     {
       "name": "screening candidates built, known at checkout, numeric ones non-negative (G-68, G-69)",
       "passed": true,
-      "detail": "['product_photos_qty', 'product_description_lenght', 'product_name_lenght', 'est_delivery_days', 'customer_region', 'seller_region', 'region_pair', 'seller_prior_review_mean', 'seller_prior_review_count', 'seller_prior_detractor_share', 'seller_prior_delivered_count', 'seller_prior_late_share']; missing: product_photos_qty 2,190, product_description_lenght 2,190, product_name_lenght 2,190, est_delivery_days 0, customer_region 0, seller_region 0, region_pair 0, seller_prior_review_mean 6,985, seller_prior_review_count 775, seller_prior_detractor_share 6,985, seller_prior_delivered_count 775, seller_prior_late_share 6,397",
+      "detail": "['product_photos_qty', 'product_description_lenght', 'product_name_lenght', 'est_delivery_days', 'customer_region', 'seller_region', 'region_pair', 'seller_prior_review_mean', 'seller_prior_review_count', 'seller_prior_detractor_share', 'seller_prior_delivered_count', 'seller_prior_late_share']; missing: product_photos_qty 2,190, product_description_lenght 2,190, product_name_lenght 2,190, est_delivery_days 0, customer_region 0, seller_region 0, region_pair 0, seller_prior_review_mean 7,475, seller_prior_review_count 775, seller_prior_detractor_share 7,475, seller_prior_delivered_count 775, seller_prior_late_share 6,790",
       "ids": [
         "2.5",
         "2.7"
@@ -223,7 +223,7 @@
     {
       "name": "outlier statistics use only pre-cutoff orders",
       "passed": true,
-      "detail": "latest purchase used 2018-05-26 18:16:57, cutoff 2018-05-26 18:18:03",
+      "detail": "latest purchase used 2018-05-27 12:20:21, cutoff 2018-05-27 12:30:34",
       "ids": [
         "2.9"
       ]
@@ -254,6 +254,15 @@
       ]
     },
     {
+      "name": "no eligible order before the data start; seller history uses no review or delivery of such an order (G-72)",
+      "passed": true,
+      "detail": "data start 2017-01-01 00:00:00; 329 orders before it",
+      "ids": [
+        "2.5",
+        "2.8"
+      ]
+    },
+    {
       "name": "eligible classification orders have every review answered after purchase (G-71)",
       "passed": true,
       "detail": "63 orders with a review answered at or before purchase",
@@ -281,7 +290,7 @@
     {
       "name": "test cutoffs recorded in protocol.yaml",
       "passed": true,
-      "detail": "{'regression': '2018-05-26 18:18:03', 'classification': '2018-05-25 18:43:19'}",
+      "detail": "{'regression': '2018-05-27 12:30:34', 'classification': '2018-05-26 12:16:34'}",
       "ids": [
         "2.8"
       ]
@@ -353,7 +362,7 @@
       "label": "observation"
     },
     "2.8": {
-      "done": "Population rules applied per task and written to exclusions.csv; counts in exclusion_counts.csv. Test cutoffs (80/20 on eligible orders after the population rules, before the outlier rule): {'regression': '2018-05-26 18:18:03', 'classification': '2018-05-25 18:43:19'}.",
+      "done": "Population rules applied per task and written to exclusions.csv; counts in exclusion_counts.csv. Test cutoffs (80/20 on eligible orders after the population rules, before the outlier rule): {'regression': '2018-05-27 12:30:34', 'classification': '2018-05-26 12:16:34'}.",
       "inputs": "",
       "expectation": "",
       "observation": "",
@@ -362,7 +371,7 @@
       "label": "observation"
     },
     "2.9": {
-      "done": "Lead-time threshold max(100, mean + 12 SD) = 133.91 days from pre-cutoff regression orders (mean 13.51, SD 10.03); distance limit 4397.53 km. Removals on or after each cutoff: [{'task': 'regression', 'outlier_removals_on_or_after_cutoff': 1}, {'task': 'classification', 'outlier_removals_on_or_after_cutoff': 0}].",
+      "done": "Lead-time threshold max(100, mean + 12 SD) = 133.71 days from pre-cutoff regression orders (mean 13.49, SD 10.02); distance limit 4397.53 km. Removals on or after each cutoff: [{'task': 'regression', 'outlier_removals_on_or_after_cutoff': 1}, {'task': 'classification', 'outlier_removals_on_or_after_cutoff': 0}].",
       "inputs": "",
       "expectation": "",
       "observation": "",

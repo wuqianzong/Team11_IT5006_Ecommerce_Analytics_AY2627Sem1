@@ -1,10 +1,10 @@
 {
   "node": "s01_problem/common",
-  "run_id": "20261019T163354Z",
-  "commit": "aca98ac99b1a7a21ae26076f070de91a73d6e7b1",
+  "run_id": "20261020T053143Z",
+  "commit": "49998116246cd6368f77cd22487868d48ca43ce4",
   "dirty": false,
   "code": {
-    "experiments/experiment_5/stages/s01_problem/common/run.py": "1b2222f7116716fc10376eb23e20c607c58e67119e0b5ecbfd5af2c2cdfd7b4f"
+    "experiments/experiment_5/stages/s01_problem/common/run.py": "3d4f70767b55bdce976a38a1f3356fa0bb9d38241e722b585fa7d4f1bc384b42"
   },
   "foundation": {
     "experiments/experiment_5/e5lib/__init__.py": "cd238533adc62fa600a0d9246352bc6a0c3d5bc599ad0504a1ea10d7aa76c5fe",
@@ -28,14 +28,14 @@
     "experiments/experiment_5/run_pipeline.py": "38625fed4ceda4990a3b7dc86a2146d1a5eb89c9feac6948381dcbf7c1d589cf"
   },
   "protocol": {
-    "pre_registered": "216a717b2cb3f1c1c8cf105f5811aa307ac6e712031381254955be26414736b3"
+    "pre_registered": "ccfec6c466c8795419bff9e514d69dd83997be65dadbbb4dec497e50c33abe7a"
   },
   "reads": {},
   "outputs": {
-    "experiments/experiment_5/stages/s01_problem/common/outputs/_evidence_index.json": "d2a0f0aad087d548a69df9277a870a6bed3d2eb362989555e7cb7c3e0c9c3ac0",
-    "experiments/experiment_5/stages/s01_problem/common/outputs/preregistered_values.csv": "2d5785831ae709859fbbfd560d1735e83544176fa46e7094f382a12bedd9d44d",
-    "experiments/experiment_5/stages/s01_problem/common/outputs/protocol_preregistered.yaml": "5c7bae246acd5ef60f2552d52b8f795fb4cf18479ceb6729afff6003ca91e534",
-    "experiments/experiment_5/stages/s01_problem/common/outputs/task_contract.md": "0fd9ed8249fe89cabf969628f3aa330f82939f6456e589d2e12843d7cf9fb558"
+    "experiments/experiment_5/stages/s01_problem/common/outputs/_evidence_index.json": "10608740327fc5f4aa613856943a4ebb1704a179285f5c8a3c4e704abace100f",
+    "experiments/experiment_5/stages/s01_problem/common/outputs/preregistered_values.csv": "cfd355d0d3b85abeb62959b1517eb04b74eacb28a7e609de78dd7274f31eab96",
+    "experiments/experiment_5/stages/s01_problem/common/outputs/protocol_preregistered.yaml": "8217306d20e330f14371a5cc85ad9d127aab320aeb214f12c22d73de1b00bea7",
+    "experiments/experiment_5/stages/s01_problem/common/outputs/task_contract.md": "46d2eae9349e3666d8807a24b0d0a6366652f7f95c1bcc356e6a41d9b632ea17"
   },
   "versions": {
     "python": "3.13.9",

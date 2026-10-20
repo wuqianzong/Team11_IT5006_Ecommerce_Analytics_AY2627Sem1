@@ -10,7 +10,7 @@
 - Classification: customer-experience team: daily list of at-risk orders for proactive contact (status update, check with the seller).
 
 ## Targets and populations (1.3)
-- Both tasks: zero-item orders excluded; orders with missing payment_installments_max removed; orders without a usable payment removed (no payment rows, or only not_defined); orders with a negative value in a log1p candidate removed (zero kept).
+- Both tasks: orders purchased before data_start excluded (G-72); zero-item orders excluded; orders with missing payment_installments_max removed; orders without a usable payment removed (no payment rows, or only not_defined); orders with a negative value in a log1p candidate removed (zero kept).
 - Regression: delivered orders with a valid lead time. Classification: orders not cancelled or unavailable, with a valid review; targets never imputed.
 - Label sensitivity: is_detractor_first (first review only).
 

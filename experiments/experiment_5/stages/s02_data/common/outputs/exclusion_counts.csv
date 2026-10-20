@@ -1,4 +1,6 @@
 task,step,reason_code,reason_description,orders
+regression,2.8,BEFORE_DATA_START,purchased before the data start 2017-01-01 00:00:00; the 2016 months are too thin to be representative (s02 2.8; G-72),329
+classification,2.8,BEFORE_DATA_START,purchased before the data start 2017-01-01 00:00:00; the 2016 months are too thin to be representative (s02 2.8; G-72),329
 regression,"2.6, 2.8",INVALID_LEAD_TIME,"not delivered, or delivery time missing or not after purchase (s02 2.6, 2.8)",2971
 regression,2.8,ZERO_ITEMS,order has no items (s02 2.8),775
 classification,2.8,ZERO_ITEMS,order has no items (s02 2.8),775

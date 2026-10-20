@@ -24,7 +24,11 @@ tasks:
       with the seller)'
     source: s01 1.1-1.3; s02 2.6; G-34
 populations:
+  data_start: '2017-01-01 00:00:00'
+  data_start_rule: 'orders purchased before data_start leave both tasks and never count in seller history: the 2016
+    months are too thin to be representative (G-72)'
   both:
+  - orders purchased before data_start excluded (G-72)
   - zero-item orders excluded
   - orders with missing payment_installments_max removed
   - orders without a usable payment removed (no payment rows, or only not_defined)
@@ -41,6 +45,8 @@ populations:
     file: 's02 exclusions.csv: order_id, task, step, reason_code, reason_description; one row per removed order
       and reason, every removal rule included'
     reason_codes:
+      BEFORE_DATA_START: purchased before the data start 2017-01-01 00:00:00; the 2016 months are too thin to be
+        representative (s02 2.8; G-72)
       INVALID_LEAD_TIME: not delivered, or delivery time missing or not after purchase (s02 2.6, 2.8)
       ZERO_ITEMS: order has no items (s02 2.8)
       CANCELLED_OR_UNAVAILABLE: order cancelled or unavailable (s02 2.8)

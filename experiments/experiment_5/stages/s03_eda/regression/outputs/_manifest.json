@@ -1,7 +1,7 @@
 {
   "node": "s03_eda/regression",
-  "run_id": "20261019T163336Z",
-  "commit": "aca98ac99b1a7a21ae26076f070de91a73d6e7b1",
+  "run_id": "20261020T053125Z",
+  "commit": "49998116246cd6368f77cd22487868d48ca43ce4",
   "dirty": false,
   "code": {
     "experiments/experiment_5/stages/s03_eda/regression/run.py": "275dad57c6b3ef9a24dd9f6a040475fea4b9635502aedde433b54f624f1c8d5b"
@@ -28,44 +28,44 @@
     "experiments/experiment_5/run_pipeline.py": "38625fed4ceda4990a3b7dc86a2146d1a5eb89c9feac6948381dcbf7c1d589cf"
   },
   "protocol": {
-    "pre_registered": "216a717b2cb3f1c1c8cf105f5811aa307ac6e712031381254955be26414736b3",
-    "data_dependent.test_cutoffs": "93f26043640c89c9725eeba61fc23cd7816fe4d956b089c14561a0ada0c6f2b9"
+    "pre_registered": "ccfec6c466c8795419bff9e514d69dd83997be65dadbbb4dec497e50c33abe7a",
+    "data_dependent.test_cutoffs": "6c2e871c7b9f47a99c3c2c30206993fcd089039d1c3c1d763d47dc59943e2a63"
   },
   "reads": {
-    "experiments/experiment_5/stages/s02_data/common/outputs/records.csv.gz": "d11c6ce4121acec25d7e5c355f7a1b6c2fbe102ff8079c88add9c86e8d0a5e74"
+    "experiments/experiment_5/stages/s02_data/common/outputs/records.csv.gz": "3a86d161df392891c499b9f1d88cc7d2145d94b4015721fc631dc360dcbc4f5a"
   },
   "outputs": {
-    "experiments/experiment_5/stages/s03_eda/regression/outputs/_evidence_index.json": "57013b750b5d0b66934f3e120297582f650dc7a19bbf46db990215ae64526e62",
-    "experiments/experiment_5/stages/s03_eda/regression/outputs/candidate_rationale.csv": "7ca0e25e2ef71aea70ea047c72a740e4d73bf7332555b0cc0da1997534e5b6dc",
-    "experiments/experiment_5/stages/s03_eda/regression/outputs/categorical_feature_target_lead_days.csv": "f2c266a42cfe5103119db87f4038ad4f6c33e4ccf87f1c6730ab0b672627ecc1",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/_evidence_index.json": "570bc9a7dcd90ea29cd27ee29ad5dcf159b9cbe085fe65bcb9d162a36c3b2cf8",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/candidate_rationale.csv": "bc6d2754fb95204ef9f254034ca9e975dce84603b13b1aa9cca7fa1cd70d378e",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/categorical_feature_target_lead_days.csv": "3a22d87c87e4103b80525fce34e4659f94620ae9999ece8daacfb56dcfb3bfd0",
     "experiments/experiment_5/stages/s03_eda/regression/outputs/collinear_pairs.csv": "a61a855e47426f04a4cf0319fb989594cb10debf46357fab0908f567e6b87ead",
     "experiments/experiment_5/stages/s03_eda/regression/outputs/decision.json": "609092ac7e34a4f956e7132c9d8fd5cdb86b78f087b9a604613458fdb09c4a0c",
-    "experiments/experiment_5/stages/s03_eda/regression/outputs/eda_review_pack.md": "0bf014d6197bbb8943b78191df3c3b4ba3500b92455cf721ffeb8eba07f85bfa",
-    "experiments/experiment_5/stages/s03_eda/regression/outputs/eda_summary.json": "abbbd12743c1d61e540be976ccd928cfbef4e7099a9637caf8d3e021a45f34a1",
-    "experiments/experiment_5/stages/s03_eda/regression/outputs/feature_quality.csv": "e0f9f3508cfc9f3bcdf7895f1e84f4dae416e8fb44c8e6f8d255e2d873e36c28",
-    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/categorical_vs_lead_days.csv": "fa210d001eb90daae23afecb51221ac27f8170e47b0cde211eb743090530b7d5",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/eda_review_pack.md": "0bb339ddfe03237c750fb4695150f04fa5fc571467c90248ea6361b89025bb8a",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/eda_summary.json": "11926258b63044800aed154f72271d4926a6d92cc891a5149e91dbb8283da6b2",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/feature_quality.csv": "eed24bca66efaf67e7090bcdc6b6c0f932f3b679c2c0e24853a7446994e406bd",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/categorical_vs_lead_days.csv": "747bdc4f982e430b98eb20d96f27cafbb6af99a62e38745f8e1f9f10cef2ecee",
     "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/categorical_vs_lead_days.json": "a3e8d62e48a4bc9f93b2973eecbc221c4a2f44201d2530ac4101189a4da34da5",
-    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/categorical_vs_lead_days.png": "c2a9fcf38436cf2cd774f0785d328655c884697539a7d8c9c8e4c104f144b470",
-    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/cumulative_importance.csv": "7ccfe28f860a3507c5b99f20481d39a6186cfd39b84115316f5b6d21137b54a7",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/categorical_vs_lead_days.png": "bcde16b90ae9babb2e4b7e1b93f516d65cfeda8085161ba58db41f5573cde80e",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/cumulative_importance.csv": "ea82192f3e9fed8b910c50a75ff50fc1ecd4d2dd1f6695f03bf1ea9433ef0775",
     "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/cumulative_importance.json": "8eeb6827455cfbb67590ddac569571796f0deb7a90ac45eaf0331a52daf03bd9",
-    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/cumulative_importance.png": "4dc485e686239836499852bcad178f81de96b662106d3f7a2ae48b2403bf750a",
-    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/numeric_correlation_heatmap.csv": "957230d7b58c362b9ee0bf1bff5435b165da1fbf1c82571feccc22b249d4b50f",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/cumulative_importance.png": "6c412b342e6d6977800b0a9bafd731930e33d8141021c7cc55cf0a59d443b0c5",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/numeric_correlation_heatmap.csv": "939286d02625c627efb9fd7d6c45a2adf1ddedd30611b64c78787de9d978fdd5",
     "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/numeric_correlation_heatmap.json": "d0d31b96cbb1f783efd2f665259d48e5183f5f0999a8de35d9e5b6e63f3fd37a",
-    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/numeric_correlation_heatmap.png": "d43ba0bed267dbdc8d1f0ad0fcfd3af6575776dda99f9fc8321f4c9f4c5056ce",
-    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/numeric_vs_lead_days.csv": "6e8022d8664b8fbde2598d774ba91328f11e05973d29bc0d32fc65b5a632c630",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/numeric_correlation_heatmap.png": "b1beee05248cda58a64965ebc689808f6c03aea04d02682ec7150b8d3ae714d0",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/numeric_vs_lead_days.csv": "e015b45e7fe65af7baa133d2c159edc58d1853ec6cd82837da1cddc8f6842257",
     "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/numeric_vs_lead_days.json": "4b508fed553c9e80644a336c4c2d301900c3be3e9d0736a71c5a68f203828317",
-    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/numeric_vs_lead_days.png": "61d3d16fa8c61dbf4a8dd637bc37008341e4c19a9c9b45f49423f85e586fc783",
-    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/outcome_trends.csv": "29f652cb310f8017b66cdce88850a38f5020cd1b93a4f343d426bc59058d4bcd",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/numeric_vs_lead_days.png": "86b0a263de84806ef4c543aad30777b899666ce056840da9e48250dafb001a4c",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/outcome_trends.csv": "055b34075923050978a76652eb9f5066b7ee45526d3a5061c1eb71d08fa8473b",
     "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/outcome_trends.json": "d1938af706a67c49f40c3739e5d7f722264d1f361efd1f74f33db1c4d03fadde",
-    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/outcome_trends.png": "010cc1baae5b7c7af8de0007c65ad8a1c6c45b0105ae03bee8c0b228e576e969",
-    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/target_lead_days_kde.csv": "430e5d19513a29fb3380765a4ff6bd519f0804a11c3f9afb0b3bff20e08885a3",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/outcome_trends.png": "8e31efd1890c50cdc529629d83f6d47e427b536326a9f51e1ef86e73fae25f3e",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/target_lead_days_kde.csv": "d6aeee43fb49b90609da303e2104517400f626b0ac8c7b1070768c259495437c",
     "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/target_lead_days_kde.json": "428353b4589ad0a3ddd2063dc14d7098a491d7dac759b485a70877ba6c766afa",
-    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/target_lead_days_kde.png": "20f1e37cce164ecffa99f3dd05a8cdb8674d062155dbf5e81d895cb7188108a1",
-    "experiments/experiment_5/stages/s03_eda/regression/outputs/importance_ranking.csv": "7ccfe28f860a3507c5b99f20481d39a6186cfd39b84115316f5b6d21137b54a7",
-    "experiments/experiment_5/stages/s03_eda/regression/outputs/numeric_correlations.csv": "957230d7b58c362b9ee0bf1bff5435b165da1fbf1c82571feccc22b249d4b50f",
-    "experiments/experiment_5/stages/s03_eda/regression/outputs/numeric_feature_target_lead_days.csv": "6279928a221bae1ee293b1eae8ac2ec233f1a230a86ae406bf08aac740843670",
-    "experiments/experiment_5/stages/s03_eda/regression/outputs/outcome_trends.csv": "29f652cb310f8017b66cdce88850a38f5020cd1b93a4f343d426bc59058d4bcd",
-    "experiments/experiment_5/stages/s03_eda/regression/outputs/target_regression_lead_days.csv": "206c5db99c838f7022501385e245c324ce601bbe7de11bb64060bbb8707b93b8"
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/target_lead_days_kde.png": "945ba482e1f24dc60512d99538af1a0ca1650f596cdacabad1de1dc224e6afef",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/importance_ranking.csv": "ea82192f3e9fed8b910c50a75ff50fc1ecd4d2dd1f6695f03bf1ea9433ef0775",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/numeric_correlations.csv": "939286d02625c627efb9fd7d6c45a2adf1ddedd30611b64c78787de9d978fdd5",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/numeric_feature_target_lead_days.csv": "7ac36c67673f9e23b6a40e50958dedf4b468b27418d1eb0a6b04168658c699c2",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/outcome_trends.csv": "055b34075923050978a76652eb9f5066b7ee45526d3a5061c1eb71d08fa8473b",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/target_regression_lead_days.csv": "a63f3e1dc3a1e8a7d3c3f606e30cdef506555f8eb68af00fe8cb03011f05ca18"
   },
   "versions": {
     "python": "3.13.9",
@@ -79,5 +79,5 @@
     "shapely": "2.1.2"
   },
   "seed": 42,
-  "runtime_s": 5.84
+  "runtime_s": 5.79
 }

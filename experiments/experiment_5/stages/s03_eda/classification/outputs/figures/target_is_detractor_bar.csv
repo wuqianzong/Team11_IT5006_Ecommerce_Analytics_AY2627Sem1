@@ -1,4 +1,4 @@
 class,orders,share
-"low review (score <= 2), is_detractor = 1",11550,0.14814339767844545
-"normal review (score >= 3), is_detractor = 0",66415,0.8518566023215546
-total,77965,1.0
+"low review (score <= 2), is_detractor = 1",11493,0.14784655757949985
+"normal review (score >= 3), is_detractor = 0",66243,0.8521534424205002
+total,77736,1.0

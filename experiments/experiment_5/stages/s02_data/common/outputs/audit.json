@@ -375,16 +375,16 @@
     "orders_with_more_than_one_review": 547
   },
   "test_cutoffs": {
-    "regression": "2018-05-26 18:18:03",
-    "classification": "2018-05-25 18:43:19"
+    "regression": "2018-05-27 12:30:34",
+    "classification": "2018-05-26 12:16:34"
   },
   "outlier_threshold": {
-    "lead_days_threshold": 133.9098095235762,
-    "pre_cutoff_mean": 13.50851947551341,
-    "pre_cutoff_sd": 10.033440837338565,
+    "lead_days_threshold": 133.7061048555501,
+    "pre_cutoff_mean": 13.486869935524833,
+    "pre_cutoff_sd": 10.018269576668773,
     "rule": "lead_days > max(100, mean + 12 * SD), mean and SD from pre-cutoff orders",
     "distance_km_max_limit": 4397.53,
-    "statistics_latest_purchase_ts": "2018-05-26 18:16:57"
+    "statistics_latest_purchase_ts": "2018-05-27 12:20:21"
   },
   "outlier_removals_on_or_after_cutoff": [
     {
@@ -397,6 +397,20 @@
     }
   ],
   "exclusion_counts": [
+    {
+      "task": "regression",
+      "step": "2.8",
+      "reason_code": "BEFORE_DATA_START",
+      "reason_description": "purchased before the data start 2017-01-01 00:00:00; the 2016 months are too thin to be representative (s02 2.8; G-72)",
+      "orders": 329
+    },
+    {
+      "task": "classification",
+      "step": "2.8",
+      "reason_code": "BEFORE_DATA_START",
+      "reason_description": "purchased before the data start 2017-01-01 00:00:00; the 2016 months are too thin to be representative (s02 2.8; G-72)",
+      "orders": 329
+    },
     {
       "task": "regression",
       "step": "2.6, 2.8",
@@ -505,12 +519,12 @@
   ],
   "population_sizes": {
     "regression": {
-      "eligible": 96432,
-      "eligible_before_cutoff": 77139
+      "eligible": 96166,
+      "eligible_before_cutoff": 76925
     },
     "classification": {
-      "eligible": 97457,
-      "eligible_before_cutoff": 77965
+      "eligible": 97170,
+      "eligible_before_cutoff": 77736
     }
   },
   "payment_assumption": "payment fields have no timestamp; chosen at checkout is a stated assumption"

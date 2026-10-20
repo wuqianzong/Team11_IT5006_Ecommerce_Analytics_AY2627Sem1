@@ -1,10 +1,10 @@
 # s01 Problem — implementation review
 
-> **How to read this tab.** Part A is the final, accepted state of s01 (run `20261019T163354Z`, CR-042, 2026-10-20). Part B is the review record of rounds 1–2 and the dated addenda, kept unchanged. The evidence cards in Part B are still correct apart from the additions listed in Part A.
+> **How to read this tab.** Part A is the final, accepted state of s01 (run `20261020T053143Z`, CR-043, 2026-10-20). Part B is the review record of rounds 1–2 and the dated addenda, kept unchanged. The evidence cards in Part B are still correct apart from the additions listed in Part A.
 
 # Part A — Final result (accepted, cite this)
 
-**ACCEPTED** · run `20261019T163354Z` on commit aca98ac, clean tree · 8 checks, all PASS · spec/protocol.yaml pre-registered layer · tag e5-s01-accepted.
+**ACCEPTED** · run `20261020T053143Z` on commit 4999811, clean tree · 8 checks, all PASS · spec/protocol.yaml pre-registered layer · tag e5-s01-accepted.
 
 ## Changes since the round 2 acceptance (each approved by the experiment lead)
 
@@ -13,11 +13,13 @@
 | CR-033 | check 1.9 renamed to “later stages used this pre-registered layer” (rerun-safe) | unchanged |
 | CR-037 (G-68), CR-038 (G-69) | features.screening\_candidates: 12 classification-only screening columns (not predictors); adoption recorded at the s03 gate (G-70) | unchanged |
 | CR-042 (G-71) | exclusion reason code INVALID\_REVIEW\_TIME | unchanged |
+| CR-043 (G-72) | populations.data\_start = 2017-01-01 00:00:00 and reason code BEFORE\_DATA\_START: the 2016 months are too thin to be representative | 1.3 populations gain the data start |
 
 ## Exclusion reason codes (final)
 
 | Code | Description |
 | --- | --- |
+| BEFORE\_DATA\_START | purchased before the data start 2017-01-01 00:00:00; the 2016 months are too thin to be representative (s02 2.8; G-72) |
 | INVALID\_LEAD\_TIME | not delivered, or delivery time missing or not after purchase (s02 2.6, 2.8) |
 | ZERO\_ITEMS | order has no items (s02 2.8) |
 | CANCELLED\_OR\_UNAVAILABLE | order cancelled or unavailable (s02 2.8) |
@@ -37,7 +39,7 @@
 | contract: 24 distinct predictors, groups and log1p candidates consistent | PASS | — | 1.3 |
 | screening candidates are task-scoped and outside the 24 predictors | PASS | \['product\_photos\_qty', 'product\_description\_lenght', 'product\_name\_lenght', 'est\_delivery\_days', 'customer\_region', 'seller\_region', 'region\_pair', 'seller\_prior\_review\_mean', 'seller\_prior\_review\_count', 'seller\_prior\_detractor\_share', 'seller\_prior\_delivered\_count', 'seller\_prior\_late\_share'\] | 1.3 |
 | not-in-contract columns have a reason and are not predictors | PASS | — | 1.3 |
-| one description per exclusion reason code | PASS | 10 codes | 1.3 |
+| one description per exclusion reason code | PASS | 11 codes | 1.3 |
 | every citation is in the verified list | PASS | 8 citations | 1.4, 1.5, 1.7 |
 | grids match the AGREED s07 blueprint | PASS | — | 1.8 |
 | all ten blueprints AGREED | PASS | — | 1.9 |
@@ -302,3 +304,9 @@ Approved by the experiment lead; reviewed together with s03 round 3. s01 stays A
 Approved by the experiment lead after the external audit of s01–s03.
 
 - protocol.yaml gains the exclusion reason code INVALID\_REVIEW\_TIME (a review answered at or before purchase is a data error); every other value unchanged. Rerun on a clean tree (commit aca98ac); s01 stays ACCEPTED. The final state is Part A at the top of this tab.
+
+## Addendum — 2026-10-20: CR-043 (G-72)
+
+Approved by the experiment lead.
+
+- protocol.yaml gains populations.data\_start = 2017-01-01 00:00:00 and the reason code BEFORE\_DATA\_START: the 2016 purchase months are too thin to be representative. Every other value unchanged. Rerun on a clean tree (commit 4999811); s01 stays ACCEPTED. The final state is Part A at the top of this tab.

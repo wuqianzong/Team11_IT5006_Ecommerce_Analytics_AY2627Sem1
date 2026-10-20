@@ -1,10 +1,10 @@
 {
   "node": "s02_data/common",
-  "run_id": "20261019T163328Z",
-  "commit": "aca98ac99b1a7a21ae26076f070de91a73d6e7b1",
+  "run_id": "20261020T053117Z",
+  "commit": "49998116246cd6368f77cd22487868d48ca43ce4",
   "dirty": false,
   "code": {
-    "experiments/experiment_5/stages/s02_data/common/run.py": "0df972771e520a362fe8aea726097e6d40f79af35711d58cff0a44e91d45d050"
+    "experiments/experiment_5/stages/s02_data/common/run.py": "4ad77b3deb698c68fb18c14cce46fd7b0c0fa9da159f03be66d928c5daebf8b2"
   },
   "foundation": {
     "experiments/experiment_5/e5lib/__init__.py": "cd238533adc62fa600a0d9246352bc6a0c3d5bc599ad0504a1ea10d7aa76c5fe",
@@ -28,8 +28,8 @@
     "experiments/experiment_5/run_pipeline.py": "38625fed4ceda4990a3b7dc86a2146d1a5eb89c9feac6948381dcbf7c1d589cf"
   },
   "protocol": {
-    "pre_registered": "216a717b2cb3f1c1c8cf105f5811aa307ac6e712031381254955be26414736b3",
-    "data_dependent.test_cutoffs": "93f26043640c89c9725eeba61fc23cd7816fe4d956b089c14561a0ada0c6f2b9"
+    "pre_registered": "ccfec6c466c8795419bff9e514d69dd83997be65dadbbb4dec497e50c33abe7a",
+    "data_dependent.test_cutoffs": "6c2e871c7b9f47a99c3c2c30206993fcd089039d1c3c1d763d47dc59943e2a63"
   },
   "reads": {
     "data/raw/olist_customers_dataset.csv": "983a422239e1712ded753b3bf9ecf47dc73f144d306029dcfa99e70a226883d2",
@@ -46,16 +46,16 @@
     "data/reference/geography/boundary_manifest.json": "76ae80bf1408c96d25147399a016e0807e3b66f17e2a63253bc910098c676cf1"
   },
   "outputs": {
-    "experiments/experiment_5/stages/s02_data/common/outputs/_evidence_index.json": "0d5dca4befe73bfe3bfa182de530da2283d26e9e1a400cde0e63cf9517b380bf",
-    "experiments/experiment_5/stages/s02_data/common/outputs/audit.json": "a6f98e24e275d18b0eb2e0ac46b89f3ea7e1bb6b876e1e36ea544758c9990358",
+    "experiments/experiment_5/stages/s02_data/common/outputs/_evidence_index.json": "09bd2026af06f468adf96cf18383752daef04c756427ae1ea01a76a34939d9b0",
+    "experiments/experiment_5/stages/s02_data/common/outputs/audit.json": "c65df43d61651490f6f85ceb674d90b4bc424459bf25ce2e9c68fed9aff589a8",
     "experiments/experiment_5/stages/s02_data/common/outputs/data_dictionary.csv": "0afebc49d505bfd0546a435757380959be33900db9e2bc433a5ddeaeba385692",
     "experiments/experiment_5/stages/s02_data/common/outputs/data_hashes.json": "3868ea837d04f0734624dd9ba3fc19ca9c5d4176eb51aa88f8a9cdd3ca8fa0fe",
-    "experiments/experiment_5/stages/s02_data/common/outputs/exclusion_counts.csv": "6da0a9c69414b687efe2ec2c43ec30ddf9c7e8e6923cdab7cda93ba818b68519",
-    "experiments/experiment_5/stages/s02_data/common/outputs/exclusions.csv": "ed70074e0cd423c17709844913a4a067f2dee5c9d19cff3f5836ac7de76ba434",
+    "experiments/experiment_5/stages/s02_data/common/outputs/exclusion_counts.csv": "93deb024755a99239e8a4d46013a8708dacdb5f9a68fd50ec8667e262fd2c98f",
+    "experiments/experiment_5/stages/s02_data/common/outputs/exclusions.csv": "dc9550bf0e60fab560b850c58c6f10ab4b5f787c257f374e72e42b322ca0e2af",
     "experiments/experiment_5/stages/s02_data/common/outputs/figures/data_structure.csv": "c54274ab2696fccc24abfe96c7c953527364ee807908252f6809071527e76009",
     "experiments/experiment_5/stages/s02_data/common/outputs/figures/data_structure.json": "3337de2022aa921e298c21d43a323be1c5042d4839305f103702569306fe3b01",
     "experiments/experiment_5/stages/s02_data/common/outputs/figures/data_structure.png": "12d6b834c2358dc4cff2453419d080fb756ff31beac23298a6d5ba395996b954",
-    "experiments/experiment_5/stages/s02_data/common/outputs/records.csv.gz": "d11c6ce4121acec25d7e5c355f7a1b6c2fbe102ff8079c88add9c86e8d0a5e74",
+    "experiments/experiment_5/stages/s02_data/common/outputs/records.csv.gz": "3a86d161df392891c499b9f1d88cc7d2145d94b4015721fc631dc360dcbc4f5a",
     "experiments/experiment_5/stages/s02_data/common/outputs/zip_centroids.csv": "6ed8dda5d3639baae8e444ec7ead05f85f8bdbf4bb89e557e121f9bccee8608b"
   },
   "versions": {
@@ -70,5 +70,5 @@
     "shapely": "2.1.2"
   },
   "seed": 42,
-  "runtime_s": 26.33
+  "runtime_s": 26.01
 }

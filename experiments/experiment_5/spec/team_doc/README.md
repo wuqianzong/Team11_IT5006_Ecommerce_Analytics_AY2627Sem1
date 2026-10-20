@@ -5,7 +5,7 @@ them, never review or comment on them, and never treat a change here as a decisi
 artifact `21432fd4-4cc0-4d68-8fa2-4e0414fffe5e`), so an auditing agent can check the repository
 against the documents the team approved without access to the doc (G-65).
 
-- **Exported:** 2026-10-20, every tab, after the CR-042 audit fixes: each stage review tab now opens with Part A (final result, the only part to cite) above Part B (review record). Earlier exports: after s01 (CR-032), s02 (CR-035), s03 (CR-039), CR-040 and CR-041.
+- **Exported:** 2026-10-20, after CR-043 (data start 2017-01-01): the feature solution, implementation reviews and the s01, s02 and s03 review tabs; each stage review tab opens with Part A (final result, the only part to cite) above Part B (review record). Pipeline and model tabs unchanged since the CR-042 export. Earlier exports: after s01 (CR-032), s02 (CR-035), s03 (CR-039), CR-040, CR-041 and CR-042.
 - **Refreshed:** in the same commit that accepts each stage (README §9.1 step 6). Files are
   replaced, never edited by hand; git history keeps every earlier snapshot.
 - **What is not here:** comment threads (their outcomes are in the decision log and the stage
