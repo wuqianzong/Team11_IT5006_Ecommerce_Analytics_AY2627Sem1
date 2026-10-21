@@ -1,0 +1,6 @@
+fold,candidate_id,rows,encoded_columns,duplicates_dropped,columns,rank,full_rank,condition_number
+1,clf.sel.log.logistic,11077,131,missingindicator_total_weight_g; missingindicator_product_photos_qty,129,129,True,762.7165139171206
+2,clf.sel.log.logistic,23573,136,missingindicator_total_weight_g; missingindicator_product_photos_qty,134,134,True,1026.3409956407295
+3,clf.sel.log.logistic,33568,137,missingindicator_total_weight_g; missingindicator_product_photos_qty,135,135,True,1224.7727007820176
+4,clf.sel.log.logistic,47933,139,missingindicator_total_weight_g; missingindicator_product_photos_qty,137,137,True,1474.6335696818153
+5,clf.sel.log.logistic,60361,140,missingindicator_total_weight_g; missingindicator_product_photos_qty,138,138,True,1549.4745078223314

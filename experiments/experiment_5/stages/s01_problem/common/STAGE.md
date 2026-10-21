@@ -64,6 +64,7 @@ Fix both checkout tasks, prediction time, stakeholders and their actions, target
 - 2026-10-20, CR-042 (G-71, external audit): rerun 20261019T163354Z on a clean tree (dirty false); protocol.yaml gains reason code INVALID_REVIEW_TIME (G-71); every other value unchanged. Approved by the experiment lead. Status stays ACCEPTED (no decision.json changed).
 - 2026-10-20, CR-043 (G-72, data start 2017-01-01): rerun 20261020T053143Z on a clean tree (dirty false); protocol.yaml gains populations.data_start (2017-01-01 00:00:00) and reason code BEFORE_DATA_START (G-72); every other value unchanged. Approved by the experiment lead. Status stays ACCEPTED (no decision.json changed).
 - 2026-10-20, CR-044 to CR-048 (s04/s05 build): rerun 20261020T145622Z on a clean tree (commit c7114d3 and its index follow-up); protocol.yaml pre-registers cv.minimums for s05 (10,000 training rows per fold; 100 detractors per classification part; G-74); every other value unchanged. Approved by the experiment lead. Status stays ACCEPTED.
+- 2026-10-21, CR-049 to CR-051 (audit follow-up, G-78, s06 build): rerun 20261021T033117Z on a clean tree (commit 0734057, dirty false) after the foundation change (e5lib/training.py; s04 automatic duplicate rows keep the rule date); every value output byte-identical. Status stays ACCEPTED.
 
 ## Deviations from blueprint
 None.

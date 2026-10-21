@@ -58,6 +58,9 @@ Define, without fitting: the 24-predictor baseline from e5lib/contract.py (G-61;
 - Accepted round: 3 - commit: the "s04 accepted" commit, tag `e5-s04-accepted` - run ID: 20261020T145604Z (clean tree, dirty false; evidence identical to review/round_3) - approved by: experiment lead (Wu Qianzong), after team review (Henry) in the doc tab "Implementation reviews › s04 Features" - date: 2026-10-20
 - Decisions: threshold 99% and no collinearity drop (G-70); duplicate encoded columns dropped in the fold (G-73); citations only from sources checked in Experiment 5 (G-76); route median for missing distance kept (G-27).
 
+## Changes after acceptance (README section 9.2)
+- 2026-10-21, CR-049 to CR-051 (audit follow-up, G-78, s06 build): rerun 20261021T033055Z on a clean tree (commit 0734057, dirty false) after the foundation change (e5lib/training.py; s04 automatic duplicate rows keep the rule date); every value output byte-identical. Status stays ACCEPTED.
+
 ## Deviations from blueprint
 - 4.6: verified citation only for the classification delivery proxies (G-76); all other kept features are unmeasured mechanisms.
 

@@ -1,0 +1,6 @@
+fold,candidate_id,rows,encoded_columns,duplicates_dropped,columns,rank,full_rank,condition_number
+1,reg.sel.log.linear,11297,129,missingindicator_total_volume_cm3,128,128,True,311.95624992817517
+2,reg.sel.log.linear,23864,134,missingindicator_total_volume_cm3,133,133,True,340.79617690975175
+3,reg.sel.log.linear,33927,135,missingindicator_total_volume_cm3,134,134,True,353.1777457970215
+4,reg.sel.log.linear,47957,138,missingindicator_total_volume_cm3,137,137,True,428.1244142442
+5,reg.sel.log.linear,59880,138,missingindicator_total_volume_cm3,137,137,True,453.8279489527755

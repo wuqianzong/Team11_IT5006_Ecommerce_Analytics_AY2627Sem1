@@ -60,6 +60,9 @@ Sort by purchase time; hold out each task's newest 20% as its test cohort (cutof
 - Accepted round: 3 - commit: the "s05 accepted" commit, tag `e5-s05-accepted` - run ID: 20261020T145621Z (clean tree, dirty false; evidence identical to review/round_3) - approved by: experiment lead (Wu Qianzong), after team review (Henry) in the doc tab "Implementation reviews › s05 Partition" - date: 2026-10-20
 - Decisions: minimum training rows per fold and positives per part (G-74); test drift between development and test accepted (G-77).
 
+## Changes after acceptance (README section 9.2)
+- 2026-10-21, CR-049 to CR-051 (audit follow-up, G-78, s06 build): rerun 20261021T033116Z on a clean tree (commit 0734057, dirty false) after the foundation change (e5lib/training.py; s04 automatic duplicate rows keep the rule date); every value output byte-identical. Status stays ACCEPTED.
+
 ## Deviations from blueprint
 None.
 

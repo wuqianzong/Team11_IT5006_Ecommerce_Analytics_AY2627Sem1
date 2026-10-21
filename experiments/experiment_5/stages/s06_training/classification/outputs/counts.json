@@ -1,0 +1,41 @@
+{
+  "task": "classification",
+  "candidates": [
+    "clf.sel.log.dummy_prior",
+    "clf.sel.log.logistic",
+    "clf.sel.log.tree_clf.max_depth=5.min_samples_leaf=100",
+    "clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50"
+  ],
+  "folds": [
+    {
+      "fold": 1,
+      "train_rows": 11077,
+      "validation_rows": 12956
+    },
+    {
+      "fold": 2,
+      "train_rows": 23573,
+      "validation_rows": 12950
+    },
+    {
+      "fold": 3,
+      "train_rows": 33568,
+      "validation_rows": 12941
+    },
+    {
+      "fold": 4,
+      "train_rows": 47933,
+      "validation_rows": 12925
+    },
+    {
+      "fold": 5,
+      "train_rows": 60361,
+      "validation_rows": 10251
+    }
+  ],
+  "primary_metric": "ap",
+  "ladder_result": "clf.sel.log.logistic",
+  "one_se_choice": "clf.sel.log.logistic",
+  "best_mean": "clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50",
+  "seed": 42
+}

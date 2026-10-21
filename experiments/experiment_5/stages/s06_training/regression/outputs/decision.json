@@ -1,0 +1,72 @@
+[
+  {
+    "question": "Keep linear/logistic over dummy?",
+    "rule": "one-SE rule on validation mae (s01 1.7, G-33)",
+    "candidates_compared": [
+      "reg.sel.log.dummy_median",
+      "reg.sel.log.linear"
+    ],
+    "chosen": "reg.sel.log.linear",
+    "evidence_files": [
+      "metrics_long.csv",
+      "candidates.csv"
+    ],
+    "notes": "best mean: reg.sel.log.linear; band 4.7968 to 6.1434; paired gain of the complex family +1.0245 (paired SE 0.1262), better in 5 of 5 folds (description only)",
+    "ids": [
+      "6.2"
+    ]
+  },
+  {
+    "question": "Keep single tree over linear/logistic?",
+    "rule": "one-SE rule on validation mae (s01 1.7, G-33)",
+    "candidates_compared": [
+      "reg.sel.log.linear",
+      "reg.sel.log.tree_reg.max_depth=5.min_samples_leaf=100"
+    ],
+    "chosen": "reg.sel.log.linear",
+    "evidence_files": [
+      "metrics_long.csv",
+      "candidates.csv"
+    ],
+    "notes": "best mean: reg.sel.log.tree_reg.max_depth=5.min_samples_leaf=100; band 4.7097 to 6.1390; paired gain of the complex family +0.0458 (paired SE 0.0685), better in 3 of 5 folds (description only)",
+    "ids": [
+      "6.2"
+    ]
+  },
+  {
+    "question": "Keep forest over linear/logistic?",
+    "rule": "one-SE rule on validation mae (s01 1.7, G-33)",
+    "candidates_compared": [
+      "reg.sel.log.linear",
+      "reg.sel.log.forest_reg.max_depth=10.max_features=sqrt.min_samples_leaf=50"
+    ],
+    "chosen": "reg.sel.log.linear",
+    "evidence_files": [
+      "metrics_long.csv",
+      "candidates.csv"
+    ],
+    "notes": "best mean: reg.sel.log.forest_reg.max_depth=10.max_features=sqrt.min_samples_leaf=50; band 4.7607 to 6.1260; paired gain of the complex family +0.0267 (paired SE 0.0601), better in 3 of 5 folds (description only)",
+    "ids": [
+      "6.2"
+    ]
+  },
+  {
+    "question": "Family carried as the s06 reference (all four candidates)",
+    "rule": "one-SE rule on validation mae",
+    "candidates_compared": [
+      "reg.sel.log.dummy_median",
+      "reg.sel.log.linear",
+      "reg.sel.log.tree_reg.max_depth=5.min_samples_leaf=100",
+      "reg.sel.log.forest_reg.max_depth=10.max_features=sqrt.min_samples_leaf=50"
+    ],
+    "chosen": "reg.sel.log.linear",
+    "evidence_files": [
+      "metrics_long.csv",
+      "candidates.csv"
+    ],
+    "notes": "best mean: reg.sel.log.tree_reg.max_depth=5.min_samples_leaf=100; ladder result: reg.sel.log.linear. s07 tunes the linear and tree families whatever this result (s07 principle).",
+    "ids": [
+      "6.2"
+    ]
+  }
+]

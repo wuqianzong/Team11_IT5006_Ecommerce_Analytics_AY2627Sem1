@@ -1,7 +1,7 @@
 {
   "node": "s05_partition/regression",
-  "run_id": "20261020T145621Z",
-  "commit": "a740fe21cec5227340ecccefa38ceead301684ed",
+  "run_id": "20261021T033116Z",
+  "commit": "073405729a03b63b6dc78ac20155a00f88aaf9ac",
   "dirty": false,
   "code": {
     "experiments/experiment_5/stages/s05_partition/regression/run.py": "aea3abee3c2b8e42e199f7890abbf5be14d9cbfd0f27ecf19da2c2b78cddcdc3"
@@ -17,7 +17,7 @@
     "experiments/experiment_5/e5lib/eda.py": "edca505b81b8e72f299a01bce6fba2611c0408437348cd542cdab40428260d4c",
     "experiments/experiment_5/e5lib/eda_sections.py": "f8fbdb191b537e84efe0052c83361a18252f5c6e1faf622049b8cfb84e1ca3d1",
     "experiments/experiment_5/e5lib/factory.py": "60b8121e57cf9577e0b59eac7fe1a8234ec89a20189473d61847f5f4db434dc8",
-    "experiments/experiment_5/e5lib/features.py": "c641752f58d6c9bb6695013bfba8b61c93068f9a5f657558c27083d3532e6696",
+    "experiments/experiment_5/e5lib/features.py": "c6609039a12ca2c11a42b34fbf4d1bf3b651e62482ab087d9ebee14afc4cec96",
     "experiments/experiment_5/e5lib/geography.py": "d7ca545020d12f70d23225e3611c7ae2ac2d67be10f04aa21931fc48c3b75b97",
     "experiments/experiment_5/e5lib/manifest.py": "9c398fbacb56bf6b087dca0aa1fb9208a62695b7e38bfb2b7fa4495727ed4340",
     "experiments/experiment_5/e5lib/metrics.py": "7b1ba93591c5303fd46564380cfd37038cf10dcd3012feb5088c04dd702064ef",
@@ -27,6 +27,7 @@
     "experiments/experiment_5/e5lib/protocol.py": "8a808be2bba657356d03dde8d2f16e85c27f7306a26cfda8963d3629863d71c1",
     "experiments/experiment_5/e5lib/review.py": "fc47e1fbebddfdc377f0e7a43c87cef92accf158437cb929ad6557e86c9df48d",
     "experiments/experiment_5/e5lib/seller_history.py": "fde34f2e3560d851e66a57adb300a652fc8c2fde6f9a7d9d0d8e6a163436dc3e",
+    "experiments/experiment_5/e5lib/training.py": "e7cd967c1f3af8e09a7720aa6488f77a5ff784cd77794e127e3a07e974976894",
     "experiments/experiment_5/run_pipeline.py": "38625fed4ceda4990a3b7dc86a2146d1a5eb89c9feac6948381dcbf7c1d589cf"
   },
   "protocol": {
@@ -61,5 +62,5 @@
     "shapely": "2.1.2"
   },
   "seed": 42,
-  "runtime_s": 2.97
+  "runtime_s": 2.71
 }

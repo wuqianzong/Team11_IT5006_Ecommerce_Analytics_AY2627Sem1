@@ -1,0 +1,312 @@
+{
+  "node": "s06_training/classification",
+  "files": {
+    "metrics_long.csv": {
+      "ids": [
+        "6.4"
+      ],
+      "kind": "table"
+    },
+    "predictions.csv.gz": {
+      "ids": [
+        "6.4",
+        "6.6"
+      ],
+      "kind": "table"
+    },
+    "fit_log.csv": {
+      "ids": [
+        "6.4"
+      ],
+      "kind": "table"
+    },
+    "imputation_by_fold.csv": {
+      "ids": [
+        "6.1"
+      ],
+      "kind": "table"
+    },
+    "candidates.csv": {
+      "ids": [
+        "6.2"
+      ],
+      "kind": "table"
+    },
+    "paired_differences.csv": {
+      "ids": [
+        "6.2"
+      ],
+      "kind": "table"
+    },
+    "figures/family_ladder.png": {
+      "ids": [
+        "6.2",
+        "6.4"
+      ],
+      "kind": "figure"
+    },
+    "figures/family_ladder.csv": {
+      "ids": [
+        "6.2",
+        "6.4"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/family_ladder.json": {
+      "ids": [
+        "6.2",
+        "6.4"
+      ],
+      "kind": "figure_meta"
+    },
+    "curves/pr_dummy.csv": {
+      "ids": [
+        "6.6"
+      ],
+      "kind": "curve"
+    },
+    "curves/roc_dummy.csv": {
+      "ids": [
+        "6.6"
+      ],
+      "kind": "curve"
+    },
+    "curves/reliability_dummy.csv": {
+      "ids": [
+        "6.6"
+      ],
+      "kind": "curve"
+    },
+    "curves/pr_linear.csv": {
+      "ids": [
+        "6.6"
+      ],
+      "kind": "curve"
+    },
+    "curves/roc_linear.csv": {
+      "ids": [
+        "6.6"
+      ],
+      "kind": "curve"
+    },
+    "curves/reliability_linear.csv": {
+      "ids": [
+        "6.6"
+      ],
+      "kind": "curve"
+    },
+    "curves/pr_tree.csv": {
+      "ids": [
+        "6.6"
+      ],
+      "kind": "curve"
+    },
+    "curves/roc_tree.csv": {
+      "ids": [
+        "6.6"
+      ],
+      "kind": "curve"
+    },
+    "curves/reliability_tree.csv": {
+      "ids": [
+        "6.6"
+      ],
+      "kind": "curve"
+    },
+    "curves/pr_forest.csv": {
+      "ids": [
+        "6.6"
+      ],
+      "kind": "curve"
+    },
+    "curves/roc_forest.csv": {
+      "ids": [
+        "6.6"
+      ],
+      "kind": "curve"
+    },
+    "curves/reliability_forest.csv": {
+      "ids": [
+        "6.6"
+      ],
+      "kind": "curve"
+    },
+    "oof_diagnostics.csv": {
+      "ids": [
+        "6.6"
+      ],
+      "kind": "table"
+    },
+    "figures/classification_diagnostics.png": {
+      "ids": [
+        "6.6"
+      ],
+      "kind": "figure"
+    },
+    "figures/classification_diagnostics.csv": {
+      "ids": [
+        "6.6"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/classification_diagnostics.json": {
+      "ids": [
+        "6.6"
+      ],
+      "kind": "figure_meta"
+    },
+    "curves/learning_curves.csv": {
+      "ids": [
+        "6.7"
+      ],
+      "kind": "curve"
+    },
+    "figures/learning_curves.png": {
+      "ids": [
+        "6.7"
+      ],
+      "kind": "figure"
+    },
+    "figures/learning_curves.csv": {
+      "ids": [
+        "6.7"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/learning_curves.json": {
+      "ids": [
+        "6.7"
+      ],
+      "kind": "figure_meta"
+    },
+    "design_matrix_by_fold.csv": {
+      "ids": [
+        "6.7"
+      ],
+      "kind": "table"
+    },
+    "counts.json": {
+      "ids": [
+        "6.2",
+        "6.8"
+      ],
+      "kind": "json"
+    },
+    "decision.json": {
+      "ids": [
+        "6.2"
+      ],
+      "kind": "json"
+    }
+  },
+  "checks": [
+    {
+      "name": "identical rows and folds for every candidate",
+      "passed": true,
+      "detail": "4 candidates x 5 folds",
+      "ids": [
+        "6.2",
+        "6.4"
+      ]
+    },
+    {
+      "name": "preprocessing fitted inside the training fold only (learned medians equal the training-fold medians)",
+      "passed": true,
+      "detail": "15 fitted pipelines checked",
+      "ids": [
+        "6.1"
+      ]
+    },
+    {
+      "name": "every candidate uses its s04 recipe unchanged (selected features, log1p inputs)",
+      "passed": true,
+      "detail": "selected set of 19 features",
+      "ids": [
+        "6.1",
+        "6.2"
+      ]
+    },
+    {
+      "name": "the simplest model of each family is present (dummy, plain linear/logistic, depth-5 tree, s06 forest)",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "6.2"
+      ]
+    },
+    {
+      "name": "no test row read: every row used was purchased before the test cutoff",
+      "passed": true,
+      "detail": "latest purchase 2018-05-23 11:29:51, cutoff 2018-05-26 12:16:34",
+      "ids": [
+        "6.4"
+      ]
+    },
+    {
+      "name": "linear/logistic design matrix full rank in every training fold",
+      "passed": true,
+      "detail": "fold 1 rank 129 of 129; fold 2 rank 134 of 134; fold 3 rank 135 of 135; fold 4 rank 137 of 137; fold 5 rank 138 of 138",
+      "ids": [
+        "6.7"
+      ]
+    }
+  ],
+  "deviations": {},
+  "cards": {
+    "6.1": {
+      "done": "4 candidates built by e5lib.factory from the s04 recipes.json (one spec per family) with the s06 settings from protocol.yaml; every pipeline fitted inside each of the 5 training folds (176,512 training rows over the folds). Learned imputation values per fold are in imputation_by_fold.csv, with the validation rows whose category level was unseen in the training fold (the one-hot step encodes them as all zeros).",
+      "inputs": "s04 recipes.json and selected_features.json; s05 folds.csv; s02 records (development rows).",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "6.2": {
+      "done": "Families basic to complex, validation ap mean \u00b1 SE over the folds: dummy 0.1482 \u00b1 0.0198; linear/logistic 0.2435 \u00b1 0.0314; single tree 0.2158 \u00b1 0.0233; forest 0.2544 \u00b1 0.0267. Ladder: linear/logistic kept over dummy; single tree not kept over linear/logistic; forest not kept over linear/logistic. One-SE choice over all four: linear/logistic (best mean: forest).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "Paired per-fold gain of each step (positive = the more complex family is better; description only, s01 1.7): linear/logistic vs dummy +0.0953 (paired SE 0.0157), better in 5 of 5 folds; single tree vs linear/logistic -0.0277 (paired SE 0.0115), better in 0 of 5 folds; forest vs linear/logistic +0.0109 (paired SE 0.0063), better in 4 of 5 folds.",
+      "reasoning": "A more complex family is adopted only when its gain over the current family clears one standard error of the fold means (the agreed rule). The fold SE also carries the level differences between folds (drift), so a small but consistent paired gain can stay below it; the paired figures show that without changing the decision.",
+      "conclusion": "These are selection scores on the folds, not generalisation estimates (G-10). s07 tunes the linear and tree families and compares each tuned configuration with its plain s06 model (G-55).",
+      "label": "observation"
+    },
+    "6.4": {
+      "done": "metrics_long.csv: training and validation scores for 4 candidates x 5 folds on every s01 metric (threshold metrics at 0.5 and 1/6); fit_log.csv: rows and warnings per fit, fit times in _manifest.json (convergence warnings: 0); predictions.csv.gz: 248,092 out-of-fold predictions.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "6.6": {
+      "done": "Pooled out-of-fold PR, ROC and reliability curves for every family, Brier score, and the predicted-probability histogram per class for the best non-dummy family. dummy: AP 0.1503, ROC-AUC 0.4990, Brier 0.1281; linear/logistic: AP 0.2297, ROC-AUC 0.6053, Brier 0.1256; single tree: AP 0.2198, ROC-AUC 0.5835, Brier 0.1255; forest: AP 0.2453, ROC-AUC 0.6192, Brier 0.1247.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "Pooled curves join the five validation blocks; the selection rule uses the per-fold means in 6.2, so the two can differ slightly.",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "6.7": {
+      "done": "Learning curves on fold 5: the most recent 20, 40, 60, 80 and 100% of its training rows against the same validation block (10,251 rows). Linear/logistic design matrix per training fold: fold 1 rank 129 of 129, condition number 763; fold 2 rank 134 of 134, condition number 1.03e+03; fold 3 rank 135 of 135, condition number 1.22e+03; fold 4 rank 137 of 137, condition number 1.47e+03; fold 5 rank 138 of 138, condition number 1.55e+03.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "dummy validation ap 0.1081 with the most recent 20% vs 0.1081 with all rows; linear/logistic validation ap 0.2036 with the most recent 20% vs 0.2288 with all rows; single tree validation ap 0.1978 with the most recent 20% vs 0.1956 with all rows; forest validation ap 0.2327 with the most recent 20% vs 0.2365 with all rows; target mean in fold 5: training 0.1440, validation 0.1081.",
+      "reasoning": "Subsets keep the rows closest to the validation block, so a smaller training set is not also an older one; the tree recipe is not measured (rank-deficient by design, s04 M-01).",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "6.8": {
+      "done": "Outputs: metrics_long.csv, predictions.csv.gz, candidates.csv, decision.json, fit_log.csv, imputation_by_fold.csv, design_matrix_by_fold.csv, curves/ and figures/ with sidecar data.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    }
+  },
+  "checks_failed": []
+}

@@ -1,0 +1,284 @@
+{
+  "stage": "s06_training",
+  "task": "regression",
+  "round": 1,
+  "base_commit": "a88a4205bb33d4e3a325afee74765a2952b9b5d0",
+  "run_id": "20261021T025126Z",
+  "outputs": "FRESH",
+  "dirty": true,
+  "ready": true,
+  "rows": [
+    {
+      "id": "6.1",
+      "title": "Pipeline factory",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "imputation_by_fold.csv"
+      ],
+      "evidence_hashes": {
+        "imputation_by_fold.csv": "2237d4324bd64f1826824add277a6314f5b4270c9a0950d4673b1820c0f779bb"
+      },
+      "card": {
+        "done": "4 candidates built by e5lib.factory from the s04 recipes.json (one spec per family) with the s06 settings from protocol.yaml; every pipeline fitted inside each of the 5 training folds (176,925 training rows over the folds). Learned imputation values per fold are in imputation_by_fold.csv, with the validation rows whose category level was unseen in the training fold (the one-hot step encodes them as all zeros).",
+        "inputs": "s04 recipes.json and selected_features.json; s05 folds.csv; s02 records (development rows).",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "preprocessing fitted inside the training fold only (learned medians equal the training-fold medians)",
+          "passed": true,
+          "detail": "15 fitted pipelines checked",
+          "ids": [
+            "6.1"
+          ]
+        },
+        {
+          "name": "every candidate uses its s04 recipe unchanged (selected features, log1p inputs, log target)",
+          "passed": true,
+          "detail": "selected set of 18 features",
+          "ids": [
+            "6.1",
+            "6.2"
+          ]
+        },
+        {
+          "name": "regression scored on raw days (log target inverted)",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "6.1",
+            "6.4"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "6.2",
+      "title": "Families, basic to complex",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "candidates.csv",
+        "figures/family_ladder.png",
+        "figures/family_ladder.csv",
+        "figures/family_ladder.json",
+        "counts.json",
+        "decision.json"
+      ],
+      "evidence_hashes": {
+        "candidates.csv": "4eb06ce2c56f9dca1b00a2d4e4afaf0d5e5b4533400a7860499a1e39d11bdc32",
+        "figures/family_ladder.png": "04a4256d7f60a2645a5861da8adf2b04023b90d286b81ffefd9624e97d50a9c3",
+        "figures/family_ladder.csv": "00094d967111e519d8a0542b38092e364f49fe66c338e8ef31cb11de63caf2c7",
+        "figures/family_ladder.json": "89af3d90d75f57f7d5f1646bf25d7d8c23ddfc815dcf89035a8bda3fe4da12b7",
+        "counts.json": "939bd476bbc3286576e00f4b30dbe3e21d9132e639cc6080f37da9afb0a8aab9",
+        "decision.json": "8f4618a9768ad3bdc75734400c5e502e88cd242c2cb61ca8be1fdd474e94b1a2"
+      },
+      "card": {
+        "done": "Families basic to complex, validation mae mean \u00b1 SE over the folds: dummy 6.4946 \u00b1 0.6889 days; linear/logistic 5.4701 \u00b1 0.6733 days; single tree 5.4244 \u00b1 0.7147 days; forest 5.4434 \u00b1 0.6826 days. Ladder: linear/logistic kept over dummy; single tree not kept over linear/logistic; forest not kept over linear/logistic. One-SE choice over all four: linear/logistic (best mean: single tree).",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "These are selection scores on the folds, not generalisation estimates (G-10). s07 tunes the linear and tree families and compares each tuned configuration with its plain s06 model (G-55).",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "identical rows and folds for every candidate",
+          "passed": true,
+          "detail": "4 candidates x 5 folds",
+          "ids": [
+            "6.2",
+            "6.4"
+          ]
+        },
+        {
+          "name": "every candidate uses its s04 recipe unchanged (selected features, log1p inputs, log target)",
+          "passed": true,
+          "detail": "selected set of 18 features",
+          "ids": [
+            "6.1",
+            "6.2"
+          ]
+        },
+        {
+          "name": "the simplest model of each family is present (dummy, plain linear/logistic, depth-5 tree, s06 forest)",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "6.2"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "6.4",
+      "title": "Scores recorded",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "metrics_long.csv",
+        "predictions.csv.gz",
+        "fit_log.csv",
+        "figures/family_ladder.png",
+        "figures/family_ladder.csv",
+        "figures/family_ladder.json"
+      ],
+      "evidence_hashes": {
+        "metrics_long.csv": "21bfb28f9e66d660406a74736001911fea58801d46e2fb70708bb9a6fe038c0f",
+        "predictions.csv.gz": "7a201de7a80be77b73eaf2bb69b913586c9b3aac28e48830ebe5540bba56c358",
+        "fit_log.csv": "bfcc76de070a09c3af8a1f69c615824c2e3abc3ec933c00d81c67b55c85526a6",
+        "figures/family_ladder.png": "04a4256d7f60a2645a5861da8adf2b04023b90d286b81ffefd9624e97d50a9c3",
+        "figures/family_ladder.csv": "00094d967111e519d8a0542b38092e364f49fe66c338e8ef31cb11de63caf2c7",
+        "figures/family_ladder.json": "89af3d90d75f57f7d5f1646bf25d7d8c23ddfc815dcf89035a8bda3fe4da12b7"
+      },
+      "card": {
+        "done": "metrics_long.csv: training and validation scores for 4 candidates x 5 folds on every s01 metric; fit_log.csv: fit time and warnings (convergence warnings: 0); predictions.csv.gz: 248,036 out-of-fold predictions.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "identical rows and folds for every candidate",
+          "passed": true,
+          "detail": "4 candidates x 5 folds",
+          "ids": [
+            "6.2",
+            "6.4"
+          ]
+        },
+        {
+          "name": "no test row read: every row used was purchased before the test cutoff",
+          "passed": true,
+          "detail": "latest purchase 2018-05-24 18:56:59, cutoff 2018-05-27 12:30:34",
+          "ids": [
+            "6.4"
+          ]
+        },
+        {
+          "name": "regression scored on raw days (log target inverted)",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "6.1",
+            "6.4"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "6.5",
+      "title": "Residual diagnostics",
+      "status": "IMPLEMENTED",
+      "checks": "\u2014",
+      "files": [
+        "predictions.csv.gz",
+        "curves/residual_quantiles_linear.csv",
+        "curves/residual_quantiles_tree.csv",
+        "figures/residual_diagnostics.png",
+        "figures/residual_diagnostics.csv",
+        "figures/residual_diagnostics.json"
+      ],
+      "evidence_hashes": {
+        "predictions.csv.gz": "7a201de7a80be77b73eaf2bb69b913586c9b3aac28e48830ebe5540bba56c358",
+        "curves/residual_quantiles_linear.csv": "49c82269a4081664f4b4e4cbc669e44c633fa2766072ee9e8271750887877ef6",
+        "curves/residual_quantiles_tree.csv": "7de31a21dbd36cba93563138112c9b3beee6d76429781d5866fb430c74e65555",
+        "figures/residual_diagnostics.png": "c41be0e326c04cce8055e7e82becb673f9e8f055c74a16fc59af52cc23028071",
+        "figures/residual_diagnostics.csv": "3c42b8bf01084ebd5795219fe9d4e09bc4898b9c40c988ace00850cb7d1340c4",
+        "figures/residual_diagnostics.json": "ea2218e6f198c8e5bbfc3090aab69fd8fd991ec1a542227fae6c7b5cd0c1c971"
+      },
+      "card": {
+        "done": "Residual vs fitted, histogram and Q-Q plot on out-of-fold predictions of the plain linear model and the better tree model (single tree). linear: residual mean 3.32, median 1.28, skewness 2.65, share above +10 days 14.11%; tree: residual mean 3.22, median 1.05, skewness 2.70, share above +10 days 14.16%.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "6.7",
+      "title": "Learning curves and design matrix",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "curves/learning_curves.csv",
+        "figures/learning_curves.png",
+        "figures/learning_curves.csv",
+        "figures/learning_curves.json",
+        "design_matrix_by_fold.csv"
+      ],
+      "evidence_hashes": {
+        "curves/learning_curves.csv": "2564dd302abc01209ba9222281afaf878a75a41a33217916713e69b0666b7b91",
+        "figures/learning_curves.png": "7fe5ac9997403d5814f9844caa234a21fd15c0a82c20599f797b16dc5972b128",
+        "figures/learning_curves.csv": "2564dd302abc01209ba9222281afaf878a75a41a33217916713e69b0666b7b91",
+        "figures/learning_curves.json": "25e2799c2791224dc2c9730f4e98e724034ae46d0cb4aac16064c5d77ee516f6",
+        "design_matrix_by_fold.csv": "130af9de417fe7e23d9934128458615011015764aa48c450b21d51693eb6ed51"
+      },
+      "card": {
+        "done": "Learning curves on fold 5: the most recent 20, 40, 60, 80 and 100% of its training rows against the same validation block (10,740 rows). Linear/logistic design matrix per training fold: fold 1 rank 128 of 128, condition number 312; fold 2 rank 133 of 133, condition number 341; fold 3 rank 134 of 134, condition number 353; fold 4 rank 137 of 137, condition number 428; fold 5 rank 137 of 137, condition number 454.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "dummy validation mae 5.4686 with the most recent 20% vs 5.0815 with all rows; linear/logistic validation mae 3.3949 with the most recent 20% vs 3.8233 with all rows; single tree validation mae 3.7316 with the most recent 20% vs 3.6002 with all rows; forest validation mae 3.9228 with the most recent 20% vs 3.7815 with all rows; target mean in fold 5: training 13.1094, validation 9.6289.",
+        "reasoning": "Subsets keep the rows closest to the validation block, so a smaller training set is not also an older one; the tree recipe is not measured (rank-deficient by design, s04 M-01).",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "linear/logistic design matrix full rank in every training fold",
+          "passed": true,
+          "detail": "fold 1 rank 128 of 128; fold 2 rank 133 of 133; fold 3 rank 134 of 134; fold 4 rank 137 of 137; fold 5 rank 137 of 137",
+          "ids": [
+            "6.7"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "6.8",
+      "title": "Outputs",
+      "status": "IMPLEMENTED",
+      "checks": "\u2014",
+      "files": [
+        "counts.json"
+      ],
+      "evidence_hashes": {
+        "counts.json": "939bd476bbc3286576e00f4b30dbe3e21d9132e639cc6080f37da9afb0a8aab9"
+      },
+      "card": {
+        "done": "Outputs: metrics_long.csv, predictions.csv.gz, candidates.csv, decision.json, fit_log.csv, imputation_by_fold.csv, design_matrix_by_fold.csv, curves/ and figures/ with sidecar data.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [],
+      "deviation": "",
+      "changed": true
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+task,fold,feature,rule,learned_value,learned_scale,route_groups,filled_train,filled_validation,validation_rows_unseen_level
+regression,1,distance_km_max,"route median (customer_state x primary_seller_state, then customer_state, then global), before log1p",452.5553207739432,km (global fallback median),249,112,221,
+regression,1,distance_km_max,median + missing indicator (after log1p),6.117516759639901,log1p,,0,0,
+regression,1,total_freight,median + missing indicator (after log1p),2.856470206220483,log1p,,0,0,
+regression,1,total_price,median + missing indicator (after log1p),4.45318382899021,log1p,,0,0,
+regression,1,total_weight_g,median + missing indicator (after log1p),6.68586094706836,log1p,,11,5,
+regression,1,total_volume_cm3,median + missing indicator (after log1p),8.987321812850125,log1p,,11,5,
+regression,1,interstate_share,median + missing indicator,1.0,raw,,0,0,
+regression,1,freight_ratio,median + missing indicator,0.2245438493231312,raw,,0,0,
+regression,1,n_sellers,median + missing indicator,1.0,raw,,0,0,
+regression,1,payment_installments_max,median + missing indicator,2.0,raw,,0,0,
+regression,1,purchase_dayofweek,median + missing indicator,3.0,raw,,0,0,
+regression,1,n_products,median + missing indicator,1.0,raw,,0,0,
+regression,1,purchase_month,median + missing indicator,4.0,raw,,0,0,
+regression,1,n_items,median + missing indicator,1.0,raw,,0,0,
+regression,1,n_categories,median + missing indicator,1.0,raw,,0,0,
+regression,1,distance_km_max_missing,median + missing indicator,0.0,raw,,0,0,
+regression,1,customer_state,missing -> 'Unknown' level,Unknown,category,,0,0,0.0
+regression,1,primary_category,missing -> 'Unknown' level,Unknown,category,,0,0,15.0
+regression,1,primary_seller_state,missing -> 'Unknown' level,Unknown,category,,0,0,2.0
+regression,1,primary_payment_type,missing -> 'Unknown' level,Unknown,category,,0,0,0.0
+regression,2,distance_km_max,"route median (customer_state x primary_seller_state, then customer_state, then global), before log1p",450.60524798414224,km (global fallback median),295,328,177,
+regression,2,distance_km_max,median + missing indicator (after log1p),6.1143163785335215,log1p,,0,0,
+regression,2,total_freight,median + missing indicator (after log1p),2.8633430855082453,log1p,,0,0,
+regression,2,total_price,median + missing indicator (after log1p),4.441474093317302,log1p,,0,0,
+regression,2,total_weight_g,median + missing indicator (after log1p),6.7464121285733745,log1p,,15,0,
+regression,2,total_volume_cm3,median + missing indicator (after log1p),8.987321812850125,log1p,,15,0,
+regression,2,interstate_share,median + missing indicator,1.0,raw,,0,0,
+regression,2,freight_ratio,median + missing indicator,0.2243739565943238,raw,,0,0,
+regression,2,n_sellers,median + missing indicator,1.0,raw,,0,0,
+regression,2,payment_installments_max,median + missing indicator,2.0,raw,,0,0,
+regression,2,purchase_dayofweek,median + missing indicator,3.0,raw,,0,0,
+regression,2,n_products,median + missing indicator,1.0,raw,,0,0,
+regression,2,purchase_month,median + missing indicator,6.0,raw,,0,0,
+regression,2,n_items,median + missing indicator,1.0,raw,,0,0,
+regression,2,n_categories,median + missing indicator,1.0,raw,,0,0,
+regression,2,distance_km_max_missing,median + missing indicator,0.0,raw,,0,0,
+regression,2,customer_state,missing -> 'Unknown' level,Unknown,category,,0,0,0.0
+regression,2,primary_category,missing -> 'Unknown' level,Unknown,category,,0,0,7.0
+regression,2,primary_seller_state,missing -> 'Unknown' level,Unknown,category,,0,0,0.0
+regression,2,primary_payment_type,missing -> 'Unknown' level,Unknown,category,,0,0,0.0
+regression,3,distance_km_max,"route median (customer_state x primary_seller_state, then customer_state, then global), before log1p",451.0157354019711,km (global fallback median),319,486,114,
+regression,3,distance_km_max,median + missing indicator (after log1p),6.115409853529739,log1p,,0,0,
+regression,3,total_freight,median + missing indicator (after log1p),2.8656235882069705,log1p,,0,0,
+regression,3,total_price,median + missing indicator (after log1p),4.45318382899021,log1p,,0,0,
+regression,3,total_weight_g,median + missing indicator (after log1p),6.7464121285733745,log1p,,16,0,
+regression,3,total_volume_cm3,median + missing indicator (after log1p),8.987321812850125,log1p,,16,0,
+regression,3,interstate_share,median + missing indicator,1.0,raw,,0,0,
+regression,3,freight_ratio,median + missing indicator,0.2241367659977025,raw,,0,0,
+regression,3,n_sellers,median + missing indicator,1.0,raw,,0,0,
+regression,3,payment_installments_max,median + missing indicator,2.0,raw,,0,0,
+regression,3,purchase_dayofweek,median + missing indicator,3.0,raw,,0,0,
+regression,3,n_products,median + missing indicator,1.0,raw,,0,0,
+regression,3,purchase_month,median + missing indicator,7.0,raw,,0,0,
+regression,3,n_items,median + missing indicator,1.0,raw,,0,0,
+regression,3,n_categories,median + missing indicator,1.0,raw,,0,0,
+regression,3,distance_km_max_missing,median + missing indicator,0.0,raw,,0,0,
+regression,3,customer_state,missing -> 'Unknown' level,Unknown,category,,0,0,0.0
+regression,3,primary_category,missing -> 'Unknown' level,Unknown,category,,0,0,2.0
+regression,3,primary_seller_state,missing -> 'Unknown' level,Unknown,category,,0,0,14.0
+regression,3,primary_payment_type,missing -> 'Unknown' level,Unknown,category,,0,0,0.0
+regression,4,distance_km_max,"route median (customer_state x primary_seller_state, then customer_state, then global), before log1p",446.9347560045808,km (global fallback median),342,613,119,
+regression,4,distance_km_max,median + missing indicator (after log1p),6.10699869104801,log1p,,0,0,
+regression,4,total_freight,median + missing indicator (after log1p),2.8610573702273894,log1p,,0,0,
+regression,4,total_price,median + missing indicator (after log1p),4.454231010422805,log1p,,0,0,
+regression,4,total_weight_g,median + missing indicator (after log1p),6.68586094706836,log1p,,16,0,
+regression,4,total_volume_cm3,median + missing indicator (after log1p),8.987321812850125,log1p,,16,0,
+regression,4,interstate_share,median + missing indicator,1.0,raw,,0,0,
+regression,4,freight_ratio,median + missing indicator,0.2235479908755922,raw,,0,0,
+regression,4,n_sellers,median + missing indicator,1.0,raw,,0,0,
+regression,4,payment_installments_max,median + missing indicator,2.0,raw,,0,0,
+regression,4,purchase_dayofweek,median + missing indicator,3.0,raw,,0,0,
+regression,4,n_products,median + missing indicator,1.0,raw,,0,0,
+regression,4,purchase_month,median + missing indicator,8.0,raw,,0,0,
+regression,4,n_items,median + missing indicator,1.0,raw,,0,0,
+regression,4,n_categories,median + missing indicator,1.0,raw,,0,0,
+regression,4,distance_km_max_missing,median + missing indicator,0.0,raw,,0,0,
+regression,4,customer_state,missing -> 'Unknown' level,Unknown,category,,0,0,0.0
+regression,4,primary_category,missing -> 'Unknown' level,Unknown,category,,0,0,0.0
+regression,4,primary_seller_state,missing -> 'Unknown' level,Unknown,category,,0,0,0.0
+regression,4,primary_payment_type,missing -> 'Unknown' level,Unknown,category,,0,0,0.0
+regression,5,distance_km_max,"route median (customer_state x primary_seller_state, then customer_state, then global), before log1p",444.3696556505187,km (global fallback median),369,729,105,
+regression,5,distance_km_max,median + missing indicator (after log1p),6.1016252464092435,log1p,,0,0,
+regression,5,total_freight,median + missing indicator (after log1p),2.8622008809294686,log1p,,0,0,
+regression,5,total_price,median + missing indicator (after log1p),4.454231010422805,log1p,,0,0,
+regression,5,total_weight_g,median + missing indicator (after log1p),6.68586094706836,log1p,,16,0,
+regression,5,total_volume_cm3,median + missing indicator (after log1p),8.958925938694943,log1p,,16,0,
+regression,5,interstate_share,median + missing indicator,1.0,raw,,0,0,
+regression,5,freight_ratio,median + missing indicator,0.2229226361031518,raw,,0,0,
+regression,5,n_sellers,median + missing indicator,1.0,raw,,0,0,
+regression,5,payment_installments_max,median + missing indicator,2.0,raw,,0,0,
+regression,5,purchase_dayofweek,median + missing indicator,3.0,raw,,0,0,
+regression,5,n_products,median + missing indicator,1.0,raw,,0,0,
+regression,5,purchase_month,median + missing indicator,6.0,raw,,0,0,
+regression,5,n_items,median + missing indicator,1.0,raw,,0,0,
+regression,5,n_categories,median + missing indicator,1.0,raw,,0,0,
+regression,5,distance_km_max_missing,median + missing indicator,0.0,raw,,0,0,
+regression,5,customer_state,missing -> 'Unknown' level,Unknown,category,,0,0,0.0
+regression,5,primary_category,missing -> 'Unknown' level,Unknown,category,,0,0,0.0
+regression,5,primary_seller_state,missing -> 'Unknown' level,Unknown,category,,0,0,0.0
+regression,5,primary_payment_type,missing -> 'Unknown' level,Unknown,category,,0,0,0.0
