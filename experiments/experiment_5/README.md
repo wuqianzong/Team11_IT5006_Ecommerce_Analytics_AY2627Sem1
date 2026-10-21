@@ -505,6 +505,17 @@ stage back for review.
    check the repository against it (G-65). The team keeps working in the commented doc; the
    mirror is never edited or reviewed.
 
+**s06–s08: one team review for three stages (G-78).** s06, s07 and s08 are still built one at a
+time, each with its own rounds, pack and doc tab. The experiment lead reviews each stage briefly
+and accepts it (step 6 above: commit, tag, next stage unlocks); the team does not review them one
+by one. s08 runs only up to its gate (8.1–8.4: model choice, calibration, threshold table) and
+stops there; nothing reads the test cohort. The team then reviews s06, s07 and s08 together in one
+combined round, together with the two s08 decisions (G-39). A change that comes out of that review
+is a change request that reopens the earliest stage it affects (§9.2); `run_pipeline.py` marks every
+later stage STALE and they are rerun in order, each with a new round. Only after the team signs off
+the combined round do 8.5–8.7 (freeze, final fit, test once) run, so no review comment can follow a
+look at test results.
+
 **Evidence card** (one per solution ID, generated from output files, never typed): approved
 solution (quoted); what was done and inputs; process data (intermediate tables); results (small
 tables inline, large ones as top rows plus link; charts shown inline); expectation vs
