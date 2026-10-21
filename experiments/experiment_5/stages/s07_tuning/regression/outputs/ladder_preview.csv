@@ -1,0 +1,4 @@
+comparison,simpler,complex,mean_gain,paired_se,folds_better,kept_by_one_se_rule
+linear/logistic vs dummy,reg.sel.log.dummy_median,reg.sel.log.linear,1.0244537454217624,0.12623893584079954,5,True
+single tree vs linear/logistic,reg.sel.log.linear,reg.sel.log.tree_reg.max_depth=5.min_samples_leaf=100,0.04575961108722302,0.06851889153289265,3,False
+forest vs linear/logistic,reg.sel.log.linear,reg.sel.log.forest_reg.max_depth=10.max_features=sqrt.min_samples_leaf=50,0.026747642908881274,0.060135343938382005,3,False

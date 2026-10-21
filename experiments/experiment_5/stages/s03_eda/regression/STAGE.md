@@ -64,6 +64,7 @@ Question-driven EDA on orders before the test cutoff: target profiles; outcome t
 - 2026-10-20, CR-043 (G-72, data start 2017-01-01): rerun 20261020T053125Z on a clean tree (dirty false); pre-cutoff orders 77,139 → 76,925; values shift slightly; the 95% and 99% cuts keep the same 14 and 18 features, so the gate decisions stand. Approved by the experiment lead. Status stays ACCEPTED (no decision.json changed).
 - 2026-10-20, CR-044 to CR-048 (s04/s05 build): rerun 20261020T145535Z on a clean tree (commit c7114d3 and its index follow-up); every value output unchanged (rerun after the s04/s05 foundation modules). Approved by the experiment lead. Status stays ACCEPTED.
 - 2026-10-21, CR-049 to CR-051 (audit follow-up, G-78, s06 build): rerun 20261021T033032Z on a clean tree (commit 0734057, dirty false) after the foundation change (e5lib/training.py; s04 automatic duplicate rows keep the rule date); every value output byte-identical. Status stays ACCEPTED.
+- 2026-10-21, CR-052 (s07 build): rerun 20261021T041636Z on a clean tree (commit 7eb8197, dirty false) after the foundation change (e5lib/tuning.py); every value output byte-identical. Status stays ACCEPTED.
 
 ## Deviations from blueprint
 None.

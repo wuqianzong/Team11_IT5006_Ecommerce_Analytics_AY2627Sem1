@@ -56,6 +56,9 @@ On the s05 folds: median dummy, plain LinearRegression, single decision tree, ra
 - Accepted round: 3 - commit: the "s06 accepted" commit, tag `e5-s06-accepted` (code 0734057) - run ID: 20261021T033145Z (clean tree, dirty false; evidence identical to review/round_3) - approved by: experiment lead (Wu Qianzong) under G-78 (team review of s06-s08 together at the s08 gate) - date: 2026-10-21
 - Decisions: family ladder under the one-SE rule (G-33), paired fold gains as description only (s01 1.7); learning-curve subsets keep the most recent rows of the latest fold (lead, round 3).
 
+## Changes after acceptance (README section 9.2)
+- 2026-10-21, CR-052 (s07 build): rerun 20261021T041749Z on a clean tree (commit 7eb8197, dirty false) after the foundation change (e5lib/tuning.py); every value output byte-identical. Status stays ACCEPTED.
+
 ## Deviations from blueprint
 None.
 

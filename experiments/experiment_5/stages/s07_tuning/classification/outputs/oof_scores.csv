@@ -1,0 +1,4 @@
+family,candidate_id,mean_fold_ap,pooled_oof_ap,pooled_oof_roc_auc,pooled_oof_brier
+linear/logistic,clf.sel.log.logistic.C=0.01.class_weight=none,0.25527928395567134,0.2394410072804703,0.613243469536615,0.12488540524654898
+single tree,clf.sel.log.tree_clf.class_weight=none.max_depth=4.min_samples_leaf=200,0.21340219020114187,0.2181693876099783,0.5772400706592629,0.1253264893119078
+forest,clf.sel.log.forest_clf.class_weight=none.max_depth=8.max_features=sqrt.min_samples_leaf=200,0.2532906406932295,0.239551684570817,0.617367909164677,0.12526888688719898

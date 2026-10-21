@@ -62,6 +62,7 @@ Sort by purchase time; hold out each task's newest 20% as its test cohort (cutof
 
 ## Changes after acceptance (README section 9.2)
 - 2026-10-21, CR-049 to CR-051 (audit follow-up, G-78, s06 build): rerun 20261021T033104Z on a clean tree (commit 0734057, dirty false) after the foundation change (e5lib/training.py; s04 automatic duplicate rows keep the rule date); every value output byte-identical. Status stays ACCEPTED.
+- 2026-10-21, CR-052 (s07 build): rerun 20261021T041707Z on a clean tree (commit 7eb8197, dirty false) after the foundation change (e5lib/tuning.py); every value output byte-identical. Status stays ACCEPTED.
 
 ## Deviations from blueprint
 - 5.4: the test cohort keeps 1,968 of 13,488 eligible detractors (14.59%), below the pre-registered 15% (G-46); accepted by the experiment lead as a protocol deviation (G-75, human_decisions.yaml s05), stated in s09 with the absolute count.

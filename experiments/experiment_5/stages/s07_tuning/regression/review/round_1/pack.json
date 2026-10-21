@@ -1,0 +1,279 @@
+{
+  "stage": "s07_tuning",
+  "task": "regression",
+  "round": 1,
+  "base_commit": "9853ce53079c1d92566bcfda96eb9a1540585545",
+  "run_id": "20261021T035843Z",
+  "outputs": "FRESH",
+  "dirty": true,
+  "ready": true,
+  "rows": [
+    {
+      "id": "7.1",
+      "title": "Linear (regression)",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "grid_results.csv"
+      ],
+      "evidence_hashes": {
+        "grid_results.csv": "1f78b228b2e85a08237ee2923856dd8835c4febbdf4f6c127f580c9c546d919d"
+      },
+      "card": {
+        "done": "linear/logistic: 9 configurations; best mean 5.4620 days ({'alpha': 20.0}); one-SE choice {\"alpha\": 100.0} with 5.4642 \u00b1 0.6711 days.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "Against the plain s06 model (5.4701 days): paired gain of the tuned model +0.0059 days (paired SE 0.0056), better in 4 of 5 folds; carried: plain model. For description only, the best-mean grid point against the plain model: paired gain +0.0081 days (paired SE 0.0035), better in 4 of 5 folds.",
+        "reasoning": "The tuned configuration replaces the plain s06 model only if it beats it by more than one standard error of the fold means (G-55); otherwise the simpler plain model stays.",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "every configuration comes from the pre-registered protocol.yaml grids (s01, before any s07 output)",
+          "passed": true,
+          "detail": "linear/logistic 9 configurations; single tree 36 configurations; forest 24 configurations",
+          "ids": [
+            "7.1",
+            "7.3",
+            "7.4"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "7.3",
+      "title": "Decision tree",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "grid_results.csv"
+      ],
+      "evidence_hashes": {
+        "grid_results.csv": "1f78b228b2e85a08237ee2923856dd8835c4febbdf4f6c127f580c9c546d919d"
+      },
+      "card": {
+        "done": "single tree: 36 configurations; best mean 5.3760 days ({'max_depth': 8, 'min_samples_leaf': 200}); one-SE choice {\"max_depth\": 4, \"min_samples_leaf\": 200} with 5.4332 \u00b1 0.7125 days.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "Against the plain s06 model (5.4244 days): paired gain of the tuned model -0.0088 days (paired SE 0.0359), better in 1 of 5 folds; carried: plain model. For description only, the best-mean grid point against the plain model: paired gain +0.0483 days (paired SE 0.0239), better in 4 of 5 folds.",
+        "reasoning": "The tuned configuration replaces the plain s06 model only if it beats it by more than one standard error of the fold means (G-55); otherwise the simpler plain model stays.",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "every configuration comes from the pre-registered protocol.yaml grids (s01, before any s07 output)",
+          "passed": true,
+          "detail": "linear/logistic 9 configurations; single tree 36 configurations; forest 24 configurations",
+          "ids": [
+            "7.1",
+            "7.3",
+            "7.4"
+          ]
+        },
+        {
+          "name": "the grid point with the s06 plain settings reproduces the s06 fold scores (tree, forest)",
+          "passed": true,
+          "detail": "2 of 2 reproduced",
+          "ids": [
+            "7.3",
+            "7.4"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "7.4",
+      "title": "Random forest",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "grid_results.csv"
+      ],
+      "evidence_hashes": {
+        "grid_results.csv": "1f78b228b2e85a08237ee2923856dd8835c4febbdf4f6c127f580c9c546d919d"
+      },
+      "card": {
+        "done": "forest: 24 configurations; best mean 5.3541 days ({'max_depth': 18, 'max_features': 'sqrt', 'min_samples_leaf': 20}); one-SE choice {\"max_depth\": 8, \"max_features\": \"sqrt\", \"min_samples_leaf\": 200} with 5.5772 \u00b1 0.6758 days.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "Against the plain s06 model (5.4434 days): paired gain of the tuned model -0.1338 days (paired SE 0.0150), better in 0 of 5 folds; carried: plain model. For description only, the best-mean grid point against the plain model: paired gain +0.0893 days (paired SE 0.0186), better in 5 of 5 folds.",
+        "reasoning": "The tuned configuration replaces the plain s06 model only if it beats it by more than one standard error of the fold means (G-55); otherwise the simpler plain model stays.",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "every configuration comes from the pre-registered protocol.yaml grids (s01, before any s07 output)",
+          "passed": true,
+          "detail": "linear/logistic 9 configurations; single tree 36 configurations; forest 24 configurations",
+          "ids": [
+            "7.1",
+            "7.3",
+            "7.4"
+          ]
+        },
+        {
+          "name": "the grid point with the s06 plain settings reproduces the s06 fold scores (tree, forest)",
+          "passed": true,
+          "detail": "2 of 2 reproduced",
+          "ids": [
+            "7.3",
+            "7.4"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "7.5",
+      "title": "Search method",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "grid_results.csv",
+        "plain_vs_tuned.csv",
+        "ladder_preview.csv",
+        "candidates.csv",
+        "counts.json",
+        "decision.json"
+      ],
+      "evidence_hashes": {
+        "grid_results.csv": "1f78b228b2e85a08237ee2923856dd8835c4febbdf4f6c127f580c9c546d919d",
+        "plain_vs_tuned.csv": "c784e5c6047f6c0f1ae1a9359c09cc96a91e23ae6639f259b7f6f492cd7fe9b5",
+        "ladder_preview.csv": "d85a48cb67b756189ee7afb211d192e81b897c60a8e49cc0eb913c70cde76114",
+        "candidates.csv": "feeea2025ade2da157c9d0df9a13943510d67d1976e2fd9a282e5dd3761b7106",
+        "counts.json": "49f5022e28e5f464819b0c3035aa41cf1d21e9ce1b8253e2236bcf35b678fc69",
+        "decision.json": "c807fe71750b55c1236537fe8b4f8daa9bc7a28f34c3a441521ed636148d249f"
+      },
+      "card": {
+        "done": "GridSearchCV over the whole s04 pipeline on the s05 folds, scoring neg_mean_absolute_error, refit=False, return_train_score=True, seed 42; 69 configurations in total. Carried per family: linear/logistic plain s06; single tree plain s06; forest plain s06. Ladder over the carried families (description only; s08 decides): linear/logistic kept over dummy (paired gain +1.0245 days, better in 5 of 5 folds); single tree not kept over linear/logistic (paired gain +0.0458 days, better in 3 of 5 folds); forest not kept over linear/logistic (paired gain +0.0267 days, better in 3 of 5 folds); result linear/logistic.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "Selection scores on the folds, not generalisation estimates (G-10). The finalists and the final choice are made in s08 at its gate (G-39).",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "same folds as s06 (rows per fold equal)",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "7.5"
+          ]
+        },
+        {
+          "name": "every configuration scored on all five folds, whole pipeline refitted per fold",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "7.5"
+          ]
+        },
+        {
+          "name": "no test row read: every row used was purchased before the test cutoff",
+          "passed": true,
+          "detail": "latest purchase 2018-05-27 12:20:21, cutoff 2018-05-27 12:30:34",
+          "ids": [
+            "7.5"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "7.6",
+      "title": "Overfitting check",
+      "status": "IMPLEMENTED",
+      "checks": "\u2014",
+      "files": [
+        "grid_results.csv",
+        "curves/validation_curve_linear.csv",
+        "figures/validation_curve_linear.png",
+        "figures/validation_curve_linear.csv",
+        "figures/validation_curve_linear.json",
+        "curves/validation_curve_tree.csv",
+        "figures/validation_curve_tree.png",
+        "figures/validation_curve_tree.csv",
+        "figures/validation_curve_tree.json",
+        "curves/validation_curve_forest.csv",
+        "figures/validation_curve_forest.png",
+        "figures/validation_curve_forest.csv",
+        "figures/validation_curve_forest.json"
+      ],
+      "evidence_hashes": {
+        "grid_results.csv": "1f78b228b2e85a08237ee2923856dd8835c4febbdf4f6c127f580c9c546d919d",
+        "curves/validation_curve_linear.csv": "efd323114c7188fe3fe5c916187df9007e1c4ae2ec394d5277d1026a5ac373fa",
+        "figures/validation_curve_linear.png": "f31a6d6164cd5c8d21a85558af47d041c3af0df401625f54e218a9320e0d9644",
+        "figures/validation_curve_linear.csv": "efd323114c7188fe3fe5c916187df9007e1c4ae2ec394d5277d1026a5ac373fa",
+        "figures/validation_curve_linear.json": "49e9be146a5d32dfd821ca9b9923e1b55e2da241c1a26300b24b5c173d95ae43",
+        "curves/validation_curve_tree.csv": "db12d18c536981b1c83a7341c2de5cb7fffef98c17fbecd6a003ff063e840b44",
+        "figures/validation_curve_tree.png": "f7be7d72a5f51da06ca7fc46b33cc7d71e840489881410efaf9ac351c99d2c8d",
+        "figures/validation_curve_tree.csv": "db12d18c536981b1c83a7341c2de5cb7fffef98c17fbecd6a003ff063e840b44",
+        "figures/validation_curve_tree.json": "7654002fb0ccd08e294819e64120495fe71c0f1707a8c7ed6beb113009f3da01",
+        "curves/validation_curve_forest.csv": "6c6c6679d19e379db375d65bc37eedef50058ff6c4d286e7262a6b3d3a983e75",
+        "figures/validation_curve_forest.png": "05953f5c1ba4412e41da5e33f3b69ce066e378acaa38013f46c3bc85ed53a6e5",
+        "figures/validation_curve_forest.csv": "6c6c6679d19e379db375d65bc37eedef50058ff6c4d286e7262a6b3d3a983e75",
+        "figures/validation_curve_forest.json": "e0f8aca9bba3bec4b27c1fb37790ff04da22126c456ab61bbfc7567859e2cc88"
+      },
+      "card": {
+        "done": "train_validation_gap for every configuration in grid_results.csv (positive = worse on validation). Gap of each family's one-SE choice: linear/logistic +1.1633 days; single tree +1.0192 days; forest +1.0763 days.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "The one-SE choice is already the simplest configuration within the rule, so no simpler configuration within the rule exists to flag; the gaps are reported for the review.",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "7.7",
+      "title": "Outputs",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "predictions.csv.gz",
+        "oof_scores.csv",
+        "counts.json"
+      ],
+      "evidence_hashes": {
+        "predictions.csv.gz": "7a6d071281669ad657596ede567ff5e7bf19ff6e895d0d7d495adee70c9706e5",
+        "oof_scores.csv": "e1ca0bf02f0f08c7ed08e2c842af758f610f308ad70547a8a68f3e5f28b31fc0",
+        "counts.json": "49f5022e28e5f464819b0c3035aa41cf1d21e9ce1b8253e2236bcf35b678fc69"
+      },
+      "card": {
+        "done": "grid_results.csv, plain_vs_tuned.csv, ladder_preview.csv, candidates.csv, decision.json, out-of-fold predictions of each family's best (predictions.csv.gz) with pooled vs mean-fold scores (oof_scores.csv), validation curves (curves/, figures/); fit times in _manifest.json.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "refitting each family's best per fold gives the grid's validation scores",
+          "passed": true,
+          "detail": "15 refits",
+          "ids": [
+            "7.7"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "node": "s06_training/classification",
-  "run_id": "20261021T033221Z",
-  "commit": "073405729a03b63b6dc78ac20155a00f88aaf9ac",
+  "run_id": "20261021T041825Z",
+  "commit": "7eb81978b3ec01cf8738ac02e60fc98442ed0b7c",
   "dirty": false,
   "code": {
     "experiments/experiment_5/stages/s06_training/classification/run.py": "9fe93a02c4ae83dd942374f260d68b2a47042365d981fe17192ffb4f2153a62e"
@@ -28,6 +28,7 @@
     "experiments/experiment_5/e5lib/review.py": "fc47e1fbebddfdc377f0e7a43c87cef92accf158437cb929ad6557e86c9df48d",
     "experiments/experiment_5/e5lib/seller_history.py": "fde34f2e3560d851e66a57adb300a652fc8c2fde6f9a7d9d0d8e6a163436dc3e",
     "experiments/experiment_5/e5lib/training.py": "e7cd967c1f3af8e09a7720aa6488f77a5ff784cd77794e127e3a07e974976894",
+    "experiments/experiment_5/e5lib/tuning.py": "aff5e0aea771b8ba6f1935c531bcf1851363bd21b31dbe07d5638161d7e016f1",
     "experiments/experiment_5/run_pipeline.py": "38625fed4ceda4990a3b7dc86a2146d1a5eb89c9feac6948381dcbf7c1d589cf"
   },
   "protocol": {
@@ -87,29 +88,29 @@
     "shapely": "2.1.2"
   },
   "seed": 42,
-  "runtime_s": 33.73,
+  "runtime_s": 34.29,
   "extra": {
     "fit_seconds": {
-      "clf.sel.log.dummy_prior|fold 1": 0.052,
-      "clf.sel.log.logistic|fold 1": 0.253,
-      "clf.sel.log.tree_clf.max_depth=5.min_samples_leaf=100|fold 1": 0.077,
-      "clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50|fold 1": 0.391,
-      "clf.sel.log.dummy_prior|fold 2": 0.097,
-      "clf.sel.log.logistic|fold 2": 0.544,
-      "clf.sel.log.tree_clf.max_depth=5.min_samples_leaf=100|fold 2": 0.167,
-      "clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50|fold 2": 0.557,
-      "clf.sel.log.dummy_prior|fold 3": 0.117,
-      "clf.sel.log.logistic|fold 3": 0.658,
-      "clf.sel.log.tree_clf.max_depth=5.min_samples_leaf=100|fold 3": 0.237,
-      "clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50|fold 3": 0.84,
-      "clf.sel.log.dummy_prior|fold 4": 0.176,
-      "clf.sel.log.logistic|fold 4": 0.939,
-      "clf.sel.log.tree_clf.max_depth=5.min_samples_leaf=100|fold 4": 0.34,
-      "clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50|fold 4": 1.164,
-      "clf.sel.log.dummy_prior|fold 5": 0.252,
-      "clf.sel.log.logistic|fold 5": 1.168,
-      "clf.sel.log.tree_clf.max_depth=5.min_samples_leaf=100|fold 5": 0.45,
-      "clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50|fold 5": 1.489
+      "clf.sel.log.dummy_prior|fold 1": 0.054,
+      "clf.sel.log.logistic|fold 1": 0.254,
+      "clf.sel.log.tree_clf.max_depth=5.min_samples_leaf=100|fold 1": 0.08,
+      "clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50|fold 1": 0.396,
+      "clf.sel.log.dummy_prior|fold 2": 0.098,
+      "clf.sel.log.logistic|fold 2": 0.541,
+      "clf.sel.log.tree_clf.max_depth=5.min_samples_leaf=100|fold 2": 0.17,
+      "clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50|fold 2": 0.582,
+      "clf.sel.log.dummy_prior|fold 3": 0.114,
+      "clf.sel.log.logistic|fold 3": 0.67,
+      "clf.sel.log.tree_clf.max_depth=5.min_samples_leaf=100|fold 3": 0.251,
+      "clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50|fold 3": 0.858,
+      "clf.sel.log.dummy_prior|fold 4": 0.181,
+      "clf.sel.log.logistic|fold 4": 0.948,
+      "clf.sel.log.tree_clf.max_depth=5.min_samples_leaf=100|fold 4": 0.337,
+      "clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50|fold 4": 1.206,
+      "clf.sel.log.dummy_prior|fold 5": 0.22,
+      "clf.sel.log.logistic|fold 5": 1.183,
+      "clf.sel.log.tree_clf.max_depth=5.min_samples_leaf=100|fold 5": 0.446,
+      "clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50|fold 5": 1.543
     }
   }
 }

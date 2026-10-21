@@ -1,0 +1,7 @@
+{
+  "title": "Validation curve, linear/logistic",
+  "ids": [
+    "7.6"
+  ],
+  "data": "figures/validation_curve_linear.csv"
+}
