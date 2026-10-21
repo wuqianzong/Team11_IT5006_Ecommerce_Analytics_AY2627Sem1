@@ -52,7 +52,7 @@ Pipeline v2 chart.
 | s04 Features | ACCEPTED | 3 | 3 (tag e5-s04-accepted) | Implementation reviews › s04 Features (sub-tabs: regression, classification) |
 | s05 Partition | ACCEPTED | 3 | 3 (tag e5-s05-accepted) | Implementation reviews › s05 Partition (sub-tabs: regression, classification); reviewed with s04, accepted after it (G-74) |
 | s06 Training | ACCEPTED (lead, G-78) | 3 | 3 (tag e5-s06-accepted) | Implementation reviews › s06 Training (sub-tabs: regression, classification); team review with s07 and s08 at the s08 gate |
-| s07 Tuning | NOT STARTED | — | — | — |
+| s07 Tuning | LEAD REVIEW (G-78) | 1 | — | Implementation reviews › s07 Tuning (sub-tabs: regression, classification); team review with s06 and s08 at the s08 gate |
 | s08 Selection | NOT STARTED | — | — | — |
 | s09 Conclusion | NOT STARTED | — | — | — |
 | s10 Release | NOT STARTED | — | — | — |
