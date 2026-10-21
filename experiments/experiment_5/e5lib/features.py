@@ -268,6 +268,7 @@ def design_matrix(d: pd.DataFrame, spec: dict) -> dict:
 # Node runner (stages/s04_features/<task>/run.py calls run(task))
 # ---------------------------------------------------------------------------------------------
 STAGE = "s04_features"
+RULE_DATE = "2026-10-20"
 
 
 def _set_task_section(section: str, task: str, value) -> None:
@@ -277,7 +278,6 @@ def _set_task_section(section: str, task: str, value) -> None:
 
 def run(task: str) -> None:
     import json
-    from datetime import date
 
     import matplotlib
     matplotlib.use("Agg")
@@ -289,7 +289,9 @@ def run(task: str) -> None:
     w = Writer(STAGE, task)
     p = protocol.load()
     seed = int(p["seed"])
-    today = date.today().isoformat()
+    # The automatic 4.3 rows carry the date the rule was accepted (CR-048), not the run date, so a rerun
+    # on another day leaves reduction_rationale.csv byte-identical (README 13.3).
+    today = RULE_DATE
     dec = decisions(task)  # stops here when the team has not decided (G-31)
     trigger = float(p["features"]["log1p"]["skewness_threshold"])
     cutoff = pd.Timestamp(protocol.get("data_dependent.test_cutoffs.values")[task])
