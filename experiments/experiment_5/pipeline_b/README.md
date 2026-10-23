@@ -40,7 +40,7 @@ from Pipeline A as frozen at tag `e5-A-frozen`.
 
 | Stage | Blueprint | Build |
 | --- | --- | --- |
-| B2 Population and history features | DRAFT | NOT STARTED |
+| B2 Population and history features | AGREED | BUILT, round 1 in lead review |
 | B4 Features | DRAFT | NOT STARTED |
 | B5 Partition | DRAFT | NOT STARTED |
 | B6–B7 Training and tuning | DRAFT | NOT STARTED |

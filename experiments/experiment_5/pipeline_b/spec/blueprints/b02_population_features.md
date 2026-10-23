@@ -4,7 +4,7 @@
 | --- | --- |
 | Stage | B2, Pipeline B (G-79, CR-054 B-C1 to B-C9) |
 | Nodes | regression, classification |
-| Status | DRAFT |
+| Status | AGREED (experiment lead, 2026-10-23: follows plan v3 and Henry's comments) |
 | Inherits from A | s02 `records.csv.gz` (tag e5-A-frozen), A's test cutoffs, raw Olist tables (read-only) |
 
 ## 1. Goal and gate
@@ -23,7 +23,7 @@ estimated delivery date is read nowhere; counts reconcile with A's s02.
    code in `exclusions_B.csv`:
    - B_STATE: customer or primary seller state outside SP, MG, RJ, PR, RS, BA, SC, or missing;
    - B_DISTANCE: distance_km_max missing;
-   - B_LEAD_CAP (regression): lead_days > 93.65 (mean + 8 × SD of A's s02 pre-cutoff orders,
+   - B_LEAD_CAP (regression): lead_days > 93.63 (mean + 8 × SD of A's s02 pre-cutoff orders,
      audit.json; no floor);
    - B_NO_HANDOVER (classification): no carrier handover date;
    - B_REVIEW_BEFORE_HANDOVER (classification): review answered at or before handover;
@@ -42,8 +42,8 @@ estimated delivery date is read nowhere; counts reconcile with A's s02.
      all of the seller's earlier handover weeks; a seller with no history takes the weighted
      3-week mean of sellers in the same seller state;
    - route lead days (B-C8) and route transit days (B-C8b): weighted 3-week mean (0.5, 0.3, 0.2
-     for weeks w−1, w−2, w−3) of the route's weekly median; fewer than 10 route events in the
-     3 weeks → 0.7 × seller state's + 0.3 × customer state's weighted 3-week mean, then the
+     for weeks w−1, w−2, w−3) of the route's weekly median, the weights renormalised over the
+     weeks that have events; fewer than 10 route events in the 3 weeks → 0.7 × seller state's + 0.3 × customer state's weighted 3-week mean, then the
      overall one;
    - classification only (B-C9): this order's handover late flag, late days and dispatch days.
 6. **Test rows.** B2 builds features for development rows only. Test-row features are built in
@@ -52,7 +52,10 @@ estimated delivery date is read nowhere; counts reconcile with A's s02.
 ## 4. Outputs (per task, `pipeline_b/stages/b02/<task>/outputs/`)
 `records_B.csv.gz` (development rows, A's columns + B's), `exclusions_B.csv`,
 `exclusion_counts_B.csv`, `history_coverage.csv` (share of rows on own history vs each
-fallback, per fold period), `feature_build_log.json`.
+fallback, per fold period), `lateness_summary_B.csv` (descriptive, Henry: by route, week and
+seller with customer state and seller state — handover count, seller late rate, mean seller
+late days, median transit days and median lead days; development period, events before the
+cutoff only), `feature_build_log.json`.
 
 ## 5. Checks
 - Every history value uses events whose week is before the row's prediction week (asserted per row).
