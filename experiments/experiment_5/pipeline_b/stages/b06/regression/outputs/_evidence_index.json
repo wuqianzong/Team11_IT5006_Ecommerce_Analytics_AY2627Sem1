@@ -1,0 +1,256 @@
+{
+  "node": "B/b06/regression",
+  "pipeline": "B",
+  "files": {
+    "metrics_long.csv": {
+      "ids": [
+        "B6.4"
+      ],
+      "kind": "table"
+    },
+    "predictions.csv.gz": {
+      "ids": [
+        "B6.4",
+        "B6.5"
+      ],
+      "kind": "table"
+    },
+    "fit_log.csv": {
+      "ids": [
+        "B6.4"
+      ],
+      "kind": "table"
+    },
+    "imputation_by_fold.csv": {
+      "ids": [
+        "B6.1"
+      ],
+      "kind": "table"
+    },
+    "candidates.csv": {
+      "ids": [
+        "B6.2"
+      ],
+      "kind": "table"
+    },
+    "paired_differences.csv": {
+      "ids": [
+        "B6.2"
+      ],
+      "kind": "table"
+    },
+    "figures/family_ladder.png": {
+      "ids": [
+        "B6.2",
+        "B6.4"
+      ],
+      "kind": "figure"
+    },
+    "figures/family_ladder.csv": {
+      "ids": [
+        "B6.2",
+        "B6.4"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/family_ladder.json": {
+      "ids": [
+        "B6.2",
+        "B6.4"
+      ],
+      "kind": "figure_meta"
+    },
+    "curves/residual_quantiles_linear.csv": {
+      "ids": [
+        "B6.5"
+      ],
+      "kind": "curve"
+    },
+    "curves/residual_quantiles_forest.csv": {
+      "ids": [
+        "B6.5"
+      ],
+      "kind": "curve"
+    },
+    "figures/residual_diagnostics.png": {
+      "ids": [
+        "B6.5"
+      ],
+      "kind": "figure"
+    },
+    "figures/residual_diagnostics.csv": {
+      "ids": [
+        "B6.5"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/residual_diagnostics.json": {
+      "ids": [
+        "B6.5"
+      ],
+      "kind": "figure_meta"
+    },
+    "curves/learning_curves.csv": {
+      "ids": [
+        "B6.7"
+      ],
+      "kind": "curve"
+    },
+    "figures/learning_curves.png": {
+      "ids": [
+        "B6.7"
+      ],
+      "kind": "figure"
+    },
+    "figures/learning_curves.csv": {
+      "ids": [
+        "B6.7"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/learning_curves.json": {
+      "ids": [
+        "B6.7"
+      ],
+      "kind": "figure_meta"
+    },
+    "design_matrix_by_fold.csv": {
+      "ids": [
+        "B6.7"
+      ],
+      "kind": "table"
+    },
+    "counts.json": {
+      "ids": [
+        "B6.2",
+        "B6.8"
+      ],
+      "kind": "json"
+    },
+    "decision.json": {
+      "ids": [
+        "B6.2"
+      ],
+      "kind": "json"
+    }
+  },
+  "checks": [
+    {
+      "name": "identical rows and folds for every candidate",
+      "passed": true,
+      "detail": "4 candidates x 5 folds",
+      "ids": [
+        "B6.2",
+        "B6.4"
+      ]
+    },
+    {
+      "name": "preprocessing fitted inside the training fold only (learned medians equal the training-fold medians)",
+      "passed": true,
+      "detail": "15 fitted pipelines checked",
+      "ids": [
+        "B6.1"
+      ]
+    },
+    {
+      "name": "every candidate uses its s04 recipe unchanged (selected features, log1p inputs, log target)",
+      "passed": true,
+      "detail": "selected set of 21 features",
+      "ids": [
+        "B6.1",
+        "B6.2"
+      ]
+    },
+    {
+      "name": "the simplest model of each family is present (dummy, plain linear/logistic, depth-5 tree, s06 forest)",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "B6.2"
+      ]
+    },
+    {
+      "name": "no test row read: every row used was purchased before the test cutoff",
+      "passed": true,
+      "detail": "latest purchase 2018-05-24 18:56:59, cutoff 2018-05-27 12:30:34",
+      "ids": [
+        "B6.4"
+      ]
+    },
+    {
+      "name": "regression scored on raw days (log target inverted)",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "B6.1",
+        "B6.4"
+      ]
+    },
+    {
+      "name": "linear/logistic design matrix full rank in every training fold",
+      "passed": true,
+      "detail": "fold 1 rank 130 of 130; fold 2 rank 138 of 138; fold 3 rank 139 of 139; fold 4 rank 140 of 140; fold 5 rank 140 of 140",
+      "ids": [
+        "B6.7"
+      ]
+    }
+  ],
+  "deviations": {},
+  "cards": {
+    "B6.1": {
+      "done": "4 candidates built by e5lib.factory from the s04 recipes.json (one spec per family) with the s06 settings from protocol.yaml; every pipeline fitted inside each of the 5 training folds (137,255 training rows over the folds). Learned imputation values per fold are in imputation_by_fold.csv, with the validation rows whose category level was unseen in the training fold (the one-hot step encodes them as all zeros).",
+      "inputs": "s04 recipes.json and selected_features.json; s05 folds.csv; s02 records (development rows).",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B6.2": {
+      "done": "Families basic to complex, validation mae mean \u00b1 SE over the folds: dummy 5.9689 \u00b1 0.7107 days; linear/logistic 5.0247 \u00b1 0.6115 days; single tree 5.0532 \u00b1 0.6394 days; forest 4.9627 \u00b1 0.6457 days. Ladder: linear/logistic kept over dummy; single tree not kept over linear/logistic; forest not kept over linear/logistic. One-SE choice over all four: linear/logistic (best mean: forest).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "Paired per-fold gain of each step (positive = the more complex family is better; description only, s01 1.7): linear/logistic vs dummy +0.9442 days (paired SE 0.1606), better in 5 of 5 folds; single tree vs linear/logistic -0.0285 days (paired SE 0.1027), better in 2 of 5 folds; forest vs linear/logistic +0.0619 days (paired SE 0.0677), better in 3 of 5 folds.",
+      "reasoning": "A more complex family is adopted only when its gain over the current family clears one standard error of the fold means (the agreed rule). The fold SE also carries the level differences between folds (drift), so a small but consistent paired gain can stay below it; the paired figures show that without changing the decision.",
+      "conclusion": "These are selection scores on the folds, not generalisation estimates (G-10). s07 tunes the linear and tree families and compares each tuned configuration with its plain s06 model (G-55).",
+      "label": "observation"
+    },
+    "B6.4": {
+      "done": "metrics_long.csv: training and validation scores for 4 candidates x 5 folds on every s01 metric; fit_log.csv: rows and warnings per fit, fit times in _manifest.json (convergence warnings: 0); predictions.csv.gz: 202,472 out-of-fold predictions.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B6.5": {
+      "done": "Residual vs fitted, histogram and Q-Q plot on out-of-fold predictions of the plain linear model and the better tree model (forest). linear: residual mean 2.92, median 1.10, skewness 2.36, share above +10 days 12.22%; forest: residual mean 2.57, median 0.51, skewness 2.47, share above +10 days 11.99%.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B6.7": {
+      "done": "Learning curves on fold 5: the most recent 20, 40, 60, 80 and 100% of its training rows against the same validation block (9,059 rows). Linear/logistic design matrix per training fold: fold 1 rank 130 of 130, condition number 245; fold 2 rank 138 of 138, condition number 285; fold 3 rank 139 of 139, condition number 243; fold 4 rank 140 of 140, condition number 386; fold 5 rank 140 of 140, condition number 434.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "dummy validation mae 4.8820 with the most recent 20% vs 4.4995 with all rows; linear/logistic validation mae 3.1600 with the most recent 20% vs 3.5469 with all rows; single tree validation mae 3.3624 with the most recent 20% vs 3.6654 with all rows; forest validation mae 3.5731 with the most recent 20% vs 3.4698 with all rows; target mean in fold 5: training 12.0908, validation 8.6915.",
+      "reasoning": "Subsets keep the rows closest to the validation block, so a smaller training set is not also an older one; the tree recipe is not measured (rank-deficient by design, s04 M-01).",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B6.8": {
+      "done": "Outputs: metrics_long.csv, predictions.csv.gz, candidates.csv, decision.json, fit_log.csv, imputation_by_fold.csv, design_matrix_by_fold.csv, curves/ and figures/ with sidecar data.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    }
+  },
+  "checks_failed": []
+}

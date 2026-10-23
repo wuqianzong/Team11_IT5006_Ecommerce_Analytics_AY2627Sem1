@@ -23,6 +23,10 @@ Pipeline A's evidence is frozen at tag `e5-A-frozen`: cite A only from `../stage
 | b04 | classification | 20261023T154833Z | e960870 | e5-B-s04-accepted | 2 |
 | b05 | regression | 20261023T160529Z | 19b5355 | e5-B-s05-accepted | 1 |
 | b05 | classification | 20261023T160533Z | 19b5355 | e5-B-s05-accepted | 1 |
+| b06 | regression | 20261023T162830Z | e358f81 | e5-B-s06-accepted | 1 |
+| b06 | classification | 20261023T162918Z | e358f81 | e5-B-s06-accepted | 1 |
+| b07 | regression | 20261023T163311Z | e358f81 | e5-B-s07-accepted | 1 |
+| b07 | classification | 20261023T164241Z | e358f81 | e5-B-s07-accepted | 1 |
 
 When a stage is accepted again, replace its rows here in the same commit and move the old rows
 to the table below.
@@ -38,6 +42,8 @@ to the table below.
 | Cap "93.65 days" (rounded inputs) and "93.63 days" (A's s02 orders) | CR-054 B-C3 (marked AMENDED), overview tab (marked AMENDED), B-CR-03 | B-G-03: computed on B's rows, value in b02/regression feature_build_log.json |
 | Route written customer -> seller; names b_seller_*, b_route_*, b_own_*, route | CR-054 B-C6 (marked AMENDED), round-1 cards | B-G-04 names (decision_log_B.md) |
 | B5 build runs 20261023T160116Z, 20261023T160119Z (uncommitted code) | nowhere now (human_decisions_B.yaml b05 cites the accepted runs) | clean reruns above |
+| B6/B7 build runs before commit e358f81 (uncommitted code) | nowhere (byte-identical to the current runs) | clean reruns above |
+| A's s06/s07 scores (all states, A's features) | A's review tabs | never compared with B6/B7 scores directly; the like-for-like A–B comparison is B8's (G-79) |
 | Probe 1 and probe 2 (probe 2 withdrawn) | doc tab "Scratch check plan" | never evidence; motivation only (G-79) |
 
 ## Where definitions live

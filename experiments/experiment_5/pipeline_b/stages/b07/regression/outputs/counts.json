@@ -1,0 +1,21 @@
+{
+  "task": "regression",
+  "configurations": {
+    "linear": 9,
+    "tree": 36,
+    "forest": 24
+  },
+  "chosen_in_family": {
+    "linear": "reg.sel.log.ridge.alpha=100",
+    "tree": "reg.sel.log.tree_reg.max_depth=4.min_samples_leaf=200",
+    "forest": "reg.sel.log.forest_reg.max_depth=8.max_features=sqrt.min_samples_leaf=200"
+  },
+  "carried": {
+    "linear": "reg.sel.log.linear",
+    "tree": "reg.sel.log.tree_reg.max_depth=5.min_samples_leaf=100",
+    "forest": "reg.sel.log.forest_reg.max_depth=10.max_features=sqrt.min_samples_leaf=50"
+  },
+  "ladder_result": "reg.sel.log.linear",
+  "primary_metric": "mae",
+  "seed": 42
+}

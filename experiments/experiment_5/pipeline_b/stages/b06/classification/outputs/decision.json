@@ -1,0 +1,72 @@
+[
+  {
+    "question": "Keep linear/logistic over dummy?",
+    "rule": "one-SE rule on validation ap (s01 1.7, G-33)",
+    "candidates_compared": [
+      "clf.sel.log.dummy_prior",
+      "clf.sel.log.logistic"
+    ],
+    "chosen": "clf.sel.log.logistic",
+    "evidence_files": [
+      "metrics_long.csv",
+      "candidates.csv"
+    ],
+    "notes": "best mean: clf.sel.log.logistic; band 0.2266 to 0.2965; paired gain of the complex family +0.1236 (paired SE 0.0174), better in 5 of 5 folds (description only)",
+    "ids": [
+      "B6.2"
+    ]
+  },
+  {
+    "question": "Keep single tree over linear/logistic?",
+    "rule": "one-SE rule on validation ap (s01 1.7, G-33)",
+    "candidates_compared": [
+      "clf.sel.log.logistic",
+      "clf.sel.log.tree_clf.max_depth=5.min_samples_leaf=100"
+    ],
+    "chosen": "clf.sel.log.logistic",
+    "evidence_files": [
+      "metrics_long.csv",
+      "candidates.csv"
+    ],
+    "notes": "best mean: clf.sel.log.logistic; band 0.2266 to 0.2965; paired gain of the complex family -0.0222 (paired SE 0.0051), better in 0 of 5 folds (description only)",
+    "ids": [
+      "B6.2"
+    ]
+  },
+  {
+    "question": "Keep forest over linear/logistic?",
+    "rule": "one-SE rule on validation ap (s01 1.7, G-33)",
+    "candidates_compared": [
+      "clf.sel.log.logistic",
+      "clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50"
+    ],
+    "chosen": "clf.sel.log.logistic",
+    "evidence_files": [
+      "metrics_long.csv",
+      "candidates.csv"
+    ],
+    "notes": "best mean: clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50; band 0.2434 to 0.3044; paired gain of the complex family +0.0123 (paired SE 0.0052), better in 4 of 5 folds (description only)",
+    "ids": [
+      "B6.2"
+    ]
+  },
+  {
+    "question": "Family carried as the s06 reference (all four candidates)",
+    "rule": "one-SE rule on validation ap",
+    "candidates_compared": [
+      "clf.sel.log.dummy_prior",
+      "clf.sel.log.logistic",
+      "clf.sel.log.tree_clf.max_depth=5.min_samples_leaf=100",
+      "clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50"
+    ],
+    "chosen": "clf.sel.log.logistic",
+    "evidence_files": [
+      "metrics_long.csv",
+      "candidates.csv"
+    ],
+    "notes": "best mean: clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50; ladder result: clf.sel.log.logistic. s07 tunes the linear and tree families whatever this result (s07 principle).",
+    "ids": [
+      "B6.2"
+    ]
+  }
+]

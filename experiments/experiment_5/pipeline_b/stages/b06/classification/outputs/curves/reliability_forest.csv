@@ -1,0 +1,11 @@
+candidate_id,mean_predicted,observed_share
+clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50,0.07020643256253642,0.06610911987256073
+clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50,0.08002441189133125,0.07667795259908385
+clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50,0.08698710679872929,0.07666268418956591
+clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50,0.09438040424593103,0.09778928500298745
+clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50,0.10150830288144203,0.1063321385902031
+clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50,0.10929537736953365,0.12885879306910974
+clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50,0.1186854877152531,0.13841864170483967
+clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50,0.13287816352549064,0.17463162086818002
+clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50,0.15568163817913488,0.20195180242979485
+clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50,0.22919553599365122,0.326563122262047

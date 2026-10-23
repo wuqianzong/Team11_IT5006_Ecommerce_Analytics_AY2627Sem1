@@ -1,0 +1,41 @@
+{
+  "task": "regression",
+  "candidates": [
+    "reg.sel.log.dummy_median",
+    "reg.sel.log.linear",
+    "reg.sel.log.tree_reg.max_depth=5.min_samples_leaf=100",
+    "reg.sel.log.forest_reg.max_depth=10.max_features=sqrt.min_samples_leaf=50"
+  ],
+  "folds": [
+    {
+      "fold": 1,
+      "train_rows": 7932,
+      "validation_rows": 10323
+    },
+    {
+      "fold": 2,
+      "train_rows": 18077,
+      "validation_rows": 10364
+    },
+    {
+      "fold": 3,
+      "train_rows": 26184,
+      "validation_rows": 10443
+    },
+    {
+      "fold": 4,
+      "train_rows": 37647,
+      "validation_rows": 10429
+    },
+    {
+      "fold": 5,
+      "train_rows": 47415,
+      "validation_rows": 9059
+    }
+  ],
+  "primary_metric": "mae",
+  "ladder_result": "reg.sel.log.linear",
+  "one_se_choice": "reg.sel.log.linear",
+  "best_mean": "reg.sel.log.forest_reg.max_depth=10.max_features=sqrt.min_samples_leaf=50",
+  "seed": 42
+}

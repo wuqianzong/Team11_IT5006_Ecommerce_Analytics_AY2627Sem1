@@ -1,0 +1,4 @@
+family,candidate_id,mean_fold_mae,pooled_oof_mae,pooled_oof_rmse,pooled_oof_r2
+linear/logistic,reg.sel.log.ridge.alpha=100,5.020544681802475,5.062345354758881,8.20594444650992,0.12171483297592778
+single tree,reg.sel.log.tree_reg.max_depth=4.min_samples_leaf=200,5.084084185224699,5.1230230578881955,8.294375866152711,0.10268314208785856
+forest,reg.sel.log.forest_reg.max_depth=8.max_features=sqrt.min_samples_leaf=200,5.082052124467413,5.127213145912343,8.308626752166381,0.09959706403540414

@@ -1,0 +1,242 @@
+{
+  "node": "B/b07/classification",
+  "pipeline": "B",
+  "files": {
+    "grid_results.csv": {
+      "ids": [
+        "B7.2",
+        "B7.3",
+        "B7.4",
+        "B7.5",
+        "B7.6"
+      ],
+      "kind": "table"
+    },
+    "plain_vs_tuned.csv": {
+      "ids": [
+        "B7.5"
+      ],
+      "kind": "table"
+    },
+    "ladder_preview.csv": {
+      "ids": [
+        "B7.5"
+      ],
+      "kind": "table"
+    },
+    "predictions.csv.gz": {
+      "ids": [
+        "B7.7"
+      ],
+      "kind": "table"
+    },
+    "oof_scores.csv": {
+      "ids": [
+        "B7.7"
+      ],
+      "kind": "table"
+    },
+    "candidates.csv": {
+      "ids": [
+        "B7.5"
+      ],
+      "kind": "table"
+    },
+    "curves/validation_curve_linear.csv": {
+      "ids": [
+        "B7.6"
+      ],
+      "kind": "curve"
+    },
+    "figures/validation_curve_linear.png": {
+      "ids": [
+        "B7.6"
+      ],
+      "kind": "figure"
+    },
+    "figures/validation_curve_linear.csv": {
+      "ids": [
+        "B7.6"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/validation_curve_linear.json": {
+      "ids": [
+        "B7.6"
+      ],
+      "kind": "figure_meta"
+    },
+    "curves/validation_curve_tree.csv": {
+      "ids": [
+        "B7.6"
+      ],
+      "kind": "curve"
+    },
+    "figures/validation_curve_tree.png": {
+      "ids": [
+        "B7.6"
+      ],
+      "kind": "figure"
+    },
+    "figures/validation_curve_tree.csv": {
+      "ids": [
+        "B7.6"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/validation_curve_tree.json": {
+      "ids": [
+        "B7.6"
+      ],
+      "kind": "figure_meta"
+    },
+    "curves/validation_curve_forest.csv": {
+      "ids": [
+        "B7.6"
+      ],
+      "kind": "curve"
+    },
+    "figures/validation_curve_forest.png": {
+      "ids": [
+        "B7.6"
+      ],
+      "kind": "figure"
+    },
+    "figures/validation_curve_forest.csv": {
+      "ids": [
+        "B7.6"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/validation_curve_forest.json": {
+      "ids": [
+        "B7.6"
+      ],
+      "kind": "figure_meta"
+    },
+    "counts.json": {
+      "ids": [
+        "B7.5",
+        "B7.7"
+      ],
+      "kind": "json"
+    },
+    "decision.json": {
+      "ids": [
+        "B7.5"
+      ],
+      "kind": "json"
+    }
+  },
+  "checks": [
+    {
+      "name": "every configuration comes from the pre-registered protocol.yaml grids (s01, before any s07 output)",
+      "passed": true,
+      "detail": "linear/logistic 18 configurations; single tree 72 configurations; forest 48 configurations",
+      "ids": [
+        "B7.2",
+        "B7.3",
+        "B7.4"
+      ]
+    },
+    {
+      "name": "same folds as s06 (rows per fold equal)",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "B7.5"
+      ]
+    },
+    {
+      "name": "every configuration scored on all five folds, whole pipeline refitted per fold",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "B7.5"
+      ]
+    },
+    {
+      "name": "the grid point with the s06 plain settings reproduces the s06 fold scores (tree, forest)",
+      "passed": true,
+      "detail": "2 of 2 reproduced",
+      "ids": [
+        "B7.3",
+        "B7.4"
+      ]
+    },
+    {
+      "name": "refitting each family's best per fold gives the grid's validation scores",
+      "passed": true,
+      "detail": "15 refits",
+      "ids": [
+        "B7.7"
+      ]
+    },
+    {
+      "name": "no test row read: every row used was purchased before the test cutoff",
+      "passed": true,
+      "detail": "latest purchase 2018-05-23 11:29:51, cutoff 2018-05-26 12:16:34",
+      "ids": [
+        "B7.5"
+      ]
+    }
+  ],
+  "deviations": {},
+  "cards": {
+    "B7.2": {
+      "done": "linear/logistic: 18 configurations; best mean 0.2734 ({'C': 0.01, 'class_weight': None}); one-SE choice {\"C\": 0.01, \"class_weight\": null} with 0.2734 \u00b1 0.0318.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "Against the plain s06 model (0.2616): paired gain of the tuned model +0.0118 (paired SE 0.0051), better in 4 of 5 folds; carried: plain model. For description only, the best-mean grid point against the plain model: paired gain +0.0118 (paired SE 0.0051), better in 4 of 5 folds.",
+      "reasoning": "The tuned configuration replaces the plain s06 model only if it beats it by more than one standard error of the fold means (G-55); otherwise the simpler plain model stays.",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B7.3": {
+      "done": "single tree: 72 configurations; best mean 0.2394 ({'class_weight': None, 'max_depth': 5, 'min_samples_leaf': 100}); one-SE choice {\"class_weight\": null, \"max_depth\": 4, \"min_samples_leaf\": 200} with 0.2298 \u00b1 0.0297.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "Against the plain s06 model (0.2394): paired gain of the tuned model -0.0096 (paired SE 0.0076), better in 1 of 5 folds; carried: plain model. For description only, the best-mean grid point against the plain model: paired gain +0.0000 (paired SE 0.0000), better in 3 of 5 folds.",
+      "reasoning": "The tuned configuration replaces the plain s06 model only if it beats it by more than one standard error of the fold means (G-55); otherwise the simpler plain model stays.",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B7.4": {
+      "done": "forest: 48 configurations; best mean 0.2761 ({'class_weight': None, 'max_depth': 8, 'max_features': 'sqrt', 'min_samples_leaf': 20}); one-SE choice {\"class_weight\": null, \"max_depth\": 8, \"max_features\": \"sqrt\", \"min_samples_leaf\": 200} with 0.2625 \u00b1 0.0297.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "Against the plain s06 model (0.2739): paired gain of the tuned model -0.0114 (paired SE 0.0026), better in 0 of 5 folds; carried: plain model. For description only, the best-mean grid point against the plain model: paired gain +0.0022 (paired SE 0.0006), better in 5 of 5 folds.",
+      "reasoning": "The tuned configuration replaces the plain s06 model only if it beats it by more than one standard error of the fold means (G-55); otherwise the simpler plain model stays.",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B7.5": {
+      "done": "GridSearchCV over the whole s04 pipeline on the s05 folds, scoring average_precision, refit=False, return_train_score=True, seed 42; 138 configurations in total. Carried per family: linear/logistic plain s06; single tree plain s06; forest plain s06. Ladder over the carried families (description only; s08 decides): linear/logistic kept over dummy (paired gain +0.1236, better in 5 of 5 folds); single tree not kept over linear/logistic (paired gain -0.0222, better in 0 of 5 folds); forest not kept over linear/logistic (paired gain +0.0123, better in 4 of 5 folds); result linear/logistic.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "Selection scores on the folds, not generalisation estimates (G-10). The finalists and the final choice are made in s08 at its gate (G-39).",
+      "label": "observation"
+    },
+    "B7.6": {
+      "done": "train_validation_gap for every configuration in grid_results.csv (positive = worse on validation). Gap of each family's one-SE choice: linear/logistic -0.0463; single tree -0.0304; forest -0.0230.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "The one-SE choice is already the simplest configuration within the rule, so no simpler configuration within the rule exists to flag; the gaps are reported for the review.",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B7.7": {
+      "done": "grid_results.csv, plain_vs_tuned.csv, ladder_preview.csv, candidates.csv, decision.json, out-of-fold predictions of each family's best (predictions.csv.gz) with pooled vs mean-fold scores (oof_scores.csv), validation curves (curves/, figures/); fit times in _manifest.json.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    }
+  },
+  "checks_failed": []
+}

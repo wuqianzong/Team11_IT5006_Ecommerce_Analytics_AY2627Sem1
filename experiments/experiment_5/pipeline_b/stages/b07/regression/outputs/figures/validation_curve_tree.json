@@ -1,0 +1,7 @@
+{
+  "title": "Validation curve, single tree",
+  "ids": [
+    "7.6"
+  ],
+  "data": "figures/validation_curve_tree.csv"
+}

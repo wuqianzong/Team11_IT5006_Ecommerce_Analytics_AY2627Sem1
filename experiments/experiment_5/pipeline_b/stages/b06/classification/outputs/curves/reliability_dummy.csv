@@ -1,0 +1,2 @@
+candidate_id,mean_predicted,observed_share
+clf.sel.log.dummy_prior,0.1161257396952471,0.13940057751667828

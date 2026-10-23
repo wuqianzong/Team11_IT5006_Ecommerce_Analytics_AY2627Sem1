@@ -1,0 +1,21 @@
+{
+  "task": "classification",
+  "configurations": {
+    "linear": 18,
+    "tree": 72,
+    "forest": 48
+  },
+  "chosen_in_family": {
+    "linear": "clf.sel.log.logistic.C=0.01.class_weight=none",
+    "tree": "clf.sel.log.tree_clf.class_weight=none.max_depth=4.min_samples_leaf=200",
+    "forest": "clf.sel.log.forest_clf.class_weight=none.max_depth=8.max_features=sqrt.min_samples_leaf=200"
+  },
+  "carried": {
+    "linear": "clf.sel.log.logistic",
+    "tree": "clf.sel.log.tree_clf.max_depth=5.min_samples_leaf=100",
+    "forest": "clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50"
+  },
+  "ladder_result": "clf.sel.log.logistic",
+  "primary_metric": "ap",
+  "seed": 42
+}

@@ -11,7 +11,8 @@ Implementation reviews for Pipeline B, in the same format as Pipeline A's "Imple
 | B2 Population and features | AGREED | round 2 (B-G-03 cap on B's rows and seven-state summary; B-G-04 names) | ACCEPTED round 2 | Henry reviewed round 1; round 2 open | e5-B-s02-accepted-r2 |
 | B4 Features | AGREED | round 2 (B-G-02 nesting; B-G-04 names) | ACCEPTED round 2 | Henry reviewed round 1; round 2 open | e5-B-s04-accepted |
 | B5 Partition | AGREED | round 1 (A's folds restricted to B rows; B-G-01 safeguard met) | ACCEPTED round 1 | open (sub-tab "B5 Partition") | e5-B-s05-accepted |
-| B6–B7 Training and tuning | DRAFT, being finished for the lead | not started | — | — | — |
+| B6 Training | AGREED | round 1 (A's s06 code unchanged on B inputs; equivalence test passes) | ACCEPTED round 1 | at the B8 gate (G-78) | e5-B-s06-accepted |
+| B7 Tuning | AGREED | round 1 (A's s07 code unchanged on B inputs; equivalence test passes) | ACCEPTED round 1 | at the B8 gate (G-78) | e5-B-s07-accepted |
 | B8 Selection (gate, freeze) | DRAFT | not started | — | team reviews B6–B8 together at the gate | — |
 | Joint test run (A and B) | to be drafted with B8 | not started | — | — | — |
 

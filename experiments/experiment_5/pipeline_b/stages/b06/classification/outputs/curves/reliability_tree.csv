@@ -1,0 +1,11 @@
+candidate_id,mean_predicted,observed_share
+clf.sel.log.tree_clf.max_depth=5.min_samples_leaf=100,0.066638421554785,0.08855704115297795
+clf.sel.log.tree_clf.max_depth=5.min_samples_leaf=100,0.07039337474119253,0.09299165210638712
+clf.sel.log.tree_clf.max_depth=5.min_samples_leaf=100,0.07300980918582274,0.08114464915719326
+clf.sel.log.tree_clf.max_depth=5.min_samples_leaf=100,0.08325064376128023,0.07091663523198793
+clf.sel.log.tree_clf.max_depth=5.min_samples_leaf=100,0.09965599334195167,0.14123112659698026
+clf.sel.log.tree_clf.max_depth=5.min_samples_leaf=100,0.1086289992654192,0.1181289070920457
+clf.sel.log.tree_clf.max_depth=5.min_samples_leaf=100,0.1120628395465934,0.13622047244094487
+clf.sel.log.tree_clf.max_depth=5.min_samples_leaf=100,0.13166970604940365,0.13908234330192545
+clf.sel.log.tree_clf.max_depth=5.min_samples_leaf=100,0.16991207217606447,0.2009123740733701
+clf.sel.log.tree_clf.max_depth=5.min_samples_leaf=100,0.311666367965632,0.3457963667089142

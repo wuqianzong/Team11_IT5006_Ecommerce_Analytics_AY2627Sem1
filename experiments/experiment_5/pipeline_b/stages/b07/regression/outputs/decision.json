@@ -1,0 +1,92 @@
+[
+  {
+    "question": "Keep the tuned linear/logistic over its plain s06 model?",
+    "rule": "one-SE rule on validation mae: the plain model stays unless the tuned one beats it by more than one SE (G-55)",
+    "candidates_compared": [
+      "reg.sel.log.linear",
+      "reg.sel.log.ridge.alpha=100"
+    ],
+    "chosen": "reg.sel.log.linear",
+    "evidence_files": [
+      "grid_results.csv",
+      "plain_vs_tuned.csv"
+    ],
+    "notes": "band 4.4259 to 5.6152; paired gain of the tuned model +0.0041 (paired SE 0.0270), better in 3 of 5 folds (description only)",
+    "ids": [
+      "B7.5"
+    ]
+  },
+  {
+    "question": "Keep the tuned single tree over its plain s06 model?",
+    "rule": "one-SE rule on validation mae: the plain model stays unless the tuned one beats it by more than one SE (G-55)",
+    "candidates_compared": [
+      "reg.sel.log.tree_reg.max_depth=5.min_samples_leaf=100",
+      "reg.sel.log.tree_reg.max_depth=4.min_samples_leaf=200"
+    ],
+    "chosen": "reg.sel.log.tree_reg.max_depth=5.min_samples_leaf=100",
+    "evidence_files": [
+      "grid_results.csv",
+      "plain_vs_tuned.csv"
+    ],
+    "notes": "band 4.4138 to 5.6926; paired gain of the tuned model -0.0309 (paired SE 0.0269), better in 1 of 5 folds (description only)",
+    "ids": [
+      "B7.5"
+    ]
+  },
+  {
+    "question": "Keep the tuned forest over its plain s06 model?",
+    "rule": "one-SE rule on validation mae: the plain model stays unless the tuned one beats it by more than one SE (G-55)",
+    "candidates_compared": [
+      "reg.sel.log.forest_reg.max_depth=10.max_features=sqrt.min_samples_leaf=50",
+      "reg.sel.log.forest_reg.max_depth=8.max_features=sqrt.min_samples_leaf=200"
+    ],
+    "chosen": "reg.sel.log.forest_reg.max_depth=10.max_features=sqrt.min_samples_leaf=50",
+    "evidence_files": [
+      "grid_results.csv",
+      "plain_vs_tuned.csv"
+    ],
+    "notes": "band 4.3171 to 5.6084; paired gain of the tuned model -0.1193 (paired SE 0.0260), better in 0 of 5 folds (description only)",
+    "ids": [
+      "B7.5"
+    ]
+  },
+  {
+    "question": "Best linear/logistic configuration in the grid",
+    "rule": "one-SE rule inside the grid (s01 1.7): simplest within one SE of the best mean; simpler = higher alpha, lower C, shallower depth, larger leaf, no class weight",
+    "candidates_compared": 9,
+    "chosen": "reg.sel.log.ridge.alpha=100",
+    "evidence_files": [
+      "grid_results.csv"
+    ],
+    "notes": "best mean: reg.sel.log.ridge.alpha=20",
+    "ids": [
+      "B7.5"
+    ]
+  },
+  {
+    "question": "Best single tree configuration in the grid",
+    "rule": "one-SE rule inside the grid (s01 1.7): simplest within one SE of the best mean; simpler = higher alpha, lower C, shallower depth, larger leaf, no class weight",
+    "candidates_compared": 36,
+    "chosen": "reg.sel.log.tree_reg.max_depth=4.min_samples_leaf=200",
+    "evidence_files": [
+      "grid_results.csv"
+    ],
+    "notes": "best mean: reg.sel.log.tree_reg.max_depth=8.min_samples_leaf=100",
+    "ids": [
+      "B7.5"
+    ]
+  },
+  {
+    "question": "Best forest configuration in the grid",
+    "rule": "one-SE rule inside the grid (s01 1.7): simplest within one SE of the best mean; simpler = higher alpha, lower C, shallower depth, larger leaf, no class weight",
+    "candidates_compared": 24,
+    "chosen": "reg.sel.log.forest_reg.max_depth=8.max_features=sqrt.min_samples_leaf=200",
+    "evidence_files": [
+      "grid_results.csv"
+    ],
+    "notes": "best mean: reg.sel.log.forest_reg.max_depth=18.max_features=sqrt.min_samples_leaf=20",
+    "ids": [
+      "B7.5"
+    ]
+  }
+]
