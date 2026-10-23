@@ -3,7 +3,7 @@
 # B8 stops at its gate until the b08 section for its task is complete (as G-39 for A).
 
 b05:
-  fold_minimum_deviation: null   # {accepted: true|false, observed: "...", rationale: "...", decided_by: name, date: YYYY-MM-DD} (B5 blueprint, open question)
+  fold_minimum_deviation: {accepted: true, observed: "to be filled from B5 fold_summary_B.csv", rationale: "keep A's five folds so the A-B comparison stays on identical periods and G-79's 5-fold mean is unchanged; fold 1 still has ample rows for the agreed models; safeguard: B5 stops below 5,000 training rows or (classification) 300 training detractors; folds 2-5 shown as description in B8 (B-G-01)", decided_by: "experiment lead (Wu Qianzong)", date: 2026-10-23}
 
 b08:
   regression:

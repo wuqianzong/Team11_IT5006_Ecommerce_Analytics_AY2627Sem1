@@ -20,7 +20,8 @@ test row is read.
 2. **Adoption comparison (G-79).** Per task: A's frozen recipe (e5-A-frozen) refitted per fold
    on A's training rows and scored on B's validation rows, against B's recommended model on the
    same rows. B is adopted for a task when its 5-fold mean beats A's, even by a thin margin.
-   Paired gains are shown beside it. Whatever the result, A and B both go to the joint test run.
+   Paired gains are shown beside it, and the same comparison on folds 2–5 is shown as
+   description only (B-G-01). Whatever the result, A and B both go to the joint test run.
 3. **Missed-dispatch rule (B-C10).** Orders whose shipping limit passed with no handover,
    counted on the development period: flagged orders, detractors among them, precision and the
    share of all detractors caught.
