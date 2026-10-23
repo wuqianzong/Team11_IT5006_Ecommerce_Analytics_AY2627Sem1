@@ -1,0 +1,180 @@
+{
+  "stage": "s08_selection",
+  "task": "regression",
+  "round": 1,
+  "base_commit": "6198c2c0e30a49848d0d86a8052e98eedc5ba025",
+  "run_id": "20261021T050311Z",
+  "outputs": "FRESH",
+  "dirty": true,
+  "ready": false,
+  "rows": [
+    {
+      "id": "8.1",
+      "title": "Finalists",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "metrics_long.csv",
+        "predictions.csv.gz",
+        "candidates.csv",
+        "figures/finalists.png",
+        "figures/finalists.csv",
+        "figures/finalists.json",
+        "counts.json"
+      ],
+      "evidence_hashes": {
+        "metrics_long.csv": "9c26d14c82a39d485dd1e87fcb5ff5f1833e2bd9d6cd3fa5b666da5a3a7b6179",
+        "predictions.csv.gz": "2710f3c10faacc1c09e2254dced19c98ee9d47a5481fda31e81e1aa4489544fd",
+        "candidates.csv": "1c37359dd1ed8a1447dec367c4bb57e5752b3eda2d03b5229069d070ad16df94",
+        "figures/finalists.png": "ab3a4ea06c26c9ab35d0e4920000ed0faaa93ea597aa682e6753c7944ee36f83",
+        "figures/finalists.csv": "4da38c93e4e6c5cf42e7ef8556a56d33f56d9639765a39f9883ce23eda129385",
+        "figures/finalists.json": "fd81219fb1cab4311af1b8b431f4e4f1bda2097f2f82c936b42b831db587017b",
+        "counts.json": "31e0032a10f64e0bd32a48faa8715a04279c890c063a494c49b8a352e70b0826"
+      },
+      "card": {
+        "done": "4 finalists refitted on the five s05 folds: dummy (s06 reference) 6.4946 \u00b1 0.6889 days; linear/logistic (s06 reference) 5.4701 \u00b1 0.6733 days; single tree (s06 reference) 5.4244 \u00b1 0.7147 days; forest (s07 carried (plain s06)) 5.4434 \u00b1 0.6826 days (validation mae, mean \u00b1 SE).",
+        "inputs": "s06 metrics and learning curves; s07 counts.json (carried model per family) and grid_results.csv; s05 folds.",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "finalists refitted on the same rows and folds reproduce their s06 fold scores",
+          "passed": true,
+          "detail": "4 of 4 reproduced",
+          "ids": [
+            "8.1"
+          ]
+        },
+        {
+          "name": "finalists: the dummy, plain linear/logistic and single tree references plus each family's s07 carried model",
+          "passed": true,
+          "detail": "4 finalists",
+          "ids": [
+            "8.1"
+          ]
+        },
+        {
+          "name": "no test row read: every row used was purchased before the test cutoff",
+          "passed": true,
+          "detail": "latest purchase 2018-05-24 18:56:59, cutoff 2018-05-27 12:30:34",
+          "ids": [
+            "8.1",
+            "8.2"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "8.2",
+      "title": "Choose the model",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "candidates.csv",
+        "ladder.csv",
+        "figures/finalists.png",
+        "figures/finalists.csv",
+        "figures/finalists.json",
+        "selected_spec.json",
+        "counts.json",
+        "selection_review_pack.md",
+        "decision.json"
+      ],
+      "evidence_hashes": {
+        "candidates.csv": "1c37359dd1ed8a1447dec367c4bb57e5752b3eda2d03b5229069d070ad16df94",
+        "ladder.csv": "e35f800f123ef228b81f4dd374a2f465848fed152e873b8f1f276fc4f6987da0",
+        "figures/finalists.png": "ab3a4ea06c26c9ab35d0e4920000ed0faaa93ea597aa682e6753c7944ee36f83",
+        "figures/finalists.csv": "4da38c93e4e6c5cf42e7ef8556a56d33f56d9639765a39f9883ce23eda129385",
+        "figures/finalists.json": "fd81219fb1cab4311af1b8b431f4e4f1bda2097f2f82c936b42b831db587017b",
+        "selected_spec.json": "7b9d955aabd4a155a50ec22dd270390ec6f4f7a833d1faede6f771349055c6ba",
+        "counts.json": "31e0032a10f64e0bd32a48faa8715a04279c890c063a494c49b8a352e70b0826",
+        "selection_review_pack.md": "7e95f16d1d8e23177b0c3fc2aac1fe15f6e9f83f5a76d5d87f113ea4cf427fc4",
+        "decision.json": "11687fd10a82ea46bb2253e7088930eb98faa699b73abd8b479ba6e1ff733687"
+      },
+      "card": {
+        "done": "One-SE recommendation: linear/logistic (best mean: single tree). Ladder basic to complex: linear/logistic kept over dummy (paired gain +1.0245 days, better in 5 of 5 folds); single tree not kept over linear/logistic (paired gain +0.0458 days, better in 3 of 5 folds); forest not kept over linear/logistic (paired gain +0.0267 days, better in 3 of 5 folds); ladder result linear/logistic. Grid edge of the recommendation: plain s06 model, not a grid configuration.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "The recommendation follows the pre-registered rule; the team confirms or overrides it at the gate (G-39), and an override is logged as a protocol deviation (G-44). Validation scores are selection scores, not generalisation estimates (G-10).",
+        "conclusion": "The run stops here. Under G-78 the team reviews s06, s07 and s08 together before the freeze, the final fit and the single test (8.5-8.8).",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "no test row read: every row used was purchased before the test cutoff",
+          "passed": true,
+          "detail": "latest purchase 2018-05-24 18:56:59, cutoff 2018-05-27 12:30:34",
+          "ids": [
+            "8.1",
+            "8.2"
+          ]
+        },
+        {
+          "name": "the run stops at the gate: no frozen_recipe.json, the test cohort is not read (G-39, G-78)",
+          "passed": true,
+          "detail": "team decisions in human_decisions.yaml s08: not yet made",
+          "ids": [
+            "8.2"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "8.5",
+      "title": "Freeze",
+      "status": "MISSING",
+      "checks": "\u2014",
+      "files": [],
+      "evidence_hashes": {},
+      "card": {},
+      "check_detail": [],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "8.6",
+      "title": "Final fit",
+      "status": "MISSING",
+      "checks": "\u2014",
+      "files": [],
+      "evidence_hashes": {},
+      "card": {},
+      "check_detail": [],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "8.7",
+      "title": "Test once",
+      "status": "MISSING",
+      "checks": "\u2014",
+      "files": [],
+      "evidence_hashes": {},
+      "card": {},
+      "check_detail": [],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "8.8",
+      "title": "Bundle",
+      "status": "MISSING",
+      "checks": "\u2014",
+      "files": [],
+      "evidence_hashes": {},
+      "card": {},
+      "check_detail": [],
+      "deviation": "",
+      "changed": true
+    }
+  ]
+}

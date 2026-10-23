@@ -1,0 +1,63 @@
+{
+  "task": "classification",
+  "recommended": "clf.sel.log.logistic",
+  "spec": {
+    "task": "classification",
+    "estimator": "logistic",
+    "numeric": [
+      "seller_prior_review_mean",
+      "total_freight",
+      "freight_ratio",
+      "total_volume_cm3",
+      "total_price",
+      "n_items",
+      "product_description_lenght",
+      "total_weight_g",
+      "n_products",
+      "n_sellers",
+      "purchase_month",
+      "distance_km_max",
+      "interstate_share",
+      "n_categories",
+      "payment_installments_max",
+      "product_photos_qty"
+    ],
+    "categorical": [
+      "customer_state",
+      "primary_category",
+      "primary_seller_state"
+    ],
+    "log_inputs": [
+      "total_freight",
+      "total_volume_cm3",
+      "total_price",
+      "product_description_lenght",
+      "total_weight_g",
+      "distance_km_max"
+    ],
+    "route_median": {
+      "column": "distance_km_max",
+      "keys": [
+        [
+          "customer_state",
+          "primary_seller_state"
+        ],
+        [
+          "customer_state"
+        ]
+      ]
+    },
+    "drop_duplicates": true,
+    "random_state": 42
+  },
+  "calibration": "sigmoid",
+  "threshold": {
+    "value": 0.16666666666666666,
+    "daily_alert_cap": 25,
+    "applies_to": "sigmoid-calibrated probability",
+    "oof_alerts_per_day": 23.860869565217392,
+    "oof_precision": 0.2523080660835763,
+    "oof_recall": 0.223405399591266,
+    "oof_cost": 42255.0
+  }
+}

@@ -1,0 +1,207 @@
+{
+  "stage": "s08_selection",
+  "task": "regression",
+  "round": 2,
+  "base_commit": "6198c2c0e30a49848d0d86a8052e98eedc5ba025",
+  "run_id": "20261023T082458Z",
+  "outputs": "FRESH",
+  "dirty": true,
+  "ready": false,
+  "rows": [
+    {
+      "id": "8.1",
+      "title": "Finalists",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "metrics_long.csv",
+        "predictions.csv.gz",
+        "candidates.csv",
+        "figures/finalists.png",
+        "figures/finalists.csv",
+        "figures/finalists.json",
+        "counts.json"
+      ],
+      "evidence_hashes": {
+        "metrics_long.csv": "9c26d14c82a39d485dd1e87fcb5ff5f1833e2bd9d6cd3fa5b666da5a3a7b6179",
+        "predictions.csv.gz": "2710f3c10faacc1c09e2254dced19c98ee9d47a5481fda31e81e1aa4489544fd",
+        "candidates.csv": "1c37359dd1ed8a1447dec367c4bb57e5752b3eda2d03b5229069d070ad16df94",
+        "figures/finalists.png": "ab3a4ea06c26c9ab35d0e4920000ed0faaa93ea597aa682e6753c7944ee36f83",
+        "figures/finalists.csv": "4da38c93e4e6c5cf42e7ef8556a56d33f56d9639765a39f9883ce23eda129385",
+        "figures/finalists.json": "fd81219fb1cab4311af1b8b431f4e4f1bda2097f2f82c936b42b831db587017b",
+        "counts.json": "08eff02b3719ac5f5d0ebd7a352543454667a5f25da1840f421abbb6a67739fa"
+      },
+      "card": {
+        "done": "4 finalists refitted on the five s05 folds: dummy (s06 reference) 6.4946 \u00b1 0.6889 days; linear/logistic (s06 reference) 5.4701 \u00b1 0.6733 days; single tree (s06 reference) 5.4244 \u00b1 0.7147 days; forest (s07 carried (plain s06)) 5.4434 \u00b1 0.6826 days (validation mae, mean \u00b1 SE).",
+        "inputs": "s06 metrics and learning curves; s07 counts.json (carried model per family) and grid_results.csv; s05 folds.",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "finalists refitted on the same rows and folds reproduce their s06 fold scores",
+          "passed": true,
+          "detail": "4 of 4 reproduced",
+          "ids": [
+            "8.1"
+          ]
+        },
+        {
+          "name": "finalists: the dummy, plain linear/logistic and single tree references plus each family's s07 carried model",
+          "passed": true,
+          "detail": "4 finalists",
+          "ids": [
+            "8.1"
+          ]
+        },
+        {
+          "name": "no test row read: every row used was purchased before the test cutoff",
+          "passed": true,
+          "detail": "latest purchase 2018-05-24 18:56:59, cutoff 2018-05-27 12:30:34",
+          "ids": [
+            "8.1",
+            "8.2"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "8.2",
+      "title": "Choose the model",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "candidates.csv",
+        "ladder.csv",
+        "figures/finalists.png",
+        "figures/finalists.csv",
+        "figures/finalists.json",
+        "selected_spec.json",
+        "counts.json",
+        "selection_review_pack.md",
+        "decision.json"
+      ],
+      "evidence_hashes": {
+        "candidates.csv": "1c37359dd1ed8a1447dec367c4bb57e5752b3eda2d03b5229069d070ad16df94",
+        "ladder.csv": "e35f800f123ef228b81f4dd374a2f465848fed152e873b8f1f276fc4f6987da0",
+        "figures/finalists.png": "ab3a4ea06c26c9ab35d0e4920000ed0faaa93ea597aa682e6753c7944ee36f83",
+        "figures/finalists.csv": "4da38c93e4e6c5cf42e7ef8556a56d33f56d9639765a39f9883ce23eda129385",
+        "figures/finalists.json": "fd81219fb1cab4311af1b8b431f4e4f1bda2097f2f82c936b42b831db587017b",
+        "selected_spec.json": "7b9d955aabd4a155a50ec22dd270390ec6f4f7a833d1faede6f771349055c6ba",
+        "counts.json": "08eff02b3719ac5f5d0ebd7a352543454667a5f25da1840f421abbb6a67739fa",
+        "selection_review_pack.md": "dfa212ef819bca79105606c3bfdeaa9c42677c5d0889386dd897869fbc9ba601",
+        "decision.json": "86811d3dd1729876034989474f3c2bdcd58d17139b2a4b1fb40013fefefb5985"
+      },
+      "card": {
+        "done": "One-SE recommendation: linear/logistic (best mean: single tree). Ladder basic to complex: linear/logistic kept over dummy (paired gain +1.0245 days, better in 5 of 5 folds); single tree not kept over linear/logistic (paired gain +0.0458 days, better in 3 of 5 folds); forest not kept over linear/logistic (paired gain +0.0267 days, better in 3 of 5 folds); ladder result linear/logistic. Grid edge of the recommendation: plain s06 model, not a grid configuration.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "The recommendation follows the pre-registered rule; the team confirms or overrides it at the gate (G-39), and an override is logged as a protocol deviation (G-44). Validation scores are selection scores, not generalisation estimates (G-10).",
+        "conclusion": "The team confirmed the recommendation at the combined review of s06-s08 (human_decisions.yaml s08, 2026-10-23).",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "no test row read: every row used was purchased before the test cutoff",
+          "passed": true,
+          "detail": "latest purchase 2018-05-24 18:56:59, cutoff 2018-05-27 12:30:34",
+          "ids": [
+            "8.1",
+            "8.2"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "8.5",
+      "title": "Freeze",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "frozen_recipe.json",
+        "counts.json",
+        "selection_review_pack.md",
+        "decision.json"
+      ],
+      "evidence_hashes": {
+        "frozen_recipe.json": "716fbd42f520546a09a00b883ec7a530cacf0e702672bc39ce71d24d4fc631e0",
+        "counts.json": "08eff02b3719ac5f5d0ebd7a352543454667a5f25da1840f421abbb6a67739fa",
+        "selection_review_pack.md": "dfa212ef819bca79105606c3bfdeaa9c42677c5d0889386dd897869fbc9ba601",
+        "decision.json": "86811d3dd1729876034989474f3c2bdcd58d17139b2a4b1fb40013fefefb5985"
+      },
+      "card": {
+        "done": "Recipe frozen for reg.sel.log.linear: 14 numeric and 4 categorical features, estimator linear, calibration none; sha256 df4beee32d7b6bef5736e21e53aad6b1caea3233a066c222e46708aca38899d2. Written from development rows only; the test cohort is not loaded.",
+        "inputs": "spec/human_decisions.yaml s08 (team decisions, 2026-10-23); this run's finalists, calibration and threshold table.",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "Pipeline A stops after the freeze. The final fit, the single test read and the bundle (8.6-8.8) run together with Pipeline B (lead decision 2026-10-23; draft G-79).",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "frozen recipe follows the team decisions: chosen model is a finalist and the recommendation",
+          "passed": true,
+          "detail": "reg.sel.log.linear",
+          "ids": [
+            "8.5"
+          ]
+        },
+        {
+          "name": "frozen before any test row is read: the run uses development rows only, all purchased before the cutoff",
+          "passed": true,
+          "detail": "sha256 df4beee32d7b6bef5736e21e53aad6b1caea3233a066c222e46708aca38899d2",
+          "ids": [
+            "8.5"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "8.6",
+      "title": "Final fit",
+      "status": "MISSING",
+      "checks": "\u2014",
+      "files": [],
+      "evidence_hashes": {},
+      "card": {},
+      "check_detail": [],
+      "deviation": "",
+      "changed": false
+    },
+    {
+      "id": "8.7",
+      "title": "Test once",
+      "status": "MISSING",
+      "checks": "\u2014",
+      "files": [],
+      "evidence_hashes": {},
+      "card": {},
+      "check_detail": [],
+      "deviation": "",
+      "changed": false
+    },
+    {
+      "id": "8.8",
+      "title": "Bundle",
+      "status": "MISSING",
+      "checks": "\u2014",
+      "files": [],
+      "evidence_hashes": {},
+      "card": {},
+      "check_detail": [],
+      "deviation": "",
+      "changed": false
+    }
+  ]
+}

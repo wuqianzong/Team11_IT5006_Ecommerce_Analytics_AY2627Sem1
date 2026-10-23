@@ -1,0 +1,78 @@
+[
+  {
+    "question": "Model recommended at the s08 gate",
+    "rule": "one-SE rule over the finalists on validation ap (s01 1.7, G-33)",
+    "candidates_compared": [
+      "clf.sel.log.dummy_prior",
+      "clf.sel.log.logistic",
+      "clf.sel.log.tree_clf.max_depth=5.min_samples_leaf=100",
+      "clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50"
+    ],
+    "chosen": "clf.sel.log.logistic",
+    "evidence_files": [
+      "candidates.csv",
+      "metrics_long.csv",
+      "ladder.csv"
+    ],
+    "notes": "best mean: clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50; band 0.2277 to 0.2811; ladder result (basic to complex, each step kept only beyond one SE): clf.sel.log.logistic. The team confirms or overrides in human_decisions.yaml s08.model (G-39); an override is a protocol deviation (G-44).",
+    "ids": [
+      "8.2"
+    ]
+  },
+  {
+    "question": "Calibrate the recommended model?",
+    "rule": "keep sigmoid only if mean Brier improves and mean AP stays within one fold SE of the raw model (G-16, G-45, G-52)",
+    "candidates_compared": [
+      "raw",
+      "sigmoid"
+    ],
+    "chosen": "sigmoid",
+    "evidence_files": [
+      "calibration_folds.csv"
+    ],
+    "notes": "mean Brier raw 0.12426, sigmoid 0.12391; mean AP raw 0.2435, sigmoid 0.2317 (one fold SE 0.0314)",
+    "ids": [
+      "8.3"
+    ]
+  },
+  {
+    "question": "Alert threshold",
+    "rule": "hard stop: the team picks from the trade-off table (G-39); default recommendation: minimise the illustrative cost subject to any daily alert cap (G-56)",
+    "candidates_compared": [
+      "no alerts",
+      "0.50",
+      "1/6 (cost cutoff)",
+      "empirical minimum of 5*FN + FP"
+    ],
+    "chosen": "0.1667 (daily alert cap 25)",
+    "evidence_files": [
+      "threshold_table.csv",
+      "curves/threshold_curve.csv",
+      "human_decisions.yaml"
+    ],
+    "notes": "empirical cost minimum at 0.1371; validation days 345; team decision Henry; experiment lead (Wu Qianzong), 2026-10-23: 1/6, the theoretical cost cutoff; the lowest illustrative cost within the 25 alerts/day cap (G-56): 23.9 alerts/day on the out-of-fold probabilities (threshold_table.csv); the empirical minimum 0.137 needs 53.5/day",
+    "ids": [
+      "8.4"
+    ]
+  },
+  {
+    "question": "Model chosen at the s08 gate",
+    "rule": "team decision in human_decisions.yaml s08.model (G-39)",
+    "candidates_compared": [
+      "clf.sel.log.dummy_prior",
+      "clf.sel.log.logistic",
+      "clf.sel.log.tree_clf.max_depth=5.min_samples_leaf=100",
+      "clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50"
+    ],
+    "chosen": "clf.sel.log.logistic",
+    "evidence_files": [
+      "human_decisions.yaml",
+      "candidates.csv"
+    ],
+    "notes": "Henry; experiment lead (Wu Qianzong), 2026-10-23: one-SE recommendation over the finalists (s01 1.7, G-33); the agreed rule is kept and s06 is not reopened; sigmoid calibration kept under the agreed rule (8.3)",
+    "ids": [
+      "8.2",
+      "8.5"
+    ]
+  }
+]

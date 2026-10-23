@@ -1,6 +1,6 @@
 # Implementation reviews
 
-Stages are built and reviewed one at a time, in pipeline order, s01 to s10. A stage starts only when every upstream stage is ACCEPTED. The technical foundation (shared code, run gate, guards, tests) is built first and is not reviewed as a stage; it changes whenever a stage review needs it, and every change is logged (G-60). The binding rules are in README §9.1 (CR-024, G-59). s01, s02 and s03 are ACCEPTED (s03 with the classification candidate screens, CR-037 to CR-039; s01–s03 corrected after the external audit, CR-042; data from 2017-01-01, CR-043); s04 and s05 were reviewed together and are ACCEPTED, s04 first (round 3 each, G-74). s06, s07 and s08 are each accepted by the experiment lead after a brief review, and the team reviews the three together at the s08 gate, before anything reads the test cohort (G-78); s06 is ACCEPTED by the lead and s07 is ACCEPTED by the lead and s08 is next.
+Stages are built and reviewed one at a time, in pipeline order, s01 to s10. A stage starts only when every upstream stage is ACCEPTED. The technical foundation (shared code, run gate, guards, tests) is built first and is not reviewed as a stage; it changes whenever a stage review needs it, and every change is logged (G-60). The binding rules are in README §9.1 (CR-024, G-59). s01, s02 and s03 are ACCEPTED (s03 with the classification candidate screens, CR-037 to CR-039; s01–s03 corrected after the external audit, CR-042; data from 2017-01-01, CR-043); s04 and s05 were reviewed together and are ACCEPTED, s04 first (round 3 each, G-74). s06, s07 and s08 are each accepted by the experiment lead after a brief review, and the team reviews the three together at the s08 gate, before anything reads the test cohort (G-78); s06 is ACCEPTED by the lead and s07 is ACCEPTED by the lead and s08 is frozen at 8.5 after the team's combined review (round 2) and waits for Pipeline B.
 
 ## Progress
 
@@ -15,7 +15,7 @@ This table mirrors the build tags on the Pipeline v2 chart and the progress tabl
 | s05 Partition | ACCEPTED | 3 | 3 (tag e5-s05-accepted) | s05 Partition |
 | s06 Training&#32; | ACCEPTED (lead, G-78) | 3 | 3 (tag e5-s06-accepted) | s06 Training |
 | s07 Tuning | ACCEPTED (lead, G-78) | 2 | 2 (tag e5-s07-accepted) | s07 Tuning |
-| s08 Selection | NOT STARTED | — | — | — |
+| s08 Selection | FROZEN (8.5), accepted by the lead; waits for Pipeline B | 2 | 2 for 8.1–8.5 (tag e5-A-frozen) | s08 Selection |
 | s09 Conclusion | NOT STARTED | — | — | — |
 | s10 Release | NOT STARTED | — | — | — |
 

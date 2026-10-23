@@ -50,6 +50,9 @@ Bounded grids on the same folds: Ridge alpha; tree depth and leaf; forest depth 
 - Accepted round: 2 - commit: the "s07 accepted" commit, tag `e5-s07-accepted` (code 7eb8197) - run ID: 20261021T042137Z (clean tree, dirty false; evidence identical to review/round_2) - approved by: experiment lead (Wu Qianzong) under G-78 (team review of s06-s08 together at the s08 gate) - date: 2026-10-21
 - Decisions: one-SE choice inside each grid and against the plain s06 model (G-33, G-55) kept as agreed; the plain s06 model is carried in every family; paired gains and the best-mean grid point are description only; a paired-SE rule is left for the team at the combined s08 review. Class weight in the simplicity order: none before balanced, as built.
 
+### Changes after acceptance
+- 2026-10-23, CR-053/CR-055 (s08 build and freeze): rerun 20261023T084131Z on a clean tree (commit a7329b2, dirty false) after the foundation change (e5lib/selection.py); every value output byte-identical. Status stays ACCEPTED. The combined team review of s06-s08 (G-78) confirmed s07 without change: the agreed one-SE rule is kept.
+
 ## Deviations from blueprint
 None.
 

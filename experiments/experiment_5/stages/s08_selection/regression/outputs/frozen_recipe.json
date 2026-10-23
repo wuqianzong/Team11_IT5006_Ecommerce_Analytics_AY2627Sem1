@@ -1,0 +1,72 @@
+{
+  "pipeline": "A",
+  "step": "8.5",
+  "task": "regression",
+  "model": "reg.sel.log.linear",
+  "estimator": "linear",
+  "params": {},
+  "features": {
+    "numeric": [
+      "distance_km_max",
+      "interstate_share",
+      "total_freight",
+      "freight_ratio",
+      "total_price",
+      "total_weight_g",
+      "total_volume_cm3",
+      "n_sellers",
+      "payment_installments_max",
+      "purchase_dayofweek",
+      "n_products",
+      "purchase_month",
+      "n_items",
+      "n_categories"
+    ],
+    "categorical": [
+      "customer_state",
+      "primary_category",
+      "primary_seller_state",
+      "primary_payment_type"
+    ]
+  },
+  "transforms": {
+    "log_inputs": [
+      "distance_km_max",
+      "total_freight",
+      "total_price",
+      "total_weight_g",
+      "total_volume_cm3"
+    ],
+    "route_median": {
+      "column": "distance_km_max",
+      "keys": [
+        [
+          "customer_state",
+          "primary_seller_state"
+        ],
+        [
+          "customer_state"
+        ]
+      ]
+    },
+    "drop_duplicates": true,
+    "log_target": true
+  },
+  "calibration": null,
+  "threshold": null,
+  "random_state": 42,
+  "final_fit": "all development orders whose labels were observable before the test cutoff (8.6)",
+  "test_cutoff": "2018-05-27 12:30:34",
+  "test_read": false,
+  "decisions": {
+    "model": {
+      "chosen": "reg.sel.log.linear",
+      "recommended": "reg.sel.log.linear",
+      "rationale": "one-SE recommendation over the finalists (s01 1.7, G-33); the agreed rule is kept and s06 is not reopened",
+      "grid_edge_action": "none",
+      "decided_by": "Henry; experiment lead (Wu Qianzong)",
+      "date": "2026-10-23"
+    }
+  },
+  "sha256": "df4beee32d7b6bef5736e21e53aad6b1caea3233a066c222e46708aca38899d2"
+}

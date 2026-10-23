@@ -1,0 +1,88 @@
+{
+  "pipeline": "A",
+  "step": "8.5",
+  "task": "classification",
+  "model": "clf.sel.log.logistic",
+  "estimator": "logistic",
+  "params": {},
+  "features": {
+    "numeric": [
+      "seller_prior_review_mean",
+      "total_freight",
+      "freight_ratio",
+      "total_volume_cm3",
+      "total_price",
+      "n_items",
+      "product_description_lenght",
+      "total_weight_g",
+      "n_products",
+      "n_sellers",
+      "purchase_month",
+      "distance_km_max",
+      "interstate_share",
+      "n_categories",
+      "payment_installments_max",
+      "product_photos_qty"
+    ],
+    "categorical": [
+      "customer_state",
+      "primary_category",
+      "primary_seller_state"
+    ]
+  },
+  "transforms": {
+    "log_inputs": [
+      "total_freight",
+      "total_volume_cm3",
+      "total_price",
+      "product_description_lenght",
+      "total_weight_g",
+      "distance_km_max"
+    ],
+    "route_median": {
+      "column": "distance_km_max",
+      "keys": [
+        [
+          "customer_state",
+          "primary_seller_state"
+        ],
+        [
+          "customer_state"
+        ]
+      ]
+    },
+    "drop_duplicates": true
+  },
+  "calibration": "sigmoid",
+  "threshold": {
+    "value": 0.16666666666666666,
+    "daily_alert_cap": 25,
+    "applies_to": "sigmoid-calibrated probability",
+    "oof_alerts_per_day": 23.860869565217392,
+    "oof_precision": 0.2523080660835763,
+    "oof_recall": 0.223405399591266,
+    "oof_cost": 42255.0
+  },
+  "random_state": 42,
+  "final_fit": "all development orders whose labels were observable before the test cutoff (8.6)",
+  "test_cutoff": "2018-05-26 12:16:34",
+  "test_read": false,
+  "decisions": {
+    "model": {
+      "chosen": "clf.sel.log.logistic",
+      "recommended": "clf.sel.log.logistic",
+      "rationale": "one-SE recommendation over the finalists (s01 1.7, G-33); the agreed rule is kept and s06 is not reopened; sigmoid calibration kept under the agreed rule (8.3)",
+      "grid_edge_action": "none",
+      "decided_by": "Henry; experiment lead (Wu Qianzong)",
+      "date": "2026-10-23"
+    },
+    "threshold": {
+      "value": 0.16666666666666666,
+      "daily_alert_cap": 25,
+      "rationale": "1/6, the theoretical cost cutoff; the lowest illustrative cost within the 25 alerts/day cap (G-56): 23.9 alerts/day on the out-of-fold probabilities (threshold_table.csv); the empirical minimum 0.137 needs 53.5/day",
+      "decided_by": "Henry; experiment lead (Wu Qianzong)",
+      "date": "2026-10-23"
+    }
+  },
+  "sha256": "8de9d4f13159db2d77716df7070f745bea118390cdb3a624cede3ab19d9277d8"
+}

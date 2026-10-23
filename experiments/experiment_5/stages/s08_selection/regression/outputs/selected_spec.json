@@ -1,0 +1,53 @@
+{
+  "task": "regression",
+  "recommended": "reg.sel.log.linear",
+  "spec": {
+    "task": "regression",
+    "estimator": "linear",
+    "numeric": [
+      "distance_km_max",
+      "interstate_share",
+      "total_freight",
+      "freight_ratio",
+      "total_price",
+      "total_weight_g",
+      "total_volume_cm3",
+      "n_sellers",
+      "payment_installments_max",
+      "purchase_dayofweek",
+      "n_products",
+      "purchase_month",
+      "n_items",
+      "n_categories"
+    ],
+    "categorical": [
+      "customer_state",
+      "primary_category",
+      "primary_seller_state",
+      "primary_payment_type"
+    ],
+    "log_inputs": [
+      "distance_km_max",
+      "total_freight",
+      "total_price",
+      "total_weight_g",
+      "total_volume_cm3"
+    ],
+    "route_median": {
+      "column": "distance_km_max",
+      "keys": [
+        [
+          "customer_state",
+          "primary_seller_state"
+        ],
+        [
+          "customer_state"
+        ]
+      ]
+    },
+    "drop_duplicates": true,
+    "log_target": true,
+    "random_state": 42
+  },
+  "calibration": null
+}

@@ -1,0 +1,260 @@
+{
+  "node": "s08_selection/classification",
+  "files": {
+    "metrics_long.csv": {
+      "ids": [
+        "8.1"
+      ],
+      "kind": "table"
+    },
+    "predictions.csv.gz": {
+      "ids": [
+        "8.1",
+        "8.3"
+      ],
+      "kind": "table"
+    },
+    "candidates.csv": {
+      "ids": [
+        "8.1",
+        "8.2"
+      ],
+      "kind": "table"
+    },
+    "ladder.csv": {
+      "ids": [
+        "8.2"
+      ],
+      "kind": "table"
+    },
+    "figures/finalists.png": {
+      "ids": [
+        "8.1",
+        "8.2"
+      ],
+      "kind": "figure"
+    },
+    "figures/finalists.csv": {
+      "ids": [
+        "8.1",
+        "8.2"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/finalists.json": {
+      "ids": [
+        "8.1",
+        "8.2"
+      ],
+      "kind": "figure_meta"
+    },
+    "calibration_folds.csv": {
+      "ids": [
+        "8.3"
+      ],
+      "kind": "table"
+    },
+    "curves/reliability_raw_vs_sigmoid.csv": {
+      "ids": [
+        "8.3"
+      ],
+      "kind": "curve"
+    },
+    "figures/calibration.png": {
+      "ids": [
+        "8.3"
+      ],
+      "kind": "figure"
+    },
+    "figures/calibration.csv": {
+      "ids": [
+        "8.3"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/calibration.json": {
+      "ids": [
+        "8.3"
+      ],
+      "kind": "figure_meta"
+    },
+    "threshold_table.csv": {
+      "ids": [
+        "8.4"
+      ],
+      "kind": "table"
+    },
+    "curves/threshold_curve.csv": {
+      "ids": [
+        "8.4"
+      ],
+      "kind": "curve"
+    },
+    "figures/threshold_tradeoff.png": {
+      "ids": [
+        "8.4"
+      ],
+      "kind": "figure"
+    },
+    "figures/threshold_tradeoff.csv": {
+      "ids": [
+        "8.4"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/threshold_tradeoff.json": {
+      "ids": [
+        "8.4"
+      ],
+      "kind": "figure_meta"
+    },
+    "selected_spec.json": {
+      "ids": [
+        "8.2",
+        "8.3"
+      ],
+      "kind": "json"
+    },
+    "frozen_recipe.json": {
+      "ids": [
+        "8.5"
+      ],
+      "kind": "json"
+    },
+    "counts.json": {
+      "ids": [
+        "8.1",
+        "8.2",
+        "8.5"
+      ],
+      "kind": "json"
+    },
+    "selection_review_pack.md": {
+      "ids": [
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "kind": "text"
+    },
+    "decision.json": {
+      "ids": [
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "kind": "json"
+    }
+  },
+  "checks": [
+    {
+      "name": "finalists refitted on the same rows and folds reproduce their s06 fold scores",
+      "passed": true,
+      "detail": "4 of 4 reproduced",
+      "ids": [
+        "8.1"
+      ]
+    },
+    {
+      "name": "finalists: the dummy, plain linear/logistic and single tree references plus each family's s07 carried model",
+      "passed": true,
+      "detail": "4 finalists",
+      "ids": [
+        "8.1"
+      ]
+    },
+    {
+      "name": "no test row read: every row used was purchased before the test cutoff",
+      "passed": true,
+      "detail": "latest purchase 2018-05-23 11:29:51, cutoff 2018-05-26 12:16:34",
+      "ids": [
+        "8.1",
+        "8.2"
+      ]
+    },
+    {
+      "name": "frozen recipe follows the team decisions: chosen model is a finalist and the recommendation",
+      "passed": true,
+      "detail": "clf.sel.log.logistic",
+      "ids": [
+        "8.5"
+      ]
+    },
+    {
+      "name": "the decided threshold keeps the out-of-fold alerts within the daily cap",
+      "passed": true,
+      "detail": "23.9 alerts/day at 0.1667, cap 25",
+      "ids": [
+        "8.4",
+        "8.5"
+      ]
+    },
+    {
+      "name": "frozen before any test row is read: the run uses development rows only, all purchased before the cutoff",
+      "passed": true,
+      "detail": "sha256 8de9d4f13159db2d77716df7070f745bea118390cdb3a624cede3ab19d9277d8",
+      "ids": [
+        "8.5"
+      ]
+    },
+    {
+      "name": "calibration inner splits are time-ordered: every training fold sorted by purchase time",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "8.3"
+      ]
+    }
+  ],
+  "deviations": {},
+  "cards": {
+    "8.1": {
+      "done": "4 finalists refitted on the five s05 folds: dummy (s06 reference) 0.1482 \u00b1 0.0198; linear/logistic (s06 reference) 0.2435 \u00b1 0.0314; single tree (s06 reference) 0.2158 \u00b1 0.0233; forest (s07 carried (plain s06)) 0.2544 \u00b1 0.0267 (validation ap, mean \u00b1 SE).",
+      "inputs": "s06 metrics and learning curves; s07 counts.json (carried model per family) and grid_results.csv; s05 folds.",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "8.2": {
+      "done": "One-SE recommendation: linear/logistic (best mean: forest). Ladder basic to complex: linear/logistic kept over dummy (paired gain +0.0953, better in 5 of 5 folds); single tree not kept over linear/logistic (paired gain -0.0277, better in 0 of 5 folds); forest not kept over linear/logistic (paired gain +0.0109, better in 4 of 5 folds); ladder result linear/logistic. Grid edge of the recommendation: plain s06 model, not a grid configuration.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "The recommendation follows the pre-registered rule; the team confirms or overrides it at the gate (G-39), and an override is logged as a protocol deviation (G-44). Validation scores are selection scores, not generalisation estimates (G-10).",
+      "conclusion": "The team confirmed the recommendation at the combined review of s06-s08 (human_decisions.yaml s08, 2026-10-23).",
+      "label": "observation"
+    },
+    "8.3": {
+      "done": "Raw vs sigmoid (CalibratedClassifierCV, time-ordered inner splits) on the recommended model, per fold: mean Brier raw 0.12426 vs sigmoid 0.12391; mean AP raw 0.2435 vs sigmoid 0.2317 (one fold SE 0.0314). Kept: sigmoid.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "8.4": {
+      "done": "Threshold candidates on the out-of-fold probabilities of the calibrated recommended model (62,023 validation rows, 345 days): 0.50 (t=0.5000): 0.3 alerts/day, precision 0.537, recall 0.005, cost 46,274; 1/6 (cost cutoff) (t=0.1667): 23.9 alerts/day, precision 0.252, recall 0.223, cost 42,255; empirical minimum of 5*FN + FP (t=0.1371): 53.5 alerts/day, precision 0.218, recall 0.432, cost 40,839; no alerts: cost 46,485.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "Under the 5:1 cost an alert pays off while the extra false alarms per extra detractor caught stay at or below 5 (Elkan 2001). The threshold is a business choice: the team picks it at the hard stop, with an optional daily alert cap (G-39, G-56).",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "8.5": {
+      "done": "Recipe frozen for clf.sel.log.logistic: 16 numeric and 3 categorical features, estimator logistic, calibration sigmoid, threshold 0.1667 on the sigmoid-calibrated probability (daily alert cap 25; out-of-fold 23.9 alerts/day); sha256 8de9d4f13159db2d77716df7070f745bea118390cdb3a624cede3ab19d9277d8. Written from development rows only; the test cohort is not loaded.",
+      "inputs": "spec/human_decisions.yaml s08 (team decisions, 2026-10-23); this run's finalists, calibration and threshold table.",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "Pipeline A stops after the freeze. The final fit, the single test read and the bundle (8.6-8.8) run together with Pipeline B (lead decision 2026-10-23; draft G-79).",
+      "label": "observation"
+    }
+  },
+  "checks_failed": []
+}

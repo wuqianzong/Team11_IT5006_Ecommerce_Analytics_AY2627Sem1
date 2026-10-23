@@ -1,0 +1,265 @@
+{
+  "stage": "s08_selection",
+  "task": "classification",
+  "round": 1,
+  "base_commit": "6198c2c0e30a49848d0d86a8052e98eedc5ba025",
+  "run_id": "20261021T050340Z",
+  "outputs": "FRESH",
+  "dirty": true,
+  "ready": false,
+  "rows": [
+    {
+      "id": "8.1",
+      "title": "Finalists",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "metrics_long.csv",
+        "predictions.csv.gz",
+        "candidates.csv",
+        "figures/finalists.png",
+        "figures/finalists.csv",
+        "figures/finalists.json",
+        "counts.json"
+      ],
+      "evidence_hashes": {
+        "metrics_long.csv": "b87edaa8808e1fc50b57c680ad165a76d0e746156b96098f88b827bfe0cbde1c",
+        "predictions.csv.gz": "031d229907e87b57795a832e2fdc91ba90afcfc497e1b2e3fcff714725090f62",
+        "candidates.csv": "8f5b442a71ee8b3f7dabda9e3053a69f3bcababb67712598a7b4c86d299a3d5c",
+        "figures/finalists.png": "544c8bdbe4f6623b7ad856bdd15f60a3dd1c1c05886e5a3a3c7545e07374e6a7",
+        "figures/finalists.csv": "74bdf9718ef774c1867803c27c400098ccfe4d8f436c3383e436554ce8459b68",
+        "figures/finalists.json": "fd81219fb1cab4311af1b8b431f4e4f1bda2097f2f82c936b42b831db587017b",
+        "counts.json": "3df98453eea7c28a12a094cd7e9e8593e5cc9a3a87910767902df578c817f14e"
+      },
+      "card": {
+        "done": "4 finalists refitted on the five s05 folds: dummy (s06 reference) 0.1482 \u00b1 0.0198; linear/logistic (s06 reference) 0.2435 \u00b1 0.0314; single tree (s06 reference) 0.2158 \u00b1 0.0233; forest (s07 carried (plain s06)) 0.2544 \u00b1 0.0267 (validation ap, mean \u00b1 SE).",
+        "inputs": "s06 metrics and learning curves; s07 counts.json (carried model per family) and grid_results.csv; s05 folds.",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "finalists refitted on the same rows and folds reproduce their s06 fold scores",
+          "passed": true,
+          "detail": "4 of 4 reproduced",
+          "ids": [
+            "8.1"
+          ]
+        },
+        {
+          "name": "finalists: the dummy, plain linear/logistic and single tree references plus each family's s07 carried model",
+          "passed": true,
+          "detail": "4 finalists",
+          "ids": [
+            "8.1"
+          ]
+        },
+        {
+          "name": "no test row read: every row used was purchased before the test cutoff",
+          "passed": true,
+          "detail": "latest purchase 2018-05-23 11:29:51, cutoff 2018-05-26 12:16:34",
+          "ids": [
+            "8.1",
+            "8.2"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "8.2",
+      "title": "Choose the model",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "candidates.csv",
+        "ladder.csv",
+        "figures/finalists.png",
+        "figures/finalists.csv",
+        "figures/finalists.json",
+        "selected_spec.json",
+        "counts.json",
+        "selection_review_pack.md",
+        "decision.json"
+      ],
+      "evidence_hashes": {
+        "candidates.csv": "8f5b442a71ee8b3f7dabda9e3053a69f3bcababb67712598a7b4c86d299a3d5c",
+        "ladder.csv": "73e61c5d50e41e296e3a0fad30e8019643e98a91209d4ef75ea1a15fa336ca03",
+        "figures/finalists.png": "544c8bdbe4f6623b7ad856bdd15f60a3dd1c1c05886e5a3a3c7545e07374e6a7",
+        "figures/finalists.csv": "74bdf9718ef774c1867803c27c400098ccfe4d8f436c3383e436554ce8459b68",
+        "figures/finalists.json": "fd81219fb1cab4311af1b8b431f4e4f1bda2097f2f82c936b42b831db587017b",
+        "selected_spec.json": "0fc6cc89286a5b083d75071a0e154f056dc621e6e9945ba732b992906e72fdfe",
+        "counts.json": "3df98453eea7c28a12a094cd7e9e8593e5cc9a3a87910767902df578c817f14e",
+        "selection_review_pack.md": "308e382c8c4d898fa0db57288951cf077faedabc2cf6ebba1497c8832e994ceb",
+        "decision.json": "80257c06cbbc70048e35da8c5763901730a2fe7eb56b8eb58206ec8539298489"
+      },
+      "card": {
+        "done": "One-SE recommendation: linear/logistic (best mean: forest). Ladder basic to complex: linear/logistic kept over dummy (paired gain +0.0953, better in 5 of 5 folds); single tree not kept over linear/logistic (paired gain -0.0277, better in 0 of 5 folds); forest not kept over linear/logistic (paired gain +0.0109, better in 4 of 5 folds); ladder result linear/logistic. Grid edge of the recommendation: plain s06 model, not a grid configuration.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "The recommendation follows the pre-registered rule; the team confirms or overrides it at the gate (G-39), and an override is logged as a protocol deviation (G-44). Validation scores are selection scores, not generalisation estimates (G-10).",
+        "conclusion": "The run stops here. Under G-78 the team reviews s06, s07 and s08 together before the freeze, the final fit and the single test (8.5-8.8).",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "no test row read: every row used was purchased before the test cutoff",
+          "passed": true,
+          "detail": "latest purchase 2018-05-23 11:29:51, cutoff 2018-05-26 12:16:34",
+          "ids": [
+            "8.1",
+            "8.2"
+          ]
+        },
+        {
+          "name": "the run stops at the gate: no frozen_recipe.json, the test cohort is not read (G-39, G-78)",
+          "passed": true,
+          "detail": "team decisions in human_decisions.yaml s08: not yet made",
+          "ids": [
+            "8.2"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "8.3",
+      "title": "Calibration",
+      "status": "IMPLEMENTED",
+      "checks": "PASS",
+      "files": [
+        "predictions.csv.gz",
+        "calibration_folds.csv",
+        "curves/reliability_raw_vs_sigmoid.csv",
+        "figures/calibration.png",
+        "figures/calibration.csv",
+        "figures/calibration.json",
+        "selected_spec.json",
+        "selection_review_pack.md",
+        "decision.json"
+      ],
+      "evidence_hashes": {
+        "predictions.csv.gz": "031d229907e87b57795a832e2fdc91ba90afcfc497e1b2e3fcff714725090f62",
+        "calibration_folds.csv": "b344810ed2c121e4304d4143d3b64df2af86918cefad35824f768d01a70a7d50",
+        "curves/reliability_raw_vs_sigmoid.csv": "0f922ebc982731bc9a7927c9463041875053e47a4e44e75c772af50831176024",
+        "figures/calibration.png": "990a093d320f7513c691b0c288acc28939c5a44a828a5cb69024c7bc080f2162",
+        "figures/calibration.csv": "0f922ebc982731bc9a7927c9463041875053e47a4e44e75c772af50831176024",
+        "figures/calibration.json": "3fa4ed90aa7ba0ca09b293c80131dbb5c6f20591855f93b204e72be9437091bf",
+        "selected_spec.json": "0fc6cc89286a5b083d75071a0e154f056dc621e6e9945ba732b992906e72fdfe",
+        "selection_review_pack.md": "308e382c8c4d898fa0db57288951cf077faedabc2cf6ebba1497c8832e994ceb",
+        "decision.json": "80257c06cbbc70048e35da8c5763901730a2fe7eb56b8eb58206ec8539298489"
+      },
+      "card": {
+        "done": "Raw vs sigmoid (CalibratedClassifierCV, time-ordered inner splits) on the recommended model, per fold: mean Brier raw 0.12426 vs sigmoid 0.12391; mean AP raw 0.2435 vs sigmoid 0.2317 (one fold SE 0.0314). Kept: sigmoid.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [
+        {
+          "name": "calibration inner splits are time-ordered: every training fold sorted by purchase time",
+          "passed": true,
+          "detail": "",
+          "ids": [
+            "8.3"
+          ]
+        }
+      ],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "8.4",
+      "title": "Threshold",
+      "status": "IMPLEMENTED",
+      "checks": "\u2014",
+      "files": [
+        "threshold_table.csv",
+        "curves/threshold_curve.csv",
+        "figures/threshold_tradeoff.png",
+        "figures/threshold_tradeoff.csv",
+        "figures/threshold_tradeoff.json",
+        "selection_review_pack.md",
+        "decision.json"
+      ],
+      "evidence_hashes": {
+        "threshold_table.csv": "4f03ce769ac411a92c5e5e5a0a80673060dc85d6fcccecd1668fdfb4d0f9798f",
+        "curves/threshold_curve.csv": "cbe67cd5f3fffa9714aec3930de264ef05f697e12965e7c7ffbd75d56d7c9951",
+        "figures/threshold_tradeoff.png": "2f9f1aa50ca36fe12b4d8a28076fae1b1a02f27cd53f823873608492852a5e2c",
+        "figures/threshold_tradeoff.csv": "46df477f12c0570203615efa613dcfdd464e29076ce9386f1906d0cdd0948df5",
+        "figures/threshold_tradeoff.json": "6c0e6e502f4f5db9d37ef6ddcb7e539d714c06c8abdc99b5fb607afa511ad720",
+        "selection_review_pack.md": "308e382c8c4d898fa0db57288951cf077faedabc2cf6ebba1497c8832e994ceb",
+        "decision.json": "80257c06cbbc70048e35da8c5763901730a2fe7eb56b8eb58206ec8539298489"
+      },
+      "card": {
+        "done": "Threshold candidates on the out-of-fold probabilities of the calibrated recommended model (62,023 validation rows, 345 days): 0.50 (t=0.5000): 0.3 alerts/day, precision 0.537, recall 0.005, cost 46,274; 1/6 (cost cutoff) (t=0.1667): 23.9 alerts/day, precision 0.252, recall 0.223, cost 42,255; empirical minimum of 5*FN + FP (t=0.1371): 53.5 alerts/day, precision 0.218, recall 0.432, cost 40,839; no alerts: cost 46,485.",
+        "inputs": "",
+        "expectation": "",
+        "observation": "",
+        "reasoning": "Under the 5:1 cost an alert pays off while the extra false alarms per extra detractor caught stay at or below 5 (Elkan 2001). The threshold is a business choice: the team picks it at the hard stop, with an optional daily alert cap (G-39, G-56).",
+        "conclusion": "",
+        "label": "observation"
+      },
+      "check_detail": [],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "8.5",
+      "title": "Freeze",
+      "status": "MISSING",
+      "checks": "\u2014",
+      "files": [],
+      "evidence_hashes": {},
+      "card": {},
+      "check_detail": [],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "8.6",
+      "title": "Final fit",
+      "status": "MISSING",
+      "checks": "\u2014",
+      "files": [],
+      "evidence_hashes": {},
+      "card": {},
+      "check_detail": [],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "8.7",
+      "title": "Test once",
+      "status": "MISSING",
+      "checks": "\u2014",
+      "files": [],
+      "evidence_hashes": {},
+      "card": {},
+      "check_detail": [],
+      "deviation": "",
+      "changed": true
+    },
+    {
+      "id": "8.8",
+      "title": "Bundle",
+      "status": "MISSING",
+      "checks": "\u2014",
+      "files": [],
+      "evidence_hashes": {},
+      "card": {},
+      "check_detail": [],
+      "deviation": "",
+      "changed": true
+    }
+  ]
+}

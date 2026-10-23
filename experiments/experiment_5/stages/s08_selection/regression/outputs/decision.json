@@ -1,0 +1,42 @@
+[
+  {
+    "question": "Model recommended at the s08 gate",
+    "rule": "one-SE rule over the finalists on validation mae (s01 1.7, G-33)",
+    "candidates_compared": [
+      "reg.sel.log.dummy_median",
+      "reg.sel.log.linear",
+      "reg.sel.log.tree_reg.max_depth=5.min_samples_leaf=100",
+      "reg.sel.log.forest_reg.max_depth=10.max_features=sqrt.min_samples_leaf=50"
+    ],
+    "chosen": "reg.sel.log.linear",
+    "evidence_files": [
+      "candidates.csv",
+      "metrics_long.csv",
+      "ladder.csv"
+    ],
+    "notes": "best mean: reg.sel.log.tree_reg.max_depth=5.min_samples_leaf=100; band 4.7097 to 6.1390; ladder result (basic to complex, each step kept only beyond one SE): reg.sel.log.linear. The team confirms or overrides in human_decisions.yaml s08.model (G-39); an override is a protocol deviation (G-44).",
+    "ids": [
+      "8.2"
+    ]
+  },
+  {
+    "question": "Model chosen at the s08 gate",
+    "rule": "team decision in human_decisions.yaml s08.model (G-39)",
+    "candidates_compared": [
+      "reg.sel.log.dummy_median",
+      "reg.sel.log.linear",
+      "reg.sel.log.tree_reg.max_depth=5.min_samples_leaf=100",
+      "reg.sel.log.forest_reg.max_depth=10.max_features=sqrt.min_samples_leaf=50"
+    ],
+    "chosen": "reg.sel.log.linear",
+    "evidence_files": [
+      "human_decisions.yaml",
+      "candidates.csv"
+    ],
+    "notes": "Henry; experiment lead (Wu Qianzong), 2026-10-23: one-SE recommendation over the finalists (s01 1.7, G-33); the agreed rule is kept and s06 is not reopened",
+    "ids": [
+      "8.2",
+      "8.5"
+    ]
+  }
+]

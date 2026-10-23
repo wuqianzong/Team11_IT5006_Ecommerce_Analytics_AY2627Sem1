@@ -58,6 +58,7 @@ On the s05 folds: median dummy, plain LinearRegression, single decision tree, ra
 
 ## Changes after acceptance (README section 9.2)
 - 2026-10-21, CR-052 (s07 build): rerun 20261021T041749Z on a clean tree (commit 7eb8197, dirty false) after the foundation change (e5lib/tuning.py); every value output byte-identical. Status stays ACCEPTED.
+- 2026-10-23, CR-053/CR-055 (s08 build and freeze): rerun 20261023T083517Z on a clean tree (commit a7329b2, dirty false) after the foundation change (e5lib/selection.py); every value output byte-identical. Status stays ACCEPTED.
 
 ## Deviations from blueprint
 None.

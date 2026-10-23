@@ -61,6 +61,7 @@ Define, without fitting: the 24-predictor baseline from e5lib/contract.py (G-61;
 ## Changes after acceptance (README section 9.2)
 - 2026-10-21, CR-049 to CR-051 (audit follow-up, G-78, s06 build): rerun 20261021T033055Z on a clean tree (commit 0734057, dirty false) after the foundation change (e5lib/training.py; s04 automatic duplicate rows keep the rule date); every value output byte-identical. Status stays ACCEPTED.
 - 2026-10-21, CR-052 (s07 build): rerun 20261021T041658Z on a clean tree (commit 7eb8197, dirty false) after the foundation change (e5lib/tuning.py); every value output byte-identical. Status stays ACCEPTED.
+- 2026-10-23, CR-053/CR-055 (s08 build and freeze): rerun 20261023T083401Z on a clean tree (commit a7329b2, dirty false) after the foundation change (e5lib/selection.py); every value output byte-identical. Status stays ACCEPTED.
 
 ## Deviations from blueprint
 - 4.6: verified citation only for the classification delivery proxies (G-76); all other kept features are unmeasured mechanisms.

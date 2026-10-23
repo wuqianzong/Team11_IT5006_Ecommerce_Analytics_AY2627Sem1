@@ -1,7 +1,7 @@
 {
   "node": "s03_eda/classification",
-  "run_id": "20261021T041653Z",
-  "commit": "7eb81978b3ec01cf8738ac02e60fc98442ed0b7c",
+  "run_id": "20261023T083353Z",
+  "commit": "a7329b2c537e7e9a9647a304266b48d91f107ff1",
   "dirty": false,
   "code": {
     "experiments/experiment_5/stages/s03_eda/classification/run.py": "cccaaa9b496772c71df17111301e61939a8b3faae84d22ac6565a1b380b7f91c"
@@ -26,6 +26,7 @@
     "experiments/experiment_5/e5lib/paths.py": "0e734f058878c897ef2020f1bf286772f1e8871247f4d36d9cfa311fe877b660",
     "experiments/experiment_5/e5lib/protocol.py": "8a808be2bba657356d03dde8d2f16e85c27f7306a26cfda8963d3629863d71c1",
     "experiments/experiment_5/e5lib/review.py": "fc47e1fbebddfdc377f0e7a43c87cef92accf158437cb929ad6557e86c9df48d",
+    "experiments/experiment_5/e5lib/selection.py": "f12c64e09e78858c6b54b5b973c3dbfdf4ba416530db2cf45316ab0284fa301f",
     "experiments/experiment_5/e5lib/seller_history.py": "fde34f2e3560d851e66a57adb300a652fc8c2fde6f9a7d9d0d8e6a163436dc3e",
     "experiments/experiment_5/e5lib/training.py": "e7cd967c1f3af8e09a7720aa6488f77a5ff784cd77794e127e3a07e974976894",
     "experiments/experiment_5/e5lib/tuning.py": "aff5e0aea771b8ba6f1935c531bcf1851363bd21b31dbe07d5638161d7e016f1",
@@ -105,5 +106,5 @@
     "shapely": "2.1.2"
   },
   "seed": 42,
-  "runtime_s": 15.29
+  "runtime_s": 23.85
 }

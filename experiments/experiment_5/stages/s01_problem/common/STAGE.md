@@ -66,6 +66,7 @@ Fix both checkout tasks, prediction time, stakeholders and their actions, target
 - 2026-10-20, CR-044 to CR-048 (s04/s05 build): rerun 20261020T145622Z on a clean tree (commit c7114d3 and its index follow-up); protocol.yaml pre-registers cv.minimums for s05 (10,000 training rows per fold; 100 detractors per classification part; G-74); every other value unchanged. Approved by the experiment lead. Status stays ACCEPTED.
 - 2026-10-21, CR-049 to CR-051 (audit follow-up, G-78, s06 build): rerun 20261021T033117Z on a clean tree (commit 0734057, dirty false) after the foundation change (e5lib/training.py; s04 automatic duplicate rows keep the rule date); every value output byte-identical. Status stays ACCEPTED.
 - 2026-10-21, CR-052 (s07 build): rerun 20261021T041720Z on a clean tree (commit 7eb8197, dirty false) after the foundation change (e5lib/tuning.py); every value output byte-identical. Status stays ACCEPTED.
+- 2026-10-23, CR-053/CR-055 (s08 build and freeze): rerun 20261023T083432Z on a clean tree (commit a7329b2, dirty false) after the foundation change (e5lib/selection.py); every value output byte-identical. The 1.9 check detail now counts the two s08 nodes (13 later nodes with outputs). Status stays ACCEPTED.
 
 ## Deviations from blueprint
 None.

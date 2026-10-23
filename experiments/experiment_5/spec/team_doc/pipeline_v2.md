@@ -8,6 +8,8 @@ One pass in ten steps, following the team's order and the Tutorial 7–8 workflo
 
 &#91;embedded content: Pipeline v2 · 10 steps, one pass\]
 
+**Build status, 2026-10-23.** s01–s07 are ACCEPTED, with ✓ on every box; s06 and s07 were confirmed by the team's combined review at the s08 gate. s08 is FROZEN: the gate part (8.1–8.4) is approved, and the recipe was frozen at 8.5 from the team's decisions (round 2, accepted by the lead; tag e5-A-frozen). **Pipeline A stops after 8.5 and waits for Pipeline B; the final fit and the single test (8.6–8.7) then run once for both** (draft G-79, tab "Pipeline B (A + change request)"), so the last s08 box gets its ✓ only then.
+
 **Chart box to solution IDs.** A step box gets a ✓ when every ID listed for it is approved in its implementation review. A stage is ACCEPTED only when all its IDs are approved, including the stage-level IDs that have no box.
 
 | Stage | Chart boxes → solution IDs | Stage-level IDs (no box) |

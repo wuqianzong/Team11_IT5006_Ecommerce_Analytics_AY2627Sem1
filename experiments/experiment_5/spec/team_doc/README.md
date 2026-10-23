@@ -5,7 +5,7 @@ them, never review or comment on them, and never treat a change here as a decisi
 artifact `21432fd4-4cc0-4d68-8fa2-4e0414fffe5e`), so an auditing agent can check the repository
 against the documents the team approved without access to the doc (G-65).
 
-- **Exported:** 2026-10-21, at the s07 acceptance: the implementation reviews tab and the s07 review tab with its two task sub-tabs (added). Earlier exports: s06 acceptance (implementation reviews and the s06 tabs), CR-049 (model solution tab, s09 9.4), s05 acceptance (implementation reviews and the s05 tabs), after s01 (CR-032), s02 (CR-035), s03 (CR-039), CR-040, CR-041, CR-042, CR-043 and s04 (every tab, s04 tabs added).
+- **Exported:** 2026-10-23, at the Pipeline A freeze (s08 round 2, tag e5-A-frozen): the Pipeline v2 tab, the implementation reviews tab, the s08 review tab with its two task sub-tabs (added), and the three Pipeline B tabs (added: overview, CR-054 change request draft, scratch check plan with the probes; probe 2 is marked withdrawn there). Earlier exports: s07 acceptance (implementation reviews and the s07 tabs), s06 acceptance (implementation reviews and the s06 tabs), CR-049 (model solution tab, s09 9.4), s05 acceptance (implementation reviews and the s05 tabs), after s01 (CR-032), s02 (CR-035), s03 (CR-039), CR-040, CR-041, CR-042, CR-043 and s04 (every tab, s04 tabs added).
 - **Refreshed:** in the same commit that accepts each stage (README §9.1 step 6). Files are
   replaced, never edited by hand; git history keeps every earlier snapshot.
 - **What is not here:** comment threads (their outcomes are in the decision log and the stage
@@ -18,10 +18,10 @@ against the documents the team approved without access to the doc (G-65).
 
 | Doc tab | File | Doc revision |
 | --- | --- | --- |
-| Pipeline v2 (frozen) | [pipeline_v2.md](pipeline_v2.md) | 39 |
+| Pipeline v2 (frozen) | [pipeline_v2.md](pipeline_v2.md) | 42 |
 | Feature solution (s02–s05, frozen) | [feature_solution_s02-s05.md](feature_solution_s02-s05.md) | 123 |
 | Model solution (s01, s06–s10) | [model_solution_s01_s06-s10.md](model_solution_s01_s06-s10.md) | 201 |
-| Implementation reviews | [implementation_reviews.md](implementation_reviews.md) | 46 |
+| Implementation reviews | [implementation_reviews.md](implementation_reviews.md) | 52 |
 | Implementation reviews › s01 Problem | [implementation_review_s01_problem.md](implementation_review_s01_problem.md) | 21 |
 | Implementation reviews › s02 Data | [implementation_review_s02_data.md](implementation_review_s02_data.md) | 26 |
 | Implementation reviews › s03 EDA | [implementation_review_s03_eda.md](implementation_review_s03_eda.md) | 30 |
@@ -39,3 +39,9 @@ against the documents the team approved without access to the doc (G-65).
 | Implementation reviews › s07 Tuning | [implementation_review_s07_tuning.md](implementation_review_s07_tuning.md) | 3 |
 | Implementation reviews › s07 Tuning › regression | [implementation_review_s07_tuning_regression.md](implementation_review_s07_tuning_regression.md) | 3 |
 | Implementation reviews › s07 Tuning › classification | [implementation_review_s07_tuning_classification.md](implementation_review_s07_tuning_classification.md) | 3 |
+| Implementation reviews › s08 Selection | [implementation_review_s08_selection.md](implementation_review_s08_selection.md) | 9 |
+| Implementation reviews › s08 Selection › regression | [implementation_review_s08_selection_regression.md](implementation_review_s08_selection_regression.md) | 3 |
+| Implementation reviews › s08 Selection › classification | [implementation_review_s08_selection_classification.md](implementation_review_s08_selection_classification.md) | 3 |
+| Pipeline B (A + change request) | [pipeline_b_overview.md](pipeline_b_overview.md) | 4 |
+| Pipeline B › CR-054 change request (draft) | [pipeline_b_cr054_change_request.md](pipeline_b_cr054_change_request.md) | 10 |
+| Pipeline B › Scratch check plan (probes) | [pipeline_b_scratch_check_plan.md](pipeline_b_scratch_check_plan.md) | 14 |

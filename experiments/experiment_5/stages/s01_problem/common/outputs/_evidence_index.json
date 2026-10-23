@@ -47,7 +47,7 @@
     {
       "name": "later stages used this pre-registered layer",
       "passed": true,
-      "detail": "later nodes with outputs: 11; using a different layer: none",
+      "detail": "later nodes with outputs: 13; using a different layer: none",
       "ids": [
         "1.9"
       ]
