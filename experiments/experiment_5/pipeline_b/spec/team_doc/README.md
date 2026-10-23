@@ -6,7 +6,7 @@ inside pipeline_b/ so Pipeline A's `../../spec/team_doc/` is never touched (READ
 edit them, review them or treat a change here as a decision. They are refreshed, never edited by
 hand, in the commit that accepts each B stage; git history keeps every earlier snapshot.
 
-- **Exported:** 2026-10-23, at B2 round 2 and B4 acceptance (tags e5-B-s02-accepted-r2, e5-B-s04-accepted); CR-054 and overview refreshed after their AMENDED notes (B-CR-06); B5 tabs and the parent progress table added at B5 acceptance (tag e5-B-s05-accepted); B6 and B7 tabs added at their acceptance (tags e5-B-s06-accepted, e5-B-s07-accepted). The B6/B7 files are the exact Markdown uploaded to those tabs, with dropdowns written as "Open" (their value at upload).
+- **Exported:** 2026-10-23, at B2 round 2 and B4 acceptance (tags e5-B-s02-accepted-r2, e5-B-s04-accepted); CR-054 and overview refreshed after their AMENDED notes (B-CR-06); B5 tabs and the parent progress table added at B5 acceptance (tag e5-B-s05-accepted); B6 and B7 tabs added at their acceptance (tags e5-B-s06-accepted, e5-B-s07-accepted). The B6/B7 files are the exact Markdown uploaded to those tabs, with dropdowns written as "Open" (their value at upload); the B7 tabs include the full grid tables added 2026-10-24 (B-CR-11).
 - **Not here:** comment threads (their outcomes are in `../decision_log_B.md` and the stage cards),
   dropdowns (exported as their text, e.g. "Open"), the overview chart (a placeholder).
 - **Amended text:** CR-054 B-C3 and B-C6 and the overview's cap keep their approved wording, with

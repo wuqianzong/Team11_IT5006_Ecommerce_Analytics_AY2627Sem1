@@ -29,6 +29,8 @@
 4. **Same method as A, proven.** tests/test\_adapter.py reproduces A's accepted s07 regression outputs exactly through the B adapter.
 5. **Scores are selection scores (G-10)**, not generalisation estimates; the A–B comparison and test come later (B8, joint test run).
 
+**Added 2026-10-24: full grids.** Each family card in the two sub-tabs now has the complete grid: every configuration with its per-fold validation scores, mean, fold SE, training mean and gap; the best-mean configuration, the one-SE bound and choice, and the comparison with the plain B6 model; and the effect of each parameter value. **Note for the B8 gate:** in every family of both tasks, the one-SE choice sits at the simpler edge of the pre-registered grid (higher alpha, lower C, shallower depth, larger leaf). This is where the one-SE rule moves the choice by design. It also means the grid may not reach far enough on that side, which the B8 gate decides (grid\_edge\_action), as in A.
+
 ## Round history
 
 ### Round 1 — 2026-10-24
