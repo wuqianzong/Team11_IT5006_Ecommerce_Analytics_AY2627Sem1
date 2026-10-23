@@ -34,7 +34,8 @@ from Pipeline A as frozen at tag `e5-A-frozen`.
 5. **Test.** No B stage reads the test cohort. A and B are scored on the test once, together,
    after both are frozen (G-79).
 6. **Citations.** The report cites B's numbers only from B's outputs, by file and B evidence
-   ID. Probes are never cited.
+   ID, and only from the runs listed as current in `EVIDENCE.md` (checked by
+   tests/test_evidence_register.py). Superseded rounds and probes are never cited.
 
 ## Status
 

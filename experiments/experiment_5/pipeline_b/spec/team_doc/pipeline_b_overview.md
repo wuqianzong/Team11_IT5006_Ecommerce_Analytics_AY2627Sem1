@@ -24,7 +24,7 @@ Read top to bottom: the team approves B's definition first; A finishes its gate 
 
 | Change | What |
 | --- | --- |
-| Population | Customer and seller in SP, MG, RJ, PR, RS, BA, SC; distance present; lead-time cap mean + 8 × SD (s02 values, 93.63 days); six-week warm-up |
+| Population | Customer and seller in SP, MG, RJ, PR, RS, BA, SC; distance present; lead-time cap mean + 8 × SD (AMENDED by B-G-03: computed on B's own rows, 83.66 days in B2 round 2; the earlier 93.63 from A's s02 values is superseded); six-week warm-up |
 | Prediction time | Classification at carrier handover; regression stays at checkout |
 | Features | Candidates, all promise-free and defined in CR-054 §4 (B-C6 to B-C9): route one-hot, prior seller dispatch days, seller handover lateness against the shipping limit, route lead and transit time (both tasks), this order's handover facts (classification). The 99% importance rule (B-C11) keeps or drops each; all are listed in feature\_dictionary\_B.csv |
 | Extra rule | Missed-dispatch alert for orders never handed over (a rule, not a model) |
