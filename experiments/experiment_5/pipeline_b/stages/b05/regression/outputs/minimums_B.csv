@@ -1,0 +1,7 @@
+fold,minimum,required,observed,status
+1,training rows,10000,7932,ACCEPTED DEVIATION (B-G-01)
+2,training rows,10000,18077,PASS
+3,training rows,10000,26184,PASS
+4,training rows,10000,37647,PASS
+5,training rows,10000,47415,PASS
+1,B-G-01 safeguard: training rows,5000,7932,PASS

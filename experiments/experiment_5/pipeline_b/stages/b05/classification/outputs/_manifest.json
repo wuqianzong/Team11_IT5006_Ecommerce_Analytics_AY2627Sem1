@@ -1,0 +1,69 @@
+{
+  "node": "B/b05/classification",
+  "pipeline": "B",
+  "run_id": "20261023T160533Z",
+  "commit": "19b5355f19861c8d517ce32cf254f11ca7243ee8",
+  "dirty": false,
+  "a_frozen_tag": "e5-A-frozen",
+  "a_foundation": {
+    "experiments/experiment_5/e5lib/__init__.py": "cd238533adc62fa600a0d9246352bc6a0c3d5bc599ad0504a1ea10d7aa76c5fe",
+    "experiments/experiment_5/e5lib/aggregation.py": "2493264c6df5cebdc211c9df15e6d64b4d90bfe4ad005263dcd5b1a9e8faf9d5",
+    "experiments/experiment_5/e5lib/candidates.py": "5ae6bb355012a619759f36e81f9dd36784a7cededf7b2eeb431a9b5f1e0e70b4",
+    "experiments/experiment_5/e5lib/cleaning.py": "20836a85b51a58127af73d260bae6071682b1a254eeb22802ae7f3a1ecb3c471",
+    "experiments/experiment_5/e5lib/contract.py": "8ca99e88230d216004909cf3ac7ded76b5445ec7e8bce6e37205f5bd664472f7",
+    "experiments/experiment_5/e5lib/cv.py": "c3c5d112c87c1d62c3b21a7a65a3219baa916322e7f1d6c335eea343f4684e7c",
+    "experiments/experiment_5/e5lib/data.py": "12348f910bc66f91137b71b81ef2a507b2d9e146bfb54fbd58039e9db83008a0",
+    "experiments/experiment_5/e5lib/eda.py": "edca505b81b8e72f299a01bce6fba2611c0408437348cd542cdab40428260d4c",
+    "experiments/experiment_5/e5lib/eda_sections.py": "f8fbdb191b537e84efe0052c83361a18252f5c6e1faf622049b8cfb84e1ca3d1",
+    "experiments/experiment_5/e5lib/factory.py": "60b8121e57cf9577e0b59eac7fe1a8234ec89a20189473d61847f5f4db434dc8",
+    "experiments/experiment_5/e5lib/features.py": "c6609039a12ca2c11a42b34fbf4d1bf3b651e62482ab087d9ebee14afc4cec96",
+    "experiments/experiment_5/e5lib/geography.py": "d7ca545020d12f70d23225e3611c7ae2ac2d67be10f04aa21931fc48c3b75b97",
+    "experiments/experiment_5/e5lib/manifest.py": "9c398fbacb56bf6b087dca0aa1fb9208a62695b7e38bfb2b7fa4495727ed4340",
+    "experiments/experiment_5/e5lib/metrics.py": "7b1ba93591c5303fd46564380cfd37038cf10dcd3012feb5088c04dd702064ef",
+    "experiments/experiment_5/e5lib/outputs.py": "2647b0d277a804a7775dacf977f96993a652ebf2ac0ab951ae7ebebc182dce29",
+    "experiments/experiment_5/e5lib/partition.py": "6078bdb638f7df936cafd479d127a5f7d40c2a3ab3ac7472ac2e439db540279c",
+    "experiments/experiment_5/e5lib/paths.py": "0e734f058878c897ef2020f1bf286772f1e8871247f4d36d9cfa311fe877b660",
+    "experiments/experiment_5/e5lib/protocol.py": "8a808be2bba657356d03dde8d2f16e85c27f7306a26cfda8963d3629863d71c1",
+    "experiments/experiment_5/e5lib/review.py": "fc47e1fbebddfdc377f0e7a43c87cef92accf158437cb929ad6557e86c9df48d",
+    "experiments/experiment_5/e5lib/selection.py": "f12c64e09e78858c6b54b5b973c3dbfdf4ba416530db2cf45316ab0284fa301f",
+    "experiments/experiment_5/e5lib/seller_history.py": "fde34f2e3560d851e66a57adb300a652fc8c2fde6f9a7d9d0d8e6a163436dc3e",
+    "experiments/experiment_5/e5lib/training.py": "e7cd967c1f3af8e09a7720aa6488f77a5ff784cd77794e127e3a07e974976894",
+    "experiments/experiment_5/e5lib/tuning.py": "aff5e0aea771b8ba6f1935c531bcf1851363bd21b31dbe07d5638161d7e016f1",
+    "experiments/experiment_5/run_pipeline.py": "38625fed4ceda4990a3b7dc86a2146d1a5eb89c9feac6948381dcbf7c1d589cf"
+  },
+  "code": {
+    "experiments/experiment_5/pipeline_b/e5b/__init__.py": "2c9392b2a09541cc01522fdb83ea747c386fcf64f0069fec6c389c0b7487ff60",
+    "experiments/experiment_5/pipeline_b/e5b/b02.py": "e16727fe0c60cd2e9f1a94e42b14e56ab911f0b17d289011e0af85050b374518",
+    "experiments/experiment_5/pipeline_b/e5b/b04.py": "c130917b19fe5d725fd4f75636d3276f8104a4c7d8f863e90372217c09562fda",
+    "experiments/experiment_5/pipeline_b/e5b/b05.py": "5a29e86fc4057eff5ac5c764a9b057dc930b186a73800e950f46f357d2f6c6ab",
+    "experiments/experiment_5/pipeline_b/e5b/env.py": "12db2068e19d17e3be668a21d1d5afa44c402bcaa63e9eb82e4197751013ac8c",
+    "experiments/experiment_5/pipeline_b/e5b/history.py": "4a78daeae036d35d33be9ca18fe24cee85cd3019809c8a3ac8cd1d194c84b4c6",
+    "experiments/experiment_5/pipeline_b/b_run.py": "c617d91ee4b6556ee63389a8d4061f858cc3d4687fe1c726e8f7c48ebc4c9cd7"
+  },
+  "reads": {
+    "experiments/experiment_5/pipeline_b/stages/b02/classification/outputs/records_B.csv.gz": "fe08892cc157bfbb34913289a30a1344420cf9f1dbe6ba4515c02744a70d38d4",
+    "experiments/experiment_5/stages/s05_partition/classification/outputs/fold_summary.csv": "a9bfdea69f9db51f443332c81a60efb2449d1a1e5a272d80c20b6606181a28e5",
+    "experiments/experiment_5/stages/s05_partition/classification/outputs/folds.csv": "0e92da73f7a6a54fdcbba05cb2c2cfd785e01676d959e229dcf4c6aafdb81d99",
+    "experiments/experiment_5/stages/s05_partition/classification/outputs/test_manifest.csv": "b8afcc693e0a83eddfabfca11a0e203d9ea92bbeaefec5a5db12e867baafa043"
+  },
+  "outputs": {
+    "experiments/experiment_5/pipeline_b/stages/b05/classification/outputs/_evidence_index.json": "3ea1ee8b8d65a0bf7602e62ea91c6a3822d842043978cc44133a56cdfb30524f",
+    "experiments/experiment_5/pipeline_b/stages/b05/classification/outputs/exclusions_B5.csv": "d4657364e460f80eeacd70636369fc6cead1558257e27573387534fc8f7ce525",
+    "experiments/experiment_5/pipeline_b/stages/b05/classification/outputs/fold_summary_B.csv": "9bc829aa251d6a84db401751ce8f36bc2a276a471d7f727dfdc8a1551c1bc6bb",
+    "experiments/experiment_5/pipeline_b/stages/b05/classification/outputs/folds_B.csv": "793e0067256ab2eb36cd5cb9ecab1abadff90e76317a194b90bc5e7b1451ba3f",
+    "experiments/experiment_5/pipeline_b/stages/b05/classification/outputs/minimums_B.csv": "36f6605238fae54d89bb7a548cd7ae2a1cf86f3b399ba1290bcc9b180821efd3"
+  },
+  "versions": {
+    "python": "3.13.9",
+    "numpy": "2.4.2",
+    "pandas": "3.0.1",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.1",
+    "joblib": "1.6.0",
+    "matplotlib": "3.11.2",
+    "PyYAML": "6.0.3",
+    "shapely": "2.1.2"
+  },
+  "seed": 42,
+  "runtime_s": 3.07
+}

@@ -3,7 +3,7 @@
 # B8 stops at its gate until the b08 section for its task is complete (as G-39 for A).
 
 b05:
-  fold_minimum_deviation: {accepted: true, observed: "B5 run 2026-10-23 (not yet accepted): fold 1 training rows regression 7,932, classification 7,592 (874 training detractors); safeguard met; source pipeline_b/stages/b05/<task>/outputs/minimums_B.csv", rationale: "keep A's five folds so the A-B comparison stays on identical periods and G-79's 5-fold mean is unchanged; fold 1 still has ample rows for the agreed models; safeguard: B5 stops below 5,000 training rows or (classification) 300 training detractors; folds 2-5 shown as description in B8 (B-G-01)", decided_by: "experiment lead (Wu Qianzong)", date: 2026-10-23}
+  fold_minimum_deviation: {accepted: true, observed: "B5 accepted run 20261023T160529Z / 20261023T160533Z (tag e5-B-s05-accepted): fold 1 training rows regression 7,932, classification 7,592 (874 training detractors); safeguard met; source pipeline_b/stages/b05/<task>/outputs/minimums_B.csv", rationale: "keep A's five folds so the A-B comparison stays on identical periods and G-79's 5-fold mean is unchanged; fold 1 still has ample rows for the agreed models; safeguard: B5 stops below 5,000 training rows or (classification) 300 training detractors; folds 2-5 shown as description in B8 (B-G-01)", decided_by: "experiment lead (Wu Qianzong)", date: 2026-10-23}
 
 b08:
   regression:
