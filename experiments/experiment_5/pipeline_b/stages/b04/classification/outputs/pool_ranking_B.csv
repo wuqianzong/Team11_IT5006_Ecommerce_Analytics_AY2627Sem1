@@ -1,0 +1,37 @@
+feature,value,rank,share,cumulative_share,method,source
+route_recent_carrier_transit_days,0.01931948203551004,1,0.0944582186218687,0.0944582186218687,"mutual_info_classif, continuous (k-NN, k=3)",B-C8b
+route_recent_delivery_days,0.018985415690211616,2,0.09282487711610747,0.1872830957379762,"mutual_info_classif, continuous (k-NN, k=3)",B-C8
+seller_prior_dispatch_days,0.01653754884912595,3,0.08085658827650512,0.2681396840144813,"mutual_info_classif, continuous (k-NN, k=3)",B-C7
+seller_prior_late_handover_days,0.014242464676399669,4,0.06963529558633355,0.3377749796008148,"mutual_info_classif, continuous (k-NN, k=3)",B-C7
+seller_prior_review_mean,0.010596311872117292,5,0.051808259743312206,0.38958323934412703,"mutual_info_classif, continuous (k-NN, k=3)",adopted candidate (G-70)
+order_dispatch_days,0.009422867737255869,6,0.046070971216241006,0.435654210560368,"mutual_info_classif, continuous (k-NN, k=3)",B-C9
+freight_ratio,0.009195300824948793,7,0.04495833449470284,0.48061254505507084,"mutual_info_classif, continuous (k-NN, k=3)",contract predictor
+total_freight,0.009178178837247808,8,0.044874620425426656,0.5254871654804975,"mutual_info_classif, continuous (k-NN, k=3)",contract predictor
+total_volume_cm3,0.00903544176296367,9,0.04417673992617749,0.569663905406675,"mutual_info_classif, continuous (k-NN, k=3)",contract predictor
+n_items,0.008118303127311974,10,0.03969259891278395,0.609356504319459,"mutual_info_classif, discrete (contingency)",contract predictor
+route_seller_to_customer_state,0.00795587616998327,11,0.038898449203322825,0.6482549535227818,"mutual_info_classif, discrete (contingency)",B-C6
+seller_prior_late_handover_rate,0.007919017785807059,12,0.038718238506981896,0.6869731920297637,"mutual_info_classif, continuous (k-NN, k=3)",B-C7
+total_price,0.006608864507118284,13,0.03231254167727001,0.7192857337070337,"mutual_info_classif, continuous (k-NN, k=3)",contract predictor
+order_handover_late_days,0.006269302289839018,14,0.03065232935395114,0.7499380630609849,"mutual_info_classif, continuous (k-NN, k=3)",B-C9
+total_weight_g,0.0059791424003090565,15,0.029233658489476545,0.7791717215504614,"mutual_info_classif, continuous (k-NN, k=3)",contract predictor
+product_description_lenght,0.005867111149382653,16,0.028685907138118527,0.8078576286885799,"mutual_info_classif, continuous (k-NN, k=3)",adopted candidate (G-70)
+customer_state,0.005706232298137215,17,0.02789932654166955,0.8357569552302495,"mutual_info_classif, discrete (contingency)",contract predictor
+n_products,0.004956222949844058,18,0.024232326212193588,0.8599892814424431,"mutual_info_classif, discrete (contingency)",contract predictor
+n_sellers,0.004608943838880346,19,0.022534383890244973,0.8825236653326881,"mutual_info_classif, discrete (contingency)",contract predictor
+purchase_month,0.004424634318721081,20,0.021633244360867523,0.9041569096935557,"mutual_info_classif, discrete (contingency)",contract predictor
+order_handed_over_late,0.004295367315664253,21,0.021001222714899348,0.925158132408455,"mutual_info_classif, discrete (contingency)",B-C9
+distance_km_max,0.004273803472698567,22,0.020895791203359004,0.9460539236118141,"mutual_info_classif, continuous (k-NN, k=3)",contract predictor
+primary_category,0.0031466686425968625,23,0.01538492150186398,0.961438845113678,"mutual_info_classif, discrete (contingency)",contract predictor
+interstate_share,0.003132767508609288,24,0.015316955065140848,0.9767558001788189,"mutual_info_classif, discrete (contingency)",contract predictor
+n_categories,0.0015725714968627344,25,0.007688731094143846,0.9844445312729627,"mutual_info_classif, discrete (contingency)",contract predictor
+payment_installments_max,0.0008143473551974038,26,0.003981566398622456,0.9884260976715852,"mutual_info_classif, discrete (contingency)",contract predictor
+primary_seller_state,0.0007408827493611387,27,0.0036223778972797934,0.992048475568865,"mutual_info_classif, discrete (contingency)",contract predictor
+product_photos_qty,0.0006664899150356629,28,0.0032586510336040336,0.995307126602469,"mutual_info_classif, discrete (contingency)",adopted candidate (G-70)
+category_missing_fraction,0.0004310566140226473,29,0.0021075533914891916,0.9974146799939582,"mutual_info_classif, discrete (contingency)",contract predictor
+purchase_hour,0.0004170885570801261,30,0.0020392597501806787,0.9994539397441389,"mutual_info_classif, discrete (contingency)",contract predictor
+purchase_dayofweek,8.45853377086786e-05,31,0.00041356079354536515,0.9998675005376843,"mutual_info_classif, discrete (contingency)",contract predictor
+primary_payment_type,9.497594877699855e-06,32,4.643633259373918e-05,0.999913936870278,"mutual_info_classif, discrete (contingency)",contract predictor
+volume_missing_fraction,8.800931649742267e-06,33,4.3030156001049934e-05,0.999956967026279,"mutual_info_classif, discrete (contingency)",contract predictor
+weight_missing_fraction,8.800931649742267e-06,34,4.3030156001049934e-05,0.99999999718228,"mutual_info_classif, discrete (contingency)",contract predictor
+n_payment_methods,5.763065927255617e-10,35,2.8177201660395455e-09,1.0,"mutual_info_classif, discrete (contingency)",contract predictor
+distance_missing_fraction,0.0,36,0.0,1.0,"mutual_info_classif, discrete (contingency)",contract predictor

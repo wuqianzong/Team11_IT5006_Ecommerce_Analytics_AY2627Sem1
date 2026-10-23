@@ -1,0 +1,147 @@
+{
+  "node": "B/b04/regression",
+  "pipeline": "B",
+  "files": {
+    "pool_ranking_B.csv": {
+      "ids": [
+        "B4.1",
+        "B4.2"
+      ],
+      "kind": "table"
+    },
+    "reduction_B.csv": {
+      "ids": [
+        "B4.3"
+      ],
+      "kind": "table"
+    },
+    "selection_ranking_B.csv": {
+      "ids": [
+        "B4.3"
+      ],
+      "kind": "table"
+    },
+    "selected_features_B.json": {
+      "ids": [
+        "B4.3"
+      ],
+      "kind": "json"
+    },
+    "transforms_B.csv": {
+      "ids": [
+        "B4.4"
+      ],
+      "kind": "table"
+    },
+    "recipes_B.json": {
+      "ids": [
+        "B4.5"
+      ],
+      "kind": "json"
+    },
+    "design_matrix_B.csv": {
+      "ids": [
+        "B4.5"
+      ],
+      "kind": "table"
+    },
+    "feature_dictionary_B.csv": {
+      "ids": [
+        "B4.5"
+      ],
+      "kind": "table"
+    }
+  },
+  "checks": [
+    {
+      "name": "the ranked set equals B's pool",
+      "passed": true,
+      "detail": "30 features",
+      "ids": [
+        "B4.1",
+        "B4.2"
+      ]
+    },
+    {
+      "name": "the kept set is exactly the 99% cumulative-share prefix of the core ranking",
+      "passed": true,
+      "detail": "21 of 26 kept",
+      "ids": [
+        "B4.3"
+      ]
+    },
+    {
+      "name": "every pool feature has a dictionary row with formula and reason",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "B4.5"
+      ]
+    },
+    {
+      "name": "linear/logistic design matrix is full rank on B rows",
+      "passed": true,
+      "detail": "rank 140 of 140",
+      "ids": [
+        "B4.5"
+      ]
+    },
+    {
+      "name": "no feature from the estimated delivery date",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "B4.1"
+      ]
+    }
+  ],
+  "deviations": {},
+  "cards": {
+    "B4.1": {
+      "done": "B pool: A's 24 pool features plus 6 B candidates (route_seller_to_customer_state, seller_prior_late_handover_rate, seller_prior_late_handover_days, seller_prior_dispatch_days, route_recent_delivery_days, route_recent_carrier_transit_days).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B4.2": {
+      "done": "Ranking on B's development rows with A's measures (|Spearman|; rank correlation ratio for categorical): top 8 route_seller_to_customer_state 0.110; route_recent_carrier_transit_days 0.105; route_recent_delivery_days 0.105; distance_km_max 0.105; interstate_share 0.101; customer_state 0.092; total_freight 0.078; seller_prior_dispatch_days 0.044.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B4.3": {
+      "done": "21 of 26 core features kept at the 99% cumulative share (A's G-70 threshold). B features kept: route_seller_to_customer_state, route_recent_carrier_transit_days, route_recent_delivery_days, seller_prior_dispatch_days, seller_prior_late_handover_rate, seller_prior_late_handover_days; B features dropped: none. Reduction: 4 dropped (customer_state: nested in route (B-G-02); primary_seller_state: nested in route (B-G-02); distance_missing_fraction: constant; weight_missing_fraction: duplicate).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B4.4": {
+      "done": "log1p on 9 features (total_price, total_freight, total_weight_g, total_volume_cm3, distance_km_max, seller_prior_late_handover_days, seller_prior_dispatch_days, route_recent_delivery_days, route_recent_carrier_transit_days); B day counts logged, B rates and flags scaled only.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B4.5": {
+      "done": "Recipes for dummy, linear/logistic, tree and forest with A's factory; linear design matrix rank 140 of 140; feature_dictionary_B.csv has 30 rows.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    }
+  },
+  "checks_failed": []
+}

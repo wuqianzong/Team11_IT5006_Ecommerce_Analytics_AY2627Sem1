@@ -1,0 +1,34 @@
+{
+  "task": "regression",
+  "threshold": 0.99,
+  "selected": [
+    "route_seller_to_customer_state",
+    "route_recent_carrier_transit_days",
+    "route_recent_delivery_days",
+    "distance_km_max",
+    "interstate_share",
+    "total_freight",
+    "seller_prior_dispatch_days",
+    "primary_category",
+    "seller_prior_late_handover_rate",
+    "seller_prior_late_handover_days",
+    "freight_ratio",
+    "total_weight_g",
+    "total_price",
+    "primary_payment_type",
+    "total_volume_cm3",
+    "purchase_dayofweek",
+    "n_sellers",
+    "purchase_month",
+    "n_products",
+    "payment_installments_max",
+    "n_items"
+  ],
+  "dropped_below_threshold": [
+    "n_categories",
+    "category_missing_fraction",
+    "n_payment_methods",
+    "purchase_hour",
+    "volume_missing_fraction"
+  ]
+}

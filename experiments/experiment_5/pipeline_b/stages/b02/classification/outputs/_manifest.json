@@ -1,8 +1,8 @@
 {
   "node": "B/b02/classification",
   "pipeline": "B",
-  "run_id": "20261023T134750Z",
-  "commit": "2991253c7f2443438aa05ae06348f5a048be5f73",
+  "run_id": "20261023T154822Z",
+  "commit": "e96087084d2f1de8f41d6524995f4d48f6c913f7",
   "dirty": false,
   "a_frozen_tag": "e5-A-frozen",
   "a_foundation": {
@@ -33,27 +33,27 @@
   },
   "code": {
     "experiments/experiment_5/pipeline_b/e5b/__init__.py": "2c9392b2a09541cc01522fdb83ea747c386fcf64f0069fec6c389c0b7487ff60",
-    "experiments/experiment_5/pipeline_b/e5b/b02.py": "b591b59b94e678f27630263740c26d6bd9ec8e5ca4f39cf38d900b8066dc1032",
+    "experiments/experiment_5/pipeline_b/e5b/b02.py": "e16727fe0c60cd2e9f1a94e42b14e56ab911f0b17d289011e0af85050b374518",
+    "experiments/experiment_5/pipeline_b/e5b/b04.py": "c130917b19fe5d725fd4f75636d3276f8104a4c7d8f863e90372217c09562fda",
     "experiments/experiment_5/pipeline_b/e5b/env.py": "12db2068e19d17e3be668a21d1d5afa44c402bcaa63e9eb82e4197751013ac8c",
-    "experiments/experiment_5/pipeline_b/e5b/history.py": "dcccff40f5727732617967423c5531358cd675ccd1807bf06b3715edacbe6c7a",
-    "experiments/experiment_5/pipeline_b/b_run.py": "3ee8b34e0cd37fd7b45ce0ef5147548fcfa428bd94b90a976af75f60088ce215"
+    "experiments/experiment_5/pipeline_b/e5b/history.py": "4a78daeae036d35d33be9ca18fe24cee85cd3019809c8a3ac8cd1d194c84b4c6",
+    "experiments/experiment_5/pipeline_b/b_run.py": "1b2d35be9f0ab3d1d7850ac9d43a5ee2545fe14574331362221e1c8d4ada7ad6"
   },
   "reads": {
     "data/raw/olist_customers_dataset.csv": "983a422239e1712ded753b3bf9ecf47dc73f144d306029dcfa99e70a226883d2",
     "data/raw/olist_order_items_dataset.csv": "0bc4d068c4fe38cbb01bd90e8746e3c613fe7b4baef75fab7b0e329701c3e279",
     "data/raw/olist_orders_dataset.csv": "8df58ef3d2d7e9944010f7beecd9b75367f5588ec6e3c91cec19ae3345ef9ecf",
     "data/raw/olist_sellers_dataset.csv": "1f643d2b950373b85735e7794b20986f528d7a000432e7c6f9bcbb44d0846a0e",
-    "experiments/experiment_5/stages/s02_data/common/outputs/audit.json": "c65df43d61651490f6f85ceb674d90b4bc424459bf25ce2e9c68fed9aff589a8",
     "experiments/experiment_5/stages/s02_data/common/outputs/records.csv.gz": "3a86d161df392891c499b9f1d88cc7d2145d94b4015721fc631dc360dcbc4f5a"
   },
   "outputs": {
-    "experiments/experiment_5/pipeline_b/stages/b02/classification/outputs/_evidence_index.json": "bf09a51bed506ef02c5a3bbd7e340f79d6d4c20169ac089b29169b2cc9ece8e1",
+    "experiments/experiment_5/pipeline_b/stages/b02/classification/outputs/_evidence_index.json": "24f33f770f6974d544ed9657d06ca42226541e8498e6286a9f25a93676450b39",
     "experiments/experiment_5/pipeline_b/stages/b02/classification/outputs/exclusion_counts_B.csv": "e4e51c90012077d0dcea284ebfd1639db45878c463ce4c0c0c8f130a3d988097",
     "experiments/experiment_5/pipeline_b/stages/b02/classification/outputs/exclusions_B.csv": "497c93bebea7ec774f85b163e4a86143c078acd7afc013ac7b293e5142e253d8",
-    "experiments/experiment_5/pipeline_b/stages/b02/classification/outputs/feature_build_log.json": "c1ea2e68ec57d2477731d45dfdcaf51feaea6864a335ef1882181d9af32b5796",
-    "experiments/experiment_5/pipeline_b/stages/b02/classification/outputs/history_coverage.csv": "0a83090a9b4177b0ed1e6cf754817016910f34b7e87a948e25881e8171700ec5",
-    "experiments/experiment_5/pipeline_b/stages/b02/classification/outputs/lateness_summary_B.csv.gz": "c09ac4b876ef764d798d2215882ed5f942760418606dd1393096c08289cf8459",
-    "experiments/experiment_5/pipeline_b/stages/b02/classification/outputs/records_B.csv.gz": "9dab9078870aef87cd472012a32b889fe4c55a2c436fd8fc7b21cf6e7db9ab87"
+    "experiments/experiment_5/pipeline_b/stages/b02/classification/outputs/feature_build_log.json": "84f2c91c17a652a21696fa2af1e824b69365e45bd14f73ba1898a3b08377516e",
+    "experiments/experiment_5/pipeline_b/stages/b02/classification/outputs/history_coverage.csv": "df7101cbc4474f3acd5100ea07871d8879819004a59517ca9a152ffd14087830",
+    "experiments/experiment_5/pipeline_b/stages/b02/classification/outputs/lateness_summary_B.csv.gz": "976f3c67015e1f1220985028ddcb733e3cf7a0167874118790b4f364b0ac9bfc",
+    "experiments/experiment_5/pipeline_b/stages/b02/classification/outputs/records_B.csv.gz": "fe08892cc157bfbb34913289a30a1344420cf9f1dbe6ba4515c02744a70d38d4"
   },
   "versions": {
     "python": "3.13.9",
@@ -67,5 +67,5 @@
     "shapely": "2.1.2"
   },
   "seed": 42,
-  "runtime_s": 12.28
+  "runtime_s": 7.75
 }

@@ -1,8 +1,8 @@
 {
   "node": "B/b02/regression",
   "pipeline": "B",
-  "run_id": "20261023T134738Z",
-  "commit": "2991253c7f2443438aa05ae06348f5a048be5f73",
+  "run_id": "20261023T154814Z",
+  "commit": "e96087084d2f1de8f41d6524995f4d48f6c913f7",
   "dirty": false,
   "a_frozen_tag": "e5-A-frozen",
   "a_foundation": {
@@ -33,27 +33,27 @@
   },
   "code": {
     "experiments/experiment_5/pipeline_b/e5b/__init__.py": "2c9392b2a09541cc01522fdb83ea747c386fcf64f0069fec6c389c0b7487ff60",
-    "experiments/experiment_5/pipeline_b/e5b/b02.py": "b591b59b94e678f27630263740c26d6bd9ec8e5ca4f39cf38d900b8066dc1032",
+    "experiments/experiment_5/pipeline_b/e5b/b02.py": "e16727fe0c60cd2e9f1a94e42b14e56ab911f0b17d289011e0af85050b374518",
+    "experiments/experiment_5/pipeline_b/e5b/b04.py": "c130917b19fe5d725fd4f75636d3276f8104a4c7d8f863e90372217c09562fda",
     "experiments/experiment_5/pipeline_b/e5b/env.py": "12db2068e19d17e3be668a21d1d5afa44c402bcaa63e9eb82e4197751013ac8c",
-    "experiments/experiment_5/pipeline_b/e5b/history.py": "dcccff40f5727732617967423c5531358cd675ccd1807bf06b3715edacbe6c7a",
-    "experiments/experiment_5/pipeline_b/b_run.py": "3ee8b34e0cd37fd7b45ce0ef5147548fcfa428bd94b90a976af75f60088ce215"
+    "experiments/experiment_5/pipeline_b/e5b/history.py": "4a78daeae036d35d33be9ca18fe24cee85cd3019809c8a3ac8cd1d194c84b4c6",
+    "experiments/experiment_5/pipeline_b/b_run.py": "1b2d35be9f0ab3d1d7850ac9d43a5ee2545fe14574331362221e1c8d4ada7ad6"
   },
   "reads": {
     "data/raw/olist_customers_dataset.csv": "983a422239e1712ded753b3bf9ecf47dc73f144d306029dcfa99e70a226883d2",
     "data/raw/olist_order_items_dataset.csv": "0bc4d068c4fe38cbb01bd90e8746e3c613fe7b4baef75fab7b0e329701c3e279",
     "data/raw/olist_orders_dataset.csv": "8df58ef3d2d7e9944010f7beecd9b75367f5588ec6e3c91cec19ae3345ef9ecf",
     "data/raw/olist_sellers_dataset.csv": "1f643d2b950373b85735e7794b20986f528d7a000432e7c6f9bcbb44d0846a0e",
-    "experiments/experiment_5/stages/s02_data/common/outputs/audit.json": "c65df43d61651490f6f85ceb674d90b4bc424459bf25ce2e9c68fed9aff589a8",
     "experiments/experiment_5/stages/s02_data/common/outputs/records.csv.gz": "3a86d161df392891c499b9f1d88cc7d2145d94b4015721fc631dc360dcbc4f5a"
   },
   "outputs": {
-    "experiments/experiment_5/pipeline_b/stages/b02/regression/outputs/_evidence_index.json": "eba170dc2e331662fc361f69e28c24435625a8535f0d2d8e0af3e8b44adcc835",
-    "experiments/experiment_5/pipeline_b/stages/b02/regression/outputs/exclusion_counts_B.csv": "152c536e617c4fa9580fe33aa3ae9873f7aee4c7d5f235464992f458d708e63b",
-    "experiments/experiment_5/pipeline_b/stages/b02/regression/outputs/exclusions_B.csv": "2c27e318310b070e5509bfe233db0adba090357049286cb646d2c035586f402d",
-    "experiments/experiment_5/pipeline_b/stages/b02/regression/outputs/feature_build_log.json": "cf773a50c164b2890f01236b30103ea14c0405e3b2c3501d36b5387614f17043",
-    "experiments/experiment_5/pipeline_b/stages/b02/regression/outputs/history_coverage.csv": "355db64eb03994431ef3a1262d6897fe7a7517e8bdb6c6fe8b5de9a942963a6e",
-    "experiments/experiment_5/pipeline_b/stages/b02/regression/outputs/lateness_summary_B.csv.gz": "afa66cad5df367c98bc63b72a1b5ffe09bcb08838b8baa17835f0d988ca6d0f6",
-    "experiments/experiment_5/pipeline_b/stages/b02/regression/outputs/records_B.csv.gz": "3e0f9f03ad315adc355dfdaeb1c42d5b8161016145d230df9215a1edaf0529a6"
+    "experiments/experiment_5/pipeline_b/stages/b02/regression/outputs/_evidence_index.json": "5ee1264d769350f3babbd6abe57865d51ca10ce687d7f1b06dcd162dfd788100",
+    "experiments/experiment_5/pipeline_b/stages/b02/regression/outputs/exclusion_counts_B.csv": "9489e964ef2f1d1b36554b9d3a2b347b2cbd9ef3e91a91ee75df9913e3f437bb",
+    "experiments/experiment_5/pipeline_b/stages/b02/regression/outputs/exclusions_B.csv": "b2dd1a36d28ecacdd88566727e7df5bdf35366069fd3f519c84e289c99d766a8",
+    "experiments/experiment_5/pipeline_b/stages/b02/regression/outputs/feature_build_log.json": "1ce865fd7678ddb98bc33b58976cd5d720a4c578f6cd516839db45374d3d782b",
+    "experiments/experiment_5/pipeline_b/stages/b02/regression/outputs/history_coverage.csv": "5756eea4388bc05344d02c60d09100e4fad4e18a99047df3c709e95af76d3a68",
+    "experiments/experiment_5/pipeline_b/stages/b02/regression/outputs/lateness_summary_B.csv.gz": "3ab1605ac292beea61a13b2ab2f3e57603b96db0848c4d58fafb437e93a2f653",
+    "experiments/experiment_5/pipeline_b/stages/b02/regression/outputs/records_B.csv.gz": "6d70ebd04bacde9a906ed0e1f34dd26488309c17c6345ab50482e7b79024dc63"
   },
   "versions": {
     "python": "3.13.9",
@@ -67,5 +67,5 @@
     "shapely": "2.1.2"
   },
   "seed": 42,
-  "runtime_s": 12.51
+  "runtime_s": 7.54
 }

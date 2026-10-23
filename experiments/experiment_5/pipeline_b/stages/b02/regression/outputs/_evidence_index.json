@@ -47,7 +47,7 @@
     {
       "name": "B development rows are a subset of A's eligible pre-cutoff rows",
       "passed": true,
-      "detail": "61,245 of 76,925",
+      "detail": "61,233 of 76,925",
       "ids": [
         "B2.1"
       ]
@@ -55,7 +55,7 @@
     {
       "name": "removal counts add up: A rows = B rows + removed",
       "passed": true,
-      "detail": "76,925 = 61,245 + 15,680",
+      "detail": "76,925 = 61,233 + 15,692",
       "ids": [
         "B2.1"
       ]
@@ -94,9 +94,9 @@
       ]
     },
     {
-      "name": "lead-time cap applied: no B row above mean + 8 SD of A's s02 pre-cutoff orders (audit.json)",
+      "name": "lead-time cap applied: no B row above mean + 8 SD of B's own rows after the scope and distance rules",
       "passed": true,
-      "detail": "cap 93.63 days; longest B lead time 88.24",
+      "detail": "cap 83.66 days; longest B lead time 83.63",
       "ids": [
         "B2.1"
       ]
@@ -105,7 +105,7 @@
   "deviations": {},
   "cards": {
     "B2.1": {
-      "done": "From 76,925 A development rows (s02, eligible, before the cutoff) to 61,245 B rows. Removed: B_STATE 13,777; B_DISTANCE 606; B_LEAD_CAP 32; B_WARMUP 1,265.",
+      "done": "From 76,925 A development rows (s02, eligible, before the cutoff) to 61,233 B rows. Removed: B_STATE 13,777; B_DISTANCE 606; B_LEAD_CAP 45; B_WARMUP 1,264.",
       "inputs": "",
       "expectation": "",
       "observation": "",
@@ -141,7 +141,7 @@
       "label": "observation"
     },
     "B2.5": {
-      "done": "Features built: b_seller_late_rate, b_seller_late_days, b_seller_dispatch_days, b_route_lead_days, b_route_transit_days, route. History sources: b_seller: seller 95.9%, seller_state 4.1%; b_route_lead_days: route 95.9%, state_mix 4.1%; b_route_transit_days: route 95.9%, state_mix 4.1%.",
+      "done": "Features built: route_seller_to_customer_state, seller_prior_late_handover_rate, seller_prior_late_handover_days, seller_prior_dispatch_days, route_recent_delivery_days, route_recent_carrier_transit_days. History sources: seller_prior: own seller history 95.9%, seller-state fallback 4.1%; route_recent_delivery_days: own route history 95.9%, state-mix fallback 4.1%; route_recent_carrier_transit_days: own route history 95.9%, state-mix fallback 4.1%.",
       "inputs": "",
       "expectation": "",
       "observation": "",

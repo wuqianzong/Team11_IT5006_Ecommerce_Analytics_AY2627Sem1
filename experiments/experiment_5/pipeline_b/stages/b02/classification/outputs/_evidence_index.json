@@ -133,7 +133,7 @@
       "label": "observation"
     },
     "B2.5": {
-      "done": "Features built: b_seller_late_rate, b_seller_late_days, b_seller_dispatch_days, b_route_lead_days, b_route_transit_days, b_own_handover_late, b_own_late_days, b_own_dispatch_days, route. History sources: b_seller: seller 96.7%, seller_state 3.3%; b_route_lead_days: route 96.0%, state_mix 4.0%; b_route_transit_days: route 96.0%, state_mix 4.0%.",
+      "done": "Features built: route_seller_to_customer_state, seller_prior_late_handover_rate, seller_prior_late_handover_days, seller_prior_dispatch_days, route_recent_delivery_days, route_recent_carrier_transit_days, order_handed_over_late, order_handover_late_days, order_dispatch_days. History sources: seller_prior: own seller history 96.7%, seller-state fallback 3.3%; route_recent_delivery_days: own route history 96.0%, state-mix fallback 4.0%; route_recent_carrier_transit_days: own route history 96.0%, state-mix fallback 4.0%.",
       "inputs": "",
       "expectation": "",
       "observation": "",

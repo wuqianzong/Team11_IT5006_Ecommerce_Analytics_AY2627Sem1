@@ -1,0 +1,40 @@
+{
+  "task": "classification",
+  "threshold": 0.99,
+  "selected": [
+    "route_recent_carrier_transit_days",
+    "route_recent_delivery_days",
+    "seller_prior_dispatch_days",
+    "seller_prior_late_handover_days",
+    "seller_prior_review_mean",
+    "order_dispatch_days",
+    "freight_ratio",
+    "total_freight",
+    "total_volume_cm3",
+    "n_items",
+    "route_seller_to_customer_state",
+    "seller_prior_late_handover_rate",
+    "total_price",
+    "order_handover_late_days",
+    "total_weight_g",
+    "product_description_lenght",
+    "n_products",
+    "n_sellers",
+    "purchase_month",
+    "order_handed_over_late",
+    "distance_km_max",
+    "primary_category",
+    "interstate_share",
+    "n_categories",
+    "payment_installments_max"
+  ],
+  "dropped_below_threshold": [
+    "product_photos_qty",
+    "category_missing_fraction",
+    "purchase_hour",
+    "purchase_dayofweek",
+    "primary_payment_type",
+    "volume_missing_fraction",
+    "n_payment_methods"
+  ]
+}

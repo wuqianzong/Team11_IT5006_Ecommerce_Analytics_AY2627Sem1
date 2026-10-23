@@ -1,0 +1,37 @@
+feature,skewness,log1p,rule
+n_items,7.667861734160875,False,"never logged: integer count (G-62, G-70) (A's 4.2 rule on B rows)"
+n_products,7.6890460856753675,False,"never logged: integer count (G-62, G-70) (A's 4.2 rule on B rows)"
+n_sellers,10.087261709545684,False,"never logged: integer count (G-62, G-70) (A's 4.2 rule on B rows)"
+n_categories,-2.0171257324342244,False,"never logged: integer count (G-62, G-70) (A's 4.2 rule on B rows)"
+total_price,11.11102538664483,True,log1p because pre-cutoff skewness 11.11 > 1 (A's 4.2 rule on B rows)
+total_freight,9.449087375417298,True,log1p because pre-cutoff skewness 9.45 > 1 (A's 4.2 rule on B rows)
+freight_ratio,15.272409102404046,False,never logged: team decision in the s01 review (G-62) (A's 4.2 rule on B rows)
+total_weight_g,6.9448102711499,True,log1p because pre-cutoff skewness 6.94 > 1 (A's 4.2 rule on B rows)
+total_volume_cm3,7.646977476842642,True,log1p because pre-cutoff skewness 7.65 > 1 (A's 4.2 rule on B rows)
+weight_missing_fraction,71.42886946628434,False,never logged: bounded 0-1 share (G-47) (A's 4.2 rule on B rows)
+volume_missing_fraction,71.42886946628434,False,never logged: bounded 0-1 share (G-47) (A's 4.2 rule on B rows)
+primary_category,,False,"categorical: one-hot, never logged (A's 4.2 rule on B rows)"
+category_missing_fraction,7.594387135722448,False,never logged: bounded 0-1 share (G-47) (A's 4.2 rule on B rows)
+customer_state,,False,"categorical: one-hot, never logged (A's 4.2 rule on B rows)"
+primary_seller_state,,False,"categorical: one-hot, never logged (A's 4.2 rule on B rows)"
+distance_km_max,1.2596032955206162,True,log1p because pre-cutoff skewness 1.26 > 1 (A's 4.2 rule on B rows)
+distance_missing_fraction,,False,never logged: bounded 0-1 share (G-47) (A's 4.2 rule on B rows)
+interstate_share,-0.3099746625879949,False,never logged: bounded 0-1 share (G-47) (A's 4.2 rule on B rows)
+purchase_month,0.37130775334004157,False,"never logged: numeric calendar position (G-22, G-47) (A's 4.2 rule on B rows)"
+purchase_dayofweek,0.164702750108768,False,"never logged: numeric calendar position (G-22, G-47) (A's 4.2 rule on B rows)"
+purchase_hour,-0.604973165277827,False,"never logged: numeric calendar position (G-22, G-47) (A's 4.2 rule on B rows)"
+primary_payment_type,,False,"categorical: one-hot, never logged (A's 4.2 rule on B rows)"
+payment_installments_max,1.6451112229770033,False,"never logged: integer count (G-62, G-70) (A's 4.2 rule on B rows)"
+n_payment_methods,6.332810694988433,False,"never logged: integer count (G-62, G-70) (A's 4.2 rule on B rows)"
+product_photos_qty,1.9092330127627466,False,"never logged: integer count (G-62, G-70) (A's 4.2 rule on B rows)"
+product_description_lenght,2.060408065507043,True,log1p because pre-cutoff skewness 2.06 > 1 (A's 4.2 rule on B rows)
+seller_prior_review_mean,-1.7913247341189242,False,never logged: 1-5 rating (G-70) (A's 4.2 rule on B rows)
+route_seller_to_customer_state,,False,"categorical: one-hot (drop-first for linear/logistic, every level for trees)"
+seller_prior_late_handover_rate,2.9859010336629392,False,"never logged: rate or flag, scaled only (Henry)"
+seller_prior_late_handover_days,20.184367515264196,True,log1p: day count (Henry)
+seller_prior_dispatch_days,4.61035187648704,True,log1p: day count (Henry)
+route_recent_delivery_days,1.1837910916161807,True,log1p: day count (Henry)
+route_recent_carrier_transit_days,1.1962755411056822,True,log1p: day count (Henry)
+order_handed_over_late,2.925567228109496,False,"never logged: rate or flag, scaled only (Henry)"
+order_handover_late_days,9.779917597785916,True,log1p: day count (Henry)
+order_dispatch_days,3.422399322804896,True,log1p: day count (Henry)

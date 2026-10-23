@@ -1,7 +1,13 @@
 {
   "task": "regression",
   "cutoff": "2018-05-27 12:30:34",
-  "lead_cap_days": 93.63302654887502,
+  "lead_cap_days": 83.66231803783363,
+  "lead_cap_basis": {
+    "rows": "B development rows after B_STATE and B_DISTANCE",
+    "mean": 12.325079040773488,
+    "sd": 8.917154874632518,
+    "sd_multiplier": 8
+  },
   "warmup_end": "2017-02-12 00:00:00",
   "weights": [
     0.5,
@@ -15,11 +21,11 @@
   ],
   "events": 79137,
   "features": [
-    "b_seller_late_rate",
-    "b_seller_late_days",
-    "b_seller_dispatch_days",
-    "b_route_lead_days",
-    "b_route_transit_days",
-    "route"
+    "route_seller_to_customer_state",
+    "seller_prior_late_handover_rate",
+    "seller_prior_late_handover_days",
+    "seller_prior_dispatch_days",
+    "route_recent_delivery_days",
+    "route_recent_carrier_transit_days"
   ]
 }

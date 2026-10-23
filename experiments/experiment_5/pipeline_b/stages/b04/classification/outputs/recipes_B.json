@@ -1,0 +1,206 @@
+{
+  "dummy": {
+    "estimator": "dummy_prior",
+    "spec": {
+      "task": "classification",
+      "estimator": "dummy_prior",
+      "numeric": [
+        "route_recent_carrier_transit_days",
+        "route_recent_delivery_days",
+        "seller_prior_dispatch_days",
+        "seller_prior_late_handover_days",
+        "seller_prior_review_mean",
+        "order_dispatch_days",
+        "freight_ratio",
+        "total_freight",
+        "total_volume_cm3",
+        "n_items",
+        "seller_prior_late_handover_rate",
+        "total_price",
+        "order_handover_late_days",
+        "total_weight_g",
+        "product_description_lenght",
+        "n_products",
+        "n_sellers",
+        "purchase_month",
+        "order_handed_over_late",
+        "distance_km_max",
+        "interstate_share",
+        "n_categories",
+        "payment_installments_max"
+      ],
+      "categorical": [
+        "route_seller_to_customer_state",
+        "primary_category"
+      ],
+      "log_inputs": [
+        "route_recent_carrier_transit_days",
+        "route_recent_delivery_days",
+        "seller_prior_dispatch_days",
+        "seller_prior_late_handover_days",
+        "order_dispatch_days",
+        "total_freight",
+        "total_volume_cm3",
+        "total_price",
+        "order_handover_late_days",
+        "total_weight_g",
+        "product_description_lenght",
+        "distance_km_max"
+      ],
+      "drop_duplicates": true
+    }
+  },
+  "linear": {
+    "estimator": "logistic",
+    "spec": {
+      "task": "classification",
+      "estimator": "logistic",
+      "numeric": [
+        "route_recent_carrier_transit_days",
+        "route_recent_delivery_days",
+        "seller_prior_dispatch_days",
+        "seller_prior_late_handover_days",
+        "seller_prior_review_mean",
+        "order_dispatch_days",
+        "freight_ratio",
+        "total_freight",
+        "total_volume_cm3",
+        "n_items",
+        "seller_prior_late_handover_rate",
+        "total_price",
+        "order_handover_late_days",
+        "total_weight_g",
+        "product_description_lenght",
+        "n_products",
+        "n_sellers",
+        "purchase_month",
+        "order_handed_over_late",
+        "distance_km_max",
+        "interstate_share",
+        "n_categories",
+        "payment_installments_max"
+      ],
+      "categorical": [
+        "route_seller_to_customer_state",
+        "primary_category"
+      ],
+      "log_inputs": [
+        "route_recent_carrier_transit_days",
+        "route_recent_delivery_days",
+        "seller_prior_dispatch_days",
+        "seller_prior_late_handover_days",
+        "order_dispatch_days",
+        "total_freight",
+        "total_volume_cm3",
+        "total_price",
+        "order_handover_late_days",
+        "total_weight_g",
+        "product_description_lenght",
+        "distance_km_max"
+      ],
+      "drop_duplicates": true
+    }
+  },
+  "tree": {
+    "estimator": "tree_clf",
+    "spec": {
+      "task": "classification",
+      "estimator": "tree_clf",
+      "numeric": [
+        "route_recent_carrier_transit_days",
+        "route_recent_delivery_days",
+        "seller_prior_dispatch_days",
+        "seller_prior_late_handover_days",
+        "seller_prior_review_mean",
+        "order_dispatch_days",
+        "freight_ratio",
+        "total_freight",
+        "total_volume_cm3",
+        "n_items",
+        "seller_prior_late_handover_rate",
+        "total_price",
+        "order_handover_late_days",
+        "total_weight_g",
+        "product_description_lenght",
+        "n_products",
+        "n_sellers",
+        "purchase_month",
+        "order_handed_over_late",
+        "distance_km_max",
+        "interstate_share",
+        "n_categories",
+        "payment_installments_max"
+      ],
+      "categorical": [
+        "route_seller_to_customer_state",
+        "primary_category"
+      ],
+      "log_inputs": [
+        "route_recent_carrier_transit_days",
+        "route_recent_delivery_days",
+        "seller_prior_dispatch_days",
+        "seller_prior_late_handover_days",
+        "order_dispatch_days",
+        "total_freight",
+        "total_volume_cm3",
+        "total_price",
+        "order_handover_late_days",
+        "total_weight_g",
+        "product_description_lenght",
+        "distance_km_max"
+      ],
+      "drop_duplicates": true
+    }
+  },
+  "forest": {
+    "estimator": "forest_clf",
+    "spec": {
+      "task": "classification",
+      "estimator": "forest_clf",
+      "numeric": [
+        "route_recent_carrier_transit_days",
+        "route_recent_delivery_days",
+        "seller_prior_dispatch_days",
+        "seller_prior_late_handover_days",
+        "seller_prior_review_mean",
+        "order_dispatch_days",
+        "freight_ratio",
+        "total_freight",
+        "total_volume_cm3",
+        "n_items",
+        "seller_prior_late_handover_rate",
+        "total_price",
+        "order_handover_late_days",
+        "total_weight_g",
+        "product_description_lenght",
+        "n_products",
+        "n_sellers",
+        "purchase_month",
+        "order_handed_over_late",
+        "distance_km_max",
+        "interstate_share",
+        "n_categories",
+        "payment_installments_max"
+      ],
+      "categorical": [
+        "route_seller_to_customer_state",
+        "primary_category"
+      ],
+      "log_inputs": [
+        "route_recent_carrier_transit_days",
+        "route_recent_delivery_days",
+        "seller_prior_dispatch_days",
+        "seller_prior_late_handover_days",
+        "order_dispatch_days",
+        "total_freight",
+        "total_volume_cm3",
+        "total_price",
+        "order_handover_late_days",
+        "total_weight_g",
+        "product_description_lenght",
+        "distance_km_max"
+      ],
+      "drop_duplicates": true
+    }
+  }
+}

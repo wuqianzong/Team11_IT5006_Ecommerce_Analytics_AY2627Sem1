@@ -1,0 +1,182 @@
+{
+  "dummy": {
+    "estimator": "dummy_median",
+    "spec": {
+      "task": "regression",
+      "estimator": "dummy_median",
+      "numeric": [
+        "route_recent_carrier_transit_days",
+        "route_recent_delivery_days",
+        "distance_km_max",
+        "interstate_share",
+        "total_freight",
+        "seller_prior_dispatch_days",
+        "seller_prior_late_handover_rate",
+        "seller_prior_late_handover_days",
+        "freight_ratio",
+        "total_weight_g",
+        "total_price",
+        "total_volume_cm3",
+        "purchase_dayofweek",
+        "n_sellers",
+        "purchase_month",
+        "n_products",
+        "payment_installments_max",
+        "n_items"
+      ],
+      "categorical": [
+        "route_seller_to_customer_state",
+        "primary_category",
+        "primary_payment_type"
+      ],
+      "log_inputs": [
+        "route_recent_carrier_transit_days",
+        "route_recent_delivery_days",
+        "distance_km_max",
+        "total_freight",
+        "seller_prior_dispatch_days",
+        "seller_prior_late_handover_days",
+        "total_weight_g",
+        "total_price",
+        "total_volume_cm3"
+      ],
+      "drop_duplicates": true,
+      "log_target": true
+    }
+  },
+  "linear": {
+    "estimator": "linear",
+    "spec": {
+      "task": "regression",
+      "estimator": "linear",
+      "numeric": [
+        "route_recent_carrier_transit_days",
+        "route_recent_delivery_days",
+        "distance_km_max",
+        "interstate_share",
+        "total_freight",
+        "seller_prior_dispatch_days",
+        "seller_prior_late_handover_rate",
+        "seller_prior_late_handover_days",
+        "freight_ratio",
+        "total_weight_g",
+        "total_price",
+        "total_volume_cm3",
+        "purchase_dayofweek",
+        "n_sellers",
+        "purchase_month",
+        "n_products",
+        "payment_installments_max",
+        "n_items"
+      ],
+      "categorical": [
+        "route_seller_to_customer_state",
+        "primary_category",
+        "primary_payment_type"
+      ],
+      "log_inputs": [
+        "route_recent_carrier_transit_days",
+        "route_recent_delivery_days",
+        "distance_km_max",
+        "total_freight",
+        "seller_prior_dispatch_days",
+        "seller_prior_late_handover_days",
+        "total_weight_g",
+        "total_price",
+        "total_volume_cm3"
+      ],
+      "drop_duplicates": true,
+      "log_target": true
+    }
+  },
+  "tree": {
+    "estimator": "tree_reg",
+    "spec": {
+      "task": "regression",
+      "estimator": "tree_reg",
+      "numeric": [
+        "route_recent_carrier_transit_days",
+        "route_recent_delivery_days",
+        "distance_km_max",
+        "interstate_share",
+        "total_freight",
+        "seller_prior_dispatch_days",
+        "seller_prior_late_handover_rate",
+        "seller_prior_late_handover_days",
+        "freight_ratio",
+        "total_weight_g",
+        "total_price",
+        "total_volume_cm3",
+        "purchase_dayofweek",
+        "n_sellers",
+        "purchase_month",
+        "n_products",
+        "payment_installments_max",
+        "n_items"
+      ],
+      "categorical": [
+        "route_seller_to_customer_state",
+        "primary_category",
+        "primary_payment_type"
+      ],
+      "log_inputs": [
+        "route_recent_carrier_transit_days",
+        "route_recent_delivery_days",
+        "distance_km_max",
+        "total_freight",
+        "seller_prior_dispatch_days",
+        "seller_prior_late_handover_days",
+        "total_weight_g",
+        "total_price",
+        "total_volume_cm3"
+      ],
+      "drop_duplicates": true,
+      "log_target": true
+    }
+  },
+  "forest": {
+    "estimator": "forest_reg",
+    "spec": {
+      "task": "regression",
+      "estimator": "forest_reg",
+      "numeric": [
+        "route_recent_carrier_transit_days",
+        "route_recent_delivery_days",
+        "distance_km_max",
+        "interstate_share",
+        "total_freight",
+        "seller_prior_dispatch_days",
+        "seller_prior_late_handover_rate",
+        "seller_prior_late_handover_days",
+        "freight_ratio",
+        "total_weight_g",
+        "total_price",
+        "total_volume_cm3",
+        "purchase_dayofweek",
+        "n_sellers",
+        "purchase_month",
+        "n_products",
+        "payment_installments_max",
+        "n_items"
+      ],
+      "categorical": [
+        "route_seller_to_customer_state",
+        "primary_category",
+        "primary_payment_type"
+      ],
+      "log_inputs": [
+        "route_recent_carrier_transit_days",
+        "route_recent_delivery_days",
+        "distance_km_max",
+        "total_freight",
+        "seller_prior_dispatch_days",
+        "seller_prior_late_handover_days",
+        "total_weight_g",
+        "total_price",
+        "total_volume_cm3"
+      ],
+      "drop_duplicates": true,
+      "log_target": true
+    }
+  }
+}

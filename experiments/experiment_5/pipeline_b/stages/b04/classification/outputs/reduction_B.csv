@@ -1,0 +1,5 @@
+feature,flagged_by,paired_with,rationale
+customer_state,nested in route (B-G-02),route_seller_to_customer_state,every route_seller_to_customer_state level fixes customer_state; its one-hot columns are sums of route's
+primary_seller_state,nested in route (B-G-02),route_seller_to_customer_state,every route_seller_to_customer_state level fixes primary_seller_state; its one-hot columns are sums of route's
+distance_missing_fraction,constant,,one value on B rows
+weight_missing_fraction,duplicate,volume_missing_fraction,identical to volume_missing_fraction on every B row; volume_missing_fraction ranks higher
