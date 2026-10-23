@@ -14,7 +14,7 @@ from e5b import history as h  # noqa: E402
 def _events(rows):
     ev = pd.DataFrame(rows, columns=["seller_id", "seller_state", "customer_state", "hw", "dw", "h_late", "h_days",
                                      "dispatch", "lead", "transit"])
-    ev["route"] = ev.customer_state + "->" + ev.seller_state
+    ev["route"] = ev.seller_state + "->" + ev.customer_state
     return ev.astype({"hw": "Int64", "dw": "Int64"})
 
 
@@ -33,18 +33,18 @@ def test_seller_history_uses_only_earlier_weeks_and_falls_back_to_state():
                   ("s2", "SP", "MG", 9, 10, 1.0, 4.0, 2.0, 7.0, 5.0)])
     q = pd.DataFrame({"seller_id": ["s1", "s9"], "seller_state": ["SP", "SP"], "pw": [10, 10]})
     f = h.seller_features(ev, q)
-    assert f.b_seller_late_rate.iloc[0] == 0.5 and f.b_seller_source.iloc[0] == "seller"
-    assert f.b_seller_last_week.iloc[0] == 8
+    assert f.seller_prior_late_handover_rate.iloc[0] == 0.5 and f.seller_prior_source.iloc[0] == "own seller history"
+    assert f.seller_prior_last_week.iloc[0] == 8
     # new seller: SP weekly means at weeks 9 (s2: 1.0) and 8 (s1: 0.0) with weights 0.5 and 0.3
-    assert f.b_seller_source.iloc[1] == "seller_state"
-    assert np.isclose(f.b_seller_late_rate.iloc[1], (0.5 * 1.0 + 0.3 * 0.0) / 0.8)
+    assert f.seller_prior_source.iloc[1] == "seller-state fallback"
+    assert np.isclose(f.seller_prior_late_handover_rate.iloc[1], (0.5 * 1.0 + 0.3 * 0.0) / 0.8)
 
 
 def test_route_needs_ten_events_else_state_mix():
     rows = [("s", "SP", "RJ", 1, 9, 0.0, 0.0, 1.0, 10.0, 6.0)] * 10 + [("s", "MG", "RJ", 1, 9, 0.0, 0.0, 1.0, 20.0, 8.0)] * 3
     ev = _events(rows)
-    q = pd.DataFrame({"route": ["RJ->SP", "RJ->MG"], "seller_state": ["SP", "MG"], "customer_state": ["RJ", "RJ"], "pw": [10, 10]})
+    q = pd.DataFrame({"route": ["SP->RJ", "MG->RJ"], "seller_state": ["SP", "MG"], "customer_state": ["RJ", "RJ"], "pw": [10, 10]})
     r = h.route_feature(ev, q, "lead", "x")
-    assert r.x_source.iloc[0] == "route" and r.x.iloc[0] == 10.0
+    assert r.x_source.iloc[0] == "own route history" and r.x.iloc[0] == 10.0
     # 3 events only: 0.7 x MG seller-state median (20) + 0.3 x RJ customer-state median (10, over all 13 events)
-    assert r.x_source.iloc[1] == "state_mix" and np.isclose(r.x.iloc[1], 0.7 * 20.0 + 0.3 * 10.0)
+    assert r.x_source.iloc[1] == "state-mix fallback" and np.isclose(r.x.iloc[1], 0.7 * 20.0 + 0.3 * 10.0)

@@ -45,7 +45,7 @@ def load_events(raw: Path, cutoff: pd.Timestamp) -> pd.DataFrame:
           .merge(customers, on="customer_id"))
     ev = ev.rename(columns={"order_purchase_timestamp": "purchase_ts", "order_delivered_carrier_date": "carrier_ts",
                             "order_delivered_customer_date": "delivered_ts"})
-    ev["route"] = ev.customer_state + "->" + ev.seller_state
+    ev["route"] = ev.seller_state + "->" + ev.customer_state   # seller state -> customer state
     handed = ev.carrier_ts.notna()
     ev["h_late"] = np.where(handed, (ev.carrier_ts > ev.ship_limit).astype(float), np.nan)
     ev["h_days"] = _days(ev.carrier_ts, ev.ship_limit).clip(lower=0)
@@ -94,7 +94,7 @@ def seller_features(ev: pd.DataFrame, query: pd.DataFrame) -> pd.DataFrame:
     """Prior seller late rate, late days and dispatch days (B-C7): mean over all of the seller's
     handovers in weeks before pw; a seller with none takes the weighted 3-week mean of sellers in
     the same seller state, then the overall weighted 3-week mean.
-    query: seller_id, seller_state, pw (int). Returns b_seller_* columns, source and last week used."""
+    query: seller_id, seller_state, pw (int). Returns seller_prior_* columns, source and last week used."""
     hand = ev[ev.hw.notna()].astype({"hw": "int64"})
     cols = ["h_late", "h_days", "dispatch"]
     g = hand.groupby(["seller_id", "hw"])[cols].agg(["sum", "count"])
@@ -112,13 +112,14 @@ def seller_features(ev: pd.DataFrame, query: pd.DataFrame) -> pd.DataFrame:
     allq = query.assign(k=1)
     ov = weighted3(_weekly(hand.assign(k=1), ["k"], "hw", cols, "mean"), allq, ["k"], cols)
     out = pd.DataFrame(index=query.index)
-    src = np.where(has_own, "seller", np.where(st[cols[0]].notna(), "seller_state", np.where(ov[cols[0]].notna(), "overall", "none")))
-    names = {"h_late": "b_seller_late_rate", "h_days": "b_seller_late_days", "dispatch": "b_seller_dispatch_days"}
+    src = np.where(has_own, "own seller history", np.where(st[cols[0]].notna(), "seller-state fallback",
+                                                           np.where(ov[cols[0]].notna(), "overall fallback", "none")))
+    names = {"h_late": "seller_prior_late_handover_rate", "h_days": "seller_prior_late_handover_days", "dispatch": "seller_prior_dispatch_days"}
     for c in cols:
         out[names[c]] = np.where(has_own, own[c], np.where(st[c].notna(), st[c], ov[c]))
-    out["b_seller_source"] = src
-    out["b_seller_history_n"] = m["h_late_cn"].fillna(0).astype(int)
-    out["b_seller_last_week"] = m["hw"]
+    out["seller_prior_source"] = src
+    out["seller_prior_handovers"] = m["h_late_cn"].fillna(0).astype(int)
+    out["seller_prior_last_week"] = m["hw"]
     return out
 
 
@@ -137,5 +138,5 @@ def route_feature(ev: pd.DataFrame, query: pd.DataFrame, col: str, name: str) ->
     mix = np.where(both, STATE_MIX[0] * s[col] + STATE_MIX[1] * c[col], np.where(s[col].notna(), s[col], c[col]))
     has_state = s[col].notna() | c[col].notna()
     value = np.where(own, r[col], np.where(has_state, mix, o[col]))
-    src = np.where(own, "route", np.where(has_state, "state_mix", np.where(o[col].notna(), "overall", "none")))
-    return pd.DataFrame({name: value, f"{name}_source": src, f"{name}_route_n3": r["n3"].astype(int)}, index=query.index)
+    src = np.where(own, "own route history", np.where(has_state, "state-mix fallback", np.where(o[col].notna(), "overall fallback", "none")))
+    return pd.DataFrame({name: value, f"{name}_source": src, f"{name}_route_events_3w": r["n3"].astype(int)}, index=query.index)
