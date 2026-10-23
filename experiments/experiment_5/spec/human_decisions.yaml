@@ -22,8 +22,10 @@ s05:
       - {check: min_share_of_detractors, observed: "1,968 of 13,488 eligible detractors = 14.59%", required: 0.15, rationale: "1,968 test detractors are enough to evaluate the classifier; moving the cutoff after seeing the shares would be a post-hoc change. Reported in s09 with the absolute count (G-54)", decided_by: "experiment lead (Wu Qianzong)", date: 2026-10-20}
 
 s08:
+  # Combined review of s06-s08 (G-78), s08 tab threads 2026-10-23: one-SE rule kept, s06 not reopened;
+  # calibration kept under the agreed rule (8.3); 8.3-8.4 on the recommended model.
   regression:
-    model: null            # {chosen: candidate_id, recommended: candidate_id, rationale: "...", grid_edge_action: none|widen_grid|revisit_s03_s04, decided_by: name, date: YYYY-MM-DD}
+    model: {chosen: reg.sel.log.linear, recommended: reg.sel.log.linear, rationale: "one-SE recommendation over the finalists (s01 1.7, G-33); the agreed rule is kept and s06 is not reopened", grid_edge_action: none, decided_by: "Henry; experiment lead (Wu Qianzong)", date: 2026-10-23}
   classification:
-    model: null
-    threshold: null        # {value: 0.xx, daily_alert_cap: null|int, rationale: "...", decided_by: name, date: YYYY-MM-DD}
+    model: {chosen: clf.sel.log.logistic, recommended: clf.sel.log.logistic, rationale: "one-SE recommendation over the finalists (s01 1.7, G-33); the agreed rule is kept and s06 is not reopened; sigmoid calibration kept under the agreed rule (8.3)", grid_edge_action: none, decided_by: "Henry; experiment lead (Wu Qianzong)", date: 2026-10-23}
+    threshold: {value: 0.16666666666666666, daily_alert_cap: 25, rationale: "1/6, the theoretical cost cutoff; the lowest illustrative cost within the 25 alerts/day cap (G-56): 23.9 alerts/day on the out-of-fold probabilities (threshold_table.csv); the empirical minimum 0.137 needs 53.5/day", decided_by: "Henry; experiment lead (Wu Qianzong)", date: 2026-10-23}

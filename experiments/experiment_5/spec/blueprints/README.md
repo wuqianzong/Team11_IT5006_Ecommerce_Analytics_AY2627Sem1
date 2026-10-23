@@ -53,6 +53,6 @@ Pipeline v2 chart.
 | s05 Partition | ACCEPTED | 3 | 3 (tag e5-s05-accepted) | Implementation reviews › s05 Partition (sub-tabs: regression, classification); reviewed with s04, accepted after it (G-74) |
 | s06 Training | ACCEPTED (lead, G-78) | 3 | 3 (tag e5-s06-accepted) | Implementation reviews › s06 Training (sub-tabs: regression, classification); team review with s07 and s08 at the s08 gate |
 | s07 Tuning | ACCEPTED (lead, G-78) | 2 | 2 (tag e5-s07-accepted) | Implementation reviews › s07 Tuning (sub-tabs: regression, classification); team review with s06 and s08 at the s08 gate |
-| s08 Selection | NOT STARTED | — | — | — |
+| s08 Selection | FROZEN at 8.5 (round 2, accepted by the lead); 8.6–8.8 run once with Pipeline B | 2 | 2 for 8.1–8.5 (tag e5-A-frozen) | Implementation reviews › s08 Selection (sub-tabs: regression, classification); combined team review of s06–s08 closed 2026-10-23 |
 | s09 Conclusion | NOT STARTED | — | — | — |
 | s10 Release | NOT STARTED | — | — | — |
