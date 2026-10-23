@@ -37,7 +37,7 @@ to the table below.
 | B4 round 2 build runs 20261023T153748Z, 20261023T153754Z | B4 doc cards (byte-identical to the current runs) | clean reruns above |
 | Cap "93.65 days" (rounded inputs) and "93.63 days" (A's s02 orders) | CR-054 B-C3 (marked AMENDED), overview tab (marked AMENDED), B-CR-03 | B-G-03: computed on B's rows, value in b02/regression feature_build_log.json |
 | Route written customer -> seller; names b_seller_*, b_route_*, b_own_*, route | CR-054 B-C6 (marked AMENDED), round-1 cards | B-G-04 names (decision_log_B.md) |
-| B5 build runs 20261023T160116Z, 20261023T160119Z (uncommitted code) | human_decisions_B.yaml b05 observed counts (same figures) | clean reruns above |
+| B5 build runs 20261023T160116Z, 20261023T160119Z (uncommitted code) | nowhere now (human_decisions_B.yaml b05 cites the accepted runs) | clean reruns above |
 | Probe 1 and probe 2 (probe 2 withdrawn) | doc tab "Scratch check plan" | never evidence; motivation only (G-79) |
 
 ## Where definitions live
