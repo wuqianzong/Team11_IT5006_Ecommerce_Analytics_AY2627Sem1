@@ -43,7 +43,7 @@ from Pipeline A as frozen at tag `e5-A-frozen`.
 | --- | --- | --- |
 | B2 Population and history features | AGREED | ACCEPTED round 2 (runs 20261023T154814Z regression, 20261023T154822Z classification; tag e5-B-s02-accepted-r2) |
 | B4 Features | AGREED | ACCEPTED round 2 (runs 20261023T154827Z regression, 20261023T154833Z classification; tag e5-B-s04-accepted) |
-| B5 Partition | DRAFT | NOT STARTED |
+| B5 Partition | AGREED | built round 1 (runs 20261023T160116Z regression, 20261023T160119Z classification), not committed |
 | B6–B7 Training and tuning | DRAFT | NOT STARTED |
 | B8 Selection (gate, freeze) | DRAFT | NOT STARTED |
 | Joint test run (A and B) | to be drafted with B8 | NOT STARTED |
