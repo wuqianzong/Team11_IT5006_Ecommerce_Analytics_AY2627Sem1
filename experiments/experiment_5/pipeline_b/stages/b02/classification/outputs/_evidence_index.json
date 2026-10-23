@@ -1,0 +1,155 @@
+{
+  "node": "B/b02/classification",
+  "pipeline": "B",
+  "files": {
+    "records_B.csv.gz": {
+      "ids": [
+        "B2.1",
+        "B2.2",
+        "B2.5"
+      ],
+      "kind": "table"
+    },
+    "exclusions_B.csv": {
+      "ids": [
+        "B2.1"
+      ],
+      "kind": "table"
+    },
+    "exclusion_counts_B.csv": {
+      "ids": [
+        "B2.1"
+      ],
+      "kind": "table"
+    },
+    "history_coverage.csv": {
+      "ids": [
+        "B2.5"
+      ],
+      "kind": "table"
+    },
+    "lateness_summary_B.csv.gz": {
+      "ids": [
+        "B2.5"
+      ],
+      "kind": "table"
+    },
+    "feature_build_log.json": {
+      "ids": [
+        "B2.3",
+        "B2.4",
+        "B2.5"
+      ],
+      "kind": "json"
+    }
+  },
+  "checks": [
+    {
+      "name": "B development rows are a subset of A's eligible pre-cutoff rows",
+      "passed": true,
+      "detail": "61,258 of 77,736",
+      "ids": [
+        "B2.1"
+      ]
+    },
+    {
+      "name": "removal counts add up: A rows = B rows + removed",
+      "passed": true,
+      "detail": "77,736 = 61,258 + 16,478",
+      "ids": [
+        "B2.1"
+      ]
+    },
+    {
+      "name": "no test row: every B row purchased before the test cutoff",
+      "passed": true,
+      "detail": "latest purchase 2018-05-26 12:12:15, cutoff 2018-05-26 12:16:34",
+      "ids": [
+        "B2.6"
+      ]
+    },
+    {
+      "name": "no column from the estimated delivery date",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "B2.3"
+      ]
+    },
+    {
+      "name": "seller state from the raw tables equals A's primary_seller_state",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "B2.3"
+      ]
+    },
+    {
+      "name": "leakage re-check: features recomputed by brute force from events in weeks before the prediction week match",
+      "passed": true,
+      "detail": "300 rows, max difference 0.00e+00",
+      "ids": [
+        "B2.4",
+        "B2.5"
+      ]
+    }
+  ],
+  "deviations": {},
+  "cards": {
+    "B2.1": {
+      "done": "From 77,736 A development rows (s02, eligible, before the cutoff) to 61,258 B rows. Removed: B_STATE 13,983; B_DISTANCE 618; B_NO_HANDOVER 461; B_REVIEW_BEFORE_HANDOVER 146; B_WARMUP 1,270.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B2.2": {
+      "done": "Prediction time: carrier handover time.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B2.3": {
+      "done": "79,046 raw orders purchased before the cutoff 2018-05-26 12:16:34; primary seller by A's rule (highest price, then lowest item id); the estimated delivery date column is not read.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B2.4": {
+      "done": "Calendar weeks from Monday 2016-01-04; handover events in their carrier-date week, delivery events in their delivery week; a row uses only weeks before its prediction week.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B2.5": {
+      "done": "Features built: b_seller_late_rate, b_seller_late_days, b_seller_dispatch_days, b_route_lead_days, b_route_transit_days, b_own_handover_late, b_own_late_days, b_own_dispatch_days, route. History sources: b_seller: seller 96.7%, seller_state 3.3%; b_route_lead_days: route 96.0%, state_mix 4.0%; b_route_transit_days: route 96.0%, state_mix 4.0%.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B2.6": {
+      "done": "Development rows only; test-row features are built in the joint test run.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    }
+  },
+  "checks_failed": []
+}

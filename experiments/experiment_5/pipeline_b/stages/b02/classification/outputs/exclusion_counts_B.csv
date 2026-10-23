@@ -1,0 +1,8 @@
+step,rows
+"A development rows (s02, pre-cutoff, eligible)",77736
+removed: B_STATE,13983
+removed: B_DISTANCE,618
+removed: B_NO_HANDOVER,461
+removed: B_REVIEW_BEFORE_HANDOVER,146
+removed: B_WARMUP,1270
+B development rows,61258
