@@ -14,7 +14,7 @@ from typing import Callable
 import numpy as np
 import pandas as pd
 
-from e5lib import cv, data, outputs
+from e5lib import cv, data, outputs, paths
 
 from .env import BWriter, assert_inside_e5, b_outputs_dir
 
@@ -68,21 +68,29 @@ class AdapterWriter(BWriter):
 
 
 @contextlib.contextmanager
-def redirected(upstream: Callable, load: Callable, folds: Callable, writer: Callable):
-    saved = (data.upstream, data.load, cv.folds, outputs.Writer)
+def redirected(upstream: Callable, load: Callable, folds: Callable, writer: Callable,
+               spec_path: Callable | None = None, outputs_dir: Callable | None = None):
+    """Swap A's input functions for one call (s08 also reads spec_path and outputs_dir); always restore."""
+    saved = (data.upstream, data.load, cv.folds, outputs.Writer, paths.spec_path, paths.outputs_dir)
     data.upstream, data.load, cv.folds, outputs.Writer = upstream, load, folds, writer
+    if spec_path is not None:
+        paths.spec_path = spec_path
+    if outputs_dir is not None:
+        paths.outputs_dir = outputs_dir
     try:
         yield
     finally:
-        data.upstream, data.load, cv.folds, outputs.Writer = saved
+        data.upstream, data.load, cv.folds, outputs.Writer, paths.spec_path, paths.outputs_dir = saved
 
 
 def originals_restored() -> bool:
     import importlib
     fresh = {n: getattr(importlib.import_module(m), n) for m, n in
-             (("e5lib.data", "upstream"), ("e5lib.data", "load"), ("e5lib.cv", "folds"), ("e5lib.outputs", "Writer"))}
+             (("e5lib.data", "upstream"), ("e5lib.data", "load"), ("e5lib.cv", "folds"), ("e5lib.outputs", "Writer"),
+              ("e5lib.paths", "spec_path"), ("e5lib.paths", "outputs_dir"))}
     return fresh["upstream"].__module__ == "e5lib.data" and fresh["load"].__module__ == "e5lib.data" \
-        and fresh["folds"].__module__ == "e5lib.cv" and fresh["Writer"].__module__ == "e5lib.outputs"
+        and fresh["folds"].__module__ == "e5lib.cv" and fresh["Writer"].__module__ == "e5lib.outputs" \
+        and fresh["spec_path"].__module__ == "e5lib.paths" and fresh["outputs_dir"].__module__ == "e5lib.paths"
 
 
 def b_inputs(task: str, b_stage: str, out_dir: Path | None = None):
@@ -97,8 +105,8 @@ def b_inputs(task: str, b_stage: str, out_dir: Path | None = None):
              ("s04_features", "selected_features.json"): b_outputs_dir("b04", task) / "selected_features_B.json"}
 
     def upstream(source_stage, source_task, filename, stage):
-        if source_stage == "s06_training":
-            return rec(b_outputs_dir("b06", task) / filename)
+        if source_stage in ("s06_training", "s07_tuning"):
+            return rec(b_outputs_dir({"s06_training": "b06", "s07_tuning": "b07"}[source_stage], task) / filename)
         if (source_stage, filename) not in files:
             raise KeyError(f"B adapter has no mapping for {source_stage}/{filename}")
         return rec(files[(source_stage, filename)])
@@ -123,6 +131,26 @@ def b_inputs(task: str, b_stage: str, out_dir: Path | None = None):
     return upstream, load, folds, writer
 
 
+def b08_extras(task: str):
+    """s08's two extra inputs for B: a view of human_decisions_B.yaml (b08 as s08) and B8's outputs dir."""
+    import yaml
+    from .env import B_ROOT
+    src = B_ROOT / "spec" / "human_decisions_B.yaml"
+    AdapterWriter.reads_from.append(src)
+    view = B_ROOT / ".cache" / "human_decisions_view.yaml"
+    view.parent.mkdir(exist_ok=True)
+    view.write_text(yaml.safe_dump({"s08": (yaml.safe_load(src.read_text()) or {}).get("b08") or {}}, sort_keys=True))
+    orig_spec, orig_out = paths.spec_path, paths.outputs_dir
+
+    def spec_path(name):
+        return view if name == "human_decisions.yaml" else orig_spec(name)
+
+    def outputs_dir(stage, task_):
+        return b_outputs_dir("b08", task_) if stage == "s08_selection" else orig_out(stage, task_)
+
+    return spec_path, outputs_dir
+
+
 def a_inputs(task: str, b_stage: str, out_dir: Path, s06_dir: Path | None = None):
     """Equivalence test: A's own inputs, B's writer into out_dir (s06 outputs from s06_dir)."""
     AdapterWriter.reads_from = []
@@ -139,6 +167,6 @@ def a_inputs(task: str, b_stage: str, out_dir: Path, s06_dir: Path | None = None
     return upstream, ld, fo, writer
 
 
-def run_a_stage(module, task: str, fns) -> None:
-    with redirected(*fns):
+def run_a_stage(module, task: str, fns, extras=(None, None)) -> None:
+    with redirected(*fns, *extras):
         module.run(task)

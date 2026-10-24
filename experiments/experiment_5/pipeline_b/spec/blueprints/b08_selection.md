@@ -4,7 +4,7 @@
 | --- | --- |
 | Stage | B8, Pipeline B (G-79; CR-054 B-C10, B-C13; B-G-01) |
 | Nodes | regression, classification |
-| Status | PROPOSED for the lead's approval (2026-10-24) |
+| Status | AGREED (experiment lead, 2026-10-24) |
 | Inherits from A | `e5lib/selection.py` `run()` unchanged (finalists, one-SE recommendation, calibration, threshold table, gate, freeze); A's s08 decision rules (G-39, G-44, G-78) |
 
 ## 1. Goal and gate

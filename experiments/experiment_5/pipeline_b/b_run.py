@@ -11,7 +11,7 @@ from pathlib import Path
 B_ROOT = Path(__file__).resolve().parent
 sys.path[:0] = [str(B_ROOT.parent), str(B_ROOT)]
 
-BUILT = ("b02", "b04", "b05", "b06", "b07")
+BUILT = ("b02", "b04", "b05", "b06", "b07", "b08")
 
 
 def main() -> int:

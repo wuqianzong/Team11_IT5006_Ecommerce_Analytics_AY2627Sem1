@@ -66,3 +66,22 @@ def test_redirect_restores_on_error():
             from e5lib import data
             data.upstream()
     assert adapter.originals_restored()
+
+
+@slow
+@pytest.mark.parametrize("task", ["regression", "classification"])
+def test_s08_equivalence_with_a_decisions(task):
+    """A's inputs and A's s08 decisions through the adapter give A's frozen recipe, same sha256."""
+    from e5lib import paths, selection
+    out = EQ / "b08" / task
+    orig_out = paths.outputs_dir
+
+    def outputs_dir(stage, task_):
+        return out if stage == "s08_selection" else orig_out(stage, task_)
+
+    adapter.run_a_stage(selection, task, adapter.a_inputs(task, "b08", out), (None, outputs_dir))
+    assert adapter.originals_restored()
+    a = json.loads((E5 / "stages/s08_selection" / task / "outputs/frozen_recipe.json").read_text())
+    b = json.loads((out / "frozen_recipe.json").read_text())
+    assert b["sha256"] == a["sha256"]
+    _same(E5 / "stages/s08_selection" / task / "outputs", out, ["candidates.csv", "ladder.csv"], [])
