@@ -36,6 +36,11 @@ B4 recipes, B6 metrics and learning curves, B7 counts and grid results, B5 folds
    when its 5-fold mean beats A's, even by a thin margin. Paired gains per fold are shown beside
    it, and the comparison on folds 2–5 is shown as description only (B-G-01). Whatever the
    result, A and B both go to the joint test run; the test never re-chooses (G-79).
+   **Mean and SE by population (Henry, R-02).** For each task, per fold and as 5-fold mean ± SE:
+   A's frozen model on A's own validation rows, A's frozen model on B's validation rows, and B's
+   model on B's validation rows (`se_decomposition.csv`), so the report can separate the effect of
+   B's scope (seven states, distance, cap, warm-up) from the effect of B's features. A's numbers
+   come from A's stored out-of-fold predictions at e5-A-frozen.
 4. **Missed-dispatch rule (B-C10), new B code.** On the development period: orders whose last
    shipping limit passed with no carrier handover; counts of flagged orders, detractors among
    them, precision and the share of all detractors caught. Reported beside the classifier; not a
@@ -44,7 +49,7 @@ B4 recipes, B6 metrics and learning curves, B7 counts and grid results, B5 folds
 ## 4. Outputs (per task, `pipeline_b/stages/b08/<task>/outputs/`)
 As A's s08 gate and freeze (finalists, candidates, calibration and threshold tables, selection
 pack, `frozen_recipe.json` after the decisions), plus `adoption_comparison.csv` (per fold: A
-score, B score, paired gain; 5-fold mean and folds 2–5 mean) and, for classification,
+score, B score, paired gain; 5-fold mean and folds 2–5 mean), `se_decomposition.csv` and, for classification,
 `missed_dispatch_rule.csv`. Evidence IDs B8.1–B8.5, B8.A (adoption), B8.M (missed dispatch).
 
 ## 5. Checks
