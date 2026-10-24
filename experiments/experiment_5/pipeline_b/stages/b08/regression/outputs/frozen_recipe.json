@@ -1,0 +1,67 @@
+{
+  "pipeline": "B",
+  "step": "B8.5",
+  "task": "regression",
+  "model": "reg.sel.log.linear",
+  "estimator": "linear",
+  "params": {},
+  "features": {
+    "numeric": [
+      "route_recent_carrier_transit_days",
+      "route_recent_delivery_days",
+      "distance_km_max",
+      "interstate_share",
+      "total_freight",
+      "seller_prior_dispatch_days",
+      "seller_prior_late_handover_rate",
+      "seller_prior_late_handover_days",
+      "freight_ratio",
+      "total_weight_g",
+      "total_price",
+      "total_volume_cm3",
+      "purchase_dayofweek",
+      "n_sellers",
+      "purchase_month",
+      "n_products",
+      "payment_installments_max",
+      "n_items"
+    ],
+    "categorical": [
+      "route_seller_to_customer_state",
+      "primary_category",
+      "primary_payment_type"
+    ]
+  },
+  "transforms": {
+    "log_inputs": [
+      "route_recent_carrier_transit_days",
+      "route_recent_delivery_days",
+      "distance_km_max",
+      "total_freight",
+      "seller_prior_dispatch_days",
+      "seller_prior_late_handover_days",
+      "total_weight_g",
+      "total_price",
+      "total_volume_cm3"
+    ],
+    "drop_duplicates": true,
+    "log_target": true
+  },
+  "calibration": null,
+  "threshold": null,
+  "random_state": 42,
+  "final_fit": "all development orders whose labels were observable before the test cutoff (8.6)",
+  "test_cutoff": "2018-05-27 12:30:34",
+  "test_read": false,
+  "decisions": {
+    "model": {
+      "chosen": "reg.sel.log.linear",
+      "recommended": "reg.sel.log.linear",
+      "rationale": "one-SE recommendation over the finalists, same rule as A (s01 1.7, G-33); the forest has the best mean but is within one SE of the plain linear model",
+      "grid_edge_action": "none",
+      "decided_by": "Henry; experiment lead (Wu Qianzong)",
+      "date": "2026-10-24"
+    }
+  },
+  "sha256": "8f1241b5bc5fdc27f3e30a96155dec33e63c665fa56029e804a6fdfcd34e48db"
+}

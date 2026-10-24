@@ -1,0 +1,249 @@
+{
+  "node": "B/b08/regression",
+  "pipeline": "B",
+  "files": {
+    "metrics_long.csv": {
+      "ids": [
+        "B8.1"
+      ],
+      "kind": "table"
+    },
+    "predictions.csv.gz": {
+      "ids": [
+        "B8.1"
+      ],
+      "kind": "table"
+    },
+    "candidates.csv": {
+      "ids": [
+        "B8.1",
+        "B8.2"
+      ],
+      "kind": "table"
+    },
+    "ladder.csv": {
+      "ids": [
+        "B8.2"
+      ],
+      "kind": "table"
+    },
+    "figures/finalists.png": {
+      "ids": [
+        "B8.1",
+        "B8.2"
+      ],
+      "kind": "figure"
+    },
+    "figures/finalists.csv": {
+      "ids": [
+        "B8.1",
+        "B8.2"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/finalists.json": {
+      "ids": [
+        "B8.1",
+        "B8.2"
+      ],
+      "kind": "figure_meta"
+    },
+    "selected_spec.json": {
+      "ids": [
+        "B8.2"
+      ],
+      "kind": "json"
+    },
+    "frozen_recipe.json": {
+      "ids": [
+        "B8.5"
+      ],
+      "kind": "json"
+    },
+    "counts.json": {
+      "ids": [
+        "B8.1",
+        "B8.2",
+        "B8.5"
+      ],
+      "kind": "json"
+    },
+    "selection_review_pack.md": {
+      "ids": [
+        "B8.2",
+        "B8.5"
+      ],
+      "kind": "text"
+    },
+    "decision.json": {
+      "ids": [
+        "B8.2",
+        "B8.5"
+      ],
+      "kind": "json"
+    },
+    "se_decomposition.csv": {
+      "ids": [
+        "B8.A"
+      ],
+      "kind": "table"
+    },
+    "adoption_comparison.csv": {
+      "ids": [
+        "B8.A"
+      ],
+      "kind": "table"
+    },
+    "population_summary.csv": {
+      "ids": [
+        "B8.A"
+      ],
+      "kind": "table"
+    },
+    "adoption_decision.json": {
+      "ids": [
+        "B8.A"
+      ],
+      "kind": "json"
+    },
+    "adoption_by_finalist.csv": {
+      "ids": [
+        "B8.A"
+      ],
+      "kind": "table"
+    },
+    "adoption_by_finalist_summary.csv": {
+      "ids": [
+        "B8.A"
+      ],
+      "kind": "table"
+    },
+    "metrics_by_population_folds.csv": {
+      "ids": [
+        "B8.A"
+      ],
+      "kind": "table"
+    },
+    "metrics_by_population.csv": {
+      "ids": [
+        "B8.A"
+      ],
+      "kind": "table"
+    }
+  },
+  "checks": [
+    {
+      "name": "finalists refitted on the same rows and folds reproduce their s06 fold scores",
+      "passed": true,
+      "detail": "4 of 4 reproduced",
+      "ids": [
+        "B8.1"
+      ]
+    },
+    {
+      "name": "finalists: the dummy, plain linear/logistic and single tree references plus each family's s07 carried model",
+      "passed": true,
+      "detail": "4 finalists",
+      "ids": [
+        "B8.1"
+      ]
+    },
+    {
+      "name": "no test row read: every row used was purchased before the test cutoff",
+      "passed": true,
+      "detail": "latest purchase 2018-05-24 18:56:59, cutoff 2018-05-27 12:30:34",
+      "ids": [
+        "B8.1",
+        "B8.2"
+      ]
+    },
+    {
+      "name": "frozen recipe follows the team decisions: chosen model is a finalist and the recommendation",
+      "passed": true,
+      "detail": "reg.sel.log.linear",
+      "ids": [
+        "B8.5"
+      ]
+    },
+    {
+      "name": "frozen before any test row is read: the run uses development rows only, all purchased before the cutoff",
+      "passed": true,
+      "detail": "sha256 fceef777e53fb6a498b227b5aed8d34ef67bf0696dcb6415b4756e52650d26a0",
+      "ids": [
+        "B8.5"
+      ]
+    },
+    {
+      "name": "B's frozen recipe: labelled B, the team's chosen model, sha256 recomputes",
+      "passed": true,
+      "detail": "sha256 8f1241b5bc5f\u2026",
+      "ids": [
+        "B8.5"
+      ]
+    },
+    {
+      "name": "A's frozen recipe unchanged: sha256 recomputes and A's selected spec matches it",
+      "passed": true,
+      "detail": "sha256 df4beee32d7b\u2026",
+      "ids": [
+        "B8.A"
+      ]
+    },
+    {
+      "name": "A's refit reproduces A's stored s06 out-of-fold predictions on A's validation rows",
+      "passed": true,
+      "detail": "max difference 7.11e-15",
+      "ids": [
+        "B8.A"
+      ]
+    },
+    {
+      "name": "B's validation rows and labels are exactly B5's, in every fold",
+      "passed": true,
+      "detail": "50,618 validation rows",
+      "ids": [
+        "B8.A"
+      ]
+    }
+  ],
+  "deviations": {},
+  "cards": {
+    "B8.1": {
+      "done": "4 finalists refitted on the five s05 folds: dummy (s06 reference) 5.9689 \u00b1 0.7107 days; linear/logistic (s06 reference) 5.0247 \u00b1 0.6115 days; single tree (s06 reference) 5.0532 \u00b1 0.6394 days; forest (s07 carried (plain s06)) 4.9627 \u00b1 0.6457 days (validation mae, mean \u00b1 SE).",
+      "inputs": "s06 metrics and learning curves; s07 counts.json (carried model per family) and grid_results.csv; s05 folds.",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B8.2": {
+      "done": "One-SE recommendation: linear/logistic (best mean: forest). Ladder basic to complex: linear/logistic kept over dummy (paired gain +0.9442 days, better in 5 of 5 folds); single tree not kept over linear/logistic (paired gain -0.0285 days, better in 2 of 5 folds); forest not kept over linear/logistic (paired gain +0.0619 days, better in 3 of 5 folds); ladder result linear/logistic. Grid edge of the recommendation: plain s06 model, not a grid configuration.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "The recommendation follows the pre-registered rule; the team confirms or overrides it at the gate (G-39), and an override is logged as a protocol deviation (G-44). Validation scores are selection scores, not generalisation estimates (G-10).",
+      "conclusion": "The team confirmed the recommendation at the combined review of s06-s08 (human_decisions.yaml s08, 2026-10-24).",
+      "label": "observation"
+    },
+    "B8.5": {
+      "done": "Frozen recipe for B (reg.sel.log.linear): calibration none; sha256 8f1241b5bc5fdc27f3e30a96155dec33e63c665fa56029e804a6fdfcd34e48db. Written before any test row is read; decisions in human_decisions_B.yaml b08.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B8.A": {
+      "done": "Adoption comparison (G-79) on MAE days: A's frozen model (reg.sel.log.linear) refitted per fold on A's training rows vs B's recommended model (reg.sel.log.linear), both on B's validation rows. Mean paired gain of B over A +0.1176 days (paired SE 0.0594), B better in 5 of 5 folds; folds 2-5 (description only, B-G-01): +0.1467 days. By the fold rule B is adopted for regression; A and B both go to the joint test run. Mean and SE by population are in population_summary.csv (R-02).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    }
+  },
+  "checks_failed": []
+}

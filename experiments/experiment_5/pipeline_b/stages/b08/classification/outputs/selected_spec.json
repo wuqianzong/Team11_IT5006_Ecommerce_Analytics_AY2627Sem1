@@ -1,0 +1,64 @@
+{
+  "task": "classification",
+  "recommended": "clf.sel.log.logistic",
+  "spec": {
+    "task": "classification",
+    "estimator": "logistic",
+    "numeric": [
+      "route_recent_carrier_transit_days",
+      "route_recent_delivery_days",
+      "seller_prior_dispatch_days",
+      "seller_prior_late_handover_days",
+      "seller_prior_review_mean",
+      "order_dispatch_days",
+      "freight_ratio",
+      "total_freight",
+      "total_volume_cm3",
+      "n_items",
+      "seller_prior_late_handover_rate",
+      "total_price",
+      "order_handover_late_days",
+      "total_weight_g",
+      "product_description_lenght",
+      "n_products",
+      "n_sellers",
+      "purchase_month",
+      "order_handed_over_late",
+      "distance_km_max",
+      "interstate_share",
+      "n_categories",
+      "payment_installments_max"
+    ],
+    "categorical": [
+      "route_seller_to_customer_state",
+      "primary_category"
+    ],
+    "log_inputs": [
+      "route_recent_carrier_transit_days",
+      "route_recent_delivery_days",
+      "seller_prior_dispatch_days",
+      "seller_prior_late_handover_days",
+      "order_dispatch_days",
+      "total_freight",
+      "total_volume_cm3",
+      "total_price",
+      "order_handover_late_days",
+      "total_weight_g",
+      "product_description_lenght",
+      "distance_km_max"
+    ],
+    "drop_duplicates": true,
+    "random_state": 42
+  },
+  "calibration": "sigmoid",
+  "threshold": {
+    "value": 0.16666666666666666,
+    "daily_alert_cap": 25,
+    "applies_to": "sigmoid-calibrated probability",
+    "oof_alerts_per_day": 17.0,
+    "oof_precision": 0.29820971867007673,
+    "oof_recall": 0.24985714285714286,
+    "oof_cost": 30371.0
+  },
+  "calibration_override": "B-G-05"
+}

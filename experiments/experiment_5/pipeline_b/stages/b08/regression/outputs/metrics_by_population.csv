@@ -1,0 +1,13 @@
+model,variant,rows,metric,mean_5_folds,se_5_folds
+A frozen model,raw,A validation rows,mae,5.470111342962177,0.6733199840340963
+A frozen model,raw,A validation rows,rmse,8.578481829740706,1.178503889752194
+A frozen model,raw,A validation rows,r2,0.09111619521554346,0.07289246342167871
+A frozen model,raw,A validation rows,within_3d,0.465389540773497,0.025625476260271975
+A frozen model,raw,B validation rows,mae,5.142292975149166,0.6616487520836893
+A frozen model,raw,B validation rows,rmse,7.989630849954811,1.1872217847311433
+A frozen model,raw,B validation rows,r2,0.057444081551370575,0.06186141240215319
+A frozen model,raw,B validation rows,within_3d,0.4883173279189378,0.026455025752677698
+B recommended model,raw,B validation rows,mae,5.024664909635607,0.6114820295778352
+B recommended model,raw,B validation rows,rmse,7.83673062158317,1.1084240406942187
+B recommended model,raw,B validation rows,r2,0.08733371632123128,0.05303274762654583
+B recommended model,raw,B validation rows,within_3d,0.5010409642291014,0.026902137093176775

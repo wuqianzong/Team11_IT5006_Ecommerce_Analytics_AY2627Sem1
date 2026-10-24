@@ -1,0 +1,96 @@
+{
+  "pipeline": "B",
+  "step": "B8.5",
+  "task": "classification",
+  "model": "clf.sel.log.logistic",
+  "estimator": "logistic",
+  "params": {},
+  "features": {
+    "numeric": [
+      "route_recent_carrier_transit_days",
+      "route_recent_delivery_days",
+      "seller_prior_dispatch_days",
+      "seller_prior_late_handover_days",
+      "seller_prior_review_mean",
+      "order_dispatch_days",
+      "freight_ratio",
+      "total_freight",
+      "total_volume_cm3",
+      "n_items",
+      "seller_prior_late_handover_rate",
+      "total_price",
+      "order_handover_late_days",
+      "total_weight_g",
+      "product_description_lenght",
+      "n_products",
+      "n_sellers",
+      "purchase_month",
+      "order_handed_over_late",
+      "distance_km_max",
+      "interstate_share",
+      "n_categories",
+      "payment_installments_max"
+    ],
+    "categorical": [
+      "route_seller_to_customer_state",
+      "primary_category"
+    ]
+  },
+  "transforms": {
+    "log_inputs": [
+      "route_recent_carrier_transit_days",
+      "route_recent_delivery_days",
+      "seller_prior_dispatch_days",
+      "seller_prior_late_handover_days",
+      "order_dispatch_days",
+      "total_freight",
+      "total_volume_cm3",
+      "total_price",
+      "order_handover_late_days",
+      "total_weight_g",
+      "product_description_lenght",
+      "distance_km_max"
+    ],
+    "drop_duplicates": true
+  },
+  "calibration": "sigmoid",
+  "threshold": {
+    "value": 0.16666666666666666,
+    "daily_alert_cap": 25,
+    "applies_to": "sigmoid-calibrated probability",
+    "oof_alerts_per_day": 17.0,
+    "oof_precision": 0.29820971867007673,
+    "oof_recall": 0.24985714285714286,
+    "oof_cost": 30371.0
+  },
+  "random_state": 42,
+  "final_fit": "all development orders whose labels were observable before the test cutoff (8.6)",
+  "test_cutoff": "2018-05-26 12:16:34",
+  "test_read": false,
+  "decisions": {
+    "model": {
+      "chosen": "clf.sel.log.logistic",
+      "recommended": "clf.sel.log.logistic",
+      "rationale": "one-SE recommendation over the finalists, same rule as A (s01 1.7, G-33); the forest has the best mean but is within one SE of the plain logistic model; calibration sigmoid by B-G-05",
+      "grid_edge_action": "none",
+      "decided_by": "Henry; experiment lead (Wu Qianzong)",
+      "date": "2026-10-24"
+    },
+    "calibration_override": {
+      "value": "sigmoid",
+      "rule_result": "raw",
+      "deviation": "B-G-05",
+      "rationale": "align with A's frozen recipe (sigmoid) so Brier, threshold and alert counts are on the same probability scale at the joint test; B: Brier raw 0.11414 vs sigmoid 0.11461, AP raw 0.2616 vs sigmoid 0.2482 (one fold SE 0.0349); source pipeline_b/stages/b08/classification/outputs/calibration_folds.csv",
+      "decided_by": "Henry; experiment lead (Wu Qianzong)",
+      "date": "2026-10-24"
+    },
+    "threshold": {
+      "value": 0.16666666666666666,
+      "daily_alert_cap": 25,
+      "rationale": "1/6, the theoretical cost cutoff, on B's sigmoid probabilities, as A; 17.0 alerts/day out-of-fold (threshold_table_sigmoid.csv), within the 25/day cap; Henry: may be revisited after s10, which would be reported as a post-test change (G-79)",
+      "decided_by": "Henry; experiment lead (Wu Qianzong)",
+      "date": "2026-10-24"
+    }
+  },
+  "sha256": "da056ab74eff09577b2d61746ed5de039beda98dd62e0f0c060fe6b484f94c6d"
+}

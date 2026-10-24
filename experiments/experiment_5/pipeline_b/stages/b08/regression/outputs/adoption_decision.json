@@ -1,0 +1,15 @@
+{
+  "task": "regression",
+  "metric": "mae",
+  "higher_is_better": false,
+  "a_frozen_model": "reg.sel.log.linear",
+  "a_frozen_sha256": "df4beee32d7b6bef5736e21e53aad6b1caea3233a066c222e46708aca38899d2",
+  "b_recommended": "reg.sel.log.linear",
+  "mean_paired_gain_5_folds": 0.11762806551355895,
+  "paired_se_5_folds": 0.05938317943997004,
+  "b_better_folds": 5,
+  "mean_paired_gain_folds_2_5": 0.1466657822914752,
+  "paired_se_folds_2_5": 0.06687267758864854,
+  "rule": "B is adopted for the task when its 5-fold mean beats A's on the same B rows, even by a thin margin (G-79); folds 2-5 are description only (B-G-01); both go to the joint test run",
+  "b_adopted_on_folds": true
+}

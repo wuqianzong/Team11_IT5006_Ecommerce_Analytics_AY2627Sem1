@@ -1,0 +1,16 @@
+{
+  "task": "classification",
+  "finalists": [
+    "clf.sel.log.dummy_prior",
+    "clf.sel.log.logistic",
+    "clf.sel.log.tree_clf.max_depth=5.min_samples_leaf=100",
+    "clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50"
+  ],
+  "recommended": "clf.sel.log.logistic",
+  "best_mean": "clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50",
+  "ladder_result": "clf.sel.log.logistic",
+  "calibration": null,
+  "stopped_after": "8.5 (frozen)",
+  "frozen_sha256": "337ff3ece7292c06e7c90f95a2b7d530960c108dd3dedddd80b3d9262c8d8c74",
+  "seed": 42
+}

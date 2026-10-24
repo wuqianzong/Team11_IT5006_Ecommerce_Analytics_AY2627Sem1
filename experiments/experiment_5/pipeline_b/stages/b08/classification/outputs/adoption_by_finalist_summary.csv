@@ -1,0 +1,5 @@
+candidate_id,family,b_mean,gain_mean,gain_se,folds_b_better,b_adopted_on_folds_if_chosen
+clf.sel.log.dummy_prior,dummy,0.1379707846467106,-0.10390635893223021,0.01751469347989373,0,False
+clf.sel.log.logistic,linear/logistic,0.26158133751861035,0.019704193939669528,0.004967882135158404,5,True
+clf.sel.log.tree_clf.max_depth=5.min_samples_leaf=100,single tree,0.23940820230216725,-0.0024689412767735343,0.005165398691004322,3,False
+clf.sel.log.forest_clf.max_depth=10.max_features=sqrt.min_samples_leaf=50,forest,0.27389635390291545,0.03201921032397461,0.007732465920671002,5,True

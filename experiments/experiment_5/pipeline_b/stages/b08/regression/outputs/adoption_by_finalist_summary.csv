@@ -1,0 +1,5 @@
+candidate_id,family,b_mean,gain_mean,gain_se,folds_b_better,b_adopted_on_folds_if_chosen
+reg.sel.log.dummy_median,dummy,5.968890770349172,-0.8265977952000061,0.11370547643680756,0,False
+reg.sel.log.linear,linear/logistic,5.024664909635607,0.11762806551355895,0.05938317943997004,5,True
+reg.sel.log.tree_reg.max_depth=5.min_samples_leaf=100,single tree,5.053210185795535,0.08908278935363105,0.07914065059890489,3,True
+reg.sel.log.forest_reg.max_depth=10.max_features=sqrt.min_samples_leaf=50,forest,4.962735323512691,0.17955765163647497,0.04448791511998975,5,True

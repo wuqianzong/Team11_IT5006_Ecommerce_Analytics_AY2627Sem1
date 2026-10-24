@@ -1,0 +1,16 @@
+{
+  "task": "regression",
+  "finalists": [
+    "reg.sel.log.dummy_median",
+    "reg.sel.log.linear",
+    "reg.sel.log.tree_reg.max_depth=5.min_samples_leaf=100",
+    "reg.sel.log.forest_reg.max_depth=10.max_features=sqrt.min_samples_leaf=50"
+  ],
+  "recommended": "reg.sel.log.linear",
+  "best_mean": "reg.sel.log.forest_reg.max_depth=10.max_features=sqrt.min_samples_leaf=50",
+  "ladder_result": "reg.sel.log.linear",
+  "calibration": null,
+  "stopped_after": "8.5 (frozen)",
+  "frozen_sha256": "fceef777e53fb6a498b227b5aed8d34ef67bf0696dcb6415b4756e52650d26a0",
+  "seed": 42
+}

@@ -1,0 +1,5 @@
+candidate_id,family,source,validation_mean,validation_se,recommended
+reg.sel.log.dummy_median,dummy,s06 reference,5.968890770349172,0.7106772559191344,False
+reg.sel.log.linear,linear/logistic,s06 reference,5.024664909635607,0.6114820295778352,True
+reg.sel.log.tree_reg.max_depth=5.min_samples_leaf=100,single tree,s06 reference,5.053210185795535,0.6394322982883813,False
+reg.sel.log.forest_reg.max_depth=10.max_features=sqrt.min_samples_leaf=50,forest,s07 carried (plain s06),4.962735323512691,0.6456762263274054,False

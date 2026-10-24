@@ -1,0 +1,19 @@
+model,variant,rows,metric,mean_5_folds,se_5_folds
+A frozen model,raw,A validation rows,ap,0.24350746222563605,0.031421506277699886
+A frozen model,raw,A validation rows,roc_auc,0.6212653557825718,0.016056817067270197
+A frozen model,raw,A validation rows,brier,0.12425868885537934,0.014274502412497564
+A frozen model,raw,B validation rows,ap,0.2418771435789408,0.03444816813334701
+A frozen model,raw,B validation rows,roc_auc,0.631691763901902,0.01470379127351258
+A frozen model,raw,B validation rows,brier,0.11616474074846121,0.014223229625450423
+B recommended model,raw,B validation rows,ap,0.26158133751861035,0.03493785460824297
+B recommended model,raw,B validation rows,roc_auc,0.6535838904247486,0.015017584648217671
+B recommended model,raw,B validation rows,brier,0.11414414083671195,0.013586492131153921
+A frozen model,sigmoid,A validation rows,ap,0.23172543144377977,0.02763011675289703
+A frozen model,sigmoid,A validation rows,roc_auc,0.6142585103321228,0.013525999923794888
+A frozen model,sigmoid,A validation rows,brier,0.1239067539912821,0.013438703749054872
+A frozen model,sigmoid,B validation rows,ap,0.23015913058638496,0.03045557761018558
+A frozen model,sigmoid,B validation rows,roc_auc,0.6259484551335766,0.011928503676321995
+A frozen model,sigmoid,B validation rows,brier,0.11624011671467857,0.013487764095728882
+B recommended model,sigmoid,B validation rows,ap,0.2482053394114348,0.031257927925469525
+B recommended model,sigmoid,B validation rows,roc_auc,0.6372338998057598,0.015180955690696506
+B recommended model,sigmoid,B validation rows,brier,0.1146069631847352,0.013501867641147051

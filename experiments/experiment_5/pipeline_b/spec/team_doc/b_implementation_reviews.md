@@ -12,9 +12,9 @@ Implementation reviews for Pipeline B, in the same format as Pipeline A's "Imple
 | B4 Features | AGREED | round 2 (B-G-02 nesting; B-G-04 names) | ACCEPTED round 2 | Henry reviewed round 1; round 2 open | e5-B-s04-accepted |
 | B5 Partition | AGREED | round 1 (A's folds restricted to B rows; B-G-01 safeguard met) | ACCEPTED round 1 | open (sub-tab "B5 Partition") | e5-B-s05-accepted |
 | B6 Training | AGREED | round 1 (A's s06 code unchanged on B inputs; equivalence test passes) | ACCEPTED round 1 | at the B8 gate (G-78) | e5-B-s06-accepted |
-| B7 Tuning | AGREED | round 1 (A's s07 code unchanged on B inputs; equivalence test passes) | ACCEPTED round 1 | at the B8 gate (G-78) | e5-B-s07-accepted |
-| B8 Selection (gate, freeze) | DRAFT | not started | — | team reviews B6–B8 together at the gate | — |
-| Joint test run (A and B) | to be drafted with B8 | not started | — | — | — |
+| B7 Tuning | AGREED | round 1 (A's s07 code unchanged on B inputs; full grids in the tabs) | ACCEPTED round 1 | at the B8 gate (G-78) | e5-B-s07-accepted |
+| B8 Selection (gate, freeze) | AGREED | round 1: gate (B8.1–B8.4, adoption, SE by population, missed-dispatch rule) and freeze B8.5 (sigmoid per B-G-05, 1/6, cap 25) | FROZEN (lead and Henry) | **decided 2026-10-24 (Henry and the experiment lead); FROZEN, tag e5-B-frozen** (sub-tab "B8 Selection (gate)") | — |
+| Joint test run (A and B) | to be drafted after B's freeze | not started | — | — | — |
 
 Which run of each stage is current, and which rounds are superseded, is recorded only in pipeline\_b/EVIDENCE.md.
 

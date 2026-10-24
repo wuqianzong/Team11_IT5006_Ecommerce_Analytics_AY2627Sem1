@@ -1,0 +1,15 @@
+{
+  "task": "classification",
+  "metric": "ap",
+  "higher_is_better": true,
+  "a_frozen_model": "clf.sel.log.logistic",
+  "a_frozen_sha256": "8de9d4f13159db2d77716df7070f745bea118390cdb3a624cede3ab19d9277d8",
+  "b_recommended": "clf.sel.log.logistic",
+  "mean_paired_gain_5_folds": 0.019704193939669528,
+  "paired_se_5_folds": 0.004967882135158404,
+  "b_better_folds": 5,
+  "mean_paired_gain_folds_2_5": 0.020668059470696533,
+  "paired_se_folds_2_5": 0.006291636796431177,
+  "rule": "B is adopted for the task when its 5-fold mean beats A's on the same B rows, even by a thin margin (G-79); folds 2-5 are description only (B-G-01); both go to the joint test run",
+  "b_adopted_on_folds": true
+}
