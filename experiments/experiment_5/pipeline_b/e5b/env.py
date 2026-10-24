@@ -21,7 +21,7 @@ from e5lib.paths import E5, assert_inside_e5, rel
 
 B_ROOT = E5 / "pipeline_b"
 A_FROZEN_TAG = "e5-A-frozen"
-STAGES = ("b02", "b04", "b05", "b06", "b07", "b08")
+STAGES = ("b02", "b04", "b05", "b06", "b07", "b08", "t1_joint_test")
 _STARTED = time.time()
 
 

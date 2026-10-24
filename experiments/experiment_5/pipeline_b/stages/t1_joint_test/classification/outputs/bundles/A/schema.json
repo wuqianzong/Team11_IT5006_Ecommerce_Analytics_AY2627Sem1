@@ -1,0 +1,46 @@
+{
+  "pipeline": "A",
+  "task": "classification",
+  "frozen_sha256": "8de9d4f13159db2d77716df7070f745bea118390cdb3a624cede3ab19d9277d8",
+  "model": "clf.sel.log.logistic",
+  "numeric": [
+    "seller_prior_review_mean",
+    "total_freight",
+    "freight_ratio",
+    "total_volume_cm3",
+    "total_price",
+    "n_items",
+    "product_description_lenght",
+    "total_weight_g",
+    "n_products",
+    "n_sellers",
+    "purchase_month",
+    "distance_km_max",
+    "interstate_share",
+    "n_categories",
+    "payment_installments_max",
+    "product_photos_qty"
+  ],
+  "categorical": [
+    "customer_state",
+    "primary_category",
+    "primary_seller_state"
+  ],
+  "calibration": "sigmoid",
+  "threshold": {
+    "value": 0.16666666666666666,
+    "daily_alert_cap": 25,
+    "applies_to": "sigmoid-calibrated probability",
+    "oof_alerts_per_day": 23.860869565217392,
+    "oof_precision": 0.2523080660835763,
+    "oof_recall": 0.223405399591266,
+    "oof_cost": 42255.0
+  },
+  "training_rows": 74970,
+  "training_id_digest": "ca2f05a65c926f5d570b09cbaf46a4dad79f73e66d81d416373564e89a67f6e8",
+  "versions": {
+    "sklearn": "1.9.0",
+    "pandas": "3.0.1",
+    "numpy": "2.4.2"
+  }
+}

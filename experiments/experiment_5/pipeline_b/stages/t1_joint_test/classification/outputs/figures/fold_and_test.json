@@ -1,0 +1,7 @@
+{
+  "title": "Fold by fold and test (B-C13)",
+  "ids": [
+    "T1.6"
+  ],
+  "data": "figures/fold_and_test.csv"
+}

@@ -1,0 +1,10 @@
+{
+  "task": "classification",
+  "read_at_utc": "2026-10-24T04:45:37.575137+00:00",
+  "read_once": true,
+  "a_test_rows": 18966,
+  "b_test_rows": 15492,
+  "a_frozen_sha256": "8de9d4f13159db2d77716df7070f745bea118390cdb3a624cede3ab19d9277d8",
+  "b_frozen_sha256": "da056ab74eff09577b2d61746ed5de039beda98dd62e0f0c060fe6b484f94c6d",
+  "events_until": "every event; each row uses only weeks before its prediction week (J-1 (a))"
+}

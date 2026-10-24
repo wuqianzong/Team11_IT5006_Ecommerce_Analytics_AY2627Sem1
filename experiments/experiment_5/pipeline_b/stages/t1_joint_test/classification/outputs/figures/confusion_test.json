@@ -1,0 +1,7 @@
+{
+  "title": "Confusion matrices on B's test rows",
+  "ids": [
+    "T1.4"
+  ],
+  "data": "figures/confusion_test.csv"
+}

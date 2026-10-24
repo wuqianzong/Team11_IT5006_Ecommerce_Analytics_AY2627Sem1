@@ -29,6 +29,13 @@ Pipeline A's evidence is frozen at tag `e5-A-frozen`: cite A only from `../stage
 | b07 | classification | 20261023T164241Z | e358f81 | e5-B-s07-accepted | 1 |
 | b08 | regression | 20261024T042516Z | a4a0ded | e5-B-frozen | 1 |
 | b08 | classification | 20261024T042619Z | a4a0ded | e5-B-frozen | 1 |
+| t1_joint_test | regression | 20261024T044531Z | e4fa1a6 | e5-T1-tested | single read |
+| t1_joint_test | classification | 20261024T044555Z | e4fa1a6 | e5-T1-tested | single read |
+
+**T1 is never rerun** (a rerun is a second test read; joint_test.md §1). Its run was made on a tree
+with the T1 code not yet committed (manifest `dirty: true`, HEAD e4fa1a6). The manifest records the
+sha256 of every B code file that ran; the register test checks those hashes against the committed
+files instead of a clean rerun. Cite T1 numbers only from these two runs.
 
 When a stage is accepted again, replace its rows here in the same commit and move the old rows
 to the table below.
@@ -47,6 +54,7 @@ to the table below.
 | B6/B7 build runs before commit e358f81 (uncommitted code) | nowhere (byte-identical to the current runs) | clean reruns above |
 | A's s06/s07 scores (all states, A's features) | A's review tabs | never compared with B6/B7 scores directly; the like-for-like A–B comparison is B8's (G-79) |
 | B8 gate runs before a4a0ded (raw calibration, raw threshold tables, threshold options 1/6 = 19.2/day and 0.15 = 24.6/day on raw probabilities) | B8 doc tabs written at the gate; Henry's threads | B8 frozen run: sigmoid (B-G-05), threshold tables on sigmoid probabilities (threshold_table_sigmoid.csv), frozen_recipe.json |
+| T1 dry run on stand-in rows (last 8 weeks of development rows used as a fake test set, to exercise the code path before the single read; outputs deleted) | nowhere | never evidence; T1 runs above |
 | Probe 1 and probe 2 (probe 2 withdrawn) | doc tab "Scratch check plan" | never evidence; motivation only (G-79) |
 
 ## Where definitions live

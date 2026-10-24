@@ -1,0 +1,52 @@
+{
+  "pipeline": "B",
+  "task": "classification",
+  "frozen_sha256": "da056ab74eff09577b2d61746ed5de039beda98dd62e0f0c060fe6b484f94c6d",
+  "model": "clf.sel.log.logistic",
+  "numeric": [
+    "route_recent_carrier_transit_days",
+    "route_recent_delivery_days",
+    "seller_prior_dispatch_days",
+    "seller_prior_late_handover_days",
+    "seller_prior_review_mean",
+    "order_dispatch_days",
+    "freight_ratio",
+    "total_freight",
+    "total_volume_cm3",
+    "n_items",
+    "seller_prior_late_handover_rate",
+    "total_price",
+    "order_handover_late_days",
+    "total_weight_g",
+    "product_description_lenght",
+    "n_products",
+    "n_sellers",
+    "purchase_month",
+    "order_handed_over_late",
+    "distance_km_max",
+    "interstate_share",
+    "n_categories",
+    "payment_installments_max"
+  ],
+  "categorical": [
+    "route_seller_to_customer_state",
+    "primary_category"
+  ],
+  "calibration": "sigmoid",
+  "threshold": {
+    "value": 0.16666666666666666,
+    "daily_alert_cap": 25,
+    "applies_to": "sigmoid-calibrated probability",
+    "oof_alerts_per_day": 17.0,
+    "oof_precision": 0.29820971867007673,
+    "oof_recall": 0.24985714285714286,
+    "oof_cost": 30371.0
+  },
+  "training_rows": 59188,
+  "training_id_digest": "10afe507c8595e872e972f75363d7e131c0850765639fa5848783dff63fdf262",
+  "versions": {
+    "sklearn": "1.9.0",
+    "pandas": "3.0.1",
+    "numpy": "2.4.2"
+  }
+}

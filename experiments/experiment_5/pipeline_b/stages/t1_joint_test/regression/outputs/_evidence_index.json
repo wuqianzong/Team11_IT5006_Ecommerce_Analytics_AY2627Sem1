@@ -1,0 +1,239 @@
+{
+  "node": "B/t1_joint_test/regression",
+  "pipeline": "B",
+  "files": {
+    "test_rows_B.csv": {
+      "ids": [
+        "T1.1"
+      ],
+      "kind": "table"
+    },
+    "test_read.json": {
+      "ids": [
+        "T1.1"
+      ],
+      "kind": "json"
+    },
+    "metrics_test.csv": {
+      "ids": [
+        "T1.3"
+      ],
+      "kind": "table"
+    },
+    "predictions_test.csv.gz": {
+      "ids": [
+        "T1.3"
+      ],
+      "kind": "table"
+    },
+    "test_size_B.json": {
+      "ids": [
+        "T1.1"
+      ],
+      "kind": "json"
+    },
+    "bundles/A/model.joblib": {
+      "ids": [
+        "T1.5"
+      ],
+      "kind": "bundle"
+    },
+    "bundles/A/schema.json": {
+      "ids": [
+        "T1.5"
+      ],
+      "kind": "json"
+    },
+    "bundles/A/training_profile.json": {
+      "ids": [
+        "T1.5"
+      ],
+      "kind": "json"
+    },
+    "bundles/B/model.joblib": {
+      "ids": [
+        "T1.5"
+      ],
+      "kind": "bundle"
+    },
+    "bundles/B/schema.json": {
+      "ids": [
+        "T1.5"
+      ],
+      "kind": "json"
+    },
+    "bundles/B/training_profile.json": {
+      "ids": [
+        "T1.5"
+      ],
+      "kind": "json"
+    },
+    "fold_and_test_table.csv": {
+      "ids": [
+        "T1.6"
+      ],
+      "kind": "table"
+    },
+    "figures/test_metrics_comparison.png": {
+      "ids": [
+        "T1.3"
+      ],
+      "kind": "figure"
+    },
+    "figures/test_metrics_comparison.csv": {
+      "ids": [
+        "T1.3"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/test_metrics_comparison.json": {
+      "ids": [
+        "T1.3"
+      ],
+      "kind": "figure_meta"
+    },
+    "figures/fold_and_test.png": {
+      "ids": [
+        "T1.6"
+      ],
+      "kind": "figure"
+    },
+    "figures/fold_and_test.csv": {
+      "ids": [
+        "T1.6"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/fold_and_test.json": {
+      "ids": [
+        "T1.6"
+      ],
+      "kind": "figure_meta"
+    },
+    "figures/test_errors.png": {
+      "ids": [
+        "T1.3"
+      ],
+      "kind": "figure"
+    },
+    "figures/test_errors.csv": {
+      "ids": [
+        "T1.3"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/test_errors.json": {
+      "ids": [
+        "T1.3"
+      ],
+      "kind": "figure_meta"
+    }
+  },
+  "checks": [
+    {
+      "name": "both frozen recipes recompute their sha256 (A e5-A-frozen, B e5-B-frozen)",
+      "passed": true,
+      "detail": "A df4beee32d7b\u2026, B 8f1241b5bc5f\u2026",
+      "ids": [
+        "T1.1"
+      ]
+    },
+    {
+      "name": "A's test rows equal A's s05 test manifest; B's test rows are a subset after B's rules; no development row among them",
+      "passed": true,
+      "detail": "A 18,788, B 15,422 test rows",
+      "ids": [
+        "T1.1"
+      ]
+    },
+    {
+      "name": "every final-fit row has a label observable before the test cutoff",
+      "passed": true,
+      "detail": "A 74,834, B 59,683 rows",
+      "ids": [
+        "T1.2"
+      ]
+    },
+    {
+      "name": "leakage re-check on B's test rows: features recomputed by brute force from events in weeks before the prediction week match",
+      "passed": true,
+      "detail": "300 rows, max difference 0.00e+00",
+      "ids": [
+        "T1.1"
+      ]
+    },
+    {
+      "name": "no recipe field changed after the read: both frozen recipes still recompute the same sha256",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "T1.1"
+      ]
+    },
+    {
+      "name": "each bundle reloads and re-predicts the test rows identically",
+      "passed": true,
+      "detail": "{'A': True, 'B': True}",
+      "ids": [
+        "T1.5"
+      ]
+    },
+    {
+      "name": "A's tree untouched: A's code matches e5-A-frozen after the run",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "T1.1"
+      ]
+    }
+  ],
+  "deviations": {},
+  "cards": {
+    "T1.1": {
+      "done": "Frozen recipes checked (A df4beee32d7b\u2026, B 8f1241b5bc5f\u2026). Test read once at 2026-10-24T04:45:19.920901+00:00: A 18,788 rows (s05 manifest); B 15,422 rows after B's rules (removed: B_STATE 3,222; B_DISTANCE 144). B's history features use every event completed before each row's prediction week (J-1 (a)).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "T1.2": {
+      "done": "Final fits on development rows with labels observable before the cutoff: A 74,834 rows, B 59,683 rows; frozen recipes; dummies refitted the same way.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "T1.3": {
+      "done": "Test MAE: A on A's rows 4.3364; A on B's rows 4.0280; B on B's rows 3.2992. All G-24 metrics in metrics_test.csv.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "T1.5": {
+      "done": "Bundles for A and B (model.joblib, schema.json, training_profile.json); reload parity {'A': True, 'B': True}. B's bundle is the release (G-79).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "T1.6": {
+      "done": "Fold-by-fold (selection scores) and test (unbiased) table for A and B, festival days marked (fold_and_test_table.csv).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    }
+  },
+  "checks_failed": []
+}

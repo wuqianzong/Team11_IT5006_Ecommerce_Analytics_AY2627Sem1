@@ -37,3 +37,6 @@ hand, in the commit that accepts each B stage; git history keeps every earlier s
 | B implementation reviews › B8 Selection (gate) | [b_implementation_review_b08.md](b_implementation_review_b08.md) | 15 |
 | B8 › regression | [b_implementation_review_b08_regression.md](b_implementation_review_b08_regression.md) | 5 (generated source + metric note) |
 | B8 › classification | [b_implementation_review_b08_classification.md](b_implementation_review_b08_classification.md) | 3 (generated source) |
+| B implementation reviews › T1 Joint test | [t1_joint_test.md](t1_joint_test.md) | 2 (charts and images appear as placeholders in the export) |
+| T1 › regression | [t1_joint_test_regression.md](t1_joint_test_regression.md) | 2 |
+| T1 › classification | [t1_joint_test_classification.md](t1_joint_test_classification.md) | 2 |

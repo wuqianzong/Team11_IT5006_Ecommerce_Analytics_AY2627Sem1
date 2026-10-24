@@ -1,0 +1,10 @@
+{
+  "task": "regression",
+  "read_at_utc": "2026-10-24T04:45:19.920901+00:00",
+  "read_once": true,
+  "a_test_rows": 18788,
+  "b_test_rows": 15422,
+  "a_frozen_sha256": "df4beee32d7b6bef5736e21e53aad6b1caea3233a066c222e46708aca38899d2",
+  "b_frozen_sha256": "8f1241b5bc5fdc27f3e30a96155dec33e63c665fa56029e804a6fdfcd34e48db",
+  "events_until": "every event; each row uses only weeks before its prediction week (J-1 (a))"
+}

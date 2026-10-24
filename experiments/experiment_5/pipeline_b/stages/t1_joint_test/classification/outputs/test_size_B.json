@@ -1,0 +1,8 @@
+{
+  "b_test_rows": 15492,
+  "b_final_fit_rows": 59188,
+  "b_test_share_of_fit_plus_test": 0.2074450990894483,
+  "b_test_detractors": 1541,
+  "b_dev_detractors": 8063,
+  "b_test_detractor_share": 0.1604539775093711
+}

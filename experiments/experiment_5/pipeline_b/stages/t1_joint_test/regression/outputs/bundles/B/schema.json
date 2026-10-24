@@ -1,0 +1,40 @@
+{
+  "pipeline": "B",
+  "task": "regression",
+  "frozen_sha256": "8f1241b5bc5fdc27f3e30a96155dec33e63c665fa56029e804a6fdfcd34e48db",
+  "model": "reg.sel.log.linear",
+  "numeric": [
+    "route_recent_carrier_transit_days",
+    "route_recent_delivery_days",
+    "distance_km_max",
+    "interstate_share",
+    "total_freight",
+    "seller_prior_dispatch_days",
+    "seller_prior_late_handover_rate",
+    "seller_prior_late_handover_days",
+    "freight_ratio",
+    "total_weight_g",
+    "total_price",
+    "total_volume_cm3",
+    "purchase_dayofweek",
+    "n_sellers",
+    "purchase_month",
+    "n_products",
+    "payment_installments_max",
+    "n_items"
+  ],
+  "categorical": [
+    "route_seller_to_customer_state",
+    "primary_category",
+    "primary_payment_type"
+  ],
+  "calibration": null,
+  "threshold": null,
+  "training_rows": 59683,
+  "training_id_digest": "a41dc7300c3b32e182584563987613b1b3473477e4be3f7855757587e542dfbc",
+  "versions": {
+    "sklearn": "1.9.0",
+    "pandas": "3.0.1",
+    "numpy": "2.4.2"
+  }
+}

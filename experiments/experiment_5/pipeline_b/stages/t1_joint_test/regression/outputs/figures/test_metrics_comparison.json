@@ -1,0 +1,7 @@
+{
+  "title": "Test metrics comparison",
+  "ids": [
+    "T1.3"
+  ],
+  "data": "figures/test_metrics_comparison.csv"
+}

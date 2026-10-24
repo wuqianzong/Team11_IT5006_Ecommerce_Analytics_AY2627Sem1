@@ -46,4 +46,5 @@ from Pipeline A as frozen at tag `e5-A-frozen`.
 | B5 Partition | AGREED | ACCEPTED round 1 (runs 20261023T160529Z regression, 20261023T160533Z classification; tag e5-B-s05-accepted) |
 | B6–B7 Training and tuning | AGREED | ACCEPTED round 1 (runs b06 20261023T162830Z / 20261023T162918Z, b07 20261023T163311Z / 20261023T164241Z; tags e5-B-s06-accepted, e5-B-s07-accepted) |
 | B8 Selection (gate, freeze) | AGREED | FROZEN (runs 20261024T042516Z regression, 20261024T042619Z classification; tag e5-B-frozen) |
-| Joint test run (A and B) | to be drafted with B8 | NOT STARTED |
+| Joint test run T1 (A and B, one test read; A's 8.6–8.8 and B8.6–B8.8) | AGREED (spec/blueprints/joint_test.md; J-1 = (a)) | TEST READ ONCE (runs 20261024T044531Z regression, 20261024T044555Z classification; all checks pass; never rerun; tag e5-T1-tested) |
+| B9–B10 Conclusion and release (one combined stage; B primary, A as baseline; A's s09/s10 do not run separately, G-79) | to be drafted after T1 | NOT STARTED |
