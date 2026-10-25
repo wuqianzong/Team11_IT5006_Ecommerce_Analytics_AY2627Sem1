@@ -12,3 +12,9 @@ b08:
     model: {chosen: clf.sel.log.logistic, recommended: clf.sel.log.logistic, rationale: "one-SE recommendation over the finalists, same rule as A (s01 1.7, G-33); the forest has the best mean but is within one SE of the plain logistic model; calibration sigmoid by B-G-05", grid_edge_action: none, decided_by: "Henry; experiment lead (Wu Qianzong)", date: 2026-10-24}
     calibration_override: {value: sigmoid, rule_result: raw, deviation: B-G-05, rationale: "align with A's frozen recipe (sigmoid) so Brier, threshold and alert counts are on the same probability scale at the joint test; B: Brier raw 0.11414 vs sigmoid 0.11461, AP raw 0.2616 vs sigmoid 0.2482 (one fold SE 0.0349); source pipeline_b/stages/b08/classification/outputs/calibration_folds.csv", decided_by: "Henry; experiment lead (Wu Qianzong)", date: 2026-10-24}
     threshold: {value: 0.16666666666666666, daily_alert_cap: 25, rationale: "1/6, the theoretical cost cutoff, on B's sigmoid probabilities, as A; 17.0 alerts/day out-of-fold (threshold_table_sigmoid.csv), within the 25/day cap; Henry: may be revisited after s10, which would be reported as a post-test change (G-79)", decided_by: "Henry; experiment lead (Wu Qianzong)", date: 2026-10-24}
+
+b09:
+  classification:
+    operating_threshold: {value: 0.26666666666666666, label: "4/15", frozen_threshold_kept: 0.16666666666666666, post_test_change: true, decision: B-G-07, rationale: "fewer false alarms per true detractor than the frozen 1/6 (Henry, B9 review point 7); reported on validation and on T1's saved test predictions, no refit; the frozen 1/6 result stays the unbiased test result (G-79)", decided_by: "Henry; experiment lead (Wu Qianzong)", date: 2026-10-25}
+  serving:
+    fallback: {rule: "B inside its scope (seven states, distance present); A's frozen model outside", decision: B-G-06, decided_by: "Henry; experiment lead (Wu Qianzong)", date: 2026-10-25}

@@ -39,3 +39,21 @@ A's review tabs, built from A's frozen outputs.
 
 - `REPORT_REQUESTS.md` (R-01 full-rank appendix, R-02 mean ± SE by population, R-03 metric glossary).
 - `EVIDENCE.md` (which runs are citable).
+
+## 4. Status (2026-10-24, filled at the experiment lead's request after B9)
+
+| ID | Status | Where |
+| --- | --- | --- |
+| D-01 | DONE | B6, B7, B8 task sub-tabs: "Supplement for decisions and the report" (16 run figures embedded) |
+| D-02 | DONE | B6 task sub-tabs, supplement: per-fold scores, paired gains, learning curves, residual quantiles, design matrix, imputation |
+| D-03 | DONE | B2, B4, B5 task sub-tabs, supplement (doc\_support charts) |
+| D-04 | DONE | A s07 task sub-tabs, supplement: full grid per family, per-fold scores, effect of each parameter, grid edge |
+| D-05 | DONE | A s08 task sub-tabs, supplement: per-fold finalist scores; classification adds threshold by cap, by fold, full curve |
+| D-06 | DONE | A s06 task sub-tabs, supplement: per-fold scores of every family |
+| T-01 | PARTLY | Report notes tab §6: handover/dispatch features cite the G-76-checked sources; route and recent-speed features have no checked source (unmeasured mechanism until one is checked) |
+| T-02, T-03, T-10 | DONE | Report notes tab §2, §3, §4 |
+| T-04, T-05, T-07, T-08 | DONE | B9 Conclusion tab and sub-tabs |
+| T-06 | DONE | T1 (B-C13 table) and B9.1 |
+| T-09 | DEFERRED | B10, after the team confirms B9 |
+
+New outputs: pipeline\_b/stages/doc\_support/<task>/outputs (e5b/doc\_support.py; runs 20261024T065707Z regression, 20261024T065723Z classification; uncommitted). They read A's frozen and B's accepted outputs only; A's sigmoid refit per fold reproduces A's s08 calibration AP exactly (check in the run). REPORT\_REQUESTS R-01, R-03, R-04: Report notes tab; R-05, R-06: B8 sub-tabs.

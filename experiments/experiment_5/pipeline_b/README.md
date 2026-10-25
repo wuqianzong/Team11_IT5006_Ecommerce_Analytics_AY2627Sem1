@@ -47,4 +47,6 @@ from Pipeline A as frozen at tag `e5-A-frozen`.
 | B6–B7 Training and tuning | AGREED | ACCEPTED round 1 (runs b06 20261023T162830Z / 20261023T162918Z, b07 20261023T163311Z / 20261023T164241Z; tags e5-B-s06-accepted, e5-B-s07-accepted) |
 | B8 Selection (gate, freeze) | AGREED | FROZEN (runs 20261024T042516Z regression, 20261024T042619Z classification; tag e5-B-frozen) |
 | Joint test run T1 (A and B, one test read; A's 8.6–8.8 and B8.6–B8.8) | AGREED (spec/blueprints/joint_test.md; J-1 = (a)) | TEST READ ONCE (runs 20261024T044531Z regression, 20261024T044555Z classification; all checks pass; never rerun; tag e5-T1-tested) |
-| B9–B10 Conclusion and release (one combined stage; B primary, A as baseline; A's s09/s10 do not run separately, G-79) | to be drafted after T1 | NOT STARTED |
+| B9 Conclusion (B primary, A as baseline; A's s09 does not run separately, G-79) | AGREED (spec/blueprints/b09_conclusion.md) | BUILT round 2, AWAITING TEAM REVIEW (runs 20261025T091027Z regression, 20261025T090945Z classification; uncommitted; B-G-06, B-G-07) |
+| Doc support (charts and tables for the tabs and the report; DOC_GAPS) | not a stage blueprint (B-CR-19) | BUILT, uncommitted (stages/doc_support) |
+| B10 Release, then report, deck, dashboard, reproduction | starts only after the team confirms the B9 conclusion (lead, 2026-10-24) | NOT STARTED |
