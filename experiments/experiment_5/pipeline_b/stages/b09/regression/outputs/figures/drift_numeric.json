@@ -1,0 +1,7 @@
+{
+  "title": "Feature drift",
+  "ids": [
+    "B9.4"
+  ],
+  "data": "figures/drift_numeric.csv"
+}

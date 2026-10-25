@@ -1,0 +1,7 @@
+{
+  "title": "AP, ROC-AUC and Brier by population (R-06)",
+  "ids": [
+    "DS.6"
+  ],
+  "data": "figures/r06_auc_brier.csv"
+}

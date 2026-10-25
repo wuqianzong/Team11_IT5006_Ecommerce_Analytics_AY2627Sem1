@@ -31,6 +31,10 @@ Pipeline A's evidence is frozen at tag `e5-A-frozen`: cite A only from `../stage
 | b08 | classification | 20261024T042619Z | a4a0ded | e5-B-frozen | 1 |
 | t1_joint_test | regression | 20261024T044531Z | e4fa1a6 | e5-T1-tested | single read |
 | t1_joint_test | classification | 20261024T044555Z | e4fa1a6 | e5-T1-tested | single read |
+| b09 | regression | 20261025T132406Z | b09c396 | e5-B-s09-accepted | 2 |
+| b09 | classification | 20261025T132538Z | b09c396 | e5-B-s09-accepted | 2 |
+| doc_support | regression | 20261025T132541Z | b09c396 | e5-B-s09-accepted | 1 |
+| doc_support | classification | 20261025T132552Z | b09c396 | e5-B-s09-accepted | 1 |
 
 **T1 is never rerun** (a rerun is a second test read; joint_test.md §1). Its run was made on a tree
 with the T1 code not yet committed (manifest `dirty: true`, HEAD e4fa1a6). The manifest records the
@@ -55,6 +59,7 @@ to the table below.
 | A's s06/s07 scores (all states, A's features) | A's review tabs | never compared with B6/B7 scores directly; the like-for-like A–B comparison is B8's (G-79) |
 | B8 gate runs before a4a0ded (raw calibration, raw threshold tables, threshold options 1/6 = 19.2/day and 0.15 = 24.6/day on raw probabilities) | B8 doc tabs written at the gate; Henry's threads | B8 frozen run: sigmoid (B-G-05), threshold tables on sigmoid probabilities (threshold_table_sigmoid.csv), frozen_recipe.json |
 | T1 dry run on stand-in rows (last 8 weeks of development rows used as a fake test set, to exercise the code path before the single read; outputs deleted) | nowhere | never evidence; T1 runs above |
+| B9 build runs before b09c396 (round 1 20261024T05xxxxZ, round 2 20261025T09xxxxZ and the confirmation build; uncommitted code) and doc support build runs 20261024T06xxxxZ | B9 tabs ("Run ..." lines) and supplement sections cite those run IDs; the accepted reruns are byte-identical | B9 and doc support rows above |
 | Probe 1 and probe 2 (probe 2 withdrawn) | doc tab "Scratch check plan" | never evidence; motivation only (G-79) |
 
 ## Where definitions live

@@ -1,0 +1,7 @@
+{
+  "title": "Error analysis by customer state",
+  "ids": [
+    "B9.3"
+  ],
+  "data": "figures/by_customer_state.csv"
+}

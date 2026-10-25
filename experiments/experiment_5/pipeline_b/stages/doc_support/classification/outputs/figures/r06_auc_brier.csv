@@ -1,0 +1,10 @@
+model,variant,rows,metric,mean_5_folds,se_5_folds
+A frozen model,sigmoid,A validation rows,ap,0.2317254314437797,0.027630116752897
+A frozen model,sigmoid,A validation rows,roc_auc,0.6142585103321228,0.0135259999237948
+A frozen model,sigmoid,A validation rows,brier,0.1239067539912821,0.0134387037490548
+A frozen model,sigmoid,B validation rows,ap,0.2301591305863849,0.0304555776101855
+A frozen model,sigmoid,B validation rows,roc_auc,0.6259484551335766,0.0119285036763219
+A frozen model,sigmoid,B validation rows,brier,0.1162401167146785,0.0134877640957288
+B recommended model,sigmoid,B validation rows,ap,0.2482053394114348,0.0312579279254695
+B recommended model,sigmoid,B validation rows,roc_auc,0.6372338998057598,0.0151809556906965
+B recommended model,sigmoid,B validation rows,brier,0.1146069631847352,0.013501867641147

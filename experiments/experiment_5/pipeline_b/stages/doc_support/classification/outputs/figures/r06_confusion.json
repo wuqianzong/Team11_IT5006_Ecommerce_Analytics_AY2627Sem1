@@ -1,0 +1,7 @@
+{
+  "title": "Confusion comparison (R-06)",
+  "ids": [
+    "DS.6"
+  ],
+  "data": "figures/r06_confusion.csv"
+}

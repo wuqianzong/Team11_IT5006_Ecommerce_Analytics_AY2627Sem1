@@ -1,18 +1,95 @@
 # B8 › classification — gate evidence
 
+## Supplement for decisions and the report (added 2026-10-24; DOC\_GAPS D-01, R-05, R-06)
+
+Added after the pipeline ran, from accepted outputs only; nothing above is changed. Charts marked doc\_support come from pipeline\_b/stages/doc\_support/classification/outputs (run 20261024T065723Z, uncommitted, reads accepted outputs only). B8 figures: pipeline\_b/stages/b08/classification/outputs/figures (run 20261024T042619Z).
+
+**Finalists** (figures/finalists.png):
+
+&#91;image: finalists\]
+
+**Population comparison, mean ± SE (R-05)** (doc\_support figures/r05\_population.png; data: population\_summary.csv; raw scores as in the adoption rule):
+
+&#91;image: population comparison\]
+
+| population\_and\_model | metric | mean\_5\_folds | se\_5\_folds | mean\_folds\_2\_5 | se\_folds\_2\_5 |
+| --- | --- | --- | --- | --- | --- |
+| A's frozen model on A's validation rows | ap | 0.2435 | 0.0314 | 0.2661 | 0.0282 |
+| A's frozen model on B's validation rows | ap | 0.2419 | 0.0344 | 0.2672 | 0.0302 |
+| B's recommended model (clf.sel.log.logistic) on B's validation rows | ap | 0.2616 | 0.0349 | 0.2878 | 0.0298 |
+
+**Calibration: raw vs sigmoid** (figures/calibration.png):
+
+&#91;image: calibration\]
+
+**Threshold trade-off** (figures/threshold\_tradeoff.png):
+
+&#91;image: threshold trade-off\]
+
+**AP, ROC-AUC and Brier by population, sigmoid (R-06)** (doc\_support figures/r06\_auc\_brier.png; data: metrics\_by\_population.csv):
+
+&#91;image: AUC and Brier\]
+
+| model | variant | rows | metric | mean\_5\_folds | se\_5\_folds |
+| --- | --- | --- | --- | --- | --- |
+| A frozen model | raw | A validation rows | ap | 0.2435 | 0.0314 |
+| A frozen model | raw | A validation rows | roc\_auc | 0.6213 | 0.0161 |
+| A frozen model | raw | A validation rows | brier | 0.1243 | 0.0143 |
+| A frozen model | raw | B validation rows | ap | 0.2419 | 0.0344 |
+| A frozen model | raw | B validation rows | roc\_auc | 0.6317 | 0.0147 |
+| A frozen model | raw | B validation rows | brier | 0.1162 | 0.0142 |
+| B recommended model | raw | B validation rows | ap | 0.2616 | 0.0349 |
+| B recommended model | raw | B validation rows | roc\_auc | 0.6536 | 0.0150 |
+| B recommended model | raw | B validation rows | brier | 0.1141 | 0.0136 |
+| A frozen model | sigmoid | A validation rows | ap | 0.2317 | 0.0276 |
+| A frozen model | sigmoid | A validation rows | roc\_auc | 0.6143 | 0.0135 |
+| A frozen model | sigmoid | A validation rows | brier | 0.1239 | 0.0134 |
+| A frozen model | sigmoid | B validation rows | ap | 0.2302 | 0.0305 |
+| A frozen model | sigmoid | B validation rows | roc\_auc | 0.6259 | 0.0119 |
+| A frozen model | sigmoid | B validation rows | brier | 0.1162 | 0.0135 |
+| B recommended model | sigmoid | B validation rows | ap | 0.2482 | 0.0313 |
+| B recommended model | sigmoid | B validation rows | roc\_auc | 0.6372 | 0.0152 |
+| B recommended model | sigmoid | B validation rows | brier | 0.1146 | 0.0135 |
+
+**Confusion at 1/6 on B's validation rows, 5 folds pooled (R-06)** (doc\_support figures/r06\_confusion.png; data: confusion\_comparison.csv, pooled by summing folds):
+
+&#91;image: confusion\]
+
+| model | tp | fp | fn | tn | alerts | cost | precision | recall |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| A frozen model (sigmoid, 1/6) | 3,034 | 8,820 | 10,966 | 77,610 | 11,854 | 63650.000 | 0.256 | 0.217 |
+| B frozen model (sigmoid, 1/6) | 3,498 | 8,232 | 10,502 | 78,198 | 11,730 | 60742.000 | 0.298 | 0.250 |
+
+By fold:
+
+| model | threshold | fold | tp | fp | fn | tn | alerts | precision | recall | cost |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| A frozen model (sigmoid, 1/6) | 0.167 | 1 | 9 | 27 | 1,005 | 9,283 | 36 | 0.250 | 0.009 | 5052.000 |
+| A frozen model (sigmoid, 1/6) | 0.167 | 2 | 126 | 194 | 1,317 | 8,705 | 320 | 0.394 | 0.087 | 6779.000 |
+| A frozen model (sigmoid, 1/6) | 0.167 | 3 | 224 | 445 | 1,273 | 8,508 | 669 | 0.335 | 0.150 | 6810.000 |
+| A frozen model (sigmoid, 1/6) | 0.167 | 4 | 694 | 1,271 | 1,479 | 7,009 | 1,965 | 0.353 | 0.319 | 8666.000 |
+| A frozen model (sigmoid, 1/6) | 0.167 | 5 | 464 | 2,473 | 409 | 5,300 | 2,937 | 0.158 | 0.532 | 4518.000 |
+| B frozen model (sigmoid, 1/6) | 0.167 | 1 | 11 | 10 | 1,003 | 9,300 | 21 | 0.524 | 0.011 | 5025.000 |
+| B frozen model (sigmoid, 1/6) | 0.167 | 2 | 235 | 381 | 1,208 | 8,518 | 616 | 0.381 | 0.163 | 6421.000 |
+| B frozen model (sigmoid, 1/6) | 0.167 | 3 | 352 | 734 | 1,145 | 8,219 | 1,086 | 0.324 | 0.235 | 6459.000 |
+| B frozen model (sigmoid, 1/6) | 0.167 | 4 | 748 | 1,391 | 1,425 | 6,889 | 2,139 | 0.350 | 0.344 | 8516.000 |
+| B frozen model (sigmoid, 1/6) | 0.167 | 5 | 403 | 1,600 | 470 | 6,173 | 2,003 | 0.201 | 0.462 | 3950.000 |
+| A frozen model (sigmoid, 1/6) | 0.167 | all | 1,517 | 4,410 | 5,483 | 38,805 | 5,927 | 0.256 | 0.217 | 31825.000 |
+| B frozen model (sigmoid, 1/6) | 0.167 | all | 1,749 | 4,116 | 5,251 | 39,099 | 5,865 | 0.298 | 0.250 | 30371.000 |
+
 Round 1 · AT THE GATE, not frozen · run `20261024T032112Z` on uncommitted code (working tree on 171f23d) · 9 checks, all PASS · the test cohort is not read. Coverage and review dropdowns are on the parent tab "B8 Selection".
 
 *Text from A's code refers to B's inputs: "s04 recipe" = B4, "s05 folds" = B5, "s06"/"s07" = B6/B7, and "spec/human\_decisions.yaml section s08" = pipeline\_b/spec/human\_decisions\_B.yaml section b08.*
 
 ## B8.1–B8.4 Selection review pack (written by A's s08 code on B's inputs)
 
-Cards: 
+Cards:
 
 Recommendation (one-SE rule, s01 1.7): **linear/logistic** (`clf.sel.log.logistic`). Ladder result (each more complex family kept only beyond one SE): linear/logistic.
 
 ## Finalists (validation, mean over the five folds)
 
-| family | source | validation_mean | validation_se | train_validation_gap | grid_edge | recommended |
+| family | source | validation\_mean | validation\_se | train\_validation\_gap | grid\_edge | recommended |
 | --- | --- | --- | --- | --- | --- | --- |
 | dummy | s06 reference | 0.1380 | 0.0198 | -0.0212 | not a grid configuration (dummy) | False |
 | linear/logistic | s06 reference | 0.2616 | 0.0349 | -0.0246 | plain s06 model, not a grid configuration | True |
@@ -21,7 +98,7 @@ Recommendation (one-SE rule, s01 1.7): **linear/logistic** (`clf.sel.log.logisti
 
 ## Every s01 metric (mean and SE over the folds)
 
-| family | ap_mean | ap_se | brier_mean | brier_se | roc_auc_mean | roc_auc_se |
+| family | ap\_mean | ap\_se | brier\_mean | brier\_se | roc\_auc\_mean | roc\_auc\_se |
 | --- | --- | --- | --- | --- | --- | --- |
 | dummy | 0.1380 | 0.0198 | 0.1197 | 0.0150 | 0.5000 | 0.0000 |
 | linear/logistic | 0.2616 | 0.0349 | 0.1141 | 0.0136 | 0.6536 | 0.0150 |
@@ -30,7 +107,7 @@ Recommendation (one-SE rule, s01 1.7): **linear/logistic** (`clf.sel.log.logisti
 
 ## Ladder, basic to complex (paired gains are description only)
 
-| comparison | gain_fold_1 | gain_fold_2 | gain_fold_3 | gain_fold_4 | gain_fold_5 | mean_gain | paired_se | folds_better | kept_by_one_se_rule |
+| comparison | gain\_fold\_1 | gain\_fold\_2 | gain\_fold\_3 | gain\_fold\_4 | gain\_fold\_5 | mean\_gain | paired\_se | folds\_better | kept\_by\_one\_se\_rule |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | linear/logistic vs dummy | 0.0584 | 0.1342 | 0.1330 | 0.1634 | 0.1291 | 0.1236 | 0.0174 | 5 | True |
 | single tree vs linear/logistic | -0.0136 | -0.0399 | -0.0163 | -0.0137 | -0.0273 | -0.0222 | 0.0051 | 0 | False |
@@ -38,7 +115,7 @@ Recommendation (one-SE rule, s01 1.7): **linear/logistic** (`clf.sel.log.logisti
 
 ## Learning curves of the recommendation (s06, latest fold)
 
-| family | share | train_rows | train_ap | validation_ap |
+| family | share | train\_rows | train\_ap | validation\_ap |
 | --- | --- | --- | --- | --- |
 | linear | 0.2000 | 9447 | 0.3986 | 0.2183 |
 | linear | 0.4000 | 18895 | 0.3674 | 0.2173 |
@@ -52,16 +129,16 @@ Mean Brier raw 0.11414, sigmoid 0.11461; mean AP raw 0.2616, sigmoid 0.2482; one
 
 ## Threshold candidates (8.4, hard stop)
 
-| candidate | threshold | alerts_per_day | alert_rate | error_rate | precision | recall | f1 | cost | extra_false_alarms_per_extra_detractor |
+| candidate | threshold | alerts\_per\_day | alert\_rate | error\_rate | precision | recall | f1 | cost | extra\_false\_alarms\_per\_extra\_detractor |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | no alerts | inf | 0.0000 | 0.0000 | 0.1394 | 0.0000 | 0.0000 | 0.0000 | 35000.0000 |  |
 | 0.50 | 0.5000 | 1.0087 | 0.0069 | 0.1386 | 0.5603 | 0.0279 | 0.0531 | 34178.0000 | 0.7846 |
 | 1/6 (cost cutoff) | 0.1667 | 19.1652 | 0.1317 | 0.1936 | 0.2943 | 0.2780 | 0.2859 | 29936.0000 | 2.5774 |
-| empirical minimum of 5*FN + FP | 0.1306 | 33.9507 | 0.2333 | 0.2549 | 0.2524 | 0.4223 | 0.3159 | 28977.0000 | 4.0505 |
+| empirical minimum of 5\*FN + FP | 0.1306 | 33.9507 | 0.2333 | 0.2549 | 0.2524 | 0.4223 | 0.3159 | 28977.0000 | 4.0505 |
 
 ## Team decision (A's wording; for B read human\_decisions\_B.yaml section b08)
 
-Record in spec/human_decisions.yaml, section s08.classification: `model` (chosen, recommended, rationale, grid_edge_action, decided_by, date), `threshold` (value, daily_alert_cap, rationale, decided_by, date). Under G-78 this is decided at the combined review of s06-s08; only then do 8.5-8.8 run.
+Record in spec/human\_decisions.yaml, section s08.classification: `model` (chosen, recommended, rationale, grid\_edge\_action, decided\_by, date), `threshold` (value, daily\_alert\_cap, rationale, decided\_by, date). Under G-78 this is decided at the combined review of s06-s08; only then do 8.5-8.8 run.
 
 ## Fold-by-fold results of every finalist (metrics\_long.csv, validation)
 
@@ -75,7 +152,7 @@ Record in spec/human_decisions.yaml, section s08.classification: `model` (chosen
 | 4 | 0.2079 | 0.3652 | 0.3713 | 0.3575 |
 | 5 | 0.1010 | 0.2421 | 0.2301 | 0.2028 |
 
-**roc_auc** per fold (columns: finalist family):
+**roc\_auc** per fold (columns: finalist family):
 
 | fold | dummy\_prior | forest\_clf | logistic | tree\_clf |
 | --- | --- | --- | --- | --- |
@@ -155,19 +232,19 @@ Record in spec/human_decisions.yaml, section s08.classification: `model` (chosen
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | 0.50 | 0.5000 | 34 | 15 | 19 | 999 | 0.4412 | 0.0148 | 5014.0000 |
 | 1 | 1/6 (cost cutoff) | 0.1667 | 786 | 155 | 631 | 859 | 0.1972 | 0.1529 | 4926.0000 |
-| 1 | empirical minimum of 5*FN + FP | 0.1306 | 1,767 | 286 | 1,481 | 728 | 0.1619 | 0.2821 | 5121.0000 |
+| 1 | empirical minimum of 5\*FN + FP | 0.1306 | 1,767 | 286 | 1,481 | 728 | 0.1619 | 0.2821 | 5121.0000 |
 | 2 | 0.50 | 0.5000 | 32 | 17 | 15 | 1,426 | 0.5312 | 0.0118 | 7145.0000 |
 | 2 | 1/6 (cost cutoff) | 0.1667 | 646 | 258 | 388 | 1,185 | 0.3994 | 0.1788 | 6313.0000 |
-| 2 | empirical minimum of 5*FN + FP | 0.1306 | 1,120 | 385 | 735 | 1,058 | 0.3438 | 0.2668 | 6025.0000 |
+| 2 | empirical minimum of 5\*FN + FP | 0.1306 | 1,120 | 385 | 735 | 1,058 | 0.3438 | 0.2668 | 6025.0000 |
 | 3 | 0.50 | 0.5000 | 83 | 52 | 31 | 1,445 | 0.6265 | 0.0347 | 7256.0000 |
 | 3 | 1/6 (cost cutoff) | 0.1667 | 1,546 | 452 | 1,094 | 1,045 | 0.2924 | 0.3019 | 6319.0000 |
-| 3 | empirical minimum of 5*FN + FP | 0.1306 | 2,975 | 715 | 2,260 | 782 | 0.2403 | 0.4776 | 6170.0000 |
+| 3 | empirical minimum of 5\*FN + FP | 0.1306 | 2,975 | 715 | 2,260 | 782 | 0.2403 | 0.4776 | 6170.0000 |
 | 4 | 0.50 | 0.5000 | 89 | 56 | 33 | 2,117 | 0.6292 | 0.0258 | 10618.0000 |
 | 4 | 1/6 (cost cutoff) | 0.1667 | 1,703 | 694 | 1,009 | 1,479 | 0.4075 | 0.3194 | 8404.0000 |
-| 4 | empirical minimum of 5*FN + FP | 0.1306 | 2,955 | 1,079 | 1,876 | 1,094 | 0.3651 | 0.4965 | 7346.0000 |
+| 4 | empirical minimum of 5\*FN + FP | 0.1306 | 2,955 | 1,079 | 1,876 | 1,094 | 0.3651 | 0.4965 | 7346.0000 |
 | 5 | 0.50 | 0.5000 | 110 | 55 | 55 | 818 | 0.5000 | 0.0630 | 4145.0000 |
 | 5 | 1/6 (cost cutoff) | 0.1667 | 1,931 | 387 | 1,544 | 486 | 0.2004 | 0.4433 | 3974.0000 |
-| 5 | empirical minimum of 5*FN + FP | 0.1306 | 2,896 | 491 | 2,405 | 382 | 0.1695 | 0.5624 | 4315.0000 |
+| 5 | empirical minimum of 5\*FN + FP | 0.1306 | 2,896 | 491 | 2,405 | 382 | 0.1695 | 0.5624 | 4315.0000 |
 
 **Full threshold curve** (curves/threshold\_curve.csv, out-of-fold over all five folds):
 

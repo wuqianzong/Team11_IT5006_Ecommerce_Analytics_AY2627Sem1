@@ -1,0 +1,446 @@
+{
+  "node": "B/b09/regression",
+  "pipeline": "B",
+  "files": {
+    "train_val_test.csv": {
+      "ids": [
+        "B9.1"
+      ],
+      "kind": "table"
+    },
+    "paired_test_differences.csv": {
+      "ids": [
+        "B9.2"
+      ],
+      "kind": "table"
+    },
+    "subgroups.csv": {
+      "ids": [
+        "B9.3"
+      ],
+      "kind": "table"
+    },
+    "subgroups_aggregate.csv": {
+      "ids": [
+        "B9.3"
+      ],
+      "kind": "table"
+    },
+    "drift.csv": {
+      "ids": [
+        "B9.4"
+      ],
+      "kind": "table"
+    },
+    "coefficients.csv": {
+      "ids": [
+        "B9.5"
+      ],
+      "kind": "table"
+    },
+    "permutation_importance.csv": {
+      "ids": [
+        "B9.5"
+      ],
+      "kind": "table"
+    },
+    "ranking_consistency.json": {
+      "ids": [
+        "B9.5"
+      ],
+      "kind": "json"
+    },
+    "business_summary.csv": {
+      "ids": [
+        "B9.7"
+      ],
+      "kind": "table"
+    },
+    "figures/paired_differences.png": {
+      "ids": [
+        "B9.2"
+      ],
+      "kind": "figure"
+    },
+    "figures/paired_differences.csv": {
+      "ids": [
+        "B9.2"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/paired_differences.json": {
+      "ids": [
+        "B9.2"
+      ],
+      "kind": "figure_meta"
+    },
+    "figures/by_customer_state.png": {
+      "ids": [
+        "B9.3"
+      ],
+      "kind": "figure"
+    },
+    "figures/by_customer_state.csv": {
+      "ids": [
+        "B9.3"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/by_customer_state.json": {
+      "ids": [
+        "B9.3"
+      ],
+      "kind": "figure_meta"
+    },
+    "figures/coefficients.png": {
+      "ids": [
+        "B9.5"
+      ],
+      "kind": "figure"
+    },
+    "figures/coefficients.csv": {
+      "ids": [
+        "B9.5"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/coefficients.json": {
+      "ids": [
+        "B9.5"
+      ],
+      "kind": "figure_meta"
+    },
+    "figures/permutation_importance.png": {
+      "ids": [
+        "B9.5"
+      ],
+      "kind": "figure"
+    },
+    "figures/permutation_importance.csv": {
+      "ids": [
+        "B9.5"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/permutation_importance.json": {
+      "ids": [
+        "B9.5"
+      ],
+      "kind": "figure_meta"
+    },
+    "figures/drift_numeric.png": {
+      "ids": [
+        "B9.4"
+      ],
+      "kind": "figure"
+    },
+    "figures/drift_numeric.csv": {
+      "ids": [
+        "B9.4"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/drift_numeric.json": {
+      "ids": [
+        "B9.4"
+      ],
+      "kind": "figure_meta"
+    },
+    "drift_by_fold.csv": {
+      "ids": [
+        "B9.11"
+      ],
+      "kind": "table"
+    },
+    "figures/drift_by_fold.png": {
+      "ids": [
+        "B9.11"
+      ],
+      "kind": "figure"
+    },
+    "figures/drift_by_fold.csv": {
+      "ids": [
+        "B9.11"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/drift_by_fold.json": {
+      "ids": [
+        "B9.11"
+      ],
+      "kind": "figure_meta"
+    },
+    "payment_type.csv": {
+      "ids": [
+        "B9.12"
+      ],
+      "kind": "table"
+    },
+    "business_by_route.csv": {
+      "ids": [
+        "B9.13"
+      ],
+      "kind": "table"
+    },
+    "validation_and_test.csv": {
+      "ids": [
+        "B9.14"
+      ],
+      "kind": "table"
+    },
+    "validation_and_test_windows.csv": {
+      "ids": [
+        "B9.14"
+      ],
+      "kind": "table"
+    },
+    "figures/validation_and_test.png": {
+      "ids": [
+        "B9.14"
+      ],
+      "kind": "figure"
+    },
+    "figures/validation_and_test.csv": {
+      "ids": [
+        "B9.14"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/validation_and_test.json": {
+      "ids": [
+        "B9.14"
+      ],
+      "kind": "figure_meta"
+    },
+    "residuals_summary.csv": {
+      "ids": [
+        "B9.16"
+      ],
+      "kind": "table"
+    },
+    "residuals_histogram.csv": {
+      "ids": [
+        "B9.16"
+      ],
+      "kind": "table"
+    },
+    "figures/residuals.png": {
+      "ids": [
+        "B9.16"
+      ],
+      "kind": "figure"
+    },
+    "figures/residuals.csv": {
+      "ids": [
+        "B9.16"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/residuals.json": {
+      "ids": [
+        "B9.16"
+      ],
+      "kind": "figure_meta"
+    },
+    "a_fallback_by_scope.csv": {
+      "ids": [
+        "B9.15"
+      ],
+      "kind": "table"
+    },
+    "a_fallback_summary.csv": {
+      "ids": [
+        "B9.15"
+      ],
+      "kind": "table"
+    },
+    "conclusion.md": {
+      "ids": [
+        "B9.8",
+        "B9.9"
+      ],
+      "kind": "text"
+    }
+  },
+  "checks": [
+    {
+      "name": "no refit: B's and A's bundles re-predict T1's test predictions on the rebuilt rows (within 1e-9)",
+      "passed": true,
+      "detail": "B 15,422 rows (max difference 3.6e-15), A 18,788 rows (max difference 3.6e-15); CSV round-trip only",
+      "ids": [
+        "B9.1"
+      ]
+    },
+    {
+      "name": "every restated test number equals T1's metrics_test.csv",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "B9.1"
+      ]
+    },
+    {
+      "name": "bootstrap intervals contain the T1 point estimate",
+      "passed": true,
+      "detail": "1000 resamples, seed 42",
+      "ids": [
+        "B9.1",
+        "B9.2"
+      ]
+    },
+    {
+      "name": "validation scores are labelled selection scores (source column filled wherever a value is shown)",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "B9.1"
+      ]
+    },
+    {
+      "name": "slice rule: a slice is judged only above the minimum",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "B9.3"
+      ]
+    },
+    {
+      "name": "A's tree untouched: A's code matches e5-A-frozen",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "B9.1"
+      ]
+    }
+  ],
+  "deviations": {},
+  "cards": {
+    "B9.11": {
+      "done": "Training vs validation drift per fold for A and B, plus final fit vs test (SMD for numeric features and the target, TVD for categorical). Numeric features with |SMD| >= 0.2 in at least 3 of the 6 periods: A purchase_month (6), B purchase_month (6), B route_recent_carrier_transit_days (4), B route_recent_delivery_days (4).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B9.12": {
+      "done": "Lead time starts at purchase; Olist approves an order when payment clears. Development rows: median purchase-to-approval boleto 1.21 days vs credit card 0.01; mean lead time 13.24 vs 12.04 days; lead time after approval 11.87 vs 11.87. Payment type stands for payment-clearance delay, not delivery quality (observation).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B9.13": {
+      "done": "Routes judged (at least 100 orders): 20 of 48 on B's test rows; B has the lower MAE on 20 of them. A on all of A's test routes is listed too (in or out of B's scope).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B9.14": {
+      "done": "Each series: five validation folds, their mean \u00b1 SE, and the test with its 95% bootstrap interval; each period's time window is in validation_and_test_windows.csv and on the chart. B on B rows: folds mean 5.0247 \u00b1 0.6115, test 3.2992 [3.2449, 3.3533]; A on B rows: folds mean 5.1423 \u00b1 0.6616, test 4.0280 [3.9701, 4.0834]; A on A rows: folds mean 5.4701 \u00b1 0.6733, test 4.3364 [4.2813, 4.3900]. Test window 2018-05-27 to 2018-08-29.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B9.16": {
+      "done": "Residual = actual minus predicted lead time. On B's test rows, B's orders arrive more than 3 days after its prediction in 11.1% of cases and more than 6 days after in 4.7% (A on the same rows 9.3% and 4.3%); median residual B -1.64 days, A -2.72; 95th percentile B +5.77, A +5.33. With a 6-day buffer on B's prediction, 95.3% of test orders arrive in time.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B9.15": {
+      "done": "A's frozen model by B's scope (B-G-06 fallback). Validation MAE mean over 5 folds: inside 5.1827, outside 6.7480. Test: inside 4.0280 (15,422 orders), outside 5.7491 [5.5929, 5.8946] (3,366 orders).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B9.1": {
+      "done": "Train, validation (selection scores, G-10) and test with 95% bootstrap intervals (1000 resamples, seed 42) for B, A and references. B's test MAE 3.2992 [3.2449, 3.3533], width 0.1084.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B9.2": {
+      "done": "B minus A on B's test rows: MAE -0.7288 [-0.7537, -0.7030] (excludes zero).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B9.3": {
+      "done": "Slices judged with at least 100 orders. Customer state: 7 judged, B better in 7; mean gain -0.930 days (SD 0.275).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B9.4": {
+      "done": "3 numeric features moved by |SMD| >= 0.2 between final-fit and test rows: route_recent_delivery_days -0.73, route_recent_carrier_transit_days -0.56, purchase_month +0.41. Target: mean 12.111 -> 7.904; median 10.053 -> 6.957 (G-77).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B9.5": {
+      "done": "Largest term: primary_category_arts_and_craftmanship. Top permutation feature: seller_prior_dispatch_days. Against B4's ranking: Spearman 0.16, top-10 overlap 7; DIVERGES: team alerted, model unchanged.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B9.7": {
+      "done": "B on its test rows: within 3 days 57.6%; delivered more than 3 days later than predicted 11.1% (A on the same rows 9.3%).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B9.8": {
+      "done": "Limitations listed in conclusion.md (scope, prediction moments, B-G-01, J-1 (a), B-G-05, G-75/G-77, illustrative cost, no causal claims).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B9.9": {
+      "done": "conclusion.md: answer, evidence by step, limitations and questions for the team.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    }
+  },
+  "checks_failed": []
+}

@@ -1,5 +1,13 @@
 # B5 › classification — evidence cards
 
+## Supplement for decisions and the report (added 2026-10-24; DOC\_GAPS D-03)
+
+Added after the pipeline ran, from accepted outputs only; nothing above is changed. Charts marked doc\_support come from pipeline\_b/stages/doc\_support/classification/outputs (run 20261024T065723Z, uncommitted, reads accepted outputs only).
+
+**Partition diagram: A's fold boundaries with B's and A's rows** (doc\_support figures/b5\_partition.png; data: b05 fold\_summary\_B.csv):
+
+&#91;image: partition\]
+
 Round 1 · ACCEPTED by the experiment lead (tag e5-B-s05-accepted) · run `20261023T160533Z` on code commit 19b5355 (clean tree) · 5 checks, all PASS. Coverage and review dropdowns are on the parent tab "B5 Partition"; comment on any card here.
 
 ## B5.1 Fold membership

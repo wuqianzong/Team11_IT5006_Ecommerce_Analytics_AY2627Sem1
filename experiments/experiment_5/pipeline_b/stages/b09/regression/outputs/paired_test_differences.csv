@@ -1,0 +1,13 @@
+comparison,rows,metric,difference,ci_low,ci_high,b_better,interval_excludes_zero
+B frozen minus A frozen,B test rows,mae,-0.7288475317475958,-0.7536671873341796,-0.7029670790052462,True,True
+B frozen minus A frozen,B test rows,rmse,-0.5835631928382465,-0.6256645557502271,-0.5447239595776505,True,True
+B frozen minus A frozen,B test rows,r2,0.2114066783752246,0.19038567733932826,0.2342221838551402,True,True
+B frozen minus A frozen,B test rows,within_3d,0.13260277525612757,0.12546686551679417,0.13941609389184276,True,True
+B frozen minus B plain,B test rows,mae,0.0,0.0,0.0,False,False
+B frozen minus B plain,B test rows,rmse,0.0,0.0,0.0,False,False
+B frozen minus B plain,B test rows,r2,0.0,0.0,0.0,False,False
+B frozen minus B plain,B test rows,within_3d,0.0,0.0,0.0,False,False
+B frozen minus B dummy,B test rows,mae,-1.0857621499376608,-1.1380690727032556,-1.0342293839380945,True,True
+B frozen minus B dummy,B test rows,rmse,-0.9337821265139894,-0.9993758289472686,-0.862077738394626,True,True
+B frozen minus B dummy,B test rows,r2,0.3499711085374635,0.32047739214121446,0.38022657062194076,True,True
+B frozen minus B dummy,B test rows,within_3d,0.20451303332901055,0.19400207495785238,0.21612144987679943,True,True

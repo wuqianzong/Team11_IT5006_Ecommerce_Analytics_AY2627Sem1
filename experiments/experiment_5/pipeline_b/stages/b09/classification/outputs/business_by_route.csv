@@ -1,0 +1,351 @@
+rows,route,orders,detractors,alerts_A_1/6,precision_A_1/6,recall_A_1/6,alerts_A_4/15,precision_A_4/15,recall_A_4/15,alerts_B_1/6,precision_B_1/6,recall_B_1/6,alerts_B_4/15,precision_B_4/15,recall_B_4/15,judged,in_b_scope
+B's test rows,SP->SP,6624,621,510,0.19411764705882353,0.15942028985507245,143,0.3356643356643357,0.07729468599033816,572.0,0.21503496503496503,0.19806763285024154,153.0,0.3464052287581699,0.0853462157809984,True,
+B's test rows,SP->RJ,1293,161,1219,0.1279737489745693,0.968944099378882,222,0.24324324324324326,0.33540372670807456,499.0,0.1903807615230461,0.5900621118012422,87.0,0.3103448275862069,0.16770186335403728,True,
+B's test rows,SP->MG,1236,125,234,0.2222222222222222,0.416,42,0.3333333333333333,0.112,133.0,0.24812030075187969,0.264,34.0,0.4117647058823529,0.112,True,
+B's test rows,PR->SP,587,50,88,0.22727272727272727,0.4,20,0.35,0.14,46.0,0.2608695652173913,0.24,22.0,0.3181818181818182,0.14,False,
+B's test rows,SP->RS,585,55,161,0.14906832298136646,0.43636363636363634,28,0.35714285714285715,0.18181818181818182,89.0,0.1797752808988764,0.2909090909090909,20.0,0.35,0.12727272727272726,False,
+B's test rows,SP->PR,563,53,63,0.15873015873015872,0.18867924528301888,18,0.3888888888888889,0.1320754716981132,62.0,0.24193548387096775,0.2830188679245283,22.0,0.4090909090909091,0.16981132075471697,False,
+B's test rows,SP->BA,439,57,335,0.14328358208955225,0.8421052631578947,41,0.21951219512195122,0.15789473684210525,263.0,0.1596958174904943,0.7368421052631579,53.0,0.3018867924528302,0.2807017543859649,False,
+B's test rows,MG->SP,438,41,28,0.25,0.17073170731707318,7,0.2857142857142857,0.04878048780487805,29.0,0.3448275862068966,0.24390243902439024,11.0,0.45454545454545453,0.12195121951219512,False,
+B's test rows,SP->SC,358,35,163,0.12883435582822086,0.6,13,0.3076923076923077,0.11428571428571428,98.0,0.16326530612244897,0.45714285714285713,14.0,0.2857142857142857,0.11428571428571428,False,
+B's test rows,RJ->SP,328,38,59,0.1864406779661017,0.2894736842105263,11,0.6363636363636364,0.18421052631578946,17.0,0.47058823529411764,0.21052631578947367,4.0,0.75,0.07894736842105263,False,
+B's test rows,MG->MG,320,28,4,0.75,0.10714285714285714,1,1.0,0.03571428571428571,15.0,0.3333333333333333,0.17857142857142858,2.0,0.5,0.03571428571428571,False,
+B's test rows,SC->SP,276,39,26,0.23076923076923078,0.15384615384615385,8,0.375,0.07692307692307693,32.0,0.25,0.20512820512820512,13.0,0.5384615384615384,0.1794871794871795,False,
+B's test rows,RJ->RJ,244,27,57,0.14035087719298245,0.2962962962962963,6,0.16666666666666666,0.037037037037037035,16.0,0.1875,0.1111111111111111,2.0,0.0,0.0,False,
+B's test rows,PR->RJ,187,25,144,0.14583333333333334,0.84,31,0.25806451612903225,0.32,107.0,0.16822429906542055,0.72,33.0,0.18181818181818182,0.24,False,
+B's test rows,MG->RJ,179,17,93,0.11827956989247312,0.6470588235294118,8,0.625,0.29411764705882354,55.0,0.18181818181818182,0.5882352941176471,8.0,0.5,0.23529411764705882,False,
+B's test rows,RS->SP,172,18,8,0.375,0.16666666666666666,3,0.6666666666666666,0.1111111111111111,5.0,0.4,0.1111111111111111,2.0,1.0,0.1111111111111111,False,
+B's test rows,PR->PR,162,11,3,0.3333333333333333,0.09090909090909091,2,0.5,0.09090909090909091,5.0,0.4,0.18181818181818182,0.0,,0.0,False,
+B's test rows,PR->MG,146,12,22,0.22727272727272727,0.4166666666666667,5,0.2,0.08333333333333333,14.0,0.35714285714285715,0.4166666666666667,10.0,0.4,0.3333333333333333,False,
+B's test rows,RJ->MG,135,5,20,0.1,0.4,2,0.0,0.0,4.0,0.0,0.0,1.0,0.0,0.0,False,
+B's test rows,PR->RS,114,11,23,0.13043478260869565,0.2727272727272727,8,0.375,0.2727272727272727,10.0,0.3,0.2727272727272727,6.0,0.5,0.2727272727272727,False,
+B's test rows,SC->MG,91,15,9,0.4444444444444444,0.26666666666666666,2,0.5,0.06666666666666667,6.0,0.5,0.2,4.0,0.25,0.06666666666666667,False,
+B's test rows,SC->RJ,77,17,49,0.2653061224489796,0.7647058823529411,6,0.6666666666666666,0.23529411764705882,23.0,0.34782608695652173,0.47058823529411764,2.0,1.0,0.11764705882352941,False,
+B's test rows,RS->RS,76,3,0,,0.0,0,,0.0,0.0,,0.0,0.0,,0.0,False,
+B's test rows,MG->BA,75,5,15,0.2,0.6,1,1.0,0.2,20.0,0.15,0.6,1.0,0.0,0.0,False,
+B's test rows,PR->SC,66,8,12,0.25,0.375,2,0.0,0.0,5.0,0.6,0.375,2.0,0.5,0.125,False,
+B's test rows,MG->PR,63,6,3,0.0,0.0,1,0.0,0.0,2.0,0.0,0.0,1.0,0.0,0.0,False,
+B's test rows,RS->RJ,58,7,8,0.375,0.42857142857142855,2,1.0,0.2857142857142857,5.0,0.8,0.5714285714285714,3.0,1.0,0.42857142857142855,False,
+B's test rows,SC->SC,53,7,5,0.2,0.14285714285714285,2,0.5,0.14285714285714285,4.0,0.5,0.2857142857142857,2.0,0.0,0.0,False,
+B's test rows,RJ->PR,51,5,5,0.2,0.2,1,0.0,0.0,5.0,0.0,0.0,0.0,,0.0,False,
+B's test rows,SC->PR,48,4,0,,0.0,0,,0.0,0.0,,0.0,0.0,,0.0,False,
+B's test rows,MG->SC,46,2,5,0.4,1.0,2,0.5,0.5,5.0,0.2,0.5,3.0,0.3333333333333333,0.5,False,
+B's test rows,RS->MG,45,1,2,0.0,0.0,0,,0.0,0.0,,0.0,0.0,,0.0,False,
+B's test rows,RJ->RS,41,2,3,0.3333333333333333,0.5,2,0.5,0.5,7.0,0.14285714285714285,0.5,2.0,0.5,0.5,False,
+B's test rows,SC->RS,39,4,2,1.0,0.5,2,1.0,0.5,5.0,0.6,0.75,1.0,1.0,0.25,False,
+B's test rows,RS->PR,38,2,1,0.0,0.0,1,0.0,0.0,2.0,0.0,0.0,1.0,0.0,0.0,False,
+B's test rows,MG->RS,36,3,6,0.0,0.0,1,0.0,0.0,3.0,0.0,0.0,1.0,0.0,0.0,False,
+B's test rows,RJ->BA,33,0,29,0.0,,1,0.0,,1.0,0.0,,0.0,,,False,
+B's test rows,RS->SC,27,0,3,0.0,,0,,,0.0,,,0.0,,,False,
+B's test rows,BA->SP,25,8,0,,0.0,0,,0.0,0.0,,0.0,0.0,,0.0,False,
+B's test rows,PR->BA,22,3,15,0.06666666666666667,0.3333333333333333,1,1.0,0.3333333333333333,15.0,0.13333333333333333,0.6666666666666666,3.0,0.0,0.0,False,
+B's test rows,RJ->SC,20,1,7,0.0,0.0,2,0.0,0.0,2.0,0.0,0.0,0.0,,0.0,False,
+B's test rows,BA->BA,19,3,0,,0.0,0,,0.0,7.0,0.14285714285714285,0.3333333333333333,0.0,,0.0,False,
+B's test rows,BA->RJ,18,2,6,0.16666666666666666,0.5,0,,0.0,18.0,0.1111111111111111,1.0,6.0,0.3333333333333333,1.0,False,
+B's test rows,SC->BA,17,3,13,0.15384615384615385,0.6666666666666666,0,,0.0,15.0,0.2,1.0,6.0,0.3333333333333333,0.6666666666666666,False,
+B's test rows,BA->MG,8,1,0,,0.0,0,,0.0,4.0,0.25,1.0,2.0,0.5,1.0,False,
+B's test rows,BA->RS,6,0,4,0.0,,3,0.0,,4.0,0.0,,3.0,0.0,,False,
+B's test rows,RS->BA,5,0,0,,,0,,,0.0,,,0.0,,,False,
+B's test rows,BA->SC,3,0,0,,,0,,,0.0,,,0.0,,,False,
+A's test rows (all routes),SP->SP,6729,672,520,0.20384615384615384,0.15773809523809523,148,0.35135135135135137,0.07738095238095238,,,,,,,True,False
+A's test rows (all routes),SP->RJ,1316,163,1240,0.12741935483870967,0.9693251533742331,224,0.24107142857142858,0.3312883435582822,,,,,,,True,False
+A's test rows (all routes),SP->MG,1269,130,238,0.226890756302521,0.4153846153846154,44,0.3409090909090909,0.11538461538461539,,,,,,,True,False
+A's test rows (all routes),SP->RS,592,57,163,0.15337423312883436,0.43859649122807015,29,0.3448275862068966,0.17543859649122806,,,,,,,False,False
+A's test rows (all routes),PR->SP,587,50,88,0.22727272727272727,0.4,20,0.35,0.14,,,,,,,False,True
+A's test rows (all routes),SP->PR,574,54,63,0.15873015873015872,0.18518518518518517,18,0.3888888888888889,0.12962962962962962,,,,,,,False,False
+A's test rows (all routes),SP->BA,447,58,342,0.14327485380116958,0.8448275862068966,41,0.21951219512195122,0.15517241379310345,,,,,,,False,False
+A's test rows (all routes),MG->SP,438,41,28,0.25,0.17073170731707318,7,0.2857142857142857,0.04878048780487805,,,,,,,False,True
+A's test rows (all routes),SP->SC,369,36,167,0.12574850299401197,0.5833333333333334,13,0.3076923076923077,0.1111111111111111,,,,,,,False,False
+A's test rows (all routes),RJ->SP,329,39,60,0.2,0.3076923076923077,12,0.6666666666666666,0.20512820512820512,,,,,,,False,False
+A's test rows (all routes),MG->MG,323,29,4,0.75,0.10344827586206896,1,1.0,0.034482758620689655,,,,,,,False,False
+A's test rows (all routes),SP->DF,286,33,93,0.16129032258064516,0.45454545454545453,10,0.3,0.09090909090909091,,,,,,,False,False
+A's test rows (all routes),SC->SP,276,39,26,0.23076923076923078,0.15384615384615385,8,0.375,0.07692307692307693,,,,,,,False,True
+A's test rows (all routes),SP->ES,263,26,109,0.12844036697247707,0.5384615384615384,11,0.2727272727272727,0.11538461538461539,,,,,,,False,False
+A's test rows (all routes),RJ->RJ,249,31,59,0.1694915254237288,0.3225806451612903,6,0.16666666666666666,0.03225806451612903,,,,,,,False,True
+A's test rows (all routes),SP->GO,231,26,57,0.22807017543859648,0.5,12,0.25,0.11538461538461539,,,,,,,False,False
+A's test rows (all routes),SP->PE,220,22,158,0.10126582278481013,0.7272727272727273,11,0.2727272727272727,0.13636363636363635,,,,,,,False,False
+A's test rows (all routes),PR->RJ,187,25,144,0.14583333333333334,0.84,31,0.25806451612903225,0.32,,,,,,,False,True
+A's test rows (all routes),MG->RJ,181,17,93,0.11827956989247312,0.6470588235294118,8,0.625,0.29411764705882354,,,,,,,False,False
+A's test rows (all routes),RS->SP,172,18,8,0.375,0.16666666666666666,3,0.6666666666666666,0.1111111111111111,,,,,,,False,True
+A's test rows (all routes),PR->PR,163,12,3,0.3333333333333333,0.08333333333333333,2,0.5,0.08333333333333333,,,,,,,False,True
+A's test rows (all routes),SP->CE,160,15,145,0.0896551724137931,0.8666666666666667,23,0.043478260869565216,0.06666666666666667,,,,,,,False,False
+A's test rows (all routes),PR->MG,147,12,22,0.22727272727272727,0.4166666666666667,5,0.2,0.08333333333333333,,,,,,,False,False
+A's test rows (all routes),RJ->MG,135,5,20,0.1,0.4,2,0.0,0.0,,,,,,,False,True
+A's test rows (all routes),PR->RS,114,11,23,0.13043478260869565,0.2727272727272727,8,0.375,0.2727272727272727,,,,,,,False,True
+A's test rows (all routes),SP->MT,114,9,30,0.2,0.6666666666666666,9,0.3333333333333333,0.3333333333333333,,,,,,,False,False
+A's test rows (all routes),SP->PA,110,8,107,0.07476635514018691,1.0,26,0.15384615384615385,0.5,,,,,,,False,False
+A's test rows (all routes),SP->MS,98,12,22,0.22727272727272727,0.4166666666666667,4,0.5,0.16666666666666666,,,,,,,False,False
+A's test rows (all routes),SC->MG,91,15,9,0.4444444444444444,0.26666666666666666,2,0.5,0.06666666666666667,,,,,,,False,True
+A's test rows (all routes),SC->RJ,78,17,50,0.26,0.7647058823529411,6,0.6666666666666666,0.23529411764705882,,,,,,,False,False
+A's test rows (all routes),RS->RS,76,3,0,,0.0,0,,0.0,,,,,,,False,True
+A's test rows (all routes),MG->BA,75,5,15,0.2,0.6,1,1.0,0.2,,,,,,,False,True
+A's test rows (all routes),SP->MA,73,18,69,0.2463768115942029,0.9444444444444444,11,0.36363636363636365,0.2222222222222222,,,,,,,False,False
+A's test rows (all routes),SP->PB,73,11,66,0.16666666666666666,1.0,8,0.375,0.2727272727272727,,,,,,,False,False
+A's test rows (all routes),MA->SP,69,11,1,0.0,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),PR->SC,66,8,12,0.25,0.375,2,0.0,0.0,,,,,,,False,True
+A's test rows (all routes),MG->PR,63,6,3,0.0,0.0,1,0.0,0.0,,,,,,,False,True
+A's test rows (all routes),SP->RN,59,3,44,0.045454545454545456,0.6666666666666666,3,0.0,0.0,,,,,,,False,False
+A's test rows (all routes),RS->RJ,58,7,8,0.375,0.42857142857142855,2,1.0,0.2857142857142857,,,,,,,False,True
+A's test rows (all routes),DF->SP,56,6,6,0.16666666666666666,0.16666666666666666,0,,0.0,,,,,,,False,False
+A's test rows (all routes),SC->SC,56,8,5,0.2,0.125,2,0.5,0.125,,,,,,,False,False
+A's test rows (all routes),RJ->PR,51,5,5,0.2,0.2,1,0.0,0.0,,,,,,,False,True
+A's test rows (all routes),SP->SE,51,5,50,0.1,1.0,31,0.16129032258064516,1.0,,,,,,,False,False
+A's test rows (all routes),SC->PR,49,4,0,,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),SP->PI,47,10,28,0.21428571428571427,0.6,6,0.16666666666666666,0.1,,,,,,,False,False
+A's test rows (all routes),MG->SC,46,2,5,0.4,1.0,2,0.5,0.5,,,,,,,False,True
+A's test rows (all routes),RS->MG,45,1,2,0.0,0.0,0,,0.0,,,,,,,False,True
+A's test rows (all routes),RJ->RS,41,2,3,0.3333333333333333,0.5,2,0.5,0.5,,,,,,,False,True
+A's test rows (all routes),MG->DF,39,1,2,0.5,1.0,1,1.0,1.0,,,,,,,False,False
+A's test rows (all routes),SC->RS,39,4,2,1.0,0.5,2,1.0,0.5,,,,,,,False,True
+A's test rows (all routes),RS->PR,38,2,1,0.0,0.0,1,0.0,0.0,,,,,,,False,True
+A's test rows (all routes),MG->RS,36,3,6,0.0,0.0,1,0.0,0.0,,,,,,,False,True
+A's test rows (all routes),SP->AL,36,4,36,0.1111111111111111,1.0,14,0.21428571428571427,0.75,,,,,,,False,False
+A's test rows (all routes),SP->TO,36,1,20,0.05,1.0,4,0.0,0.0,,,,,,,False,False
+A's test rows (all routes),RJ->BA,33,0,29,0.0,,1,0.0,,,,,,,,False,True
+A's test rows (all routes),PR->DF,30,1,5,0.0,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),GO->SP,29,2,0,,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),RS->SC,28,0,4,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),MG->ES,27,5,5,0.4,0.4,2,0.5,0.2,,,,,,,False,False
+A's test rows (all routes),PE->SP,27,4,2,1.0,0.5,0,,0.0,,,,,,,False,False
+A's test rows (all routes),RJ->DF,26,4,5,0.4,0.5,2,1.0,0.5,,,,,,,False,False
+A's test rows (all routes),BA->SP,25,8,0,,0.0,0,,0.0,,,,,,,False,True
+A's test rows (all routes),RJ->GO,24,4,5,0.2,0.25,1,1.0,0.25,,,,,,,False,False
+A's test rows (all routes),BA->BA,23,6,0,,0.0,0,,0.0,,,,,,,False,True
+A's test rows (all routes),SP->RO,23,1,10,0.0,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),PR->BA,22,3,15,0.06666666666666667,0.3333333333333333,1,1.0,0.3333333333333333,,,,,,,False,True
+A's test rows (all routes),MA->RJ,21,1,21,0.047619047619047616,1.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),RJ->PE,21,4,14,0.14285714285714285,0.5,1,1.0,0.25,,,,,,,False,False
+A's test rows (all routes),RJ->SC,21,2,7,0.0,0.0,2,0.0,0.0,,,,,,,False,True
+A's test rows (all routes),SP->AM,21,6,2,0.5,0.16666666666666666,0,,0.0,,,,,,,False,False
+A's test rows (all routes),DF->RJ,20,6,13,0.38461538461538464,0.8333333333333334,0,,0.0,,,,,,,False,False
+A's test rows (all routes),GO->MG,20,2,0,,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),MG->GO,19,1,0,,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),MG->PE,19,0,4,0.0,,1,0.0,,,,,,,,False,False
+A's test rows (all routes),BA->RJ,18,2,6,0.16666666666666666,0.5,0,,0.0,,,,,,,False,True
+A's test rows (all routes),RJ->ES,18,1,3,0.3333333333333333,1.0,1,1.0,1.0,,,,,,,False,False
+A's test rows (all routes),MA->DF,17,2,1,0.0,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),SC->BA,17,3,13,0.15384615384615385,0.6666666666666666,0,,0.0,,,,,,,False,True
+A's test rows (all routes),ES->SP,16,1,2,0.0,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),MA->MG,16,1,0,,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),PR->PE,16,1,9,0.0,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),SC->DF,16,2,2,0.0,0.0,1,0.0,0.0,,,,,,,False,False
+A's test rows (all routes),DF->DF,14,2,2,0.0,0.0,2,0.0,0.0,,,,,,,False,False
+A's test rows (all routes),GO->RJ,14,1,0,,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),MA->PE,14,3,0,,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),MG->PA,14,0,10,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),PR->ES,14,2,6,0.3333333333333333,1.0,1,0.0,0.0,,,,,,,False,False
+A's test rows (all routes),PE->RJ,13,2,4,0.5,1.0,3,0.3333333333333333,0.5,,,,,,,False,False
+A's test rows (all routes),PR->GO,13,1,0,,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),SC->GO,13,2,3,0.0,0.0,1,0.0,0.0,,,,,,,False,False
+A's test rows (all routes),DF->MG,12,4,2,0.5,0.25,1,1.0,0.25,,,,,,,False,False
+A's test rows (all routes),PE->MG,12,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),RS->DF,12,1,2,0.0,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),MA->RS,11,1,1,0.0,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),MA->SC,11,1,1,0.0,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),MG->PB,11,0,6,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),RJ->PA,11,0,10,0.0,,1,0.0,,,,,,,,False,False
+A's test rows (all routes),GO->GO,10,1,0,,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),MG->CE,10,0,6,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),GO->DF,9,1,0,,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),MA->GO,9,1,0,,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),MA->MA,9,2,0,,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),MT->SP,9,2,0,,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),PR->MT,9,0,2,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),RJ->CE,9,1,7,0.14285714285714285,1.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),SP->AP,9,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),BA->MG,8,1,0,,0.0,0,,0.0,,,,,,,False,True
+A's test rows (all routes),ES->RJ,8,0,5,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),MG->MA,8,0,5,0.0,,1,0.0,,,,,,,,False,False
+A's test rows (all routes),PR->MS,8,1,1,0.0,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),PR->PA,8,0,7,0.0,,1,0.0,,,,,,,,False,False
+A's test rows (all routes),RJ->MA,8,0,6,0.0,,4,0.0,,,,,,,,False,False
+A's test rows (all routes),BA->PE,7,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),DF->GO,7,1,0,,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),MG->MS,7,2,1,0.0,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),PE->CE,7,2,1,1.0,0.5,0,,0.0,,,,,,,False,False
+A's test rows (all routes),PE->PE,7,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),RJ->AL,7,1,7,0.14285714285714285,1.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),RJ->MS,7,0,3,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),RJ->MT,7,0,1,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),SP->AC,7,0,6,0.0,,2,0.0,,,,,,,,False,False
+A's test rows (all routes),SP->RR,7,1,7,0.14285714285714285,1.0,1,0.0,0.0,,,,,,,False,False
+A's test rows (all routes),BA->RS,6,0,4,0.0,,3,0.0,,,,,,,,False,True
+A's test rows (all routes),MA->CE,6,1,0,,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),MG->MT,6,1,0,,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),MG->PI,6,1,0,,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),PR->CE,6,0,5,0.0,,1,0.0,,,,,,,,False,False
+A's test rows (all routes),RJ->RN,6,0,3,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),RS->ES,6,1,1,1.0,1.0,1,1.0,1.0,,,,,,,False,False
+A's test rows (all routes),SC->ES,6,0,2,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),SC->PE,6,1,3,0.0,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),BA->PB,5,1,1,0.0,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),CE->CE,5,0,1,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),MA->ES,5,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),MA->PI,5,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),MG->TO,5,0,1,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),PE->DF,5,0,1,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),RJ->PB,5,0,5,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),RJ->PI,5,0,2,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),RJ->TO,5,0,1,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),RS->BA,5,0,0,,,0,,,,,,,,,False,True
+A's test rows (all routes),RS->PE,5,0,1,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),SC->PI,5,2,1,0.0,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),BA->ES,4,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),BA->MA,4,1,0,,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),BA->SE,4,0,1,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),CE->SP,4,2,1,0.0,0.0,1,0.0,0.0,,,,,,,False,False
+A's test rows (all routes),DF->BA,4,0,3,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),DF->CE,4,0,2,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),DF->PR,4,1,1,1.0,1.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),ES->PR,4,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),GO->CE,4,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),MA->PR,4,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),MA->SE,4,1,4,0.25,1.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),MG->AL,4,1,2,0.0,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),PE->BA,4,0,1,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),PE->ES,4,2,1,1.0,0.5,0,,0.0,,,,,,,False,False
+A's test rows (all routes),PR->AL,4,1,4,0.25,1.0,1,0.0,0.0,,,,,,,False,False
+A's test rows (all routes),PR->MA,4,0,2,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),PR->RN,4,0,1,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),PR->SE,4,1,4,0.25,1.0,1,0.0,0.0,,,,,,,False,False
+A's test rows (all routes),RJ->SE,4,0,4,0.0,,1,0.0,,,,,,,,False,False
+A's test rows (all routes),RS->PA,4,0,1,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),RS->RO,4,1,0,,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),SC->MS,4,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),BA->AL,3,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),BA->DF,3,1,0,,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),BA->GO,3,1,0,,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),BA->PI,3,1,0,,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),BA->SC,3,0,0,,,0,,,,,,,,,False,True
+A's test rows (all routes),CE->SE,3,1,3,0.3333333333333333,1.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),DF->MS,3,0,1,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),DF->PB,3,1,2,0.5,1.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),DF->PI,3,1,0,,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),DF->SC,3,0,2,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),DF->TO,3,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),GO->MS,3,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),MA->PA,3,0,2,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),MG->RN,3,2,2,1.0,1.0,1,1.0,0.5,,,,,,,False,False
+A's test rows (all routes),MT->MG,3,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),PB->SP,3,0,1,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),PE->MA,3,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),PE->PB,3,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),PE->RN,3,1,1,1.0,1.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),PR->PB,3,0,3,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),PR->RO,3,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),RJ->AM,3,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),RJ->RO,3,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),RS->MT,3,1,1,0.0,0.0,1,0.0,0.0,,,,,,,False,False
+A's test rows (all routes),RS->PI,3,1,1,0.0,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),RS->SE,3,2,3,0.6666666666666666,1.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),SC->PB,3,0,2,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),SC->RN,3,0,1,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),BA->MT,2,1,0,,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),CE->AL,2,0,2,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),CE->PA,2,1,2,0.5,1.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),CE->PR,2,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),CE->RJ,2,0,2,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),DF->ES,2,0,1,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),DF->MA,2,1,2,0.5,1.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),DF->PE,2,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),DF->RS,2,2,1,1.0,0.5,0,,0.0,,,,,,,False,False
+A's test rows (all routes),ES->GO,2,0,2,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),ES->MA,2,0,1,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),ES->MG,2,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),ES->SC,2,1,0,,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),GO->MT,2,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),GO->PB,2,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),MA->AL,2,1,2,0.5,1.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),MA->MS,2,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),MA->MT,2,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),MA->TO,2,1,0,,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),MG->RO,2,0,1,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),MG->SE,2,0,2,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),MS->DF,2,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),MS->SP,2,1,0,,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),MT->DF,2,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),MT->RJ,2,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),PB->RJ,2,0,2,0.0,,1,0.0,,,,,,,,False,False
+A's test rows (all routes),PE->AL,2,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),PE->GO,2,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),PE->PA,2,1,1,1.0,1.0,1,1.0,1.0,,,,,,,False,False
+A's test rows (all routes),PE->PI,2,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),PE->PR,2,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),PE->RS,2,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),PE->SE,2,0,1,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),PR->PI,2,0,1,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),PR->RR,2,0,2,0.0,,1,0.0,,,,,,,,False,False
+A's test rows (all routes),RS->AL,2,0,1,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),RS->CE,2,0,1,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),RS->MS,2,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),RS->PB,2,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),SC->AC,2,0,1,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),SC->CE,2,0,2,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),SC->MT,2,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),BA->RN,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),BA->RR,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),BA->TO,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),CE->DF,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),CE->ES,1,1,0,,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),CE->GO,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),CE->PB,1,1,1,1.0,1.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),CE->RN,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),DF->AL,1,0,1,0.0,,1,0.0,,,,,,,,False,False
+A's test rows (all routes),DF->MT,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),DF->PA,1,0,1,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),DF->RN,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),ES->BA,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),ES->ES,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),ES->PE,1,0,1,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),ES->PI,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),ES->RS,1,0,1,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),GO->AL,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),GO->BA,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),GO->ES,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),GO->MA,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),GO->PA,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),GO->PI,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),GO->SC,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),MA->AC,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),MA->AM,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),MA->AP,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),MA->BA,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),MA->PB,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),MA->RN,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),MG->AC,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),MG->AM,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),MG->AP,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),MS->MG,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),MS->MT,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),MT->GO,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),MT->PB,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),MT->RS,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),MT->SC,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),PB->BA,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),PB->CE,1,0,1,0.0,,1,0.0,,,,,,,,False,False
+A's test rows (all routes),PB->MG,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),PB->PE,1,1,1,1.0,1.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),PB->RN,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),PB->SE,1,0,1,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),PE->RO,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),PE->SC,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),PI->MA,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),PI->PB,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),PR->AM,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),PR->TO,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),RN->BA,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),RN->MG,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),RN->PR,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),RN->RN,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),RS->AM,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),RS->GO,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),RS->RN,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),RS->TO,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),SC->AL,1,0,1,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),SC->AM,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),SC->PA,1,0,1,0.0,,1,0.0,,,,,,,,False,False
+A's test rows (all routes),SC->RO,1,1,0,,0.0,0,,0.0,,,,,,,False,False
+A's test rows (all routes),SC->SE,1,0,1,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),SC->TO,1,0,0,,,0,,,,,,,,,False,False
+A's test rows (all routes),SE->ES,1,0,1,0.0,,0,,,,,,,,,False,False
+A's test rows (all routes),SE->PE,1,0,1,0.0,,1,0.0,,,,,,,,False,False

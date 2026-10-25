@@ -1,0 +1,6 @@
+model,rows,alerts_per_day,alerts,detractors_caught,precision,recall,illustrative_cost,cost_per_missed,cost_per_false_alert
+B frozen,B test rows,23.21875,2229,463,0.2077164647824136,0.3004542504866969,7156.0,5.0,1.0
+A frozen,B test rows,36.0625,3462,548,0.1582900057770075,0.3556132381570409,7879.0,5.0,1.0
+A frozen,A test rows,51.052083333333336,4901,748,0.1526219138951234,0.3800813008130081,10253.0,5.0,1.0
+B dummy,B test rows,0.0,0,0,0.0,0.0,7705.0,5.0,1.0
+A dummy,A test rows,0.0,0,0,0.0,0.0,9840.0,5.0,1.0

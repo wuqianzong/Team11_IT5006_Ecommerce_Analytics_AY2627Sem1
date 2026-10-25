@@ -1,0 +1,5 @@
+comparison,rows,metric,difference,ci_low,ci_high,b_better,interval_excludes_zero
+B frozen minus A frozen,B test rows,mae,-0.7288475317475958,-0.7536671873341796,-0.7029670790052462,True,True
+B frozen minus A frozen,B test rows,rmse,-0.5835631928382465,-0.6256645557502271,-0.5447239595776505,True,True
+B frozen minus A frozen,B test rows,r2,0.2114066783752246,0.19038567733932826,0.2342221838551402,True,True
+B frozen minus A frozen,B test rows,within_3d,0.13260277525612757,0.12546686551679417,0.13941609389184276,True,True

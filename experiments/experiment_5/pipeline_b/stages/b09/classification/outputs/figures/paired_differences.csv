@@ -1,0 +1,8 @@
+comparison,rows,metric,difference,ci_low,ci_high,b_better,interval_excludes_zero
+B frozen minus A frozen,B test rows,ap,0.018686411214119708,0.008883226903264199,0.029065175422880236,True,True
+B frozen minus A frozen,B test rows,roc_auc,0.031981221379677405,0.02029656353303868,0.0442443345769121,True,True
+B frozen minus A frozen,B test rows,brier,-0.0025580447857787014,-0.00312756466725718,-0.001910879499090007,True,True
+B frozen minus A frozen,B test rows,precision,0.0494264590054061,0.036758010894924614,0.061554600183596216,True,True
+B frozen minus A frozen,B test rows,recall,-0.055158987670343995,-0.07713238181639881,-0.03495000625824407,False,True
+B frozen minus A frozen,B test rows,f1,0.026554783310385188,0.01150464223075276,0.0404039376487033,True,True
+B frozen minus A frozen,B test rows,alert_rate,-0.0795894655305964,-0.08552962819519752,-0.07332816937774334,,True

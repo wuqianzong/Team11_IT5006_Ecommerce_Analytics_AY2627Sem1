@@ -1,5 +1,13 @@
 # B4 › regression — evidence cards
 
+## Supplement for decisions and the report (added 2026-10-24; DOC\_GAPS D-03)
+
+Added after the pipeline ran, from accepted outputs only; nothing above is changed. Charts marked doc\_support come from pipeline\_b/stages/doc\_support/regression/outputs (run 20261024T065707Z, uncommitted, reads accepted outputs only).
+
+**Selection ranking with B's new features marked and the 99% cut** (doc\_support figures/b4\_selection.png; data: b04 selection\_ranking\_B.csv):
+
+&#91;image: B4 selection\]
+
 Round 2 (B-G-02, B-G-04; built, not yet committed) · run `20261023T153748Z` on uncommitted code (working tree on aed9cfa) · 5 checks, all PASS. Coverage and review dropdowns are on the parent tab "B4 Features"; comment on any card here.
 
 ## B4.1 Pool

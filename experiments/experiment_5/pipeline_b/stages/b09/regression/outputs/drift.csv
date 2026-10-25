@@ -1,0 +1,118 @@
+kind,feature,level,development,test,change,measure
+numeric,route_recent_carrier_transit_days,,7.628003922697333,5.515496495484681,-0.560598479171131,standardised mean difference
+numeric,route_recent_delivery_days,,10.805493898666919,7.934514368120891,-0.7338646894450617,standardised mean difference
+numeric,distance_km_max,,423.6341561887646,392.03573714799137,-0.0894704865713489,standardised mean difference
+numeric,interstate_share,,0.5732118023557797,0.5143247741321921,-0.11863170152894975,standardised mean difference
+numeric,total_freight,,20.178191612351924,22.209922837504863,0.10635103254416874,standardised mean difference
+numeric,seller_prior_dispatch_days,,3.235104612891247,2.869969393405661,-0.19181518537161696,standardised mean difference
+numeric,seller_prior_late_handover_rate,,0.08418961823030381,0.07362920976513228,-0.0873095956811863,standardised mean difference
+numeric,seller_prior_late_handover_days,,0.2883384125096838,0.22016641586447724,-0.07497853715211876,standardised mean difference
+numeric,freight_ratio,,0.2838288276158377,0.30179585584806295,0.06307018495047172,standardised mean difference
+numeric,total_weight_g,,2474.4361247507163,2123.5125826955505,-0.0766255482444476,standardised mean difference
+numeric,total_price,,131.87862892280884,131.55462326546493,-0.001634555900051941,standardised mean difference
+numeric,total_volume_cm3,,18231.048985269226,15223.399688756323,-0.10477640732143648,standardised mean difference
+numeric,purchase_dayofweek,,2.7606688671816095,2.7076903125405267,-0.026806581756888877,standardised mean difference
+numeric,n_sellers,,1.0134711726957426,1.0178316690442226,0.03341117259557488,standardised mean difference
+numeric,purchase_month,,5.889063887539165,6.96349371028401,0.4134250076077085,standardised mean difference
+numeric,n_products,,1.0392909203625824,1.038905459732849,-0.0016561879545745292,standardised mean difference
+numeric,payment_installments_max,,2.887522410066518,2.735118661652185,-0.057895615255657486,standardised mean difference
+numeric,n_items,,1.1471273226882026,1.1382440669173908,-0.016698239304716835,standardised mean difference
+categorical,route_seller_to_customer_state,SP->SP,0.38149891929025015,0.4289326935546622,0.04743377426441203,share change
+categorical,route_seller_to_customer_state,SP->RJ,0.10663002865137476,0.08280378679808066,-0.0238262418532941,share change
+categorical,route_seller_to_customer_state,SP->MG,0.09647638355980764,0.07995071975100505,-0.01652566380880259,share change
+categorical,route_seller_to_customer_state,SP->RS,0.04721612519477908,0.03793282323952795,-0.009283301955251129,share change
+categorical,route_seller_to_customer_state,SP->SC,0.030494445654541496,0.02308390610815718,-0.007410539546384317,share change
+categorical,route_seller_to_customer_state,RJ->SP,0.015196957257510513,0.02081442095707431,0.005617463699563795,share change
+categorical,route_seller_to_customer_state,MG->SP,0.0331250104719937,0.02775256127609908,-0.005372449195894618,share change
+categorical,route_seller_to_customer_state,RJ->RJ,0.01107518053717139,0.015691868758915834,0.004616688221744445,share change
+categorical,route_seller_to_customer_state,MG->RJ,0.014828343079268804,0.011282583322526261,-0.0035457597567425427,share change
+categorical,route_seller_to_customer_state,RS->SP,0.007841428882596384,0.011088056023862015,0.0032466271412656313,share change
+categorical total,route_seller_to_customer_state,(all levels),,,0.07882720289196274,total variation distance
+categorical,primary_category,health_beauty,0.07631989008595412,0.10718454156399948,0.03086465147804536,share change
+categorical,primary_category,housewares,0.05723572876698557,0.08312799896252107,0.0258922701955355,share change
+categorical,primary_category,cool_stuff,0.03950873783154332,0.017248087148229802,-0.02226065068331352,share change
+categorical,primary_category,sports_leisure,0.08300521086406515,0.06451822072364155,-0.018486990140423598,share change
+categorical,primary_category,watches_gifts,0.0515724745739993,0.06834392426403839,0.01677144969003909,share change
+categorical,primary_category,toys,0.04255818239699747,0.026909609648554014,-0.015648572748443456,share change
+categorical,primary_category,garden_tools,0.03743109428145368,0.022889378809492933,-0.014541715471960745,share change
+categorical,primary_category,construction_tools_construction,0.004993046596183168,0.01880430553754377,0.013811258941360602,share change
+categorical,primary_category,furniture_decor,0.06876329943199906,0.055375437686421995,-0.013387861745577066,share change
+categorical,primary_category,computers_accessories,0.06867952348239867,0.05615354688107898,-0.01252597660131969,share change
+categorical,primary_category,auto,0.0356885545297656,0.04791855790429257,0.012230003374526975,share change
+categorical,primary_category,Unknown,0.016721679540237587,0.005835818959927377,-0.01088586058031021,share change
+categorical,primary_category,pet_shop,0.01640333093175611,0.026715082349889768,0.010311751418133657,share change
+categorical,primary_category,telephony,0.04217281302883568,0.032939955907145636,-0.009232857121690044,share change
+categorical,primary_category,food,0.0032169964646549267,0.010439631694981195,0.007222635230326268,share change
+categorical,primary_category,perfumery,0.031365715530385536,0.0244455971988069,-0.0069201183315786355,share change
+categorical,primary_category,baby,0.027428245899167265,0.03410711969913111,0.006678873799963847,share change
+categorical,primary_category,fashion_bags_accessories,0.01982138967545197,0.013616910906497212,-0.006204478768954759,share change
+categorical,primary_category,office_furniture,0.013990583583264916,0.008040461678122163,-0.005950121905142753,share change
+categorical,primary_category,construction_tools_lights,0.0013236600036861418,0.00726235248346518,0.005938692479779038,share change
+categorical,primary_category,electronics,0.026305648174522057,0.02146284528595513,-0.004842802888566929,share change
+categorical,primary_category,home_appliances,0.007322017995073974,0.011866165218519,0.004544147223445026,share change
+categorical,primary_category,home_construction,0.00378667292193757,0.008170146543898327,0.004383473621960757,share change
+categorical,primary_category,consoles_games,0.011108690917011544,0.007781091946569835,-0.003327598970441709,share change
+categorical,primary_category,furniture_living_room,0.0031834860848147712,0.006224873557255868,0.0030413874724410967,share change
+categorical,primary_category,luggage_accessories,0.011544325854933566,0.008688886007002983,-0.002855439847930583,share change
+categorical,primary_category,books_technical,0.0020106227904093292,0.004863182466606147,0.0028525596761968175,share change
+categorical,primary_category,art,0.001625253422247541,0.0038257035403968355,0.0022004501181492947,share change
+categorical,primary_category,market_place,0.0030997101352143825,0.0011023213590973934,-0.0019973887761169894,share change
+categorical,primary_category,fashion_shoes,0.002697585577132517,0.0007132667617689016,-0.0019843188153636153,share change
+categorical,primary_category,small_appliances_home_oven_and_coffee,0.00046914531776217684,0.0022046427181947868,0.00173549740043261,share change
+categorical,primary_category,bed_bath_table,0.10324548028751906,0.10154324990273635,-0.0017022303847827186,share change
+categorical,primary_category,home_confort,0.0045909220381013015,0.0029179094799636884,-0.0016730125581376131,share change
+categorical,primary_category,signaling_and_security,0.00118961848432552,0.0027882246141875244,0.0015986061298620044,share change
+categorical,primary_category,small_appliances,0.006702075968031098,0.005317079496822721,-0.0013849964712083773,share change
+categorical,primary_category,construction_tools_safety,0.00118961848432552,0.0024640124497471143,0.0012743939654215944,share change
+categorical,primary_category,agro_industry_and_commerce,0.0016755189920077745,0.0029179094799636884,0.0012423904879559139,share change
+categorical,primary_category,fashion_underwear_beach,0.0014744567129668415,0.00025936973155232785,-0.0012150869814145137,share change
+categorical,primary_category,stationery,0.023507531457869074,0.02457528206458306,0.0010677506067139873,share change
+categorical,primary_category,arts_and_craftmanship,6.702075968031097e-05,0.0011023213590973934,0.0010353005994170824,share change
+categorical,primary_category,cine_photo,0.00043563493792202136,0.0013616910906497212,0.0009260561527276998,share change
+categorical,primary_category,furniture_bedroom,0.0007037179766432653,0.001621060822202049,0.0009173428455587837,share change
+categorical,primary_category,tablets_printing_image,0.0008880250657641205,0.0,-0.0008880250657641205,share change
+categorical,primary_category,kitchen_dining_laundry_garden_furniture,0.002630564817452206,0.003501491375956426,0.00087092655850422,share change
+categorical,primary_category,drinks,0.0030326893755340716,0.0038905459732849175,0.0008578565977508459,share change
+categorical,primary_category,home_appliances_2,0.002211685069450262,0.0029827519128517704,0.0007710668434015083,share change
+categorical,primary_category,party_supplies,0.0002680830387212439,0.0010374789262093114,0.0007693958874880675,share change
+categorical,primary_category,computers,0.0017257845617680077,0.0011671637919854754,-0.0005586207697825323,share change
+categorical,primary_category,diapers_and_hygiene,0.00016755189920077745,0.0007132667617689016,0.0005457148625681241,share change
+categorical,primary_category,furniture_mattress_and_upholstery,0.0005361660774424878,6.484243288808196e-05,-0.00047132364455440583,share change
+categorical,primary_category,fashion_male_clothing,0.001306904813766064,0.0008429516275450655,-0.0004639531862209986,share change
+categorical,primary_category,costruction_tools_garden,0.0017425397516880855,0.0022046427181947868,0.0004621029665067013,share change
+categorical,primary_category,air_conditioning,0.00274785114689275,0.0023343275839709508,-0.0004135235629217993,share change
+categorical,primary_category,fashio_female_clothing,0.00040212455808186584,6.484243288808196e-05,-0.0003372821251937839,share change
+categorical,primary_category,music,0.00031834860848147715,0.0006484243288808196,0.00033007572039934243,share change
+categorical,primary_category,fashion_sport,0.00035185898832163263,6.484243288808196e-05,-0.0002870165554335507,share change
+categorical,primary_category,costruction_tools_tools,0.0008880250657641205,0.0011671637919854754,0.0002791387262213549,share change
+categorical,primary_category,food_drink,0.0024630129182514286,0.0022046427181947868,-0.0002583702000566418,share change
+categorical,primary_category,flowers,0.00036861417824171036,0.00012968486577616392,-0.00023892931246554644,share change
+categorical,primary_category,fixed_telephony,0.0017928053214483187,0.001556218389313967,-0.0002365869321343517,share change
+categorical,primary_category,books_imported,0.0005696764572826433,0.0007781091946569835,0.00020843273737434023,share change
+categorical,primary_category,la_cuisine,0.00020106227904093292,0.0,-0.00020106227904093292,share change
+categorical,primary_category,cds_dvds_musicals,0.00018430708912085518,0.0,-0.00018430708912085518,share change
+categorical,primary_category,industry_commerce_and_business,0.0025132784880116618,0.0023343275839709508,-0.00017895090404071098,share change
+categorical,primary_category,dvds_blu_ray,0.00016755189920077745,0.0003242121644404098,0.00015666026523963235,share change
+categorical,primary_category,christmas_supplies,0.0012566392440058309,0.0013616910906497212,0.0001050518466438903,share change
+categorical,primary_category,home_comfort_2,0.00021781746896101068,0.00012968486577616392,-8.813260318484676e-05,share change
+categorical,primary_category,books_general_interest,0.005076822545783556,0.004992867332382311,-8.39552134012456e-05,share change
+categorical,primary_category,musical_instruments,0.006283196220029154,0.006354558423032032,7.136220300287769e-05,share change
+categorical,primary_category,fashion_childrens_clothes,0.00010053113952046646,6.484243288808196e-05,-3.56887066323845e-05,share change
+categorical,primary_category,audio,0.0034515691235360154,0.003436648943068344,-1.4920180467671487e-05,share change
+categorical total,primary_category,(all levels),,,0.16196872812309387,total variation distance
+categorical,primary_payment_type,debit_card,0.010991404587571,0.037089871611982884,0.026098467024411882,share change
+categorical,primary_payment_type,boleto,0.201079034230853,0.18421735183504084,-0.01686168239581215,share change
+categorical,primary_payment_type,voucher,0.032739641103831915,0.027558033977434834,-0.005181607126397082,share change
+categorical,primary_payment_type,credit_card,0.7551899200777441,0.7511347425755415,-0.004055177502202634,share change
+categorical total,primary_payment_type,(all levels),,,0.026098467024411875,total variation distance
+source share,seller_prior_source,seller-state fallback,0.04068160112594876,0.04234210867591752,0.0016605075499687566,share change
+source share,seller_prior_source,own seller history,0.9593183988740512,0.9576578913240825,-0.001660507549968715,share change
+categorical total,seller_prior_source,(all levels),,,0.0016605075499687358,total variation distance
+source share,route_recent_delivery_days_source,own route history,0.958413618618367,0.972312281156789,0.01389866253842198,share change
+source share,route_recent_delivery_days_source,state-mix fallback,0.04158638138163296,0.027687718843210998,-0.013898662538421962,share change
+categorical total,route_recent_delivery_days_source,(all levels),,,0.013898662538421971,total variation distance
+source share,route_recent_carrier_transit_days_source,own route history,0.958413618618367,0.972312281156789,0.01389866253842198,share change
+source share,route_recent_carrier_transit_days_source,state-mix fallback,0.04158638138163296,0.027687718843210998,-0.013898662538421962,share change
+categorical total,route_recent_carrier_transit_days_source,(all levels),,,0.013898662538421971,total variation distance
+target,lead_days,mean,12.111345633737132,7.9038135313249,-4.207532102412232,difference
+target,lead_days,median,10.052685185185185,6.957019675925926,-3.095665509259259,difference

@@ -1,0 +1,19 @@
+kind,feature,level,development,test,change,measure
+numeric,total_price,,131.87862892280884,131.55462326546493,-0.001634555900051941,standardised mean difference
+numeric,n_products,,1.0392909203625824,1.038905459732849,-0.0016561879545745292,standardised mean difference
+numeric,n_items,,1.1471273226882026,1.1382440669173908,-0.016698239304716835,standardised mean difference
+numeric,purchase_dayofweek,,2.7606688671816095,2.7076903125405267,-0.026806581756888877,standardised mean difference
+numeric,n_sellers,,1.0134711726957426,1.0178316690442226,0.03341117259557488,standardised mean difference
+numeric,payment_installments_max,,2.887522410066518,2.735118661652185,-0.057895615255657486,standardised mean difference
+numeric,freight_ratio,,0.2838288276158377,0.30179585584806295,0.06307018495047172,standardised mean difference
+numeric,seller_prior_late_handover_days,,0.2883384125096838,0.22016641586447724,-0.07497853715211876,standardised mean difference
+numeric,total_weight_g,,2474.4361247507163,2123.5125826955505,-0.0766255482444476,standardised mean difference
+numeric,seller_prior_late_handover_rate,,0.08418961823030381,0.07362920976513228,-0.0873095956811863,standardised mean difference
+numeric,distance_km_max,,423.6341561887646,392.03573714799137,-0.0894704865713489,standardised mean difference
+numeric,total_volume_cm3,,18231.048985269226,15223.399688756323,-0.10477640732143648,standardised mean difference
+numeric,total_freight,,20.178191612351924,22.209922837504863,0.10635103254416874,standardised mean difference
+numeric,interstate_share,,0.5732118023557797,0.5143247741321921,-0.11863170152894975,standardised mean difference
+numeric,seller_prior_dispatch_days,,3.235104612891247,2.869969393405661,-0.19181518537161696,standardised mean difference
+numeric,purchase_month,,5.889063887539165,6.96349371028401,0.4134250076077085,standardised mean difference
+numeric,route_recent_carrier_transit_days,,7.628003922697333,5.515496495484681,-0.560598479171131,standardised mean difference
+numeric,route_recent_delivery_days,,10.805493898666919,7.934514368120891,-0.7338646894450617,standardised mean difference

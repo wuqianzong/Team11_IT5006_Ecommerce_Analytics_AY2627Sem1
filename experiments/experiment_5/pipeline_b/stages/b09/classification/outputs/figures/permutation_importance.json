@@ -1,0 +1,7 @@
+{
+  "title": "Permutation importance",
+  "ids": [
+    "B9.5"
+  ],
+  "data": "figures/permutation_importance.csv"
+}

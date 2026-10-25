@@ -1,0 +1,24 @@
+kind,feature,level,development,test,change,measure
+numeric,n_products,,1.0386902750557545,1.038600568035115,-0.0003879838595260343,standardised mean difference
+numeric,total_price,,131.53711461782794,131.61633488252002,0.0004005033169123574,standardised mean difference
+numeric,n_items,,1.1454517807663716,1.1360702297960237,-0.01781571094761652,standardised mean difference
+numeric,order_handed_over_late,,0.0864364398188822,0.07726568551510457,-0.033457116738254515,standardised mean difference
+numeric,n_sellers,,1.0131276610123674,1.017686547895688,0.035209587453169516,standardised mean difference
+numeric,seller_prior_review_mean,,4.1718763486065145,4.150961882363596,-0.04984203247059658,standardised mean difference
+numeric,payment_installments_max,,2.8873589241062376,2.740253033823909,-0.05584960058506348,standardised mean difference
+numeric,freight_ratio,,0.28446667411263127,0.3014707546902143,0.059665903744571175,standardised mean difference
+numeric,seller_prior_late_handover_days,,0.2811413479345043,0.21800688620274009,-0.07305688841145205,standardised mean difference
+numeric,total_weight_g,,2471.214292956604,2124.0399664256197,-0.0758242354232996,standardised mean difference
+numeric,order_handover_late_days,,0.21878390581079998,0.13455803577832287,-0.07643179062079539,standardised mean difference
+numeric,product_description_lenght,,772.9523997731686,822.6484592928965,0.07643193356426997,standardised mean difference
+numeric,seller_prior_late_handover_rate,,0.08436397121818379,0.07356218504388369,-0.09015763756030563,standardised mean difference
+numeric,distance_km_max,,424.4904210474624,392.6226468298403,-0.09024036142114462,standardised mean difference
+numeric,n_categories,,0.9907413664932081,1.0043248128066098,0.09577993259338512,standardised mean difference
+numeric,total_volume_cm3,,18205.300730025687,15219.687193390137,-0.10403989356220772,standardised mean difference
+numeric,total_freight,,20.164865175373386,22.19366963594113,0.10629533799220525,standardised mean difference
+numeric,interstate_share,,0.575420693383794,0.5158415095963508,-0.12006679465148895,standardised mean difference
+numeric,seller_prior_dispatch_days,,3.238393835629621,2.87120226240632,-0.19433406680292975,standardised mean difference
+numeric,order_dispatch_days,,3.261462804325578,2.621152372094786,-0.2088657739628881,standardised mean difference
+numeric,purchase_month,,5.8926978441576,6.952297960237542,0.40627072592000957,standardised mean difference
+numeric,route_recent_carrier_transit_days,,7.644558555967016,5.465830083516128,-0.5827050777409742,standardised mean difference
+numeric,route_recent_delivery_days,,10.831530362293618,7.879901760208023,-0.7607732756573016,standardised mean difference

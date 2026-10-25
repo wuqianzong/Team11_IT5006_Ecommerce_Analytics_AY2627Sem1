@@ -1,0 +1,7 @@
+period,kind,start,end,festival_days
+fold 1,"validation (selection score, G-10)",2017-06-19,2017-09-27,
+fold 2,"validation (selection score, G-10)",2017-09-27,2017-12-03,2017-11-24
+fold 3,"validation (selection score, G-10)",2017-12-03,2018-02-05,2017-12-25
+fold 4,"validation (selection score, G-10)",2018-02-05,2018-04-01,
+fold 5,"validation (selection score, G-10)",2018-04-01,2018-05-24,
+test,"test (unbiased, read once)",2018-05-27,2018-08-29,

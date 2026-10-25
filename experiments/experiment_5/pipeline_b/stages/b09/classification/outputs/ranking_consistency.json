@@ -1,0 +1,8 @@
+{
+  "features_compared": 25,
+  "spearman": 0.3069230769230769,
+  "top10_overlap": 6,
+  "diverges": true,
+  "rule": "diverges when Spearman < 0.5 or fewer than 5 of the top 10 shared (as A's s09 9.5)",
+  "action": "alert the team: the test-row importance differs from B4's development ranking; describe, do not change the frozen model"
+}

@@ -1,0 +1,3 @@
+model,tp,fp,fn,tn
+"A frozen model (sigmoid, 1/6)",3034,8820,10966,77610
+"B frozen model (sigmoid, 1/6)",3498,8232,10502,78198

@@ -1,0 +1,37 @@
+feature,quarter,source,share
+seller_prior,2017Q1,own seller history,0.8907201719813687
+seller_prior,2017Q2,own seller history,0.9562064156206416
+seller_prior,2017Q3,own seller history,0.9568228105906312
+seller_prior,2017Q4,own seller history,0.9641326093169476
+seller_prior,2018Q1,own seller history,0.9704935622317596
+seller_prior,2018Q2,own seller history,0.9585205992509364
+seller_prior,2017Q1,seller-state fallback,0.1092798280186313
+seller_prior,2017Q2,seller-state fallback,0.0437935843793584
+seller_prior,2017Q3,seller-state fallback,0.0431771894093686
+seller_prior,2017Q4,seller-state fallback,0.0358673906830523
+seller_prior,2018Q1,seller-state fallback,0.0295064377682403
+seller_prior,2018Q2,seller-state fallback,0.0414794007490636
+route_recent_delivery_days,2017Q1,own route history,0.858831959871014
+route_recent_delivery_days,2017Q2,own route history,0.9288702928870292
+route_recent_delivery_days,2017Q3,own route history,0.9483706720977596
+route_recent_delivery_days,2017Q4,own route history,0.9602029151186052
+route_recent_delivery_days,2018Q1,own route history,0.978898426323319
+route_recent_delivery_days,2018Q2,own route history,0.981741573033708
+route_recent_delivery_days,2017Q1,state-mix fallback,0.141168040128986
+route_recent_delivery_days,2017Q2,state-mix fallback,0.0711297071129707
+route_recent_delivery_days,2017Q3,state-mix fallback,0.0516293279022403
+route_recent_delivery_days,2017Q4,state-mix fallback,0.0397970848813946
+route_recent_delivery_days,2018Q1,state-mix fallback,0.0211015736766809
+route_recent_delivery_days,2018Q2,state-mix fallback,0.0182584269662921
+route_recent_carrier_transit_days,2017Q1,own route history,0.858831959871014
+route_recent_carrier_transit_days,2017Q2,own route history,0.9288702928870292
+route_recent_carrier_transit_days,2017Q3,own route history,0.9483706720977596
+route_recent_carrier_transit_days,2017Q4,own route history,0.9602029151186052
+route_recent_carrier_transit_days,2018Q1,own route history,0.978898426323319
+route_recent_carrier_transit_days,2018Q2,own route history,0.981741573033708
+route_recent_carrier_transit_days,2017Q1,state-mix fallback,0.141168040128986
+route_recent_carrier_transit_days,2017Q2,state-mix fallback,0.0711297071129707
+route_recent_carrier_transit_days,2017Q3,state-mix fallback,0.0516293279022403
+route_recent_carrier_transit_days,2017Q4,state-mix fallback,0.0397970848813946
+route_recent_carrier_transit_days,2018Q1,state-mix fallback,0.0211015736766809
+route_recent_carrier_transit_days,2018Q2,state-mix fallback,0.0182584269662921

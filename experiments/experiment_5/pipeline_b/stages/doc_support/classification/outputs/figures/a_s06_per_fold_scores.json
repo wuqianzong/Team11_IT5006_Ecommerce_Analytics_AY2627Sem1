@@ -1,0 +1,7 @@
+{
+  "title": "Per-fold validation scores",
+  "ids": [
+    "DS.4"
+  ],
+  "data": "figures/a_s06_per_fold_scores.csv"
+}

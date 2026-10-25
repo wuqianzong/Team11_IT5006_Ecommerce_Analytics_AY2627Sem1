@@ -1,0 +1,283 @@
+{
+  "node": "B/doc_support/classification",
+  "pipeline": "B",
+  "files": {
+    "figures/b2_history_coverage.png": {
+      "ids": [
+        "DS.1"
+      ],
+      "kind": "figure"
+    },
+    "figures/b2_history_coverage.csv": {
+      "ids": [
+        "DS.1"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/b2_history_coverage.json": {
+      "ids": [
+        "DS.1"
+      ],
+      "kind": "figure_meta"
+    },
+    "b2_lateness_by_route.csv": {
+      "ids": [
+        "DS.1"
+      ],
+      "kind": "table"
+    },
+    "figures/b2_lateness_by_route.png": {
+      "ids": [
+        "DS.1"
+      ],
+      "kind": "figure"
+    },
+    "figures/b2_lateness_by_route.csv": {
+      "ids": [
+        "DS.1"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/b2_lateness_by_route.json": {
+      "ids": [
+        "DS.1"
+      ],
+      "kind": "figure_meta"
+    },
+    "figures/b4_selection.png": {
+      "ids": [
+        "DS.2"
+      ],
+      "kind": "figure"
+    },
+    "figures/b4_selection.csv": {
+      "ids": [
+        "DS.2"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/b4_selection.json": {
+      "ids": [
+        "DS.2"
+      ],
+      "kind": "figure_meta"
+    },
+    "figures/b5_partition.png": {
+      "ids": [
+        "DS.3"
+      ],
+      "kind": "figure"
+    },
+    "figures/b5_partition.csv": {
+      "ids": [
+        "DS.3"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/b5_partition.json": {
+      "ids": [
+        "DS.3"
+      ],
+      "kind": "figure_meta"
+    },
+    "a_s06_per_fold_scores.csv": {
+      "ids": [
+        "DS.4"
+      ],
+      "kind": "table"
+    },
+    "figures/a_s06_per_fold_scores.png": {
+      "ids": [
+        "DS.4"
+      ],
+      "kind": "figure"
+    },
+    "figures/a_s06_per_fold_scores.csv": {
+      "ids": [
+        "DS.4"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/a_s06_per_fold_scores.json": {
+      "ids": [
+        "DS.4"
+      ],
+      "kind": "figure_meta"
+    },
+    "b_b06_per_fold_scores.csv": {
+      "ids": [
+        "DS.4"
+      ],
+      "kind": "table"
+    },
+    "figures/b_b06_per_fold_scores.png": {
+      "ids": [
+        "DS.4"
+      ],
+      "kind": "figure"
+    },
+    "figures/b_b06_per_fold_scores.csv": {
+      "ids": [
+        "DS.4"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/b_b06_per_fold_scores.json": {
+      "ids": [
+        "DS.4"
+      ],
+      "kind": "figure_meta"
+    },
+    "figures/r05_population.png": {
+      "ids": [
+        "DS.5"
+      ],
+      "kind": "figure"
+    },
+    "figures/r05_population.csv": {
+      "ids": [
+        "DS.5"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/r05_population.json": {
+      "ids": [
+        "DS.5"
+      ],
+      "kind": "figure_meta"
+    },
+    "figures/r06_auc_brier.png": {
+      "ids": [
+        "DS.6"
+      ],
+      "kind": "figure"
+    },
+    "figures/r06_auc_brier.csv": {
+      "ids": [
+        "DS.6"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/r06_auc_brier.json": {
+      "ids": [
+        "DS.6"
+      ],
+      "kind": "figure_meta"
+    },
+    "figures/r06_confusion.png": {
+      "ids": [
+        "DS.6"
+      ],
+      "kind": "figure"
+    },
+    "figures/r06_confusion.csv": {
+      "ids": [
+        "DS.6"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/r06_confusion.json": {
+      "ids": [
+        "DS.6"
+      ],
+      "kind": "figure_meta"
+    },
+    "a_threshold_by_cap.csv": {
+      "ids": [
+        "DS.7"
+      ],
+      "kind": "table"
+    },
+    "a_threshold_by_fold.csv": {
+      "ids": [
+        "DS.7"
+      ],
+      "kind": "table"
+    }
+  },
+  "checks": [
+    {
+      "name": "A's sigmoid refit per fold reproduces A's s08 calibration AP",
+      "passed": true,
+      "detail": "max difference 8.33e-17",
+      "ids": [
+        "DS.7"
+      ]
+    },
+    {
+      "name": "A's tree untouched: A's code matches e5-A-frozen",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "DS.1"
+      ]
+    }
+  ],
+  "deviations": {},
+  "cards": {
+    "DS.7": {
+      "done": "A's best threshold under each daily cap (from A's s08 threshold curve) and A's 1/6 threshold fold by fold on A's validation rows (sigmoid refit, verified against A's calibration step).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "DS.1": {
+      "done": "B2 history-source shares by quarter and the 15 busiest routes' late-handover rate and delivery time.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "DS.2": {
+      "done": "B4 ranking with B's new features marked and the 99% cut.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "DS.3": {
+      "done": "A's fold boundaries with B's and A's row counts per fold.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "DS.4": {
+      "done": "Per-fold AP of every s06 / B6 family, training and validation (tables), validation chart.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "DS.5": {
+      "done": "Mean \u00b1 SE of the primary metric by population, 5 folds and folds 2-5 (R-05).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "DS.6": {
+      "done": "AP, ROC-AUC and Brier by population (sigmoid) and pooled confusion matrices at 1/6 on B's validation rows (R-06).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    }
+  },
+  "checks_failed": []
+}

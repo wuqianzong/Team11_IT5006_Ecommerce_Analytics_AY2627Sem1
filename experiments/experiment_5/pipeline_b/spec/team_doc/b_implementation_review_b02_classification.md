@@ -1,5 +1,42 @@
 # B2 › classification — evidence cards
 
+## Supplement for decisions and the report (added 2026-10-24; DOC\_GAPS D-03)
+
+Added after the pipeline ran, from accepted outputs only; nothing above is changed. Charts marked doc\_support come from pipeline\_b/stages/doc\_support/classification/outputs (run 20261024T065723Z, uncommitted, reads accepted outputs only).
+
+**Where each history feature comes from, by quarter** (doc\_support figures/b2\_history\_coverage.png; data: b02 history\_coverage.csv):
+
+&#91;image: history coverage\]
+
+**The 15 busiest routes: late-handover rate and delivery time** (doc\_support b2\_lateness\_by\_route.csv, aggregated from b02 lateness\_summary\_B.csv.gz, development period):
+
+&#91;image: lateness by route\]
+
+20 busiest routes:
+
+| route | handovers | median\_delivery\_days | late\_handover\_rate |
+| --- | --- | --- | --- |
+| SP->SP | 24,087 | 6.918 | 0.092 |
+| SP->RJ | 6,994 | 13.596 | 0.103 |
+| SP->MG | 6,185 | 11.307 | 0.098 |
+| SP->RS | 3,008 | 14.766 | 0.078 |
+| SP->PR | 2,546 | 12.019 | 0.088 |
+| PR->SP | 2,341 | 9.997 | 0.113 |
+| MG->SP | 2,125 | 10.029 | 0.082 |
+| SP->SC | 1,968 | 14.875 | 0.091 |
+| SP->BA | 1,906 | 18.795 | 0.085 |
+| MG->MG | 1,205 | 7.829 | 0.080 |
+| SC->SP | 1,042 | 11.217 | 0.077 |
+| RJ->SP | 999 | 10.225 | 0.095 |
+| MG->RJ | 992 | 12.230 | 0.062 |
+| PR->RJ | 795 | 14.675 | 0.111 |
+| RJ->RJ | 717 | 5.343 | 0.096 |
+| PR->MG | 677 | 12.759 | 0.114 |
+| PR->PR | 555 | 7.481 | 0.157 |
+| RS->SP | 492 | 8.918 | 0.085 |
+| PR->RS | 468 | 12.904 | 0.103 |
+| RJ->MG | 416 | 11.955 | 0.070 |
+
 Round 2 (B-G-03, B-G-04; built, not yet committed) · run `20261023T153744Z` on uncommitted code (working tree on aed9cfa) · 6 checks, all PASS. Coverage and review dropdowns are on the parent tab "B2 Population and features"; comment on any card here.
 
 ## B2.1 Population (B-C1 to B-C5)

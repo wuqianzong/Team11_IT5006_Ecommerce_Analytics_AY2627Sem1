@@ -1,5 +1,21 @@
 # B7 › regression — evidence cards
 
+## Supplement for decisions and the report (added 2026-10-24; DOC\_GAPS D-01)
+
+Added after the pipeline ran, from accepted outputs only; nothing above is changed. Figures: pipeline\_b/stages/b07/regression/outputs/figures (run 20261023T163311Z); the full grids are already in the tables above.
+
+**Validation curve, linear/logistic** (figures/validation\_curve\_linear.png; curves/validation\_curve\_linear.csv):
+
+&#91;image: validation curve linear\]
+
+**Validation curve, single tree** (figures/validation\_curve\_tree.png; curves/validation\_curve\_tree.csv):
+
+&#91;image: validation curve tree\]
+
+**Validation curve, forest** (figures/validation\_curve\_forest.png; curves/validation\_curve\_forest.csv):
+
+&#91;image: validation curve forest\]
+
 Round 1 · ACCEPTED by the experiment lead (tag e5-B-s07-accepted) · run `20261023T163311Z` on code commit e358f81 (clean tree) · 6 checks, all PASS. Coverage and review dropdowns are on the parent tab "B7 Tuning"; comment on any card here.
 
 *Card text is written by A's code, so its stage words refer to B's inputs: "s04 recipe" = B4 recipes\_B.json, "s05 folds" = B5 folds\_B.csv, "s06" = B6, "s08 decides" = B8 decides.*

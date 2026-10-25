@@ -1,0 +1,461 @@
+{
+  "node": "B/b09/classification",
+  "pipeline": "B",
+  "files": {
+    "train_val_test.csv": {
+      "ids": [
+        "B9.1"
+      ],
+      "kind": "table"
+    },
+    "paired_test_differences.csv": {
+      "ids": [
+        "B9.2"
+      ],
+      "kind": "table"
+    },
+    "subgroups.csv": {
+      "ids": [
+        "B9.3"
+      ],
+      "kind": "table"
+    },
+    "subgroups_aggregate.csv": {
+      "ids": [
+        "B9.3"
+      ],
+      "kind": "table"
+    },
+    "drift.csv": {
+      "ids": [
+        "B9.4"
+      ],
+      "kind": "table"
+    },
+    "coefficients.csv": {
+      "ids": [
+        "B9.5"
+      ],
+      "kind": "table"
+    },
+    "permutation_importance.csv": {
+      "ids": [
+        "B9.5"
+      ],
+      "kind": "table"
+    },
+    "ranking_consistency.json": {
+      "ids": [
+        "B9.5"
+      ],
+      "kind": "json"
+    },
+    "label_sensitivity.csv": {
+      "ids": [
+        "B9.6"
+      ],
+      "kind": "table"
+    },
+    "missed_dispatch_rule_test.csv": {
+      "ids": [
+        "B9.7"
+      ],
+      "kind": "table"
+    },
+    "business_summary.csv": {
+      "ids": [
+        "B9.7"
+      ],
+      "kind": "table"
+    },
+    "figures/paired_differences.png": {
+      "ids": [
+        "B9.2"
+      ],
+      "kind": "figure"
+    },
+    "figures/paired_differences.csv": {
+      "ids": [
+        "B9.2"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/paired_differences.json": {
+      "ids": [
+        "B9.2"
+      ],
+      "kind": "figure_meta"
+    },
+    "figures/by_customer_state.png": {
+      "ids": [
+        "B9.3"
+      ],
+      "kind": "figure"
+    },
+    "figures/by_customer_state.csv": {
+      "ids": [
+        "B9.3"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/by_customer_state.json": {
+      "ids": [
+        "B9.3"
+      ],
+      "kind": "figure_meta"
+    },
+    "figures/coefficients.png": {
+      "ids": [
+        "B9.5"
+      ],
+      "kind": "figure"
+    },
+    "figures/coefficients.csv": {
+      "ids": [
+        "B9.5"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/coefficients.json": {
+      "ids": [
+        "B9.5"
+      ],
+      "kind": "figure_meta"
+    },
+    "figures/permutation_importance.png": {
+      "ids": [
+        "B9.5"
+      ],
+      "kind": "figure"
+    },
+    "figures/permutation_importance.csv": {
+      "ids": [
+        "B9.5"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/permutation_importance.json": {
+      "ids": [
+        "B9.5"
+      ],
+      "kind": "figure_meta"
+    },
+    "figures/drift_numeric.png": {
+      "ids": [
+        "B9.4"
+      ],
+      "kind": "figure"
+    },
+    "figures/drift_numeric.csv": {
+      "ids": [
+        "B9.4"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/drift_numeric.json": {
+      "ids": [
+        "B9.4"
+      ],
+      "kind": "figure_meta"
+    },
+    "threshold_options_curve.csv": {
+      "ids": [
+        "B9.10"
+      ],
+      "kind": "table"
+    },
+    "threshold_options.csv": {
+      "ids": [
+        "B9.10"
+      ],
+      "kind": "table"
+    },
+    "figures/threshold_options.png": {
+      "ids": [
+        "B9.10"
+      ],
+      "kind": "figure"
+    },
+    "figures/threshold_options.csv": {
+      "ids": [
+        "B9.10"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/threshold_options.json": {
+      "ids": [
+        "B9.10"
+      ],
+      "kind": "figure_meta"
+    },
+    "drift_by_fold.csv": {
+      "ids": [
+        "B9.11"
+      ],
+      "kind": "table"
+    },
+    "figures/drift_by_fold.png": {
+      "ids": [
+        "B9.11"
+      ],
+      "kind": "figure"
+    },
+    "figures/drift_by_fold.csv": {
+      "ids": [
+        "B9.11"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/drift_by_fold.json": {
+      "ids": [
+        "B9.11"
+      ],
+      "kind": "figure_meta"
+    },
+    "business_by_route.csv": {
+      "ids": [
+        "B9.13"
+      ],
+      "kind": "table"
+    },
+    "validation_and_test.csv": {
+      "ids": [
+        "B9.14"
+      ],
+      "kind": "table"
+    },
+    "validation_and_test_windows.csv": {
+      "ids": [
+        "B9.14"
+      ],
+      "kind": "table"
+    },
+    "figures/validation_and_test.png": {
+      "ids": [
+        "B9.14"
+      ],
+      "kind": "figure"
+    },
+    "figures/validation_and_test.csv": {
+      "ids": [
+        "B9.14"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/validation_and_test.json": {
+      "ids": [
+        "B9.14"
+      ],
+      "kind": "figure_meta"
+    },
+    "a_fallback_by_scope.csv": {
+      "ids": [
+        "B9.15"
+      ],
+      "kind": "table"
+    },
+    "a_fallback_summary.csv": {
+      "ids": [
+        "B9.15"
+      ],
+      "kind": "table"
+    },
+    "conclusion.md": {
+      "ids": [
+        "B9.8",
+        "B9.9"
+      ],
+      "kind": "text"
+    }
+  },
+  "checks": [
+    {
+      "name": "rebuilt out-of-fold sigmoid probabilities reproduce B8's and A's calibration step (AP per fold)",
+      "passed": true,
+      "detail": "max difference B 5.6e-17, A 8.3e-17",
+      "ids": [
+        "B9.10",
+        "B9.15"
+      ]
+    },
+    {
+      "name": "no refit: B's and A's bundles re-predict T1's test predictions on the rebuilt rows (within 1e-9)",
+      "passed": true,
+      "detail": "B 15,492 rows (max difference 9.7e-17), A 18,966 rows (max difference 9.7e-17); CSV round-trip only",
+      "ids": [
+        "B9.1"
+      ]
+    },
+    {
+      "name": "every restated test number equals T1's metrics_test.csv",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "B9.1"
+      ]
+    },
+    {
+      "name": "bootstrap intervals contain the T1 point estimate",
+      "passed": true,
+      "detail": "1000 resamples, seed 42",
+      "ids": [
+        "B9.1",
+        "B9.2"
+      ]
+    },
+    {
+      "name": "validation scores are labelled selection scores (source column filled wherever a value is shown)",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "B9.1"
+      ]
+    },
+    {
+      "name": "slice rule: a slice is judged only above the minimum",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "B9.3"
+      ]
+    },
+    {
+      "name": "A's tree untouched: A's code matches e5-A-frozen",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "B9.1"
+      ]
+    }
+  ],
+  "deviations": {},
+  "cards": {
+    "B9.10": {
+      "done": "Operating threshold 4/15 (B-G-07, post-test) vs frozen 1/6 on B's rows. Validation: 4.0 alerts/day, FP per TP 1.35, recall 0.084 (1/6: 17.0/day, 2.35, 0.250). Test: 5.6/day, FP per TP 1.89, precision 0.346, recall 0.121 (1/6: 23.2/day, 3.81). Cost 5:1 at 4/15 7,123 vs 7,156 at 1/6; cost 1:1 1,707 vs 2,844.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B9.11": {
+      "done": "Training vs validation drift per fold for A and B, plus final fit vs test (SMD for numeric features and the target, TVD for categorical). Numeric features with |SMD| >= 0.2 in at least 3 of the 6 periods: A purchase_month (6), B purchase_month (6), B route_recent_carrier_transit_days (4), B route_recent_delivery_days (4).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B9.13": {
+      "done": "Routes judged (more than 100 detractors): 3 of 48 on B's test rows; A on all of A's test routes is listed too (in or out of B's scope).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B9.14": {
+      "done": "Each series: five validation folds, their mean \u00b1 SE, and the test with its 95% bootstrap interval; each period's time window is in validation_and_test_windows.csv and on the chart. B on B rows: folds mean 0.2482 \u00b1 0.0313, test 0.1972 [0.1808, 0.2176]; A on B rows: folds mean 0.2302 \u00b1 0.0305, test 0.1785 [0.1631, 0.1974]; A on A rows: folds mean 0.2317 \u00b1 0.0276, test 0.1750 [0.1611, 0.1891]. Test window 2018-05-26 to 2018-08-29.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B9.15": {
+      "done": "A's frozen model by B's scope (B-G-06 fallback). Validation AP mean over 5 folds: inside 0.2356, outside 0.2257. Test: inside 0.1798 (15,570 orders), outside 0.1614 [0.1350, 0.1964] (3,396 orders).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B9.1": {
+      "done": "Train, validation (selection scores, G-10) and test with 95% bootstrap intervals (1000 resamples, seed 42) for B, A and references. B's test AP 0.1972 [0.1808, 0.2176], width 0.0369; 1,541 test detractors.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B9.2": {
+      "done": "B minus A on B's test rows: AP +0.0187 [+0.0089, +0.0291] (excludes zero).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B9.3": {
+      "done": "Slices judged with more than 100 test detractors. Customer state: 3 judged, 4 too few. Pooled over judged states: precision A 0.164 / B 0.219, recall A 0.338 / B 0.278.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B9.4": {
+      "done": "4 numeric features moved by |SMD| >= 0.2 between final-fit and test rows: route_recent_delivery_days -0.76, route_recent_carrier_transit_days -0.58, purchase_month +0.41, order_dispatch_days -0.21. Target: prevalence 0.136 -> 0.099 (G-77).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B9.5": {
+      "done": "Largest term: route_seller_to_customer_state_RS->MG. Top permutation feature: n_sellers. Against B4's ranking: Spearman 0.31, top-10 overlap 6; DIVERGES: team alerted, model unchanged.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B9.6": {
+      "done": "B's test AP with the agreed label 0.1972; with the first-review label 0.1972.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B9.7": {
+      "done": "At 1/6: B 23.2 alerts/day, precision 0.208, 463 detractors caught, cost 7,156 vs 7,705 with no alerts. Missed-dispatch rule on the test period: 1,273 orders flagged, precision 0.212, 16.8% of detractors.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B9.8": {
+      "done": "Limitations listed in conclusion.md (scope, prediction moments, B-G-01, J-1 (a), B-G-05, G-75/G-77, illustrative cost, no causal claims).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B9.9": {
+      "done": "conclusion.md: answer, evidence by step, limitations and questions for the team.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    }
+  },
+  "checks_failed": []
+}

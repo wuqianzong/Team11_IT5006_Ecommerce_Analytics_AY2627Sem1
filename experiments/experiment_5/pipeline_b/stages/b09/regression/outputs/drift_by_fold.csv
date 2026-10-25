@@ -1,0 +1,247 @@
+pipeline,period,kind,feature,change,measure
+B,fold 1,numeric,route_recent_carrier_transit_days,-0.2731045969663054,SMD
+B,fold 1,numeric,route_recent_delivery_days,-0.30793004515458067,SMD
+B,fold 1,numeric,distance_km_max,0.017611766443372517,SMD
+B,fold 1,numeric,interstate_share,-0.03741893726774192,SMD
+B,fold 1,numeric,total_freight,0.03368420572923904,SMD
+B,fold 1,numeric,seller_prior_dispatch_days,-0.109702602185093,SMD
+B,fold 1,numeric,seller_prior_late_handover_rate,-0.2251455007584326,SMD
+B,fold 1,numeric,seller_prior_late_handover_days,-0.19414658713301597,SMD
+B,fold 1,numeric,freight_ratio,-0.04138246300571231,SMD
+B,fold 1,numeric,total_weight_g,0.02817981584273913,SMD
+B,fold 1,numeric,total_price,-0.03731971434205897,SMD
+B,fold 1,numeric,total_volume_cm3,0.02187239705587891,SMD
+B,fold 1,numeric,purchase_dayofweek,-0.010138332903572227,SMD
+B,fold 1,numeric,n_sellers,0.06155812492045701,SMD
+B,fold 1,numeric,purchase_month,3.5856124145523087,SMD
+B,fold 1,numeric,n_products,0.0031297574777006862,SMD
+B,fold 1,numeric,payment_installments_max,0.013452832949452811,SMD
+B,fold 1,numeric,n_items,0.012114804094347096,SMD
+B,fold 1,categorical,route_seller_to_customer_state,0.054916221184338886,TVD
+B,fold 1,categorical,primary_category,0.09286165038690537,TVD
+B,fold 1,categorical,primary_payment_type,0.005703412162345335,TVD
+B,fold 1,target,lead_days,-0.09668136198026452,SMD
+B,fold 2,numeric,route_recent_carrier_transit_days,-0.06110275768984486,SMD
+B,fold 2,numeric,route_recent_delivery_days,-0.03326832037574345,SMD
+B,fold 2,numeric,distance_km_max,0.022645360300298626,SMD
+B,fold 2,numeric,interstate_share,0.0037982712622700054,SMD
+B,fold 2,numeric,total_freight,0.04118479665479767,SMD
+B,fold 2,numeric,seller_prior_dispatch_days,-0.040333388308595015,SMD
+B,fold 2,numeric,seller_prior_late_handover_rate,-0.1396024156945,SMD
+B,fold 2,numeric,seller_prior_late_handover_days,-0.1707151788229013,SMD
+B,fold 2,numeric,freight_ratio,-0.03230573755005948,SMD
+B,fold 2,numeric,total_weight_g,-0.03229819670892105,SMD
+B,fold 2,numeric,total_price,0.014079769893915343,SMD
+B,fold 2,numeric,total_volume_cm3,-0.030914296529145863,SMD
+B,fold 2,numeric,purchase_dayofweek,0.13441483081435013,SMD
+B,fold 2,numeric,n_sellers,0.030881418900860522,SMD
+B,fold 2,numeric,purchase_month,3.142151379433574,SMD
+B,fold 2,numeric,n_products,0.033826892551600526,SMD
+B,fold 2,numeric,payment_installments_max,-0.0463569013164392,SMD
+B,fold 2,numeric,n_items,0.061063596727129466,SMD
+B,fold 2,categorical,route_seller_to_customer_state,0.046926382098005356,TVD
+B,fold 2,categorical,primary_category,0.1038579561888296,TVD
+B,fold 2,categorical,primary_payment_type,0.013946045420393502,TVD
+B,fold 2,target,lead_days,0.28452448675382214,SMD
+B,fold 3,numeric,route_recent_carrier_transit_days,0.4801205929941509,SMD
+B,fold 3,numeric,route_recent_delivery_days,0.5839692519361233,SMD
+B,fold 3,numeric,distance_km_max,-0.05106694312340608,SMD
+B,fold 3,numeric,interstate_share,-0.03341326887633681,SMD
+B,fold 3,numeric,total_freight,-0.006124032669234082,SMD
+B,fold 3,numeric,seller_prior_dispatch_days,0.010103456289609366,SMD
+B,fold 3,numeric,seller_prior_late_handover_rate,-0.03172877102831783,SMD
+B,fold 3,numeric,seller_prior_late_handover_days,-0.12697055209013736,SMD
+B,fold 3,numeric,freight_ratio,-0.02974675198666294,SMD
+B,fold 3,numeric,total_weight_g,-0.019460375388183807,SMD
+B,fold 3,numeric,total_price,-0.028647218562731783,SMD
+B,fold 3,numeric,total_volume_cm3,-0.060734732945555564,SMD
+B,fold 3,numeric,purchase_dayofweek,-0.010251334960041348,SMD
+B,fold 3,numeric,n_sellers,0.01584225920815173,SMD
+B,fold 3,numeric,purchase_month,-0.47157246797265423,SMD
+B,fold 3,numeric,n_products,-0.004781805396459083,SMD
+B,fold 3,numeric,payment_installments_max,-0.1118028138476289,SMD
+B,fold 3,numeric,n_items,-0.014493093648699537,SMD
+B,fold 3,categorical,route_seller_to_customer_state,0.058658903692016554,TVD
+B,fold 3,categorical,primary_category,0.10651450767656433,TVD
+B,fold 3,categorical,primary_payment_type,0.007762458996781718,TVD
+B,fold 3,target,lead_days,0.36942398635239304,SMD
+B,fold 4,numeric,route_recent_carrier_transit_days,0.47505110690472924,SMD
+B,fold 4,numeric,route_recent_delivery_days,0.5017816370002558,SMD
+B,fold 4,numeric,distance_km_max,-0.01730561771634909,SMD
+B,fold 4,numeric,interstate_share,-0.009685148184438747,SMD
+B,fold 4,numeric,total_freight,0.038893907857337956,SMD
+B,fold 4,numeric,seller_prior_dispatch_days,0.10315910004865739,SMD
+B,fold 4,numeric,seller_prior_late_handover_rate,0.11760136289886038,SMD
+B,fold 4,numeric,seller_prior_late_handover_days,-0.00038591726188859593,SMD
+B,fold 4,numeric,freight_ratio,0.013499049313208621,SMD
+B,fold 4,numeric,total_weight_g,-0.016793969854047554,SMD
+B,fold 4,numeric,total_price,-0.017006021404932164,SMD
+B,fold 4,numeric,total_volume_cm3,-0.05379831168082289,SMD
+B,fold 4,numeric,purchase_dayofweek,-0.019694947618622248,SMD
+B,fold 4,numeric,n_sellers,-0.007960975995124487,SMD
+B,fold 4,numeric,purchase_month,-1.923035544628915,SMD
+B,fold 4,numeric,n_products,-0.04628922232229123,SMD
+B,fold 4,numeric,payment_installments_max,-0.10265116955419398,SMD
+B,fold 4,numeric,n_items,0.011461396869610686,SMD
+B,fold 4,categorical,route_seller_to_customer_state,0.05254851106715978,TVD
+B,fold 4,categorical,primary_category,0.13363591707752712,TVD
+B,fold 4,categorical,primary_payment_type,0.022064990518593893,TVD
+B,fold 4,target,lead_days,0.4026954022141463,SMD
+B,fold 5,numeric,route_recent_carrier_transit_days,0.1332366451655572,SMD
+B,fold 5,numeric,route_recent_delivery_days,0.1051932197914759,SMD
+B,fold 5,numeric,distance_km_max,-0.14227395073506782,SMD
+B,fold 5,numeric,interstate_share,-0.14865898499927405,SMD
+B,fold 5,numeric,total_freight,0.028414521164413113,SMD
+B,fold 5,numeric,seller_prior_dispatch_days,-0.06605560959105493,SMD
+B,fold 5,numeric,seller_prior_late_handover_rate,-0.02254338714586707,SMD
+B,fold 5,numeric,seller_prior_late_handover_days,-0.037675135435611184,SMD
+B,fold 5,numeric,freight_ratio,-0.009452819392965406,SMD
+B,fold 5,numeric,total_weight_g,0.0049481052636162525,SMD
+B,fold 5,numeric,total_price,0.032071963228196894,SMD
+B,fold 5,numeric,total_volume_cm3,-0.02741104799491883,SMD
+B,fold 5,numeric,purchase_dayofweek,-0.0827082560438114,SMD
+B,fold 5,numeric,n_sellers,0.056436663098716235,SMD
+B,fold 5,numeric,purchase_month,-0.7188906327465555,SMD
+B,fold 5,numeric,n_products,0.018878293598551123,SMD
+B,fold 5,numeric,payment_installments_max,-0.08798485697295926,SMD
+B,fold 5,numeric,n_items,0.031392039014061256,SMD
+B,fold 5,categorical,route_seller_to_customer_state,0.08113611244094845,TVD
+B,fold 5,categorical,primary_category,0.14298227292401414,TVD
+B,fold 5,categorical,primary_payment_type,0.028987097448520086,TVD
+B,fold 5,target,lead_days,-0.49811005054661556,SMD
+A,fold 1,numeric,distance_km_max,-0.005599617972966647,SMD
+A,fold 1,numeric,interstate_share,-0.03397414974967508,SMD
+A,fold 1,numeric,total_freight,0.03716499001187139,SMD
+A,fold 1,numeric,freight_ratio,-0.04405617583969329,SMD
+A,fold 1,numeric,total_price,-0.034936673211963525,SMD
+A,fold 1,numeric,total_weight_g,0.01302263580863265,SMD
+A,fold 1,numeric,total_volume_cm3,0.008968632575661243,SMD
+A,fold 1,numeric,n_sellers,0.06405672036061046,SMD
+A,fold 1,numeric,payment_installments_max,0.02198261782101255,SMD
+A,fold 1,numeric,purchase_dayofweek,-0.03152286545270256,SMD
+A,fold 1,numeric,n_products,0.015394736278857913,SMD
+A,fold 1,numeric,purchase_month,3.486268030926703,SMD
+A,fold 1,numeric,n_items,0.013769061363410133,SMD
+A,fold 1,numeric,n_categories,0.0837597280165353,SMD
+A,fold 1,categorical,customer_state,0.03313724723902651,TVD
+A,fold 1,categorical,primary_category,0.09879183199548924,TVD
+A,fold 1,categorical,primary_seller_state,0.06501396764731349,TVD
+A,fold 1,categorical,primary_payment_type,0.003891552670162041,TVD
+A,fold 1,target,lead_days,-0.06977369545747934,SMD
+A,fold 2,numeric,distance_km_max,-0.000525109467409878,SMD
+A,fold 2,numeric,interstate_share,0.0006855884224822335,SMD
+A,fold 2,numeric,total_freight,0.050318500874663746,SMD
+A,fold 2,numeric,freight_ratio,-0.044920326944494764,SMD
+A,fold 2,numeric,total_price,0.014749104944634356,SMD
+A,fold 2,numeric,total_weight_g,-0.026478554545159617,SMD
+A,fold 2,numeric,total_volume_cm3,-0.026228043665898943,SMD
+A,fold 2,numeric,n_sellers,0.02964144111008456,SMD
+A,fold 2,numeric,payment_installments_max,-0.040019931409349604,SMD
+A,fold 2,numeric,purchase_dayofweek,0.12148611973555956,SMD
+A,fold 2,numeric,n_products,0.026864227255594387,SMD
+A,fold 2,numeric,purchase_month,3.0355096045871255,SMD
+A,fold 2,numeric,n_items,0.050009778685104776,SMD
+A,fold 2,numeric,n_categories,0.038094628060449824,SMD
+A,fold 2,categorical,customer_state,0.022857516043853287,TVD
+A,fold 2,categorical,primary_category,0.09799669526170923,TVD
+A,fold 2,categorical,primary_seller_state,0.04204259655468352,TVD
+A,fold 2,categorical,primary_payment_type,0.018572548131559896,TVD
+A,fold 2,target,lead_days,0.2542790301602748,SMD
+A,fold 3,numeric,distance_km_max,-0.038020333881435754,SMD
+A,fold 3,numeric,interstate_share,-0.03800937987734952,SMD
+A,fold 3,numeric,total_freight,-0.023581617055643617,SMD
+A,fold 3,numeric,freight_ratio,-0.021949154569164932,SMD
+A,fold 3,numeric,total_price,-0.043284436008467715,SMD
+A,fold 3,numeric,total_weight_g,-0.03266813079427775,SMD
+A,fold 3,numeric,total_volume_cm3,-0.07021577798860053,SMD
+A,fold 3,numeric,n_sellers,0.017004814014850846,SMD
+A,fold 3,numeric,payment_installments_max,-0.11764077479601678,SMD
+A,fold 3,numeric,purchase_dayofweek,-0.011831234283136666,SMD
+A,fold 3,numeric,n_products,-0.0046717204943073475,SMD
+A,fold 3,numeric,purchase_month,-0.4021721109027205,SMD
+A,fold 3,numeric,n_items,-0.019222713774442155,SMD
+A,fold 3,numeric,n_categories,-0.04679659150844844,SMD
+A,fold 3,categorical,customer_state,0.03072407585820858,TVD
+A,fold 3,categorical,primary_category,0.11409769306206777,TVD
+A,fold 3,categorical,primary_seller_state,0.051223807131207846,TVD
+A,fold 3,categorical,primary_payment_type,0.008530860659530161,TVD
+A,fold 3,target,lead_days,0.3305926303496362,SMD
+A,fold 4,numeric,distance_km_max,-0.010661843154555331,SMD
+A,fold 4,numeric,interstate_share,-0.011839864394413077,SMD
+A,fold 4,numeric,total_freight,0.04113580786866395,SMD
+A,fold 4,numeric,freight_ratio,0.021761952332291477,SMD
+A,fold 4,numeric,total_price,-0.02283629635811135,SMD
+A,fold 4,numeric,total_weight_g,-0.029033091925263512,SMD
+A,fold 4,numeric,total_volume_cm3,-0.05968873657317691,SMD
+A,fold 4,numeric,n_sellers,-0.013388888708146182,SMD
+A,fold 4,numeric,payment_installments_max,-0.09909286553894751,SMD
+A,fold 4,numeric,purchase_dayofweek,-0.015555686325094225,SMD
+A,fold 4,numeric,n_products,-0.04889034418149547,SMD
+A,fold 4,numeric,purchase_month,-1.8236505704197914,SMD
+A,fold 4,numeric,n_items,0.010590232640268668,SMD
+A,fold 4,numeric,n_categories,-0.00011155482532421303,SMD
+A,fold 4,categorical,customer_state,0.01814447919705837,TVD
+A,fold 4,categorical,primary_category,0.13643045503547857,TVD
+A,fold 4,categorical,primary_seller_state,0.053659279538901206,TVD
+A,fold 4,categorical,primary_payment_type,0.022241812722953183,TVD
+A,fold 4,target,lead_days,0.39956056641342436,SMD
+A,fold 5,numeric,distance_km_max,-0.14896503586555213,SMD
+A,fold 5,numeric,interstate_share,-0.1578386991828344,SMD
+A,fold 5,numeric,total_freight,0.01979418759843005,SMD
+A,fold 5,numeric,freight_ratio,-0.026095339675548446,SMD
+A,fold 5,numeric,total_price,0.02889143978062575,SMD
+A,fold 5,numeric,total_weight_g,-0.0010930136051079237,SMD
+A,fold 5,numeric,total_volume_cm3,-0.034237445278598615,SMD
+A,fold 5,numeric,n_sellers,0.055419075858160555,SMD
+A,fold 5,numeric,payment_installments_max,-0.08185771070947229,SMD
+A,fold 5,numeric,purchase_dayofweek,-0.08777896420429303,SMD
+A,fold 5,numeric,n_products,0.01759612253976233,SMD
+A,fold 5,numeric,purchase_month,-0.6812934084528453,SMD
+A,fold 5,numeric,n_items,0.023642471395862234,SMD
+A,fold 5,numeric,n_categories,0.08985866669332085,SMD
+A,fold 5,categorical,customer_state,0.06749308673212351,TVD
+A,fold 5,categorical,primary_category,0.14352028078503376,TVD
+A,fold 5,categorical,primary_seller_state,0.05153799218548831,TVD
+A,fold 5,categorical,primary_payment_type,0.031613786231681235,TVD
+A,fold 5,target,lead_days,-0.46298525231519044,SMD
+B,test,numeric,route_recent_carrier_transit_days,-0.560598479171131,SMD
+B,test,numeric,route_recent_delivery_days,-0.7338646894450617,SMD
+B,test,numeric,distance_km_max,-0.0894704865713489,SMD
+B,test,numeric,interstate_share,-0.11863170152894975,SMD
+B,test,numeric,total_freight,0.10635103254416874,SMD
+B,test,numeric,seller_prior_dispatch_days,-0.19181518537161696,SMD
+B,test,numeric,seller_prior_late_handover_rate,-0.0873095956811863,SMD
+B,test,numeric,seller_prior_late_handover_days,-0.07497853715211876,SMD
+B,test,numeric,freight_ratio,0.06307018495047172,SMD
+B,test,numeric,total_weight_g,-0.0766255482444476,SMD
+B,test,numeric,total_price,-0.001634555900051941,SMD
+B,test,numeric,total_volume_cm3,-0.10477640732143648,SMD
+B,test,numeric,purchase_dayofweek,-0.026806581756888877,SMD
+B,test,numeric,n_sellers,0.03341117259557488,SMD
+B,test,numeric,purchase_month,0.4134250076077085,SMD
+B,test,numeric,n_products,-0.0016561879545745292,SMD
+B,test,numeric,payment_installments_max,-0.057895615255657486,SMD
+B,test,numeric,n_items,-0.016698239304716835,SMD
+B,test,categorical,route_seller_to_customer_state,0.07882720289196274,TVD
+B,test,categorical,primary_category,0.16196872812309387,TVD
+B,test,categorical,primary_payment_type,0.026098467024411875,TVD
+B,test,target,lead_days,-0.5937497163626069,SMD
+A,test,numeric,distance_km_max,-0.05390253330601374,SMD
+A,test,numeric,interstate_share,-0.10892172037100356,SMD
+A,test,numeric,total_freight,0.1157062917703493,SMD
+A,test,numeric,freight_ratio,0.055555671170700184,SMD
+A,test,numeric,total_price,0.014065720052612455,SMD
+A,test,numeric,total_weight_g,-0.08329147663174043,SMD
+A,test,numeric,total_volume_cm3,-0.10790047212175895,SMD
+A,test,numeric,n_sellers,0.03764700142658793,SMD
+A,test,numeric,payment_installments_max,-0.05443586910961235,SMD
+A,test,numeric,purchase_dayofweek,-0.025758911484585603,SMD
+A,test,numeric,n_products,0.0017226415633685346,SMD
+A,test,numeric,purchase_month,0.43571805414253073,SMD
+A,test,numeric,n_items,-0.02006909801504407,SMD
+A,test,numeric,n_categories,0.09755944664982075,SMD
+A,test,categorical,customer_state,0.05692063766952581,TVD
+A,test,categorical,primary_category,0.16458579625153336,TVD
+A,test,categorical,primary_seller_state,0.034477180972133564,TVD
+A,test,categorical,primary_payment_type,0.025624157851465774,TVD
+A,test,target,lead_days,-0.5762184863187054,SMD

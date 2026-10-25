@@ -1,18 +1,36 @@
 # B8 › regression — gate evidence
 
-Round 1 · AT THE GATE, not frozen · run `20261024T032040Z` on uncommitted code (working tree on 171f23d) · 7 checks, all PASS · the test cohort is not read. Coverage and review dropdowns are on the parent tab "B8 Selection".
+## Supplement for decisions and the report (added 2026-10-24; DOC\_GAPS D-01, R-05)
+
+Added after the pipeline ran, from accepted outputs only; nothing above is changed. Charts marked doc\_support come from pipeline\_b/stages/doc\_support/regression/outputs (run 20261024T065707Z, uncommitted, reads accepted outputs only). B8 figures: pipeline\_b/stages/b08/regression/outputs/figures (run 20261024T042516Z).
+
+**Finalists** (figures/finalists.png):
+
+&#91;image: finalists\]
+
+**Population comparison, mean ± SE (R-05)** (doc\_support figures/r05\_population.png; data: population\_summary.csv; raw scores as in the adoption rule):
+
+&#91;image: population comparison\]
+
+| population\_and\_model | metric | mean\_5\_folds | se\_5\_folds | mean\_folds\_2\_5 | se\_folds\_2\_5 |
+| --- | --- | --- | --- | --- | --- |
+| A's frozen model on A's validation rows | mae | 5.4701 | 0.6733 | 5.8039 | 0.7549 |
+| A's frozen model on B's validation rows | mae | 5.1423 | 0.6616 | 5.4969 | 0.7211 |
+| B's recommended model (reg.sel.log.linear) on B's validation rows | mae | 5.0247 | 0.6115 | 5.3503 | 0.6682 |
+
+Round 1 · AT THE GATE, not frozen · run `20261024T032040Z` on uncommitted code (working tree on 171f23d) · 7 checks, all PASS · the test cohort is not read. Coverage and review dropdowns are on the parent tab "B8 Selection". Updated 2026-10-24 with fold-by-fold results of every finalist and the adoption result for every finalist.
 
 *Text from A's code refers to B's inputs: "s04 recipe" = B4, "s05 folds" = B5, "s06"/"s07" = B6/B7, and "spec/human\_decisions.yaml section s08" = pipeline\_b/spec/human\_decisions\_B.yaml section b08.*
 
 ## B8.1–B8.4 Selection review pack (written by A's s08 code on B's inputs)
 
-Cards: 
+Cards:
 
 Recommendation (one-SE rule, s01 1.7): **linear/logistic** (`reg.sel.log.linear`). Ladder result (each more complex family kept only beyond one SE): linear/logistic.
 
 ## Finalists (validation, mean over the five folds)
 
-| family | source | validation_mean | validation_se | train_validation_gap | grid_edge | recommended |
+| family | source | validation\_mean | validation\_se | train\_validation\_gap | grid\_edge | recommended |
 | --- | --- | --- | --- | --- | --- | --- |
 | dummy | s06 reference | 5.9689 | 0.7107 | 1.1751 | not a grid configuration (dummy) | False |
 | linear/logistic | s06 reference | 5.0247 | 0.6115 | 1.1640 | plain s06 model, not a grid configuration | True |
@@ -21,7 +39,7 @@ Recommendation (one-SE rule, s01 1.7): **linear/logistic** (`reg.sel.log.linear`
 
 ## Every s01 metric (mean and SE over the folds)
 
-| family | mae_mean | mae_se | r2_mean | r2_se | rmse_mean | rmse_se | within_3d_mean | within_3d_se |
+| family | mae\_mean | mae\_se | r2\_mean | r2\_se | rmse\_mean | rmse\_se | within\_3d\_mean | within\_3d\_se |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | dummy | 5.9689 | 0.7107 | -0.1398 | 0.0414 | 8.7467 | 1.2172 | 0.3752 | 0.0259 |
 | linear/logistic | 5.0247 | 0.6115 | 0.0873 | 0.0530 | 7.8367 | 1.1084 | 0.5010 | 0.0269 |
@@ -32,7 +50,7 @@ Recommendation (one-SE rule, s01 1.7): **linear/logistic** (`reg.sel.log.linear`
 
 ## Ladder, basic to complex (paired gains are description only)
 
-| comparison | gain_fold_1 | gain_fold_2 | gain_fold_3 | gain_fold_4 | gain_fold_5 | mean_gain | paired_se | folds_better | kept_by_one_se_rule |
+| comparison | gain\_fold\_1 | gain\_fold\_2 | gain\_fold\_3 | gain\_fold\_4 | gain\_fold\_5 | mean\_gain | paired\_se | folds\_better | kept\_by\_one\_se\_rule |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | linear/logistic vs dummy | 0.6850 | 0.5072 | 1.1860 | 1.3903 | 0.9526 | 0.9442 | 0.1606 | 5 | True |
 | single tree vs linear/logistic | 0.0415 | 0.3386 | -0.1652 | -0.2391 | -0.1185 | -0.0285 | 0.1027 | 2 | False |
@@ -40,7 +58,7 @@ Recommendation (one-SE rule, s01 1.7): **linear/logistic** (`reg.sel.log.linear`
 
 ## Learning curves of the recommendation (s06, latest fold)
 
-| family | share | train_rows | train_mae | validation_mae |
+| family | share | train\_rows | train\_mae | validation\_mae |
 | --- | --- | --- | --- | --- |
 | linear | 0.2000 | 9483 | 4.3413 | 3.1600 |
 | linear | 0.4000 | 18966 | 4.7686 | 4.2864 |
@@ -50,7 +68,7 @@ Recommendation (one-SE rule, s01 1.7): **linear/logistic** (`reg.sel.log.linear`
 
 ## Team decision (A's wording; for B read human\_decisions\_B.yaml section b08)
 
-Record in spec/human_decisions.yaml, section s08.regression: `model` (chosen, recommended, rationale, grid_edge_action, decided_by, date). Under G-78 this is decided at the combined review of s06-s08; only then do 8.5-8.8 run.
+Record in spec/human\_decisions.yaml, section s08.regression: `model` (chosen, recommended, rationale, grid\_edge\_action, decided\_by, date). Under G-78 this is decided at the combined review of s06-s08; only then do 8.5-8.8 run.
 
 ## Fold-by-fold results of every finalist (metrics\_long.csv, validation)
 
@@ -84,7 +102,7 @@ Record in spec/human_decisions.yaml, section s08.regression: `model` (chosen, re
 | 4 | -0.2383 | 0.0026 | 0.0328 | -0.0481 |
 | 5 | -0.0823 | 0.3139 | 0.2628 | 0.2424 |
 
-**within_3d** per fold (columns: finalist family):
+**within\_3d** per fold (columns: finalist family):
 
 | fold | dummy\_median | forest\_reg | linear | tree\_reg |
 | --- | --- | --- | --- | --- |

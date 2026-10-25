@@ -1,0 +1,7 @@
+{
+  "title": "Paired test differences, B minus A",
+  "ids": [
+    "B9.2"
+  ],
+  "data": "figures/paired_differences.csv"
+}
