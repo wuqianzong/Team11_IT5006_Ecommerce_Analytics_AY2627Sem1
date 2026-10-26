@@ -71,8 +71,8 @@ the expected alert volumes before any app is built.
      - Test (post-test view): B at 1/6 and 4/15 from T1's saved predictions; both rows must equal
        B9 `threshold_options.csv`. A out of scope at 1/6: alerts counted from T1's saved
        predictions, precision and recall restated from B9.15.
-     - The combined daily volume: B in scope at 4/15 plus A out of scope at 1/6, for the team to re-confirm
-       after the threshold correction (B10-D2).
+     - The combined daily volume: B in scope at 4/15 plus A out of scope at 1/6, re-confirmed by the team
+       (Henry, 2026-10-26; B10-D2).
 4. **Router (B10.4).** `e5b/serving.py`: `predict(order) -> {prediction, alert, threshold_name, model,
    scope_reason}`. It validates the input (B10.5), applies the scope rule, calls the matching bundle and
    applies the configured threshold. It never fits. Tests: every T1 test row routed through it gives
@@ -118,7 +118,7 @@ tests in `pipeline_b/tests/` (router, parity, evidence register). Evidence IDs B
 | ID | Question | Recommendation | Status |
 | --- | --- | --- | --- |
 | B10-D1 | Re-predicting T1's test rows for parity vs "never read the test cohort again" | Allowed for parity only: no labels, no scoring | Agreed (B-G-08; experiment lead 2026-10-26) |
-| B10-D2 | Threshold for A's alerts on out-of-scope orders | A's own frozen 1/6 (B-G-07 is for B only); `serving_config.json` shows the expected out-of-scope alerts/day at 1/6 and the combined volume | Agreed (lead 2026-10-26); volumes accepted for 5/14 on 2026-10-26, to re-confirm for 4/15 |
+| B10-D2 | Threshold for A's alerts on out-of-scope orders | A's own frozen 1/6 (B-G-07 is for B only); `serving_config.json` shows the expected out-of-scope alerts/day at 1/6 and the combined volume | Agreed (lead 2026-10-26); volumes re-confirmed for 4/15 (Henry for the team, 2026-10-26) |
 | B10-D3 | What the app can score | Held-out historical orders with features rebuilt by T1's builder; no free-form input | Agreed (lead 2026-10-26) |
 | B10-D4 | Handover facts for classification | Stored orders only (follows D3) | Agreed (lead 2026-10-26) |
 | B10-D5 | Where the app code lives | Inside `pipeline_b/` until the lead orders migration; live URL after migration | Agreed (lead 2026-10-26) |

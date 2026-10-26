@@ -35,11 +35,11 @@ Pipeline A's evidence is frozen at tag `e5-A-frozen`: cite A only from `../stage
 | b09 | classification | 20261025T132538Z | b09c396 | e5-B-s09-accepted | 2 |
 | doc_support | regression | 20261025T132541Z | b09c396 | e5-B-s09-accepted | 1 |
 | doc_support | classification | 20261025T132552Z | b09c396 | e5-B-s09-accepted | 1 |
-| b10 | regression | 20261026T024749Z | 1e36f0a | e5-B-s10-accepted-r2 | 2 (tag pending approval) |
-| b10 | classification | 20261026T024858Z | 1e36f0a | e5-B-s10-accepted-r2 | 2 (tag pending approval) |
+| b10 | regression | 20261026T024749Z | 1e36f0a | e5-B-s10-accepted-r2 | 2 |
+| b10 | classification | 20261026T024858Z | 1e36f0a | e5-B-s10-accepted-r2 | 2 |
 
 **B10 rows:** round 2 (operating threshold 4/15, B-G-07), clean runs on 1e36f0a, byte-identical on a second run.
-Round 1 (5/14, tag e5-B-s10-accepted) is superseded (table below). Round 2 is tagged e5-B-s10-accepted-r2 after approval.
+Round 1 (5/14, tag e5-B-s10-accepted) is superseded (table below). Round 2 approved by Henry on Benson's behalf on 2026-10-26; tag e5-B-s10-accepted-r2.
 
 **T1 is never rerun** (a rerun is a second test read; joint_test.md §1). Its run was made on a tree
 with the T1 code not yet committed (manifest `dirty: true`, HEAD e4fa1a6). The manifest records the

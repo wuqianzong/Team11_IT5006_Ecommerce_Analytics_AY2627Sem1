@@ -209,3 +209,10 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
   already marks 1/6 and 4/15, caption corrected.
 - Outbox regenerated; `spec/doc_outbox/sync_for_benson.md` summarises every change for Benson.
 - Open: approval of round 2 and the r2 tag; re-confirm alert volumes at 4/15.
+
+## 2026-10-26 · Henry + Claude · B10 round 2 accepted
+
+- Henry approved round 2 on Benson's behalf and re-confirmed the alert volumes at 4/15 (B10-D2).
+- Records: EVIDENCE.md, README (ACCEPTED round 2), human_decisions_B.yaml, blueprint, HANDOVER, sync note, report
+  source and doc (§7), review tabs. Code unchanged, so the round-2 runs on 1e36f0a stay current.
+- Tagged the acceptance commit `e5-B-s10-accepted-r2` (local; Henry pushes the branch and the tag).

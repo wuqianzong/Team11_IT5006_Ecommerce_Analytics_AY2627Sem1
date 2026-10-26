@@ -31,7 +31,7 @@ https://claude.ai/artifact/Gp8qHXHdffLf3t78JcMWid. Your Claude cannot read it (d
 | B10-D9 | In-scope orders before handover get no score; missed-dispatch rule flags them | Agreed (Henry) |
 | B10-D10 | No refit in B10: refits are not bit-reproducible across machines (out-of-fold AP differs by up to about 1.5e-3 on Henry's machine); B10 restates B9's stored files | Agreed (Henry) |
 | B10-D11 | Out-of-profile warning at 4 SD from the training mean | Agreed (Henry) |
-| B10-D2 | A's fallback at its frozen 1/6; alert volumes | Agreed; volumes accepted for 5/14, **to re-confirm for 4/15** |
+| B10-D2 | A's fallback at its frozen 1/6; alert volumes | Agreed; volumes re-confirmed for 4/15 (Henry, 2026-10-26) |
 | B11-D1 to D9 | Report and deck drafted before migration (deviation from s10-D3, slides lock 4 Nov); B number register; report as Claude Doc; deck as Claude Slides; ensemble wording; Team 11; Claude drafts, team edits | Agreed (Henry) |
 
 ## 3. Change log entries (CHANGELOG_B.md)
@@ -43,17 +43,18 @@ https://claude.ai/artifact/Gp8qHXHdffLf3t78JcMWid. Your Claude cannot read it (d
 | B-CR-24 | 058f7d9 | B10 round 1 accepted (Henry for you); tag `e5-B-s10-accepted` on 058f7d9 (5/14) |
 | B-CR-25 | aaf6ccd | B11.1 number register `build_evidence_B.py`, `evidence/registry_B.yaml` |
 | B-CR-26 | 1e36f0a | B10 round 2: 4/15 (B-G-07), B-G-09 withdrawn; register ids B_4_15 |
+| B-CR-27 | (this commit) | B10 round 2 accepted (Henry for you), volumes re-confirmed; tag `e5-B-s10-accepted-r2` |
 
 ## 4. Current B10 evidence
 
 Round 2 clean runs 20261026T024749Z (regression) and 20261026T024858Z (classification) on 1e36f0a, byte-identical on
 a second run, 13 + 15 checks pass. Round 1 runs are listed as superseded in EVIDENCE.md. The tag `e5-B-s10-accepted`
-stays on round 1 (tags are never moved); round 2 gets `e5-B-s10-accepted-r2` once approved.
+stays on round 1 (tags are never moved); round 2 is tagged `e5-B-s10-accepted-r2`.
 
 ## 5. Open for you
 
-1. Approve B10 round 2 (then tag `e5-B-s10-accepted-r2`).
-2. Re-confirm the alert volumes at 4/15 (B10-D2): see b10_review.md point 3.
+1. B10 round 2 was approved by Henry on your behalf and tagged `e5-B-s10-accepted-r2`; alert volumes at 4/15 re-confirmed.
+2. Please review B10 round 2 on return.
 3. Note B11-D1: report and deck drafts before migration and reproduction (s10-D3 deviation).
 4. Migration (README §12) is still yours to order; the app, its URL and screenshots wait for it.
 5. The reproduction check should compare predictions exactly and refitted results within a tolerance (B10-D10).
