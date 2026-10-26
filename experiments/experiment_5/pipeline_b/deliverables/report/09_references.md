@@ -9,4 +9,4 @@
 - Leite et al. (2024), *RTS* 20(60).
 - IT5006 lectures 3–8 and tutorials 5, 7 and 8.
 
-**Appendices (to add):** full-rank check of the linear design matrix; metric glossary; fold boundaries and class support; recipes and feature dictionary; full train–validation–test tables; AI-use declaration.
+Appendices A to F follow.

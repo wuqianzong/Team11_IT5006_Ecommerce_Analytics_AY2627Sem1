@@ -53,3 +53,9 @@ def test_tampered_source_is_refused(tmp_path, monkeypatch):
     monkeypatch.setattr(reg, "STAGES", fake)
     with pytest.raises(ValueError):
         reg.verify_source(src, runs)
+
+
+def test_table_placeholder(numbers):
+    out = reg.fill("{{table:APX.windows}}", numbers)
+    assert out.splitlines()[0].startswith("| period |") and len(out.splitlines()) == numbers["APX.windows"]["rows"] + 2
+    assert reg.missing("{{table:no.such}}", numbers) == ["table:no.such"]

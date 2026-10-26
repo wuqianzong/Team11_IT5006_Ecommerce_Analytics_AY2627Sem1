@@ -104,3 +104,12 @@
 - {id: F.reg.partition, kind: figure, source: doc_support/regression/outputs/figures/b5_partition.png, caption: "Time-ordered folds and the test period", evidence: DS.3, used_in: [report 4, deck 5]}
 - {id: F.reg.selection, kind: figure, source: doc_support/regression/outputs/figures/b4_selection.png, caption: "Feature ranking and the 99% rule, regression", evidence: DS.2, used_in: [report 4]}
 - {id: F.reg.population, kind: figure, source: doc_support/regression/outputs/figures/r05_population.png, caption: "Where B's gain comes from: scope vs features", evidence: DS.5, used_in: [report 5, deck 5]}
+
+# ---------------------------------------------------------------- appendices (B11.2)
+- {id: APX.windows, kind: table, source: b09/regression/outputs/validation_and_test_windows.csv, evidence: B9.14, used_in: [report appendix]}
+- {id: APX.reg.full_rank, kind: table, source: b06/regression/outputs/design_matrix_by_fold.csv, columns: [fold, rows, encoded_columns, columns, rank, full_rank, condition_number], evidence: B6.7, used_in: [report appendix]}
+- {id: APX.clf.full_rank, kind: table, source: b06/classification/outputs/design_matrix_by_fold.csv, columns: [fold, rows, encoded_columns, columns, rank, full_rank, condition_number], evidence: B6.7, used_in: [report appendix]}
+- {id: APX.reg.features, kind: table, source: b04/regression/outputs/feature_dictionary_B.csv, select: {kept: true}, columns: [feature, kind, transform, pool_rank], evidence: B4.5, used_in: [report appendix]}
+- {id: APX.clf.features, kind: table, source: b04/classification/outputs/feature_dictionary_B.csv, select: {kept: true}, columns: [feature, kind, transform, pool_rank], evidence: B4.5, used_in: [report appendix]}
+- {id: APX.reg.train_val_test, kind: table, source: b09/regression/outputs/train_val_test.csv, columns: [model, rows, metric, train_mean, validation_mean, validation_se, test, test_ci_low, test_ci_high], evidence: B9.1, used_in: [report appendix]}
+- {id: APX.clf.train_val_test, kind: table, source: b09/classification/outputs/train_val_test.csv, columns: [model, rows, metric, validation_mean, validation_se, test, test_ci_low, test_ci_high, test_detractors], evidence: B9.1, used_in: [report appendix]}

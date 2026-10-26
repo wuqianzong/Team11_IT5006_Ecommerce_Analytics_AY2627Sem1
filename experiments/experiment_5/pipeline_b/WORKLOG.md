@@ -216,3 +216,13 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
 - Records: EVIDENCE.md, README (ACCEPTED round 2), human_decisions_B.yaml, blueprint, HANDOVER, sync note, report
   source and doc (§7), review tabs. Code unchanged, so the round-2 runs on 1e36f0a stay current.
 - Tagged the acceptance commit `e5-B-s10-accepted-r2` (local; Henry pushes the branch and the tag).
+
+## 2026-10-26 · Henry + Claude · Audit and report appendices
+
+- Audit: tests pass; A's foundation matches e5-A-frozen (only the allowed G-79 entry differs in A's tree); nothing
+  written outside pipeline_b since 85822c8; every current run's outputs match their manifests; register rebuild
+  identical; report doc matches filled sources; changelog ids B-CR-01 to 27 continuous. One stale copy fixed
+  (b10_blueprint_tab.md, commit 6c6bf62).
+- Report: appendices A–F (windows, glossary, full rank, selected features, train/validation/test tables, AI-use
+  declaration) via new `{{table:id}}` placeholders (B-CR-28). Remaining: s03 EDA numbers, app placeholders.
+- Next: Claude Slides deck.

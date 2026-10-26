@@ -143,14 +143,36 @@ def _numbers() -> dict:
     return json.loads((BUILD / "numbers_B.json").read_text(encoding="utf-8"))
 
 
+TABLE = re.compile(r"\{\{\s*table:([A-Za-z0-9_.\-]+)\s*\}\}")
+
+
 def missing(text: str, numbers: dict) -> list[str]:
-    return sorted({m for m in PLACEHOLDER.findall(text) if m not in numbers or numbers[m]["kind"] != "number"})
+    bad = {m for m in PLACEHOLDER.findall(text) if m not in numbers or numbers[m]["kind"] != "number"}
+    bad |= {f"table:{m}" for m in TABLE.findall(text) if m not in numbers or numbers[m]["kind"] != "table"}
+    return sorted(bad)
+
+
+def _cell(v) -> str:
+    if isinstance(v, float):
+        if v != v:
+            return ""
+        return f"{v:,.0f}" if v.is_integer() and abs(v) >= 1 else f"{v:.4g}"
+    return str(v).replace("|", "\\|")
+
+
+def markdown_table(entry: dict) -> str:
+    """A registry table as a Markdown table, values as stored (floats to 4 significant digits)."""
+    df = pd.read_csv(B_ROOT / entry["file"])
+    rows = ["| " + " | ".join(map(str, df.columns)) + " |", "| " + " | ".join("---" for _ in df.columns) + " |"]
+    rows += ["| " + " | ".join(_cell(v) for v in r) + " |" for r in df.itertuples(index=False)]
+    return "\n".join(rows)
 
 
 def fill(text: str, numbers: dict) -> str:
     bad = missing(text, numbers)
     if bad:
         raise SystemExit(f"unresolved placeholders: {bad}")
+    text = TABLE.sub(lambda m: markdown_table(numbers[m.group(1)]), text)
     return PLACEHOLDER.sub(lambda m: numbers[m.group(1)]["text"], text)
 
 
