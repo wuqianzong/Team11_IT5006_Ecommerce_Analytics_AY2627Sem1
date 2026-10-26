@@ -192,3 +192,9 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
   Claude Doc https://claude.ai/artifact/Gp8qHXHdffLf3t78JcMWid (Henry's account) for team review.
 - Corrected one draft claim before publishing (top permutation-importance features, checked against B9 files).
 - Open: charts in the doc, A's s03 EDA numbers in the register, appendices, app placeholders; then the Slides deck.
+
+## 2026-10-26 · Henry + Claude · Report charts embedded
+
+- The 16 register figures uploaded to the report doc and embedded with numbered captions and evidence IDs
+  (mapping in deliverables/README.md).
+- Figure 10 (B9.10 threshold options) still marks the superseded 4/15; a 5/14 version needs a B10 chart.
