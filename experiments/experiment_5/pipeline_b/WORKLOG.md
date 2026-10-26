@@ -68,3 +68,28 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
 
 **Questions for Benson**
 1. Confirm B-G-09 (operating threshold 5/14, replacing 4/15).
+
+## 2026-10-26 · Henry + Claude · B10 code, first build runs (uncommitted)
+
+**Done**
+- Wrote `e5b/serving.py` (router and input checks) and `e5b/b10.py`; `b10` added to STAGES (env.py) and
+  BUILT (b_run.py). Not committed yet.
+- Build run regression: all 13 checks PASS. Parity (B10.1): A on A, A on B, B on B within 1e-9 (max
+  difference about 1e-14) on Python 3.13.7, so the environment passes its acceptance test.
+- Build run classification: parity, manifest, router, input checks, drift and app sources PASS; two
+  consistency checks FAIL (below).
+
+**Finding: refits are not reproducible across machines**
+- Re-predicting with the frozen bundles is exact here. Refitting is not: B9.10's out-of-fold sigmoid
+  rebuild (refit of the frozen logistic recipe per development fold) gives per-fold AP that differs from
+  B8's calibration_folds.csv by up to about 1.5e-3 on Henry's machine (B9 matched within 1e-9 on Benson's).
+  Same result on repeated runs here; it changes with OpenBLAS settings, so it is floating-point
+  sensitivity of the unregularised logistic fit, not randomness.
+- Effect: B at 1/6 on validation gives 5,833 alerts here vs 5,865 in B9 threshold_options.csv; the
+  test rows (no refit) match exactly.
+- This also matters for the later reproduction check (A's s10 10.4): any stage that refits may not
+  reproduce byte for byte on another machine.
+
+**Questions for Benson**
+1. B10.3 validation figures: restate from stored files without refitting (proposed to Henry), or rebuild
+   on Benson's machine?

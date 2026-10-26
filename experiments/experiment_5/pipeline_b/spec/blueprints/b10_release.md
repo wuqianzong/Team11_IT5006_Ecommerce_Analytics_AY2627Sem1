@@ -4,7 +4,7 @@
 | --- | --- |
 | Stage | B10 release (G-79; A's s10 blueprint `../../../spec/blueprints/s10_release.md` adapted to B) |
 | Nodes | regression, classification |
-| Status | AGREED 2026-10-26: scope B10.1–B10.7 and B10-D1 to D7 by the experiment lead (Wu Qianzong); B10-D8 (5/14, B-G-09) and D9 by Henry for the team, lead confirmation of B-G-09 pending. Drafted by Henry's Claude |
+| Status | AGREED 2026-10-26: scope B10.1–B10.7 and B10-D1 to D7 by the experiment lead (Wu Qianzong); B10-D8 (5/14, B-G-09), D9 and D10 (no refit) by Henry for the team, lead confirmation of B-G-09 pending. Drafted by Henry's Claude |
 | Inputs frozen | T1 at tag e5-T1-tested (runs 20261024T044531Z, 20261024T044555Z); B8 at e5-B-frozen; A at e5-A-frozen; B9 at e5-B-s09-accepted (runs 20261025T132406Z, 20261025T132538Z) |
 | Doc copy | `../doc_outbox/b10_blueprint_tab.md` |
 
@@ -63,15 +63,18 @@ the expected alert volumes before any app is built.
      for them (B10-D9).
    - Thresholds (classification): B operating 5/14 (B-G-09, replacing B-G-07's 4/15), B frozen 1/6 kept
      beside it; A fallback at A's frozen 1/6 (B10-D2).
-   - Results at both B thresholds, computed as B9.10 does (no refit, no second test read): B at 1/6
-     and at 5/14 on validation (B's out-of-fold sigmoid probabilities, rebuilt as B9.10 and checked
-     against B9's 1/6 row) and on T1's saved test predictions (`predictions_test.csv.gz`): alerts/day,
-     precision, recall, FP/TP, cost 5:1 and 1:1, confusion counts. The 1/6 rows must equal B9
-     `threshold_options.csv`. A out of scope at 1/6: precision and recall restated from B9
-     `a_fallback_by_scope.csv`; alerts/day counted from A's out-of-fold sigmoid probabilities
-     (validation) and from T1's saved test predictions (A's test rows outside B's scope). Plus the
-     combined daily volume: B in scope at 5/14 plus A out of scope at 1/6. **The team confirms these
-     volumes at the B10 review (B10-D2).**
+   - Results at both B thresholds, without refitting anything (B10-D10): alerts/day, precision,
+     recall, FP/TP, cost 5:1 and 1:1, confusion counts.
+     - Validation (out-of-fold): B at 1/6 restated from B9 `threshold_options.csv`; B at 5/14
+       bracketed by B9's stored 0.36 and 0.35 rows (`threshold_options_curve.csv`), since 5/14 is not
+       on B9's grid and a rebuild would refit; A out of scope at 1/6 derived from B9.15's fold rows
+       (TP = recall × detractors, alerts = TP / precision; checked to be whole numbers), days from
+       A's s05 folds.
+     - Test (post-test view): B at 1/6 and 5/14 from T1's saved predictions; the 1/6 row must equal
+       B9 `threshold_options.csv`. A out of scope at 1/6: alerts counted from T1's saved
+       predictions, precision and recall restated from B9.15.
+     - The combined daily volume: B in scope at 5/14 plus A out of scope at 1/6. **Accepted by the team
+       (Henry, 2026-10-26; B10-D2).**
 4. **Router (B10.4).** `e5b/serving.py`: `predict(order) -> {prediction, alert, threshold_name, model,
    scope_reason}`. It validates the input (B10.5), applies the scope rule, calls the matching bundle and
    applies the configured threshold. It never fits. Tests: every T1 test row routed through it gives
@@ -103,7 +106,9 @@ tests in `pipeline_b/tests/` (router, parity, evidence register). Evidence IDs B
 - Parity: all four bundles re-predict T1 within 1e-9, row counts equal T1's; no label column read.
 - sha256 of every bundle file and frozen recipe matches T1, B8 and the tagged files.
 - `schema.json` thresholds unchanged (1/6); 5/14 lives only in `serving_config.json`.
-- B's 1/6 results in `serving_config.json` equal B9 `threshold_options.csv` (validation and test).
+- B's 1/6 test results from T1's saved predictions equal B9 `threshold_options.csv`; A's out-of-scope
+  validation counts derive exactly from B9.15.
+- No frozen recipe is refitted anywhere in B10 (B10-D10).
 - Router reproduces T1's predictions on every test row; every scope reason covered by a test.
 - Every number in `serving_config.json` equals the B9 or T1 value it restates.
 - Every app element in `app_sources.json` names an existing file and evidence ID.
@@ -115,13 +120,14 @@ tests in `pipeline_b/tests/` (router, parity, evidence register). Evidence IDs B
 | ID | Question | Recommendation | Status |
 | --- | --- | --- | --- |
 | B10-D1 | Re-predicting T1's test rows for parity vs "never read the test cohort again" | Allowed for parity only: no labels, no scoring | Agreed (B-G-08; experiment lead 2026-10-26) |
-| B10-D2 | Threshold for A's alerts on out-of-scope orders | A's own frozen 1/6 (B-G-07 is for B only); `serving_config.json` shows the expected out-of-scope alerts/day at 1/6 and the combined volume | Agreed (lead 2026-10-26); volumes to be confirmed by the team at the B10 review |
+| B10-D2 | Threshold for A's alerts on out-of-scope orders | A's own frozen 1/6 (B-G-07 is for B only); `serving_config.json` shows the expected out-of-scope alerts/day at 1/6 and the combined volume | Agreed (lead 2026-10-26); volumes accepted by the team (Henry, 2026-10-26: B at 5/14 below the 6/day review cap) |
 | B10-D3 | What the app can score | Held-out historical orders with features rebuilt by T1's builder; no free-form input | Agreed (lead 2026-10-26) |
 | B10-D4 | Handover facts for classification | Stored orders only (follows D3) | Agreed (lead 2026-10-26) |
 | B10-D5 | Where the app code lives | Inside `pipeline_b/` until the lead orders migration; live URL after migration | Agreed (lead 2026-10-26) |
 | B10-D6 | Tags | `e5-B-s10-accepted` on the branch after approval; `e5-release-1` waits for migration | Agreed (lead 2026-10-26) |
 | B10-D7 | R-14 top routes and categories | Data output only (observed outcomes, minimum volume, coefficient as second column); charts with the app | Agreed (lead 2026-10-26) |
 | B10-D8 | Operating threshold value: B-G-07 recorded 4/15; the team means 5/14 | A new post-test change (B-G-09), not a correction: 5/14 replaces 4/15; B10.3 reports 1/6 and 5/14 as B9.10 did; B9's accepted outputs are not changed | Agreed (Henry for the team, 2026-10-26); lead confirmation pending |
+| B10-D10 | Validation figures at 5/14 need out-of-fold probabilities; rebuilding them refits the frozen recipe, and on Henry's machine the refit differs from B8's calibration step by up to about 1.5e-3 AP per fold (B9 matched within 1e-9 on Benson's) | No refit in B10: restate B9's stored files (5/14 bracketed by 0.36 and 0.35); test from T1's saved predictions. An exact 5/14 validation row can be added on Benson's machine later | Agreed (Henry, 2026-10-26) |
 | B10-D9 | In-scope classification orders not yet handed over: B cannot score them (it predicts at handover) | No score until handover, and the missed-dispatch rule (B-C10) flags the order once its shipping limit passes; A is not used for them (A is the fallback for out-of-scope orders only, B-G-06) | Agreed (Henry, 2026-10-26) |
 
 ## 7. After B10
