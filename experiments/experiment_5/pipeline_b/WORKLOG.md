@@ -176,3 +176,12 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
 - Henry: B11-D5 (report doc in Henry's account), D7 (ensemble wording), D8 (Team 11), D9 (Claude drafts,
   team edits, AI use declared) as recommended; D6 changed: the deck is a Claude Slides deck (not python-pptx).
 - Next: number register `build_evidence_B.py` and `evidence/registry_B.yaml`.
+
+## 2026-10-26 · Henry + Claude · B11.1 number register
+
+- `build_evidence_B.py` (build, fill, check) and `evidence/registry_B.yaml`: 90 items (57 numbers,
+  17 tables, 16 figures). Each source must be the Current run in EVIDENCE.md with a matching sha256,
+  and the item's evidence ID must be tagged on that file. A's baseline numbers come from T1/B9 files.
+- Report and deck text will use `{{id}}` placeholders; `fill` replaces them, unresolved ones fail.
+- `tests/test_register_B.py` (5 tests); pytest 16 passed, 5 skipped.
+- Next: report outline in a Claude Doc (Henry's account) and section drafts; then the Slides deck.

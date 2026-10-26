@@ -1,0 +1,106 @@
+# Pipeline B number register (B11.1; format in pipeline_b/build_evidence_B.py).
+# Every number, table and figure the report and deck use. Sources are relative to pipeline_b/stages/ and must be
+# Current runs (EVIDENCE.md). Validation scores are selection scores (G-10); test scores are from T1 (read once).
+# used_in: report section numbers of b11_report_deck.md §3; deck slide numbers of §4.
+
+# ---------------------------------------------------------------- data and population (B2, T1)
+- {id: B2.reg.dev_rows_A, kind: number, source: b02/regression/outputs/exclusion_counts_B.csv, select: {step: "A development rows (s02, pre-cutoff, eligible)"}, value: rows, format: "{:,}", evidence: B2.1, used_in: [report 2]}
+- {id: B2.reg.removed_state, kind: number, source: b02/regression/outputs/exclusion_counts_B.csv, select: {step: "removed: B_STATE"}, value: rows, format: "{:,}", evidence: B2.1, used_in: [report 2]}
+- {id: B2.reg.removed_distance, kind: number, source: b02/regression/outputs/exclusion_counts_B.csv, select: {step: "removed: B_DISTANCE"}, value: rows, format: "{:,}", evidence: B2.1, used_in: [report 2]}
+- {id: B2.reg.removed_cap, kind: number, source: b02/regression/outputs/exclusion_counts_B.csv, select: {step: "removed: B_LEAD_CAP"}, value: rows, format: "{:,}", evidence: B2.1, used_in: [report 2]}
+- {id: B2.reg.removed_warmup, kind: number, source: b02/regression/outputs/exclusion_counts_B.csv, select: {step: "removed: B_WARMUP"}, value: rows, format: "{:,}", evidence: B2.1, used_in: [report 2]}
+- {id: B2.reg.exclusions, kind: table, source: b02/regression/outputs/exclusion_counts_B.csv, evidence: B2.1, used_in: [report 2]}
+- {id: B2.clf.exclusions, kind: table, source: b02/classification/outputs/exclusion_counts_B.csv, evidence: B2.1, used_in: [report 2]}
+- {id: T1.clf.test_rows_B, kind: number, source: t1_joint_test/classification/outputs/test_size_B.json, value: b_test_rows, format: "{:,}", evidence: T1.1, used_in: [report 5]}
+- {id: T1.clf.test_detractors_B, kind: number, source: t1_joint_test/classification/outputs/test_size_B.json, value: b_test_detractors, format: "{:,}", evidence: T1.1, used_in: [report 5]}
+- {id: T1.clf.fit_rows_B, kind: number, source: t1_joint_test/classification/outputs/test_size_B.json, value: b_final_fit_rows, format: "{:,}", evidence: T1.1, used_in: [report 4]}
+- {id: T1.reg.test_rows_B, kind: number, source: b09/regression/outputs/train_val_test.csv, select: {model: B frozen, rows: B test rows, metric: mae}, value: test_rows, format: "{:,}", evidence: B9.1, used_in: [report 5]}
+
+# ---------------------------------------------------------------- where B's gain comes from (B8, R-04)
+- {id: B8.reg.pop_A_on_A, kind: number, source: b08/regression/outputs/population_summary.csv, select: {population_and_model: "A's frozen model on A's validation rows", metric: mae}, value: mean_5_folds, format: "{:.3f}", evidence: B8.A, used_in: [report 5]}
+- {id: B8.reg.pop_A_on_B, kind: number, source: b08/regression/outputs/population_summary.csv, select: {population_and_model: "A's frozen model on B's validation rows", metric: mae}, value: mean_5_folds, format: "{:.3f}", evidence: B8.A, used_in: [report 5]}
+- {id: B8.reg.pop_B_on_B, kind: number, source: b08/regression/outputs/population_summary.csv, select: {population_and_model: "B's recommended model (reg.sel.log.linear) on B's validation rows", metric: mae}, value: mean_5_folds, format: "{:.3f}", evidence: B8.A, used_in: [report 5]}
+- {id: B8.reg.population_summary, kind: table, source: b08/regression/outputs/population_summary.csv, evidence: B8.A, used_in: [report 5]}
+- {id: B8.clf.population_summary, kind: table, source: b08/classification/outputs/population_summary.csv, evidence: B8.A, used_in: [report 5]}
+
+# ---------------------------------------------------------------- regression results (B9.1, B9.2, B9.16)
+- {id: B9.reg.test_mae_B, kind: number, source: b09/regression/outputs/train_val_test.csv, select: {model: B frozen, rows: B test rows, metric: mae}, value: test, format: "{:.2f}", evidence: B9.1, used_in: [report 0, report 5, deck 6]}
+- {id: B9.reg.test_mae_B_lo, kind: number, source: b09/regression/outputs/train_val_test.csv, select: {model: B frozen, rows: B test rows, metric: mae}, value: test_ci_low, format: "{:.2f}", evidence: B9.1, used_in: [report 5]}
+- {id: B9.reg.test_mae_B_hi, kind: number, source: b09/regression/outputs/train_val_test.csv, select: {model: B frozen, rows: B test rows, metric: mae}, value: test_ci_high, format: "{:.2f}", evidence: B9.1, used_in: [report 5]}
+- {id: B9.reg.val_mae_B, kind: number, source: b09/regression/outputs/train_val_test.csv, select: {model: B frozen, rows: B test rows, metric: mae}, value: validation_mean, format: "{:.2f}", evidence: B9.1, used_in: [report 5]}
+- {id: B9.reg.test_mae_A_on_B, kind: number, source: b09/regression/outputs/train_val_test.csv, select: {model: A frozen, rows: B test rows, metric: mae}, value: test, format: "{:.2f}", evidence: B9.1, used_in: [report 0, report 5, deck 6]}
+- {id: B9.reg.test_within3_B, kind: number, source: b09/regression/outputs/train_val_test.csv, select: {model: B frozen, rows: B test rows, metric: within_3d}, value: test, format: "{:.1%}", evidence: B9.1, used_in: [report 0, report 5, deck 6]}
+- {id: B9.reg.test_within3_A_on_B, kind: number, source: b09/regression/outputs/train_val_test.csv, select: {model: A frozen, rows: B test rows, metric: within_3d}, value: test, format: "{:.1%}", evidence: B9.1, used_in: [report 5, deck 6]}
+- {id: B9.reg.test_mae_dummy_B, kind: number, source: b09/regression/outputs/train_val_test.csv, select: {model: B dummy, rows: B test rows, metric: mae}, value: test, format: "{:.2f}", evidence: B9.1, used_in: [report 5]}
+- {id: B9.reg.mae_diff, kind: number, source: b09/regression/outputs/paired_test_differences.csv, select: {comparison: B frozen minus A frozen, metric: mae}, value: difference, format: "{:+.3f}", evidence: B9.2, used_in: [report 0, report 5, deck 6]}
+- {id: B9.reg.mae_diff_lo, kind: number, source: b09/regression/outputs/paired_test_differences.csv, select: {comparison: B frozen minus A frozen, metric: mae}, value: ci_low, format: "{:+.3f}", evidence: B9.2, used_in: [report 5]}
+- {id: B9.reg.mae_diff_hi, kind: number, source: b09/regression/outputs/paired_test_differences.csv, select: {comparison: B frozen minus A frozen, metric: mae}, value: ci_high, format: "{:+.3f}", evidence: B9.2, used_in: [report 5]}
+- {id: B9.reg.train_val_test, kind: table, source: b09/regression/outputs/train_val_test.csv, evidence: B9.1, used_in: [report 5, deck 6]}
+- {id: B9.reg.paired, kind: table, source: b09/regression/outputs/paired_test_differences.csv, evidence: B9.2, used_in: [report 5]}
+- {id: B9.reg.late_3d_B, kind: number, source: b09/regression/outputs/residuals_summary.csv, select: {series: "B on B's test rows"}, value: share_more_than_3d_late, format: "{:.1%}", evidence: B9.16, used_in: [report 5, report 7, deck 9]}
+- {id: B9.reg.late_6d_B, kind: number, source: b09/regression/outputs/residuals_summary.csv, select: {series: "B on B's test rows"}, value: share_more_than_6d_late, format: "{:.1%}", evidence: B9.16, used_in: [report 5, report 7, deck 9]}
+- {id: B9.reg.late_3d_A_on_B, kind: number, source: b09/regression/outputs/residuals_summary.csv, select: {series: "A on B's test rows"}, value: share_more_than_3d_late, format: "{:.1%}", evidence: B9.16, used_in: [report 5]}
+- {id: B9.reg.within_6d_B, kind: number, source: b09/regression/outputs/residuals_summary.csv, select: {series: "B on B's test rows"}, value: share_within_6d, format: "{:.1%}", evidence: B9.16, used_in: [report 7]}
+- {id: B9.reg.residuals, kind: table, source: b09/regression/outputs/residuals_summary.csv, evidence: B9.16, used_in: [report 5]}
+- {id: B9.reg.by_state, kind: table, source: b09/regression/outputs/business_summary.csv, evidence: B9.7, used_in: [report 7]}
+- {id: B9.reg.slices_aggregate, kind: table, source: b09/regression/outputs/subgroups_aggregate.csv, evidence: B9.3, used_in: [report 5]}
+- {id: B9.reg.routes_judged, kind: number, source: b09/regression/outputs/subgroups_aggregate.csv, select: {slice: route_seller_to_customer_state}, value: judged_slices, format: "{:,}", evidence: B9.3, used_in: [report 5]}
+- {id: B9.reg.routes_B_better, kind: number, source: b09/regression/outputs/subgroups_aggregate.csv, select: {slice: route_seller_to_customer_state}, value: slices_B_better, format: "{:,}", evidence: B9.3, used_in: [report 5]}
+
+# ---------------------------------------------------------------- classification results (B9.1, B9.2, B9.7)
+- {id: B9.clf.test_ap_B, kind: number, source: b09/classification/outputs/train_val_test.csv, select: {model: B frozen, rows: B test rows, metric: ap}, value: test, format: "{:.3f}", evidence: B9.1, used_in: [report 0, report 5, deck 7]}
+- {id: B9.clf.test_ap_B_lo, kind: number, source: b09/classification/outputs/train_val_test.csv, select: {model: B frozen, rows: B test rows, metric: ap}, value: test_ci_low, format: "{:.3f}", evidence: B9.1, used_in: [report 5]}
+- {id: B9.clf.test_ap_B_hi, kind: number, source: b09/classification/outputs/train_val_test.csv, select: {model: B frozen, rows: B test rows, metric: ap}, value: test_ci_high, format: "{:.3f}", evidence: B9.1, used_in: [report 5]}
+- {id: B9.clf.val_ap_B, kind: number, source: b09/classification/outputs/train_val_test.csv, select: {model: B frozen, rows: B test rows, metric: ap}, value: validation_mean, format: "{:.3f}", evidence: B9.1, used_in: [report 5]}
+- {id: B9.clf.test_ap_A_on_B, kind: number, source: b09/classification/outputs/train_val_test.csv, select: {model: A frozen, rows: B test rows, metric: ap}, value: test, format: "{:.3f}", evidence: B9.1, used_in: [report 0, report 5, deck 7]}
+- {id: B9.clf.test_auc_B, kind: number, source: b09/classification/outputs/train_val_test.csv, select: {model: B frozen, rows: B test rows, metric: roc_auc}, value: test, format: "{:.3f}", evidence: B9.1, used_in: [report 5]}
+- {id: B9.clf.test_prevalence_B, kind: number, source: b09/classification/outputs/train_val_test.csv, select: {model: B dummy, rows: B test rows, metric: ap}, value: test, format: "{:.1%}", evidence: B9.1, used_in: [report 5]}
+- {id: B9.clf.ap_diff, kind: number, source: b09/classification/outputs/paired_test_differences.csv, select: {comparison: B frozen minus A frozen, metric: ap}, value: difference, format: "{:+.4f}", evidence: B9.2, used_in: [report 0, report 5, deck 7]}
+- {id: B9.clf.ap_diff_lo, kind: number, source: b09/classification/outputs/paired_test_differences.csv, select: {comparison: B frozen minus A frozen, metric: ap}, value: ci_low, format: "{:+.4f}", evidence: B9.2, used_in: [report 5]}
+- {id: B9.clf.ap_diff_hi, kind: number, source: b09/classification/outputs/paired_test_differences.csv, select: {comparison: B frozen minus A frozen, metric: ap}, value: ci_high, format: "{:+.4f}", evidence: B9.2, used_in: [report 5]}
+- {id: B9.clf.train_val_test, kind: table, source: b09/classification/outputs/train_val_test.csv, evidence: B9.1, used_in: [report 5, deck 7]}
+- {id: B9.clf.paired, kind: table, source: b09/classification/outputs/paired_test_differences.csv, evidence: B9.2, used_in: [report 5]}
+- {id: B9.clf.business_summary, kind: table, source: b09/classification/outputs/business_summary.csv, evidence: B9.7, used_in: [report 7]}
+- {id: B9.clf.cost_B_1_6, kind: number, source: b09/classification/outputs/business_summary.csv, select: {model: B frozen, rows: B test rows}, value: illustrative_cost, format: "{:,.0f}", evidence: B9.7, used_in: [report 7]}
+- {id: B9.clf.cost_no_alerts, kind: number, source: b09/classification/outputs/business_summary.csv, select: {model: B dummy, rows: B test rows}, value: illustrative_cost, format: "{:,.0f}", evidence: B9.7, used_in: [report 7]}
+- {id: B9.clf.missed_dispatch, kind: table, source: b09/classification/outputs/missed_dispatch_rule_test.csv, evidence: B9.7, used_in: [report 7, deck 9]}
+- {id: B9.clf.missed_dispatch_precision, kind: number, source: b09/classification/outputs/missed_dispatch_rule_test.csv, select: {group: "all flagged (rule fires)"}, value: precision, format: "{:.1%}", evidence: B9.7, used_in: [report 7, deck 9]}
+- {id: B9.clf.missed_dispatch_share, kind: number, source: b09/classification/outputs/missed_dispatch_rule_test.csv, select: {group: "all flagged (rule fires)"}, value: share_of_all_detractors, format: "{:.1%}", evidence: B9.7, used_in: [report 7, deck 9]}
+- {id: B9.clf.slices_aggregate, kind: table, source: b09/classification/outputs/subgroups_aggregate.csv, evidence: B9.3, used_in: [report 5]}
+
+# ---------------------------------------------------------------- thresholds and alert volumes (B10.3; B-G-09, B10-D2)
+- {id: B10.clf.thresholds, kind: table, source: b10/classification/outputs/threshold_results.csv, columns: [model, threshold_name, rows, threshold, alerts_per_day, precision, recall, fp_per_tp, cost_5_to_1], evidence: B10.3, used_in: [report 5, report 7, deck 8]}
+- {id: B10.clf.B_1_6_test_alerts_day, kind: number, source: b10/classification/outputs/threshold_results.csv, select: {threshold_name: B frozen 1/6, rows: "test, B rows (post-test view)"}, value: alerts_per_day, format: "{:.1f}", evidence: B10.3, used_in: [report 5, deck 8]}
+- {id: B10.clf.B_1_6_test_precision, kind: number, source: b10/classification/outputs/threshold_results.csv, select: {threshold_name: B frozen 1/6, rows: "test, B rows (post-test view)"}, value: precision, format: "{:.3f}", evidence: B10.3, used_in: [report 5, deck 8]}
+- {id: B10.clf.B_1_6_test_recall, kind: number, source: b10/classification/outputs/threshold_results.csv, select: {threshold_name: B frozen 1/6, rows: "test, B rows (post-test view)"}, value: recall, format: "{:.3f}", evidence: B10.3, used_in: [report 5, deck 8]}
+- {id: B10.clf.B_5_14_test_alerts_day, kind: number, source: b10/classification/outputs/threshold_results.csv, select: {threshold_name: B operating 5/14 (B-G-09), rows: "test, B rows (post-test view)"}, value: alerts_per_day, format: "{:.1f}", evidence: B10.3, used_in: [report 0, report 7, deck 8]}
+- {id: B10.clf.B_5_14_test_precision, kind: number, source: b10/classification/outputs/threshold_results.csv, select: {threshold_name: B operating 5/14 (B-G-09), rows: "test, B rows (post-test view)"}, value: precision, format: "{:.3f}", evidence: B10.3, used_in: [report 7, deck 8]}
+- {id: B10.clf.B_5_14_test_recall, kind: number, source: b10/classification/outputs/threshold_results.csv, select: {threshold_name: B operating 5/14 (B-G-09), rows: "test, B rows (post-test view)"}, value: recall, format: "{:.3f}", evidence: B10.3, used_in: [report 7, deck 8]}
+- {id: B10.clf.B_5_14_test_fp_per_tp, kind: number, source: b10/classification/outputs/threshold_results.csv, select: {threshold_name: B operating 5/14 (B-G-09), rows: "test, B rows (post-test view)"}, value: fp_per_tp, format: "{:.2f}", evidence: B10.3, used_in: [report 7]}
+- {id: B10.clf.A_out_test_alerts_day, kind: number, source: b10/classification/outputs/threshold_results.csv, select: {threshold_name: A frozen 1/6 (B10-D2), rows: "test, A rows outside B's scope"}, value: alerts_per_day, format: "{:.1f}", evidence: B10.3, used_in: [report 7, deck 8]}
+- {id: B10.clf.A_out_test_precision, kind: number, source: b10/classification/outputs/threshold_results.csv, select: {threshold_name: A frozen 1/6 (B10-D2), rows: "test, A rows outside B's scope"}, value: precision, format: "{:.3f}", evidence: B10.3, used_in: [report 7]}
+- {id: B10.clf.combined_test_alerts_day, kind: number, source: b10/classification/outputs/serving_config.json, value: expected_alerts_per_day.test.combined_alerts_per_day, format: "{:.1f}", evidence: B10.3, used_in: [report 7, deck 8]}
+- {id: B10.clf.test_rows_inside, kind: number, source: b10/classification/outputs/serving_config.json, value: test_rows_by_scope.inside, format: "{:,}", evidence: B10.3, used_in: [report 6]}
+- {id: B10.clf.test_rows_outside, kind: number, source: b10/classification/outputs/serving_config.json, value: test_rows_by_scope.outside, format: "{:,}", evidence: B10.3, used_in: [report 6]}
+- {id: B10.reg.parity_max, kind: number, source: b10/regression/outputs/parity.json, value: results.2.max_abs_diff, format: "{:.0e}", evidence: B10.1, used_in: [report 6]}
+- {id: B10.clf.parity_max, kind: number, source: b10/classification/outputs/parity.json, value: results.2.max_abs_diff, format: "{:.0e}", evidence: B10.1, used_in: [report 6]}
+- {id: B10.reg.top_routes, kind: table, source: b10/regression/outputs/top_routes_categories.csv, evidence: B10.7, used_in: [report 7]}
+- {id: B10.clf.top_routes, kind: table, source: b10/classification/outputs/top_routes_categories.csv, evidence: B10.7, used_in: [report 7]}
+
+# ---------------------------------------------------------------- figures (charts are images; B11-D4)
+- {id: F.reg.validation_and_test, kind: figure, source: b09/regression/outputs/figures/validation_and_test.png, caption: "Delivery lead time: validation folds (selection scores) and the test, A and B", evidence: B9.14, used_in: [report 5, deck 6]}
+- {id: F.clf.validation_and_test, kind: figure, source: b09/classification/outputs/figures/validation_and_test.png, caption: "Detractor alert: validation folds (selection scores) and the test, A and B", evidence: B9.14, used_in: [report 5, deck 7]}
+- {id: F.reg.residuals, kind: figure, source: b09/regression/outputs/figures/residuals.png, caption: "Residuals on B's test rows: B vs A", evidence: B9.16, used_in: [report 5, deck 9]}
+- {id: F.reg.by_state, kind: figure, source: b09/regression/outputs/figures/by_customer_state.png, caption: "Lead-time error by customer state", evidence: B9.3, used_in: [report 5]}
+- {id: F.clf.by_state, kind: figure, source: b09/classification/outputs/figures/by_customer_state.png, caption: "Detractor alert precision and recall by customer state", evidence: B9.3, used_in: [report 5]}
+- {id: F.reg.coefficients, kind: figure, source: b09/regression/outputs/figures/coefficients.png, caption: "B's regression coefficients", evidence: B9.5, used_in: [report 5]}
+- {id: F.clf.coefficients, kind: figure, source: b09/classification/outputs/figures/coefficients.png, caption: "B's classification odds ratios", evidence: B9.5, used_in: [report 5]}
+- {id: F.reg.importance, kind: figure, source: b09/regression/outputs/figures/permutation_importance.png, caption: "Permutation importance, B regression (test rows)", evidence: B9.5, used_in: [report 5, deck 6]}
+- {id: F.clf.importance, kind: figure, source: b09/classification/outputs/figures/permutation_importance.png, caption: "Permutation importance, B classification (test rows)", evidence: B9.5, used_in: [report 5, deck 7]}
+- {id: F.clf.threshold_options, kind: figure, source: b09/classification/outputs/figures/threshold_options.png, caption: "Precision, recall and alerts per day against the threshold", evidence: B9.10, used_in: [report 5, deck 8]}
+- {id: F.clf.test_curves, kind: figure, source: t1_joint_test/classification/outputs/figures/test_curves.png, caption: "PR, ROC and reliability curves on B's test rows", evidence: T1.4, used_in: [report 5]}
+- {id: F.reg.drift, kind: figure, source: b09/regression/outputs/figures/drift_by_fold.png, caption: "Drift by fold, regression", evidence: B9.11, used_in: [report 8]}
+- {id: F.reg.lateness_by_route, kind: figure, source: doc_support/regression/outputs/figures/b2_lateness_by_route.png, caption: "Late handover by route (B2)", evidence: DS.1, used_in: [report 3]}
+- {id: F.reg.partition, kind: figure, source: doc_support/regression/outputs/figures/b5_partition.png, caption: "Time-ordered folds and the test period", evidence: DS.3, used_in: [report 4, deck 5]}
+- {id: F.reg.selection, kind: figure, source: doc_support/regression/outputs/figures/b4_selection.png, caption: "Feature ranking and the 99% rule, regression", evidence: DS.2, used_in: [report 4]}
+- {id: F.reg.population, kind: figure, source: doc_support/regression/outputs/figures/r05_population.png, caption: "Where B's gain comes from: scope vs features", evidence: DS.5, used_in: [report 5, deck 5]}
