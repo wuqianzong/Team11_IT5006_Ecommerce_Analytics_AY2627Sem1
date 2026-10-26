@@ -149,3 +149,13 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
   false, byte-identical on a second run, 13 + 15 checks PASS. EVIDENCE.md, README, HANDOVER and the
   review tabs updated (tabs regenerated from the outputs; not published).
 - Next: Henry's review of B10, then approval and the tag e5-B-s10-accepted. Not pushed.
+
+## 2026-10-26 · Henry + Claude · B10 accepted
+
+- Henry approved B10 on behalf of Benson (aligned with him while he is away). Henry pushed
+  e5/b10-henry (94fd132) himself.
+- Records: EVIDENCE.md rows final, README status ACCEPTED, HANDOVER, CHANGELOG_B B-CR-24.
+- Tagged the acceptance commit `e5-B-s10-accepted` (local; Henry pushes the tag).
+- Next (only when ordered): report and deck drafts, release sign-off `e5-release-1`, migration (lead),
+  reproduction check (note B10-D10: refits are not bit-reproducible across machines), app build.
+- For Benson: please review B10 on return; decisions B-G-08, B-G-09, B10-D1 to D11 are in the logs.
