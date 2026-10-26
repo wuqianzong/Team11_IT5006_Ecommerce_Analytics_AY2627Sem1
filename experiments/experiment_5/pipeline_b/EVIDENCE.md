@@ -65,7 +65,7 @@ to the table below.
 | B8 gate runs before a4a0ded (raw calibration, raw threshold tables, threshold options 1/6 = 19.2/day and 0.15 = 24.6/day on raw probabilities) | B8 doc tabs written at the gate; Henry's threads | B8 frozen run: sigmoid (B-G-05), threshold tables on sigmoid probabilities (threshold_table_sigmoid.csv), frozen_recipe.json |
 | T1 dry run on stand-in rows (last 8 weeks of development rows used as a fake test set, to exercise the code path before the single read; outputs deleted) | nowhere | never evidence; T1 runs above |
 | B9 build runs before b09c396 (round 1 20261024T05xxxxZ, round 2 20261025T09xxxxZ and the confirmation build; uncommitted code) and doc support build runs 20261024T06xxxxZ | B9 tabs ("Run ..." lines) and supplement sections cite those run IDs; the accepted reruns are byte-identical | B9 and doc support rows above |
-| Operating threshold 4/15 (B-G-07) and its results | B9 threshold\_options.csv and threshold\_options\_curve.csv (rows "operating 4/15"), B9 tabs, human\_decisions\_B.yaml b09 | B-G-09: operating 5/14; B10 serving\_config.json (the 1/6 rows stay current) |
+| B10 round 1 runs 20261026T020904Z, 20261026T021016Z on adf23d6 (tag e5-B-s10-accepted): operating threshold 5/14 (B-G-09, withdrawn as a typo) | review tabs b10_review*.md before round 2; the report doc before 2026-10-26 evening | B10 round 2 (4/15, B-G-07) |
 | Probe 1 and probe 2 (probe 2 withdrawn) | doc tab "Scratch check plan" | never evidence; motivation only (G-79) |
 
 ## Where definitions live

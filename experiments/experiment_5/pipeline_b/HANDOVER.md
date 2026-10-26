@@ -26,7 +26,7 @@ experiment lead) is away. Benson's Claude resumes from this file and `WORKLOG.md
 5. Never type a metric from memory; cite the output file or evidence ID. B numbers only from runs
    listed Current in `EVIDENCE.md`.
 6. Decided: B serves orders inside its scope, A's frozen model the rest (B-G-06); classification
-   operating threshold 5/14 (B-G-09, replacing B-G-07's 4/15), frozen 1/6 kept as the unbiased
+   operating threshold 4/15 (B-G-07; B-G-09's 5/14 withdrawn as a typo), frozen 1/6 kept as the unbiased
    result; A's fallback alerts at A's frozen 1/6 (B10-D2); in-scope orders before handover get no
    score (B10-D9). No more complex model families.
 7. No report, slide deck or reproduction package unless Henry says so. Dashboard work only as far as
@@ -42,7 +42,7 @@ experiment lead) is away. Benson's Claude resumes from this file and `WORKLOG.md
 | Session log (read first) | `WORKLOG.md` |
 | B10 blueprint | `spec/blueprints/b10_release.md` |
 | Doc-ready text for the team doc (nobody on this branch can edit the doc) | `spec/doc_outbox/` |
-| Decisions | `spec/decision_log_B.md` (next id B-G-09), `spec/human_decisions_B.yaml` |
+| Decisions | `spec/decision_log_B.md` (next id B-G-10), `spec/human_decisions_B.yaml` |
 | Current evidence | `EVIDENCE.md` |
 | Frozen bundles used by B10 | `stages/t1_joint_test/<task>/outputs/bundles/{A,B}/` |
 
@@ -55,5 +55,5 @@ and the YAML. Benson refreshes the read-only mirror `spec/team_doc/` when a stag
 
 ## Open items
 
-- B10 blueprint AGREED 2026-10-26; B-G-09 (5/14) confirmed by Henry; A fallback volume accepted; out-of-profile 4 SD (B10-D11).
+- B10 blueprint AGREED 2026-10-26; operating threshold 4/15 (B-G-07; B-G-09 withdrawn, B10 round 2); alert volumes to re-confirm; out-of-profile 4 SD (B10-D11).
 - B10 built for review (B-CR-22, commit 60a6c3c; clean runs 20261026T020904Z, 20261026T021016Z on adf23d6; B10-D11 4 SD). Review tabs in `spec/doc_outbox/` (b10_review*.md), not published. ACCEPTED 2026-10-26 (Henry for Benson); tag `e5-B-s10-accepted`.

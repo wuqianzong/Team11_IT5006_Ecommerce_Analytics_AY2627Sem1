@@ -1,9 +1,9 @@
 """B10: release of B's frozen models with A as fallback (blueprint pipeline_b/spec/blueprints/b10_release.md;
-G-79, B-G-06, B-G-08, B-G-09, B10-D1 to D9).
+G-79, B-G-06, B-G-07, B-G-08, B10-D1 to D11; B-G-09 withdrawn).
 
 No refit of a frozen model and no second test read. The test rows are rebuilt with T1's verified builder with every
 label column blanked first (B-G-08), so parity, routing and input checks never see a test label. The only test labels
-used are those already saved in T1's predictions_test.csv.gz, for B's results at 1/6 and 5/14 (B-G-09, as B9.10).
+used are those already saved in T1's predictions_test.csv.gz, for B's results at 1/6 and 4/15 (B-G-07, as B9.10).
 
 Evidence IDs: B10.1 parity, B10.2 release manifest, B10.3 serving configuration, B10.4 router, B10.5 input checks,
 B10.6 drift profile, B10.7 app sources (with R-14 top routes and categories).
@@ -174,18 +174,14 @@ def run(task: str) -> None:
         # B10-D10: no refit here. Refits of the frozen recipes are not bit-reproducible across machines (WORKLOG
         # 2026-10-26), so validation figures are restated from B9's stored files; test figures use T1's saved predictions.
         b9 = pd.read_csv(w.read(b_outputs_dir("b09", task) / "threshold_options.csv"))
-        b9c = pd.read_csv(w.read(b_outputs_dir("b09", task) / "threshold_options_curve.csv"))
         fb = pd.read_csv(w.read(b_outputs_dir("b09", task) / "a_fallback_by_scope.csv"))
         keep = ["threshold", "alerts", "alerts_per_day", "tp", "fp", "fn", "precision", "recall", "fp_per_tp", "cost_5_to_1", "cost_1_to_1"]
         rows = []
-        v16 = b9[(b9.threshold_name == "frozen 1/6") & (b9.model == "B frozen") & (b9.rows == "validation (out-of-fold), B rows")].iloc[0]
-        rows.append({"model": "B frozen", "threshold_name": "B frozen 1/6", "rows": "validation (out-of-fold), B rows",
-                     **v16[keep].to_dict(), "source": "b09 threshold_options.csv (B9.10)"})
-        for t_, side in ((0.36, "above"), (0.35, "below")):
-            r = b9c[(b9c.period == "validation (out-of-fold)") & (b9c.threshold.round(4) == t_)].iloc[0]
-            rows.append({"model": "B frozen", "threshold_name": f"B {t_:.2f} (nearest stored threshold {side} 5/14)",
-                         "rows": "validation (out-of-fold), B rows", **r[keep].to_dict(), "source": "b09 threshold_options_curve.csv (B9.10)"})
-        for name, t in (("B frozen 1/6", FROZEN), ("B operating 5/14 (B-G-09)", B_OPERATING)):
+        for name, b9name in (("B frozen 1/6", "frozen 1/6"), ("B operating 4/15 (B-G-07)", "operating 4/15 (B-G-07)")):
+            r = b9[(b9.threshold_name == b9name) & (b9.model == "B frozen") & (b9.rows == "validation (out-of-fold), B rows")].iloc[0]
+            rows.append({"model": "B frozen", "threshold_name": name, "rows": "validation (out-of-fold), B rows",
+                         **r[keep].to_dict(), "source": "b09 threshold_options.csv (B9.10)"})
+        for name, t in (("B frozen 1/6", FROZEN), ("B operating 4/15 (B-G-07)", B_OPERATING)):
             rows.append({"model": "B frozen", "threshold_name": name, "rows": "test, B rows (post-test view)",
                          **_at(bt.y_true.to_numpy().astype(int), bt.y_pred.to_numpy(), t, tdays), "source": "T1 predictions_test.csv.gz"})
         # A outside B's scope on validation at 1/6: counts derived from B9.15 (TP = recall x detractors, alerts = TP / precision)
@@ -212,24 +208,24 @@ def run(task: str) -> None:
                      "source": "alerts counted from T1 predictions_test.csv.gz; precision and recall from b09 a_fallback_by_scope.csv (B9.15)"})
         results = pd.DataFrame(rows)
         w.table("threshold_results", results, ids=("B10.3",))
-        b9t = b9[(b9.threshold_name == "frozen 1/6") & (b9.model == "B frozen") & (b9.rows == "test, B rows")].iloc[0]
-        mt = results[(results.threshold_name == "B frozen 1/6") & (results.rows == "test, B rows (post-test view)")].iloc[0]
-        w.check("B's 1/6 test results from T1's saved predictions equal B9 threshold_options.csv (alerts, TP, FP, FN)",
-                all(int(mt[k]) == int(b9t[k]) for k in ("alerts", "tp", "fp", "fn")), ("B10.3",))
+        same = True
+        for name, b9name in (("B frozen 1/6", "frozen 1/6"), ("B operating 4/15 (B-G-07)", "operating 4/15 (B-G-07)")):
+            b9t = b9[(b9.threshold_name == b9name) & (b9.model == "B frozen") & (b9.rows == "test, B rows")].iloc[0]
+            mt = results[(results.threshold_name == name) & (results.rows == "test, B rows (post-test view)")].iloc[0]
+            same &= all(int(mt[k]) == int(b9t[k]) for k in ("alerts", "tp", "fp", "fn"))
+        w.check("B's 1/6 and 4/15 test results from T1's saved predictions equal B9 threshold_options.csv (alerts, TP, FP, FN)", same, ("B10.3",))
         w.check("A's out-of-scope fold counts derive exactly from B9.15 (TP and alerts are whole numbers)", integral, ("B10.3",),
                 f"{al_:,} alerts, {tp_:,} TP over {vdays_a:.0f} validation days")
         g = lambda name, rws: results[(results.threshold_name == name) & (results.rows == rws)].iloc[0]
-        lo = float(g("B 0.36 (nearest stored threshold above 5/14)", "validation (out-of-fold), B rows").alerts_per_day)
-        hi = float(g("B 0.35 (nearest stored threshold below 5/14)", "validation (out-of-fold), B rows").alerts_per_day)
+        b_v = float(g("B operating 4/15 (B-G-07)", "validation (out-of-fold), B rows").alerts_per_day)
         a_v = float(g("A frozen 1/6 (B10-D2)", "validation (out-of-fold), A rows outside B's scope").alerts_per_day)
-        b_t = float(g("B operating 5/14 (B-G-09)", "test, B rows (post-test view)").alerts_per_day)
+        b_t = float(g("B operating 4/15 (B-G-07)", "test, B rows (post-test view)").alerts_per_day)
         a_t = float(g("A frozen 1/6 (B10-D2)", "test, A rows outside B's scope").alerts_per_day)
-        vol = {"validation": {"B_inside_at_5_14": {"between": [lo, hi], "note": "bracketed by B9's stored 0.36 and 0.35 rows (no refit, B10-D10)"},
-                              "A_outside_at_1_6": a_v, "combined_alerts_per_day": {"between": [lo + a_v, hi + a_v]}},
-               "test": {"B_inside_at_5_14": b_t, "A_outside_at_1_6": a_t, "combined_alerts_per_day": b_t + a_t}}
+        vol = {"validation": {"B_inside_at_4_15": b_v, "A_outside_at_1_6": a_v, "combined_alerts_per_day": b_v + a_v},
+               "test": {"B_inside_at_4_15": b_t, "A_outside_at_1_6": a_t, "combined_alerts_per_day": b_t + a_t}}
         waiting = scope_test & ~a_test.order_id.isin(b_all.order_id)
         cfg.update({
-            "thresholds": {"B_operating": {"value": B_OPERATING, "label": "5/14", "decision": "B-G-09", "applies_to": "sigmoid-calibrated probability"},
+            "thresholds": {"B_operating": {"value": B_OPERATING, "label": "4/15", "decision": "B-G-07 (B-G-09 withdrawn)", "applies_to": "sigmoid-calibrated probability"},
                            "B_frozen": {"value": FROZEN, "label": "1/6", "decision": "frozen at B8.5 (e5-B-frozen); unbiased test result",
                                         "daily_alert_cap": rel["bundles"]["B"]["frozen_threshold"]["daily_alert_cap"]},
                            "A_fallback": {"value": FROZEN, "label": "1/6", "decision": "B10-D2 (A's frozen threshold)"}},
@@ -237,7 +233,7 @@ def run(task: str) -> None:
             "before_handover": {"rule": NO_SCORE, "decision": "B10-D9", "test_rows_in_scope_not_handed_over": int(waiting.sum())},
             "expected_alerts_per_day": vol,
             "volumes_confirmed_by_team": {"confirmed": True, "by": "Henry for the team", "date": "2026-10-26",
-                                          "note": "B at 5/14 gives fewer alerts/day than the 6/day asked at the B9 review; accepted (B10-D2)"}, "results_file": "threshold_results.csv"})
+                                          "note": "B at 4/15 with A's fallback at 1/6 (B10-D2); to re-confirm after the threshold correction"}, "results_file": "threshold_results.csv"})
     cfg["out_of_profile"] = {"sd": OUT_OF_PROFILE_SD, "options": list(SD_OPTIONS), "decision": "B10-D11 (Henry, 2026-10-26)", "note": "warning only; the order is still scored"}
 
     # B10.6 drift profile (written before the router so the router can read the training ranges) -----------------
@@ -355,7 +351,7 @@ def run(task: str) -> None:
               ("score", "input checks", "b10", "input_validation.json", "B10.5"),
               ("fallback", "A inside and outside B's scope", "b09", "a_fallback_by_scope.csv", "B9.15")]
     if task == "classification":
-        panels += [("policy", "B at 1/6 and 5/14, A out of scope at 1/6", "b10", "threshold_results.csv", "B10.3"),
+        panels += [("policy", "B at 1/6 and 4/15, A out of scope at 1/6", "b10", "threshold_results.csv", "B10.3"),
                    ("fit", "PR, ROC and reliability on B's test rows", "t1_joint_test", "figures/test_curves.png", "T1.4"),
                    ("fit", "confusion matrices at 1/6", "t1_joint_test", "confusion_test.csv", "T1.4"),
                    ("policy", "missed-dispatch rule on the test period", "b09", "missed_dispatch_rule_test.csv", "B9.7"),
@@ -404,9 +400,9 @@ def run(task: str) -> None:
                              + (json.dumps({p: rel['bundles'][p]['version_differences'] for p in 'AB'}) )))
     if task == "classification":
         v, t = cfg["expected_alerts_per_day"]["validation"], cfg["expected_alerts_per_day"]["test"]
-        w.explain("B10.3", done=(f"Serving: B inside its scope at 5/14 (B-G-09), frozen 1/6 kept beside it; A outside at 1/6 (B10-D2). Expected alerts/day, "
-                                 f"validation: B {v['B_inside_at_5_14']['between'][0]:.1f} to {v['B_inside_at_5_14']['between'][1]:.1f} (bracketed, no refit, B10-D10) "
-                                 f"+ A {v['A_outside_at_1_6']:.1f}; test (post-test view): B {t['B_inside_at_5_14']:.1f} + A {t['A_outside_at_1_6']:.1f} "
+        w.explain("B10.3", done=(f"Serving: B inside its scope at 4/15 (B-G-07), frozen 1/6 kept beside it; A outside at 1/6 (B10-D2). Expected alerts/day, "
+                                 f"validation: B {v['B_inside_at_4_15']:.1f} + A {v['A_outside_at_1_6']:.1f} = {v['combined_alerts_per_day']:.1f}; "
+                                 f"test (post-test view): B {t['B_inside_at_4_15']:.1f} + A {t['A_outside_at_1_6']:.1f} "
                                  f"= {t['combined_alerts_per_day']:.1f}. Volumes accepted by the team (Henry, 2026-10-26; threshold_results.csv)."))
     else:
         w.explain("B10.3", done=(f"Serving: B inside its scope, A outside (B-G-06), both at checkout. Test rows inside {cfg['test_rows_by_scope']['inside']:,}, "

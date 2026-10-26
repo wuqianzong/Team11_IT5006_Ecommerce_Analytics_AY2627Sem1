@@ -32,7 +32,7 @@ def test_sources_are_current_runs(numbers):
 
 def test_superseded_threshold_never_cited():
     text = reg.REGISTRY.read_text(encoding="utf-8")
-    assert "4/15" not in text and "b09/classification/outputs/threshold_options.csv" not in text
+    assert "5/14" not in text and "5_14" not in text   # B-G-09 withdrawn
 
 
 def test_fill_and_missing(numbers):

@@ -1,4 +1,4 @@
-"""B10 serving rule (B-G-06), thresholds (B-G-09, B10-D2), no score before handover (B10-D9) and input checks (B10.5)."""
+"""B10 serving rule (B-G-06), thresholds (B-G-07, B10-D2), no score before handover (B10-D9) and input checks (B10.5)."""
 import json
 import sys
 from pathlib import Path

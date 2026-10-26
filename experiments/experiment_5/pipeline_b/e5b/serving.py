@@ -1,7 +1,7 @@
 """B10 serving (blueprint pipeline_b/spec/blueprints/b10_release.md, B10.4 and B10.5).
 
 Release(task) routes each order to B's or A's frozen T1 bundle by B's scope (B-G-06) and applies the configured
-threshold: B's operating 5/14 (B-G-09) with the frozen 1/6 beside it, A's frozen 1/6 for the fallback (B10-D2).
+threshold: B's operating 4/15 (B-G-07) with the frozen 1/6 beside it, A's frozen 1/6 for the fallback (B10-D2).
 In-scope classification orders not yet handed over get no score (B10-D9). Inference only: nothing here fits.
 """
 from __future__ import annotations
@@ -18,7 +18,7 @@ from e5lib.training import predict
 from . import b02
 from .env import b_outputs_dir
 
-B_OPERATING = 5 / 14        # B-G-09 (replaces B-G-07's 4/15)
+B_OPERATING = 4 / 15        # B-G-07 (B-G-09 withdrawn as a typo)
 FROZEN = 1 / 6              # frozen threshold of A and B (schema.json); A's fallback threshold (B10-D2)
 SCOPE_COLS = ("customer_state", "primary_seller_state", "distance_km_max")
 UF = ("AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB", "PE", "PI",
