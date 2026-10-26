@@ -159,3 +159,14 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
 - Next (only when ordered): report and deck drafts, release sign-off `e5-release-1`, migration (lead),
   reproduction check (note B10-D10: refits are not bit-reproducible across machines), app build.
 - For Benson: please review B10 on return; decisions B-G-08, B-G-09, B10-D1 to D11 are in the logs.
+
+## 2026-10-26 · Henry + Claude · B11 report and deck blueprint DRAFT
+
+- Henry pushed e5/b10-henry (058f7d9); the tag e5-B-s10-accepted still needs `git push origin e5-B-s10-accepted`.
+- Henry's decisions: draft report and deck now, before migration (B11-D1); blueprint first (D2);
+  B's own register `build_evidence_B.py` (D3); report as a Claude Doc, deck generated with editable
+  text and tables (D4).
+- Drafted `spec/blueprints/b11_report_deck.md` (DRAFT) and `spec/doc_outbox/b11_blueprint_tab.md`.
+  Open: B11-D5 to D9. Stopped for agreement.
+- For Benson: B11-D1 deviates from s10-D3's order (deliverables before migration) because of the 4 Nov
+  slide lock; numbers are re-checked before submission.

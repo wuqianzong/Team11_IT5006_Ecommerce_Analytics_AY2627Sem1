@@ -14,3 +14,4 @@ Benson's account. Each file is written in the style of the tabs mirrored in `../
 | b10_review.md | B implementation reviews → new sub-tab "B10 Release" (stage tab) | not yet |
 | b10_review_regression.md | B10 Release › regression | not yet |
 | b10_review_classification.md | B10 Release › classification | not yet |
+| b11_blueprint_tab.md | B blueprints → section "B11 — report and deck" | not yet |
