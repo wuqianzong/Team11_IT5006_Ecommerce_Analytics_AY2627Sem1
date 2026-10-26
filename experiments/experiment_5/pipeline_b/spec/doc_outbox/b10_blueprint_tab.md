@@ -1,4 +1,4 @@
-<!-- For the team doc: tab "B blueprints B2–B9 and joint test", new section after B9. Source: pipeline_b/spec/blueprints/b10_release.md (DRAFT, 2026-10-26). -->
+<!-- For the team doc: tab "B blueprints B2–B9 and joint test", new section after B9. Source: pipeline_b/spec/blueprints/b10_release.md (AGREED, 2026-10-26). -->
 
 ## B10 — release of B's frozen models, with A as fallback (blueprint)
 
@@ -8,7 +8,7 @@ Repo copy: `experiments/experiment_5/pipeline_b/spec/blueprints/b10_release.md`.
 | --- | --- |
 | Stage | B10 release (G-79; A's s10 blueprint `../../../spec/blueprints/s10_release.md` adapted to B) |
 | Nodes | regression, classification |
-| Status | DRAFT (2026-10-26, Henry's Claude; scope B10.1–B10.7 approved by the experiment lead (Wu Qianzong) 2026-10-26; B10-D1 to D7 agreed, D8 and D9 open) |
+| Status | AGREED 2026-10-26: scope B10.1–B10.7 and B10-D1 to D7 by the experiment lead (Wu Qianzong); B10-D8 (5/14, B-G-09) and D9 by Henry for the team, lead confirmation of B-G-09 pending. Drafted by Henry's Claude |
 | Inputs frozen | T1 at tag e5-T1-tested (runs 20261024T044531Z, 20261024T044555Z); B8 at e5-B-frozen; A at e5-A-frozen; B9 at e5-B-s09-accepted (runs 20261025T132406Z, 20261025T132538Z) |
 
 ### 0. Scope
@@ -61,16 +61,20 @@ the expected alert volumes before any app is built.
 3. **Serving configuration (B10.3; B-G-06, B-G-07, B10-D2).**
    - Scope rule, per order: customer state and primary seller state both in SP, MG, RJ, PR, RS, BA, SC,
      and `distance_km_max` present → B; otherwise → A. Regression predicts at checkout for both.
-     Classification: B at carrier handover, A at checkout (B10-D9 for in-scope orders before handover).
-   - Thresholds (classification): B operating 4/15 (B-G-07; see B10-D8), B frozen 1/6 kept beside it;
-     A fallback at A's frozen 1/6 (B10-D2).
-   - For each threshold, the expected volumes, restated from existing files, never recomputed on test
-     labels: B at 1/6 and at 4/15 from B9 `threshold_options.csv` (alerts/day, precision, recall, FP/TP,
-     cost 5:1 and 1:1, on validation and test); A out of scope at 1/6: precision and recall from B9
-     `a_fallback_by_scope.csv`, and alerts/day counted from A's out-of-fold sigmoid probabilities
-     (validation, rebuilt as B9.10) and from T1's saved test predictions (A's test rows outside B's
-     scope; a count of predictions above 1/6, no labels). Plus the combined volume: B in scope at 4/15
-     plus A out of scope at 1/6. **The team confirms these volumes at the B10 review (B10-D2).**
+     Classification: B at carrier handover, A at checkout. In-scope orders not yet handed over get no
+     score; the missed-dispatch rule (B-C10) flags them once the shipping limit passes; A is not used
+     for them (B10-D9).
+   - Thresholds (classification): B operating 5/14 (B-G-09, replacing B-G-07's 4/15), B frozen 1/6 kept
+     beside it; A fallback at A's frozen 1/6 (B10-D2).
+   - Results at both B thresholds, computed as B9.10 does (no refit, no second test read): B at 1/6
+     and at 5/14 on validation (B's out-of-fold sigmoid probabilities, rebuilt as B9.10 and checked
+     against B9's 1/6 row) and on T1's saved test predictions (`predictions_test.csv.gz`): alerts/day,
+     precision, recall, FP/TP, cost 5:1 and 1:1, confusion counts. The 1/6 rows must equal B9
+     `threshold_options.csv`. A out of scope at 1/6: precision and recall restated from B9
+     `a_fallback_by_scope.csv`; alerts/day counted from A's out-of-fold sigmoid probabilities
+     (validation) and from T1's saved test predictions (A's test rows outside B's scope). Plus the
+     combined daily volume: B in scope at 5/14 plus A out of scope at 1/6. **The team confirms these
+     volumes at the B10 review (B10-D2).**
 4. **Router (B10.4).** `e5b/serving.py`: `predict(order) -> {prediction, alert, threshold_name, model,
    scope_reason}`. It validates the input (B10.5), applies the scope rule, calls the matching bundle and
    applies the configured threshold. It never fits. Tests: every T1 test row routed through it gives
@@ -84,7 +88,7 @@ the expected alert volumes before any app is built.
    SDs, a category unseen in training), with B9.4's drift table as the reference for the test period.
    The number of SDs is proposed in the review tab, not chosen here.
 7. **App sources (B10.7).** `app_sources.json`: every number and chart the model tabs will show
-   (A's s10 panel list, adapted to B: headline, fit, policy at 1/6 and 4/15, where it errs, why, score,
+   (A's s10 panel list, adapted to B: headline, fit, policy at 1/6 and 5/14, where it errs, why, score,
    data health), mapped to its output file and evidence ID; the app computes no statistic. Plus R-14
    (B10-D7): `top_routes_categories.csv`, observed outcomes by time window on development rows (top 5
    routes and categories, minimum volume per window), with the coefficient as a second column; data
@@ -101,7 +105,8 @@ tests in `pipeline_b/tests/` (router, parity, evidence register). Evidence IDs B
 
 - Parity: all four bundles re-predict T1 within 1e-9, row counts equal T1's; no label column read.
 - sha256 of every bundle file and frozen recipe matches T1, B8 and the tagged files.
-- `schema.json` thresholds unchanged (1/6); 4/15 lives only in `serving_config.json`.
+- `schema.json` thresholds unchanged (1/6); 5/14 lives only in `serving_config.json`.
+- B's 1/6 results in `serving_config.json` equal B9 `threshold_options.csv` (validation and test).
 - Router reproduces T1's predictions on every test row; every scope reason covered by a test.
 - Every number in `serving_config.json` equals the B9 or T1 value it restates.
 - Every app element in `app_sources.json` names an existing file and evidence ID.
@@ -119,8 +124,8 @@ tests in `pipeline_b/tests/` (router, parity, evidence register). Evidence IDs B
 | B10-D5 | Where the app code lives | Inside `pipeline_b/` until the lead orders migration; live URL after migration | Agreed (lead 2026-10-26) |
 | B10-D6 | Tags | `e5-B-s10-accepted` on the branch after approval; `e5-release-1` waits for migration | Agreed (lead 2026-10-26) |
 | B10-D7 | R-14 top routes and categories | Data output only (observed outcomes, minimum volume, coefficient as second column); charts with the app | Agreed (lead 2026-10-26) |
-| B10-D8 | Operating threshold value: Henry's 2026-10-26 remark says "5/14"; B-G-07, `human_decisions_B.yaml` b09 and B9 `threshold_options.csv` say 4/15 | Keep 4/15 as recorded. If the team means 5/14, that is a new post-test change (a new B-G entry and a B9.10 rerow from saved predictions), not a correction | Open (Henry, Benson) |
-| B10-D9 | In-scope classification orders not yet handed over: B cannot score them (it predicts at handover) | No score until handover, and the missed-dispatch rule (B-C10) flags the order once its shipping limit passes; A is not used for them (A is the fallback for out-of-scope orders only, B-G-06) | Open (Henry, Benson) |
+| B10-D8 | Operating threshold value: B-G-07 recorded 4/15; the team means 5/14 | A new post-test change (B-G-09), not a correction: 5/14 replaces 4/15; B10.3 reports 1/6 and 5/14 as B9.10 did; B9's accepted outputs are not changed | Agreed (Henry for the team, 2026-10-26); lead confirmation pending |
+| B10-D9 | In-scope classification orders not yet handed over: B cannot score them (it predicts at handover) | No score until handover, and the missed-dispatch rule (B-C10) flags the order once its shipping limit passes; A is not used for them (A is the fallback for out-of-scope orders only, B-G-06) | Agreed (Henry, 2026-10-26) |
 
 ### 7. After B10
 

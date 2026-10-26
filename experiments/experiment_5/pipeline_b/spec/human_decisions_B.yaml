@@ -20,4 +20,8 @@ b09:
     fallback: {rule: "B inside its scope (seven states, distance present); A's frozen model outside", decision: B-G-06, decided_by: "Henry; experiment lead (Wu Qianzong)", date: 2026-10-25}
 
 b10:
+  classification:
+    operating_threshold: {value: 0.35714285714285715, label: "5/14", replaces: "4/15 (B-G-07)", frozen_threshold_kept: 0.16666666666666666, post_test_change: true, decision: B-G-09, rationale: "team decision relayed by Henry (B10-D8); reported at 1/6 and 5/14 on validation and on T1's saved test predictions, no refit, no second test read (G-79)", decided_by: "team (relayed by Henry); experiment lead to confirm", date: 2026-10-26}
+    out_of_scope_threshold: {value: 0.16666666666666666, label: "A frozen 1/6", decision: B10-D2, rationale: "B-G-07/B-G-09 apply to B only; expected out-of-scope alerts/day in serving_config.json for the team to confirm", decided_by: "Henry; experiment lead (Wu Qianzong)", date: 2026-10-26}
+    before_handover: {rule: "in-scope orders not yet handed over by the seller get no score; the missed-dispatch rule (B-C10) flags them once the shipping limit passes; A is not used for them", decision: B10-D9, decided_by: "Henry", date: 2026-10-26}
   parity_reprediction: {allowed: true, labels_read: false, scoring: false, tolerance: 1.0e-9, decision: B-G-08, rationale: "reload parity of the release bundles against T1's saved test predictions, as B9's no-refit check; not a second test read", decided_by: "Henry; experiment lead (Wu Qianzong)", date: 2026-10-26}

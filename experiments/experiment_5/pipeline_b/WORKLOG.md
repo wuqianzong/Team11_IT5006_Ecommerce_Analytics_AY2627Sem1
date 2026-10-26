@@ -54,3 +54,17 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
 1. B10-D8: 4/15 (recorded in B-G-07) or 5/14 (Henry's remark)? See the earlier entry.
 2. B10-D9: in-scope classification orders before handover get no score, only the missed-dispatch
    rule; A is not used for them. Agree?
+
+## 2026-10-26 · Henry + Claude · B10 blueprint AGREED
+
+**Done**
+- Henry for the team: B10-D8 = 5/14, recorded as a new post-test change B-G-09 (B-G-07's 4/15 marked
+  Superseded; frozen 1/6 unchanged); B10-D9 agreed (no score for in-scope orders before handover).
+  `human_decisions_B.yaml` b10.classification; EVIDENCE.md superseded row for 4/15.
+- Blueprint status AGREED; doc outbox copy regenerated (not yet published); HANDOVER.md rule 6.
+
+**Next**
+- B10 code (`e5b/b10.py`, `e5b/serving.py`), tests, commit B-CR-22, clean reruns.
+
+**Questions for Benson**
+1. Confirm B-G-09 (operating threshold 5/14, replacing 4/15).

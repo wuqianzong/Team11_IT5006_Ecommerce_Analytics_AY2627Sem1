@@ -26,8 +26,9 @@ experiment lead) is away. Benson's Claude resumes from this file and `WORKLOG.md
 5. Never type a metric from memory; cite the output file or evidence ID. B numbers only from runs
    listed Current in `EVIDENCE.md`.
 6. Decided: B serves orders inside its scope, A's frozen model the rest (B-G-06); classification
-   operating threshold 4/15, frozen 1/6 kept as the unbiased result (B-G-07). No more complex model
-   families.
+   operating threshold 5/14 (B-G-09, replacing B-G-07's 4/15), frozen 1/6 kept as the unbiased
+   result; A's fallback alerts at A's frozen 1/6 (B10-D2); in-scope orders before handover get no
+   score (B10-D9). No more complex model families.
 7. No report, slide deck or reproduction package unless Henry says so. Dashboard work only as far as
    the B10 blueprint covers it.
 8. Unclear or conflicting spec: quote the text (file and section) and ask Henry.
@@ -54,8 +55,5 @@ and the YAML. Benson refreshes the read-only mirror `spec/team_doc/` when a stag
 
 ## Open items
 
-- B10 blueprint DRAFT: agreement by Henry and Benson (or the lead).
-- Threshold wording: Henry's 2026-10-26 remark names 5/14 for B-G-07; the repo records 4/15
-  (see `WORKLOG.md`, questions).
-- After agreement: B10 code (B-CR-22), clean reruns, tests, EVIDENCE.md rows, review tabs in
-  `spec/doc_outbox/`.
+- B10 blueprint AGREED 2026-10-26; Benson to confirm B-G-09 (5/14) on return.
+- B10 code (B-CR-22), clean reruns, tests, EVIDENCE.md rows, review tabs in `spec/doc_outbox/`.
