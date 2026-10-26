@@ -185,3 +185,10 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
 - Report and deck text will use `{{id}}` placeholders; `fill` replaces them, unresolved ones fail.
 - `tests/test_register_B.py` (5 tests); pytest 16 passed, 5 skipped.
 - Next: report outline in a Claude Doc (Henry's account) and section drafts; then the Slides deck.
+
+## 2026-10-26 · Henry + Claude · B11.2 report draft v1
+
+- Report sources `deliverables/report/00–09` with placeholders; all resolve (`check`). Filled text in the
+  Claude Doc https://claude.ai/artifact/Gp8qHXHdffLf3t78JcMWid (Henry's account) for team review.
+- Corrected one draft claim before publishing (top permutation-importance features, checked against B9 files).
+- Open: charts in the doc, A's s03 EDA numbers in the register, appendices, app placeholders; then the Slides deck.
