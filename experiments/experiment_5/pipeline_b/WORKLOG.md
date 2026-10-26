@@ -233,3 +233,13 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
   register (all placeholders resolve); charts uploaded as images; text and tables editable.
 - Sources committed under deliverables/deck/. Open: app screenshot and URL (slide "deploy"), team review, PDF/PPTX
   download for Canvas by 4 Nov.
+
+## 2026-10-26 · Henry + Claude · Deliverables audit
+
+- `audit_deliverables_B.py` (B-CR-29) on the live report doc (rev 25, exported) and deck (downloaded slides and
+  chart assets): 16 report charts and 6 deck charts byte-identical to register figures and their stage outputs;
+  12 slides equal fresh fills of their templates; report body equals the filled sources line for line; 12 headline
+  numbers recomputed directly from T1's saved test predictions match; every deck number is also in the report.
+  All 9 checks pass. Evidence in deliverables/audit/.
+- Text claims (forest within one SE, B adopted on 5 of 5 folds, fold-1 deviation, drift, top importance features)
+  checked against B8/B9 outputs and decision records.

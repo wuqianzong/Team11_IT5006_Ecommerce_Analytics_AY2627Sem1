@@ -1,0 +1,65 @@
+{
+  "checks": [
+    {
+      "check": "report charts: all 16 equal their register figure and the stage output in its manifest",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "deck charts: every <img> on a slide is mapped, and equals its register figure and stage output",
+      "passed": true,
+      "detail": "6 images"
+    },
+    {
+      "check": "deck slides: each live slide equals a fresh fill of its template (no hand-typed or stale number)",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "report numbers: every number in the live doc is in the filled report sources",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "report completeness: every number in the filled sources appears in the live doc",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "report text: the live doc's body equals the filled sources line for line (beyond its title, date and review note)",
+      "passed": true,
+      "detail": "header kept: # Team 11 final report \u2014 delivery time and detractor alerts / Oct 26, 2026 \u00b7 @Henry / Draft for team review. Every number is filled from the Pipeline B register (pipeline_b/evidence/registry_B.yaml); comment on any point."
+    },
+    {
+      "check": "independent recomputation from T1's saved predictions matches the register (12 numbers)",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "alignment: every number on the deck is also in the report (same register id, same text)",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "alignment: deck and report share the headline ids",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "passed": true,
+  "doc_sha256": "899f52197dd9a15f48b64136d499a8828852a04bc4ae64f42f9e91c11c2db023",
+  "deck_slides": {
+    "actions.html": "4b0cfc2e4192f35216fa76474e8f29c4bc5c652d22970dfa3b5ba4cc9dd2f145",
+    "alerts.html": "d2432fd494fd27e75bd24ea3a43f67dd4b324ae045830d5d7f7e4443696ab90f",
+    "atob.html": "aaf6068439ad9d7f4914e6173ed970dc5fc59c95aa6830d276f61252fdf418a1",
+    "clf.html": "796afa301420edc3ee2f5d917a15e1e0edf877e1b193b4677c63a585927105f5",
+    "close.html": "58c98c20ba1b00bd9ff70c8195b943a98d1e71c2be2373e9528114750fc8c0a9",
+    "cover.html": "d6420d02539c7d5d2e7d2f4b0ca57bf8ce12767b9f9dbcd932fd03a07080f572",
+    "data.html": "52ee0e15b20d8b8cebde58606943b3d6a4951f64b5692da66ea3ac38eaa162a5",
+    "deploy.html": "aa7bc9e90adf84fd4e78a0b677cfc698c01ffdf4dedc885763f01f9aabcb46c5",
+    "limits.html": "db273f7031579f143604eb6c440362e9a8c11968da50d9bad72aa601b73eff7f",
+    "method.html": "3a65630f4c7b651c86f853f82fb6b0a34fccbc43b8a390e72ee9710570493c4e",
+    "problem.html": "8fa4532ce106a4593a3a5b0eda458bda01112960fceeaad105d85610fed96d00",
+    "reg.html": "fb4fe716d6582d69af5e8eead0539c419a44c0a8485c4eb3c05b05745af73f66"
+  }
+}
