@@ -134,3 +134,9 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
 1. The reproduction check before migration (A's s10 10.4) compares output hashes after a full rerun. On a
    machine other than yours, every refitting stage will differ slightly. Should that check use a
    tolerance on scores and predictions instead of hashes, or run only on your machine?
+
+## 2026-10-26 · Henry + Claude · B10 review answers
+
+- Henry confirmed B-G-09 (5/14); decision log and YAML updated.
+- Henry accepted A's fallback volume at 1/6 (B10-D2).
+- Out-of-profile SD limit: explained to Henry, decision pending.
