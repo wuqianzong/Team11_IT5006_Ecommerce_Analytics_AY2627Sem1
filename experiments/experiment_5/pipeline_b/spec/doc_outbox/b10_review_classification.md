@@ -1,6 +1,6 @@
 # B10 › classification
 
-**Built for review · run `20261026T021016Z` on commit adf23d6 (clean, dirty: false) · 15 checks, 15 PASS.** Blueprint spec/blueprints/b10\_release.md (AGREED). Nothing is refitted and the test is not read again (B-G-08, B10-D10). Every number below is read from pipeline\_b/stages/b10/classification/outputs/.
+**Built for review · run `20261026T024858Z` on commit 1e36f0a (clean, dirty: false) · 15 checks, 15 PASS.** Blueprint spec/blueprints/b10\_release.md (AGREED). Nothing is refitted and the test is not read again (B-G-08, B10-D10). Every number below is read from pipeline\_b/stages/b10/classification/outputs/.
 
 ## B10.1 Reload parity
 
@@ -23,15 +23,14 @@
 
 ## B10.3 Serving configuration
 
-**What was done:** Serving: B inside its scope at 5/14 (B-G-09), frozen 1/6 kept beside it; A outside at 1/6 (B10-D2). Expected alerts/day, validation: B 1.5 to 1.7 (bracketed, no refit, B10-D10) + A 6.5; test (post-test view): B 2.4 + A 14.9 = 17.3. Volumes accepted by the team (Henry, 2026-10-26; threshold\_results.csv).
+**What was done:** Serving: B inside its scope at 4/15 (B-G-07), frozen 1/6 kept beside it; A outside at 1/6 (B10-D2). Expected alerts/day, validation: B 4.0 + A 6.5 = 10.5; test (post-test view): B 5.6 + A 14.9 = 20.5. Volumes accepted by the team (Henry, 2026-10-26; threshold\_results.csv).
 
 | model | threshold\_name | rows | threshold | alerts | alerts\_per\_day | tp | fp | fn | precision | recall | fp\_per\_tp | cost\_5\_to\_1 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | B frozen | B frozen 1/6 | validation (out-of-fold), B rows | 0.1667 | 5865 | 17 | 1,749 | 4,116 | 5,251 | 0.2982 | 0.2499 | 2.3533 | 30,371 |
-| B frozen | B 0.36 (nearest stored threshold above 5/14) | validation (out-of-fold), B rows | 0.3600 | 510 | 1.4783 | 269 | 241 | 6,731 | 0.5275 | 0.0384 | 0.8959 | 33,896 |
-| B frozen | B 0.35 (nearest stored threshold below 5/14) | validation (out-of-fold), B rows | 0.3500 | 581 | 1.6841 | 300 | 281 | 6,700 | 0.5164 | 0.0429 | 0.9367 | 33,781 |
+| B frozen | B operating 4/15 (B-G-07) | validation (out-of-fold), B rows | 0.2667 | 1381 | 4.0029 | 588 | 793 | 6,412 | 0.4258 | 0.0840 | 1.3486 | 32,853 |
 | B frozen | B frozen 1/6 | test, B rows (post-test view) | 0.1667 | 2229 | 23.2188 | 463 | 1,766 | 1,078 | 0.2077 | 0.3005 | 3.8143 | 7,156 |
-| B frozen | B operating 5/14 (B-G-09) | test, B rows (post-test view) | 0.3571 | 230 | 2.3958 | 94 | 136 | 1,447 | 0.4087 | 0.0610 | 1.4468 | 7,371 |
+| B frozen | B operating 4/15 (B-G-07) | test, B rows (post-test view) | 0.2667 | 540 | 5.6250 | 187 | 353 | 1,354 | 0.3463 | 0.1213 | 1.8877 | 7,123 |
 | A frozen | A frozen 1/6 (B10-D2) | validation (out-of-fold), A rows outside B's scope | 0.1667 | 2253 | 6.5304 | 519 | 1,734 | 1,431 | 0.2304 | 0.2662 | 3.3410 | 8,889 |
 | A frozen | A frozen 1/6 (B10-D2) | test, A rows outside B's scope | 0.1667 | 1428 | 14.8750 |  |  |  | 0.1331 | 0.5278 |  |  |
 
@@ -122,7 +121,7 @@ Largest shares of test rows beyond 3 SD of the training mean (all features in ou
 | score | serving rule and thresholds | pipeline\_b/stages/b10/classification/outputs/serving\_config.json | B10.3 |
 | score | input checks | pipeline\_b/stages/b10/classification/outputs/input\_validation.json | B10.5 |
 | fallback | A inside and outside B's scope | pipeline\_b/stages/b09/classification/outputs/a\_fallback\_by\_scope.csv | B9.15 |
-| policy | B at 1/6 and 5/14, A out of scope at 1/6 | pipeline\_b/stages/b10/classification/outputs/threshold\_results.csv | B10.3 |
+| policy | B at 1/6 and 4/15, A out of scope at 1/6 | pipeline\_b/stages/b10/classification/outputs/threshold\_results.csv | B10.3 |
 | fit | PR, ROC and reliability on B's test rows | pipeline\_b/stages/t1\_joint\_test/classification/outputs/figures/test\_curves.png | T1.4 |
 | fit | confusion matrices at 1/6 | pipeline\_b/stages/t1\_joint\_test/classification/outputs/confusion\_test.csv | T1.4 |
 | policy | missed-dispatch rule on the test period | pipeline\_b/stages/b09/classification/outputs/missed\_dispatch\_rule\_test.csv | B9.7 |
@@ -154,7 +153,7 @@ R-14, latest development quarter (2018Q2); every quarter is in top\_routes\_cate
 | every bundle reloads from disk and re-predicts T1's saved test predictions within 1e-9 | True | A frozen on A test rows: max 2.2e-16 (18,966 rows); A frozen on B test rows: max 2.2e-16 (15,492 rows); B frozen on B test rows: max 2.2e-16 (15,492 rows) |
 | bundle files equal T1's tagged files; frozen recipes recompute their sha256, equal their tagged files and match the schemas; training rows and digests recompute | True |  |
 | the frozen thresholds in the bundles are unchanged (1/6 for classification) | True |  |
-| B's 1/6 test results from T1's saved predictions equal B9 threshold\_options.csv (alerts, TP, FP, FN) | True |  |
+| B's 1/6 and 4/15 test results from T1's saved predictions equal B9 threshold\_options.csv (alerts, TP, FP, FN) | True |  |
 | A's out-of-scope fold counts derive exactly from B9.15 (TP and alerts are whole numbers) | True | 2,253 alerts, 519 TP over 345 validation days |
 | the training profile in each bundle recomputes from T1's final-fit rows (mean and SD within 1e-9) | True |  |
 | the router reproduces T1's predictions: B on B's test rows and A on the out-of-scope rows (within 1e-9) | True | B 2.2e-16, A 2.2e-16 |

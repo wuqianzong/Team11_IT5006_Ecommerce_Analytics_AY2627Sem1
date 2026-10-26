@@ -25,7 +25,7 @@ B's MAE minus A's is {{B9.reg.mae_diff}} days on the same {{T1.reg.test_rows_B}}
 
 B ranks detractors better than A by {{B9.clf.ap_diff}} AP (interval {{B9.clf.ap_diff_lo}} to {{B9.clf.ap_diff_hi}}) on {{T1.clf.test_rows_B}} test orders with {{T1.clf.test_detractors_B}} detractors. Part of the gain is the later prediction moment.
 
-**At the threshold.** At the frozen 1/6 (the unbiased result), B sends {{B10.clf.B_1_6_test_alerts_day}} alerts a day on the test with precision {{B10.clf.B_1_6_test_precision}} and recall {{B10.clf.B_1_6_test_recall}}. After the test the team moved B's operating threshold to 5/14 to cut false alarms (a post-test business change, reported beside the frozen result): {{B10.clf.B_5_14_test_alerts_day}} alerts a day, precision {{B10.clf.B_5_14_test_precision}}, recall {{B10.clf.B_5_14_test_recall}}.
+**At the threshold.** At the frozen 1/6 (the unbiased result), B sends {{B10.clf.B_1_6_test_alerts_day}} alerts a day on the test with precision {{B10.clf.B_1_6_test_precision}} and recall {{B10.clf.B_1_6_test_recall}}. After the test the team moved B's operating threshold to 4/15 to cut false alarms (a post-test business change, reported beside the frozen result): {{B10.clf.B_4_15_test_alerts_day}} alerts a day, precision {{B10.clf.B_4_15_test_precision}}, recall {{B10.clf.B_4_15_test_recall}}.
 
 ### 5.3 Interpretation and drift
 

@@ -114,7 +114,7 @@
       ]
     },
     {
-      "name": "B's 1/6 test results from T1's saved predictions equal B9 threshold_options.csv (alerts, TP, FP, FN)",
+      "name": "B's 1/6 and 4/15 test results from T1's saved predictions equal B9 threshold_options.csv (alerts, TP, FP, FN)",
       "passed": true,
       "detail": "",
       "ids": [
@@ -208,7 +208,7 @@
       "label": "observation"
     },
     "B10.3": {
-      "done": "Serving: B inside its scope at 5/14 (B-G-09), frozen 1/6 kept beside it; A outside at 1/6 (B10-D2). Expected alerts/day, validation: B 1.5 to 1.7 (bracketed, no refit, B10-D10) + A 6.5; test (post-test view): B 2.4 + A 14.9 = 17.3. Volumes accepted by the team (Henry, 2026-10-26; threshold_results.csv).",
+      "done": "Serving: B inside its scope at 4/15 (B-G-07), frozen 1/6 kept beside it; A outside at 1/6 (B10-D2). Expected alerts/day, validation: B 4.0 + A 6.5 = 10.5; test (post-test view): B 5.6 + A 14.9 = 20.5. Volumes accepted by the team (Henry, 2026-10-26; threshold_results.csv).",
       "inputs": "",
       "expectation": "",
       "observation": "",

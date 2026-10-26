@@ -198,3 +198,14 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
 - The 16 register figures uploaded to the report doc and embedded with numbered captions and evidence IDs
   (mapping in deliverables/README.md).
 - Figure 10 (B9.10 threshold options) still marks the superseded 4/15; a 5/14 version needs a B10 chart.
+
+## 2026-10-26 · Henry + Claude · B10 round 2: threshold back to 4/15
+
+- Henry: 5/14 was a typo; the operating threshold is 4/15. B-G-09 withdrawn, B-G-07 reinstated.
+- Code 1e36f0a (B-CR-26): serving.py 4/15; b10.py restates B9's exact 4/15 validation row (no bracket) and checks
+  the 1/6 and 4/15 test rows against B9. Clean runs 20261026T024749Z / 20261026T024858Z, byte-identical, all checks pass.
+- EVIDENCE.md: round 2 current; round 1 (5/14, tag e5-B-s10-accepted) superseded. Tag not moved.
+- Register rebuilt (ids B_4_15); report sources and the report doc updated (no 5/14 left); Figure 10 kept, it
+  already marks 1/6 and 4/15, caption corrected.
+- Outbox regenerated; `spec/doc_outbox/sync_for_benson.md` summarises every change for Benson.
+- Open: approval of round 2 and the r2 tag; re-confirm alert volumes at 4/15.

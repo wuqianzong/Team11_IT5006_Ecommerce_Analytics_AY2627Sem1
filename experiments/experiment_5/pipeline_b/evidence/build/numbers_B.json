@@ -653,7 +653,7 @@
   "B10.clf.thresholds": {
     "kind": "table",
     "source": "b10/classification/outputs/threshold_results.csv",
-    "run_id": "20261026T021016Z",
+    "run_id": "20261026T024858Z",
     "evidence": "B10.3",
     "used_in": [
       "report 5",
@@ -661,12 +661,12 @@
       "deck 8"
     ],
     "file": "evidence/build/tables/B10.clf.thresholds.csv",
-    "rows": 7
+    "rows": 6
   },
   "B10.clf.B_1_6_test_alerts_day": {
     "kind": "number",
     "source": "b10/classification/outputs/threshold_results.csv",
-    "run_id": "20261026T021016Z",
+    "run_id": "20261026T024858Z",
     "evidence": "B10.3",
     "used_in": [
       "report 5",
@@ -678,7 +678,7 @@
   "B10.clf.B_1_6_test_precision": {
     "kind": "number",
     "source": "b10/classification/outputs/threshold_results.csv",
-    "run_id": "20261026T021016Z",
+    "run_id": "20261026T024858Z",
     "evidence": "B10.3",
     "used_in": [
       "report 5",
@@ -690,7 +690,7 @@
   "B10.clf.B_1_6_test_recall": {
     "kind": "number",
     "source": "b10/classification/outputs/threshold_results.csv",
-    "run_id": "20261026T021016Z",
+    "run_id": "20261026T024858Z",
     "evidence": "B10.3",
     "used_in": [
       "report 5",
@@ -699,58 +699,58 @@
     "value": 0.3004542504866969,
     "text": "0.300"
   },
-  "B10.clf.B_5_14_test_alerts_day": {
+  "B10.clf.B_4_15_test_alerts_day": {
     "kind": "number",
     "source": "b10/classification/outputs/threshold_results.csv",
-    "run_id": "20261026T021016Z",
+    "run_id": "20261026T024858Z",
     "evidence": "B10.3",
     "used_in": [
       "report 0",
       "report 7",
       "deck 8"
     ],
-    "value": 2.395833333333333,
-    "text": "2.4"
+    "value": 5.625,
+    "text": "5.6"
   },
-  "B10.clf.B_5_14_test_precision": {
+  "B10.clf.B_4_15_test_precision": {
     "kind": "number",
     "source": "b10/classification/outputs/threshold_results.csv",
-    "run_id": "20261026T021016Z",
+    "run_id": "20261026T024858Z",
     "evidence": "B10.3",
     "used_in": [
       "report 7",
       "deck 8"
     ],
-    "value": 0.408695652173913,
-    "text": "0.409"
+    "value": 0.3462962962962962,
+    "text": "0.346"
   },
-  "B10.clf.B_5_14_test_recall": {
+  "B10.clf.B_4_15_test_recall": {
     "kind": "number",
     "source": "b10/classification/outputs/threshold_results.csv",
-    "run_id": "20261026T021016Z",
+    "run_id": "20261026T024858Z",
     "evidence": "B10.3",
     "used_in": [
       "report 7",
       "deck 8"
     ],
-    "value": 0.0609993510707332,
-    "text": "0.061"
+    "value": 0.1213497728747566,
+    "text": "0.121"
   },
-  "B10.clf.B_5_14_test_fp_per_tp": {
+  "B10.clf.B_4_15_test_fp_per_tp": {
     "kind": "number",
     "source": "b10/classification/outputs/threshold_results.csv",
-    "run_id": "20261026T021016Z",
+    "run_id": "20261026T024858Z",
     "evidence": "B10.3",
     "used_in": [
       "report 7"
     ],
-    "value": 1.446808510638298,
-    "text": "1.45"
+    "value": 1.8877005347593585,
+    "text": "1.89"
   },
   "B10.clf.A_out_test_alerts_day": {
     "kind": "number",
     "source": "b10/classification/outputs/threshold_results.csv",
-    "run_id": "20261026T021016Z",
+    "run_id": "20261026T024858Z",
     "evidence": "B10.3",
     "used_in": [
       "report 7",
@@ -762,7 +762,7 @@
   "B10.clf.A_out_test_precision": {
     "kind": "number",
     "source": "b10/classification/outputs/threshold_results.csv",
-    "run_id": "20261026T021016Z",
+    "run_id": "20261026T024858Z",
     "evidence": "B10.3",
     "used_in": [
       "report 7"
@@ -773,19 +773,19 @@
   "B10.clf.combined_test_alerts_day": {
     "kind": "number",
     "source": "b10/classification/outputs/serving_config.json",
-    "run_id": "20261026T021016Z",
+    "run_id": "20261026T024858Z",
     "evidence": "B10.3",
     "used_in": [
       "report 7",
       "deck 8"
     ],
-    "value": 17.270833333333332,
-    "text": "17.3"
+    "value": 20.5,
+    "text": "20.5"
   },
   "B10.clf.test_rows_inside": {
     "kind": "number",
     "source": "b10/classification/outputs/serving_config.json",
-    "run_id": "20261026T021016Z",
+    "run_id": "20261026T024858Z",
     "evidence": "B10.3",
     "used_in": [
       "report 6"
@@ -796,7 +796,7 @@
   "B10.clf.test_rows_outside": {
     "kind": "number",
     "source": "b10/classification/outputs/serving_config.json",
-    "run_id": "20261026T021016Z",
+    "run_id": "20261026T024858Z",
     "evidence": "B10.3",
     "used_in": [
       "report 6"
@@ -807,7 +807,7 @@
   "B10.reg.parity_max": {
     "kind": "number",
     "source": "b10/regression/outputs/parity.json",
-    "run_id": "20261026T020904Z",
+    "run_id": "20261026T024749Z",
     "evidence": "B10.1",
     "used_in": [
       "report 6"
@@ -818,7 +818,7 @@
   "B10.clf.parity_max": {
     "kind": "number",
     "source": "b10/classification/outputs/parity.json",
-    "run_id": "20261026T021016Z",
+    "run_id": "20261026T024858Z",
     "evidence": "B10.1",
     "used_in": [
       "report 6"
@@ -829,7 +829,7 @@
   "B10.reg.top_routes": {
     "kind": "table",
     "source": "b10/regression/outputs/top_routes_categories.csv",
-    "run_id": "20261026T020904Z",
+    "run_id": "20261026T024749Z",
     "evidence": "B10.7",
     "used_in": [
       "report 7"
@@ -840,7 +840,7 @@
   "B10.clf.top_routes": {
     "kind": "table",
     "source": "b10/classification/outputs/top_routes_categories.csv",
-    "run_id": "20261026T021016Z",
+    "run_id": "20261026T024858Z",
     "evidence": "B10.7",
     "used_in": [
       "report 7"

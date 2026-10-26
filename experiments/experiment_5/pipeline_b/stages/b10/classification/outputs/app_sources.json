@@ -116,7 +116,7 @@
     },
     {
       "panel": "policy",
-      "element": "B at 1/6 and 5/14, A out of scope at 1/6",
+      "element": "B at 1/6 and 4/15, A out of scope at 1/6",
       "file": "pipeline_b/stages/b10/classification/outputs/threshold_results.csv",
       "evidence_id": "B10.3",
       "exists": true,

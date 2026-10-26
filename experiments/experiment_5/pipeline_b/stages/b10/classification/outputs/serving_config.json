@@ -13,9 +13,9 @@
   },
   "thresholds": {
     "B_operating": {
-      "value": 0.35714285714285715,
-      "label": "5/14",
-      "decision": "B-G-09",
+      "value": 0.26666666666666666,
+      "label": "4/15",
+      "decision": "B-G-07 (B-G-09 withdrawn)",
       "applies_to": "sigmoid-calibrated probability"
     },
     "B_frozen": {
@@ -38,32 +38,21 @@
   },
   "expected_alerts_per_day": {
     "validation": {
-      "B_inside_at_5_14": {
-        "between": [
-          1.4782608695652173,
-          1.6840579710144927
-        ],
-        "note": "bracketed by B9's stored 0.36 and 0.35 rows (no refit, B10-D10)"
-      },
+      "B_inside_at_4_15": 4.0028985507246375,
       "A_outside_at_1_6": 6.530434782608696,
-      "combined_alerts_per_day": {
-        "between": [
-          8.008695652173913,
-          8.214492753623189
-        ]
-      }
+      "combined_alerts_per_day": 10.533333333333333
     },
     "test": {
-      "B_inside_at_5_14": 2.3958333333333335,
+      "B_inside_at_4_15": 5.625,
       "A_outside_at_1_6": 14.875,
-      "combined_alerts_per_day": 17.270833333333332
+      "combined_alerts_per_day": 20.5
     }
   },
   "volumes_confirmed_by_team": {
     "confirmed": true,
     "by": "Henry for the team",
     "date": "2026-10-26",
-    "note": "B at 5/14 gives fewer alerts/day than the 6/day asked at the B9 review; accepted (B10-D2)"
+    "note": "B at 4/15 with A's fallback at 1/6 (B10-D2); to re-confirm after the threshold correction"
   },
   "results_file": "threshold_results.csv",
   "out_of_profile": {

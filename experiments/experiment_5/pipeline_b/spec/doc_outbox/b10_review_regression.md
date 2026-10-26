@@ -1,6 +1,6 @@
 # B10 › regression
 
-**Built for review · run `20261026T020904Z` on commit adf23d6 (clean, dirty: false) · 13 checks, 13 PASS.** Blueprint spec/blueprints/b10\_release.md (AGREED). Nothing is refitted and the test is not read again (B-G-08, B10-D10). Every number below is read from pipeline\_b/stages/b10/regression/outputs/.
+**Built for review · run `20261026T024749Z` on commit 1e36f0a (clean, dirty: false) · 13 checks, 13 PASS.** Blueprint spec/blueprints/b10\_release.md (AGREED). Nothing is refitted and the test is not read again (B-G-08, B10-D10). Every number below is read from pipeline\_b/stages/b10/regression/outputs/.
 
 ## B10.1 Reload parity
 
