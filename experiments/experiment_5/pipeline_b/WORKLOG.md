@@ -120,3 +120,17 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
 2. Out-of-profile SD limit for the app (B10.6 shows shares at 3, 4 and 5 SD).
 3. On the test, A's fallback at 1/6 gives about six times B's daily alerts (threshold_results.csv); the
    team accepted B's volume. Is A's volume acceptable too?
+
+## 2026-10-26 · Henry + Claude · slow adapter tests on Henry's machine
+
+**Checks**
+- `E5B_SLOW=1 pytest pipeline_b/tests/test_adapter.py`: 5 failed, 1 passed (8 min). The failures are the
+  equivalence tests that refit A's s06/s07/s08 code on A's inputs and compare with A's frozen outputs
+  (for example: s08 classification "finalists refitted on the same rows and folds reproduce their s06 fold
+  scores"). Same cause as the B10 finding above: refits are not bit-reproducible on this machine. No B10
+  output depends on a refit (B10-D10); no tracked file changed.
+
+**Questions for Benson**
+1. The reproduction check before migration (A's s10 10.4) compares output hashes after a full rerun. On a
+   machine other than yours, every refitting stage will differ slightly. Should that check use a
+   tolerance on scores and predictions instead of hashes, or run only on your machine?
