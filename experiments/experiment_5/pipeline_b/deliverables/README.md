@@ -5,8 +5,8 @@
 - Review copy: Claude Doc "Team 11 final report — delivery time and detractor alerts" in Henry's account,
   https://claude.ai/artifact/Gp8qHXHdffLf3t78JcMWid (filled text). The team comments there; changes come back
   here first, then the doc is refreshed.
-- Open placeholders: app URL and screenshots (section 6); A's s03 EDA figures and rates (section 3);
-  appendices.
+- Open placeholders: app URL and screenshots (section 6); A's s03 EDA figures and rates (section 3).
+  Appendices A–F are done (B-CR-28).
 
 ## Figures in the report doc (uploaded from evidence/build/figures, 2026-10-26)
 

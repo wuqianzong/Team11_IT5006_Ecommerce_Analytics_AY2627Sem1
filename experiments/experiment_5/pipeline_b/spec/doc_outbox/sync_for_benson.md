@@ -58,3 +58,11 @@ stays on round 1 (tags are never moved); round 2 is tagged `e5-B-s10-accepted-r2
 3. Note B11-D1: report and deck drafts before migration and reproduction (s10-D3 deviation).
 4. Migration (README §12) is still yours to order; the app, its URL and screenshots wait for it.
 5. The reproduction check should compare predictions exactly and refitted results within a tolerance (B10-D10).
+
+## 6. Third-party audit V2 (2026-10-26)
+
+An external audit of HEAD b6a24f1 raised 15 findings; all were verified and the documentation/disclosure ones fixed
+in B-CR-30 (report §7, §8, appendix C; deck alerts, limitations and actions notes; README; B11 blueprint input tag
+r2; decision-log note for B10-F4). Open: s03 EDA numbers (your call: the register does not read A's tree), app and
+URL (migration), final exports, A fallback cost (needs a B10 code change), full references. Details:
+`deliverables/audit/third_party_audit_v2_response.md`. The B11 outbox copy is regenerated.

@@ -187,9 +187,9 @@ Placeholder: the live URL, usage instructions and screenshots will be added once
 Each recommendation is labelled as an observation (measured here), a literature-supported hypothesis or an unmeasured mechanism.
 
 1. **Promise a range, not a date** (observation). B's prediction is within 6 days for 87.0% of test orders, and 4.7% arrive more than 6 days after it. Show customers B's prediction plus a buffer, and monitor late deliveries by state, where the error differs most.
-2. **Alert customer service at handover** (observation). At 4/15, B sends about 5.6 alerts a day with precision 0.346, about 1.89 false alarms per true detractor. Orders outside the seven states, scored by A at 1/6, add about 14.9 a day at precision 0.133: in total about 20.5 a day. The team accepted these volumes; A's fallback alerts are the less precise share and the first to review if capacity is short.
+2. **Alert customer service at handover** (observation). At 4/15, B sends about 5.6 alerts a day with precision 0.346, about 1.89 false alarms per true detractor. Orders outside the seven states, scored by A at 1/6, add about 14.9 a day at precision 0.133: in total about 20.5 a day. The team accepted these volumes. The 6 alerts a day asked for at the B9 review applies to B's alerts only; the combined volume is above it, so customer service needs capacity for both streams, and A's fallback alerts are the less precise share and the first to review if capacity is short.
 3. **Flag missed dispatch** (observation). A simple rule, shipping limit passed without handover, flags orders with detractor precision 21.2% and catches 16.8% of all detractors on the test period. It needs no model.
-4. **Work on slow sellers and routes** (literature-supported hypothesis: late or slow delivery lowers ratings). The seller's earlier dispatch days and the route's recent speed are the strongest predictors; the dashboard lists the top routes and categories by quarter with their observed outcomes.
+4. **Work on slow sellers and routes**. Slow dispatch by sellers is a literature-supported hypothesis (late or slow delivery lowers ratings; Deshpande and Pendem 2023, Leite et al. 2024). The route and its recent speed are an unmeasured mechanism: no source was checked for them, so the link rests on operational reasoning only. Both are among the strongest predictors; the dashboard lists the top routes and categories by quarter with their observed outcomes.
 
 Illustrative cost (5 per missed detractor, 1 per false alert): B at the frozen 1/6 costs 7,156 on the test against 7,705 with no alerts.
 
@@ -198,6 +198,8 @@ Illustrative cost (5 per missed detractor, 1 per false alert): B at the frozen 1
 - **Scope.** B covers only orders whose customer and seller are in the seven states; other orders get A's baseline model.
 - **Different prediction moments.** B's classifier acts at handover and A's at checkout, so part of B's gain is the later moment.
 - **Post-test threshold.** 4/15 was chosen after reading the test; the frozen 1/6 result is the unbiased one.
+- **Alert capacity.** The 6 alerts a day asked for at the B9 review applies to B only; with A's fallback at 1/6 the combined volume is higher (section 7), which the team accepted.
+- **Calibration override.** The pre-set calibration rule kept raw probabilities for B's classifier; the team chose sigmoid calibration instead (decision B-G-05) so that A and B share one probability scale at the test. This is a recorded deviation from the rule.
 - **Drift.** The test period is faster and happier than development; scores may move as the business changes.
 - **Fold 1** has fewer training rows than the pre-set minimum for B; it was kept so A and B are compared on the same periods.
 - **Reproducibility.** Predictions of the frozen models reproduce exactly on another machine; refitting the unregularised logistic model gives slightly different numbers across machines, so the reproduction check compares predictions, and refitted results within a tolerance.
@@ -254,7 +256,7 @@ Validation folds are selection scores (G-10); the test was read once.
 
 ### C. Full rank of the linear design matrix
 
-Full rank means no column is an exact linear combination of the others, so coefficients are unique. Columns grow by fold because the one-hot step learns categories from each training fold.
+Full rank means no column is an exact linear combination of the others, so coefficients are unique. Columns grow by fold because the one-hot step learns categories from each training fold. The check matters for the linear and logistic models, which were selected; tree models do not need a full-rank design matrix, so the tree candidates' rank and condition number are not a quality measure for them.
 
 Regression:
 

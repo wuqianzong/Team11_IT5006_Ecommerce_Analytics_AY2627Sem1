@@ -243,3 +243,12 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
   All 9 checks pass. Evidence in deliverables/audit/.
 - Text claims (forest within one SE, B adopted on 5 of 5 folds, fold-1 deviation, drift, top importance features)
   checked against B8/B9 outputs and decision records.
+
+## 2026-10-26 · Henry + Claude · Third-party audit V2 response (B-CR-30)
+
+- Verified all 15 findings read-only (all valid; register count in the audit stale). Henry approved doc-only fixes.
+- Fixed: cap disclosure (report §7, §8; deck alerts), B-G-05 in limitations (report, deck), route-feature label
+  (report §7, deck notes), appendix C tree note, README B11 status, B11 blueprint input tag r2, deliverables README,
+  decision-log note for B10-F4. Live report doc (rev 28) and deck (6 versions) updated; audit rerun 9/9 PASS.
+- Open: s03 EDA numbers (decision), app and URL (migration), final exports, A fallback cost (B10 code change),
+  full references (lookup). Response table: deliverables/audit/third_party_audit_v2_response.md.

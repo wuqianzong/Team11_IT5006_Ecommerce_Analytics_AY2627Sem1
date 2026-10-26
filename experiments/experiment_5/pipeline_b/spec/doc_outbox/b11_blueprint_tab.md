@@ -1,4 +1,4 @@
-<!-- For the team doc: tab "B blueprints B2–B9 and joint test", new section after B10. Source: pipeline_b/spec/blueprints/b11_report_deck.md (AGREED, 2026-10-26). -->
+<!-- For the team doc: tab "B blueprints B2–B9 and joint test", new section after B10. Source: pipeline_b/spec/blueprints/b11_report_deck.md (AGREED, 2026-10-26; input tag corrected B-CR-30). -->
 
 ## B11 — final report and deck drafts, from B's evidence (blueprint)
 
@@ -9,7 +9,7 @@ Repo copy: `experiments/experiment_5/pipeline_b/spec/blueprints/b11_report_deck.
 | Stage | B11 deliverables: report and deck drafts (A's s10 10.7 adapted to B; G-79: B delivered, A baseline) |
 | Nodes | common (one report, one deck, both tasks) |
 | Status | AGREED 2026-10-26 (Henry: B11-D1 to D9; D6 changed to Claude Slides). Drafted by Henry's Claude |
-| Inputs frozen | Every B run listed Current in `../../EVIDENCE.md` (B2 to B10, T1, doc support); B10 at tag e5-B-s10-accepted |
+| Inputs frozen | Every B run listed Current in `../../EVIDENCE.md` (B2 to B10, T1, doc support); B10 at tag e5-B-s10-accepted-r2 (round 2, 4/15) |
 
 ### 0. Scope and order (decisions of 2026-10-26)
 

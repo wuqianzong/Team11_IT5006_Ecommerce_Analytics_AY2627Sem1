@@ -23,7 +23,7 @@ Validation folds are selection scores (G-10); the test was read once.
 
 ### C. Full rank of the linear design matrix
 
-Full rank means no column is an exact linear combination of the others, so coefficients are unique. Columns grow by fold because the one-hot step learns categories from each training fold.
+Full rank means no column is an exact linear combination of the others, so coefficients are unique. Columns grow by fold because the one-hot step learns categories from each training fold. The check matters for the linear and logistic models, which were selected; tree models do not need a full-rank design matrix, so the tree candidates' rank and condition number are not a quality measure for them.
 
 Regression:
 

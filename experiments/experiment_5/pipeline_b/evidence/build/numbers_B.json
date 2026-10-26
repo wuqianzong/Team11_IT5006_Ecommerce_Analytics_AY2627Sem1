@@ -1108,5 +1108,18 @@
     ],
     "file": "evidence/build/tables/APX.clf.train_val_test.csv",
     "rows": 49
+  },
+  "B10.clf.review_cap": {
+    "kind": "number",
+    "source": "b10/classification/outputs/serving_config.json",
+    "run_id": "20261026T024858Z",
+    "evidence": "B10.3",
+    "used_in": [
+      "report 7",
+      "report 8",
+      "deck 8"
+    ],
+    "value": 6,
+    "text": "6"
   }
 }
