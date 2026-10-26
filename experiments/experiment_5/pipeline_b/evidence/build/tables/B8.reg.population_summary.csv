@@ -1,0 +1,4 @@
+population_and_model,metric,mean_5_folds,se_5_folds,mean_folds_2_5,se_folds_2_5
+A's frozen model on A's validation rows,mae,5.470111342962178,0.6733199840340963,5.803871409124311,0.754943727632645
+A's frozen model on B's validation rows,mae,5.142292975149166,0.6616487520836893,5.496926910987805,0.721126251874455
+B's recommended model (reg.sel.log.linear) on B's validation rows,mae,5.024664909635607,0.6114820295778352,5.350261128696329,0.6682032807337284

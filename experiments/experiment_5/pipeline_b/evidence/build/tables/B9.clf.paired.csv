@@ -1,0 +1,22 @@
+comparison,rows,metric,difference,ci_low,ci_high,b_better,interval_excludes_zero
+B frozen minus A frozen,B test rows,ap,0.0186864112141197,0.0088832269032641,0.0290651754228802,True,True
+B frozen minus A frozen,B test rows,roc_auc,0.0319812213796774,0.0202965635330386,0.0442443345769121,True,True
+B frozen minus A frozen,B test rows,brier,-0.0025580447857787,-0.0031275646672571,-0.00191087949909,True,True
+B frozen minus A frozen,B test rows,precision,0.0494264590054061,0.0367580108949246,0.0615546001835962,True,True
+B frozen minus A frozen,B test rows,recall,-0.0551589876703439,-0.0771323818163988,-0.034950006258244,False,True
+B frozen minus A frozen,B test rows,f1,0.0265547833103851,0.0115046422307527,0.0404039376487033,True,True
+B frozen minus A frozen,B test rows,alert_rate,-0.0795894655305964,-0.0855296281951975,-0.0733281693777433,,True
+B frozen minus B plain,B test rows,ap,-0.0020494947309523,-0.0057911235247497,0.0021967212106527,False,False
+B frozen minus B plain,B test rows,roc_auc,0.0019789761058114,-0.0043865544572283,0.0088313656836205,True,False
+B frozen minus B plain,B test rows,brier,0.000287114620864,-4.6082035479528405e-06,0.0005658574093326,False,False
+B frozen minus B plain,B test rows,precision,-0.0180899868304895,-0.0284472446639755,-0.0080324736678268,False,True
+B frozen minus B plain,B test rows,recall,0.0460739779364048,0.0328380822754532,0.0589032140372312,True,True
+B frozen minus B plain,B test rows,f1,0.0063801319217858,-0.0045771642795237,0.0169849447718515,True,False
+B frozen minus B plain,B test rows,alert_rate,0.0318228763232636,0.0281419442292796,0.0356312935708752,,True
+B frozen minus B dummy,B test rows,ap,0.0977099315544456,0.0826573483067484,0.1165193217953142,True,True
+B frozen minus B dummy,B test rows,roc_auc,0.1360308265356857,0.1201406257247152,0.1517240889897694,True,True
+B frozen minus B dummy,B test rows,brier,-0.0042249090924051,-0.0051413798163567,-0.0033032416887549,True,True
+B frozen minus B dummy,B test rows,precision,0.2077164647824136,0.1904900424125065,0.2256387020019691,True,True
+B frozen minus B dummy,B test rows,recall,0.3004542504866969,0.2771136080343336,0.3242942400888111,True,True
+B frozen minus B dummy,B test rows,f1,0.2456233421750663,0.2265453789396918,0.2642426009948444,True,True
+B frozen minus B dummy,B test rows,alert_rate,0.1438807126258714,0.1383940098115156,0.1497547121094758,,True

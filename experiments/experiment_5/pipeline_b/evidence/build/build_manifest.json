@@ -1,0 +1,27 @@
+{
+  "commit": "aaf6ccd7bc6586e6181ee9d358b47c1998e6ecb8",
+  "registry_sha256": "ba7721fc32b9d65124293604a560dd0cc2df4422471bab455bda48973370c40e",
+  "items": 90,
+  "current_runs": {
+    "b02/classification": "20261023T154822Z",
+    "b02/regression": "20261023T154814Z",
+    "b04/classification": "20261023T154833Z",
+    "b04/regression": "20261023T154827Z",
+    "b05/classification": "20261023T160533Z",
+    "b05/regression": "20261023T160529Z",
+    "b06/classification": "20261023T162918Z",
+    "b06/regression": "20261023T162830Z",
+    "b07/classification": "20261023T164241Z",
+    "b07/regression": "20261023T163311Z",
+    "b08/classification": "20261024T042619Z",
+    "b08/regression": "20261024T042516Z",
+    "b09/classification": "20261025T132538Z",
+    "b09/regression": "20261025T132406Z",
+    "b10/classification": "20261026T021016Z",
+    "b10/regression": "20261026T020904Z",
+    "doc_support/classification": "20261025T132552Z",
+    "doc_support/regression": "20261025T132541Z",
+    "t1_joint_test/classification": "20261024T044555Z",
+    "t1_joint_test/regression": "20261024T044531Z"
+  }
+}
