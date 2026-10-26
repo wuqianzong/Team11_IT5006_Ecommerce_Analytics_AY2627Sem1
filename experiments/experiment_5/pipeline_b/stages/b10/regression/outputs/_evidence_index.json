@@ -1,0 +1,235 @@
+{
+  "node": "B/b10/regression",
+  "pipeline": "B",
+  "files": {
+    "parity.json": {
+      "ids": [
+        "B10.1"
+      ],
+      "kind": "json"
+    },
+    "release_manifest.json": {
+      "ids": [
+        "B10.2"
+      ],
+      "kind": "json"
+    },
+    "drift_profile.json": {
+      "ids": [
+        "B10.6"
+      ],
+      "kind": "json"
+    },
+    "out_of_profile_shares.csv": {
+      "ids": [
+        "B10.6"
+      ],
+      "kind": "table"
+    },
+    "serving_config.json": {
+      "ids": [
+        "B10.3"
+      ],
+      "kind": "json"
+    },
+    "router_check.json": {
+      "ids": [
+        "B10.4"
+      ],
+      "kind": "json"
+    },
+    "input_validation.json": {
+      "ids": [
+        "B10.5"
+      ],
+      "kind": "json"
+    },
+    "top_routes_categories.csv": {
+      "ids": [
+        "B10.7"
+      ],
+      "kind": "table"
+    },
+    "app_sources.json": {
+      "ids": [
+        "B10.7"
+      ],
+      "kind": "json"
+    }
+  },
+  "checks": [
+    {
+      "name": "with labels blanked, only the label-free rules remove test rows (B_DISTANCE, B_STATE)",
+      "passed": true,
+      "detail": "B_STATE 3,222; B_DISTANCE 144",
+      "ids": [
+        "B10.1"
+      ]
+    },
+    {
+      "name": "no test label is read: every label column of the rebuilt test rows is empty (B-G-08)",
+      "passed": true,
+      "detail": "lead_days, lead_label_ts, is_detractor, is_detractor_first, review_label_ts",
+      "ids": [
+        "B10.1"
+      ]
+    },
+    {
+      "name": "the rebuilt rows contain exactly T1's kept B test rows",
+      "passed": true,
+      "detail": "15,422 of 15,422",
+      "ids": [
+        "B10.1"
+      ]
+    },
+    {
+      "name": "every bundle reloads from disk and re-predicts T1's saved test predictions within 1e-9",
+      "passed": true,
+      "detail": "A frozen on A test rows: max 2.1e-14 (18,788 rows); A frozen on B test rows: max 1.8e-14 (15,422 rows); B frozen on B test rows: max 1.4e-14 (15,422 rows)",
+      "ids": [
+        "B10.1"
+      ]
+    },
+    {
+      "name": "bundle files equal T1's tagged files; frozen recipes recompute their sha256, equal their tagged files and match the schemas; training rows and digests recompute",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "B10.2"
+      ]
+    },
+    {
+      "name": "the frozen thresholds in the bundles are unchanged (1/6 for classification)",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "B10.2",
+        "B10.3"
+      ]
+    },
+    {
+      "name": "the training profile in each bundle recomputes from T1's final-fit rows (mean and SD within 1e-9)",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "B10.6"
+      ]
+    },
+    {
+      "name": "the router reproduces T1's predictions: B on B's test rows and A on the out-of-scope rows (within 1e-9)",
+      "passed": true,
+      "detail": "B 1.4e-14, A 2.1e-14",
+      "ids": [
+        "B10.4"
+      ]
+    },
+    {
+      "name": "no test row is rejected by the input checks",
+      "passed": true,
+      "detail": "0 rejected",
+      "ids": [
+        "B10.4",
+        "B10.5"
+      ]
+    },
+    {
+      "name": "every scope reason and route occurs (in scope; customer state; seller state)",
+      "passed": true,
+      "detail": "['in scope', 'outside: customer state', 'outside: distance missing', 'outside: seller state']",
+      "ids": [
+        "B10.4"
+      ]
+    },
+    {
+      "name": "every input-check case gives the expected outcome",
+      "passed": true,
+      "detail": "12 cases",
+      "ids": [
+        "B10.5"
+      ]
+    },
+    {
+      "name": "every app element names an existing file tagged with its evidence ID",
+      "passed": true,
+      "detail": "17 elements",
+      "ids": [
+        "B10.7"
+      ]
+    },
+    {
+      "name": "A's tree untouched: A's code matches e5-A-frozen",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "B10.2"
+      ]
+    }
+  ],
+  "deviations": {},
+  "cards": {
+    "B10.1": {
+      "done": "Bundles reloaded from disk re-predict T1's saved test predictions on rows rebuilt with every label column empty (B-G-08): A frozen on A test rows max difference 2.1e-14 over 18,788 rows; A frozen on B test rows max difference 1.8e-14 over 15,422 rows; B frozen on B test rows max difference 1.4e-14 over 15,422 rows. Python 3.13.7.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B10.2": {
+      "done": "Release manifest: sha256 of every bundle file (equal to tag e5-T1-tested), frozen recipes equal to their tags (A e5-A-frozen, B e5-B-frozen), training digests recomputed. Version differences: {\"A\": {}, \"B\": {}}",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B10.3": {
+      "done": "Serving: B inside its scope, A outside (B-G-06), both at checkout. Test rows inside 15,422, outside 3,366.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B10.4": {
+      "done": "Router (e5b/serving.py) on every A test row: reproduces T1 within 2.1e-14. Routes: in scope / B frozen / scored: 15,422; outside: customer state / A frozen / scored: 2,790; outside: distance missing / A frozen / scored: 144; outside: seller state / A frozen / scored: 432",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B10.5": {
+      "done": "10 input rules; 12 of 12 test cases give the expected outcome (input_validation.json).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B10.6": {
+      "done": "Training ranges per feature from T1's final-fit rows; shares of test rows beyond 3, 4 and 5 SD in out_of_profile_shares.csv. The SD limit is the team's choice (off until set).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B10.7": {
+      "done": "17 app elements mapped to files and evidence IDs (app_sources.json); R-14 top 5 routes and categories per quarter with at least 100 orders, observed outcomes on development rows, coefficient beside (top_routes_categories.csv).",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    }
+  },
+  "checks_failed": []
+}

@@ -1,0 +1,142 @@
+{
+  "task": "regression",
+  "rule": "the app reads these files only and computes no statistic (A's s10 10.5)",
+  "elements": [
+    {
+      "panel": "headline",
+      "element": "test metrics of A and B",
+      "file": "pipeline_b/stages/t1_joint_test/regression/outputs/metrics_test.csv",
+      "evidence_id": "T1.3",
+      "exists": true,
+      "id_tagged": true
+    },
+    {
+      "panel": "headline",
+      "element": "train, validation and test with 95% intervals",
+      "file": "pipeline_b/stages/b09/regression/outputs/train_val_test.csv",
+      "evidence_id": "B9.1",
+      "exists": true,
+      "id_tagged": true
+    },
+    {
+      "panel": "headline",
+      "element": "B minus A on the same test orders",
+      "file": "pipeline_b/stages/b09/regression/outputs/paired_test_differences.csv",
+      "evidence_id": "B9.2",
+      "exists": true,
+      "id_tagged": true
+    },
+    {
+      "panel": "fit",
+      "element": "validation folds and test together",
+      "file": "pipeline_b/stages/b09/regression/outputs/validation_and_test.csv",
+      "evidence_id": "B9.14",
+      "exists": true,
+      "id_tagged": true
+    },
+    {
+      "panel": "fit",
+      "element": "fold-by-fold and test table",
+      "file": "pipeline_b/stages/t1_joint_test/regression/outputs/fold_and_test_table.csv",
+      "evidence_id": "T1.6",
+      "exists": true,
+      "id_tagged": true
+    },
+    {
+      "panel": "where it errs",
+      "element": "slices by state, route and more",
+      "file": "pipeline_b/stages/b09/regression/outputs/subgroups.csv",
+      "evidence_id": "B9.3",
+      "exists": true,
+      "id_tagged": true
+    },
+    {
+      "panel": "where it errs",
+      "element": "business summary by route",
+      "file": "pipeline_b/stages/b09/regression/outputs/business_by_route.csv",
+      "evidence_id": "B9.13",
+      "exists": true,
+      "id_tagged": true
+    },
+    {
+      "panel": "why",
+      "element": "coefficients",
+      "file": "pipeline_b/stages/b09/regression/outputs/coefficients.csv",
+      "evidence_id": "B9.5",
+      "exists": true,
+      "id_tagged": true
+    },
+    {
+      "panel": "why",
+      "element": "permutation importance",
+      "file": "pipeline_b/stages/b09/regression/outputs/permutation_importance.csv",
+      "evidence_id": "B9.5",
+      "exists": true,
+      "id_tagged": true
+    },
+    {
+      "panel": "data health",
+      "element": "drift, development vs test",
+      "file": "pipeline_b/stages/b09/regression/outputs/drift.csv",
+      "evidence_id": "B9.4",
+      "exists": true,
+      "id_tagged": true
+    },
+    {
+      "panel": "data health",
+      "element": "training profile and out-of-profile shares",
+      "file": "pipeline_b/stages/b10/regression/outputs/drift_profile.json",
+      "evidence_id": "B10.6",
+      "exists": true,
+      "id_tagged": true
+    },
+    {
+      "panel": "score",
+      "element": "serving rule and thresholds",
+      "file": "pipeline_b/stages/b10/regression/outputs/serving_config.json",
+      "evidence_id": "B10.3",
+      "exists": true,
+      "id_tagged": true
+    },
+    {
+      "panel": "score",
+      "element": "input checks",
+      "file": "pipeline_b/stages/b10/regression/outputs/input_validation.json",
+      "evidence_id": "B10.5",
+      "exists": true,
+      "id_tagged": true
+    },
+    {
+      "panel": "fallback",
+      "element": "A inside and outside B's scope",
+      "file": "pipeline_b/stages/b09/regression/outputs/a_fallback_by_scope.csv",
+      "evidence_id": "B9.15",
+      "exists": true,
+      "id_tagged": true
+    },
+    {
+      "panel": "fit",
+      "element": "residual distribution and promise buffers",
+      "file": "pipeline_b/stages/b09/regression/outputs/residuals_summary.csv",
+      "evidence_id": "B9.16",
+      "exists": true,
+      "id_tagged": true
+    },
+    {
+      "panel": "fit",
+      "element": "errors on B's test rows",
+      "file": "pipeline_b/stages/t1_joint_test/regression/outputs/figures/test_errors.png",
+      "evidence_id": "T1.3",
+      "exists": true,
+      "id_tagged": true
+    },
+    {
+      "panel": "dashboard (R-14)",
+      "element": "top 5 routes and categories by quarter",
+      "file": "pipeline_b/stages/b10/regression/outputs/top_routes_categories.csv",
+      "evidence_id": "B10.7",
+      "exists": true,
+      "id_tagged": true
+    }
+  ]
+}

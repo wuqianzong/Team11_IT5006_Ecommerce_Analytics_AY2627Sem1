@@ -1,0 +1,189 @@
+{
+  "task": "regression",
+  "scope_rule": "customer state and primary seller state in SP, MG, RJ, PR, RS, BA, SC, distance_km_max present (B-C1, B-C2)",
+  "inside_scope": "B frozen (T1 bundles/B)",
+  "outside_scope": "A frozen (T1 bundles/A), B-G-06",
+  "prediction_moment": {
+    "B": "checkout",
+    "A": "checkout"
+  },
+  "test_rows_by_scope": {
+    "inside": 15422,
+    "outside": 3366
+  },
+  "out_of_profile": {
+    "sd": null,
+    "options": [
+      3,
+      4,
+      5
+    ],
+    "note": "the team chooses the SD limit at the B10 review (B10.6)",
+    "numeric": {
+      "A": {
+        "distance_km_max": {
+          "mean": 603.9726097854664,
+          "std": 587.9708282076491,
+          "min": 0.0
+        },
+        "interstate_share": {
+          "mean": 0.6487158243579122,
+          "std": 0.4767686273663264,
+          "min": 0.0
+        },
+        "total_freight": {
+          "mean": 22.160986316380257,
+          "std": 20.16179717711151,
+          "min": 0.0
+        },
+        "freight_ratio": {
+          "mean": 0.30466797669165396,
+          "std": 0.31255006505264427,
+          "min": 0.0
+        },
+        "total_price": {
+          "mean": 136.01048747895342,
+          "std": 204.82657735768868,
+          "min": 0.85
+        },
+        "total_weight_g": {
+          "mean": 2457.4508808040846,
+          "std": 4903.129480319318,
+          "min": 2.0
+        },
+        "total_volume_cm3": {
+          "mean": 17946.067537223662,
+          "std": 31157.9483276143,
+          "min": 288.0
+        },
+        "n_sellers": {
+          "mean": 1.0128684822406928,
+          "std": 0.11871316421059143,
+          "min": 1.0
+        },
+        "payment_installments_max": {
+          "mean": 2.9514258224871046,
+          "std": 2.734439903281544,
+          "min": 1.0
+        },
+        "purchase_dayofweek": {
+          "mean": 2.7642649063260016,
+          "std": 1.9666564159100868,
+          "min": 0.0
+        },
+        "n_products": {
+          "mean": 1.0382446481545822,
+          "std": 0.22321483130994915,
+          "min": 1.0
+        },
+        "purchase_month": {
+          "mean": 5.812665366010102,
+          "std": 3.58837590285944,
+          "min": 1.0
+        },
+        "n_items": {
+          "mean": 1.1436245556832456,
+          "std": 0.5447676466685046,
+          "min": 1.0
+        },
+        "n_categories": {
+          "mean": 0.9905657856054735,
+          "std": 0.1540260305124238,
+          "min": 0.0
+        }
+      },
+      "B": {
+        "route_recent_carrier_transit_days": {
+          "mean": 7.628003922697333,
+          "std": 4.078957206029738,
+          "min": 1.3093449074074073
+        },
+        "route_recent_delivery_days": {
+          "mean": 10.805493898666919,
+          "std": 4.274991109368051,
+          "min": 3.430121527777778
+        },
+        "distance_km_max": {
+          "mean": 423.6341561887646,
+          "std": 351.85709490054836,
+          "min": 0.0
+        },
+        "interstate_share": {
+          "mean": 0.5732118023557797,
+          "std": 0.49391548108981453,
+          "min": 0.0
+        },
+        "total_freight": {
+          "mean": 20.178191612351924,
+          "std": 18.061547026893077,
+          "min": 0.0
+        },
+        "seller_prior_dispatch_days": {
+          "mean": 3.235104612891247,
+          "std": 1.958130199551304,
+          "min": 0.0184259259259259
+        },
+        "seller_prior_late_handover_rate": {
+          "mean": 0.08418961823030381,
+          "std": 0.13084113848821735,
+          "min": 0.0
+        },
+        "seller_prior_late_handover_days": {
+          "mean": 0.2883384125096838,
+          "std": 1.0264376972900082,
+          "min": 0.0
+        },
+        "freight_ratio": {
+          "mean": 0.2838288276158377,
+          "std": 0.29034233222346933,
+          "min": 0.0
+        },
+        "total_weight_g": {
+          "mean": 2474.4361247507163,
+          "std": 4963.195671622902,
+          "min": 2.0
+        },
+        "total_price": {
+          "mean": 131.87862892280884,
+          "std": 197.49487185305725,
+          "min": 0.85
+        },
+        "total_volume_cm3": {
+          "mean": 18231.048985269226,
+          "std": 31456.45549321173,
+          "min": 288.0
+        },
+        "purchase_dayofweek": {
+          "mean": 2.7606688671816095,
+          "std": 1.9698533641818388,
+          "min": 0.0
+        },
+        "n_sellers": {
+          "mean": 1.0134711726957426,
+          "std": 0.12192184840821549,
+          "min": 1.0
+        },
+        "purchase_month": {
+          "mean": 5.889063887539165,
+          "std": 3.56698407945221,
+          "min": 1.0
+        },
+        "n_products": {
+          "mean": 1.0392909203625824,
+          "std": 0.2269080482331256,
+          "min": 1.0
+        },
+        "payment_installments_max": {
+          "mean": 2.887522410066518,
+          "std": 2.694477949344358,
+          "min": 1.0
+        },
+        "n_items": {
+          "mean": 1.1471273226882026,
+          "std": 0.5521476659340288,
+          "min": 1.0
+        }
+      }
+    }
+  }
+}

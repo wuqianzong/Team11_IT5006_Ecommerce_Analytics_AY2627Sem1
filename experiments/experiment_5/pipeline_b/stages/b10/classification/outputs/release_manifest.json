@@ -1,0 +1,144 @@
+{
+  "task": "classification",
+  "released": "B (inside B's scope); A as fallback outside it (B-G-06)",
+  "bundles": {
+    "A": {
+      "files_sha256": {
+        "model.joblib": "d50e87844893130bf0c32a8f0b32f6648906a9e1a4da47b60868a601e2a603a0",
+        "schema.json": "adabde08194394fab2acd2f4a2d862873b2f7ed77c146c3fda6e844394a8f531",
+        "training_profile.json": "27d06a1933508bd392c2c8df18cb801600a56d7906fe3abc33e3af4cb175d48b"
+      },
+      "files_equal_t1_tag": {
+        "model.joblib": true,
+        "schema.json": true,
+        "training_profile.json": true
+      },
+      "frozen_recipe": "stages/s08_selection/classification/outputs/frozen_recipe.json",
+      "frozen_recipe_tag": "e5-A-frozen",
+      "frozen_recipe_sha256_field": "8de9d4f13159db2d77716df7070f745bea118390cdb3a624cede3ab19d9277d8",
+      "recipe_recomputes_sha256": true,
+      "recipe_equals_tagged_file": true,
+      "schema_frozen_sha256_matches": true,
+      "model": "clf.sel.log.logistic",
+      "calibration": "sigmoid",
+      "numeric": [
+        "seller_prior_review_mean",
+        "total_freight",
+        "freight_ratio",
+        "total_volume_cm3",
+        "total_price",
+        "n_items",
+        "product_description_lenght",
+        "total_weight_g",
+        "n_products",
+        "n_sellers",
+        "purchase_month",
+        "distance_km_max",
+        "interstate_share",
+        "n_categories",
+        "payment_installments_max",
+        "product_photos_qty"
+      ],
+      "categorical": [
+        "customer_state",
+        "primary_category",
+        "primary_seller_state"
+      ],
+      "frozen_threshold": {
+        "value": 0.16666666666666666,
+        "daily_alert_cap": 25,
+        "applies_to": "sigmoid-calibrated probability",
+        "oof_alerts_per_day": 23.860869565217392,
+        "oof_precision": 0.2523080660835763,
+        "oof_recall": 0.223405399591266,
+        "oof_cost": 42255.0
+      },
+      "training_rows": 74970,
+      "training_rows_recomputed": 74970,
+      "training_id_digest_matches": true,
+      "versions_bundle": {
+        "sklearn": "1.9.0",
+        "pandas": "3.0.1",
+        "numpy": "2.4.2"
+      },
+      "versions_environment": {
+        "sklearn": "1.9.0",
+        "pandas": "3.0.1",
+        "numpy": "2.4.2"
+      },
+      "version_differences": {}
+    },
+    "B": {
+      "files_sha256": {
+        "model.joblib": "8b960199ffbecbf02b16a5097ce7bc582a3d18f0a4814d42b39865dc036b505e",
+        "schema.json": "90597f173e76e589e5ae6e86a2bbfd2c6143995595c00c85b89dd7dbcb61b168",
+        "training_profile.json": "7ec2a32a4fc45999d255177a71a2c782f49c28e05289d405e93d674ef854b6c2"
+      },
+      "files_equal_t1_tag": {
+        "model.joblib": true,
+        "schema.json": true,
+        "training_profile.json": true
+      },
+      "frozen_recipe": "pipeline_b/stages/b08/classification/outputs/frozen_recipe.json",
+      "frozen_recipe_tag": "e5-B-frozen",
+      "frozen_recipe_sha256_field": "da056ab74eff09577b2d61746ed5de039beda98dd62e0f0c060fe6b484f94c6d",
+      "recipe_recomputes_sha256": true,
+      "recipe_equals_tagged_file": true,
+      "schema_frozen_sha256_matches": true,
+      "model": "clf.sel.log.logistic",
+      "calibration": "sigmoid",
+      "numeric": [
+        "route_recent_carrier_transit_days",
+        "route_recent_delivery_days",
+        "seller_prior_dispatch_days",
+        "seller_prior_late_handover_days",
+        "seller_prior_review_mean",
+        "order_dispatch_days",
+        "freight_ratio",
+        "total_freight",
+        "total_volume_cm3",
+        "n_items",
+        "seller_prior_late_handover_rate",
+        "total_price",
+        "order_handover_late_days",
+        "total_weight_g",
+        "product_description_lenght",
+        "n_products",
+        "n_sellers",
+        "purchase_month",
+        "order_handed_over_late",
+        "distance_km_max",
+        "interstate_share",
+        "n_categories",
+        "payment_installments_max"
+      ],
+      "categorical": [
+        "route_seller_to_customer_state",
+        "primary_category"
+      ],
+      "frozen_threshold": {
+        "value": 0.16666666666666666,
+        "daily_alert_cap": 25,
+        "applies_to": "sigmoid-calibrated probability",
+        "oof_alerts_per_day": 17.0,
+        "oof_precision": 0.29820971867007673,
+        "oof_recall": 0.24985714285714286,
+        "oof_cost": 30371.0
+      },
+      "training_rows": 59188,
+      "training_rows_recomputed": 59188,
+      "training_id_digest_matches": true,
+      "versions_bundle": {
+        "sklearn": "1.9.0",
+        "pandas": "3.0.1",
+        "numpy": "2.4.2"
+      },
+      "versions_environment": {
+        "sklearn": "1.9.0",
+        "pandas": "3.0.1",
+        "numpy": "2.4.2"
+      },
+      "version_differences": {}
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "task": "classification",
+  "tolerance": 1e-09,
+  "labels_read": false,
+  "decision": "B-G-08",
+  "results": [
+    {
+      "model": "A frozen",
+      "rows": "A test rows",
+      "n_rows": 18966,
+      "n_t1_rows": 18966,
+      "max_abs_diff": 2.220446049250313e-16,
+      "within_tolerance": true
+    },
+    {
+      "model": "A frozen",
+      "rows": "B test rows",
+      "n_rows": 15492,
+      "n_t1_rows": 15492,
+      "max_abs_diff": 2.220446049250313e-16,
+      "within_tolerance": true
+    },
+    {
+      "model": "B frozen",
+      "rows": "B test rows",
+      "n_rows": 15492,
+      "n_t1_rows": 15492,
+      "max_abs_diff": 2.220446049250313e-16,
+      "within_tolerance": true
+    }
+  ],
+  "python": "3.13.7",
+  "passed": true
+}

@@ -1,0 +1,34 @@
+{
+  "task": "regression",
+  "max_abs_diff_B_rows": 1.4210854715202004e-14,
+  "max_abs_diff_A_outside_rows": 2.1316282072803006e-14,
+  "tolerance": 1e-09,
+  "routes": [
+    {
+      "scope_reason": "in scope",
+      "model": "B frozen",
+      "status": "scored",
+      "orders": 15422
+    },
+    {
+      "scope_reason": "outside: customer state",
+      "model": "A frozen",
+      "status": "scored",
+      "orders": 2790
+    },
+    {
+      "scope_reason": "outside: distance missing",
+      "model": "A frozen",
+      "status": "scored",
+      "orders": 144
+    },
+    {
+      "scope_reason": "outside: seller state",
+      "model": "A frozen",
+      "status": "scored",
+      "orders": 432
+    }
+  ],
+  "in_scope_scored_without_t1_reference": 0,
+  "note": "B rows outside T1's kept set (regression: above the lead cap; classification: review answered before handover) are scored by B at serving time but have no T1 prediction to compare with"
+}

@@ -93,3 +93,30 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
 **Questions for Benson**
 1. B10.3 validation figures: restate from stored files without refitting (proposed to Henry), or rebuild
    on Benson's machine?
+
+## 2026-10-26 · Henry + Claude · B10 built for review
+
+**Done**
+- Henry: no refit in B10 (B10-D10); the team accepts B's alert volume at 5/14, below the 6/day review cap
+  (B10-D2). Recorded in the blueprint and `human_decisions_B.yaml` b10.
+- B10.3 reworked: validation restated from B9's files (1/6 exact; 5/14 bracketed by the stored 0.36 and
+  0.35 rows; A out of scope derived exactly from B9.15); test at 1/6 and 5/14 from T1's saved predictions.
+- Code committed as 60a6c3c (B-CR-22). Clean runs 20261026T015521Z (regression) and 20261026T015559Z
+  (classification), dirty false; a second run gave byte-identical outputs. EVIDENCE.md rows added
+  (tag column e5-B-s10-accepted, pending approval).
+- Review tabs written to `spec/doc_outbox/`: b10_review.md, b10_review_regression.md,
+  b10_review_classification.md (generated from the outputs; not published).
+
+**Checks**
+- B10 regression 13 of 13 PASS, classification 15 of 15 PASS.
+- `pytest pipeline_b/tests`: 11 passed, 5 skipped (slow adapter tests; see the next entry for the
+  `E5B_SLOW=1` result).
+
+**Next**
+- Approval of B10 by Benson or the lead; then tag `e5-B-s10-accepted` on the branch.
+
+**Questions for Benson**
+1. Confirm B-G-09 (5/14).
+2. Out-of-profile SD limit for the app (B10.6 shows shares at 3, 4 and 5 SD).
+3. On the test, A's fallback at 1/6 gives about six times B's daily alerts (threshold_results.csv); the
+   team accepted B's volume. Is A's volume acceptable too?

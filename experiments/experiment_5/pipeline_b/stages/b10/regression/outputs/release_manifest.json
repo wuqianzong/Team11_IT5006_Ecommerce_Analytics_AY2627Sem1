@@ -1,0 +1,123 @@
+{
+  "task": "regression",
+  "released": "B (inside B's scope); A as fallback outside it (B-G-06)",
+  "bundles": {
+    "A": {
+      "files_sha256": {
+        "model.joblib": "2f77e781f7c4a609f3fef11bef20dcf5995915498d17da44caecb43b9e677b70",
+        "schema.json": "312a02953e78de98eb2f105cb35047657024a4464302b8332a53521151779dc9",
+        "training_profile.json": "7469900c6995ff7ce3a749f2ee6994f36ff9873c72251e22eb16ed314d3e2abe"
+      },
+      "files_equal_t1_tag": {
+        "model.joblib": true,
+        "schema.json": true,
+        "training_profile.json": true
+      },
+      "frozen_recipe": "stages/s08_selection/regression/outputs/frozen_recipe.json",
+      "frozen_recipe_tag": "e5-A-frozen",
+      "frozen_recipe_sha256_field": "df4beee32d7b6bef5736e21e53aad6b1caea3233a066c222e46708aca38899d2",
+      "recipe_recomputes_sha256": true,
+      "recipe_equals_tagged_file": true,
+      "schema_frozen_sha256_matches": true,
+      "model": "reg.sel.log.linear",
+      "calibration": null,
+      "numeric": [
+        "distance_km_max",
+        "interstate_share",
+        "total_freight",
+        "freight_ratio",
+        "total_price",
+        "total_weight_g",
+        "total_volume_cm3",
+        "n_sellers",
+        "payment_installments_max",
+        "purchase_dayofweek",
+        "n_products",
+        "purchase_month",
+        "n_items",
+        "n_categories"
+      ],
+      "categorical": [
+        "customer_state",
+        "primary_category",
+        "primary_seller_state",
+        "primary_payment_type"
+      ],
+      "frozen_threshold": null,
+      "training_rows": 74834,
+      "training_rows_recomputed": 74834,
+      "training_id_digest_matches": true,
+      "versions_bundle": {
+        "sklearn": "1.9.0",
+        "pandas": "3.0.1",
+        "numpy": "2.4.2"
+      },
+      "versions_environment": {
+        "sklearn": "1.9.0",
+        "pandas": "3.0.1",
+        "numpy": "2.4.2"
+      },
+      "version_differences": {}
+    },
+    "B": {
+      "files_sha256": {
+        "model.joblib": "b604e985bfbe8910f8128510bdde4ca6d0824e75790fca226ece34b082a4f9d8",
+        "schema.json": "61a2eac7cf3d7619f8da1fe35dfc7b2a5c6fd8616ad0f079c2888403c0761981",
+        "training_profile.json": "c4a173e05dc3900a1bf522eafabef58142afbc7552aebed33f65ad0a79daaf28"
+      },
+      "files_equal_t1_tag": {
+        "model.joblib": true,
+        "schema.json": true,
+        "training_profile.json": true
+      },
+      "frozen_recipe": "pipeline_b/stages/b08/regression/outputs/frozen_recipe.json",
+      "frozen_recipe_tag": "e5-B-frozen",
+      "frozen_recipe_sha256_field": "8f1241b5bc5fdc27f3e30a96155dec33e63c665fa56029e804a6fdfcd34e48db",
+      "recipe_recomputes_sha256": true,
+      "recipe_equals_tagged_file": true,
+      "schema_frozen_sha256_matches": true,
+      "model": "reg.sel.log.linear",
+      "calibration": null,
+      "numeric": [
+        "route_recent_carrier_transit_days",
+        "route_recent_delivery_days",
+        "distance_km_max",
+        "interstate_share",
+        "total_freight",
+        "seller_prior_dispatch_days",
+        "seller_prior_late_handover_rate",
+        "seller_prior_late_handover_days",
+        "freight_ratio",
+        "total_weight_g",
+        "total_price",
+        "total_volume_cm3",
+        "purchase_dayofweek",
+        "n_sellers",
+        "purchase_month",
+        "n_products",
+        "payment_installments_max",
+        "n_items"
+      ],
+      "categorical": [
+        "route_seller_to_customer_state",
+        "primary_category",
+        "primary_payment_type"
+      ],
+      "frozen_threshold": null,
+      "training_rows": 59683,
+      "training_rows_recomputed": 59683,
+      "training_id_digest_matches": true,
+      "versions_bundle": {
+        "sklearn": "1.9.0",
+        "pandas": "3.0.1",
+        "numpy": "2.4.2"
+      },
+      "versions_environment": {
+        "sklearn": "1.9.0",
+        "pandas": "3.0.1",
+        "numpy": "2.4.2"
+      },
+      "version_differences": {}
+    }
+  }
+}

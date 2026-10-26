@@ -1,0 +1,224 @@
+{
+  "task": "regression",
+  "rules": [
+    {
+      "rule": "missing column",
+      "level": "error",
+      "source": "bundle schema.json (numeric, categorical) and the scope columns"
+    },
+    {
+      "rule": "unknown state",
+      "level": "error",
+      "source": "Brazil's 27 state codes"
+    },
+    {
+      "rule": "type",
+      "level": "error",
+      "source": "numeric features in schema.json"
+    },
+    {
+      "rule": "impossible distance",
+      "level": "error",
+      "source": "0 to 5,000 km"
+    },
+    {
+      "rule": "no items",
+      "level": "error",
+      "source": "n_items >= 1 (A's s10 10.5)"
+    },
+    {
+      "rule": "missing installments",
+      "level": "error",
+      "source": "A's s10 10.5"
+    },
+    {
+      "rule": "negative value",
+      "level": "error",
+      "source": "numeric features whose training minimum is >= 0 (drift_profile.json)"
+    },
+    {
+      "rule": "missing value",
+      "level": "warning",
+      "source": "the bundle imputes the training median"
+    },
+    {
+      "rule": "unseen category",
+      "level": "warning",
+      "source": "levels of the bundle's one-hot encoder (ignored when unseen)"
+    },
+    {
+      "rule": "out of profile",
+      "level": "warning",
+      "source": "drift_profile.json; off until the team sets the SD limit (B10.6)"
+    }
+  ],
+  "cases": [
+    {
+      "case": "valid in-scope order",
+      "change": {},
+      "expected": "scored (B frozen)",
+      "status": "scored",
+      "model": "B frozen",
+      "rules": [],
+      "passed": true
+    },
+    {
+      "case": "valid out-of-scope order",
+      "change": {},
+      "expected": "scored (A frozen)",
+      "status": "scored",
+      "model": "A frozen",
+      "rules": [],
+      "passed": true
+    },
+    {
+      "case": "unknown customer state",
+      "change": {
+        "customer_state": "XX"
+      },
+      "expected": "rejected (unknown state)",
+      "status": "rejected: input error",
+      "model": "",
+      "rules": [
+        "unknown state",
+        "unseen category"
+      ],
+      "passed": true
+    },
+    {
+      "case": "negative distance",
+      "change": {
+        "distance_km_max": -5.0
+      },
+      "expected": "rejected (impossible distance)",
+      "status": "rejected: input error",
+      "model": "",
+      "rules": [
+        "impossible distance",
+        "negative value"
+      ],
+      "passed": true
+    },
+    {
+      "case": "distance beyond Brazil",
+      "change": {
+        "distance_km_max": 5001.0
+      },
+      "expected": "rejected (impossible distance)",
+      "status": "rejected: input error",
+      "model": "",
+      "rules": [
+        "impossible distance"
+      ],
+      "passed": true
+    },
+    {
+      "case": "no items",
+      "change": {
+        "n_items": 0
+      },
+      "expected": "rejected (no items)",
+      "status": "rejected: input error",
+      "model": "",
+      "rules": [
+        "no items"
+      ],
+      "passed": true
+    },
+    {
+      "case": "missing installments",
+      "change": {
+        "payment_installments_max": null
+      },
+      "expected": "rejected (missing installments)",
+      "status": "rejected: input error",
+      "model": "",
+      "rules": [
+        "missing installments",
+        "missing value"
+      ],
+      "passed": true
+    },
+    {
+      "case": "text in a numeric feature",
+      "change": {
+        "route_recent_carrier_transit_days": "abc"
+      },
+      "expected": "rejected (type)",
+      "status": "rejected: input error",
+      "model": "",
+      "rules": [
+        "type"
+      ],
+      "passed": true
+    },
+    {
+      "case": "negative value where training has none",
+      "change": {
+        "route_recent_delivery_days": -1.0
+      },
+      "expected": "rejected (negative value)",
+      "status": "rejected: input error",
+      "model": "",
+      "rules": [
+        "negative value"
+      ],
+      "passed": true
+    },
+    {
+      "case": "missing numeric value (imputed)",
+      "change": {
+        "route_recent_carrier_transit_days": null
+      },
+      "expected": "scored (missing value)",
+      "status": "scored",
+      "model": "B frozen",
+      "rules": [
+        "missing value"
+      ],
+      "passed": true
+    },
+    {
+      "case": "unseen category (ignored)",
+      "change": {
+        "primary_category": "not_a_category"
+      },
+      "expected": "scored (unseen category)",
+      "status": "scored",
+      "model": "B frozen",
+      "rules": [
+        "unseen category"
+      ],
+      "passed": true
+    },
+    {
+      "case": "distance missing: out of scope",
+      "change": {
+        "distance_km_max": null
+      },
+      "expected": "scored (A frozen)",
+      "status": "scored",
+      "model": "A frozen",
+      "rules": [
+        "missing value"
+      ],
+      "passed": true
+    }
+  ],
+  "data_dictionary_columns": [
+    "distance_km_max",
+    "freight_ratio",
+    "interstate_share",
+    "n_categories",
+    "n_items",
+    "n_products",
+    "n_sellers",
+    "payment_installments_max",
+    "purchase_dayofweek",
+    "purchase_month",
+    "total_freight",
+    "total_price",
+    "total_volume_cm3",
+    "total_weight_g"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "task": "classification",
+  "max_abs_diff_B_rows": 2.220446049250313e-16,
+  "max_abs_diff_A_outside_rows": 2.220446049250313e-16,
+  "tolerance": 1e-09,
+  "routes": [
+    {
+      "scope_reason": "in scope",
+      "model": "",
+      "status": "no score: in scope, not yet handed over (B10-D9; missed-dispatch rule applies)",
+      "orders": 36
+    },
+    {
+      "scope_reason": "in scope",
+      "model": "B frozen",
+      "status": "scored",
+      "orders": 15534
+    },
+    {
+      "scope_reason": "outside: customer state",
+      "model": "A frozen",
+      "status": "scored",
+      "orders": 2821
+    },
+    {
+      "scope_reason": "outside: distance missing",
+      "model": "A frozen",
+      "status": "scored",
+      "orders": 144
+    },
+    {
+      "scope_reason": "outside: seller state",
+      "model": "A frozen",
+      "status": "scored",
+      "orders": 431
+    }
+  ],
+  "in_scope_scored_without_t1_reference": 42,
+  "note": "B rows outside T1's kept set (regression: above the lead cap; classification: review answered before handover) are scored by B at serving time but have no T1 prediction to compare with"
+}
