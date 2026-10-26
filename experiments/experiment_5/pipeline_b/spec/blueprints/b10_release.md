@@ -86,7 +86,7 @@ the expected alert volumes before any app is built.
 6. **Drift profile (B10.6).** Per bundle: the training profile (mean and SD per numeric feature,
    category shares) and the out-of-profile rule for the app (a numeric value beyond a set number of
    SDs, a category unseen in training), with B9.4's drift table as the reference for the test period.
-   The number of SDs is proposed in the review tab, not chosen here.
+   The limit is 4 SD (B10-D11, Henry 2026-10-26): a warning only, the order is still scored.
 7. **App sources (B10.7).** `app_sources.json`: every number and chart the model tabs will show
    (A's s10 panel list, adapted to B: headline, fit, policy at 1/6 and 5/14, where it errs, why, score,
    data health), mapped to its output file and evidence ID; the app computes no statistic. Plus R-14
@@ -128,6 +128,7 @@ tests in `pipeline_b/tests/` (router, parity, evidence register). Evidence IDs B
 | B10-D7 | R-14 top routes and categories | Data output only (observed outcomes, minimum volume, coefficient as second column); charts with the app | Agreed (lead 2026-10-26) |
 | B10-D8 | Operating threshold value: B-G-07 recorded 4/15; the team means 5/14 | A new post-test change (B-G-09), not a correction: 5/14 replaces 4/15; B10.3 reports 1/6 and 5/14 as B9.10 did; B9's accepted outputs are not changed | Agreed (Henry for the team, 2026-10-26); lead confirmation pending |
 | B10-D10 | Validation figures at 5/14 need out-of-fold probabilities; rebuilding them refits the frozen recipe, and on Henry's machine the refit differs from B8's calibration step by up to about 1.5e-3 AP per fold (B9 matched within 1e-9 on Benson's) | No refit in B10: restate B9's stored files (5/14 bracketed by 0.36 and 0.35); test from T1's saved predictions. An exact 5/14 validation row can be added on Benson's machine later | Agreed (Henry, 2026-10-26) |
+| B10-D11 | Out-of-profile limit for the app's warning | 4 SD from the training mean: under 1% of test rows per feature on average; 3 SD warns on up to 7.7% of orders for one feature (out_of_profile_shares.csv) | Agreed (Henry, 2026-10-26) |
 | B10-D9 | In-scope classification orders not yet handed over: B cannot score them (it predicts at handover) | No score until handover, and the missed-dispatch rule (B-C10) flags the order once its shipping limit passes; A is not used for them (A is the fallback for out-of-scope orders only, B-G-06) | Agreed (Henry, 2026-10-26) |
 
 ## 7. After B10

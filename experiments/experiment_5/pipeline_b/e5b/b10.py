@@ -35,7 +35,8 @@ STAGE = "b10"
 B_FROZEN_TAG, T1_TAG = "e5-B-frozen", "e5-T1-tested"
 LABELS = ("lead_days", "lead_label_ts", "is_detractor", "is_detractor_first", "review_label_ts")
 TOL = 1e-9
-SD_OPTIONS = (3, 4, 5)        # out-of-profile thresholds shown for the team (B10.6); none is chosen here
+SD_OPTIONS = (3, 4, 5)        # out-of-profile limits shown for the team (B10.6)
+OUT_OF_PROFILE_SD = 4         # B10-D11: warn when a numeric input is more than 4 SD from the training mean
 MIN_VOLUME = 100              # orders per window to rank a route or category (R-14; G-40 convention)
 TOP_N = 5
 
@@ -237,7 +238,7 @@ def run(task: str) -> None:
             "expected_alerts_per_day": vol,
             "volumes_confirmed_by_team": {"confirmed": True, "by": "Henry for the team", "date": "2026-10-26",
                                           "note": "B at 5/14 gives fewer alerts/day than the 6/day asked at the B9 review; accepted (B10-D2)"}, "results_file": "threshold_results.csv"})
-    cfg["out_of_profile"] = {"sd": None, "options": list(SD_OPTIONS), "note": "the team chooses the SD limit at the B10 review (B10.6)"}
+    cfg["out_of_profile"] = {"sd": OUT_OF_PROFILE_SD, "options": list(SD_OPTIONS), "decision": "B10-D11 (Henry, 2026-10-26)", "note": "warning only; the order is still scored"}
 
     # B10.6 drift profile (written before the router so the router can read the training ranges) -----------------
     prof, beyond = {"task": task, "reference_test_drift": "b09 drift.csv (B9.4)", "bundles": {}}, []
@@ -303,7 +304,8 @@ def run(task: str) -> None:
              ("negative value where training has none", base_b, {neg_b: -1.0}, "rejected", "negative value"),
              ("missing numeric value (imputed)", base_b, {num_b: np.nan}, "scored", "missing value"),
              ("unseen category (ignored)", base_b, {"primary_category": "not_a_category"}, "scored", "unseen category"),
-             ("distance missing: out of scope", base_b, {"distance_km_max": np.nan}, "scored", "A frozen")]
+             ("distance missing: out of scope", base_b, {"distance_km_max": np.nan}, "scored", "A frozen"),
+             ("far from the training profile (warning)", base_b, {num_b: cfg["out_of_profile"]["numeric"]["B"][num_b]["mean"] + 10 * cfg["out_of_profile"]["numeric"]["B"][num_b]["std"]}, "scored", "out of profile")]
     if task == "classification":
         cases.append(("in scope, not yet handed over", base_b, {"order_handed_over_late": np.nan}, NO_SCORE, ""))
     cres = []
@@ -328,7 +330,7 @@ def run(task: str) -> None:
                  {"rule": "negative value", "level": "error", "source": "numeric features whose training minimum is >= 0 (drift_profile.json)"},
                  {"rule": "missing value", "level": "warning", "source": "the bundle imputes the training median"},
                  {"rule": "unseen category", "level": "warning", "source": "levels of the bundle's one-hot encoder (ignored when unseen)"},
-                 {"rule": "out of profile", "level": "warning", "source": "drift_profile.json; off until the team sets the SD limit (B10.6)"}]
+                 {"rule": "out of profile", "level": "warning", "source": f"drift_profile.json; more than {OUT_OF_PROFILE_SD} SD from the training mean (B10-D11)"}]
     dd = pd.read_csv(w.read(E5 / "stages/s02_data/common/outputs/data_dictionary.csv"))
     w.json("input_validation", {"task": task, "rules": rules_doc, "cases": cres,
                                 "data_dictionary_columns": sorted(set(dd.column) & set(rls.schemas["A"]["numeric"] + rls.schemas["B"]["numeric"]))},
@@ -413,7 +415,7 @@ def run(task: str) -> None:
                              + "; ".join(f"{r['scope_reason']} / {r['model'] or '-'} / {r['status']}: {r['orders']:,}" for r in rc['routes'])))
     w.explain("B10.5", done=f"{len(rules_doc)} input rules; {sum(c['passed'] for c in cres)} of {len(cres)} test cases give the expected outcome (input_validation.json).")
     w.explain("B10.6", done=("Training ranges per feature from T1's final-fit rows; shares of test rows beyond 3, 4 and 5 SD in out_of_profile_shares.csv. "
-                             "The SD limit is the team's choice (off until set)."))
+                             f"The app warns beyond {OUT_OF_PROFILE_SD} SD (B10-D11); warning only."))
     w.explain("B10.7", done=(f"{len(src)} app elements mapped to files and evidence IDs (app_sources.json); R-14 top {TOP_N} routes and categories per quarter "
                              f"with at least {MIN_VOLUME} orders, observed outcomes on development rows, coefficient beside (top_routes_categories.csv)."))
     w.finish(seed=seed)
