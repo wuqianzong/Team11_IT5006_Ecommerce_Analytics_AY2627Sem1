@@ -18,3 +18,6 @@ b09:
     operating_threshold: {value: 0.26666666666666666, label: "4/15", frozen_threshold_kept: 0.16666666666666666, post_test_change: true, decision: B-G-07, rationale: "fewer false alarms per true detractor than the frozen 1/6 (Henry, B9 review point 7); reported on validation and on T1's saved test predictions, no refit; the frozen 1/6 result stays the unbiased test result (G-79)", decided_by: "Henry; experiment lead (Wu Qianzong)", date: 2026-10-25}
   serving:
     fallback: {rule: "B inside its scope (seven states, distance present); A's frozen model outside", decision: B-G-06, decided_by: "Henry; experiment lead (Wu Qianzong)", date: 2026-10-25}
+
+b10:
+  parity_reprediction: {allowed: true, labels_read: false, scoring: false, tolerance: 1.0e-9, decision: B-G-08, rationale: "reload parity of the release bundles against T1's saved test predictions, as B9's no-refit check; not a second test read", decided_by: "Henry; experiment lead (Wu Qianzong)", date: 2026-10-26}
