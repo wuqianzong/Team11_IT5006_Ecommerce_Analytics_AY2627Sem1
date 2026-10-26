@@ -165,7 +165,7 @@
     {
       "name": "every input-check case gives the expected outcome",
       "passed": true,
-      "detail": "13 cases",
+      "detail": "14 cases",
       "ids": [
         "B10.5"
       ]
@@ -226,7 +226,7 @@
       "label": "observation"
     },
     "B10.5": {
-      "done": "10 input rules; 13 of 13 test cases give the expected outcome (input_validation.json).",
+      "done": "10 input rules; 14 of 14 test cases give the expected outcome (input_validation.json).",
       "inputs": "",
       "expectation": "",
       "observation": "",
@@ -235,7 +235,7 @@
       "label": "observation"
     },
     "B10.6": {
-      "done": "Training ranges per feature from T1's final-fit rows; shares of test rows beyond 3, 4 and 5 SD in out_of_profile_shares.csv. The SD limit is the team's choice (off until set).",
+      "done": "Training ranges per feature from T1's final-fit rows; shares of test rows beyond 3, 4 and 5 SD in out_of_profile_shares.csv. The app warns beyond 4 SD (B10-D11); warning only.",
       "inputs": "",
       "expectation": "",
       "observation": "",

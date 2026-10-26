@@ -1,8 +1,8 @@
 {
   "node": "B/b10/regression",
   "pipeline": "B",
-  "run_id": "20261026T015521Z",
-  "commit": "60a6c3c77f74f1c1a7e65a9599ad321f4762fafc",
+  "run_id": "20261026T020904Z",
+  "commit": "adf23d6b60e417d6ca138987f09d3688417acc5a",
   "dirty": false,
   "a_frozen_tag": "e5-A-frozen",
   "a_foundation": {
@@ -43,7 +43,7 @@
     "experiments/experiment_5/pipeline_b/e5b/b08.py": "64951903367321fd07970c5de4d5b6f5f18bfe2bd833fdbc9accca9c0a3b4bcf",
     "experiments/experiment_5/pipeline_b/e5b/b09.py": "3ad31a26080fdfa5261c82174a4f9b0afd4f247603bfe5b1851e7ce6973bc4b7",
     "experiments/experiment_5/pipeline_b/e5b/b09_extra.py": "756de95370f1df6f9158ca5852bca7a5928d6e59c8b2d31a3db0759fa96876c5",
-    "experiments/experiment_5/pipeline_b/e5b/b10.py": "8e89821c12336a7eaf71ffcdaed8d3df701ebc5d76f15fae0dda51a5ab368caf",
+    "experiments/experiment_5/pipeline_b/e5b/b10.py": "c17bbfa3432735218042ab5b4d2501e8f263bc221d85d2bfd033c760b67bd892",
     "experiments/experiment_5/pipeline_b/e5b/doc_support.py": "3a98422264d486daa98810475e2f4d66bbeb6b82d97de2dd5b523beadd3c8b40",
     "experiments/experiment_5/pipeline_b/e5b/env.py": "d9ac016cb7ab23d2f4c891683d9dd3e25168e13e3ece09af979966d934238d26",
     "experiments/experiment_5/pipeline_b/e5b/history.py": "4a78daeae036d35d33be9ca18fe24cee85cd3019809c8a3ac8cd1d194c84b4c6",
@@ -74,15 +74,15 @@
     "experiments/experiment_5/stages/s08_selection/regression/outputs/frozen_recipe.json": "716fbd42f520546a09a00b883ec7a530cacf0e702672bc39ce71d24d4fc631e0"
   },
   "outputs": {
-    "experiments/experiment_5/pipeline_b/stages/b10/regression/outputs/_evidence_index.json": "7120168c4505ddb7d02850fe4831287a457a7363ca4ff199b548b67d1bdb10c7",
+    "experiments/experiment_5/pipeline_b/stages/b10/regression/outputs/_evidence_index.json": "cb4f6ad2cf2e2c7f9086664fcd9cd1daff8d8f4a7ff8cf03c47afa44e9536dec",
     "experiments/experiment_5/pipeline_b/stages/b10/regression/outputs/app_sources.json": "05284c651168d6951e1d0960b852c04bebcff812fa5bf2cd1a638c337175db35",
     "experiments/experiment_5/pipeline_b/stages/b10/regression/outputs/drift_profile.json": "3492afd362292ebf98853550b99ed8159d93c7969a42bfcb141cd38876217617",
-    "experiments/experiment_5/pipeline_b/stages/b10/regression/outputs/input_validation.json": "e30ffa87e17555e3be7e148cf5c56817fe3aab4b8547adf938dbb5e9e2d4e7e0",
+    "experiments/experiment_5/pipeline_b/stages/b10/regression/outputs/input_validation.json": "327c160838e00343b8e64703b0d1309b2e6aba4112ec46c3612523a3c9866860",
     "experiments/experiment_5/pipeline_b/stages/b10/regression/outputs/out_of_profile_shares.csv": "e9cfcfc67ed8fe780ca4cb74faddc6c7ca3d5d3b2954a050a2347cb317997821",
     "experiments/experiment_5/pipeline_b/stages/b10/regression/outputs/parity.json": "53e5cc40a52ff2c84ecd6c21a0430c4aceb8dd8602a977217f26d4fc66eb3376",
     "experiments/experiment_5/pipeline_b/stages/b10/regression/outputs/release_manifest.json": "7eb03909542f5b9fb96b5fe904bd7b35bdd1bfc53f836bd8a28ba3d42d7c903c",
     "experiments/experiment_5/pipeline_b/stages/b10/regression/outputs/router_check.json": "8b9e8d331e85c6f911add660bd8cbdb2986f1da504a3f5939f273109186a6472",
-    "experiments/experiment_5/pipeline_b/stages/b10/regression/outputs/serving_config.json": "e92fad737d7c1cb9e331f5ffd0220ede8fa02e13335d3f6eba9dc85c0241df81",
+    "experiments/experiment_5/pipeline_b/stages/b10/regression/outputs/serving_config.json": "a0242014fd06bad80a2c50e6a47b388ab3390791ee14778c15e243b6eb769d97",
     "experiments/experiment_5/pipeline_b/stages/b10/regression/outputs/top_routes_categories.csv": "f70066ee1b8076943dc0fc686766edcd7eb090604c26318fb5dc9b8f91b8ad69"
   },
   "versions": {
@@ -97,5 +97,5 @@
     "shapely": "2.1.2"
   },
   "seed": 42,
-  "runtime_s": 30.3
+  "runtime_s": 29.53
 }

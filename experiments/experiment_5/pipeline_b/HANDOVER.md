@@ -56,4 +56,4 @@ and the YAML. Benson refreshes the read-only mirror `spec/team_doc/` when a stag
 ## Open items
 
 - B10 blueprint AGREED 2026-10-26; Benson to confirm B-G-09 (5/14) on return.
-- B10 built for review (B-CR-22, commit 60a6c3c; clean runs 20261026T015521Z, 20261026T015559Z). Review tabs in `spec/doc_outbox/` (b10_review*.md), not published. Approval by Benson or the lead, then tag `e5-B-s10-accepted`.
+- B10 built for review (B-CR-22, commit 60a6c3c; clean runs 20261026T020904Z, 20261026T021016Z on adf23d6; B10-D11 4 SD). Review tabs in `spec/doc_outbox/` (b10_review*.md), not published. Approval by Benson or the lead, then tag `e5-B-s10-accepted`.

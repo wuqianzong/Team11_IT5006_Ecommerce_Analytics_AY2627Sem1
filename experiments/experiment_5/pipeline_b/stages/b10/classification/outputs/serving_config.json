@@ -67,13 +67,14 @@
   },
   "results_file": "threshold_results.csv",
   "out_of_profile": {
-    "sd": null,
+    "sd": 4,
     "options": [
       3,
       4,
       5
     ],
-    "note": "the team chooses the SD limit at the B10 review (B10.6)",
+    "decision": "B10-D11 (Henry, 2026-10-26)",
+    "note": "warning only; the order is still scored",
     "numeric": {
       "A": {
         "seller_prior_review_mean": {

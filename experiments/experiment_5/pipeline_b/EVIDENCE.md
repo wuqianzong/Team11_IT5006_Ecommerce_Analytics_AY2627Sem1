@@ -35,10 +35,10 @@ Pipeline A's evidence is frozen at tag `e5-A-frozen`: cite A only from `../stage
 | b09 | classification | 20261025T132538Z | b09c396 | e5-B-s09-accepted | 2 |
 | doc_support | regression | 20261025T132541Z | b09c396 | e5-B-s09-accepted | 1 |
 | doc_support | classification | 20261025T132552Z | b09c396 | e5-B-s09-accepted | 1 |
-| b10 | regression | 20261026T015521Z | 60a6c3c | e5-B-s10-accepted | 1 (tag pending approval) |
-| b10 | classification | 20261026T015559Z | 60a6c3c | e5-B-s10-accepted | 1 (tag pending approval) |
+| b10 | regression | 20261026T020904Z | adf23d6 | e5-B-s10-accepted | 1 (tag pending approval) |
+| b10 | classification | 20261026T021016Z | adf23d6 | e5-B-s10-accepted | 1 (tag pending approval) |
 
-**B10 rows:** clean runs on 60a6c3c (Henry's machine, Python 3.13.7), byte-identical on a second run. The tag
+**B10 rows:** clean runs on adf23d6 (Henry's machine, Python 3.13.7), byte-identical on a second run. The tag
 `e5-B-s10-accepted` is set only after Benson or the lead approves B10; until then cite B10 as "for review".
 
 **T1 is never rerun** (a rerun is a second test read; joint_test.md §1). Its run was made on a tree

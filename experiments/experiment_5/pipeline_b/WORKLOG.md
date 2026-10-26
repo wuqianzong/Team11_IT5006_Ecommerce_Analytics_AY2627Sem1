@@ -140,3 +140,12 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
 - Henry confirmed B-G-09 (5/14); decision log and YAML updated.
 - Henry accepted A's fallback volume at 1/6 (B10-D2).
 - Out-of-profile SD limit: explained to Henry, decision pending.
+
+## 2026-10-26 · Henry + Claude · Out-of-profile limit 4 SD
+
+- Henry chose 4 SD (B10-D11): the app warns when a numeric input is more than 4 SD from the training
+  mean; warning only. Code commit adf23d6 (B-CR-23), one input-check case added.
+- Clean runs 20261026T020904Z (regression) and 20261026T021016Z (classification) on adf23d6, dirty
+  false, byte-identical on a second run, 13 + 15 checks PASS. EVIDENCE.md, README, HANDOVER and the
+  review tabs updated (tabs regenerated from the outputs; not published).
+- Next: Henry's review of B10, then approval and the tag e5-B-s10-accepted. Not pushed.

@@ -1,6 +1,6 @@
 # B10 › regression
 
-**Built for review · run `20261026T015521Z` on commit 60a6c3c (clean, dirty: false) · 13 checks, 13 PASS.** Blueprint spec/blueprints/b10\_release.md (AGREED). Nothing is refitted and the test is not read again (B-G-08, B10-D10). Every number below is read from pipeline\_b/stages/b10/regression/outputs/.
+**Built for review · run `20261026T020904Z` on commit adf23d6 (clean, dirty: false) · 13 checks, 13 PASS.** Blueprint spec/blueprints/b10\_release.md (AGREED). Nothing is refitted and the test is not read again (B-G-08, B10-D10). Every number below is read from pipeline\_b/stages/b10/regression/outputs/.
 
 ## B10.1 Reload parity
 
@@ -40,7 +40,7 @@ B rows outside T1's kept set (regression: above the lead cap; classification: re
 
 ## B10.5 Input checks
 
-**What was done:** 10 input rules; 12 of 12 test cases give the expected outcome (input\_validation.json).
+**What was done:** 10 input rules; 13 of 13 test cases give the expected outcome (input\_validation.json).
 
 | rule | level | source |
 | --- | --- | --- |
@@ -53,7 +53,7 @@ B rows outside T1's kept set (regression: above the lead cap; classification: re
 | negative value | error | numeric features whose training minimum is >= 0 (drift\_profile.json) |
 | missing value | warning | the bundle imputes the training median |
 | unseen category | warning | levels of the bundle's one-hot encoder (ignored when unseen) |
-| out of profile | warning | drift\_profile.json; off until the team sets the SD limit (B10.6) |
+| out of profile | warning | drift\_profile.json; more than 4 SD from the training mean (B10-D11) |
 
 | case | expected | status | model | rules | passed |
 | --- | --- | --- | --- | --- | --- |
@@ -61,7 +61,7 @@ B rows outside T1's kept set (regression: above the lead cap; classification: re
 | valid out-of-scope order | scored (A frozen) | scored | A frozen |  | True |
 | unknown customer state | rejected (unknown state) | rejected: input error |  | unknown state, unseen category | True |
 | negative distance | rejected (impossible distance) | rejected: input error |  | impossible distance, negative value | True |
-| distance beyond Brazil | rejected (impossible distance) | rejected: input error |  | impossible distance | True |
+| distance beyond Brazil | rejected (impossible distance) | rejected: input error |  | impossible distance, out of profile | True |
 | no items | rejected (no items) | rejected: input error |  | no items | True |
 | missing installments | rejected (missing installments) | rejected: input error |  | missing installments, missing value | True |
 | text in a numeric feature | rejected (type) | rejected: input error |  | type | True |
@@ -69,10 +69,11 @@ B rows outside T1's kept set (regression: above the lead cap; classification: re
 | missing numeric value (imputed) | scored (missing value) | scored | B frozen | missing value | True |
 | unseen category (ignored) | scored (unseen category) | scored | B frozen | unseen category | True |
 | distance missing: out of scope | scored (A frozen) | scored | A frozen | missing value | True |
+| far from the training profile (warning) | scored (out of profile) | scored | B frozen | out of profile | True |
 
 ## B10.6 Drift profile
 
-**What was done:** Training ranges per feature from T1's final-fit rows; shares of test rows beyond 3, 4 and 5 SD in out\_of\_profile\_shares.csv. The SD limit is the team's choice (off until set).
+**What was done:** Training ranges per feature from T1's final-fit rows; shares of test rows beyond 3, 4 and 5 SD in out\_of\_profile\_shares.csv. The app warns beyond 4 SD (B10-D11); warning only.
 
 Largest shares of test rows beyond 3 SD of the training mean (all features in out\_of\_profile\_shares.csv):
 
@@ -140,7 +141,7 @@ R-14, latest development quarter (2018Q2); every quarter is in top\_routes\_cate
 | the router reproduces T1's predictions: B on B's test rows and A on the out-of-scope rows (within 1e-9) | True | B 1.4e-14, A 2.1e-14 |
 | no test row is rejected by the input checks | True | 0 rejected |
 | every scope reason and route occurs (in scope; customer state; seller state) | True | ['in scope', 'outside: customer state', 'outside: distance missing', 'outside: seller state'] |
-| every input-check case gives the expected outcome | True | 12 cases |
+| every input-check case gives the expected outcome | True | 13 cases |
 | every app element names an existing file tagged with its evidence ID | True | 17 elements |
 | A's tree untouched: A's code matches e5-A-frozen | True |  |
 

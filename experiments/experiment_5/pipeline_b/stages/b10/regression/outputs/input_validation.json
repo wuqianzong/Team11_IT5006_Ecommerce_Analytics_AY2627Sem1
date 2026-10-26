@@ -49,7 +49,7 @@
     {
       "rule": "out of profile",
       "level": "warning",
-      "source": "drift_profile.json; off until the team sets the SD limit (B10.6)"
+      "source": "drift_profile.json; more than 4 SD from the training mean (B10-D11)"
     }
   ],
   "cases": [
@@ -108,7 +108,8 @@
       "status": "rejected: input error",
       "model": "",
       "rules": [
-        "impossible distance"
+        "impossible distance",
+        "out of profile"
       ],
       "passed": true
     },
@@ -201,6 +202,19 @@
       "model": "A frozen",
       "rules": [
         "missing value"
+      ],
+      "passed": true
+    },
+    {
+      "case": "far from the training profile (warning)",
+      "change": {
+        "route_recent_carrier_transit_days": 48.41757598299471
+      },
+      "expected": "scored (out of profile)",
+      "status": "scored",
+      "model": "B frozen",
+      "rules": [
+        "out of profile"
       ],
       "passed": true
     }
