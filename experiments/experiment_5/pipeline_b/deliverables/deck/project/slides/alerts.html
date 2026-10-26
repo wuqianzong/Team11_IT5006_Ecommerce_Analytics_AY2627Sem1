@@ -1,0 +1,16 @@
+<section id="alerts" data-transition="fade" style="background:#EEF1F4;color:#14213D;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#C2410C">Thresholds and alert volume</p>
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1">Fewer, more precise alerts at 4/15</h2>
+<div style="display:flex;gap:40px;align-items:start">
+<table style="width:960px;font-size:28px;color:#14213D">
+<tr><th style="width:46%">Test period</th><th style="width:18%">Alerts/day</th><th style="width:18%">Precision</th><th style="width:18%">Recall</th></tr>
+<tr><td>B at frozen 1/6 (unbiased)</td><td>{{B10.clf.B_1_6_test_alerts_day}}</td><td>{{B10.clf.B_1_6_test_precision}}</td><td>{{B10.clf.B_1_6_test_recall}}</td></tr>
+<tr><td>B at operating 4/15</td><td>{{B10.clf.B_4_15_test_alerts_day}}</td><td>{{B10.clf.B_4_15_test_precision}}</td><td>{{B10.clf.B_4_15_test_recall}}</td></tr>
+<tr><td>A at 1/6, outside the seven states</td><td>{{B10.clf.A_out_test_alerts_day}}</td><td>{{B10.clf.A_out_test_precision}}</td><td></td></tr>
+<tr><td>Total served at 4/15 + fallback</td><td>{{B10.clf.combined_test_alerts_day}}</td><td></td><td></td></tr>
+</table>
+<img src="/_blob/5c1cf0eca3fc4217eeb264acb02321e6" alt="Precision, recall and alerts per day against the threshold, marking 1/6 and 4/15" style="width:660px;height:480px;object-fit:contain;background:#FFFFFF;border-radius:16px">
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6B7280">Team 11 · IT5006 · Source: B10.3, B9.10; 4/15 chosen after the test (B-G-07)</p>
+<aside>The frozen 1/6 comes from the 5:1 cost and is the unbiased test result. After the test, the team chose 4/15 to cut false alarms: about {{B10.clf.B_4_15_test_fp_per_tp}} false alarms per true detractor. Orders outside B’s seven states use A’s frozen model at 1/6; they are the less precise share of the alerts.</aside>
+</section>

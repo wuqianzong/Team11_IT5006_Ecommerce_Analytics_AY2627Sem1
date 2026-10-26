@@ -15,3 +15,12 @@ Fig 1 F.reg.lateness_by_route (§3) · 2 F.reg.selection, 3 F.reg.partition (§4
 10 F.clf.threshold_options (marks frozen 1/6 and operating 4/15), 11 F.clf.by_state,
 12–13 F.*.importance, 14–15 F.*.coefficients (§5) · 16 F.reg.drift (§8).
 A figure changes only by re-uploading the rebuilt PNG (blobs are immutable).
+
+## Deck (Claude Slides, B11-D6)
+
+- Sources: `deck/project/deck.json` and `deck/project/slides/*.html` with `{{id}}` placeholders. Fill each slide with
+  `build_evidence_B.py fill` into a publish folder, then publish `project/…` to the deck.
+- Deck: https://claude.ai/artifact/VtyNdrjEovfAvycTPmvy23 (Henry's account, private until shared). 12 slides; titles,
+  text and tables are editable; charts are uploaded register PNGs (validation_and_test ×2, population, residuals,
+  threshold_options, partition).
+- Placeholder: app screenshot and live URL on slide "deploy".

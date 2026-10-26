@@ -226,3 +226,10 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
 - Report: appendices A–F (windows, glossary, full rank, selected features, train/validation/test tables, AI-use
   declaration) via new `{{table:id}}` placeholders (B-CR-28). Remaining: s03 EDA numbers, app placeholders.
 - Next: Claude Slides deck.
+
+## 2026-10-26 · Henry + Claude · B11.3 deck v1
+
+- Claude Slides deck https://claude.ai/artifact/VtyNdrjEovfAvycTPmvy23, 12 slides, every number filled from the
+  register (all placeholders resolve); charts uploaded as images; text and tables editable.
+- Sources committed under deliverables/deck/. Open: app screenshot and URL (slide "deploy"), team review, PDF/PPTX
+  download for Canvas by 4 Nov.
