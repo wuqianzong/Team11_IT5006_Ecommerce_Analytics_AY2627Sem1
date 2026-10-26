@@ -31,3 +31,26 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
    B-G-07, `spec/human_decisions_B.yaml` b09.classification.operating_threshold (value 0.2667,
    label "4/15") and B9 `threshold_options.csv` all record 4/15. The draft keeps 4/15 until this is
    confirmed (B10-D8).
+
+## 2026-10-26 · Henry + Claude · B10 blueprint DRAFT
+
+**Done**
+- Setup committed as d8fbe8c ("Pipeline B: B10 handover setup").
+- Drafted `spec/blueprints/b10_release.md` (Status DRAFT): B10.1 parity, B10.2 release manifest,
+  B10.3 serving configuration (scope rule, B at 4/15 and 1/6, A fallback at 1/6, expected alert
+  volumes for the team to confirm), B10.4 router, B10.5 input checks, B10.6 drift profile, B10.7 app
+  sources plus R-14 data. Decisions B10-D1 to D7 agreed by Benson; D8 and D9 open.
+- Doc-ready copy: `spec/doc_outbox/b10_blueprint_tab.md` (section for the tab "B blueprints B2–B9
+  and joint test"). Not published.
+
+**Checks**
+- None run on new code (no B10 code yet).
+
+**Next**
+- Agreement of the blueprint (Henry and Benson, or the lead), then mark AGREED with who and date.
+- Then B10 code (B-CR-22), clean reruns on that commit, pytest, EVIDENCE.md rows, review tabs.
+
+**Questions for Benson**
+1. B10-D8: 4/15 (recorded in B-G-07) or 5/14 (Henry's remark)? See the earlier entry.
+2. B10-D9: in-scope classification orders before handover get no score, only the missed-dispatch
+   rule; A is not used for them. Agree?
