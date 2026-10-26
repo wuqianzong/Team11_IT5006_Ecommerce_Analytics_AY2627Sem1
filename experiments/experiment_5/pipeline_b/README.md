@@ -50,4 +50,4 @@ from Pipeline A as frozen at tag `e5-A-frozen`.
 | B9 Conclusion (B primary, A as baseline; A's s09 does not run separately, G-79) | AGREED (spec/blueprints/b09_conclusion.md) | ACCEPTED (confirmed by Henry and the lead 2026-10-25; runs 20261025T132406Z regression, 20261025T132538Z classification on b09c396; tag e5-B-s09-accepted; B-G-06, B-G-07) |
 | Doc support (charts and tables for the tabs and the report; DOC_GAPS) | not a stage blueprint (B-CR-19) | ACCEPTED with B9 (runs 20261025T132541Z, 20261025T132552Z on b09c396; tag e5-B-s09-accepted) |
 | B10 Release (B10.1–B10.7; report, deck, dashboard and reproduction later) | AGREED 2026-10-26 (spec/blueprints/b10_release.md; B-G-08, B-G-09, B10-D10) | ACCEPTED (approved by Henry for Benson 2026-10-26; runs 20261026T020904Z regression, 20261026T021016Z classification on adf23d6; all checks pass; tag e5-B-s10-accepted; branch e5/b10-henry) |
-| B11 Report and deck drafts | DRAFT (spec/blueprints/b11_report_deck.md) | NOT STARTED |
+| B11 Report and deck drafts | AGREED 2026-10-26 (spec/blueprints/b11_report_deck.md) | NOT STARTED |

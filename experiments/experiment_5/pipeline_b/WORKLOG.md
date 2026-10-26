@@ -170,3 +170,9 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
   Open: B11-D5 to D9. Stopped for agreement.
 - For Benson: B11-D1 deviates from s10-D3's order (deliverables before migration) because of the 4 Nov
   slide lock; numbers are re-checked before submission.
+
+## 2026-10-26 · Henry + Claude · B11 blueprint AGREED
+
+- Henry: B11-D5 (report doc in Henry's account), D7 (ensemble wording), D8 (Team 11), D9 (Claude drafts,
+  team edits, AI use declared) as recommended; D6 changed: the deck is a Claude Slides deck (not python-pptx).
+- Next: number register `build_evidence_B.py` and `evidence/registry_B.yaml`.
