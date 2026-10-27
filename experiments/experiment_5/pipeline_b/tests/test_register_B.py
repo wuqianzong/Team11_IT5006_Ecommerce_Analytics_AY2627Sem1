@@ -13,8 +13,9 @@ import build_evidence_B as reg  # noqa: E402
 
 
 @pytest.fixture(scope="module")
-def numbers():
-    return reg.build()
+def numbers(tmp_path_factory):
+    # build into a temporary folder: running the tests must not rewrite the tracked evidence/build/ (B-CR-31)
+    return reg.build(tmp_path_factory.mktemp("register_build"))
 
 
 def test_every_item_resolves(numbers):
@@ -59,3 +60,7 @@ def test_table_placeholder(numbers):
     out = reg.fill("{{table:APX.windows}}", numbers)
     assert out.splitlines()[0].startswith("| period |") and len(out.splitlines()) == numbers["APX.windows"]["rows"] + 2
     assert reg.missing("{{table:no.such}}", numbers) == ["table:no.such"]
+
+
+def test_build_leaves_tracked_register_untouched(numbers):
+    assert all(not Path(v["file"]).is_relative_to(reg.BUILD) for v in numbers.values() if "file" in v)

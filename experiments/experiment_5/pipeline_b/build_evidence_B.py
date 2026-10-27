@@ -90,17 +90,27 @@ def _value(item: dict, path: Path):
     return v.item() if hasattr(v, "item") else v
 
 
-def build() -> dict:
+def _rel(p: Path) -> str:
+    """Path stored in numbers_B.json: relative to pipeline_b/ for the default build, absolute elsewhere (tests)."""
+    try:
+        return p.relative_to(B_ROOT).as_posix()
+    except ValueError:
+        return p.as_posix()
+
+
+def build(out_dir: Path = BUILD) -> dict:
+    """Build the register into out_dir (default evidence/build/; tests pass a temporary folder)."""
+    out_dir = Path(out_dir)
     items = yaml.safe_load(REGISTRY.read_text(encoding="utf-8"))
     ids = [i["id"] for i in items]
     dup = sorted({i for i in ids if ids.count(i) > 1})
     if dup:
         raise SystemExit(f"duplicate registry ids: {dup}")
     runs = current_runs()
-    if BUILD.exists():
-        shutil.rmtree(BUILD)
-    (BUILD / "tables").mkdir(parents=True)
-    (BUILD / "figures").mkdir(parents=True)
+    if out_dir.exists():
+        shutil.rmtree(out_dir)
+    (out_dir / "tables").mkdir(parents=True)
+    (out_dir / "figures").mkdir(parents=True)
     numbers, errors = {}, []
     for it in items:
         try:
@@ -117,13 +127,13 @@ def build() -> dict:
             elif it["kind"] == "table":
                 df = _select(pd.read_csv(path), it.get("select"))
                 df = df[it["columns"]] if it.get("columns") else df
-                out = BUILD / "tables" / f"{it['id']}.csv"
+                out = out_dir / "tables" / f"{it['id']}.csv"
                 df.to_csv(out, index=False, lineterminator="\n")
-                entry.update(file=out.relative_to(B_ROOT).as_posix(), rows=int(len(df)))
+                entry.update(file=_rel(out), rows=int(len(df)))
             elif it["kind"] == "figure":
-                out = BUILD / "figures" / f"{it['id']}{path.suffix}"
+                out = out_dir / "figures" / f"{it['id']}{path.suffix}"
                 shutil.copyfile(path, out)
-                entry.update(file=out.relative_to(B_ROOT).as_posix(), caption=it.get("caption", ""))
+                entry.update(file=_rel(out), caption=it.get("caption", ""))
             else:
                 raise ValueError(f"unknown kind {it['kind']}")
             numbers[it["id"]] = entry
@@ -132,8 +142,8 @@ def build() -> dict:
     if errors:
         raise SystemExit("registry build failed:\n  " + "\n  ".join(errors))
     commit = subprocess.run(["git", "rev-parse", "HEAD"], cwd=B_ROOT, capture_output=True, text=True).stdout.strip()
-    (BUILD / "numbers_B.json").write_text(json.dumps(numbers, indent=2, default=str), encoding="utf-8", newline="\n")
-    (BUILD / "build_manifest.json").write_text(json.dumps(
+    (out_dir / "numbers_B.json").write_text(json.dumps(numbers, indent=2, default=str), encoding="utf-8", newline="\n")
+    (out_dir / "build_manifest.json").write_text(json.dumps(
         {"commit": commit, "registry_sha256": _sha(REGISTRY), "items": len(numbers),
          "current_runs": {f"{s}/{t}": r for (s, t), r in sorted(runs.items())}}, indent=2), encoding="utf-8", newline="\n")
     return numbers
