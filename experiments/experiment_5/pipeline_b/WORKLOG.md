@@ -305,3 +305,11 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
 - Benson chose option 1 (CR-056, B-CR-35): README §12 step 4's hash check runs on his machine and is the gate; reruns on
   any other machine are judged by tolerance (predictions 1e-9, refitted scores 2e-3 absolute, counts equal, report and
   slide numbers equal at the precision shown). Reason: Mac and Windows floating-point results differ slightly.
+
+## 2026-10-27 · Benson + Claude · merge and publish
+
+- e5/b10-henry and tag e5-B-s10-accepted-r3 pushed; milestone-3 fast-forwarded to 46d68a4 and pushed.
+- Published from spec/doc_outbox/: new tab "B10 Release" with sub-tabs regression and classification (acceptance note,
+  round 3, round 2 kept below as superseded); B10 and B11 sections appended to the blueprints tab (renamed "B blueprints
+  B2–B11 and joint test"). doc_outbox/README.md marks every file published. Mirror spec/team_doc/ refreshed.
+- Next for Henry: branch from milestone-3 for new work. Benson: e5-release-1, migration, app.

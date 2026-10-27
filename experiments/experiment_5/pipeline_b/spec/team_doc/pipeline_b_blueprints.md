@@ -306,3 +306,182 @@ Goal: describe what B's frozen models achieve on the test, where they fail, why 
 ### 7. After B9
 
 Team review in the doc (B9 tab and sub-tabs). On confirmation: B10 release (bundle packaging, app), then the report, deck, dashboard and reproduction, and the DOC\_GAPS.md pass.
+
+## B10 — release of B's frozen models, with A as fallback (blueprint)
+
+Repo copy: `experiments/experiment_5/pipeline_b/spec/blueprints/b10_release.md`.
+
+| Field | Value |
+| --- | --- |
+| Stage | B10 release (G-79; A's s10 blueprint `../../../spec/blueprints/s10_release.md` adapted to B) |
+| Nodes | regression, classification |
+| Status | AGREED 2026-10-26: scope B10.1–B10.7 and B10-D1 to D7 by the experiment lead (Wu Qianzong); B10-D8 (4/15; B-G-09 withdrawn), D9, D10 (no refit) and D11 by Henry for the team. Round 2 (2026-10-26): back to 4/15. Drafted by Henry's Claude |
+| Inputs frozen | T1 at tag e5-T1-tested (runs 20261024T044531Z, 20261024T044555Z); B8 at e5-B-frozen; A at e5-A-frozen; B9 at e5-B-s09-accepted (runs 20261025T132406Z, 20261025T132538Z) |
+
+### 0. Scope
+
+B10 turns the frozen T1 bundles into a release package that an app can serve, and proves that the package predicts exactly what T1 predicted. It covers A's 10.1 (parity), the serving rule (B-G-06) and threshold (B-G-07), A's 10.5 input checks, the drift profile and the map of every app element to its source. Everything stays in `pipeline_b/`.
+
+Not in B10 (later, each only when ordered): the release tag `e5-release-1` and team sign-off (A's 10.2), migration into the working folders (10.3, experiment lead only, README §12), the reproduction check (10.4), the Streamlit app build and live URL (10.5–10.6), the report and slides (10.7), the walkthrough notebook (10.8).
+
+### 1. Goal and gate
+
+Goal: one release package per task (B's bundle, A's bundle as fallback, the serving rule, both thresholds, input checks, drift profile, app sources), each file with its sha256. Gate: every bundle re-predicts T1's saved test predictions within 1e-9 (B-G-08); every sha256 matches the frozen and tagged files; no model, calibration or threshold changes; the team reviews the package and confirms the expected alert volumes before any app is built.
+
+### 2. Inputs (read only; no refit, no scoring of the test cohort)
+
+- T1 `stages/t1_joint_test/<task>/outputs/`: `bundles/A/` and `bundles/B/` (`model.joblib`, `schema.json`, `training_profile.json`), `predictions_test.csv.gz`, `test_rows_B.csv`, `test_read.json`.
+- Frozen recipes: B `stages/b08/<task>/outputs/frozen_recipe.json` (e5-B-frozen); A `../../stages/s08_selection/<task>/outputs/frozen_recipe.json` (e5-A-frozen).
+- Test-row features rebuilt with T1's verified builder (`e5b.t1_joint_test.b_rows`), as B9 does; the labels are not read (B-G-08).
+- B9 outputs: `threshold_options.csv` (B9.10), `a_fallback_by_scope.csv` (B9.15), `drift.csv` (B9.4), `residuals_summary.csv` (B9.16), `business_by_route.csv` (B9.13), `subgroups.csv` (B9.3).
+- A's s02 `../../stages/s02_data/common/outputs/data_dictionary.csv` (types, ranges, allowed values; G-58).
+- For R-14 (B10-D7): B2 `records_B.csv.gz` (development rows, observed outcomes only).
+
+### 3. Method
+
+1. **Reload parity (B10.1; A's 10.1; B-G-08).** Load each of the four bundles from disk (A and B, both tasks) and re-predict T1's test rows: A on A's test rows, A on B's test rows, B on B's test rows, features rebuilt with `b_rows`. Each prediction equals the saved value in `predictions_test.csv.gz` within 1e-9, row by row; any mismatch stops the stage. No label is read, no metric is computed. This is also the acceptance test of the Python 3.13.7 environment.
+2. **Release manifest (B10.2).** Per bundle: sha256 of `model.joblib`, `schema.json`, `training_profile.json`; the frozen recipe's sha256 against `schema.json` `frozen_sha256` and against the file at its tag; feature lists, model id, calibration, training rows, training-ID digest; the package versions in `schema.json` against the running environment (any difference is listed; a difference that changes a prediction already fails B10.1).
+3. **Serving configuration (B10.3; B-G-06, B-G-07, B10-D2).**
+   - Scope rule, per order: customer state and primary seller state both in SP, MG, RJ, PR, RS, BA, SC, and `distance_km_max` present → B; otherwise → A. Regression predicts at checkout for both. Classification: B at carrier handover, A at checkout. In-scope orders not yet handed over get no score; the missed-dispatch rule (B-C10) flags them once the shipping limit passes; A is not used for them (B10-D9).
+   - Thresholds (classification): B operating 4/15 (B-G-07), B frozen 1/6 kept beside it; A fallback at A's frozen 1/6 (B10-D2).
+   - Results at both B thresholds, without refitting anything (B10-D10): alerts/day, precision, recall, FP/TP, cost 5:1 and 1:1, confusion counts.
+     - Validation (out-of-fold): B at 1/6 and at 4/15 restated exactly from B9 `threshold_options.csv`; A out of scope at 1/6 derived from B9.15's fold rows (TP = recall × detractors, alerts = TP / precision; checked to be whole numbers), days from A's s05 folds.
+     - Test (post-test view): B at 1/6 and 4/15 from T1's saved predictions; both rows must equal B9 `threshold_options.csv`. A out of scope at 1/6: alerts counted from T1's saved predictions, precision and recall restated from B9.15.
+     - The combined daily volume: B in scope at 4/15 plus A out of scope at 1/6, re-confirmed by the team (Henry, 2026-10-26; B10-D2).
+4. **Router (B10.4).** `e5b/serving.py`: `predict(order) -> {prediction, alert, threshold_name, model, scope_reason}`. It validates the input (B10.5), applies the scope rule, calls the matching bundle and applies the configured threshold. It never fits. Tests: every T1 test row routed through it gives T1's saved prediction (same tolerance), and each scope reason is exercised.
+5. **Input checks (B10.5; A's 10.5).** Per bundle schema: column present, type, range or allowed values (from `data_dictionary.csv` and the training profile), unknown state or category, no items, missing instalments, impossible distance; clear error messages. Written as `input_validation.json` with one test case per rule, run through the router.
+6. **Drift profile (B10.6).** Per bundle: the training profile (mean and SD per numeric feature, category shares) and the out-of-profile rule for the app (a numeric value beyond a set number of SDs, a category unseen in training), with B9.4's drift table as the reference for the test period. The limit is 4 SD (B10-D11, Henry 2026-10-26): a warning only, the order is still scored.
+7. **App sources (B10.7).** `app_sources.json`: every number and chart the model tabs will show (A's s10 panel list, adapted to B: headline, fit, policy at 1/6 and 4/15, where it errs, why, score, data health), mapped to its output file and evidence ID; the app computes no statistic. Plus R-14 (B10-D7): `top_routes_categories.csv`, observed outcomes by time window on development rows (top 5 routes and categories, minimum volume per window), with the coefficient as a second column; data only, charts with the app.
+
+### 4. Outputs (per task, `pipeline_b/stages/b10/<task>/outputs/`)
+
+`parity.json`, `release_manifest.json`, `serving_config.json`, `input_validation.json`, `drift_profile.json`, `app_sources.json`, `top_routes_categories.csv` (R-14), checks and manifest. Code: `e5b/b10.py`, `e5b/serving.py`; `b10` added to `STAGES` in `e5b/env.py` and `BUILT` in `b_run.py`; tests in `pipeline_b/tests/` (router, parity, evidence register). Evidence IDs B10.1 to B10.7.
+
+### 5. Checks
+
+- Parity: all four bundles re-predict T1 within 1e-9, row counts equal T1's; no label column read.
+- sha256 of every bundle file and frozen recipe matches T1, B8 and the tagged files.
+- `schema.json` thresholds unchanged (1/6); 4/15 lives only in `serving_config.json`.
+- B's 1/6 and 4/15 test results from T1's saved predictions equal B9 `threshold_options.csv`; A's out-of-scope validation counts derive exactly from B9.15.
+- No frozen recipe is refitted anywhere in B10 (B10-D10).
+- Router reproduces T1's predictions on every test row; every scope reason covered by a test.
+- Every number in `serving_config.json` equals the B9 or T1 value it restates.
+- Every app element in `app_sources.json` names an existing file and evidence ID.
+- A's tree untouched: A's code matches e5-A-frozen.
+- Clean rerun on the committed code (`dirty: false`), byte-identical outputs.
+
+### 6. Decisions
+
+| ID | Question | Recommendation | Status |
+| --- | --- | --- | --- |
+| B10-D1 | Re-predicting T1's test rows for parity vs "never read the test cohort again" | Allowed for parity only: no labels, no scoring | Agreed (B-G-08; experiment lead 2026-10-26) |
+| B10-D2 | Threshold for A's alerts on out-of-scope orders | A's own frozen 1/6 (B-G-07 is for B only); `serving_config.json` shows the expected out-of-scope alerts/day at 1/6 and the combined volume | Agreed (lead 2026-10-26); volumes re-confirmed for 4/15 (Henry for the team, 2026-10-26) |
+| B10-D3 | What the app can score | Held-out historical orders with features rebuilt by T1's builder; no free-form input | Agreed (lead 2026-10-26) |
+| B10-D4 | Handover facts for classification | Stored orders only (follows D3) | Agreed (lead 2026-10-26) |
+| B10-D5 | Where the app code lives | Inside `pipeline_b/` until the lead orders migration; live URL after migration | Agreed (lead 2026-10-26) |
+| B10-D6 | Tags | `e5-B-s10-accepted` on the branch after approval; `e5-release-1` waits for migration | Agreed (lead 2026-10-26) |
+| B10-D7 | R-14 top routes and categories | Data output only (observed outcomes, minimum volume, coefficient as second column); charts with the app | Agreed (lead 2026-10-26) |
+| B10-D8 | Operating threshold value | 4/15 as recorded in B-G-07. On 2026-10-26 5/14 was first recorded as B-G-09; Henry then confirmed 5/14 was a typo, so B-G-09 is withdrawn and B10 is rerun (round 2) | Agreed (Henry, 2026-10-26) |
+| B10-D10 | Validation figures need out-of-fold probabilities; rebuilding them refits the frozen recipe, and on Henry's machine the refit differs from B8's calibration step by up to about 1.5e-3 AP per fold (B9 matched within 1e-9 on Benson's) | No refit in B10: restate B9's stored files (1/6 and 4/15 are stored exactly); test from T1's saved predictions | Agreed (Henry, 2026-10-26) |
+| B10-D11 | Out-of-profile limit for the app's warning | 4 SD from the training mean: under 1% of test rows per feature on average; 3 SD warns on up to 7.7% of orders for one feature (out\_of\_profile\_shares.csv) | Agreed (Henry, 2026-10-26) |
+| B10-D9 | In-scope classification orders not yet handed over: B cannot score them (it predicts at handover) | No score until handover, and the missed-dispatch rule (B-C10) flags the order once its shipping limit passes; A is not used for them (A is the fallback for out-of-scope orders only, B-G-06) | Agreed (Henry, 2026-10-26) |
+
+### 7. After B10
+
+Team review of the package (doc tab copy in `../doc_outbox/`). On approval: tag `e5-B-s10-accepted` on the branch. Then, each only when ordered: team sign-off and `e5-release-1`, migration (lead), reproduction check, app and dashboard build with the live URL, report and slides.
+
+## B11 — final report and deck drafts, from B's evidence (blueprint)
+
+Repo copy: `experiments/experiment_5/pipeline_b/spec/blueprints/b11_report_deck.md`.
+
+| Field | Value |
+| --- | --- |
+| Stage | B11 deliverables: report and deck drafts (A's s10 10.7 adapted to B; G-79: B delivered, A baseline) |
+| Nodes | common (one report, one deck, both tasks) |
+| Status | AGREED 2026-10-26 (Henry: B11-D1 to D9; D6 changed to Claude Slides). Drafted by Henry's Claude |
+| Inputs frozen | Every B run listed Current in `../../EVIDENCE.md` (B2 to B10, T1, doc support); B10 at tag e5-B-s10-accepted-r2 (round 2, 4/15) |
+
+### 0. Scope and order (decisions of 2026-10-26)
+
+Henry's decisions on the deliverables (B11-D1 to D4):
+
+1. **Draft now, before migration and the reproduction check** (a deviation from s10-D3's order, because the slides lock on 4 Nov). Drafts live in `pipeline_b/deliverables/`. Before submission every number is re-checked against the reproduced outputs (s10 10.4), or against the same Current runs if the team submits without migration.
+2. **Blueprint first**, as every B stage.
+3. **B's own number register**, `pipeline_b/build_evidence_B.py`, separate from A's `build_evidence.py`.
+4. **Report as a Claude Doc** for the team to review and comment (not the Milestone 2 Word route); **deck as a Claude Slides deck** (no team template): text and tables stay editable, charts are images.
+
+Not in B11: migration, the reproduction check, the Streamlit app and its live URL (each only when ordered). Report and deck keep marked placeholders for the app (deployment section, screenshots) until then.
+
+### 1. Goal and gate
+
+Goal: a 15–20 page report and a 10-minute deck that follow the brief's Phase 3 section list, tell one story (B delivered, A as baseline), and carry no hand-typed number. Gate: every number and table in both resolves to `numbers_B.json` (built from Current runs only); the team reviews the report in the Claude Doc and the deck file; open placeholders are listed.
+
+### 2. Number register (B11.1, `build_evidence_B.py`)
+
+- `pipeline_b/evidence/registry_B.yaml` lists every number, table and figure the report and deck use (A's registry format: `id`, `kind` number/table/figure, `source` file, `select`, `used_in`), with B evidence IDs. A's baseline numbers come from B's T1 and B9 files, which already score A (A on A's rows, A on B's rows); A's own tree is not read for the register and never written.
+- The builder refuses to run unless each source file belongs to a run listed Current in EVIDENCE.md (its `_manifest.json` run\_id and sha256 match), then writes `pipeline_b/evidence/build/numbers_B.json`, table CSVs and figure copies, each with its source file, run\_id and evidence ID.
+- Report and deck text uses placeholders such as `{{B9.2.reg.mae_diff}}`; a filler replaces them from `numbers_B.json` with the registry's format. A placeholder that does not resolve fails the build.
+- Test: every placeholder in the report and deck sources is in the registry; every registry item resolves.
+
+### 3. Report (B11.2)
+
+Source: `pipeline_b/deliverables/report/*.md`, one file per section, with placeholders. Filled output is published as a Claude Doc in Henry's account for the team (B11-D5); the doc is the review copy, the repo holds the source. Exported to PDF at the end (12 pt, captions, labelled tables; `TeamX_...` naming).
+
+| § | Section (brief Phase 3) | Pages | Content and sources |
+| --- | --- | --- | --- |
+| — | Cover, executive summary | 1 | Problem, delivered model, headline test results with intervals (B9.1, B9.2), business answer |
+| 1 | Problem definition and stakeholder | 1.5 | Two tasks, prediction moments (checkout; handover for classification), stakeholders and actions, 5:1 cost (s01; CR-054) |
+| 2 | Dataset and preprocessing | 2 | Tables and joins, `customer_unique_id`, leakage audit (s02); B's population rules and history features (B2); why carrier dates are allowed as *past* events and at handover only (brief leakage warning) |
+| 3 | Exploratory analysis highlights | 1.5 | Target shape, trends over time, late delivery vs detractors (s03); route lateness (B2 lateness summary) |
+| 4 | Modelling approach | 3 | Pipeline A, then B = A + CR-054; features and 99% rule (B4; Report notes §6 citations); time-ordered folds and why not stratified (Report notes §2); model ladder dummy → linear/logistic → tree → forest, one-SE rule (B6–B8); calibration and threshold (B8, B-G-05); ensemble decision (§3, wording per B11-D7) |
+| 5 | Results and evaluation | 4 | Train–validation–test table with intervals, A vs B on the same rows (B9.1, B9.2, B9.14); where B's gain comes from (Report notes §1); error analysis by state and route (B9.3, B9.13); residual buffers (B9.16); classification at 1/6 (unbiased) and 4/15 (post-test, B-G-07) (B10.3); interpretation: coefficients, odds ratios, permutation importance and its divergence from B4 (B9.5, R-15); drift (B9.4, B9.11) |
+| 6 | Model deployment and application | 1.5 | Release package and serving rule (B10): parity, router, A fallback, input checks, out-of-profile warning; app URL and screenshots **placeholder** |
+| 7 | Business recommendations and impact | 2 | Delivery promises with buffers, alert volumes and costs, missed-dispatch rule, route actions (B9.7, B9.13, B10.3, R-14); observation / hypothesis / unmeasured-mechanism labels |
+| 8 | Limitations and next steps | 1 | Scope, prediction moments, fold-1 deviation, drift, post-test threshold, refit reproducibility (B10-D10), no causal claims |
+| — | References; appendices | (excluded) | Full rank (R-01), metric glossary, fold boundaries, recipes, full tables, AI-use declaration |
+
+Report requests R-01 to R-18 and DOC\_GAPS T-01 to T-10 are each mapped to a section in the registry (`used_in`); the build lists any request without a home.
+
+### 4. Deck (B11.3)
+
+- A Claude Slides deck (artifact type "Slides") in Henry's account, shared with the team like the report doc (B11-D6). Slide text comes from `pipeline_b/deliverables/deck/slides.md` (one block per slide, with placeholders), filled from `numbers_B.json`. One house style for the deck (palette, fonts, title, content, two-column, table and chart layouts). **Every title, bullet and table is editable deck text or table; only charts are images** (the stage PNGs, uploaded as assets). Speaker notes carry the talk track and the source of each number.
+- About 12 slides for 10 minutes: title; problem and stakeholders; data and leakage control; A → B (what changed and why); model ladder and selection; results A vs B (both tasks); where B errs; threshold and alert volumes; business actions; deployment (app screenshots placeholder); limitations; summary.
+- Downloaded as .pptx and PDF for Canvas and the ZIP (B11-D6).
+
+### 5. Outputs
+
+`pipeline_b/build_evidence_B.py`, `evidence/registry_B.yaml`, `evidence/build/` (numbers\_B.json, tables, figures, build manifest); `deliverables/report/*.md` and the filled report; `deliverables/deck/slides.md` and the Slides deck; `deliverables/placeholders.md` (open items: app URL, screenshots, reproduction re-check).
+
+### 6. Checks
+
+- Every number, table and figure in report and deck resolves to `numbers_B.json`; none is typed.
+- Every register source is a Current run in EVIDENCE.md (run\_id and sha256).
+- Superseded evidence (e.g. 4/15, B2 round 1) is never cited.
+- Validation scores are labelled selection scores (G-10); test numbers come from T1 or B9/B10 post-test views, and 1/6 is called the unbiased result.
+- The deck has no text or table inside a picture (every image asset is a chart PNG from the register).
+- Report body 15–20 pages after export; deck about 12 slides.
+- Brief compliance list (Phase 3 sections, leakage, imbalance, 2–3 families, baselines, CV, seeds) ticked with the section that satisfies each.
+
+### 7. Decisions
+
+| ID | Question | Recommendation | Status |
+| --- | --- | --- | --- |
+| B11-D1 | Draft before migration and reproduction | Yes, in `pipeline_b/deliverables/`; re-check before submission | Agreed (Henry, 2026-10-26) |
+| B11-D2 | Blueprint first | This blueprint | Agreed (Henry, 2026-10-26) |
+| B11-D3 | Number register | `build_evidence_B.py`, separate from A's | Agreed (Henry, 2026-10-26) |
+| B11-D4 | Formats | Report as a Claude Doc for review; deck generated, editable text and tables, charts as images | Agreed (Henry, 2026-10-26) |
+| B11-D5 | Whose account holds the report doc. A doc in Henry's account can be read and edited by Henry's Claude (comments included); Benson's Claude cannot reach it, as Henry's Claude cannot reach Benson's doc | Henry's account, shared with the team by link for browser review; the repo Markdown stays the source | Agreed (Henry, 2026-10-26) |
+| B11-D6 | Deck format | Claude Slides deck in Henry's account; editable text and tables, charts as images; download .pptx and PDF | Agreed (Henry, 2026-10-26; replaces the python-pptx proposal) |
+| B11-D7 | Ensemble wording. Report notes §3 says the course "rules out" a more complex family; the brief lists voting/stacking as an optional third family built from the chosen ones, and Benson says the professor forbids more complex families | Write "ensembles were optional; within the course's limit on model families the team kept linear and tree families, with the random forest as the bagged ensemble; stacking was not added", and cite the brief accurately | Agreed (Henry, 2026-10-26) |
+| B11-D8 | Team name and numbers in file names (`TeamX_…`) | Team 11, from the Milestone 2 report name | Agreed (Henry, 2026-10-26) |
+| B11-D9 | Report authorship: Claude drafts every section from the register, the team edits in the doc; AI use declared (brief policy) | As stated | Agreed (Henry, 2026-10-26) |
+
+### 8. Timeline (slides lock 4 Nov 23:59, report 8 Nov 23:59)
+
+| Date | Step |
+| --- | --- |
+| 27 Oct | Register and builder; report outline in the doc |
+| 28–30 Oct | Report sections 1–8 drafted; deck v1 |
+| 31 Oct – 2 Nov | Team review of doc and deck; app placeholders filled if migration and app are done |
+| 3 Nov | Deck final check (numbers, compliance list); 4 Nov submit |
+| 5–7 Nov | Report final edits, PDF export, re-check numbers; 8 Nov submit ZIP |

@@ -10,13 +10,13 @@ Benson's account. Each file is written in the style of the tabs mirrored in `../
 
 | File | Doc tab | Published by, date |
 | --- | --- | --- |
-| b10_blueprint_tab.md | B blueprints B2–B9 and joint test → section "B10 — release" | not yet |
-| b10_review.md | B implementation reviews → new sub-tab "B10 Release" (stage tab) | not yet |
-| b10_review_regression.md | B10 Release › regression | not yet |
-| b10_review_classification.md | B10 Release › classification | not yet |
-| b11_blueprint_tab.md | B blueprints → section "B11 — report and deck" | not yet |
+| b10_blueprint_tab.md | B blueprints B2–B9 and joint test → section "B10 — release" | Benson's Claude, 2026-10-27 (appended to the blueprints tab, renamed "B blueprints B2–B11 and joint test") |
+| b10_review.md | B implementation reviews → new sub-tab "B10 Release" (stage tab) | Benson's Claude, 2026-10-27 (new tab "B10 Release", below the round 3 section, as "Round 2 (superseded)") |
+| b10_review_regression.md | B10 Release › regression | Benson's Claude, 2026-10-27 (tab "B10 › regression", round 2 section) |
+| b10_review_classification.md | B10 Release › classification | Benson's Claude, 2026-10-27 (tab "B10 › classification", round 2 section) |
+| b11_blueprint_tab.md | B blueprints → section "B11 — report and deck" | Benson's Claude, 2026-10-27 (appended after the B10 section) |
 | sync_for_benson.md | not a doc tab: read first, then publish the files above | — |
-| b10_review_r3.md | B10 Release (stage tab): add as a "Round 3" section above round 2 | not yet |
-| b10_review_r3_regression.md | B10 Release › regression: round 3 section | not yet |
-| b10_review_r3_classification.md | B10 Release › classification: round 3 section | not yet |
+| b10_review_r3.md | B10 Release (stage tab): add as a "Round 3" section above round 2 | Benson's Claude, 2026-10-27 (tab "B10 Release", round 3 section under the acceptance note) |
+| b10_review_r3_regression.md | B10 Release › regression: round 3 section | Benson's Claude, 2026-10-27 (tab "B10 › regression", round 3 section) |
+| b10_review_r3_classification.md | B10 Release › classification: round 3 section | Benson's Claude, 2026-10-27 (tab "B10 › classification", round 3 section) |
 | sync_for_benson_r2.md | not a doc tab: read after sync_for_benson.md (changes since 8b6d7fb) | — |

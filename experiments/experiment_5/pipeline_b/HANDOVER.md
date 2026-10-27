@@ -60,5 +60,8 @@ and the YAML. Benson refreshes the read-only mirror `spec/team_doc/` when a stag
   version 1793077250-4a3c, audit inputs committed and audit 9/9. Summary: `spec/doc_outbox/sync_for_benson_r2.md`.
 - 2026-10-27, Benson: B-G-10 and B-G-11 ratified; B10 round 3 accepted, tag e5-B-s10-accepted-r3 (B-CR-34).
 - Reproduction-check policy decided (CR-056, B-CR-35): hash check on Benson's machine is the gate; other machines by tolerance.
-- Still Benson's: publish the r3 tabs, merge, release tag, migration and app.
+- 2026-10-27, Benson: e5/b10-henry merged into milestone-3 (fast-forward to 46d68a4, pushed); outbox published to the doc
+  (B10 Release tab and sub-tabs, B10 and B11 blueprint sections); mirror spec/team_doc/ refreshed.
+- Henry: start new work from milestone-3 on a new branch (for example e5/b11-henry); keep WORKLOG, HANDOVER and doc_outbox.
+- Still Benson's: release tag e5-release-1, migration (README §12), app and URL.
 - Not tagged in this session by rule. Slow adapter tests fail on Henry's machine (refits not bit-reproducible), pass on Benson's.
