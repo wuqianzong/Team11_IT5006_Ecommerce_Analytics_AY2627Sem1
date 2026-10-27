@@ -67,17 +67,14 @@ left out (their outcome is in the decision logs). Quotes are the commenter's wor
 | K-3 | Henry, 18 Oct | PR-AUC and ROC-AUC charts. | [model_solution:23](../../spec/team_doc/model_solution_s01_s06-s10.md#L23) | Built (s06, T1 curves) |
 | K-4 | Lead, 17 Oct | Deadline: the reproduction check has to pass before 4 Nov so the slides can use it. | [pipeline_v2:50](../../spec/team_doc/pipeline_v2.md#L50) | **Check** (section 4) |
 
-## 4. Points for the lead before Henry and Solomon plan
+## 4. Decisions (lead, 2026-10-27)
 
-1. **Milestone 2 in the report (P-19 vs TA).** The lead's rule (17 Oct, G-38/CR-018) forbids citing Milestone 2.
-   The TA asks for consolidated limitations, and `M2_FEEDBACK_GAPS.md` suggests one line saying Milestone 2's
-   non-chronological CV was replaced, and a "Response to Milestone 2 feedback" appendix. Decide whether the
-   report may name Milestone 2 **only** where it answers the TA's feedback.
-2. **Deliverables from experiment or reproduced outputs (P-20, K-4).** The 17 Oct rule says the report, deck and
-   app cite the migrated, reproduced outputs. The register IDs stay the same after migration, so drafting can
-   start now on register IDs, but the final numbers and the app's file paths wait for the migration and
-   reproduction order.
-3. **Scope message on the dashboard (D-8).** Replace "not served" with B-G-06 routing (B inside the seven
-   states, A outside).
-4. **Dashboard panel choice (D-6a/D-6b).** These are Claude's suggestions in a thread nobody confirmed; Henry
-   picks the panels before Solomon builds.
+1. **No earlier milestone in the report (P-19).** The final report replaces all earlier milestone reports. It
+   never mentions Milestone 1 or 2 and has no response-to-feedback appendix. It covers every section the
+   earlier reports had (problem statement, literature, data, EDA, models, business), rewritten from this
+   experiment's evidence and free of the mistakes both TAs pointed out.
+2. **Numbers from the reproduced outputs (P-20, K-4).** Final numbers and app paths come from the migrated,
+   reproduced outputs; the lead starts migration and reproduction next. Drafting continues meanwhile on
+   register IDs, which do not change; the final fill, figures and screenshots wait for the reproduction.
+3. **Scope message (D-8)** and 4. **panel choice (D-6a/D-6b)**: handed to Henry for the dashboard plan
+   (B-G-06 routing is the binding constraint for 3).
