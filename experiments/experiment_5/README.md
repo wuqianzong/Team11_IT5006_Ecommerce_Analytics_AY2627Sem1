@@ -630,6 +630,13 @@ through one deliberate migration:
    code on a clean checkout; every output hash (models excepted only if documented
    non-determinism) and every number in `evidence/build/numbers.json` must match release
    `e5-release-N`. Record the comparison as `migration_check.json`.
+   **Reference machine and tolerance (CR-056).** The hash check above is run on the experiment
+   lead's machine (the machine that produced the release), and it is the gate for step 5. A rerun
+   on any other machine (other OS, BLAS or CPU) is judged by tolerance, not hashes: predictions
+   within 1e-9 (absolute); scores of stages that refit (fold and test metrics, calibration,
+   threshold tables) within 2e-3 absolute; counts (rows, alerts, TP/FP/FN) equal; every number
+   the report and slides show equal at the precision shown. `migration_check.json` records which
+   machine ran it and which rule applied.
 5. Merge only after that check passes. `experiments/experiment_5/` stays in the repo,
    frozen, as the record of how the evidence was produced.
 

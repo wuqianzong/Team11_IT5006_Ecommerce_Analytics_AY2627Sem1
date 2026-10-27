@@ -299,3 +299,9 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
 
 **Next (Benson)**
 - Reproduction-check policy, merge into milestone-3, publish the outbox tabs, release tag, migration.
+
+## 2026-10-27 · Benson + Claude · reproduction-check policy
+
+- Benson chose option 1 (CR-056, B-CR-35): README §12 step 4's hash check runs on his machine and is the gate; reruns on
+  any other machine are judged by tolerance (predictions 1e-9, refitted scores 2e-3 absolute, counts equal, report and
+  slide numbers equal at the precision shown). Reason: Mac and Windows floating-point results differ slightly.
