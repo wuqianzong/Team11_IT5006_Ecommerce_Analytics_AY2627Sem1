@@ -445,8 +445,20 @@ which downstream decisions moved → those owners review.
 
 **Process**
 
-15. Work directly on `milestone-3` (team decision 2026-10-17, CR-002). Pull before you
-    start and before you push; never force-push. Commit only your own node folder and
+15. **Branches (CR-057, replaces the "work directly on milestone-3" rule of CR-002).**
+    `milestone-3` is the one base everyone starts from and the only branch that holds
+    accepted work. When more than one person (or their agent) works at the same time, each
+    piece of work goes on its own short branch cut from the current `milestone-3`, named
+    `e5/<topic>-<member>` (for example `e5/b11-henry`); the experiment lead reviews it and
+    merges it back (fast-forward when possible), then the branch is deleted or left idle.
+    Only the experiment lead commits directly on `milestone-3`, and only records (decision
+    log, change log, evidence register, handover notes, the team-doc mirror). The migration
+    runs on its own branch `e5/migration` (§12 step 3). Never push to `main`; never move or
+    re-create a tag. Anyone who cannot edit the team doc writes doc-ready text to
+    `pipeline_b/spec/doc_outbox/` and logs each session in `pipeline_b/WORKLOG.md`
+    (with "Questions for Benson") and `pipeline_b/HANDOVER.md`; the lead verifies the
+    branch, publishes the outbox and refreshes the mirror when merging.
+    Pull before you start and before you push; never force-push. Commit only your own node folder and
     `sandbox/<you>/`; shared files (`spec/`, `e5lib/`, `tools/`, `CHANGELOG.md`) change only
     through the experiment lead. Build only on upstream outputs marked `ACCEPTED`. At a
     gate, record the commit hash in `STAGE.md` → Sign-off so the reviewer checks exactly
