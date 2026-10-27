@@ -32,7 +32,7 @@ Paths are under `experiments/experiment_5/pipeline_b/` unless they start with `d
 | Read-only mirrors of the team doc | `spec/team_doc/` (B tabs), `../spec/team_doc/` (A tabs) |
 | A's original app design (three tabs, seven panels per model tab) | `../spec/team_doc/model_solution_s01_s06-s10.md` lines 100–120 |
 | A's appendix requests | `../spec/blueprints/s0N_*.md`, §8 "Report hooks" |
-| Release and migration plan | `release/e5-release-2.json`, `../MIGRATION_PLAN.md` |
+| Release and reproduction record | `release/e5-release-2.json`, `../reproduction/ACCEPTANCE.md` (no migration, CR-061) |
 
 ## 2. Your three tasks
 
@@ -83,52 +83,49 @@ List them in your handover as "waits for reproduction".
 
 ## 4. Collaboration rules (binding for you, and for Solomon's AI)
 
-1. **Branches.** Your branch is `e5/deliverables-henry`; Solomon's will be `e5/dashboard-solomon`. Only
-   Benson merges into `milestone-3`. Never push to `milestone-3` or `main`, never tag, never merge or
-   rebase another person's branch. Push your own branch only when your human says so.
-2. **Containment.** Write only inside `experiments/experiment_5/pipeline_b/`. Read anything. Nothing is
-   copied or moved into `src/`, `deployment/`, `artifacts/` or other working folders until Benson orders
-   the migration (README §12).
+Updated 2026-10-27 (lead): Henry and Solomon share one branch and talk directly about the dashboard.
+
+1. **One shared branch.** Henry and Solomon both work on `e5/deliverables-henry`, cut from `milestone-3`.
+   - Before you start and before every push, run `git pull --rebase origin e5/deliverables-henry`.
+   - Never force-push. Never rewrite commits already pushed.
+   - Push when your human says so.
+   - Only Benson merges the branch into `milestone-3`. Never push to `milestone-3` or `main`, never tag.
+2. **Containment.** Write only inside `experiments/experiment_5/pipeline_b/`. Read anything. Experiment 5 is
+   not migrated (CR-061): nothing is copied into `src/`, `deployment/`, `artifacts/` or other working folders,
+   and the root `app.py` is not touched. How the app is launched and hosted is a later step; ask Benson then.
 3. **The evidence is frozen.** Never rerun a stage, T1 or a model; never refit; never change `e5b/`,
    `stages/*/outputs/`, the tags or the release record. T1 was read once (`e5-T1-tested`).
 4. **Numbers.**
    - Never type a metric. Every number is a `{{id}}` register placeholder, filled with
      `build_evidence_B.py fill` and checked with `build_evidence_B.py check`.
-   - Before each push, rerun the audit: `audit_deliverables_B.py`.
-   - If a number has no register item: Henry's branch may add the item to `registry_B.yaml`, built only
-     from a Current run in `EVIDENCE.md`, and logs it in the worklog. Henry's branch is the only one that
-     edits the register; Solomon asks Henry.
-5. **Who owns which files.** Each branch touches only its own files, so merges don't conflict:
-   - Henry: `deliverables/report/`, `deliverables/deck/`, `deliverables/dashboard/DASHBOARD_PLAN.md`,
-     `deliverables/dashboard/HANDOVER_TO_SOLOMON.md`, `evidence/registry_B.yaml`, `WORKLOG.md`,
-     `HANDOVER.md`, `spec/doc_outbox/`.
-   - Solomon: `deliverables/dashboard/app/` (code and tests), `deliverables/dashboard/WORKLOG_solomon.md`,
-     `deliverables/dashboard/HANDOVER_solomon.md`.
+   - Before each push that touches the report or deck, rerun the audit: `audit_deliverables_B.py`.
+   - If a number has no register item: Henry adds the item to `registry_B.yaml`, built only from a Current
+     run in `EVIDENCE.md`, and logs it in the worklog. Only Henry edits the register; Solomon asks Henry.
+5. **Who owns which files.** Each person touches only their own files, so the shared branch never conflicts:
+   - Henry (report and deck; no code): `deliverables/report/`, `deliverables/deck/`,
+     `deliverables/dashboard/DASHBOARD_PLAN.md`, `evidence/registry_B.yaml`, `WORKLOG.md`, `HANDOVER.md`,
+     `spec/doc_outbox/`.
+   - Solomon (dashboard code): `deliverables/dashboard/app/` (code, tests, its own `requirements` and README),
+     `deliverables/dashboard/WORKLOG_solomon.md`.
    - Any other file: ask Benson first.
-6. **Logs.** Each session appends a dated entry to its own worklog: what was done, commits, open
-   questions. Each handover file states the current state, what is next and what is blocked. Doc text
-   for tabs you can't edit goes to `spec/doc_outbox/` with a `sync_for_benson_<topic>.md` summary.
-7. **When something is unclear.** If the spec is unclear or conflicts with a request, quote the text
-   (file and section), stop and ask your human. Requests go up the chain: Solomon → Henry → Benson.
-8. **Commit and review.** Commit small, one topic per commit, ending with a co-author line. Benson's
-   Claude reviews each pushed branch (diff, audit, tests) before merging.
+6. **Logs.** Each session appends a dated entry to its own worklog: what was done, commits, open questions.
+   Doc text for tabs you can't edit goes to `spec/doc_outbox/` with a `sync_for_benson_<topic>.md` summary.
+7. **Talking.** Henry and Solomon settle the dashboard plan between themselves; `DASHBOARD_PLAN.md` is the
+   contract, and a change to it is Henry's commit. If a spec rule is unclear or conflicts with a request,
+   quote the text (file and section), stop and ask your human; only rule conflicts go to Benson.
+8. **Commit and review.** Commit small, one topic per commit, ending with a co-author line. When the work is
+   ready, Henry asks Benson to merge; Benson's Claude reviews the branch (diff, audit, tests) first.
 
-## 5. Handover to Solomon's AI (do this after Henry approves the plan)
+## 5. Working with Solomon on the dashboard
 
-1. Push the plan when Henry says so, and tell Henry to ask Benson to merge it into `milestone-3`.
-   Solomon branches from `milestone-3` after that merge, not from your branch.
-2. Write `deliverables/dashboard/HANDOVER_TO_SOLOMON.md` with the same structure as this file:
-   - **Sync first:** branch `e5/dashboard-solomon` cut from `milestone-3` after the plan's merge.
-   - **Where everything is:** the plan, `app_sources.json`, the B10 files, the bundles, `input_validation.json`,
-     A's Phase 1 app at `deployment/app.py` (read only).
-   - **The task:** build the app exactly to the plan.
-   - **Timing:** the app's final paths come after the reproduction. The app reads every file through one
-     paths module, so the migration changes only that module. Until Benson orders the migration, the app
-     lives in `deliverables/dashboard/app/`; after it, it moves to `deployment/` (`MIGRATION_PLAN.md` M-5).
-   - **The rules:** copy §4 above unchanged.
-   - **How Solomon reports back:** his worklog and handover files, a pushed branch, then Benson reviews
-     and merges.
-3. The app never computes a statistic, never retrains, and never scores the test cohort with labels.
+1. Solomon's AI has its own starting prompt (from Benson). It joins `e5/deliverables-henry` and waits for
+   `deliverables/dashboard/DASHBOARD_PLAN.md`.
+2. When Henry approves the plan, commit and push it, and tell Henry to tell Solomon it is ready. Questions
+   about the plan go between Henry and Solomon directly.
+3. The plan must give Solomon, for every tab and panel, what it shows, the decision it supports, the exact
+   file and evidence ID it reads (from `stages/b10/<task>/outputs/app_sources.json` or a listed new
+   source), and the chart type.
+4. The app never computes a statistic, never retrains, and never scores the test cohort with labels.
    Re-predicting without labels for parity is allowed (B-G-08).
 
 ## 6. First reply to Henry
