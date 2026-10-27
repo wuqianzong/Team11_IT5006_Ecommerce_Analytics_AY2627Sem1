@@ -19,3 +19,4 @@ Benson's account. Each file is written in the style of the tabs mirrored in `../
 | b10_review_r3.md | B10 Release (stage tab): add as a "Round 3" section above round 2 | not yet |
 | b10_review_r3_regression.md | B10 Release › regression: round 3 section | not yet |
 | b10_review_r3_classification.md | B10 Release › classification: round 3 section | not yet |
+| sync_for_benson_r2.md | not a doc tab: read after sync_for_benson.md (changes since 8b6d7fb) | — |

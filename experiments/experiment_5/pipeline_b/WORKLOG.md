@@ -252,3 +252,33 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
   decision-log note for B10-F4. Live report doc (rev 28) and deck (6 versions) updated; audit rerun 9/9 PASS.
 - Open: s03 EDA numbers (decision), app and URL (migration), final exports, A fallback cost (B10 code change),
   full references (lookup). Response table: deliverables/audit/third_party_audit_v2_response.md.
+
+## 2026-10-27 · Henry + Claude · after Benson's review at 8b6d7fb
+
+**Done**
+- Step 0: Henry answered H-1 = yes (A's fallback test cost) and H-2 = yes (cite A's s03 EDA); recorded as B-G-10 and B-G-11,
+  Proposed, Henry for the team, Benson to ratify (edb0094).
+- Step 1: register test builds into pytest's tmp folder; pytest no longer rewrites evidence/build/ (B-CR-31, edb0094).
+- Step 2: blueprint §8 round 3 agreed by Henry; code 906fe39 (B-CR-32); clean runs 20261027T044744Z (regression) and
+  20261027T044819Z (classification), dirty false, byte-identical on a second run, 13 + 16 checks pass; only
+  threshold_results.csv and serving_config.json change. EVIDENCE.md round 3 Current, round 2 superseded; r3 review tabs
+  (555afb2). No tag.
+- Step 3: build_evidence_B.py accepts A/<stage>/<task>/outputs/<file> sources only if equal to the file at e5-A-frozen and
+  tagged with the cited A evidence ID; 11 A3 items; report §3 updated; tests for the rule (5a496e5, B-CR-33).
+- Step 4: register rebuilt, 117 items, check resolves every placeholder (368fa3e). Live report doc updated to rev 29
+  (§3 bullets and source line, §7 cost paragraph) and deck slide 8 to version 1793077250-4a3c, from the filled sources.
+  Audit inputs committed under deliverables/audit/inputs/; audit 9/9 PASS on them (ae02684).
+
+**Checks**
+- `pytest -q pipeline_b/tests`: 20 passed, 5 skipped; `git status` clean afterwards.
+- `E5B_SLOW=1`: 20 passed, 5 failed (the 5 slow adapter equivalence tests, which refit; expected on this machine, pass on
+  Benson's; not "fixed", by rule). Tree clean afterwards.
+
+**Next**
+- Benson: ratify B-G-10, B-G-11; approve and tag B10 round 3; publish the r3 tabs (sync_for_benson_r2.md).
+
+**Questions for Benson**
+1. Ratify B-G-10 and B-G-11?
+2. Tag name for B10 round 3 (round 2 was e5-B-s10-accepted-r2)?
+3. Reproduction-check tolerance policy: even B10 (no refit) differs across machines at about 1e-16 in parity and drift
+   outputs, so a hash comparison fails off the producing machine.
