@@ -35,10 +35,12 @@ Pipeline A's evidence is frozen at tag `e5-A-frozen`: cite A only from `../stage
 | b09 | classification | 20261025T132538Z | b09c396 | e5-B-s09-accepted | 2 |
 | doc_support | regression | 20261025T132541Z | b09c396 | e5-B-s09-accepted | 1 |
 | doc_support | classification | 20261025T132552Z | b09c396 | e5-B-s09-accepted | 1 |
-| b10 | regression | 20261026T024749Z | 1e36f0a | e5-B-s10-accepted-r2 | 2 |
-| b10 | classification | 20261026T024858Z | 1e36f0a | e5-B-s10-accepted-r2 | 2 |
+| b10 | regression | 20261027T044744Z | 906fe39 | e5-B-s10-accepted-r2 | 3 (no r3 tag yet; Benson tags after approval) |
+| b10 | classification | 20261027T044819Z | 906fe39 | e5-B-s10-accepted-r2 | 3 (no r3 tag yet; Benson tags after approval) |
 
-**B10 rows:** round 2 (operating threshold 4/15, B-G-07), clean runs on 1e36f0a, byte-identical on a second run.
+**B10 rows:** round 3 (B-G-10: A's fallback test cost and the combined B + A line in threshold_results.csv; thresholds unchanged, 4/15
+operating, 1/6 frozen, A 1/6), clean runs on 906fe39 (Henry's machine), byte-identical on a second run. Not yet tagged; the tag
+column names the last B10 tag, which the round-3 tree follows. Round 2 (clean runs on 1e36f0a) is superseded (table below).
 Round 1 (5/14, tag e5-B-s10-accepted) is superseded (table below). Round 2 approved by Henry on Benson's behalf on 2026-10-26; tag e5-B-s10-accepted-r2.
 
 **T1 is never rerun** (a rerun is a second test read; joint_test.md §1). Its run was made on a tree
@@ -65,6 +67,7 @@ to the table below.
 | B8 gate runs before a4a0ded (raw calibration, raw threshold tables, threshold options 1/6 = 19.2/day and 0.15 = 24.6/day on raw probabilities) | B8 doc tabs written at the gate; Henry's threads | B8 frozen run: sigmoid (B-G-05), threshold tables on sigmoid probabilities (threshold_table_sigmoid.csv), frozen_recipe.json |
 | T1 dry run on stand-in rows (last 8 weeks of development rows used as a fake test set, to exercise the code path before the single read; outputs deleted) | nowhere | never evidence; T1 runs above |
 | B9 build runs before b09c396 (round 1 20261024T05xxxxZ, round 2 20261025T09xxxxZ and the confirmation build; uncommitted code) and doc support build runs 20261024T06xxxxZ | B9 tabs ("Run ..." lines) and supplement sections cite those run IDs; the accepted reruns are byte-identical | B9 and doc support rows above |
+| B10 round 2 runs 20261026T024749Z, 20261026T024858Z on 1e36f0a (tag e5-B-s10-accepted-r2): A's fallback test row without counts or cost (NaN) | review tabs b10_review*.md (round 2), sync_for_benson.md, the report and deck before 2026-10-27 | B10 round 3 (B-G-10); every other figure unchanged |
 | B10 round 1 runs 20261026T020904Z, 20261026T021016Z on adf23d6 (tag e5-B-s10-accepted): operating threshold 5/14 (B-G-09, withdrawn as a typo) | review tabs b10_review*.md before round 2; the report doc before 2026-10-26 evening | B10 round 2 (4/15, B-G-07) |
 | Probe 1 and probe 2 (probe 2 withdrawn) | doc tab "Scratch check plan" | never evidence; motivation only (G-79) |
 

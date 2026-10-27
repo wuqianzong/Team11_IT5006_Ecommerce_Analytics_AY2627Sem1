@@ -1,8 +1,8 @@
 {
   "node": "B/b10/classification",
   "pipeline": "B",
-  "run_id": "20261026T024858Z",
-  "commit": "1e36f0afd514121c26c989236fc21a7ecbbdb73c",
+  "run_id": "20261027T044819Z",
+  "commit": "906fe39d9748b78145440350ba418a3379f88b6e",
   "dirty": false,
   "a_frozen_tag": "e5-A-frozen",
   "a_foundation": {
@@ -43,7 +43,7 @@
     "experiments/experiment_5/pipeline_b/e5b/b08.py": "64951903367321fd07970c5de4d5b6f5f18bfe2bd833fdbc9accca9c0a3b4bcf",
     "experiments/experiment_5/pipeline_b/e5b/b09.py": "3ad31a26080fdfa5261c82174a4f9b0afd4f247603bfe5b1851e7ce6973bc4b7",
     "experiments/experiment_5/pipeline_b/e5b/b09_extra.py": "756de95370f1df6f9158ca5852bca7a5928d6e59c8b2d31a3db0759fa96876c5",
-    "experiments/experiment_5/pipeline_b/e5b/b10.py": "d1f8dfc48f9effaf2cd11faac36f78cd13173cb14c643529c735b7f8cfd89023",
+    "experiments/experiment_5/pipeline_b/e5b/b10.py": "7445ee2ccf7201dff606b5628ab1c3bcd0811c15102ede1b4a8b6d68e7784a2a",
     "experiments/experiment_5/pipeline_b/e5b/doc_support.py": "3a98422264d486daa98810475e2f4d66bbeb6b82d97de2dd5b523beadd3c8b40",
     "experiments/experiment_5/pipeline_b/e5b/env.py": "d9ac016cb7ab23d2f4c891683d9dd3e25168e13e3ece09af979966d934238d26",
     "experiments/experiment_5/pipeline_b/e5b/history.py": "4a78daeae036d35d33be9ca18fe24cee85cd3019809c8a3ac8cd1d194c84b4c6",
@@ -77,7 +77,7 @@
     "experiments/experiment_5/stages/s08_selection/classification/outputs/frozen_recipe.json": "58f90b286cf591b388b123b406cecbf275f46251aba6994dd5afbdfc7cfec35e"
   },
   "outputs": {
-    "experiments/experiment_5/pipeline_b/stages/b10/classification/outputs/_evidence_index.json": "f10db9ab5427d8f447d8483ed8cafd2936c9f586d1d546b4d6db6a885b73937c",
+    "experiments/experiment_5/pipeline_b/stages/b10/classification/outputs/_evidence_index.json": "fe724dce0696dd9beb8b6774d731d10c155766e8c4375214013baa06cdf73784",
     "experiments/experiment_5/pipeline_b/stages/b10/classification/outputs/app_sources.json": "ac56feb63ea4c59c6ca504b63680679d80e11ba8cc7c9569c3bdf1f083c4b2c0",
     "experiments/experiment_5/pipeline_b/stages/b10/classification/outputs/drift_profile.json": "61789b9d6dea2dcb597e4561c978d135fdf3a31706e6368e597a8a0af9b4dc6e",
     "experiments/experiment_5/pipeline_b/stages/b10/classification/outputs/input_validation.json": "132e42bbd81def5ba9cacfbd44f84316903eec8200ede2dfbebaf555beef7a5a",
@@ -85,8 +85,8 @@
     "experiments/experiment_5/pipeline_b/stages/b10/classification/outputs/parity.json": "c4dcf45718024419937110e1c66ee71df375b3f12db1ce674561649a01b6a4ca",
     "experiments/experiment_5/pipeline_b/stages/b10/classification/outputs/release_manifest.json": "bde6c60aeb3fc95dd6fcc4b6fa770cb1e4a88d99937e1f4d9b40caf36dbfcfcd",
     "experiments/experiment_5/pipeline_b/stages/b10/classification/outputs/router_check.json": "1c6cf11f4ccaeb5e4ebf535ae5b8605a29407480467436efd5c4988f5611f84e",
-    "experiments/experiment_5/pipeline_b/stages/b10/classification/outputs/serving_config.json": "e4e1d882d7bf94e70a3d919770c35be26de8ab26cee4aec152f0e8a06f190e56",
-    "experiments/experiment_5/pipeline_b/stages/b10/classification/outputs/threshold_results.csv": "abbad960410b1a765c724c99069f5df8e200f12c1061d5957a8fc2290f7fb95f",
+    "experiments/experiment_5/pipeline_b/stages/b10/classification/outputs/serving_config.json": "08b2ba1daade5da7ced993f4621dac1aa990fa7389c2ea1389d9b091223609cd",
+    "experiments/experiment_5/pipeline_b/stages/b10/classification/outputs/threshold_results.csv": "80a481fa4f5b31e5cc34f2028bfc05f9ccd958f59eb33c33bc23c4f881bce2e1",
     "experiments/experiment_5/pipeline_b/stages/b10/classification/outputs/top_routes_categories.csv": "5150d285ed5830e167695dd33f68931fc1eba2042bf75a836c666aa64019a311"
   },
   "versions": {
@@ -101,5 +101,5 @@
     "shapely": "2.1.2"
   },
   "seed": 42,
-  "runtime_s": 29.68
+  "runtime_s": 30.42
 }

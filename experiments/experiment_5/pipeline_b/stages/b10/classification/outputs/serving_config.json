@@ -45,7 +45,9 @@
     "test": {
       "B_inside_at_4_15": 5.625,
       "A_outside_at_1_6": 14.875,
-      "combined_alerts_per_day": 20.5
+      "combined_alerts_per_day": 20.5,
+      "combined_cost_5_to_1": 9211.0,
+      "combined_cost_1_to_1": 3115.0
     }
   },
   "volumes_confirmed_by_team": {

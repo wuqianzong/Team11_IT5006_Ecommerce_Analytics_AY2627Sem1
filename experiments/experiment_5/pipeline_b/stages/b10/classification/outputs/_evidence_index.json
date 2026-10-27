@@ -130,6 +130,14 @@
       ]
     },
     {
+      "name": "A's out-of-scope test precision and recall from T1's saved predictions equal B9.15's test row (within 1e-12)",
+      "passed": true,
+      "detail": "precision 0.1331, recall 0.5278",
+      "ids": [
+        "B10.3"
+      ]
+    },
+    {
       "name": "the training profile in each bundle recomputes from T1's final-fit rows (mean and SD within 1e-9)",
       "passed": true,
       "detail": "",
@@ -208,7 +216,7 @@
       "label": "observation"
     },
     "B10.3": {
-      "done": "Serving: B inside its scope at 4/15 (B-G-07), frozen 1/6 kept beside it; A outside at 1/6 (B10-D2). Expected alerts/day, validation: B 4.0 + A 6.5 = 10.5; test (post-test view): B 5.6 + A 14.9 = 20.5. Volumes accepted by the team (Henry, 2026-10-26; threshold_results.csv).",
+      "done": "Serving: B inside its scope at 4/15 (B-G-07), frozen 1/6 kept beside it; A outside at 1/6 (B10-D2). Expected alerts/day, validation: B 4.0 + A 6.5 = 10.5; test (post-test view): B 5.6 + A 14.9 = 20.5, combined test cost 9,211 at 5:1 and 3,115 at 1:1 (round 3, B-G-10). Volumes accepted by the team (Henry, 2026-10-26; threshold_results.csv).",
       "inputs": "",
       "expectation": "",
       "observation": "",
