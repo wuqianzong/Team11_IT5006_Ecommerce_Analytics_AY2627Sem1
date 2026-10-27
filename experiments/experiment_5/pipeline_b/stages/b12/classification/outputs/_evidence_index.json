@@ -1,0 +1,73 @@
+{
+  "node": "B/b12/classification",
+  "pipeline": "B",
+  "files": {
+    "ranking_stability_by_fold.csv": {
+      "ids": [
+        "B12.1"
+      ],
+      "kind": "table"
+    },
+    "ranking_stability_features.csv": {
+      "ids": [
+        "B12.1"
+      ],
+      "kind": "table"
+    },
+    "ranking_stability.json": {
+      "ids": [
+        "B12.1"
+      ],
+      "kind": "json"
+    },
+    "figures/ranking_stability.png": {
+      "ids": [
+        "B12.1"
+      ],
+      "kind": "figure"
+    },
+    "figures/ranking_stability.csv": {
+      "ids": [
+        "B12.1"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/ranking_stability.json": {
+      "ids": [
+        "B12.1"
+      ],
+      "kind": "figure_meta"
+    }
+  },
+  "checks": [
+    {
+      "name": "recomputing B4 on all development rows gives B4's accepted selected set",
+      "passed": true,
+      "detail": "25 features",
+      "ids": [
+        "B12.1"
+      ]
+    },
+    {
+      "name": "every fold ranks on its training rows only",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "B12.1"
+      ]
+    }
+  ],
+  "deviations": {},
+  "cards": {
+    "B12.1": {
+      "done": "B4's ranking and 99% selection repeated on each fold's training rows: Jaccard overlap with B4's 25 selected features 0.68 to 1.00 (mean 0.88); 18 of 25 B4 features selected in every fold; rank correlation with B4 at least 0.22. Added in some fold: category_missing_fraction, product_photos_qty, purchase_dayofweek, purchase_hour; dropped in some fold: distance_km_max, interstate_share, order_dispatch_days, route_recent_carrier_transit_days, seller_prior_dispatch_days, seller_prior_late_handover_days, total_price.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    }
+  },
+  "checks_failed": []
+}

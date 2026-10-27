@@ -1,0 +1,7 @@
+{
+  "title": "Feature-ranking stability inside the folds",
+  "ids": [
+    "B12.1"
+  ],
+  "data": "figures/ranking_stability.csv"
+}

@@ -1,0 +1,19 @@
+{
+  "task": "regression",
+  "threshold": 0.99,
+  "selected_by_B4": 21,
+  "folds": 5,
+  "B4_features_selected_in_every_fold": 17,
+  "jaccard_min": 0.9047619047619048,
+  "jaccard_mean": 0.9437229437229437,
+  "spearman_min": 0.9377777777777777,
+  "features_ever_added": [
+    "n_payment_methods"
+  ],
+  "features_ever_dropped": [
+    "n_items",
+    "n_products",
+    "payment_installments_max",
+    "purchase_month"
+  ]
+}

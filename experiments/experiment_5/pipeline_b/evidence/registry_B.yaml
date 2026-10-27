@@ -135,3 +135,27 @@
 - {id: A3.reg.median_lead_AM, kind: number, source: A/s03_eda/regression/outputs/categorical_feature_target_lead_days.csv, select: {feature: customer_state, level: AM}, value: target_median, format: "{:.1f}", evidence: "3.5", used_in: [report 3]}
 - {id: A3.trend.orders_2017_11, kind: number, source: A/s03_eda/regression/outputs/outcome_trends.csv, select: {month: "2017-11"}, value: orders, format: "{:,}", evidence: "3.3", used_in: [report 3]}
 - {id: A3.trend.orders_2017_10, kind: number, source: A/s03_eda/regression/outputs/outcome_trends.csv, select: {month: "2017-10"}, value: orders, format: "{:,}", evidence: "3.3", used_in: [report 3]}
+
+# ---------------------------------------------------------------- Milestone 2 feedback checks (B12; TA points 3 and 10)
+- {id: B12.reg.rank_selected, kind: number, source: b12/regression/outputs/ranking_stability.json, value: selected_by_B4, format: "{:,}", evidence: B12.1, used_in: [report 4, report 8]}
+- {id: B12.reg.rank_always, kind: number, source: b12/regression/outputs/ranking_stability.json, value: B4_features_selected_in_every_fold, format: "{:,}", evidence: B12.1, used_in: [report 4, report 8]}
+- {id: B12.reg.rank_jaccard_min, kind: number, source: b12/regression/outputs/ranking_stability.json, value: jaccard_min, format: "{:.2f}", evidence: B12.1, used_in: [report 4, report 8]}
+- {id: B12.reg.rank_jaccard_mean, kind: number, source: b12/regression/outputs/ranking_stability.json, value: jaccard_mean, format: "{:.2f}", evidence: B12.1, used_in: [report 4, report 8]}
+- {id: B12.reg.rank_spearman_min, kind: number, source: b12/regression/outputs/ranking_stability.json, value: spearman_min, format: "{:.2f}", evidence: B12.1, used_in: [report 4, report 8]}
+- {id: B12.clf.rank_selected, kind: number, source: b12/classification/outputs/ranking_stability.json, value: selected_by_B4, format: "{:,}", evidence: B12.1, used_in: [report 4, report 8]}
+- {id: B12.clf.rank_always, kind: number, source: b12/classification/outputs/ranking_stability.json, value: B4_features_selected_in_every_fold, format: "{:,}", evidence: B12.1, used_in: [report 4, report 8]}
+- {id: B12.clf.rank_jaccard_min, kind: number, source: b12/classification/outputs/ranking_stability.json, value: jaccard_min, format: "{:.2f}", evidence: B12.1, used_in: [report 4, report 8]}
+- {id: B12.clf.rank_jaccard_mean, kind: number, source: b12/classification/outputs/ranking_stability.json, value: jaccard_mean, format: "{:.2f}", evidence: B12.1, used_in: [report 4, report 8]}
+- {id: B12.clf.rank_spearman_min, kind: number, source: b12/classification/outputs/ranking_stability.json, value: spearman_min, format: "{:.2f}", evidence: B12.1, used_in: [report 4, report 8]}
+- {id: B12.reg.ranking_by_fold, kind: table, source: b12/regression/outputs/ranking_stability_by_fold.csv, evidence: B12.1, used_in: [report 10]}
+- {id: B12.clf.ranking_by_fold, kind: table, source: b12/classification/outputs/ranking_stability_by_fold.csv, evidence: B12.1, used_in: [report 10]}
+- {id: B12.reg.buffer_90, kind: number, source: b12/regression/outputs/buffer_choice.csv, select: {on_time_target: 0.9}, value: buffer_days_chosen_on_validation, format: "{:.1f}", evidence: B12.2, used_in: [report 7]}
+- {id: B12.reg.buffer_90_val_late, kind: number, source: b12/regression/outputs/buffer_choice.csv, select: {on_time_target: 0.9}, value: validation_share_late, format: "{:.1%}", evidence: B12.2, used_in: [report 7]}
+- {id: B12.reg.buffer_90_test_late, kind: number, source: b12/regression/outputs/buffer_choice.csv, select: {on_time_target: 0.9}, value: test_share_late_B, format: "{:.1%}", evidence: B12.2, used_in: [report 7]}
+- {id: B12.reg.buffer_95, kind: number, source: b12/regression/outputs/buffer_choice.csv, select: {on_time_target: 0.95}, value: buffer_days_chosen_on_validation, format: "{:.1f}", evidence: B12.2, used_in: [report 7]}
+- {id: B12.reg.buffer_95_test_late, kind: number, source: b12/regression/outputs/buffer_choice.csv, select: {on_time_target: 0.95}, value: test_share_late_B, format: "{:.1%}", evidence: B12.2, used_in: [report 7]}
+- {id: B12.reg.buffer_choice, kind: table, source: b12/regression/outputs/buffer_choice.csv, evidence: B12.2, used_in: [report 7]}
+- {id: B12.reg.buffer_by_state, kind: table, source: b12/regression/outputs/buffer_by_state.csv, evidence: B12.2, used_in: [report 7]}
+- {id: F.reg.buffer_curve, kind: figure, source: b12/regression/outputs/figures/buffer_curve.png, caption: "Promise buffer: share of orders delivered later than prediction plus buffer; buffer chosen on validation, read on the test", evidence: B12.2, used_in: [report 7]}
+- {id: F.reg.ranking_stability, kind: figure, source: b12/regression/outputs/figures/ranking_stability.png, caption: "Delivery lead time: feature ranking on all development rows vs each training fold", evidence: B12.1, used_in: [report 10]}
+- {id: F.clf.ranking_stability, kind: figure, source: b12/classification/outputs/figures/ranking_stability.png, caption: "Detractor alert: feature ranking on all development rows vs each training fold", evidence: B12.1, used_in: [report 10]}

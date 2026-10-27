@@ -1,7 +1,7 @@
 {
-  "commit": "5a496e55da7237f31402692d6e01042ba3a64c28",
-  "registry_sha256": "ded03c040060613f76adaf9498f950cfb5a57324670c28d08f32678385c4644a",
-  "items": 117,
+  "commit": "3a27dbf001ea3e0b3d4a27d4aea8cd3b79086d92",
+  "registry_sha256": "fe448c5d641cc1c83be1cf382b5f5223c49c2b32b776851c08289bbf9846abdf",
+  "items": 139,
   "current_runs": {
     "b02/classification": "20261023T154822Z",
     "b02/regression": "20261023T154814Z",
@@ -19,6 +19,8 @@
     "b09/regression": "20261025T132406Z",
     "b10/classification": "20261027T044819Z",
     "b10/regression": "20261027T044744Z",
+    "b12/classification": "20261027T120801Z",
+    "b12/regression": "20261027T120743Z",
     "doc_support/classification": "20261025T132552Z",
     "doc_support/regression": "20261025T132541Z",
     "t1_joint_test/classification": "20261024T044555Z",

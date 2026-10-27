@@ -1,0 +1,6 @@
+fold,training_rows,selected,jaccard_with_B4,added_vs_B4,dropped_vs_B4,spearman_ranks_vs_B4
+1,7932,19,0.9047619047619048,,"n_products, payment_installments_max",0.9377777777777776
+2,18077,21,0.9090909090909092,n_payment_methods,payment_installments_max,0.965128205128205
+3,26184,21,1.0,,,0.9835897435897436
+4,37647,20,0.9523809523809524,,n_items,0.974017094017094
+5,47415,20,0.9523809523809524,,purchase_month,0.982222222222222

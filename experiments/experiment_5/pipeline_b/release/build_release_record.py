@@ -115,7 +115,7 @@ def main(tag: str) -> int:
     head = sh("git", "rev-parse", "HEAD").stdout.strip()
     rec = {"release": tag, "built_on_commit": head, "decisions": ["G-79", "CR-056", "CR-058", "B-G-12"],
            "replaced_under_G79": {"A s08 (8.6-8.8)": "T1 joint test", "A s09": "B9", "A s10": "B10"},
-           "reference_machine": "experiment lead's machine (CR-056); B10 round-3 outputs and the register build were produced on Henry's machine",
+           "reference_machine": "experiment lead's machine (CR-056); B10 round-3 outputs were produced on Henry's machine, every other stage and (from e5-release-2) the register build on the lead's machine",
            "checks": checks, "runs": a_runs() + b_runs}
     (rel / f"{tag}.json").write_text(json.dumps(rec, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(f"wrote {rel / (tag + '.json')}")

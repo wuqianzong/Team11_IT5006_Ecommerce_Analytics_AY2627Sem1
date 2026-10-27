@@ -1,0 +1,6 @@
+fold,training_rows,selected,jaccard_with_B4,added_vs_B4,dropped_vs_B4,spearman_ranks_vs_B4
+1,7592,22,0.6785714285714286,"product_photos_qty, purchase_dayofweek, purchase_hour","distance_km_max, interstate_share, order_dispatch_days, seller_prior_dispatch_days, seller_prior_late_handover_days, total_price",0.220307917888563
+2,17595,25,0.8518518518518519,"product_photos_qty, purchase_hour","distance_km_max, route_recent_carrier_transit_days",0.6693548387096774
+3,25529,27,0.925925925925926,"category_missing_fraction, purchase_hour",,0.8200146627565982
+4,37140,26,0.9615384615384616,purchase_hour,,0.9563782991202344
+5,47237,25,1.0,,,0.9736070381231672

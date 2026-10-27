@@ -1,0 +1,3 @@
+on_time_target,buffer_days_chosen_on_validation,validation_share_late,test_share_late_B,test_share_late_A_on_B_rows,rule
+0.9,12.0,0.0941562290094432,0.0151731292958111,0.0139411230709376,smallest buffer on the 0.5-day grid with validation late share <= 10%
+0.95,17.5,0.0495673475838634,0.0070678251848009,0.0067436130203605,smallest buffer on the 0.5-day grid with validation late share <= 5%

@@ -185,7 +185,7 @@
       "report 5",
       "deck 6"
     ],
-    "value": 3.299187669974489,
+    "value": 3.2991876699744895,
     "text": "3.30"
   },
   "B9.reg.test_mae_B_lo": {
@@ -196,7 +196,7 @@
     "used_in": [
       "report 5"
     ],
-    "value": 3.244869775150172,
+    "value": 3.2448697751501716,
     "text": "3.24"
   },
   "B9.reg.test_mae_B_hi": {
@@ -1333,5 +1333,257 @@
     ],
     "value": 4478,
     "text": "4,478"
+  },
+  "B12.reg.rank_selected": {
+    "kind": "number",
+    "source": "b12/regression/outputs/ranking_stability.json",
+    "run_id": "20261027T120743Z",
+    "evidence": "B12.1",
+    "used_in": [
+      "report 4",
+      "report 8"
+    ],
+    "value": 21,
+    "text": "21"
+  },
+  "B12.reg.rank_always": {
+    "kind": "number",
+    "source": "b12/regression/outputs/ranking_stability.json",
+    "run_id": "20261027T120743Z",
+    "evidence": "B12.1",
+    "used_in": [
+      "report 4",
+      "report 8"
+    ],
+    "value": 17,
+    "text": "17"
+  },
+  "B12.reg.rank_jaccard_min": {
+    "kind": "number",
+    "source": "b12/regression/outputs/ranking_stability.json",
+    "run_id": "20261027T120743Z",
+    "evidence": "B12.1",
+    "used_in": [
+      "report 4",
+      "report 8"
+    ],
+    "value": 0.9047619047619048,
+    "text": "0.90"
+  },
+  "B12.reg.rank_jaccard_mean": {
+    "kind": "number",
+    "source": "b12/regression/outputs/ranking_stability.json",
+    "run_id": "20261027T120743Z",
+    "evidence": "B12.1",
+    "used_in": [
+      "report 4",
+      "report 8"
+    ],
+    "value": 0.9437229437229437,
+    "text": "0.94"
+  },
+  "B12.reg.rank_spearman_min": {
+    "kind": "number",
+    "source": "b12/regression/outputs/ranking_stability.json",
+    "run_id": "20261027T120743Z",
+    "evidence": "B12.1",
+    "used_in": [
+      "report 4",
+      "report 8"
+    ],
+    "value": 0.9377777777777777,
+    "text": "0.94"
+  },
+  "B12.clf.rank_selected": {
+    "kind": "number",
+    "source": "b12/classification/outputs/ranking_stability.json",
+    "run_id": "20261027T120801Z",
+    "evidence": "B12.1",
+    "used_in": [
+      "report 4",
+      "report 8"
+    ],
+    "value": 25,
+    "text": "25"
+  },
+  "B12.clf.rank_always": {
+    "kind": "number",
+    "source": "b12/classification/outputs/ranking_stability.json",
+    "run_id": "20261027T120801Z",
+    "evidence": "B12.1",
+    "used_in": [
+      "report 4",
+      "report 8"
+    ],
+    "value": 18,
+    "text": "18"
+  },
+  "B12.clf.rank_jaccard_min": {
+    "kind": "number",
+    "source": "b12/classification/outputs/ranking_stability.json",
+    "run_id": "20261027T120801Z",
+    "evidence": "B12.1",
+    "used_in": [
+      "report 4",
+      "report 8"
+    ],
+    "value": 0.6785714285714286,
+    "text": "0.68"
+  },
+  "B12.clf.rank_jaccard_mean": {
+    "kind": "number",
+    "source": "b12/classification/outputs/ranking_stability.json",
+    "run_id": "20261027T120801Z",
+    "evidence": "B12.1",
+    "used_in": [
+      "report 4",
+      "report 8"
+    ],
+    "value": 0.8835775335775337,
+    "text": "0.88"
+  },
+  "B12.clf.rank_spearman_min": {
+    "kind": "number",
+    "source": "b12/classification/outputs/ranking_stability.json",
+    "run_id": "20261027T120801Z",
+    "evidence": "B12.1",
+    "used_in": [
+      "report 4",
+      "report 8"
+    ],
+    "value": 0.22030791788856302,
+    "text": "0.22"
+  },
+  "B12.reg.ranking_by_fold": {
+    "kind": "table",
+    "source": "b12/regression/outputs/ranking_stability_by_fold.csv",
+    "run_id": "20261027T120743Z",
+    "evidence": "B12.1",
+    "used_in": [
+      "report 10"
+    ],
+    "file": "evidence/build/tables/B12.reg.ranking_by_fold.csv",
+    "rows": 5
+  },
+  "B12.clf.ranking_by_fold": {
+    "kind": "table",
+    "source": "b12/classification/outputs/ranking_stability_by_fold.csv",
+    "run_id": "20261027T120801Z",
+    "evidence": "B12.1",
+    "used_in": [
+      "report 10"
+    ],
+    "file": "evidence/build/tables/B12.clf.ranking_by_fold.csv",
+    "rows": 5
+  },
+  "B12.reg.buffer_90": {
+    "kind": "number",
+    "source": "b12/regression/outputs/buffer_choice.csv",
+    "run_id": "20261027T120743Z",
+    "evidence": "B12.2",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 12.0,
+    "text": "12.0"
+  },
+  "B12.reg.buffer_90_val_late": {
+    "kind": "number",
+    "source": "b12/regression/outputs/buffer_choice.csv",
+    "run_id": "20261027T120743Z",
+    "evidence": "B12.2",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 0.0941562290094432,
+    "text": "9.4%"
+  },
+  "B12.reg.buffer_90_test_late": {
+    "kind": "number",
+    "source": "b12/regression/outputs/buffer_choice.csv",
+    "run_id": "20261027T120743Z",
+    "evidence": "B12.2",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 0.0151731292958111,
+    "text": "1.5%"
+  },
+  "B12.reg.buffer_95": {
+    "kind": "number",
+    "source": "b12/regression/outputs/buffer_choice.csv",
+    "run_id": "20261027T120743Z",
+    "evidence": "B12.2",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 17.5,
+    "text": "17.5"
+  },
+  "B12.reg.buffer_95_test_late": {
+    "kind": "number",
+    "source": "b12/regression/outputs/buffer_choice.csv",
+    "run_id": "20261027T120743Z",
+    "evidence": "B12.2",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 0.0070678251848009,
+    "text": "0.7%"
+  },
+  "B12.reg.buffer_choice": {
+    "kind": "table",
+    "source": "b12/regression/outputs/buffer_choice.csv",
+    "run_id": "20261027T120743Z",
+    "evidence": "B12.2",
+    "used_in": [
+      "report 7"
+    ],
+    "file": "evidence/build/tables/B12.reg.buffer_choice.csv",
+    "rows": 2
+  },
+  "B12.reg.buffer_by_state": {
+    "kind": "table",
+    "source": "b12/regression/outputs/buffer_by_state.csv",
+    "run_id": "20261027T120743Z",
+    "evidence": "B12.2",
+    "used_in": [
+      "report 7"
+    ],
+    "file": "evidence/build/tables/B12.reg.buffer_by_state.csv",
+    "rows": 7
+  },
+  "F.reg.buffer_curve": {
+    "kind": "figure",
+    "source": "b12/regression/outputs/figures/buffer_curve.png",
+    "run_id": "20261027T120743Z",
+    "evidence": "B12.2",
+    "used_in": [
+      "report 7"
+    ],
+    "file": "evidence/build/figures/F.reg.buffer_curve.png",
+    "caption": "Promise buffer: share of orders delivered later than prediction plus buffer; buffer chosen on validation, read on the test"
+  },
+  "F.reg.ranking_stability": {
+    "kind": "figure",
+    "source": "b12/regression/outputs/figures/ranking_stability.png",
+    "run_id": "20261027T120743Z",
+    "evidence": "B12.1",
+    "used_in": [
+      "report 10"
+    ],
+    "file": "evidence/build/figures/F.reg.ranking_stability.png",
+    "caption": "Delivery lead time: feature ranking on all development rows vs each training fold"
+  },
+  "F.clf.ranking_stability": {
+    "kind": "figure",
+    "source": "b12/classification/outputs/figures/ranking_stability.png",
+    "run_id": "20261027T120801Z",
+    "evidence": "B12.1",
+    "used_in": [
+      "report 10"
+    ],
+    "file": "evidence/build/figures/F.clf.ranking_stability.png",
+    "caption": "Detractor alert: feature ranking on all development rows vs each training fold"
   }
 }

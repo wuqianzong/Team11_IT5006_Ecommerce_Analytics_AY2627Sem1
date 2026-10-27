@@ -1,0 +1,134 @@
+{
+  "node": "B/b12/regression",
+  "pipeline": "B",
+  "files": {
+    "ranking_stability_by_fold.csv": {
+      "ids": [
+        "B12.1"
+      ],
+      "kind": "table"
+    },
+    "ranking_stability_features.csv": {
+      "ids": [
+        "B12.1"
+      ],
+      "kind": "table"
+    },
+    "ranking_stability.json": {
+      "ids": [
+        "B12.1"
+      ],
+      "kind": "json"
+    },
+    "figures/ranking_stability.png": {
+      "ids": [
+        "B12.1"
+      ],
+      "kind": "figure"
+    },
+    "figures/ranking_stability.csv": {
+      "ids": [
+        "B12.1"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/ranking_stability.json": {
+      "ids": [
+        "B12.1"
+      ],
+      "kind": "figure_meta"
+    },
+    "buffer_curve.csv": {
+      "ids": [
+        "B12.2"
+      ],
+      "kind": "table"
+    },
+    "buffer_choice.csv": {
+      "ids": [
+        "B12.2"
+      ],
+      "kind": "table"
+    },
+    "buffer_by_state.csv": {
+      "ids": [
+        "B12.2"
+      ],
+      "kind": "table"
+    },
+    "figures/buffer_curve.png": {
+      "ids": [
+        "B12.2"
+      ],
+      "kind": "figure"
+    },
+    "figures/buffer_curve.csv": {
+      "ids": [
+        "B12.2"
+      ],
+      "kind": "figure_data"
+    },
+    "figures/buffer_curve.json": {
+      "ids": [
+        "B12.2"
+      ],
+      "kind": "figure_meta"
+    }
+  },
+  "checks": [
+    {
+      "name": "recomputing B4 on all development rows gives B4's accepted selected set",
+      "passed": true,
+      "detail": "21 features",
+      "ids": [
+        "B12.1"
+      ]
+    },
+    {
+      "name": "every fold ranks on its training rows only",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "B12.1"
+      ]
+    },
+    {
+      "name": "B's test residuals equal those behind B9.16 (late shares at 3 and 6 days)",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "B12.2"
+      ]
+    },
+    {
+      "name": "every B test row has a customer state in B's seven states",
+      "passed": true,
+      "detail": "",
+      "ids": [
+        "B12.2"
+      ]
+    }
+  ],
+  "deviations": {},
+  "cards": {
+    "B12.1": {
+      "done": "B4's ranking and 99% selection repeated on each fold's training rows: Jaccard overlap with B4's 21 selected features 0.90 to 1.00 (mean 0.94); 17 of 21 B4 features selected in every fold; rank correlation with B4 at least 0.94. Added in some fold: n_payment_methods; dropped in some fold: n_items, n_products, payment_installments_max, purchase_month.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    },
+    "B12.2": {
+      "done": "Late share against a buffer of 0 to 30 days for B and A (validation out-of-fold and T1 test). 90% on time on validation needs 12.0 days, which leaves 1.5% of B's test orders late (A on the same orders 1.4%); 95% on time on validation needs 17.5 days, which leaves 0.7% of B's test orders late (A on the same orders 0.7%). Validation residuals lean late and the test period is faster (drift, B9.4), so a buffer chosen on validation is conservative on the test.",
+      "inputs": "",
+      "expectation": "",
+      "observation": "",
+      "reasoning": "",
+      "conclusion": "",
+      "label": "observation"
+    }
+  },
+  "checks_failed": []
+}

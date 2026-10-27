@@ -1,0 +1,25 @@
+{
+  "task": "classification",
+  "threshold": 0.99,
+  "selected_by_B4": 25,
+  "folds": 5,
+  "B4_features_selected_in_every_fold": 18,
+  "jaccard_min": 0.6785714285714286,
+  "jaccard_mean": 0.8835775335775337,
+  "spearman_min": 0.22030791788856302,
+  "features_ever_added": [
+    "category_missing_fraction",
+    "product_photos_qty",
+    "purchase_dayofweek",
+    "purchase_hour"
+  ],
+  "features_ever_dropped": [
+    "distance_km_max",
+    "interstate_share",
+    "order_dispatch_days",
+    "route_recent_carrier_transit_days",
+    "seller_prior_dispatch_days",
+    "seller_prior_late_handover_days",
+    "total_price"
+  ]
+}
