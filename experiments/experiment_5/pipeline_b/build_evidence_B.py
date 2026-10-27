@@ -16,8 +16,10 @@ evidence/registry_B.yaml lists every number, table and figure the report and dec
       used_in: [report 5, deck 6]
 
 A source is accepted only if its stage/task folder holds the run listed Current in EVIDENCE.md and the file's
-sha256 equals the one in that run's _manifest.json. Separate from A's build_evidence.py (B11-D3); A's tree is not
-read: A's baseline numbers come from B's T1 and B9 files, which score A.
+sha256 equals the one in that run's _manifest.json. Separate from A's build_evidence.py (B11-D3). A's baseline
+numbers come from B's T1 and B9 files, which score A. The one exception (B-G-11): a source written
+A/<stage>/<task>/outputs/<file> is read from A's frozen tree, read only, and accepted only if the file's sha256
+equals the file at tag e5-A-frozen.
 """
 from __future__ import annotations
 
@@ -37,6 +39,8 @@ B_ROOT = Path(__file__).resolve().parent
 STAGES = B_ROOT / "stages"
 REGISTRY = B_ROOT / "evidence" / "registry_B.yaml"
 BUILD = B_ROOT / "evidence" / "build"
+A_STAGES = B_ROOT.parent / "stages"     # Pipeline A's frozen tree (read only)
+A_TAG = "e5-A-frozen"
 PLACEHOLDER = re.compile(r"\{\{\s*([A-Za-z0-9_.\-]+)\s*\}\}")
 
 
@@ -69,6 +73,32 @@ def verify_source(src: str, runs: dict) -> tuple[Path, str]:
     if expected is None or expected != _sha(path):
         raise ValueError(f"{src}: sha256 does not match the Current run's manifest")
     return path, man["run_id"]
+
+
+def verify_a_source(src: str) -> tuple[Path, str]:
+    """A/<stage>/<task>/outputs/<file>: the file must equal its copy at tag e5-A-frozen (B-G-11); returns (path, run_id)."""
+    parts = Path(src).parts
+    if len(parts) < 5 or parts[0] != "A" or parts[3] != "outputs":
+        raise ValueError(f"{src}: expected A/<stage>/<task>/outputs/<file>")
+    path = A_STAGES.joinpath(*parts[1:])
+    if not path.is_file():
+        raise ValueError(f"{src}: no such file in A's tree")
+    repo = B_ROOT.parents[2]
+    rel = path.relative_to(repo).as_posix()
+    tagged = subprocess.run(["git", "show", f"{A_TAG}:{rel}"], cwd=repo, capture_output=True)
+    if tagged.returncode != 0:
+        raise ValueError(f"{src}: not in tag {A_TAG}")
+    if hashlib.sha256(tagged.stdout).hexdigest() != _sha(path):
+        raise ValueError(f"{src}: sha256 differs from the file at tag {A_TAG}")
+    man = json.loads((path.parents[len(parts) - 5] / "_manifest.json").read_text())
+    return path, f"{man['run_id']} @ {A_TAG}"
+
+
+def _outputs(src: str, path: Path) -> tuple[Path, str]:
+    """The outputs folder holding the source and the file's path inside it (key of _evidence_index.json)."""
+    head = 4 if Path(src).parts[0] == "A" else 3
+    inner = Path(*Path(src).parts[head:])
+    return path.parents[len(inner.parts) - 1], inner.as_posix()
 
 
 def _select(df: pd.DataFrame, sel: dict | None) -> pd.DataFrame:
@@ -114,9 +144,13 @@ def build(out_dir: Path = BUILD) -> dict:
     numbers, errors = {}, []
     for it in items:
         try:
-            path, run_id = verify_source(it["source"], runs)
-            idx = json.loads((path.parents[len(Path(it["source"]).parts) - 4] / "_evidence_index.json").read_text())
-            tagged = idx["files"].get(Path(*Path(it["source"]).parts[3:]).as_posix(), {}).get("ids", [])
+            if Path(it["source"]).parts[0] == "A":
+                path, run_id = verify_a_source(it["source"])
+            else:
+                path, run_id = verify_source(it["source"], runs)
+            outs, inner = _outputs(it["source"], path)
+            idx = json.loads((outs / "_evidence_index.json").read_text())
+            tagged = idx["files"].get(inner, {}).get("ids", [])
             if it["evidence"] not in tagged:
                 raise ValueError(f"evidence {it['evidence']} is not tagged on {it['source']} (tagged: {tagged})")
             entry = {"kind": it["kind"], "source": it["source"], "run_id": run_id, "evidence": it["evidence"],

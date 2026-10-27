@@ -27,8 +27,29 @@ def test_every_item_resolves(numbers):
 def test_sources_are_current_runs(numbers):
     runs = reg.current_runs()
     for v in numbers.values():
+        if Path(v["source"]).parts[0] == "A":   # A's frozen tree (B-G-11), checked below
+            assert v["run_id"].endswith(f"@ {reg.A_TAG}")
+            continue
         stage, task = Path(v["source"]).parts[:2]
         assert v["run_id"] == runs[(stage, task)]
+
+
+def test_a_sources_only_from_the_frozen_tree(numbers):
+    a_items = [v for v in numbers.values() if Path(v["source"]).parts[0] == "A"]
+    assert a_items, "the report cites A's s03 EDA numbers (B-G-11)"
+    assert all(Path(v["source"]).parts[1] == "s03_eda" for v in a_items)
+    with pytest.raises(ValueError):
+        reg.verify_a_source("A/s03_eda/regression/eda_summary.json")          # not under outputs/
+    with pytest.raises(ValueError):
+        reg.verify_a_source("A/s03_eda/regression/outputs/no_such_file.csv")
+
+
+def test_a_source_changed_after_the_tag_is_refused(monkeypatch):
+    src = "A/s03_eda/regression/outputs/eda_summary.json"
+    assert reg.verify_a_source(src)[0].is_file()                       # equals the file at e5-A-frozen
+    monkeypatch.setattr(reg, "_sha", lambda p: "0" * 64)                # as if the working copy had changed
+    with pytest.raises(ValueError, match="differs from the file at tag"):
+        reg.verify_a_source(src)
 
 
 def test_superseded_threshold_never_cited():
