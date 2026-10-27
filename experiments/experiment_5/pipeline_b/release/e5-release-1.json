@@ -1,0 +1,317 @@
+{
+  "release": "e5-release-1",
+  "built_on_commit": "95dc7f0cbecca9085bc3398b900041a66fb7aab2",
+  "decisions": [
+    "G-79",
+    "CR-056",
+    "CR-058",
+    "B-G-12"
+  ],
+  "replaced_under_G79": {
+    "A s08 (8.6-8.8)": "T1 joint test",
+    "A s09": "B9",
+    "A s10": "B10"
+  },
+  "reference_machine": "experiment lead's machine (CR-056); B10 round-3 outputs and the register build were produced on Henry's machine",
+  "checks": [
+    {
+      "name": "A's tree equals e5-A-frozen (only the G-79 decision-log entry differs)",
+      "passed": true,
+      "detail": {
+        "differs": [
+          "experiments/experiment_5/spec/blueprints/decision_log.md"
+        ],
+        "not_allowed": []
+      }
+    },
+    {
+      "name": "A's run_pipeline.py check passes, apart from the recorded pipeline_b/ text-IO guard finding (CR-058)",
+      "passed": true,
+      "detail": {
+        "returncode": 1,
+        "failed_tests": [
+          "tests/test_guards.py::test_text_io_names_an_encoding"
+        ],
+        "summary": [
+          "1 failed, 58 passed in 2.65s"
+        ],
+        "deviation": "test_text_io_names_an_encoding lists only pipeline_b/ files"
+      }
+    },
+    {
+      "name": "B's tests pass and change nothing in the tree",
+      "passed": true,
+      "detail": {
+        "summary": "20 passed, 5 skipped in 1.67s",
+        "tree_clean_after": true
+      }
+    },
+    {
+      "name": "every Current row of EVIDENCE.md matches its stage manifest",
+      "passed": true,
+      "detail": {
+        "rows": 20,
+        "mismatch": []
+      }
+    },
+    {
+      "name": "B's register resolves every placeholder in the report and deck sources",
+      "passed": true,
+      "detail": {
+        "files": 23,
+        "output": [
+          "all placeholders resolve"
+        ]
+      }
+    },
+    {
+      "name": "deliverables audit on the committed inputs passes every check",
+      "passed": true,
+      "detail": {
+        "passed": 9,
+        "checks": 9,
+        "report_export": "report_export_rev29.md"
+      }
+    }
+  ],
+  "runs": [
+    {
+      "pipeline": "A",
+      "node": "s01_problem/common",
+      "run_id": "20261023T083432Z",
+      "commit": "a7329b2c537e7e9a9647a304266b48d91f107ff1",
+      "tag": "e5-A-frozen"
+    },
+    {
+      "pipeline": "A",
+      "node": "s02_data/common",
+      "run_id": "20261023T083314Z",
+      "commit": "a7329b2c537e7e9a9647a304266b48d91f107ff1",
+      "tag": "e5-A-frozen"
+    },
+    {
+      "pipeline": "A",
+      "node": "s03_eda/classification",
+      "run_id": "20261023T083353Z",
+      "commit": "a7329b2c537e7e9a9647a304266b48d91f107ff1",
+      "tag": "e5-A-frozen"
+    },
+    {
+      "pipeline": "A",
+      "node": "s03_eda/regression",
+      "run_id": "20261023T083326Z",
+      "commit": "a7329b2c537e7e9a9647a304266b48d91f107ff1",
+      "tag": "e5-A-frozen"
+    },
+    {
+      "pipeline": "A",
+      "node": "s04_features/classification",
+      "run_id": "20261023T083401Z",
+      "commit": "a7329b2c537e7e9a9647a304266b48d91f107ff1",
+      "tag": "e5-A-frozen"
+    },
+    {
+      "pipeline": "A",
+      "node": "s04_features/regression",
+      "run_id": "20261023T083426Z",
+      "commit": "a7329b2c537e7e9a9647a304266b48d91f107ff1",
+      "tag": "e5-A-frozen"
+    },
+    {
+      "pipeline": "A",
+      "node": "s05_partition/classification",
+      "run_id": "20261023T083414Z",
+      "commit": "a7329b2c537e7e9a9647a304266b48d91f107ff1",
+      "tag": "e5-A-frozen"
+    },
+    {
+      "pipeline": "A",
+      "node": "s05_partition/regression",
+      "run_id": "20261023T083431Z",
+      "commit": "a7329b2c537e7e9a9647a304266b48d91f107ff1",
+      "tag": "e5-A-frozen"
+    },
+    {
+      "pipeline": "A",
+      "node": "s06_training/classification",
+      "run_id": "20261023T083612Z",
+      "commit": "a7329b2c537e7e9a9647a304266b48d91f107ff1",
+      "tag": "e5-A-frozen"
+    },
+    {
+      "pipeline": "A",
+      "node": "s06_training/regression",
+      "run_id": "20261023T083517Z",
+      "commit": "a7329b2c537e7e9a9647a304266b48d91f107ff1",
+      "tag": "e5-A-frozen"
+    },
+    {
+      "pipeline": "A",
+      "node": "s07_tuning/classification",
+      "run_id": "20261023T084930Z",
+      "commit": "a7329b2c537e7e9a9647a304266b48d91f107ff1",
+      "tag": "e5-A-frozen"
+    },
+    {
+      "pipeline": "A",
+      "node": "s07_tuning/regression",
+      "run_id": "20261023T084131Z",
+      "commit": "a7329b2c537e7e9a9647a304266b48d91f107ff1",
+      "tag": "e5-A-frozen"
+    },
+    {
+      "pipeline": "A",
+      "node": "s08_selection/classification",
+      "run_id": "20261023T085014Z",
+      "commit": "a7329b2c537e7e9a9647a304266b48d91f107ff1",
+      "tag": "e5-A-frozen"
+    },
+    {
+      "pipeline": "A",
+      "node": "s08_selection/regression",
+      "run_id": "20261023T084947Z",
+      "commit": "a7329b2c537e7e9a9647a304266b48d91f107ff1",
+      "tag": "e5-A-frozen"
+    },
+    {
+      "pipeline": "B",
+      "node": "b02/regression",
+      "run_id": "20261023T154814Z",
+      "commit": "e96087084d2f1de8f41d6524995f4d48f6c913f7",
+      "tag": "e5-B-s02-accepted-r2"
+    },
+    {
+      "pipeline": "B",
+      "node": "b02/classification",
+      "run_id": "20261023T154822Z",
+      "commit": "e96087084d2f1de8f41d6524995f4d48f6c913f7",
+      "tag": "e5-B-s02-accepted-r2"
+    },
+    {
+      "pipeline": "B",
+      "node": "b04/regression",
+      "run_id": "20261023T154827Z",
+      "commit": "e96087084d2f1de8f41d6524995f4d48f6c913f7",
+      "tag": "e5-B-s04-accepted"
+    },
+    {
+      "pipeline": "B",
+      "node": "b04/classification",
+      "run_id": "20261023T154833Z",
+      "commit": "e96087084d2f1de8f41d6524995f4d48f6c913f7",
+      "tag": "e5-B-s04-accepted"
+    },
+    {
+      "pipeline": "B",
+      "node": "b05/regression",
+      "run_id": "20261023T160529Z",
+      "commit": "19b5355f19861c8d517ce32cf254f11ca7243ee8",
+      "tag": "e5-B-s05-accepted"
+    },
+    {
+      "pipeline": "B",
+      "node": "b05/classification",
+      "run_id": "20261023T160533Z",
+      "commit": "19b5355f19861c8d517ce32cf254f11ca7243ee8",
+      "tag": "e5-B-s05-accepted"
+    },
+    {
+      "pipeline": "B",
+      "node": "b06/regression",
+      "run_id": "20261023T162830Z",
+      "commit": "e358f815f9b938d575c695767047998162ce80d0",
+      "tag": "e5-B-s06-accepted"
+    },
+    {
+      "pipeline": "B",
+      "node": "b06/classification",
+      "run_id": "20261023T162918Z",
+      "commit": "e358f815f9b938d575c695767047998162ce80d0",
+      "tag": "e5-B-s06-accepted"
+    },
+    {
+      "pipeline": "B",
+      "node": "b07/regression",
+      "run_id": "20261023T163311Z",
+      "commit": "e358f815f9b938d575c695767047998162ce80d0",
+      "tag": "e5-B-s07-accepted"
+    },
+    {
+      "pipeline": "B",
+      "node": "b07/classification",
+      "run_id": "20261023T164241Z",
+      "commit": "e358f815f9b938d575c695767047998162ce80d0",
+      "tag": "e5-B-s07-accepted"
+    },
+    {
+      "pipeline": "B",
+      "node": "b08/regression",
+      "run_id": "20261024T042516Z",
+      "commit": "a4a0dedb4cd6984714c9ca3c410963215586f28f",
+      "tag": "e5-B-frozen"
+    },
+    {
+      "pipeline": "B",
+      "node": "b08/classification",
+      "run_id": "20261024T042619Z",
+      "commit": "a4a0dedb4cd6984714c9ca3c410963215586f28f",
+      "tag": "e5-B-frozen"
+    },
+    {
+      "pipeline": "B",
+      "node": "t1_joint_test/regression",
+      "run_id": "20261024T044531Z",
+      "commit": "e4fa1a6bd0a4efff3261ddc9141af6ca78139473",
+      "tag": "e5-T1-tested"
+    },
+    {
+      "pipeline": "B",
+      "node": "t1_joint_test/classification",
+      "run_id": "20261024T044555Z",
+      "commit": "e4fa1a6bd0a4efff3261ddc9141af6ca78139473",
+      "tag": "e5-T1-tested"
+    },
+    {
+      "pipeline": "B",
+      "node": "b09/regression",
+      "run_id": "20261025T132406Z",
+      "commit": "b09c396c9a7ce714e70b34b46c724f6f45a2910d",
+      "tag": "e5-B-s09-accepted"
+    },
+    {
+      "pipeline": "B",
+      "node": "b09/classification",
+      "run_id": "20261025T132538Z",
+      "commit": "b09c396c9a7ce714e70b34b46c724f6f45a2910d",
+      "tag": "e5-B-s09-accepted"
+    },
+    {
+      "pipeline": "B",
+      "node": "doc_support/regression",
+      "run_id": "20261025T132541Z",
+      "commit": "b09c396c9a7ce714e70b34b46c724f6f45a2910d",
+      "tag": "e5-B-s09-accepted"
+    },
+    {
+      "pipeline": "B",
+      "node": "doc_support/classification",
+      "run_id": "20261025T132552Z",
+      "commit": "b09c396c9a7ce714e70b34b46c724f6f45a2910d",
+      "tag": "e5-B-s09-accepted"
+    },
+    {
+      "pipeline": "B",
+      "node": "b10/regression",
+      "run_id": "20261027T044744Z",
+      "commit": "906fe39d9748b78145440350ba418a3379f88b6e",
+      "tag": "e5-B-s10-accepted-r3"
+    },
+    {
+      "pipeline": "B",
+      "node": "b10/classification",
+      "run_id": "20261027T044819Z",
+      "commit": "906fe39d9748b78145440350ba418a3379f88b6e",
+      "tag": "e5-B-s10-accepted-r3"
+    }
+  ]
+}
