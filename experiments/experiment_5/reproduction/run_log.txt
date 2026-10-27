@@ -1,0 +1,1033 @@
+2026-10-27T13:33:15Z START s01_problem/common
+running s01_problem/common
+END s01_problem/common exit 0 (1 s)
+2026-10-27T13:33:16Z START s02_data/common
+running s02_data/common
+END s02_data/common exit 0 (27 s)
+2026-10-27T13:33:42Z START s03_eda/regression
+running s03_eda/regression
+END s03_eda/regression exit 0 (8 s)
+2026-10-27T13:33:50Z START s03_eda/classification
+running s03_eda/classification
+END s03_eda/classification exit 0 (17 s)
+2026-10-27T13:34:07Z START s04_features/regression
+running s04_features/regression
+END s04_features/regression exit 0 (5 s)
+2026-10-27T13:34:12Z START s04_features/classification
+running s04_features/classification
+END s04_features/classification exit 0 (4 s)
+2026-10-27T13:34:16Z START s05_partition/regression
+running s05_partition/regression
+END s05_partition/regression exit 0 (3 s)
+2026-10-27T13:34:19Z START s05_partition/classification
+running s05_partition/classification
+END s05_partition/classification exit 0 (3 s)
+2026-10-27T13:34:23Z START s06_training/regression
+running s06_training/regression
+END s06_training/regression exit 0 (27 s)
+2026-10-27T13:34:50Z START s06_training/classification
+running s06_training/classification
+END s06_training/classification exit 0 (34 s)
+2026-10-27T13:35:24Z START s07_tuning/regression
+running s07_tuning/regression
+END s07_tuning/regression exit 0 (162 s)
+2026-10-27T13:38:05Z START s07_tuning/classification
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+running s07_tuning/classification
+END s07_tuning/classification exit 0 (401 s)
+2026-10-27T13:44:46Z START s08_selection/regression
+s08 regression: frozen (8.5), sha256 df4beee32d7b; stops before the test (waits for Pipeline B)
+running s08_selection/regression
+END s08_selection/regression exit 0 (15 s)
+2026-10-27T13:45:02Z START s08_selection/classification
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+s08 classification: frozen (8.5), sha256 8de9d4f13159; stops before the test (waits for Pipeline B)
+running s08_selection/classification
+END s08_selection/classification exit 0 (25 s)
+2026-10-27T13:45:27Z START b02/regression
+B2 regression: 61,233 rows, 6 features
+END b02/regression exit 0 (8 s)
+2026-10-27T13:45:35Z START b02/classification
+B2 classification: 61,258 rows, 9 features
+END b02/classification exit 0 (8 s)
+2026-10-27T13:45:42Z START b04/regression
+B4 regression: 21 of 26 kept; B kept ['route_seller_to_customer_state', 'route_recent_carrier_transit_days', 'route_recent_delivery_days', 'seller_prior_dispatch_days', 'seller_prior_late_handover_rate', 'seller_prior_late_handover_days']; B dropped []
+END b04/regression exit 0 (4 s)
+2026-10-27T13:45:46Z START b04/classification
+B4 classification: 25 of 32 kept; B kept ['route_recent_carrier_transit_days', 'route_recent_delivery_days', 'seller_prior_dispatch_days', 'seller_prior_late_handover_days', 'order_dispatch_days', 'route_seller_to_customer_state', 'seller_prior_late_handover_rate', 'order_handover_late_days', 'order_handed_over_late']; B dropped []
+END b04/classification exit 0 (6 s)
+2026-10-27T13:45:52Z START b05/regression
+B5 regression: 187,873 fold rows, 59,683 orders; fold 1 train 7,932
+END b05/regression exit 0 (3 s)
+2026-10-27T13:45:55Z START b05/classification
+B5 classification: 185,308 fold rows, 59,182 orders; fold 1 train 7,592
+END b05/classification exit 0 (3 s)
+2026-10-27T13:45:58Z START b06/regression
+END b06/regression exit 0 (24 s)
+2026-10-27T13:46:22Z START b06/classification
+END b06/classification exit 0 (30 s)
+2026-10-27T13:46:52Z START b07/regression
+END b07/regression exit 0 (139 s)
+2026-10-27T13:49:11Z START b07/classification
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+END b07/classification exit 0 (379 s)
+2026-10-27T13:55:29Z START b08/regression
+s08 regression: frozen (8.5), sha256 fceef777e53f; stops before the test (waits for Pipeline B)
+B8 regression: B over A +0.1176 days (5 folds), adopted=True
+END b08/regression exit 0 (19 s)
+2026-10-27T13:55:48Z START b08/classification
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+s08 classification: frozen (8.5), sha256 337ff3ece729; stops before the test (waits for Pipeline B)
+B8 classification: B over A +0.0197 (5 folds), adopted=True
+END b08/classification exit 0 (43 s)
+2026-10-27T13:56:31Z START b09/regression
+B9 regression: B minus A mae -0.7288 [-0.7537, -0.7030]
+END b09/regression exit 0 (15 s)
+2026-10-27T13:56:46Z START b09/classification
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+B9 classification: B minus A ap +0.0187 [+0.0089, +0.0291]
+END b09/classification exit 0 (94 s)
+2026-10-27T13:58:21Z START doc_support/regression
+doc_support regression: 24 files
+END doc_support/regression exit 0 (3 s)
+2026-10-27T13:58:23Z START doc_support/classification
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1, 2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [2] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+doc_support classification: 32 files
+END doc_support/classification exit 0 (11 s)
+2026-10-27T13:58:35Z START b10/regression
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+B10 regression: parity max 3.6e-15; 13 input cases; 17 app elements
+END b10/regression exit 0 (7 s)
+2026-10-27T13:58:41Z START b10/classification
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [0, 1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+/Users/bensonwu/miniconda3/lib/python3.13/site-packages/sklearn/preprocessing/_encoders.py:262: UserWarning: Found unknown categories in columns [1] during transform. These unknown categories will be encoded as all zeros
+  warnings.warn(msg, UserWarning)
+B10 classification: parity max 9.7e-17; 14 input cases; 20 app elements
+END b10/classification exit 0 (8 s)
+2026-10-27T13:58:49Z START b12/regression
+B12 regression: Jaccard 0.90-0.94 mean; 17 of 21 in every fold
+END b12/regression exit 0 (6 s)
+2026-10-27T13:58:55Z START b12/classification
+B12 classification: Jaccard 0.68-0.88 mean; 18 of 25 in every fold
+END b12/classification exit 0 (11 s)
+ALL NODES DONE

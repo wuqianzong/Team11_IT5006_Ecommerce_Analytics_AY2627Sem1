@@ -1,0 +1,3435 @@
+{
+  "release_tag": "e5-release-2",
+  "checkout": "1516800c845770f7f1d20d9669711ab5c623b7c9",
+  "machine": "reference",
+  "platform": "macOS-14.3.1-arm64-arm-64bit-Mach-O",
+  "python": "3.13.9",
+  "rule": "CR-056 hashes",
+  "t1": "not rerun (single read, e5-T1-tested); saved predictions and bundles kept",
+  "all_nodes_rerun": true,
+  "summary": {
+    "identical": 622,
+    "numbers within 1e-9": 5,
+    "DIFFERENT text values": 2
+  },
+  "verdict": "FAIL",
+  "nodes": [
+    {
+      "node": "s01_problem/common",
+      "release_run": "20261023T083432Z",
+      "rerun": "20261027T133316Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/stages/s01_problem/common/outputs/preregistered_values.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s01_problem/common/outputs/protocol_preregistered.yaml",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s01_problem/common/outputs/task_contract.md",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "s02_data/common",
+      "release_run": "20261023T083314Z",
+      "rerun": "20261027T133342Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/stages/s02_data/common/outputs/audit.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s02_data/common/outputs/data_dictionary.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s02_data/common/outputs/data_hashes.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s02_data/common/outputs/exclusion_counts.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s02_data/common/outputs/exclusions.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s02_data/common/outputs/figures/data_structure.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s02_data/common/outputs/figures/data_structure.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s02_data/common/outputs/figures/data_structure.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s02_data/common/outputs/records.csv.gz",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s02_data/common/outputs/zip_centroids.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "s03_eda/regression",
+      "release_run": "20261023T083326Z",
+      "rerun": "20261027T133350Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/candidate_rationale.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/categorical_feature_target_lead_days.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/collinear_pairs.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/decision.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/eda_review_pack.md",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/eda_summary.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/feature_quality.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/categorical_vs_lead_days.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/categorical_vs_lead_days.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/categorical_vs_lead_days.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/cumulative_importance.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/cumulative_importance.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/cumulative_importance.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/numeric_correlation_heatmap.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/numeric_correlation_heatmap.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/numeric_correlation_heatmap.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/numeric_vs_lead_days.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/numeric_vs_lead_days.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/numeric_vs_lead_days.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/outcome_trends.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/outcome_trends.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/outcome_trends.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/target_lead_days_kde.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/target_lead_days_kde.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/target_lead_days_kde.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/importance_ranking.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/numeric_correlations.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/numeric_feature_target_lead_days.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/outcome_trends.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/regression/outputs/target_regression_lead_days.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "s03_eda/classification",
+      "release_run": "20261023T083353Z",
+      "rerun": "20261027T133407Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/candidate_collinear_pairs.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/candidate_ranking_extended.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/candidate_rationale.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/candidate_screen_3_10.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/candidate_screen_3_11.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/candidate_screen_3_12.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/candidate_screen_3_13.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/candidate_screen_levels.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/categorical_feature_target_is_detractor.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/collinear_pairs.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/decision.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/eda_review_pack.md",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/eda_summary.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/feature_quality.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/candidate_ranking_extended.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/candidate_ranking_extended.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/candidate_ranking_extended.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/candidate_screen.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/candidate_screen.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/candidate_screen.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/candidate_screen_promise.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/candidate_screen_promise.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/candidate_screen_promise.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/candidate_screen_region.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/candidate_screen_region.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/candidate_screen_region.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/candidate_screen_seller_history.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/candidate_screen_seller_history.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/candidate_screen_seller_history.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/categorical_vs_is_detractor.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/categorical_vs_is_detractor.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/categorical_vs_is_detractor.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/cumulative_importance.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/cumulative_importance.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/cumulative_importance.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/numeric_correlation_heatmap.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/numeric_correlation_heatmap.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/numeric_correlation_heatmap.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/numeric_vs_is_detractor.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/numeric_vs_is_detractor.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/numeric_vs_is_detractor.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/outcome_trends.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/outcome_trends.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/outcome_trends.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/target_is_detractor_bar.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/target_is_detractor_bar.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/target_is_detractor_bar.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/importance_ranking.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/numeric_correlations.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/numeric_feature_target_is_detractor.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/outcome_trends.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s03_eda/classification/outputs/target_classification_is_detractor.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "s04_features/regression",
+      "release_run": "20261023T083426Z",
+      "rerun": "20261027T133412Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/stages/s04_features/regression/outputs/baseline_pool.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s04_features/regression/outputs/decision.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s04_features/regression/outputs/design_matrix.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s04_features/regression/outputs/feature_dictionary.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s04_features/regression/outputs/figures/selection_cumulative.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s04_features/regression/outputs/figures/selection_cumulative.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s04_features/regression/outputs/figures/selection_cumulative.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s04_features/regression/outputs/recipes.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s04_features/regression/outputs/reduction_rationale.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s04_features/regression/outputs/selected_features.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s04_features/regression/outputs/selection_ranking.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s04_features/regression/outputs/transforms.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "s04_features/classification",
+      "release_run": "20261023T083401Z",
+      "rerun": "20261027T133416Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/stages/s04_features/classification/outputs/baseline_pool.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s04_features/classification/outputs/decision.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s04_features/classification/outputs/design_matrix.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s04_features/classification/outputs/feature_dictionary.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s04_features/classification/outputs/figures/selection_cumulative.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s04_features/classification/outputs/figures/selection_cumulative.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s04_features/classification/outputs/figures/selection_cumulative.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s04_features/classification/outputs/recipes.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s04_features/classification/outputs/reduction_rationale.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s04_features/classification/outputs/selected_features.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s04_features/classification/outputs/selection_ranking.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s04_features/classification/outputs/transforms.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "s05_partition/regression",
+      "release_run": "20261023T083431Z",
+      "rerun": "20261027T133419Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/stages/s05_partition/regression/outputs/checks.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s05_partition/regression/outputs/counts.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s05_partition/regression/outputs/figures/partition_diagram.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s05_partition/regression/outputs/figures/partition_diagram.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s05_partition/regression/outputs/figures/partition_diagram.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s05_partition/regression/outputs/fold_summary.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s05_partition/regression/outputs/folds.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s05_partition/regression/outputs/test_manifest.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "s05_partition/classification",
+      "release_run": "20261023T083414Z",
+      "rerun": "20261027T133423Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/stages/s05_partition/classification/outputs/checks.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s05_partition/classification/outputs/counts.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s05_partition/classification/outputs/figures/partition_diagram.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s05_partition/classification/outputs/figures/partition_diagram.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s05_partition/classification/outputs/figures/partition_diagram.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s05_partition/classification/outputs/fold_summary.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s05_partition/classification/outputs/folds.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s05_partition/classification/outputs/test_manifest.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "s06_training/regression",
+      "release_run": "20261023T083517Z",
+      "rerun": "20261027T133449Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/stages/s06_training/regression/outputs/candidates.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/regression/outputs/counts.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/regression/outputs/curves/learning_curves.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/regression/outputs/curves/residual_quantiles_linear.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/regression/outputs/curves/residual_quantiles_tree.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/regression/outputs/decision.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/regression/outputs/design_matrix_by_fold.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/regression/outputs/figures/family_ladder.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/regression/outputs/figures/family_ladder.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/regression/outputs/figures/family_ladder.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/regression/outputs/figures/learning_curves.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/regression/outputs/figures/learning_curves.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/regression/outputs/figures/learning_curves.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/regression/outputs/figures/residual_diagnostics.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/regression/outputs/figures/residual_diagnostics.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/regression/outputs/figures/residual_diagnostics.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/regression/outputs/fit_log.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/regression/outputs/imputation_by_fold.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/regression/outputs/metrics_long.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/regression/outputs/paired_differences.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/regression/outputs/predictions.csv.gz",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "s06_training/classification",
+      "release_run": "20261023T083612Z",
+      "rerun": "20261027T133523Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/candidates.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/counts.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/curves/learning_curves.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/curves/pr_dummy.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/curves/pr_forest.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/curves/pr_linear.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/curves/pr_tree.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/curves/reliability_dummy.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/curves/reliability_forest.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/curves/reliability_linear.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/curves/reliability_tree.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/curves/roc_dummy.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/curves/roc_forest.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/curves/roc_linear.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/curves/roc_tree.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/decision.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/design_matrix_by_fold.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/figures/classification_diagnostics.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/figures/classification_diagnostics.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/figures/classification_diagnostics.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/figures/family_ladder.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/figures/family_ladder.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/figures/family_ladder.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/figures/learning_curves.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/figures/learning_curves.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/figures/learning_curves.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/fit_log.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/imputation_by_fold.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/metrics_long.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/oof_diagnostics.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/paired_differences.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s06_training/classification/outputs/predictions.csv.gz",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "s07_tuning/regression",
+      "release_run": "20261023T084131Z",
+      "rerun": "20261027T133805Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/regression/outputs/candidates.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/regression/outputs/counts.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/regression/outputs/curves/validation_curve_forest.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/regression/outputs/curves/validation_curve_linear.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/regression/outputs/curves/validation_curve_tree.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/regression/outputs/decision.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/regression/outputs/figures/validation_curve_forest.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/regression/outputs/figures/validation_curve_forest.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/regression/outputs/figures/validation_curve_forest.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/regression/outputs/figures/validation_curve_linear.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/regression/outputs/figures/validation_curve_linear.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/regression/outputs/figures/validation_curve_linear.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/regression/outputs/figures/validation_curve_tree.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/regression/outputs/figures/validation_curve_tree.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/regression/outputs/figures/validation_curve_tree.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/regression/outputs/grid_results.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/regression/outputs/ladder_preview.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/regression/outputs/oof_scores.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/regression/outputs/plain_vs_tuned.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/regression/outputs/predictions.csv.gz",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "s07_tuning/classification",
+      "release_run": "20261023T084930Z",
+      "rerun": "20261027T134446Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/classification/outputs/candidates.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/classification/outputs/counts.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/classification/outputs/curves/validation_curve_forest.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/classification/outputs/curves/validation_curve_linear.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/classification/outputs/curves/validation_curve_tree.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/classification/outputs/decision.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/classification/outputs/figures/validation_curve_forest.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/classification/outputs/figures/validation_curve_forest.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/classification/outputs/figures/validation_curve_forest.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/classification/outputs/figures/validation_curve_linear.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/classification/outputs/figures/validation_curve_linear.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/classification/outputs/figures/validation_curve_linear.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/classification/outputs/figures/validation_curve_tree.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/classification/outputs/figures/validation_curve_tree.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/classification/outputs/figures/validation_curve_tree.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/classification/outputs/grid_results.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/classification/outputs/ladder_preview.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/classification/outputs/oof_scores.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/classification/outputs/plain_vs_tuned.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s07_tuning/classification/outputs/predictions.csv.gz",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "s08_selection/regression",
+      "release_run": "20261023T084947Z",
+      "rerun": "20261027T134501Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/regression/outputs/candidates.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/regression/outputs/counts.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/regression/outputs/decision.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/regression/outputs/figures/finalists.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/regression/outputs/figures/finalists.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/regression/outputs/figures/finalists.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/regression/outputs/frozen_recipe.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/regression/outputs/ladder.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/regression/outputs/metrics_long.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/regression/outputs/predictions.csv.gz",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/regression/outputs/selected_spec.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/regression/outputs/selection_review_pack.md",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "s08_selection/classification",
+      "release_run": "20261023T085014Z",
+      "rerun": "20261027T134527Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/classification/outputs/calibration_folds.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/classification/outputs/candidates.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/classification/outputs/counts.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/classification/outputs/curves/reliability_raw_vs_sigmoid.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/classification/outputs/curves/threshold_curve.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/classification/outputs/decision.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/classification/outputs/figures/calibration.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/classification/outputs/figures/calibration.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/classification/outputs/figures/calibration.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/classification/outputs/figures/finalists.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/classification/outputs/figures/finalists.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/classification/outputs/figures/finalists.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/classification/outputs/figures/threshold_tradeoff.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/classification/outputs/figures/threshold_tradeoff.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/classification/outputs/figures/threshold_tradeoff.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/classification/outputs/frozen_recipe.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/classification/outputs/ladder.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/classification/outputs/metrics_long.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/classification/outputs/predictions.csv.gz",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/classification/outputs/selected_spec.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/classification/outputs/selection_review_pack.md",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/stages/s08_selection/classification/outputs/threshold_table.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "b02/regression",
+      "release_run": "20261023T154814Z",
+      "rerun": "20261027T134534Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b02/regression/outputs/exclusion_counts_B.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b02/regression/outputs/exclusions_B.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b02/regression/outputs/feature_build_log.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b02/regression/outputs/history_coverage.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b02/regression/outputs/lateness_summary_B.csv.gz",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b02/regression/outputs/records_B.csv.gz",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "b02/classification",
+      "release_run": "20261023T154822Z",
+      "rerun": "20261027T134542Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b02/classification/outputs/exclusion_counts_B.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b02/classification/outputs/exclusions_B.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b02/classification/outputs/feature_build_log.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b02/classification/outputs/history_coverage.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b02/classification/outputs/lateness_summary_B.csv.gz",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b02/classification/outputs/records_B.csv.gz",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "b04/regression",
+      "release_run": "20261023T154827Z",
+      "rerun": "20261027T134546Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b04/regression/outputs/design_matrix_B.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b04/regression/outputs/feature_dictionary_B.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b04/regression/outputs/pool_ranking_B.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b04/regression/outputs/recipes_B.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b04/regression/outputs/reduction_B.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b04/regression/outputs/selected_features_B.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b04/regression/outputs/selection_ranking_B.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b04/regression/outputs/transforms_B.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "b04/classification",
+      "release_run": "20261023T154833Z",
+      "rerun": "20261027T134552Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b04/classification/outputs/design_matrix_B.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b04/classification/outputs/feature_dictionary_B.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b04/classification/outputs/pool_ranking_B.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b04/classification/outputs/recipes_B.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b04/classification/outputs/reduction_B.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b04/classification/outputs/selected_features_B.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b04/classification/outputs/selection_ranking_B.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b04/classification/outputs/transforms_B.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "b05/regression",
+      "release_run": "20261023T160529Z",
+      "rerun": "20261027T134555Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b05/regression/outputs/exclusions_B5.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b05/regression/outputs/fold_summary_B.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b05/regression/outputs/folds_B.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b05/regression/outputs/minimums_B.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "b05/classification",
+      "release_run": "20261023T160533Z",
+      "rerun": "20261027T134558Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b05/classification/outputs/exclusions_B5.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b05/classification/outputs/fold_summary_B.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b05/classification/outputs/folds_B.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b05/classification/outputs/minimums_B.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "b06/regression",
+      "release_run": "20261023T162830Z",
+      "rerun": "20261027T134621Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/regression/outputs/candidates.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/regression/outputs/counts.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/regression/outputs/curves/learning_curves.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/regression/outputs/curves/residual_quantiles_forest.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/regression/outputs/curves/residual_quantiles_linear.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/regression/outputs/decision.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/regression/outputs/design_matrix_by_fold.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/regression/outputs/figures/family_ladder.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/regression/outputs/figures/family_ladder.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/regression/outputs/figures/family_ladder.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/regression/outputs/figures/learning_curves.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/regression/outputs/figures/learning_curves.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/regression/outputs/figures/learning_curves.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/regression/outputs/figures/residual_diagnostics.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/regression/outputs/figures/residual_diagnostics.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/regression/outputs/figures/residual_diagnostics.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/regression/outputs/fit_log.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/regression/outputs/imputation_by_fold.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/regression/outputs/metrics_long.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/regression/outputs/paired_differences.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/regression/outputs/predictions.csv.gz",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "b06/classification",
+      "release_run": "20261023T162918Z",
+      "rerun": "20261027T134651Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/candidates.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/counts.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/curves/learning_curves.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/curves/pr_dummy.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/curves/pr_forest.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/curves/pr_linear.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/curves/pr_tree.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/curves/reliability_dummy.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/curves/reliability_forest.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/curves/reliability_linear.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/curves/reliability_tree.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/curves/roc_dummy.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/curves/roc_forest.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/curves/roc_linear.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/curves/roc_tree.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/decision.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/design_matrix_by_fold.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/figures/classification_diagnostics.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/figures/classification_diagnostics.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/figures/classification_diagnostics.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/figures/family_ladder.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/figures/family_ladder.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/figures/family_ladder.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/figures/learning_curves.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/figures/learning_curves.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/figures/learning_curves.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/fit_log.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/imputation_by_fold.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/metrics_long.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/oof_diagnostics.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/paired_differences.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b06/classification/outputs/predictions.csv.gz",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "b07/regression",
+      "release_run": "20261023T163311Z",
+      "rerun": "20261027T134909Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/regression/outputs/candidates.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/regression/outputs/counts.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/regression/outputs/curves/validation_curve_forest.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/regression/outputs/curves/validation_curve_linear.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/regression/outputs/curves/validation_curve_tree.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/regression/outputs/decision.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/regression/outputs/figures/validation_curve_forest.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/regression/outputs/figures/validation_curve_forest.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/regression/outputs/figures/validation_curve_forest.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/regression/outputs/figures/validation_curve_linear.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/regression/outputs/figures/validation_curve_linear.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/regression/outputs/figures/validation_curve_linear.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/regression/outputs/figures/validation_curve_tree.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/regression/outputs/figures/validation_curve_tree.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/regression/outputs/figures/validation_curve_tree.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/regression/outputs/grid_results.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/regression/outputs/ladder_preview.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/regression/outputs/oof_scores.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/regression/outputs/plain_vs_tuned.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/regression/outputs/predictions.csv.gz",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "b07/classification",
+      "release_run": "20261023T164241Z",
+      "rerun": "20261027T135528Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/classification/outputs/candidates.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/classification/outputs/counts.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/classification/outputs/curves/validation_curve_forest.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/classification/outputs/curves/validation_curve_linear.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/classification/outputs/curves/validation_curve_tree.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/classification/outputs/decision.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/classification/outputs/figures/validation_curve_forest.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/classification/outputs/figures/validation_curve_forest.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/classification/outputs/figures/validation_curve_forest.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/classification/outputs/figures/validation_curve_linear.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/classification/outputs/figures/validation_curve_linear.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/classification/outputs/figures/validation_curve_linear.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/classification/outputs/figures/validation_curve_tree.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/classification/outputs/figures/validation_curve_tree.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/classification/outputs/figures/validation_curve_tree.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/classification/outputs/grid_results.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/classification/outputs/ladder_preview.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/classification/outputs/oof_scores.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/classification/outputs/plain_vs_tuned.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b07/classification/outputs/predictions.csv.gz",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "b08/regression",
+      "release_run": "20261024T042516Z",
+      "rerun": "20261027T135547Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/regression/outputs/adoption_by_finalist.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/regression/outputs/adoption_by_finalist_summary.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/regression/outputs/adoption_comparison.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/regression/outputs/adoption_decision.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/regression/outputs/candidates.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/regression/outputs/counts.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/regression/outputs/decision.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/regression/outputs/figures/finalists.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/regression/outputs/figures/finalists.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/regression/outputs/figures/finalists.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/regression/outputs/frozen_recipe.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/regression/outputs/ladder.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/regression/outputs/metrics_by_population.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/regression/outputs/metrics_by_population_folds.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/regression/outputs/metrics_long.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/regression/outputs/population_summary.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/regression/outputs/predictions.csv.gz",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/regression/outputs/se_decomposition.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/regression/outputs/selected_spec.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/regression/outputs/selection_review_pack.md",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "b08/classification",
+      "release_run": "20261024T042619Z",
+      "rerun": "20261027T135630Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/adoption_by_finalist.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/adoption_by_finalist_summary.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/adoption_comparison.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/adoption_decision.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/calibration_folds.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/candidates.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/confusion_comparison.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/counts.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/curves/reliability_raw_vs_sigmoid.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/curves/threshold_curve.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/decision.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/figures/calibration.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/figures/calibration.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/figures/calibration.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/figures/finalists.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/figures/finalists.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/figures/finalists.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/figures/threshold_tradeoff.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/figures/threshold_tradeoff.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/figures/threshold_tradeoff.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/frozen_recipe.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/ladder.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/metrics_by_population.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/metrics_by_population_folds.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/metrics_long.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/missed_dispatch_rule.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/population_summary.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/predictions.csv.gz",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/se_decomposition.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/selected_spec.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/selection_review_pack.md",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/threshold_by_cap.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/threshold_by_cap_sigmoid.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/threshold_by_fold.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/threshold_by_fold_sigmoid.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/threshold_curve_sigmoid.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/threshold_table.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/threshold_table_sigmoid.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "b09/regression",
+      "release_run": "20261025T132406Z",
+      "rerun": "20261027T135645Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/a_fallback_by_scope.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/a_fallback_summary.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/business_by_route.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/business_summary.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/coefficients.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/conclusion.md",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/drift.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/drift_by_fold.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/by_customer_state.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/by_customer_state.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/by_customer_state.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/coefficients.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/coefficients.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/coefficients.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/drift_by_fold.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/drift_by_fold.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/drift_by_fold.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/drift_numeric.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/drift_numeric.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/drift_numeric.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/paired_differences.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/paired_differences.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/paired_differences.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/permutation_importance.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/permutation_importance.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/permutation_importance.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/residuals.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/residuals.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/residuals.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/validation_and_test.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/validation_and_test.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/validation_and_test.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/paired_test_differences.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/payment_type.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/permutation_importance.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/ranking_consistency.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/residuals_histogram.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/residuals_summary.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/subgroups.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/subgroups_aggregate.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/train_val_test.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/validation_and_test.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/validation_and_test_windows.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "b09/classification",
+      "release_run": "20261025T132538Z",
+      "rerun": "20261027T135820Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/a_fallback_by_scope.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/a_fallback_summary.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/business_by_route.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/business_summary.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/coefficients.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/conclusion.md",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/drift.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/drift_by_fold.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/figures/by_customer_state.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/figures/by_customer_state.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/figures/by_customer_state.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/figures/coefficients.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/figures/coefficients.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/figures/coefficients.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/figures/drift_by_fold.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/figures/drift_by_fold.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/figures/drift_by_fold.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/figures/drift_numeric.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/figures/drift_numeric.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/figures/drift_numeric.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/figures/paired_differences.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/figures/paired_differences.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/figures/paired_differences.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/figures/permutation_importance.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/figures/permutation_importance.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/figures/permutation_importance.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/figures/threshold_options.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/figures/threshold_options.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/figures/threshold_options.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/figures/validation_and_test.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/figures/validation_and_test.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/figures/validation_and_test.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/label_sensitivity.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/missed_dispatch_rule_test.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/paired_test_differences.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/permutation_importance.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/ranking_consistency.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/subgroups.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/subgroups_aggregate.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/threshold_options.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/threshold_options_curve.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/train_val_test.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/validation_and_test.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/validation_and_test_windows.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "doc_support/regression",
+      "release_run": "20261025T132541Z",
+      "rerun": "20261027T135823Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/a_s06_per_fold_scores.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/b2_lateness_by_route.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/b_b06_per_fold_scores.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/figures/a_s06_per_fold_scores.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/figures/a_s06_per_fold_scores.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/figures/a_s06_per_fold_scores.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/figures/b2_history_coverage.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/figures/b2_history_coverage.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/figures/b2_history_coverage.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/figures/b2_lateness_by_route.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/figures/b2_lateness_by_route.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/figures/b2_lateness_by_route.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/figures/b4_selection.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/figures/b4_selection.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/figures/b4_selection.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/figures/b5_partition.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/figures/b5_partition.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/figures/b5_partition.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/figures/b_b06_per_fold_scores.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/figures/b_b06_per_fold_scores.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/figures/b_b06_per_fold_scores.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/figures/r05_population.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/figures/r05_population.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/figures/r05_population.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "doc_support/classification",
+      "release_run": "20261025T132552Z",
+      "rerun": "20261027T135834Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/a_s06_per_fold_scores.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/a_threshold_by_cap.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/a_threshold_by_fold.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/b2_lateness_by_route.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/b_b06_per_fold_scores.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/a_s06_per_fold_scores.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/a_s06_per_fold_scores.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/a_s06_per_fold_scores.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/b2_history_coverage.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/b2_history_coverage.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/b2_history_coverage.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/b2_lateness_by_route.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/b2_lateness_by_route.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/b2_lateness_by_route.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/b4_selection.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/b4_selection.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/b4_selection.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/b5_partition.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/b5_partition.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/b5_partition.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/b_b06_per_fold_scores.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/b_b06_per_fold_scores.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/b_b06_per_fold_scores.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/r05_population.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/r05_population.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/r05_population.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/r06_auc_brier.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/r06_auc_brier.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/r06_auc_brier.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/r06_confusion.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/r06_confusion.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/r06_confusion.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "b10/regression",
+      "release_run": "20261027T044744Z",
+      "rerun": "20261027T135841Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b10/regression/outputs/app_sources.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b10/regression/outputs/drift_profile.json",
+          "result": "numbers within 1e-9",
+          "max_abs_diff": 7.105427357601002e-15
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b10/regression/outputs/input_validation.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b10/regression/outputs/out_of_profile_shares.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b10/regression/outputs/parity.json",
+          "result": "DIFFERENT text values",
+          "max_abs_diff": null
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b10/regression/outputs/release_manifest.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b10/regression/outputs/router_check.json",
+          "result": "numbers within 1e-9",
+          "max_abs_diff": 1.7763568394002505e-14
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b10/regression/outputs/serving_config.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b10/regression/outputs/top_routes_categories.csv",
+          "result": "numbers within 1e-9",
+          "max_abs_diff": 3.552713678800501e-15
+        }
+      ]
+    },
+    {
+      "node": "b10/classification",
+      "release_run": "20261027T044819Z",
+      "rerun": "20261027T135848Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b10/classification/outputs/app_sources.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b10/classification/outputs/drift_profile.json",
+          "result": "numbers within 1e-9",
+          "max_abs_diff": 7.105427357601002e-15
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b10/classification/outputs/input_validation.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b10/classification/outputs/out_of_profile_shares.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b10/classification/outputs/parity.json",
+          "result": "DIFFERENT text values",
+          "max_abs_diff": null
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b10/classification/outputs/release_manifest.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b10/classification/outputs/router_check.json",
+          "result": "numbers within 1e-9",
+          "max_abs_diff": 1.249000902703301e-16
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b10/classification/outputs/serving_config.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b10/classification/outputs/threshold_results.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b10/classification/outputs/top_routes_categories.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "b12/regression",
+      "release_run": "20261027T120743Z",
+      "rerun": "20261027T135854Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b12/regression/outputs/buffer_by_state.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b12/regression/outputs/buffer_choice.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b12/regression/outputs/buffer_curve.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b12/regression/outputs/figures/buffer_curve.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b12/regression/outputs/figures/buffer_curve.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b12/regression/outputs/figures/buffer_curve.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b12/regression/outputs/figures/ranking_stability.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b12/regression/outputs/figures/ranking_stability.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b12/regression/outputs/figures/ranking_stability.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b12/regression/outputs/ranking_stability.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b12/regression/outputs/ranking_stability_by_fold.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b12/regression/outputs/ranking_stability_features.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    },
+    {
+      "node": "b12/classification",
+      "release_run": "20261027T120801Z",
+      "rerun": "20261027T135905Z",
+      "rerun_happened": true,
+      "files": [
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b12/classification/outputs/figures/ranking_stability.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b12/classification/outputs/figures/ranking_stability.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b12/classification/outputs/figures/ranking_stability.png",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b12/classification/outputs/ranking_stability.json",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b12/classification/outputs/ranking_stability_by_fold.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        },
+        {
+          "file": "experiments/experiment_5/pipeline_b/stages/b12/classification/outputs/ranking_stability_features.csv",
+          "result": "identical",
+          "max_abs_diff": 0.0
+        }
+      ]
+    }
+  ]
+}

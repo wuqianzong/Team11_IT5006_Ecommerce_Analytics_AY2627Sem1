@@ -66,7 +66,11 @@ Paths are under `experiments/experiment_5/pipeline_b/` unless they start with `d
 
 Plan before you write. Show Henry the plan for each task and wait for his OK.
 
-## 3. Timing: reproduction comes later
+## 3. Timing: reproduction
+
+**Update 2026-10-27: reproduction passed** (tag `e5-reproduced`, `experiments/experiment_5/reproduction/ACCEPTANCE.md`). The
+outputs are unchanged and stay where they are (no migration, CR-061), so the register IDs and paths you use are final.
+The text below is kept for the record.
 
 Benson starts the migration and reproduction in a later session. Final numbers, figures and app paths come
 from the reproduced outputs. That doesn't block you: write everything with register IDs (`{{id}}`), which
