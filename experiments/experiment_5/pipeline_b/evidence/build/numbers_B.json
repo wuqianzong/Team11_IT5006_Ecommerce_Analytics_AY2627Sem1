@@ -653,7 +653,7 @@
   "B10.clf.thresholds": {
     "kind": "table",
     "source": "b10/classification/outputs/threshold_results.csv",
-    "run_id": "20261026T024858Z",
+    "run_id": "20261027T044819Z",
     "evidence": "B10.3",
     "used_in": [
       "report 5",
@@ -661,12 +661,12 @@
       "deck 8"
     ],
     "file": "evidence/build/tables/B10.clf.thresholds.csv",
-    "rows": 6
+    "rows": 8
   },
   "B10.clf.B_1_6_test_alerts_day": {
     "kind": "number",
     "source": "b10/classification/outputs/threshold_results.csv",
-    "run_id": "20261026T024858Z",
+    "run_id": "20261027T044819Z",
     "evidence": "B10.3",
     "used_in": [
       "report 5",
@@ -678,7 +678,7 @@
   "B10.clf.B_1_6_test_precision": {
     "kind": "number",
     "source": "b10/classification/outputs/threshold_results.csv",
-    "run_id": "20261026T024858Z",
+    "run_id": "20261027T044819Z",
     "evidence": "B10.3",
     "used_in": [
       "report 5",
@@ -690,7 +690,7 @@
   "B10.clf.B_1_6_test_recall": {
     "kind": "number",
     "source": "b10/classification/outputs/threshold_results.csv",
-    "run_id": "20261026T024858Z",
+    "run_id": "20261027T044819Z",
     "evidence": "B10.3",
     "used_in": [
       "report 5",
@@ -702,7 +702,7 @@
   "B10.clf.B_4_15_test_alerts_day": {
     "kind": "number",
     "source": "b10/classification/outputs/threshold_results.csv",
-    "run_id": "20261026T024858Z",
+    "run_id": "20261027T044819Z",
     "evidence": "B10.3",
     "used_in": [
       "report 0",
@@ -715,7 +715,7 @@
   "B10.clf.B_4_15_test_precision": {
     "kind": "number",
     "source": "b10/classification/outputs/threshold_results.csv",
-    "run_id": "20261026T024858Z",
+    "run_id": "20261027T044819Z",
     "evidence": "B10.3",
     "used_in": [
       "report 7",
@@ -727,7 +727,7 @@
   "B10.clf.B_4_15_test_recall": {
     "kind": "number",
     "source": "b10/classification/outputs/threshold_results.csv",
-    "run_id": "20261026T024858Z",
+    "run_id": "20261027T044819Z",
     "evidence": "B10.3",
     "used_in": [
       "report 7",
@@ -739,7 +739,7 @@
   "B10.clf.B_4_15_test_fp_per_tp": {
     "kind": "number",
     "source": "b10/classification/outputs/threshold_results.csv",
-    "run_id": "20261026T024858Z",
+    "run_id": "20261027T044819Z",
     "evidence": "B10.3",
     "used_in": [
       "report 7"
@@ -750,7 +750,7 @@
   "B10.clf.A_out_test_alerts_day": {
     "kind": "number",
     "source": "b10/classification/outputs/threshold_results.csv",
-    "run_id": "20261026T024858Z",
+    "run_id": "20261027T044819Z",
     "evidence": "B10.3",
     "used_in": [
       "report 7",
@@ -762,7 +762,7 @@
   "B10.clf.A_out_test_precision": {
     "kind": "number",
     "source": "b10/classification/outputs/threshold_results.csv",
-    "run_id": "20261026T024858Z",
+    "run_id": "20261027T044819Z",
     "evidence": "B10.3",
     "used_in": [
       "report 7"
@@ -773,7 +773,7 @@
   "B10.clf.combined_test_alerts_day": {
     "kind": "number",
     "source": "b10/classification/outputs/serving_config.json",
-    "run_id": "20261026T024858Z",
+    "run_id": "20261027T044819Z",
     "evidence": "B10.3",
     "used_in": [
       "report 7",
@@ -782,10 +782,101 @@
     "value": 20.5,
     "text": "20.5"
   },
+  "B10.clf.A_out_test_recall": {
+    "kind": "number",
+    "source": "b10/classification/outputs/threshold_results.csv",
+    "run_id": "20261027T044819Z",
+    "evidence": "B10.3",
+    "used_in": [
+      "report 7",
+      "deck 8"
+    ],
+    "value": 0.5277777777777778,
+    "text": "0.528"
+  },
+  "B10.clf.A_out_test_cost_5_1": {
+    "kind": "number",
+    "source": "b10/classification/outputs/threshold_results.csv",
+    "run_id": "20261027T044819Z",
+    "evidence": "B10.3",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 2088.0,
+    "text": "2,088"
+  },
+  "B10.clf.A_out_test_cost_1_1": {
+    "kind": "number",
+    "source": "b10/classification/outputs/threshold_results.csv",
+    "run_id": "20261027T044819Z",
+    "evidence": "B10.3",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 1408,
+    "text": "1,408"
+  },
+  "B10.clf.B_4_15_test_cost_5_1": {
+    "kind": "number",
+    "source": "b10/classification/outputs/threshold_results.csv",
+    "run_id": "20261027T044819Z",
+    "evidence": "B10.3",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 7123.0,
+    "text": "7,123"
+  },
+  "B10.clf.combined_test_cost_5_1": {
+    "kind": "number",
+    "source": "b10/classification/outputs/threshold_results.csv",
+    "run_id": "20261027T044819Z",
+    "evidence": "B10.3",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 9211.0,
+    "text": "9,211"
+  },
+  "B10.clf.combined_test_cost_1_1": {
+    "kind": "number",
+    "source": "b10/classification/outputs/threshold_results.csv",
+    "run_id": "20261027T044819Z",
+    "evidence": "B10.3",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 3115,
+    "text": "3,115"
+  },
+  "B10.clf.combined_test_precision": {
+    "kind": "number",
+    "source": "b10/classification/outputs/threshold_results.csv",
+    "run_id": "20261027T044819Z",
+    "evidence": "B10.3",
+    "used_in": [
+      "report 7",
+      "deck 8"
+    ],
+    "value": 0.1915650406504065,
+    "text": "0.192"
+  },
+  "B10.clf.combined_test_recall": {
+    "kind": "number",
+    "source": "b10/classification/outputs/threshold_results.csv",
+    "run_id": "20261027T044819Z",
+    "evidence": "B10.3",
+    "used_in": [
+      "report 7",
+      "deck 8"
+    ],
+    "value": 0.1983166754339821,
+    "text": "0.198"
+  },
   "B10.clf.test_rows_inside": {
     "kind": "number",
     "source": "b10/classification/outputs/serving_config.json",
-    "run_id": "20261026T024858Z",
+    "run_id": "20261027T044819Z",
     "evidence": "B10.3",
     "used_in": [
       "report 6"
@@ -796,7 +887,7 @@
   "B10.clf.test_rows_outside": {
     "kind": "number",
     "source": "b10/classification/outputs/serving_config.json",
-    "run_id": "20261026T024858Z",
+    "run_id": "20261027T044819Z",
     "evidence": "B10.3",
     "used_in": [
       "report 6"
@@ -807,7 +898,7 @@
   "B10.reg.parity_max": {
     "kind": "number",
     "source": "b10/regression/outputs/parity.json",
-    "run_id": "20261026T024749Z",
+    "run_id": "20261027T044744Z",
     "evidence": "B10.1",
     "used_in": [
       "report 6"
@@ -818,7 +909,7 @@
   "B10.clf.parity_max": {
     "kind": "number",
     "source": "b10/classification/outputs/parity.json",
-    "run_id": "20261026T024858Z",
+    "run_id": "20261027T044819Z",
     "evidence": "B10.1",
     "used_in": [
       "report 6"
@@ -829,7 +920,7 @@
   "B10.reg.top_routes": {
     "kind": "table",
     "source": "b10/regression/outputs/top_routes_categories.csv",
-    "run_id": "20261026T024749Z",
+    "run_id": "20261027T044744Z",
     "evidence": "B10.7",
     "used_in": [
       "report 7"
@@ -840,7 +931,7 @@
   "B10.clf.top_routes": {
     "kind": "table",
     "source": "b10/classification/outputs/top_routes_categories.csv",
-    "run_id": "20261026T024858Z",
+    "run_id": "20261027T044819Z",
     "evidence": "B10.7",
     "used_in": [
       "report 7"
@@ -1112,7 +1203,7 @@
   "B10.clf.review_cap": {
     "kind": "number",
     "source": "b10/classification/outputs/serving_config.json",
-    "run_id": "20261026T024858Z",
+    "run_id": "20261027T044819Z",
     "evidence": "B10.3",
     "used_in": [
       "report 7",
@@ -1121,5 +1212,126 @@
     ],
     "value": 6,
     "text": "6"
+  },
+  "A3.reg.lead_median_days": {
+    "kind": "number",
+    "source": "A/s03_eda/regression/outputs/eda_summary.json",
+    "run_id": "20261023T083326Z @ e5-A-frozen",
+    "evidence": "3.1",
+    "used_in": [
+      "report 3"
+    ],
+    "value": 11.172094907407407,
+    "text": "11.2"
+  },
+  "A3.reg.lead_mean_days": {
+    "kind": "number",
+    "source": "A/s03_eda/regression/outputs/eda_summary.json",
+    "run_id": "20261023T083326Z @ e5-A-frozen",
+    "evidence": "3.1",
+    "used_in": [
+      "report 3"
+    ],
+    "value": 13.417265992910362,
+    "text": "13.4"
+  },
+  "A3.reg.lead_p95_days": {
+    "kind": "number",
+    "source": "A/s03_eda/regression/outputs/eda_summary.json",
+    "run_id": "20261023T083326Z @ e5-A-frozen",
+    "evidence": "3.1",
+    "used_in": [
+      "report 3"
+    ],
+    "value": 31.079025462962978,
+    "text": "31.1"
+  },
+  "A3.reg.lead_skewness": {
+    "kind": "number",
+    "source": "A/s03_eda/regression/outputs/eda_summary.json",
+    "run_id": "20261023T083326Z @ e5-A-frozen",
+    "evidence": "3.1",
+    "used_in": [
+      "report 3"
+    ],
+    "value": 2.405996923229995,
+    "text": "2.41"
+  },
+  "A3.clf.detractor_rate_late": {
+    "kind": "number",
+    "source": "A/s03_eda/classification/outputs/eda_summary.json",
+    "run_id": "20261023T083353Z @ e5-A-frozen",
+    "evidence": "3.8",
+    "used_in": [
+      "report 3"
+    ],
+    "value": 0.5724158653846154,
+    "text": "57.2%"
+  },
+  "A3.clf.detractor_rate_on_time": {
+    "kind": "number",
+    "source": "A/s03_eda/classification/outputs/eda_summary.json",
+    "run_id": "20261023T083353Z @ e5-A-frozen",
+    "evidence": "3.8",
+    "used_in": [
+      "report 3"
+    ],
+    "value": 0.0946029375870436,
+    "text": "9.5%"
+  },
+  "A3.clf.dev_prevalence": {
+    "kind": "number",
+    "source": "A/s03_eda/classification/outputs/eda_summary.json",
+    "run_id": "20261023T083353Z @ e5-A-frozen",
+    "evidence": "3.2",
+    "used_in": [
+      "report 3"
+    ],
+    "value": 0.14784655757949985,
+    "text": "14.8%"
+  },
+  "A3.reg.median_lead_SP": {
+    "kind": "number",
+    "source": "A/s03_eda/regression/outputs/categorical_feature_target_lead_days.csv",
+    "run_id": "20261023T083326Z @ e5-A-frozen",
+    "evidence": "3.5",
+    "used_in": [
+      "report 3"
+    ],
+    "value": 7.844780092592592,
+    "text": "7.8"
+  },
+  "A3.reg.median_lead_AM": {
+    "kind": "number",
+    "source": "A/s03_eda/regression/outputs/categorical_feature_target_lead_days.csv",
+    "run_id": "20261023T083326Z @ e5-A-frozen",
+    "evidence": "3.5",
+    "used_in": [
+      "report 3"
+    ],
+    "value": 27.087789351851853,
+    "text": "27.1"
+  },
+  "A3.trend.orders_2017_11": {
+    "kind": "number",
+    "source": "A/s03_eda/regression/outputs/outcome_trends.csv",
+    "run_id": "20261023T083326Z @ e5-A-frozen",
+    "evidence": "3.3",
+    "used_in": [
+      "report 3"
+    ],
+    "value": 7284,
+    "text": "7,284"
+  },
+  "A3.trend.orders_2017_10": {
+    "kind": "number",
+    "source": "A/s03_eda/regression/outputs/outcome_trends.csv",
+    "run_id": "20261023T083326Z @ e5-A-frozen",
+    "evidence": "3.3",
+    "used_in": [
+      "report 3"
+    ],
+    "value": 4478,
+    "text": "4,478"
   }
 }
