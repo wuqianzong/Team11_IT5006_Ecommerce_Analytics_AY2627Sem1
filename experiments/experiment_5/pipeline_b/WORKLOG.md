@@ -282,3 +282,20 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
 2. Tag name for B10 round 3 (round 2 was e5-B-s10-accepted-r2)?
 3. Reproduction-check tolerance policy: even B10 (no refit) differs across machines at about 1e-16 in parity and drift
    outputs, so a hash comparison fails off the producing machine.
+
+## 2026-10-27 · Benson + Claude · review of round 3 (4cce399), ratification, B10 round 3 accepted
+
+**Done**
+- Pulled e5/b10-henry at 4cce399. Every change since 8b6d7fb is inside pipeline_b/; A's tree and every accepted stage's
+  outputs unchanged; no tag moved or created.
+- Benson ratified B-G-10 and B-G-11 (now Agreed) and accepted B10 round 3; tag e5-B-s10-accepted-r3 on the commit that
+  records this (B-CR-34). Not pushed.
+
+**Checks (Benson's machine)**
+- `pytest -q pipeline_b/tests`: 20 passed, 5 skipped; `E5B_SLOW=1`: 25 passed. Tree clean after both.
+- Deliverables audit on deliverables/audit/inputs/: 9 of 9 PASS.
+- B10 rerun at 4cce399: threshold_results.csv and serving_config.json reproduce exactly; parity, router, drift and
+  top-routes outputs differ only in the last float digit (about 1e-16); all checks pass. Rerun not committed.
+
+**Next (Benson)**
+- Reproduction-check policy, merge into milestone-3, publish the outbox tabs, release tag, migration.

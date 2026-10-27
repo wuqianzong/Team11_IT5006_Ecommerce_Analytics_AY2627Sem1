@@ -58,6 +58,6 @@ and the YAML. Benson refreshes the read-only mirror `spec/team_doc/` when a stag
 - Benson reviewed the branch at 8b6d7fb (22 of 22 tests pass on his machine). Since then (2026-10-27): B-CR-31 (register test
   builds into tmp), B10 round 3 (B-G-10, B-CR-32), A's s03 EDA in the register (B-G-11, B-CR-33), report doc rev 29, deck
   version 1793077250-4a3c, audit inputs committed and audit 9/9. Summary: `spec/doc_outbox/sync_for_benson_r2.md`.
-- For Benson: ratify B-G-10 and B-G-11 (both Proposed, Henry for the team); approve and tag B10 round 3; publish the r3 tabs;
-  then merge, release tag, migration and app (his decisions).
+- 2026-10-27, Benson: B-G-10 and B-G-11 ratified; B10 round 3 accepted, tag e5-B-s10-accepted-r3 (B-CR-34).
+- Still Benson's: publish the r3 tabs, reproduction-check policy, merge, release tag, migration and app.
 - Not tagged in this session by rule. Slow adapter tests fail on Henry's machine (refits not bit-reproducible), pass on Benson's.

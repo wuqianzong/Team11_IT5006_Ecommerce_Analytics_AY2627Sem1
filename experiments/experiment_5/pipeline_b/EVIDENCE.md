@@ -35,8 +35,8 @@ Pipeline A's evidence is frozen at tag `e5-A-frozen`: cite A only from `../stage
 | b09 | classification | 20261025T132538Z | b09c396 | e5-B-s09-accepted | 2 |
 | doc_support | regression | 20261025T132541Z | b09c396 | e5-B-s09-accepted | 1 |
 | doc_support | classification | 20261025T132552Z | b09c396 | e5-B-s09-accepted | 1 |
-| b10 | regression | 20261027T044744Z | 906fe39 | e5-B-s10-accepted-r2 | 3 (no r3 tag yet; Benson tags after approval) |
-| b10 | classification | 20261027T044819Z | 906fe39 | e5-B-s10-accepted-r2 | 3 (no r3 tag yet; Benson tags after approval) |
+| b10 | regression | 20261027T044744Z | 906fe39 | e5-B-s10-accepted-r3 | 3 (accepted by the experiment lead 2026-10-27) |
+| b10 | classification | 20261027T044819Z | 906fe39 | e5-B-s10-accepted-r3 | 3 (accepted by the experiment lead 2026-10-27) |
 
 **B10 rows:** round 3 (B-G-10: A's fallback test cost and the combined B + A line in threshold_results.csv; thresholds unchanged, 4/15
 operating, 1/6 frozen, A 1/6), clean runs on 906fe39 (Henry's machine), byte-identical on a second run. Not yet tagged; the tag
