@@ -39,8 +39,8 @@ Pipeline A's evidence is frozen at tag `e5-A-frozen`: cite A only from `../stage
 | b10 | classification | 20261027T044819Z | 906fe39 | e5-B-s10-accepted-r3 | 3 (accepted by the experiment lead 2026-10-27) |
 
 **B10 rows:** round 3 (B-G-10: A's fallback test cost and the combined B + A line in threshold_results.csv; thresholds unchanged, 4/15
-operating, 1/6 frozen, A 1/6), clean runs on 906fe39 (Henry's machine), byte-identical on a second run. Not yet tagged; the tag
-column names the last B10 tag, which the round-3 tree follows. Round 2 (clean runs on 1e36f0a) is superseded (table below).
+operating, 1/6 frozen, A 1/6), clean runs on 906fe39 (Henry's machine), byte-identical on a second run. Accepted by the experiment lead
+2026-10-27, tag e5-B-s10-accepted-r3 (B-CR-34). Round 2 (clean runs on 1e36f0a) is superseded (table below).
 Round 1 (5/14, tag e5-B-s10-accepted) is superseded (table below). Round 2 approved by Henry on Benson's behalf on 2026-10-26; tag e5-B-s10-accepted-r2.
 
 **T1 is never rerun** (a rerun is a second test read; joint_test.md §1). Its run was made on a tree

@@ -386,7 +386,10 @@ which downstream decisions moved → those owners review.
   `stages/s10_release/common/` and load bundles from s08 `outputs/`. None of them
   is placed in `docs/reports/` or `deployment/` before migration (§0.1, §12).
 - A **release** is a git tag `e5-release-N` on a commit where `check` passes and
-  `evidence/build/_release.json` lists every node's `run_id`. The report states which
+  `evidence/build/_release.json` lists every node's `run_id`. With Pipeline B (G-79, CR-058) the
+  release is the commit where A's frozen evidence and B's register (`pipeline_b/build_evidence_B.py`)
+  both build from Current runs only, B's tests pass and the deliverables audit passes; its record is
+  `pipeline_b/release/e5-release-N.json` (every A node's and every B stage's run ID, commit and tag). The report states which
   release it was built from. If anything changes later, cut `e5-release-N+1`; do not
   patch old evidence.
 
@@ -626,8 +629,12 @@ Open items for the kickoff:
 Experiment 5 is the staging area. Its results become the project's working version only
 through one deliberate migration:
 
-1. **Preconditions:** every node `ACCEPTED`; `run_pipeline.py check` passes; a release tag
-   `e5-release-N` exists; the team has approved the whole experiment; the **experiment lead
+1. **Preconditions:** every node `ACCEPTED`, or replaced under G-79 (A's s08.6–8.8 by T1,
+   A's s09 by B9, A's s10 by B10; CR-058); `run_pipeline.py check` passes on Pipeline A, and
+   Pipeline B passes its own checks and tests (B relies on A's frozen code read-only, not on A's
+   check; a guard finding that lists only `pipeline_b/` files is a recorded deviation, fixed in
+   the migrated code at step 3; CR-058); a release tag `e5-release-N` exists, cut before the
+   migration starts; the team has approved the whole experiment; the **experiment lead
    explicitly instructs** the migration. No agent starts it on its own initiative, and
    nobody migrates individual stages early.
 2. **Migration plan first** (written into `CHANGELOG.md` and approved): a file-by-file map,
