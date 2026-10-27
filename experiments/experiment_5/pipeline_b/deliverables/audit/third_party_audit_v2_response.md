@@ -7,12 +7,12 @@ after the appendices (B-CR-28), and 58 numbers after B-CR-30.
 
 | ID | Finding | Verified | Action (B-CR-30) | Status |
 | --- | --- | --- | --- | --- |
-| B11-F1 | Report §3 open item: A's s03 EDA numbers | Yes | None yet: the register does not read A's tree by design (B11.1); needs Henry's decision | Open |
+| B11-F1 | Report §3 open item: A's s03 EDA numbers | Yes | B-G-11 (Henry, 2026-10-27; Benson to ratify), B-CR-33: the register reads A's s03 outputs at e5-A-frozen (sha256 against the tag); §3 cites 11 A3 numbers, open-item line removed | Fixed (pending ratification) |
 | B11-F2 | App URL and screenshots are placeholders | Yes | None: needs migration (lead only, README §12) | Open |
 | B11-F3 | No final PDF / PPTX exports | Yes | None: scheduled 3–7 Nov (B11 §8) | Open (planned) |
 | B11-F4 | B11 not accepted; README says NOT STARTED | Yes | README row now "DRAFTS BUILT, under review"; acceptance/tag still pending | Partly fixed |
 | B10-F1 / B11-F6 | Combined 20.5/day vs the 6/day review cap not stated | Yes (cap absent from report and deck) | Report §7 item 2 and §8 "Alert capacity"; deck alerts slide footer and notes: the cap applies to B only; combined is higher; team accepted | Fixed |
-| B10-F2 | A fallback test cost NaN | Yes | None: deriving it needs a code change and B10 rerun; the report cites B-only cost and states no combined cost | Open |
+| B10-F2 | A fallback test cost NaN | Yes | B-G-10 (Henry, 2026-10-27; Benson to ratify), B-CR-32: B10 round 3 computes A's fallback TP/FP/FN and costs from T1's saved predictions and a combined serving-rule line; report §7 and deck slide 8 cite them | Fixed (pending ratification) |
 | B11-F5 | B-G-05 calibration override not in limitations | Yes | Report §8 "Calibration override"; deck limitations row | Fixed |
 | B11-F7 | References abbreviated | Yes | None: full metadata must be looked up from the publisher records | Open |
 | B11-F8 | B11 blueprint frozen input tag is round 1 | Yes | Now `e5-B-s10-accepted-r2`; outbox copy regenerated | Fixed |

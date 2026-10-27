@@ -1,0 +1,15 @@
+<section id="method" data-transition="fade" style="background:#EEF1F4;color:#14213D;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#C2410C">Method</p>
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1">Simple first, time-ordered, one test read</h2>
+<div style="display:flex;gap:48px;align-items:start">
+<img src="/_blob/9705c7c37257f61a05455e97d64db2f0" alt="Five time-ordered validation folds followed by the held-out test period" style="width:820px;height:500px;object-fit:contain;background:#FFFFFF;border-radius:16px">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:30px"><b>Folds:</b> five chronological, customer-purged folds; no random split on dated orders.</p>
+<p style="font-size:30px"><b>Ladder:</b> dummy → linear / logistic → tree → random forest, then tuning.</p>
+<p style="font-size:30px"><b>Selection:</b> one-SE rule kept the plain linear and logistic models; the forest was within one SE.</p>
+<p style="font-size:30px"><b>Test:</b> A and B frozen first, then scored once together.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6B7280">Team 11 · IT5006 · Two model families (linear, tree); the forest is the bagged ensemble</p>
+<aside>Feature selection kept the top features reaching 99% of the cumulative ranking. Class weight is a grid option for the classifiers. The classifier is sigmoid-calibrated, so A and B share one probability scale.</aside>
+</section>

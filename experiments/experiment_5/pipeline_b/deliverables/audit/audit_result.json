@@ -47,10 +47,10 @@
     }
   ],
   "passed": true,
-  "doc_sha256": "1f950834e7cf5ac69ff7bfcd52a35737726b956ef8e48a0c564053437fa91c0b",
+  "doc_sha256": "3c2ce10650b3b2b88ed18c7f58dfb23f55ab39eaf4f75c1dcf52c8761cd0b95a",
   "deck_slides": {
     "actions.html": "1ef3667baa893fc9e34134d2d3dd5233549e162a599497b8ebc8d03743c72fcb",
-    "alerts.html": "192016315377592e0612a2fe3c0581f45a6716fca9d358448b5e763e25ae880a",
+    "alerts.html": "e8d2d9c7d75daf0f3068b1eff09cfba60f86fa84a2f749db5eeaa97b03c81e03",
     "atob.html": "aaf6068439ad9d7f4914e6173ed970dc5fc59c95aa6830d276f61252fdf418a1",
     "clf.html": "796afa301420edc3ee2f5d917a15e1e0edf877e1b193b4677c63a585927105f5",
     "close.html": "58c98c20ba1b00bd9ff70c8195b943a98d1e71c2be2373e9528114750fc8c0a9",
