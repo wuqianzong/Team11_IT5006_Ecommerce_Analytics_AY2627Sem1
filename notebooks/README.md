@@ -2,6 +2,8 @@
 
 This directory contains the complete sequence of Jupyter notebooks documenting the data processing, historical modeling baselines, and applied refinement cycles for the Olist E-Commerce dataset.
 
+> **Milestone 3:** [`10_milestone3_experiment5.ipynb`](10_milestone3_experiment5.ipynb) walks through Experiment 5 (Pipelines A and B) from its stored outputs and can rerun it; see the root `REPRODUCE.md`. Notebooks 01–09 belong to earlier milestones and are not used by Milestone 3.
+
 ---
 
 ## 📚 Notebook Directory Roadmap

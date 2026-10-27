@@ -1,3 +1,5 @@
+> **SUPERSEDED by CR-061 (2026-10-27):** no migration. Experiment 5 is reproduced in place; see README §12 and the root `REPRODUCE.md`. Kept as the record of the proposal.
+
 # Migration plan — Experiment 5 into the working folders (README §12 step 2; CR-059)
 
 **Status: PROPOSED, for the experiment lead's approval. Nothing here has been done.** No file outside

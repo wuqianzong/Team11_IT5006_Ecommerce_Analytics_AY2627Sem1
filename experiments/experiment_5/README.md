@@ -624,40 +624,28 @@ Open items for the kickoff:
 
 ---
 
-## 12. Migration to the working folders (only after full approval)
+## 12. Reproduction in place (CR-061; replaces the migration)
 
-Experiment 5 is the staging area. Its results become the project's working version only
-through one deliberate migration:
+Experiment 5 is not migrated. `experiments/experiment_5/` is the project's Milestone 3 working
+version; the folders of earlier milestones (`src/`, `deployment/`, `artifacts/`, `notebooks/01`–`09`,
+`docs/milestone2_*`) are not used by it. The root `REPRODUCE.md` tells a reader how to rerun it.
 
-1. **Preconditions:** every node `ACCEPTED`, or replaced under G-79 (A's s08.6–8.8 by T1,
-   A's s09 by B9, A's s10 by B10; CR-058); `run_pipeline.py check` passes on Pipeline A, and
-   Pipeline B passes its own checks and tests (B relies on A's frozen code read-only, not on A's
-   check; a guard finding that lists only `pipeline_b/` files is a recorded deviation, fixed in
-   the migrated code at step 3; CR-058); a release tag `e5-release-N` exists, cut before the
-   migration starts; the team has approved the whole experiment; the **experiment lead
-   explicitly instructs** the migration. No agent starts it on its own initiative, and
-   nobody migrates individual stages early.
-2. **Migration plan first** (written into `CHANGELOG.md` and approved): a file-by-file map,
-   e.g. `e5lib/` → `src/…`, stage `run.py` files → `src/…` or `pipelines/…`, release
-   evidence → `artifacts/…`, s10 app and dashboard → `deployment/`, `deliverables/` →
-   `docs/reports/`, a reproduction README at the repo root,
-   pinned requirements → root `requirements*.txt`, plus which Milestone 2 files are archived
-   rather than overwritten.
-3. **Migrate on a dedicated branch** (`e5/migration`), changing paths only — no logic,
-   parameter or data change.
-4. **Prove reproducibility in the working folder:** run the full pipeline from the migrated
-   code on a clean checkout; every output hash (models excepted only if documented
-   non-determinism) and every number in `evidence/build/numbers.json` must match release
-   `e5-release-N`. Record the comparison as `migration_check.json`.
-   **Reference machine and tolerance (CR-056).** The hash check above is run on the experiment
-   lead's machine (the machine that produced the release), and it is the gate for step 5. A rerun
-   on any other machine (other OS, BLAS or CPU) is judged by tolerance, not hashes: predictions
-   within 1e-9 (absolute); scores of stages that refit (fold and test metrics, calibration,
-   threshold tables) within 2e-3 absolute; counts (rows, alerts, TP/FP/FN) equal; every number
-   the report and slides show equal at the precision shown. `migration_check.json` records which
-   machine ran it and which rule applied.
-5. Merge only after that check passes. `experiments/experiment_5/` stays in the repo,
-   frozen, as the record of how the evidence was produced.
+1. **Release first:** a release tag `e5-release-N` with its record `pipeline_b/release/e5-release-N.json`.
+2. **Rerun on a clean checkout of the tag:** `python experiments/experiment_5/reproduce.py run` reruns
+   Pipeline A's s01–s08 and Pipeline B's B2–B12 from the raw data. T1 is not rerun: the test cohort
+   was read once (`e5-T1-tested`); its saved predictions and bundles stay as committed and B-G-08
+   parity re-predicts them without labels. A's s09 and s10 were replaced by T1, B9 and B10 (G-79).
+3. **Compare:** `python experiments/experiment_5/reproduce.py compare --machine reference|other` checks
+   every output in each node's manifest against the release tag and writes
+   `reproduction/reproduction_check.json`.
+   **Reference machine and tolerance (CR-056).** On the experiment lead's machine (the machine that
+   produced the release) outputs must be identical (gzip files by content; model pickles and PNGs are
+   reported, not gated); this run is the gate. On any other machine (other OS, BLAS or CPU) numbers
+   are judged by tolerance: predictions within 1e-9 (absolute); scores of stages that refit within
+   2e-3 absolute; counts and labels equal; every number the report and slides show equal at the
+   precision shown.
+4. **Record:** the passing check is committed in `reproduction/` and tagged `e5-reproduced`. The
+   report, deck and app take their final numbers and files from this reproduced release.
 
 ---
 
