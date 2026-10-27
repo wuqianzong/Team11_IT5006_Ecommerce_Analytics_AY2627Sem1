@@ -134,3 +134,21 @@ tests in `pipeline_b/tests/` (router, parity, evidence register). Evidence IDs B
 Team review of the package (doc tab copy in `../doc_outbox/`). On approval: tag `e5-B-s10-accepted`
 on the branch. Then, each only when ordered: team sign-off and `e5-release-1`, migration (lead),
 reproduction check, app and dashboard build with the live URL, report and slides.
+
+## 8. Round 3 (B-G-10; AGREED 2026-10-27 by Henry for the team, Benson to ratify)
+
+Why: audit V2 finding B10-F2. A's fallback test row in `threshold_results.csv` has alerts/day but no
+counts or cost, so the business cost of the serving rule is incomplete: A gives most of the daily
+alerts. Same rules as rounds 1 and 2: no refit, no new test read, no threshold change.
+
+1. **A's fallback test row (B10.3).** For A's test rows outside B's scope at A's frozen 1/6: TP, FP, FN,
+   precision, recall, FP per TP, cost 5:1 and cost 1:1, computed from the labels already saved in T1's
+   `predictions_test.csv.gz` (A frozen on A test rows), exactly as B's test rows are. Check: precision
+   and recall equal B9.15's test row "outside B's scope" (`a_fallback_by_scope.csv`) within 1e-12.
+2. **Combined line (B10.3).** Two rows "B 4/15 + A 1/6 (serving rule)", one for validation and one for
+   the test: alerts, TP, FP, FN and costs are sums of the B and A rows; alerts/day is the sum of the two
+   per-day figures (each over its own period's days, as `serving_config.json` already does);
+   precision = TP / alerts, recall = TP / (TP + FN). `serving_config.json` gains the combined test cost.
+3. **Outputs and evidence.** Same files and evidence IDs (B10.3). Round 3 runs replace round 2 as
+   Current in `EVIDENCE.md`; round 2 moves to Superseded. Regression outputs are unchanged in content.
+   No tag. New review tabs `../doc_outbox/b10_review_r3*.md`; the published files stay as they are.

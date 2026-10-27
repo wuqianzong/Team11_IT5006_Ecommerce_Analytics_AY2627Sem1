@@ -200,12 +200,24 @@ def run(task: str) -> None:
                      "precision": tp_ / al_, "recall": tp_ / det_, "fp_per_tp": (al_ - tp_) / tp_,
                      "cost_5_to_1": COST_FN * (det_ - tp_) + COST_FP * (al_ - tp_), "cost_1_to_1": det_ - tp_ + al_ - tp_,
                      "source": "derived from b09 a_fallback_by_scope.csv (B9.15) fold rows; days from A's s05 folds.csv"})
-        out_t = at_.y_pred.to_numpy()[~scope_test.to_numpy()]
+        # round 3 (B-G-10): A's fallback test row from the labels already saved by T1, as B's test rows
+        out_at = at_[~scope_test.to_numpy()]
         fbt = fb[(fb.period == "test") & (fb.scope == "outside B's scope")].iloc[0]
-        rows.append({"model": "A frozen", "threshold_name": "A frozen 1/6 (B10-D2)", "rows": "test, A rows outside B's scope",
-                     "threshold": FROZEN, "alerts": int((out_t >= FROZEN).sum()), "alerts_per_day": float((out_t >= FROZEN).sum() / a_days),
-                     "precision": fbt.precision, "recall": fbt.recall,
-                     "source": "alerts counted from T1 predictions_test.csv.gz; precision and recall from b09 a_fallback_by_scope.csv (B9.15)"})
+        a_test_row = {"model": "A frozen", "threshold_name": "A frozen 1/6 (B10-D2)", "rows": "test, A rows outside B's scope",
+                      **_at(out_at.y_true.to_numpy().astype(int), out_at.y_pred.to_numpy(), FROZEN, a_days), "source": "T1 predictions_test.csv.gz"}
+        rows.append(a_test_row)
+        same_fb = bool(np.allclose([a_test_row["precision"], a_test_row["recall"]], [fbt.precision, fbt.recall], rtol=0, atol=1e-12))
+
+        def combined(b_row: dict, a_row: dict, period: str) -> dict:
+            c = {k: b_row[k] + a_row[k] for k in ("alerts", "alerts_per_day", "tp", "fp", "fn", "cost_5_to_1", "cost_1_to_1")}
+            return {"model": "B frozen + A frozen", "threshold_name": "B 4/15 + A 1/6 (serving rule)", "rows": period, "threshold": np.nan, **c,
+                    "precision": c["tp"] / c["alerts"], "recall": c["tp"] / (c["tp"] + c["fn"]), "fp_per_tp": c["fp"] / c["tp"],
+                    "source": "sum of the B 4/15 and A 1/6 rows above (B-G-10)"}
+
+        pick = lambda name, rws: next(r for r in rows if r["threshold_name"] == name and r["rows"] == rws)
+        rows.append(combined(pick("B operating 4/15 (B-G-07)", "validation (out-of-fold), B rows"),
+                             pick("A frozen 1/6 (B10-D2)", "validation (out-of-fold), A rows outside B's scope"), "validation (out-of-fold), all rows"))
+        rows.append(combined(pick("B operating 4/15 (B-G-07)", "test, B rows (post-test view)"), a_test_row, "test, all rows (post-test view)"))
         results = pd.DataFrame(rows)
         w.table("threshold_results", results, ids=("B10.3",))
         same = True
@@ -216,13 +228,17 @@ def run(task: str) -> None:
         w.check("B's 1/6 and 4/15 test results from T1's saved predictions equal B9 threshold_options.csv (alerts, TP, FP, FN)", same, ("B10.3",))
         w.check("A's out-of-scope fold counts derive exactly from B9.15 (TP and alerts are whole numbers)", integral, ("B10.3",),
                 f"{al_:,} alerts, {tp_:,} TP over {vdays_a:.0f} validation days")
+        w.check("A's out-of-scope test precision and recall from T1's saved predictions equal B9.15's test row (within 1e-12)", same_fb, ("B10.3",),
+                f"precision {a_test_row['precision']:.4f}, recall {a_test_row['recall']:.4f}")
         g = lambda name, rws: results[(results.threshold_name == name) & (results.rows == rws)].iloc[0]
         b_v = float(g("B operating 4/15 (B-G-07)", "validation (out-of-fold), B rows").alerts_per_day)
         a_v = float(g("A frozen 1/6 (B10-D2)", "validation (out-of-fold), A rows outside B's scope").alerts_per_day)
         b_t = float(g("B operating 4/15 (B-G-07)", "test, B rows (post-test view)").alerts_per_day)
         a_t = float(g("A frozen 1/6 (B10-D2)", "test, A rows outside B's scope").alerts_per_day)
+        ct = g("B 4/15 + A 1/6 (serving rule)", "test, all rows (post-test view)")
         vol = {"validation": {"B_inside_at_4_15": b_v, "A_outside_at_1_6": a_v, "combined_alerts_per_day": b_v + a_v},
-               "test": {"B_inside_at_4_15": b_t, "A_outside_at_1_6": a_t, "combined_alerts_per_day": b_t + a_t}}
+               "test": {"B_inside_at_4_15": b_t, "A_outside_at_1_6": a_t, "combined_alerts_per_day": b_t + a_t,
+                        "combined_cost_5_to_1": float(ct.cost_5_to_1), "combined_cost_1_to_1": float(ct.cost_1_to_1)}}
         waiting = scope_test & ~a_test.order_id.isin(b_all.order_id)
         cfg.update({
             "thresholds": {"B_operating": {"value": B_OPERATING, "label": "4/15", "decision": "B-G-07 (B-G-09 withdrawn)", "applies_to": "sigmoid-calibrated probability"},
@@ -403,7 +419,8 @@ def run(task: str) -> None:
         w.explain("B10.3", done=(f"Serving: B inside its scope at 4/15 (B-G-07), frozen 1/6 kept beside it; A outside at 1/6 (B10-D2). Expected alerts/day, "
                                  f"validation: B {v['B_inside_at_4_15']:.1f} + A {v['A_outside_at_1_6']:.1f} = {v['combined_alerts_per_day']:.1f}; "
                                  f"test (post-test view): B {t['B_inside_at_4_15']:.1f} + A {t['A_outside_at_1_6']:.1f} "
-                                 f"= {t['combined_alerts_per_day']:.1f}. Volumes accepted by the team (Henry, 2026-10-26; threshold_results.csv)."))
+                                 f"= {t['combined_alerts_per_day']:.1f}, combined test cost {t['combined_cost_5_to_1']:,.0f} at 5:1 and "
+                                 f"{t['combined_cost_1_to_1']:,.0f} at 1:1 (round 3, B-G-10). Volumes accepted by the team (Henry, 2026-10-26; threshold_results.csv)."))
     else:
         w.explain("B10.3", done=(f"Serving: B inside its scope, A outside (B-G-06), both at checkout. Test rows inside {cfg['test_rows_by_scope']['inside']:,}, "
                                  f"outside {cfg['test_rows_by_scope']['outside']:,}."))
