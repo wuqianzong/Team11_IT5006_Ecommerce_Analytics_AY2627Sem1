@@ -3,7 +3,7 @@
 **Status: PROPOSED, for the experiment lead's approval. Nothing here has been done.** No file outside
 `experiments/experiment_5/` is written until the lead approves this plan and explicitly orders the
 migration (§12 step 1). The migration runs on branch `e5/migration`, cut from `milestone-3` at release
-`e5-release-1` (2f2e3c1; record `pipeline_b/release/e5-release-1.json`), and changes paths only (§12
+`e5-release-2` (record `pipeline_b/release/e5-release-2.json`; release 1 plus B12, CR-060), and changes paths only (§12
 step 3), with the one exception listed in §3. Reproduction (§12 step 4) is a separate step and is not
 part of this plan's execution.
 
@@ -13,7 +13,7 @@ part of this plan's execution.
 | --- | --- |
 | Every node ACCEPTED or replaced under G-79 | A s01–s07 ACCEPTED; A s08 gate part ACCEPTED at e5-A-frozen, 8.6–8.8 replaced by T1; A s09 by B9; A s10 by B10; B2–B10 accepted (EVIDENCE.md) |
 | A's check passes; B passes its own checks and tests | yes, with the recorded pipeline\_b/ guard finding (CR-058); release record checks 1–3 |
-| Release tag exists, cut before migration | `e5-release-1` on 2f2e3c1 (local until pushed) |
+| Release tag exists, cut before migration | `e5-release-2` (CR-060); `e5-release-1` on 2f2e3c1 is superseded |
 | Team approved the whole experiment | B9 conclusion confirmed by Henry and the lead (2026-10-25); B10 round 3 accepted by the lead (2026-10-27) |
 | Lead explicitly orders the migration | **open** |
 
@@ -29,9 +29,9 @@ Source paths are relative to `experiments/experiment_5/`; targets to the reposit
 | `run_pipeline.py`, `pipeline_b/b_run.py` | `pipelines/run_pipeline.py`, `pipelines/b_run.py` | orchestrators |
 | `spec/protocol.yaml`, `spec/*.yaml` | `config/` | frozen contracts read by the code |
 | `spec/` (Markdown), `pipeline_b/spec/` (blueprints, decision logs, team-doc mirror) | `docs/experiment5/spec/`, `docs/experiment5/pipeline_b_spec/` | design record, read-only |
-| Current stage outputs at the release (A: `stages/*/*/outputs/`; B: `pipeline_b/stages/*/*/outputs/`) | `artifacts/e5-release-1/{A,B}/<stage>/<task>/outputs/` | release evidence, byte-for-byte copies; the run IDs are those in the release record |
-| T1 bundles `pipeline_b/stages/t1_joint_test/<task>/outputs/bundles/{A,B}/` | `artifacts/models/e5-release-1/<task>/{A,B}/` | B serves inside its scope, A outside (B-G-06) |
-| `evidence/`, `pipeline_b/evidence/` (registry, build) | `artifacts/e5-release-1/evidence/` | number registers for report and deck |
+| Current stage outputs at the release (A: `stages/*/*/outputs/`; B: `pipeline_b/stages/*/*/outputs/`) | `artifacts/e5-release-2/{A,B}/<stage>/<task>/outputs/` | release evidence, byte-for-byte copies; the run IDs are those in the release record |
+| T1 bundles `pipeline_b/stages/t1_joint_test/<task>/outputs/bundles/{A,B}/` | `artifacts/models/e5-release-2/<task>/{A,B}/` | B serves inside its scope, A outside (B-G-06) |
+| `evidence/`, `pipeline_b/evidence/` (registry, build) | `artifacts/e5-release-2/evidence/` | number registers for report and deck |
 | `pipeline_b/deliverables/` (report and deck sources, audit and its inputs) | `docs/reports/milestone3/` | report and deck sources; the live report doc and deck stay where they are |
 | B10 app sources (`pipeline_b/stages/b10/*/outputs/app_sources.json`, `serving_config.json`, `input_validation.json`, `drift_profile.json`) | read by the new app in `deployment/` | the app itself is built after the migration (it reads only these files and the bundles; A's s10 10.5 rule) |
 | `tests/`, `pipeline_b/tests/` | `tests/e5/a/`, `tests/e5/b/` | |
@@ -61,11 +61,11 @@ the Milestone 2 `artifacts/` folders, `experiments/` (Experiment 5 stays in the 
 | M-2 | Milestone 2 `src/` and `deployment/`: archive (move) or keep side by side | archive under `archive/milestone2/`, as §12 step 2 asks |
 | M-3 | T1 in the reproduction (step 4): T1 was read once and is never rerun (joint\_test.md §1). Proposed: the reproduction reruns every stage except T1's test read; T1's saved predictions and bundles are copied, and B-G-08 parity (re-predict without labels) proves the bundles reproduce them | as proposed; recorded as a CR before step 4 |
 | M-4 | Who runs it | the lead's machine (reference machine, CR-056) |
-| M-5 | App location | `deployment/app.py` reading `artifacts/e5-release-1/` only |
+| M-5 | App location | `deployment/app.py` reading `artifacts/e5-release-2/` only |
 
 ## 5. After approval
 
-1. The lead orders the migration (§12 step 1); push `e5-release-1`.
+1. The lead orders the migration (§12 step 1); push `e5-release-2`.
 2. Cut `e5/migration` from `milestone-3` at the release; copy per §2; adjust paths per §3; one commit
    per row group, each listing its source → target.
 3. Stop there: reproduction (§12 step 4) starts only when the lead orders it.
