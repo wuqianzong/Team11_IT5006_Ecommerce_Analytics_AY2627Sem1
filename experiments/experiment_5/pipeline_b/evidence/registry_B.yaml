@@ -204,3 +204,13 @@
 - {id: F.clf.confusion, kind: figure, source: doc_support/classification/outputs/figures/r06_confusion.png, caption: "Confusion matrices, A and B on B's validation rows", evidence: DS.6, used_in: [report 7]}
 - {id: F.reg.history_coverage, kind: figure, source: doc_support/regression/outputs/figures/b2_history_coverage.png, caption: "Share of rows with their own seller and route history, by quarter", evidence: DS.1, used_in: [report 5]}
 - {id: F.clf.selection, kind: figure, source: doc_support/classification/outputs/figures/b4_selection.png, caption: "Feature ranking and the 99% rule, detractor alert", evidence: DS.2, used_in: [report 5, deck 9]}
+# §6 modelling and the A-to-B decision (plan v2)
+- {id: B8.reg.adoption, kind: table, source: b08/regression/outputs/adoption_comparison.csv, evidence: B8.A, used_in: [report 6, deck 12]}
+- {id: B8.clf.adoption, kind: table, source: b08/classification/outputs/adoption_comparison.csv, evidence: B8.A, used_in: [report 6, deck 12]}
+- {id: B9.reg.val_mae_A_on_A, kind: number, source: b09/regression/outputs/train_val_test.csv, select: {model: A frozen, rows: A test rows, metric: mae}, value: validation_mean, format: "{:.2f}", evidence: B9.1, used_in: [report 6]}
+- {id: B9.reg.val_mae_Adummy_on_A, kind: number, source: b09/regression/outputs/train_val_test.csv, select: {model: A dummy, rows: A test rows, metric: mae}, value: validation_mean, format: "{:.2f}", evidence: B9.1, used_in: [report 6]}
+- {id: B9.clf.val_ap_A_on_A, kind: number, source: b09/classification/outputs/train_val_test.csv, select: {model: A frozen, rows: A test rows, metric: ap}, value: validation_mean, format: "{:.3f}", evidence: B9.1, used_in: [report 6]}
+- {id: B9.clf.val_ap_Adummy_on_A, kind: number, source: b09/classification/outputs/train_val_test.csv, select: {model: A dummy, rows: A test rows, metric: ap}, value: validation_mean, format: "{:.3f}", evidence: B9.1, used_in: [report 6]}
+- {id: B5.reg.fold1_train_rows, kind: number, source: b05/regression/outputs/minimums_B.csv, select: {fold: 1, minimum: training rows}, value: observed, format: "{:,}", evidence: B5.3, used_in: [report 6]}
+- {id: B5.clf.fold1_train_rows, kind: number, source: b05/classification/outputs/minimums_B.csv, select: {fold: 1, minimum: training rows}, value: observed, format: "{:,}", evidence: B5.3, used_in: [report 6]}
+- {id: B5.min_train_rows, kind: number, source: b05/regression/outputs/minimums_B.csv, select: {fold: 1, minimum: training rows}, value: required, format: "{:,}", evidence: B5.3, used_in: [report 6]}
