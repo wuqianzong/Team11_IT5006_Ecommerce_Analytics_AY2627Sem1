@@ -1,29 +1,101 @@
 {
   "note": "Where each chart in the live report doc and deck comes from. Doc: figure number -> doc blob -> uploaded asset (read back from the doc's blob records, 2026-10-26). Deck: <img src> asset id. Every asset must equal the register figure byte for byte.",
   "doc": {
-    "1": {"blob": "1e83700d-ccd5", "asset": "e3a617b8a96158ad50e7e2846cb98d7d", "register": "F.reg.lateness_by_route"},
-    "2": {"blob": "ac313dbb-6094", "asset": "8d7ccc33132ce4a2cedf550670df07a9", "register": "F.reg.selection"},
-    "3": {"blob": "ef7ddcd2-29d7", "asset": "22ad2f14fd2fcc17abe3d83388b2c694", "register": "F.reg.partition"},
-    "4": {"blob": "e5771478-8c10", "asset": "2f616a61d5ae1e2a79a190f2f90671d1", "register": "F.reg.validation_and_test"},
-    "5": {"blob": "c8cf7cd4-645e", "asset": "903264b70eb2450828326a4891813ffe", "register": "F.reg.population"},
-    "6": {"blob": "1e815550-65b5", "asset": "1024d7f7886cdd313777639c1c7f3059", "register": "F.reg.residuals"},
-    "7": {"blob": "bc453993-27ea", "asset": "3d3d69640777465b5c1f4fffb0472a7d", "register": "F.reg.by_state"},
-    "8": {"blob": "9363bc4e-1f4a", "asset": "6d46292845630a79e8596a4d14de22cc", "register": "F.clf.validation_and_test"},
-    "9": {"blob": "d489593c-d647", "asset": "b4d39c548071e4c9113f761c2b653bf7", "register": "F.clf.test_curves"},
-    "10": {"blob": "2e4392d5-de2e", "asset": "94f1284a6e5a899ab7f853747b3cda03", "register": "F.clf.threshold_options"},
-    "11": {"blob": "da0ee23b-03c1", "asset": "06c1669f91bd1ab15590ba5cc018de30", "register": "F.clf.by_state"},
-    "12": {"blob": "62a70e0e-d353", "asset": "4c8da4e7671a4d518b3d5799d7c94696", "register": "F.reg.importance"},
-    "13": {"blob": "609b5c44-bd63", "asset": "77b7a30d9bace32a53d5ee313044b1dc", "register": "F.clf.importance"},
-    "14": {"blob": "95350dc6-df02", "asset": "97393287d52bfdd3388d2bc78e07c328", "register": "F.reg.coefficients"},
-    "15": {"blob": "0aebebef-1f5a", "asset": "7c160977cf7ee2012293e2744da2c62a", "register": "F.clf.coefficients"},
-    "16": {"blob": "dccfeb98-7cec", "asset": "738c2c0f350b0fb8c63da04a4dc94036", "register": "F.reg.drift"}
+    "1": {
+      "blob": "1e83700d-ccd5",
+      "asset": "e3a617b8a96158ad50e7e2846cb98d7d",
+      "register": "F.reg.lateness_by_route"
+    },
+    "2": {
+      "blob": "ac313dbb-6094",
+      "asset": "8d7ccc33132ce4a2cedf550670df07a9",
+      "register": "F.reg.selection"
+    },
+    "3": {
+      "blob": "ef7ddcd2-29d7",
+      "asset": "22ad2f14fd2fcc17abe3d83388b2c694",
+      "register": "F.reg.partition"
+    },
+    "4": {
+      "blob": "e5771478-8c10",
+      "asset": "2f616a61d5ae1e2a79a190f2f90671d1",
+      "register": "F.reg.validation_and_test"
+    },
+    "5": {
+      "blob": "c8cf7cd4-645e",
+      "asset": "903264b70eb2450828326a4891813ffe",
+      "register": "F.reg.population"
+    },
+    "6": {
+      "blob": "1e815550-65b5",
+      "asset": "1024d7f7886cdd313777639c1c7f3059",
+      "register": "F.reg.residuals"
+    },
+    "7": {
+      "blob": "bc453993-27ea",
+      "asset": "3d3d69640777465b5c1f4fffb0472a7d",
+      "register": "F.reg.by_state"
+    },
+    "8": {
+      "blob": "9363bc4e-1f4a",
+      "asset": "6d46292845630a79e8596a4d14de22cc",
+      "register": "F.clf.validation_and_test"
+    },
+    "9": {
+      "blob": "d489593c-d647",
+      "asset": "b4d39c548071e4c9113f761c2b653bf7",
+      "register": "F.clf.test_curves"
+    },
+    "10": {
+      "blob": "2e4392d5-de2e",
+      "asset": "94f1284a6e5a899ab7f853747b3cda03",
+      "register": "F.clf.threshold_options"
+    },
+    "11": {
+      "blob": "da0ee23b-03c1",
+      "asset": "06c1669f91bd1ab15590ba5cc018de30",
+      "register": "F.clf.by_state"
+    },
+    "12": {
+      "blob": "62a70e0e-d353",
+      "asset": "4c8da4e7671a4d518b3d5799d7c94696",
+      "register": "F.reg.importance"
+    },
+    "13": {
+      "blob": "609b5c44-bd63",
+      "asset": "77b7a30d9bace32a53d5ee313044b1dc",
+      "register": "F.clf.importance"
+    },
+    "14": {
+      "blob": "95350dc6-df02",
+      "asset": "97393287d52bfdd3388d2bc78e07c328",
+      "register": "F.reg.coefficients"
+    },
+    "15": {
+      "blob": "0aebebef-1f5a",
+      "asset": "7c160977cf7ee2012293e2744da2c62a",
+      "register": "F.clf.coefficients"
+    },
+    "16": {
+      "blob": "dccfeb98-7cec",
+      "asset": "738c2c0f350b0fb8c63da04a4dc94036",
+      "register": "F.reg.drift"
+    }
   },
   "deck": {
     "23cdda4993be49405ece860887b5ab17": "F.reg.validation_and_test",
     "3d0b5f02eb6dc455989c59806e160595": "F.clf.validation_and_test",
     "1abc90f25e7b95a5bc9fd7b0363a8c66": "F.reg.population",
-    "2dcb30e76a21fdd99e64a0c250dc9b36": "F.reg.residuals",
     "5c1cf0eca3fc4217eeb264acb02321e6": "F.clf.threshold_options",
-    "9705c7c37257f61a05455e97d64db2f0": "F.reg.partition"
+    "9705c7c37257f61a05455e97d64db2f0": "F.reg.partition",
+    "50fdc703d99e15f5c4a7777ee6fbd14b": "F.A3.reg.target_kde",
+    "55679204d325313ce29239b9bb6233b0": "F.reg.lateness_by_route",
+    "8bc9d14e0f89ead4d86268b56740e773": "F.A3.reg.outcome_trends",
+    "92b53ee5e77920e4ed1d4d3413e42f9c": "F.reg.history_coverage",
+    "c4ea3f0a8d8c5c3d379501a5c9bd9f98": "F.A3.reg.correlation_heatmap",
+    "4bd6826282b44966a891f99a10bea5aa": "F.reg.selection",
+    "87433e4d8e5e7299c327c25d0b3ab428": "F.clf.ranking_stability",
+    "8c3466a8505cdbaac46fe14c08d92041": "F.reg.family_ladder",
+    "926ff6cf67efd1bc07c1c4667eebe324": "F.clf.family_ladder"
   }
 }

@@ -67,7 +67,13 @@ def main() -> int:
         ok = asset.exists() and _sha(asset) == _sha(regfile) == _sha(src) == man["outputs"].get(mrel)
         return ok, f"{asset.name} -> {fid} -> {e['source']} ({e['run_id']})"
     bad = [d for n, m in fmap["doc"].items() for ok, d in [chart_ok(Path(a.doc_assets) / f"{m['asset']}.png", m["register"])] if not ok]
-    check("report charts: all 16 equal their register figure and the stage output in its manifest", not bad and len(fmap["doc"]) == 16, "; ".join(bad))
+    # the expected count comes from the map, and the doc's figure captions must number exactly the map's keys
+    captions = sorted(int(n) for n in re.findall(r"^\*Figure (\d+)\.", Path(a.doc).read_text(encoding="utf-8"), re.M))
+    unmapped = sorted(set(captions) ^ {int(n) for n in fmap["doc"]})
+    check(f"report charts: the doc's {len(captions)} figure captions match the map's {len(fmap['doc'])} entries, and each "
+          "chart equals its register figure and the stage output in its manifest",
+          not bad and not unmapped and len(captions) == len(fmap["doc"]),
+          "; ".join(bad + ([f"figure numbers in only one of doc and map: {unmapped}"] if unmapped else [])))
     deck_srcs = set()
     for f in sorted(Path(a.deck, "project", "slides").glob("*.html")):
         deck_srcs |= set(re.findall(r'src="/_blob/([0-9a-f]{32})"', f.read_text(encoding="utf-8")))
