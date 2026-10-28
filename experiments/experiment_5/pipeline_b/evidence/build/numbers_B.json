@@ -1984,7 +1984,7 @@
       "report 7"
     ],
     "file": "evidence/build/tables/B9.clf.label_sensitivity.csv",
-    "rows": 10
+    "rows": 4
   },
   "F.reg.family_ladder": {
     "kind": "figure",
@@ -2055,5 +2055,106 @@
     ],
     "file": "evidence/build/figures/F.clf.selection.png",
     "caption": "Feature ranking and the 99% rule, detractor alert"
+  },
+  "B8.reg.adoption": {
+    "kind": "table",
+    "source": "b08/regression/outputs/adoption_comparison.csv",
+    "run_id": "20261024T042516Z",
+    "evidence": "B8.A",
+    "used_in": [
+      "report 6",
+      "deck 12"
+    ],
+    "file": "evidence/build/tables/B8.reg.adoption.csv",
+    "rows": 5
+  },
+  "B8.clf.adoption": {
+    "kind": "table",
+    "source": "b08/classification/outputs/adoption_comparison.csv",
+    "run_id": "20261024T042619Z",
+    "evidence": "B8.A",
+    "used_in": [
+      "report 6",
+      "deck 12"
+    ],
+    "file": "evidence/build/tables/B8.clf.adoption.csv",
+    "rows": 5
+  },
+  "B9.reg.val_mae_A_on_A": {
+    "kind": "number",
+    "source": "b09/regression/outputs/train_val_test.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 5.470111342962177,
+    "text": "5.47"
+  },
+  "B9.reg.val_mae_Adummy_on_A": {
+    "kind": "number",
+    "source": "b09/regression/outputs/train_val_test.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 6.494565088383939,
+    "text": "6.49"
+  },
+  "B9.clf.val_ap_A_on_A": {
+    "kind": "number",
+    "source": "b09/classification/outputs/train_val_test.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 0.2317254314437797,
+    "text": "0.232"
+  },
+  "B9.clf.val_ap_Adummy_on_A": {
+    "kind": "number",
+    "source": "b09/classification/outputs/train_val_test.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 0.1481830943938916,
+    "text": "0.148"
+  },
+  "B5.reg.fold1_train_rows": {
+    "kind": "number",
+    "source": "b05/regression/outputs/minimums_B.csv",
+    "run_id": "20261023T160529Z",
+    "evidence": "B5.3",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 7932,
+    "text": "7,932"
+  },
+  "B5.clf.fold1_train_rows": {
+    "kind": "number",
+    "source": "b05/classification/outputs/minimums_B.csv",
+    "run_id": "20261023T160533Z",
+    "evidence": "B5.3",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 7592,
+    "text": "7,592"
+  },
+  "B5.min_train_rows": {
+    "kind": "number",
+    "source": "b05/regression/outputs/minimums_B.csv",
+    "run_id": "20261023T160529Z",
+    "evidence": "B5.3",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 10000,
+    "text": "10,000"
   }
 }
