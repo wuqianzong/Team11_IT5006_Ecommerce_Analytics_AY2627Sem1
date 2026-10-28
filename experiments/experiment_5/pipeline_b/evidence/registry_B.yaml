@@ -172,3 +172,35 @@
 - {id: F.reg.buffer_curve, kind: figure, source: b12/regression/outputs/figures/buffer_curve.png, caption: "Promise buffer: share of orders delivered later than prediction plus buffer; buffer chosen on validation, read on the test", evidence: B12.2, used_in: [report 7]}
 - {id: F.reg.ranking_stability, kind: figure, source: b12/regression/outputs/figures/ranking_stability.png, caption: "Delivery lead time: feature ranking on all development rows vs each training fold", evidence: B12.1, used_in: [report 10]}
 - {id: F.clf.ranking_stability, kind: figure, source: b12/classification/outputs/figures/ranking_stability.png, caption: "Detractor alert: feature ranking on all development rows vs each training fold", evidence: B12.1, used_in: [report 10]}
+
+# ---------------------------------------------------------------- report plan v2 (2026-10-28): stored exhibits for §3–§7, deck 3–14
+# Pipeline A's EDA figures and collinearity tables from A's frozen tree (B-G-11; figures agreed by Henry 2026-10-28)
+- {id: F.A3.reg.target_kde, kind: figure, source: A/s03_eda/regression/outputs/figures/target_lead_days_kde.png, caption: "Lead-time distribution, development orders (Pipeline A EDA)", evidence: "3.1", used_in: [report 4, deck 5]}
+- {id: F.A3.reg.outcome_trends, kind: figure, source: A/s03_eda/regression/outputs/figures/outcome_trends.png, caption: "Monthly orders and outcomes, development orders (Pipeline A EDA)", evidence: "3.3", used_in: [report 4, deck 6]}
+- {id: F.A3.clf.outcome_trends, kind: figure, source: A/s03_eda/classification/outputs/figures/outcome_trends.png, caption: "Monthly detractor rate, development orders (Pipeline A EDA)", evidence: "3.3", used_in: [report 4]}
+- {id: F.A3.reg.correlation_heatmap, kind: figure, source: A/s03_eda/regression/outputs/figures/numeric_correlation_heatmap.png, caption: "Pairwise correlations of A's numeric predictors (Pipeline A EDA)", evidence: "3.8", used_in: [report 5, deck 8]}
+- {id: A3.reg.vif, kind: table, source: A/s03_eda/regression/outputs/feature_quality.csv, select: {type: numeric}, columns: [feature, vif, vif_note], evidence: "3.8", used_in: [report 5, report appendix, deck 8]}
+- {id: A3.clf.vif, kind: table, source: A/s03_eda/classification/outputs/feature_quality.csv, select: {type: numeric}, columns: [feature, vif, vif_note], evidence: "3.8", used_in: [report appendix]}
+- {id: A3.reg.collinear_pairs, kind: table, source: A/s03_eda/regression/outputs/collinear_pairs.csv, evidence: "3.8", used_in: [report 5]}
+- {id: A3.corr_cut, kind: number, source: A/s03_eda/regression/outputs/eda_summary.json, value: collinearity.cut_offs.abs_correlation_above, format: "{:.1f}", evidence: "3.8", used_in: [report 5, deck 8]}
+- {id: A3.vif_cut, kind: number, source: A/s03_eda/regression/outputs/eda_summary.json, value: collinearity.cut_offs.vif_above, format: "{:.0f}", evidence: "3.8", used_in: [report 5, deck 8]}
+# Pipeline B: nested-route drops, folds, ladder, tuning, label sensitivity
+- {id: B4.reg.reduction, kind: table, source: b04/regression/outputs/reduction_B.csv, columns: [feature, flagged_by, paired_with], evidence: B4.3, used_in: [report 5, deck 8]}
+- {id: B4.clf.reduction, kind: table, source: b04/classification/outputs/reduction_B.csv, columns: [feature, flagged_by, paired_with], evidence: B4.3, used_in: [report 5]}
+- {id: B5.reg.folds, kind: table, source: b05/regression/outputs/fold_summary_B.csv, columns: [fold, train_first, train_last, train_rows, validation_first, validation_last, validation_rows], evidence: B5.2, used_in: [report 6, report appendix, deck 10]}
+- {id: B5.clf.folds, kind: table, source: b05/classification/outputs/fold_summary_B.csv, evidence: B5.2, used_in: [report 6, report appendix, deck 10]}
+- {id: B6.reg.ladder, kind: table, source: b06/regression/outputs/paired_differences.csv, columns: [comparison, mean_gain, paired_se, folds_better, kept_by_one_se_rule], evidence: B6.2, used_in: [report 6, deck 11]}
+- {id: B6.clf.ladder, kind: table, source: b06/classification/outputs/paired_differences.csv, columns: [comparison, mean_gain, paired_se, folds_better, kept_by_one_se_rule], evidence: B6.2, used_in: [report 6, deck 11]}
+- {id: B6.reg.candidates, kind: table, source: b06/regression/outputs/candidates.csv, columns: [family, estimator, train_mean, validation_mean, validation_se, kept], evidence: B6.2, used_in: [report 6]}
+- {id: B6.clf.candidates, kind: table, source: b06/classification/outputs/candidates.csv, columns: [family, estimator, train_mean, validation_mean, validation_se, kept], evidence: B6.2, used_in: [report 6]}
+- {id: B7.reg.plain_vs_tuned, kind: table, source: b07/regression/outputs/plain_vs_tuned.csv, columns: [family, plain_mean, tuned_mean, tuned_se, paired_gain_of_tuned, paired_se, carried], evidence: B7.5, used_in: [report 6]}
+- {id: B7.clf.plain_vs_tuned, kind: table, source: b07/classification/outputs/plain_vs_tuned.csv, columns: [family, plain_mean, tuned_mean, tuned_se, paired_gain_of_tuned, paired_se, carried], evidence: B7.5, used_in: [report 6]}
+- {id: B7.reg.grid, kind: table, source: b07/regression/outputs/grid_results.csv, columns: [family, params, validation_mean, validation_se, train_validation_gap], evidence: B7.5, used_in: [report appendix]}
+- {id: B7.clf.grid, kind: table, source: b07/classification/outputs/grid_results.csv, columns: [family, params, validation_mean, validation_se, train_validation_gap], evidence: B7.5, used_in: [report appendix]}
+- {id: B9.clf.label_sensitivity, kind: table, source: b09/classification/outputs/label_sensitivity.csv, evidence: B9.6, used_in: [report 3, report 7]}
+- {id: F.reg.family_ladder, kind: figure, source: b06/regression/outputs/figures/family_ladder.png, caption: "Model ladder on the five folds, lead time", evidence: B6.2, used_in: [report 6, deck 11]}
+- {id: F.clf.family_ladder, kind: figure, source: b06/classification/outputs/figures/family_ladder.png, caption: "Model ladder on the five folds, detractor alert", evidence: B6.2, used_in: [report 6, deck 11]}
+- {id: F.clf.auc_brier, kind: figure, source: doc_support/classification/outputs/figures/r06_auc_brier.png, caption: "ROC-AUC and Brier by population, detractor alert", evidence: DS.6, used_in: [report 7, deck 14]}
+- {id: F.clf.confusion, kind: figure, source: doc_support/classification/outputs/figures/r06_confusion.png, caption: "Confusion matrices, A and B on B's validation rows", evidence: DS.6, used_in: [report 7]}
+- {id: F.reg.history_coverage, kind: figure, source: doc_support/regression/outputs/figures/b2_history_coverage.png, caption: "Share of rows with their own seller and route history, by quarter", evidence: DS.1, used_in: [report 5]}
+- {id: F.clf.selection, kind: figure, source: doc_support/classification/outputs/figures/b4_selection.png, caption: "Feature ranking and the 99% rule, detractor alert", evidence: DS.2, used_in: [report 5, deck 9]}
