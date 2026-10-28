@@ -214,3 +214,17 @@
 - {id: B5.reg.fold1_train_rows, kind: number, source: b05/regression/outputs/minimums_B.csv, select: {fold: 1, minimum: training rows}, value: observed, format: "{:,}", evidence: B5.3, used_in: [report 6]}
 - {id: B5.clf.fold1_train_rows, kind: number, source: b05/classification/outputs/minimums_B.csv, select: {fold: 1, minimum: training rows}, value: observed, format: "{:,}", evidence: B5.3, used_in: [report 6]}
 - {id: B5.min_train_rows, kind: number, source: b05/regression/outputs/minimums_B.csv, select: {fold: 1, minimum: training rows}, value: required, format: "{:,}", evidence: B5.3, used_in: [report 6]}
+# §7 results (plan v2)
+- {id: B8.clf.pop_A_on_A, kind: number, source: b08/classification/outputs/population_summary.csv, select: {population_and_model: "A's frozen model on A's validation rows", metric: ap}, value: mean_5_folds, format: "{:.3f}", evidence: B8.A, used_in: [report 7, deck 13]}
+- {id: B8.clf.pop_A_on_B, kind: number, source: b08/classification/outputs/population_summary.csv, select: {population_and_model: "A's frozen model on B's validation rows", metric: ap}, value: mean_5_folds, format: "{:.3f}", evidence: B8.A, used_in: [report 7, deck 13]}
+- {id: B8.clf.pop_B_on_B, kind: number, source: b08/classification/outputs/population_summary.csv, select: {population_and_model: "B's recommended model (clf.sel.log.logistic) on B's validation rows", metric: ap}, value: mean_5_folds, format: "{:.3f}", evidence: B8.A, used_in: [report 7, deck 13]}
+- {id: B9.clf.test_auc_A_on_B, kind: number, source: b09/classification/outputs/train_val_test.csv, select: {model: A frozen, rows: B test rows, metric: roc_auc}, value: test, format: "{:.3f}", evidence: B9.1, used_in: [report 7, deck 14]}
+- {id: B9.clf.test_brier_B, kind: number, source: b09/classification/outputs/train_val_test.csv, select: {model: B frozen, rows: B test rows, metric: brier}, value: test, format: "{:.4f}", evidence: B9.1, used_in: [report 7, deck 14]}
+- {id: B9.clf.test_brier_A_on_B, kind: number, source: b09/classification/outputs/train_val_test.csv, select: {model: A frozen, rows: B test rows, metric: brier}, value: test, format: "{:.4f}", evidence: B9.1, used_in: [report 7, deck 14]}
+- {id: B9.reg.resid_mean_val_B, kind: number, source: b09/regression/outputs/residuals_summary.csv, select: {series: "B on B's validation rows (out-of-fold)"}, value: mean_days, format: "{:+.1f}", evidence: B9.16, used_in: [report 7]}
+- {id: B9.reg.resid_mean_test_B, kind: number, source: b09/regression/outputs/residuals_summary.csv, select: {series: "B on B's test rows"}, value: mean_days, format: "{:+.1f}", evidence: B9.16, used_in: [report 7]}
+- {id: B9.reg.resid_median_B, kind: number, source: b09/regression/outputs/residuals_summary.csv, select: {series: "B on B's test rows"}, value: median, format: "{:+.1f}", evidence: B9.16, used_in: [report 7]}
+- {id: B9.reg.rank_spearman, kind: number, source: b09/regression/outputs/ranking_consistency.json, value: spearman, format: "{:.2f}", evidence: B9.5, used_in: [report 7]}
+- {id: B9.reg.rank_top10, kind: number, source: b09/regression/outputs/ranking_consistency.json, value: top10_overlap, format: "{}", evidence: B9.5, used_in: [report 7]}
+- {id: B9.clf.rank_spearman, kind: number, source: b09/classification/outputs/ranking_consistency.json, value: spearman, format: "{:.2f}", evidence: B9.5, used_in: [report 7]}
+- {id: B9.clf.rank_top10, kind: number, source: b09/classification/outputs/ranking_consistency.json, value: top10_overlap, format: "{}", evidence: B9.5, used_in: [report 7]}
