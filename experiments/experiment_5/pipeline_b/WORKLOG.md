@@ -382,11 +382,10 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
 
 - Henry's decision: alerts from the improved pipeline at 4/15 come first. The baseline fallback's alerts come next,
   sorted by handover delay, then by order value.
-- Open, before the text is written: (1) the fallback scores at checkout, so handover delay is known only once the
-  order is handed over. Either the fallback's alerts are reviewed at handover, or orders not yet handed over are
-  sorted by value alone. (2) No stored output evaluates this ordering, so it enters report §9 as an operational rule,
-  labelled unmeasured. (3) Delay first, value as the tie-break (proposed).
-- To apply after Henry's review: a §9 capacity paragraph with the fallback's own row, one line on deck slide 15,
+- Settled by Henry (later 2026-10-28): the fallback's alerts are reviewed at handover; delay first, order value as
+  the tie-break. Written into report §9 (review-order paragraph with the fallback's own alerts a day and precision)
+  and deck slide 15, labelled an operational rule, not a measured result. Review doc rev 32 and deck version 14
+  updated; the doc thread on the cut order answered.
   and a reply in the doc thread.
 
 ## 2026-10-28 · Henry + Claude · literature check, dashboard approval, push

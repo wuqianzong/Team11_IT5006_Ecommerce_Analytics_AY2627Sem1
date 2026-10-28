@@ -16,6 +16,15 @@ hypothesis or an unmeasured mechanism, and the dashboard shows the detail behind
 {{B10.clf.A_out_test_cost_5_1}} from the fallback). The weighting is an assumption; the dashboard shows the trade-off
 at other thresholds.
 
+**Review order when capacity is short.** The improved pipeline's alerts at 4/15 are reviewed first
+({{B10.clf.B_4_15_test_alerts_day}} a day at precision {{B10.clf.B_4_15_test_precision}}). The baseline fallback's
+alerts outside the seven states come next ({{B10.clf.A_out_test_alerts_day}} a day at precision
+{{B10.clf.A_out_test_precision}}). The fallback scores at checkout, but its alerts are reviewed at carrier handover,
+like the improved pipeline's, so each order's handover delay is known by then. Within the fallback, orders are
+reviewed by handover delay, longest first, with order value as the tie-break; an order not handed over by its
+shipping limit is flagged by the missed-dispatch rule. This order is an operational rule, not a measured result: the
+precisions above are measured for each stream, and no stored output evaluates the ordering inside the fallback.
+
 **Slow sellers and routes.** The seller's earlier dispatch delay and the route's recent speed are among the strongest
 predictors (section 7.4). That slower logistics goes with worse ratings is a literature-supported hypothesis
 (Deshpande and Pendem, 2023); that working on these sellers and routes would improve reviews is an unmeasured
