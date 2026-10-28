@@ -377,3 +377,14 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
    87433e4d8e5e7299c327c25d0b3ab428 F.clf.ranking_stability; 8c3466a8505cdbaac46fe14c08d92041 F.reg.family_ladder;
    926ff6cf67efd1bc07c1c4667eebe324 F.clf.family_ladder. Keep 23cdda49…, 3d0b5f02…, 1abc90f2…, 5c1cf0ec…, 9705c7c3…;
    drop 2dcb30e7… (residuals, no longer on the deck).
+
+## 2026-10-28 · Henry · decision: alert priority when review capacity is short
+
+- Henry's decision: alerts from the improved pipeline at 4/15 come first. The baseline fallback's alerts come next,
+  sorted by handover delay, then by order value.
+- Open, before the text is written: (1) the fallback scores at checkout, so handover delay is known only once the
+  order is handed over. Either the fallback's alerts are reviewed at handover, or orders not yet handed over are
+  sorted by value alone. (2) No stored output evaluates this ordering, so it enters report §9 as an operational rule,
+  labelled unmeasured. (3) Delay first, value as the tie-break (proposed).
+- To apply after Henry's review: a §9 capacity paragraph with the fallback's own row, one line on deck slide 15,
+  and a reply in the doc thread.
