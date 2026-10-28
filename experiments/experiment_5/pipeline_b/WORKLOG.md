@@ -330,3 +330,24 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
 
 **Questions for Benson**
 - None.
+
+## 2026-10-28 · Henry + Claude · report plan v2 and first report sections
+
+**Done**
+- Plan v2 doc "Team 11 final report and deck plan v2" (https://claude.ai/artifact/GLWW2y5uMfHUd3Riewju1m): Henry's
+  comments applied and answered (18–20 pages; 15 slides in 12 minutes; 12 audited sources only; stored collinearity
+  outputs only, no rerun; change record; manual literature checklist; A's stored EDA figures may be shown).
+- deliverables/report/CHANGES.md and literature_register.md started (c9c693b).
+- Register: 202 items (plan v2 exhibits from stored outputs, A's s03 under B-G-11; §6 and §7 items), rebuilt each time.
+- Report sources renumbered to plan v2 (02 literature and 05 features new) and §1, §3, §5, §6, §7 written
+  (3702134, b72f3fc, dd15c8f, 4ac27fd and the §7 commit). Claims were checked against the stored files; two drafted
+  claims were corrected (alert ranking stability; slice recall).
+
+**Not done yet**
+- Executive summary, §2 literature, §4 EDA, §8–§10, references, appendices; review doc refresh; deck rework.
+
+**Questions for Benson**
+1. audit_deliverables_B.py line 70 expects exactly 16 report charts; plan v2 adds more. May the check read the count
+   from figure_map.json instead (your file)?
+2. A's s02 data-structure figure (join diagram) would serve report §3 and deck slide 3; B-G-11 covers A's s03 only.
+   May the register read A's s02 figures under the same rule?
