@@ -1,5 +1,9 @@
 # Doc outbox (for the team doc)
 
+**Status (2026-10-28):** every B10 and B11 file below is published and complete, and both sync notes were read
+and acted on by Benson; they are kept as a record and are not edited again. Of the 2026-10-28 handshakes, Benson's is
+answered (commit 250204b); Solomon's is open until his app is on the branch.
+
 Doc-ready Markdown that nobody on branch `e5/b10-henry` can publish, because the team doc lives in
 Benson's account. Each file is written in the style of the tabs mirrored in `../team_doc/`.
 
@@ -20,3 +24,5 @@ Benson's account. Each file is written in the style of the tabs mirrored in `../
 | b10_review_r3_regression.md | B10 Release › regression: round 3 section | Benson's Claude, 2026-10-27 (tab "B10 › regression", round 3 section) |
 | b10_review_r3_classification.md | B10 Release › classification: round 3 section | Benson's Claude, 2026-10-27 (tab "B10 › classification", round 3 section) |
 | sync_for_benson_r2.md | not a doc tab: read after sync_for_benson.md (changes since 8b6d7fb) | — |
+| handshake_benson_2026-10-28.md | not a doc tab: prompt for Benson's Claude (figure_map, audit) | Answered by Benson, 2026-10-28 (250204b); complete |
+| handshake_solomon_2026-10-28.md | not a doc tab: prompt for Solomon's Claude (dashboard build) | Open: app not yet on `e5/deliverables-henry` |

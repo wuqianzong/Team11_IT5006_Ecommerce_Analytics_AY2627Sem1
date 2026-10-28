@@ -1,7 +1,6 @@
 ## 10 Limitations
 
-All limitations are collected here. All validation in this project uses time-ordered, customer-purged folds, and the
-test period was read once; the limits below are what remains.
+All limitations are collected here. All validation in this project uses time-ordered, customer-purged folds, and the test period was read once; the limits below are what remains.
 
 | Limit | What it means | How it is handled |
 | --- | --- | --- |
@@ -19,5 +18,4 @@ test period was read once; the limits below are what remains.
 | Reproducibility | The frozen models' predictions reproduce exactly on another machine; refitting gives slightly different numbers across machines | Reproduction compares predictions exactly and refitted scores within a tolerance |
 | Associations, not causes | Features describe association with the outcome, not the effect of acting on them | Recommendations are labelled by evidence type (section 9) |
 
-**Next steps.** Deploy the app; monitor alert precision and late deliveries by state each month; set the promise
-buffer on recent weeks; and test the handover alert with customer service before scaling it.
+**Next steps.** Deploy the app; monitor alert precision and late deliveries by state each month; set the promise buffer on recent weeks; and test the handover alert with customer service before scaling it.

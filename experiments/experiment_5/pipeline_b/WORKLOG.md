@@ -403,3 +403,38 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
 - `audit_deliverables_B.py` not run: its chart checks need figure_map.json updated by Benson (questions above).
 - Review doc reference list still shows the old author forms; refresh after Henry's review.
 - Alert priority text (report §9, deck slide 15) waits on the two open points recorded above.
+
+## 2026-10-28 · Henry + Claude · Benson's audit steps (after 250204b)
+
+**Done**
+- Pulled 250204b (audit counts charts from figure_map and checks captions; deck map; B-G-13).
+- Review doc rev 34: every chart has its own "Figure N." caption (the 8 combined captions split, since the check
+  counts `*Figure N.`); the header note no longer carries dates (its numbers counted as report numbers).
+- figure_map.json `doc` section rebuilt for the 28 charts (blob and asset read from the doc's blob records), under
+  Benson's one-time exception; `deck` and `note` sections unchanged except the note's date.
+- Audit inputs: report_export_rev34.md, 28 doc assets, 14 deck assets, the 15 live slides; rev29 export and the
+  residuals asset removed.
+- Report sources: paragraphs unwrapped to one line each, so they compare line for line with the doc export (text
+  unchanged). CHANGES.md and literature_register.md moved to deliverables/report/records/, because the audit reads
+  every *.md in deliverables/report/ as report text.
+- Handover files: HANDOVER.md marked CLOSED; spec/doc_outbox/README.md marks the B10/B11 files and the sync notes
+  complete, Benson's handshake answered, Solomon's open.
+
+**Audit result**
+- The official run stops with an error before any result: `chart_ok` reads the manifest at
+  `stages/A/s03_eda/outputs/_manifest.json`, but the four A-source charts (F.A3.reg.target_kde,
+  F.A3.reg.outcome_trends, F.A3.clf.outcome_trends, F.A3.reg.correlation_heatmap) come from A's frozen tree.
+- Checked by hand: each of the four doc assets equals its register figure, and the register figure equals A's file at
+  `e5-A-frozen` (sha256).
+- A diagnostic copy of the script (scratchpad only, not committed), which skips the manifest lookup for those four,
+  gives PASS on all 9 checks.
+
+**Questions for Benson**
+1. audit_deliverables_B.py `chart_ok`: please handle A sources (B-G-11, B-G-13): check against A's file at
+   `e5-A-frozen` instead of a B manifest. Then the official run can pass.
+2. HANDOVER_TO_HENRY.md, DELIVERABLE_IDEAS.md and M2_FEEDBACK_GAPS.md are yours: mark them complete when you agree
+   (report and deck done; app URL and screenshots, final proofreading and PDF still open).
+
+**Not done yet**
+- Solomon's app is not on any origin branch (checked after fetch).
+- A's join diagram (B-G-13) not placed: Henry to decide.

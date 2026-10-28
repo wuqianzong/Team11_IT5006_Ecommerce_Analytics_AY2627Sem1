@@ -1,6 +1,10 @@
 <section id="cover" data-transition="fade" style="background:#14213D;color:#FBFBF8;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:40px">
-<p style="font-size:28px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#F4A259">IT5006 · Milestone 3 · Team 11</p>
-<h1 style="font-family:'Source Serif 4', Georgia, serif;font-size:96px;font-weight:600;line-height:1.1;width:1500px">Predicting delivery time and bad reviews for Olist orders</h1>
-<p style="font-size:36px;color:#C9D3E3;width:1400px">Pipeline B, delivered: seven-state scope, delivery-history features, review alerts at carrier handover. Pipeline A as baseline and fallback.</p>
-<aside>Two questions for every order: how long will delivery take, and will the customer leave a 1–2 star review? We answer both with one delivered model, Pipeline B, and compare it with our baseline, Pipeline A, on the same test orders.</aside>
+<p style="font-size:28px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#F4A259">IT5006 · Team 11</p>
+<h1 style="font-family:'Source Serif 4', Georgia, serif;font-size:88px;font-weight:600;line-height:1.1;width:1500px">Two predictions for every Olist order</h1>
+<p style="font-size:36px;color:#C9D3E3;width:1400px">How many days delivery will take, and whether the customer will leave a 1–2 star review. The improved pipeline is adopted inside the seven largest states; the baseline serves every other order.</p>
+<div style="display:flex;gap:32px">
+<div style="width:700px;background:#22305A;padding:32px;border-radius:16px"><p style="font-size:24px;color:#C9D3E3">Lead time, test MAE in days</p><p style="font-size:64px;font-weight:600">3.30 <span style="font-size:32px;color:#C9D3E3">vs 4.03 baseline</span></p></div>
+<div style="width:700px;background:#22305A;padding:32px;border-radius:16px"><p style="font-size:24px;color:#C9D3E3">Detractor alert, test average precision</p><p style="font-size:64px;font-weight:600">0.197 <span style="font-size:32px;color:#C9D3E3">vs 0.178 baseline</span></p></div>
+</div>
+<aside>0:15. Two questions for every order: how long delivery will take, and whether the customer will leave a 1–2 star review. We built a complete baseline, Pipeline A, then one focused improvement, Pipeline B. On the same test orders B is better in both tasks: MAE 3.30 against 4.03 days, AP 0.197 against 0.178. Most of this talk is how we got there.</aside>
 </section>

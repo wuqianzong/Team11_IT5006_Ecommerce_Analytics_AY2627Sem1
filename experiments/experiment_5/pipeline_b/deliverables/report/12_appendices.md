@@ -32,9 +32,7 @@ Fold sizes and class support, detractor alert:
 
 ### C. Full rank of the linear design matrix
 
-Full rank means no column is an exact linear combination of the others, so the coefficients are unique. The number of
-columns grows by fold because the one-hot step learns its categories from each training fold. The condition number
-shows how close the columns come to collinearity.
+Full rank means no column is an exact linear combination of the others, so the coefficients are unique. The number of columns grows by fold because the one-hot step learns its categories from each training fold. The condition number shows how close the columns come to collinearity.
 
 Lead time:
 
@@ -70,8 +68,7 @@ Slices, detractor alert (judged only with more than 100 test detractors):
 
 ### F. Tuning grids and the grid edge
 
-Every configuration of every family, with its mean and standard error over the five validation folds and the gap
-between training and validation scores.
+Every configuration of every family, with its mean and standard error over the five validation folds and the gap between training and validation scores.
 
 Lead time:
 
@@ -133,10 +130,4 @@ Features dropped by the improved pipeline's reduction step, detractor alert:
 
 ### K. Declaration of AI use
 
-The team used Anthropic's Claude (Claude Code) throughout. It wrote and ran most of the pipeline code under the
-team's instructions, drafted the stage documentation, built the number register, and drafted this report and the
-slides. The team set the problem, the scope and every decision recorded in the project's decision logs, reviewed each
-stage before it was accepted, and checked the drafts. Every number in the report is filled from the stored pipeline
-outputs through the register, never typed; an audit script compares the report and slides against those outputs.
-Every reference was checked by the team against the publisher's record, and the claims made from each source were
-checked against that record (literature register).
+The team used Anthropic's Claude (Claude Code) throughout. It wrote and ran most of the pipeline code under the team's instructions, drafted the stage documentation, built the number register, and drafted this report and the slides. The team set the problem, the scope and every decision recorded in the project's decision logs, reviewed each stage before it was accepted, and checked the drafts. Every number in the report is filled from the stored pipeline outputs through the register, never typed; an audit script compares the report and slides against those outputs. Every reference was checked by the team against the publisher's record, and the claims made from each source were checked against that record (literature register).
