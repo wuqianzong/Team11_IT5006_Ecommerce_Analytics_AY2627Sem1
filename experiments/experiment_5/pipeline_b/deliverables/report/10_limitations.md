@@ -1,13 +1,23 @@
 ## 10 Limitations
 
-- **Scope.** B covers only orders whose customer and seller are in the seven states; other orders get A's baseline model.
-- **Different prediction moments.** B's classifier acts at handover and A's at checkout, so part of B's gain is the later moment.
-- **Post-test threshold.** 4/15 was chosen after reading the test; the frozen 1/6 result is the unbiased one.
-- **Alert capacity.** The {{B10.clf.review_cap}} alerts a day asked for at the B9 review applies to B only; with A's fallback at 1/6 the combined volume is higher (section 7), which the team accepted.
-- **Calibration override.** The pre-set calibration rule kept raw probabilities for B's classifier; the team chose sigmoid calibration instead (decision B-G-05) so that A and B share one probability scale at the test. This is a recorded deviation from the rule.
-- **Drift.** The test period is faster and happier than development; scores may move as the business changes.
-- **Fold 1** has fewer training rows than the pre-set minimum for B; it was kept so A and B are compared on the same periods.
-- **Reproducibility.** Predictions of the frozen models reproduce exactly on another machine; refitting the unregularised logistic model gives slightly different numbers across machines, so the reproduction check compares predictions, and refitted results within a tolerance.
-- **No causal claims.** Features describe association, not the effect of an intervention.
+All limitations are collected here. All validation in this project uses time-ordered, customer-purged folds, and the
+test period was read once; the limits below are what remains.
 
-Next steps: deploy the app, monitor alert precision and late deliveries by state each month, and test the promise buffer and the handover alert with customer service.
+| Limit | What it means | How it is handled |
+| --- | --- | --- |
+| Seven-state scope | The improved pipeline covers only orders whose customer and seller are in the seven states with a known distance | The baseline's frozen model serves every other order, and each prediction shows which model made it |
+| Different prediction moments | The improved alert acts at handover, the baseline's at checkout, so part of the gain is the later moment | Stated wherever the two are compared (section 7) |
+| Post-test threshold | The operating threshold 4/15 was chosen after the test was read | The frozen 1/6 result is reported as the unbiased one |
+| Calibration override | The pre-set rule would have kept raw probabilities; sigmoid calibration was kept so both pipelines share one scale | Recorded as a deviation (section 6.4) |
+| Screening on pooled rows | Features were ranked once on all development orders, so validation scores are slightly optimistic | Ranking stability by fold is reported (section 5.4); the test is unaffected |
+| Unstable alert ranking | For the alert, feature ranks move a lot between folds, most in the early folds | The selected set is read as a reasonable choice, not a unique one |
+| Unmeasured correlation | Correlation and VIF were not computed for the new history features; full rank rules out only exact dependence | Coefficients of related history features are read with care |
+| Grid edge | The forest's best configuration sits on the edge of its grid | The grid was fixed in advance and not extended after the test; the plain model is kept by the selection rule |
+| Fold 1 below minimum | The improved pipeline's first fold has fewer training orders than the pre-set minimum | Kept so both pipelines are compared on identical periods |
+| Drift | The test period was faster and happier than development, and the route history features shifted most | Validation and test are reported separately; the promise buffer should be set on recent weeks |
+| Latest deliveries possibly missing | The slowest deliveries for the newest orders may not have arrived when the data was extracted | The test error may look slightly better than it will in operation |
+| Reproducibility | The frozen models' predictions reproduce exactly on another machine; refitting gives slightly different numbers across machines | Reproduction compares predictions exactly and refitted scores within a tolerance |
+| Associations, not causes | Features describe association with the outcome, not the effect of acting on them | Recommendations are labelled by evidence type (section 9) |
+
+**Next steps.** Deploy the app; monitor alert precision and late deliveries by state each month; set the promise
+buffer on recent weeks; and test the handover alert with customer service before scaling it.

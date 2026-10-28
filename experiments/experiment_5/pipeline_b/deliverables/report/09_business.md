@@ -1,10 +1,23 @@
 ## 9 Business recommendations
 
-Each recommendation is labelled as an observation (measured here), a literature-supported hypothesis or an unmeasured mechanism.
+Three actions follow from the results; each is labelled as an observation (measured here), a literature-supported
+hypothesis or an unmeasured mechanism, and the dashboard shows the detail behind each.
 
-1. **Promise a range, not a date** (observation). B's prediction is within 6 days for {{B9.reg.within_6d_B}} of test orders, and {{B9.reg.late_6d_B}} arrive more than 6 days after it. Show customers B's prediction plus a buffer, and monitor late deliveries by state, where the error differs most.
-2. **Alert customer service at handover** (observation). At 4/15, B sends about {{B10.clf.B_4_15_test_alerts_day}} alerts a day with precision {{B10.clf.B_4_15_test_precision}}, about {{B10.clf.B_4_15_test_fp_per_tp}} false alarms per true detractor. Orders outside the seven states, scored by A at 1/6, add about {{B10.clf.A_out_test_alerts_day}} a day at precision {{B10.clf.A_out_test_precision}}: in total about {{B10.clf.combined_test_alerts_day}} a day. The team accepted these volumes. The {{B10.clf.review_cap}} alerts a day asked for at the B9 review applies to B's alerts only; the combined volume is above it, so customer service needs capacity for both streams, and A's fallback alerts are the less precise share and the first to review if capacity is short.
-3. **Flag missed dispatch** (observation). A simple rule, shipping limit passed without handover, flags orders with detractor precision {{B9.clf.missed_dispatch_precision}} and catches {{B9.clf.missed_dispatch_share}} of all detractors on the test period. It needs no model.
-4. **Work on slow sellers and routes**. Slow dispatch by sellers is a literature-supported hypothesis (late or slow delivery lowers ratings; Deshpande and Pendem 2023, Leite et al. 2024). The route and its recent speed are an unmeasured mechanism: no source was checked for them, so the link rests on operational reasoning only. Both are among the strongest predictors; the dashboard lists the top routes and categories by quarter with their observed outcomes.
+| Action | What the evidence shows | Label | Dashboard |
+| --- | --- | --- | --- |
+| Promise a range, not a date | On validation, a buffer of {{B12.reg.buffer_90}} days puts 90% of orders on time and {{B12.reg.buffer_95}} days 95%; on the faster test period those buffers leave {{B12.reg.buffer_90_test_late}} and {{B12.reg.buffer_95_test_late}} late. Choose the buffer on recent weeks and watch the late share by state. Overly optimistic promises carry costs after the sale (Cui et al., 2024) | Observation; literature-supported hypothesis for the cost of over-promising | Lead time, promise buffer |
+| Alert customer service at handover | The improved pipeline at 4/15 sends {{B10.clf.B_4_15_test_alerts_day}} alerts a day at precision {{B10.clf.B_4_15_test_precision}}; with the baseline's fallback at 1/6 the total is {{B10.clf.combined_test_alerts_day}} a day at precision {{B10.clf.combined_test_precision}} | Observation | Detractor risk, alert statistics |
+| Flag missed dispatch with a rule | Orders whose shipping limit passes without handover are detractors with precision {{B9.clf.missed_dispatch_precision}}, and the rule catches {{B9.clf.missed_dispatch_share}} of all detractors on the test period, with no model | Observation | Detractor risk, missed dispatch |
 
-Illustrative cost (5 per missed detractor, 1 per false alert): B at the frozen 1/6 costs {{B9.clf.cost_B_1_6}} on the test against {{B9.clf.cost_no_alerts}} with no alerts. Under the serving rule (B at 4/15 inside the seven states, A at 1/6 outside) the test cost is {{B10.clf.combined_test_cost_5_1}}: {{B10.clf.B_4_15_test_cost_5_1}} from B and {{B10.clf.A_out_test_cost_5_1}} from A's fallback ({{B10.clf.combined_test_cost_1_1}} at 1:1), with precision {{B10.clf.combined_test_precision}} and recall {{B10.clf.combined_test_recall}} over all scored orders. A's fallback has recall {{B10.clf.A_out_test_recall}} on its own detractors but the lower precision above (post-test view of T1's saved predictions; the frozen 1/6 result stays the unbiased one).
+*Figure: Share of orders late against buffer size, validation and test (F.reg.buffer_curve).*
+
+**Cost.** Weighting a missed detractor as five false alerts, the serving rule's test cost is
+{{B10.clf.combined_test_cost_5_1}} ({{B10.clf.B_4_15_test_cost_5_1}} from the improved pipeline and
+{{B10.clf.A_out_test_cost_5_1}} from the fallback). The weighting is an assumption; the dashboard shows the trade-off
+at other thresholds.
+
+**Slow sellers and routes.** The seller's earlier dispatch delay and the route's recent speed are among the strongest
+predictors (section 7.4). That slower logistics goes with worse ratings is a literature-supported hypothesis
+(Deshpande and Pendem, 2023); that working on these sellers and routes would improve reviews is an unmeasured
+mechanism, because nothing here tests an intervention. The dashboard ranks routes and categories by observed outcomes
+for each quarter so operations can choose where to look first.
