@@ -351,3 +351,29 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
    from figure_map.json instead (your file)?
 2. A's s02 data-structure figure (join diagram) would serve report §3 and deck slide 3; B-G-11 covers A's s03 only.
    May the register read A's s02 figures under the same rule?
+
+## 2026-10-28 · Henry + Claude · review doc refresh and 15-slide deck
+
+**Done**
+- Report sources complete (17d6db1); change record hashes filled in.
+- Review doc https://claude.ai/artifact/Gp8qHXHdffLf3t78JcMWid (rev 30): body replaced by the full filled report,
+  28 figures (16 earlier doc blobs plus 12 new register figures uploaded to the doc), revision note dated 2026-10-28.
+  One open question thread (alert cut order) lost its anchor; answered in the thread.
+- Deck https://claude.ai/artifact/VtyNdrjEovfAvycTPmvy23 (version 13): reworked to the 15 slides of plan v2
+  (cover, problem, data, prep, eda, routes, features, collin, selection, method, ladder, atob, gain, results, use);
+  retired reg, clf, alerts, actions, deploy, limits, close. 82 register ids, all also in the report; 9 new register
+  figures uploaded as deck assets.
+
+**Not done yet**
+- Audit not run: its chart checks need figure_map.json updated (Benson's file): 28 doc charts (line 70 hard-codes 16)
+  and the deck's new image map below. Team review of doc and deck; app URL and screenshots (report §8).
+
+**Questions for Benson**
+1. (repeat) May audit line 70 read the chart count from figure_map.json?
+2. Deck entries for figure_map.json, asset id → register figure:
+   50fdc703d99e15f5c4a7777ee6fbd14b F.A3.reg.target_kde; 55679204d325313ce29239b9bb6233b0 F.reg.lateness_by_route;
+   8bc9d14e0f89ead4d86268b56740e773 F.A3.reg.outcome_trends; 92b53ee5e77920e4ed1d4d3413e42f9c F.reg.history_coverage;
+   c4ea3f0a8d8c5c3d379501a5c9bd9f98 F.A3.reg.correlation_heatmap; 4bd6826282b44966a891f99a10bea5aa F.reg.selection;
+   87433e4d8e5e7299c327c25d0b3ab428 F.clf.ranking_stability; 8c3466a8505cdbaac46fe14c08d92041 F.reg.family_ladder;
+   926ff6cf67efd1bc07c1c4667eebe324 F.clf.family_ladder. Keep 23cdda49…, 3d0b5f02…, 1abc90f2…, 5c1cf0ec…, 9705c7c3…;
+   drop 2dcb30e7… (residuals, no longer on the deck).

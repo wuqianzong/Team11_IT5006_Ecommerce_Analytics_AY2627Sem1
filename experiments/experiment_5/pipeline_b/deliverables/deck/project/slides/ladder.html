@@ -1,0 +1,11 @@
+<section id="ladder" data-transition="fade" style="background:#FBFBF8;color:#14213D;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#C2410C">Model ladder and selection</p>
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:60px;font-weight:600;line-height:1.1">Simple first; the one-SE rule keeps the plain model</h2>
+<div style="display:flex;gap:48px;align-items:start">
+<img src="/_blob/8c3466a8505cdbaac46fe14c08d92041" alt="Model ladder on the five folds, lead time" style="width:808px;height:470px;object-fit:contain;background:#FFFFFF;border-radius:16px">
+<img src="/_blob/926ff6cf67efd1bc07c1c4667eebe324" alt="Model ladder on the five folds, detractor alert" style="width:808px;height:470px;object-fit:contain;background:#FFFFFF;border-radius:16px">
+</div>
+<p style="font-size:28px">Dummy, then linear or logistic, a tree, a forest of 200 trees. The forest's mean is best but within one standard error, so plain linear (lead time) and plain logistic (alert) are kept. Tuning changed little; the forest's best sits on its grid edge.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6B7280">Team 11 · IT5006 · 11/15 · Report sections 6.2–6.4, appendices F and H · grids fixed before tuning</p>
+<aside>0:50. Each step up must beat the one below on the same folds. Linear and logistic beat the dummy in every fold; a single tree is worse. For the alert the forest wins four of five folds, but by less than the fold-to-fold variation the rule uses, so the simpler, explainable model stays. The grid was fixed in advance and not widened after the test. Probabilities are sigmoid-calibrated; with a 5:1 cost the frozen threshold is 1/6.</aside>
+</section>

@@ -1,0 +1,14 @@
+<section id="eda" data-transition="fade" style="background:#FBFBF8;color:#14213D;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#C2410C">Exploration · target and imbalance</p>
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:60px;font-weight:600;line-height:1.1">Lead time is skewed, and lateness drives bad reviews</h2>
+<div style="display:flex;gap:48px;align-items:start">
+<img src="/_blob/50fdc703d99e15f5c4a7777ee6fbd14b" alt="Lead-time distribution, development orders" style="width:808px;height:470px;object-fit:contain;background:#FFFFFF;border-radius:16px">
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<div style="background:#FFFFFF;padding:24px 28px;border:1px solid #D5DBE3;border-radius:16px"><p style="font-size:24px;color:#4A5568">Lead time, development orders</p><p style="font-size:30px">Median <b>{{A3.reg.lead_median_days}}</b> days, mean {{A3.reg.lead_mean_days}}, 95th percentile {{A3.reg.lead_p95_days}}; skewness {{A3.reg.lead_skewness}}, so a log target</p></div>
+<div style="background:#FFFFFF;padding:24px 28px;border:1px solid #D5DBE3;border-radius:16px"><p style="font-size:24px;color:#4A5568">Detractor rate</p><p style="font-size:30px"><b>{{A3.clf.detractor_rate_late}}</b> when late vs {{A3.clf.detractor_rate_on_time}} on time</p></div>
+<div style="background:#FFFFFF;padding:24px 28px;border:1px solid #D5DBE3;border-radius:16px"><p style="font-size:24px;color:#4A5568">Class balance</p><p style="font-size:30px">{{A3.clf.dev_prevalence}} detractors in development: AP, not accuracy</p></div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6B7280">Team 11 · IT5006 · 5/15 · Report section 4 · development orders only; the test period was never explored</p>
+<aside>0:50. All exploration used development orders only. The long right tail is why we model the log of lead time and judge with MAE. Late delivery is the strongest single signal for a bad review, and it is not known at checkout: that is the first piece of evidence behind moving the alert to handover.</aside>
+</section>
