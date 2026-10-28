@@ -2156,5 +2156,154 @@
     ],
     "value": 10000,
     "text": "10,000"
+  },
+  "B8.clf.pop_A_on_A": {
+    "kind": "number",
+    "source": "b08/classification/outputs/population_summary.csv",
+    "run_id": "20261024T042619Z",
+    "evidence": "B8.A",
+    "used_in": [
+      "report 7",
+      "deck 13"
+    ],
+    "value": 0.243507462225636,
+    "text": "0.244"
+  },
+  "B8.clf.pop_A_on_B": {
+    "kind": "number",
+    "source": "b08/classification/outputs/population_summary.csv",
+    "run_id": "20261024T042619Z",
+    "evidence": "B8.A",
+    "used_in": [
+      "report 7",
+      "deck 13"
+    ],
+    "value": 0.2418771435789408,
+    "text": "0.242"
+  },
+  "B8.clf.pop_B_on_B": {
+    "kind": "number",
+    "source": "b08/classification/outputs/population_summary.csv",
+    "run_id": "20261024T042619Z",
+    "evidence": "B8.A",
+    "used_in": [
+      "report 7",
+      "deck 13"
+    ],
+    "value": 0.2615813375186103,
+    "text": "0.262"
+  },
+  "B9.clf.test_auc_A_on_B": {
+    "kind": "number",
+    "source": "b09/classification/outputs/train_val_test.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 7",
+      "deck 14"
+    ],
+    "value": 0.6040496051560084,
+    "text": "0.604"
+  },
+  "B9.clf.test_brier_B": {
+    "kind": "number",
+    "source": "b09/classification/outputs/train_val_test.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 7",
+      "deck 14"
+    ],
+    "value": 0.0867023878094863,
+    "text": "0.0867"
+  },
+  "B9.clf.test_brier_A_on_B": {
+    "kind": "number",
+    "source": "b09/classification/outputs/train_val_test.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 7",
+      "deck 14"
+    ],
+    "value": 0.089260432595265,
+    "text": "0.0893"
+  },
+  "B9.reg.resid_mean_val_B": {
+    "kind": "number",
+    "source": "b09/regression/outputs/residuals_summary.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.16",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 2.918015707067446,
+    "text": "+2.9"
+  },
+  "B9.reg.resid_mean_test_B": {
+    "kind": "number",
+    "source": "b09/regression/outputs/residuals_summary.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.16",
+    "used_in": [
+      "report 7"
+    ],
+    "value": -1.142998043061918,
+    "text": "-1.1"
+  },
+  "B9.reg.resid_median_B": {
+    "kind": "number",
+    "source": "b09/regression/outputs/residuals_summary.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.16",
+    "used_in": [
+      "report 7"
+    ],
+    "value": -1.637482332448262,
+    "text": "-1.6"
+  },
+  "B9.reg.rank_spearman": {
+    "kind": "number",
+    "source": "b09/regression/outputs/ranking_consistency.json",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.5",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 0.16363636363636364,
+    "text": "0.16"
+  },
+  "B9.reg.rank_top10": {
+    "kind": "number",
+    "source": "b09/regression/outputs/ranking_consistency.json",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.5",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 7,
+    "text": "7"
+  },
+  "B9.clf.rank_spearman": {
+    "kind": "number",
+    "source": "b09/classification/outputs/ranking_consistency.json",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.5",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 0.3069230769230769,
+    "text": "0.31"
+  },
+  "B9.clf.rank_top10": {
+    "kind": "number",
+    "source": "b09/classification/outputs/ranking_consistency.json",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.5",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 6,
+    "text": "6"
   }
 }
