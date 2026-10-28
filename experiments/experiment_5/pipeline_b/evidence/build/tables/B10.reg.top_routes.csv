@@ -22,7 +22,7 @@ window,dimension,rank,level,orders,outcome,outcome_name,coefficient
 2018Q1,route_seller_to_customer_state,1,PR->RJ,288,23.962431801376027,mean lead_days (observed),-0.0728502558809439
 2018Q1,route_seller_to_customer_state,2,SP->RJ,1711,23.1994535427084,mean lead_days (observed),-0.037314389309992
 2018Q1,route_seller_to_customer_state,3,SP->BA,498,22.552864722780008,mean lead_days (observed),-0.0743178084146861
-2018Q1,route_seller_to_customer_state,4,SP->RS,757,21.40311217219531,mean lead_days (observed),-0.1293586593844645
+2018Q1,route_seller_to_customer_state,4,SP->RS,757,21.403112172195318,mean lead_days (observed),-0.1293586593844645
 2018Q1,route_seller_to_customer_state,5,SP->SC,536,20.85391205863046,mean lead_days (observed),-0.0548852764931375
 2018Q2,route_seller_to_customer_state,1,SP->BA,208,19.53871060363248,mean lead_days (observed),-0.0743178084146861
 2018Q2,route_seller_to_customer_state,2,SP->RJ,853,12.604396560613957,mean lead_days (observed),-0.037314389309992
