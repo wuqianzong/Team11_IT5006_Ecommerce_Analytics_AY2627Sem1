@@ -1,5 +1,7 @@
 # Milestone 2 TA feedback: gaps in the Milestone 3 report, and what to write (for the report owner)
 
+> **COMPLETE (experiment lead, 2026-10-28).** Closed after the deliverables audit passed all 9 checks on review doc rev 34 (B-CR-40). Still open on Henry's side: the app URL and screenshots for report §8, final proofreading and the PDF (report due 2026-11-08; slides lock 2026-11-04). Kept as the record.
+
 Source: `docs/Project/Milestone2/TA feedback for milestone 2.md` (TA, 12 points) and the teacher's M2 expectation
 note. Checked on 2026-10-27 against release `e5-release-2` and the report sources in `deliverables/report/`.
 **Every number goes in as a register placeholder** (`{{id}}`, `evidence/registry_B.yaml`); add a register item

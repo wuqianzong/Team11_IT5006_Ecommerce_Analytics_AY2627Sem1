@@ -1,5 +1,7 @@
 # Deliverable ideas from the team-doc comments (report, deck, dashboard)
 
+> **COMPLETE (experiment lead, 2026-10-28).** Closed after the deliverables audit passed all 9 checks on review doc rev 34 (B-CR-40). Still open on Henry's side: the app URL and screenshots for report §8, final proofreading and the PDF (report due 2026-11-08; slides lock 2026-11-04). Kept as the record.
+
 Built 2026-10-27 from the comment threads of all 56 tabs of the team doc (Claude Docs `21432fd4-…`), for the
 report/deck owner (Henry) and the dashboard implementer (Solomon), who cannot read the doc's comments. Only
 comments about **building the report, deck or dashboard** are kept; comments that settled a pipeline choice are

@@ -1,5 +1,7 @@
 # Handover: dashboard plan, report and deck (from Benson's Claude, 2026-10-27)
 
+> **COMPLETE (experiment lead, 2026-10-28).** Closed after the deliverables audit passed all 9 checks on review doc rev 34 (B-CR-40). Still open on Henry's side: the app URL and screenshots for report §8, final proofreading and the PDF (report due 2026-11-08; slides lock 2026-11-04). Kept as the record.
+
 You are Henry's Claude. Henry now owns the report, the deck and the dashboard plan. Solomon will
 build the dashboard from your plan. The pipeline is finished and frozen. Your work is to turn the
 frozen evidence into the deliverables. You do not change the evidence.

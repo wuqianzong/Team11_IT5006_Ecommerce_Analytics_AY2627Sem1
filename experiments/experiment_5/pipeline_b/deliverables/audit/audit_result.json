@@ -1,14 +1,14 @@
 {
   "checks": [
     {
-      "check": "report charts: all 16 equal their register figure and the stage output in its manifest",
+      "check": "report charts: the doc's 28 figure captions match the map's 28 entries, and each chart equals its register figure and the stage output in its manifest",
       "passed": true,
       "detail": ""
     },
     {
       "check": "deck charts: every <img> on a slide is mapped, and equals its register figure and stage output",
       "passed": true,
-      "detail": "6 images"
+      "detail": "14 images"
     },
     {
       "check": "deck slides: each live slide equals a fresh fill of its template (no hand-typed or stale number)",
@@ -28,7 +28,7 @@
     {
       "check": "report text: the live doc's body equals the filled sources line for line (beyond its title, date and review note)",
       "passed": true,
-      "detail": "header kept: # Team 11 final report \u2014 delivery time and detractor alerts / Oct 26, 2026 \u00b7 @Henry / Draft for team review. Every number is filled from the Pipeline B register (pipeline_b/evidence/registry_B.yaml); comment on any point."
+      "detail": "header kept: # Team 11 final report \u2014 delivery time and detractor alerts / Oct 26, 2026 \u00b7 @Henry / Draft for team review. Every number is filled from the Pipeline B register (pipeline_b/evidence/registry_B.yaml); comment on any point. Revised: the full report written to plan v2, with the alert review order in section 9 and references checked against publisher records; the dated change record is pipeline_b/deliverables/report/records/CHANGES.md, and earlier drafts stay in the doc history."
     },
     {
       "check": "independent recomputation from T1's saved predictions matches the register (12 numbers)",
@@ -47,19 +47,22 @@
     }
   ],
   "passed": true,
-  "doc_sha256": "3c2ce10650b3b2b88ed18c7f58dfb23f55ab39eaf4f75c1dcf52c8761cd0b95a",
+  "doc_sha256": "7388ff553755a614f2418c2f0c9c4be2f818945bf6fa71856af7fc13c374fd1b",
   "deck_slides": {
-    "actions.html": "1ef3667baa893fc9e34134d2d3dd5233549e162a599497b8ebc8d03743c72fcb",
-    "alerts.html": "e8d2d9c7d75daf0f3068b1eff09cfba60f86fa84a2f749db5eeaa97b03c81e03",
-    "atob.html": "aaf6068439ad9d7f4914e6173ed970dc5fc59c95aa6830d276f61252fdf418a1",
-    "clf.html": "796afa301420edc3ee2f5d917a15e1e0edf877e1b193b4677c63a585927105f5",
-    "close.html": "58c98c20ba1b00bd9ff70c8195b943a98d1e71c2be2373e9528114750fc8c0a9",
-    "cover.html": "d6420d02539c7d5d2e7d2f4b0ca57bf8ce12767b9f9dbcd932fd03a07080f572",
-    "data.html": "52ee0e15b20d8b8cebde58606943b3d6a4951f64b5692da66ea3ac38eaa162a5",
-    "deploy.html": "aa7bc9e90adf84fd4e78a0b677cfc698c01ffdf4dedc885763f01f9aabcb46c5",
-    "limits.html": "c3ed913ad56fcffef0e03e1c329674552b1dac376c115288ab38320faec493b6",
-    "method.html": "3a65630f4c7b651c86f853f82fb6b0a34fccbc43b8a390e72ee9710570493c4e",
-    "problem.html": "8fa4532ce106a4593a3a5b0eda458bda01112960fceeaad105d85610fed96d00",
-    "reg.html": "fb4fe716d6582d69af5e8eead0539c419a44c0a8485c4eb3c05b05745af73f66"
+    "atob.html": "40714437acb8343ac49ce60762bbeb6dee124005688c32e99ccb6a4f5769cb11",
+    "collin.html": "6aa4777f98b520bf818e8c2f6840996741bc846f95f60bffd33f73968ce5fc2b",
+    "cover.html": "761368051dbb33421911ca11c71c50076687b26ffec77d5adf80d81c72904bb1",
+    "data.html": "9056a3029a94a396229f358310bc8846dc14157b2732cda24ee7004412ea84e8",
+    "eda.html": "d6387fe76ac67eb9459d00b3775d7a40eef1505815b3deb6f77b57bf73f03391",
+    "features.html": "49539612c131ef40e57856929ff0ed3bf519eb6fb0c6c132bacf82b6fc5f173a",
+    "gain.html": "8709c961d40aac44e2e6206d43f1bf1225c85329d40ed2c5bcf5cae6148aae53",
+    "ladder.html": "6d58c14dec03c5f6fc04883388d65e2bca4cc0da13cf2c0d6322b2c089f52437",
+    "method.html": "bacc77ae576f927870d3326cede8b74a8d45c45efdfb688027aef194b1d4880a",
+    "prep.html": "d2dcf4b824d11baca1ed6a113217be2969180473c753ed3c1a753c3421c5d112",
+    "problem.html": "73b56fea41f06c3e32e1352fa6bc8bfd56bc2b17e8986df7dd56093cad2cffe8",
+    "results.html": "09b58c4202dfb1f9fcff2fe54cbe9ed1e9e7d4c03ed84fc034e249eefbea8a67",
+    "routes.html": "ebb5eca74e1cf789c88a19b29efddc97acc51f69b7ea7d07af7ae9bdf00225ad",
+    "selection.html": "72f1237bec7e77af14149c9ebe5d8550269636a5c75aa79dae3e27815a2ad7a7",
+    "use.html": "3e9237786eaa24233eeb1782923a14631e9fdd41b74005957463b0bdfe6225f3"
   }
 }

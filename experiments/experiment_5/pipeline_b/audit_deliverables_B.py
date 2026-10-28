@@ -60,7 +60,16 @@ def main() -> int:
     # 1 charts ------------------------------------------------------------------------------------------
     def chart_ok(asset: Path, fid: str) -> tuple[bool, str]:
         e = nums[fid]
-        regfile, src = B / e["file"], reg.STAGES / e["source"]
+        regfile = B / e["file"]
+        if e["source"].startswith("A/"):
+            # Pipeline A source (B-G-11, B-G-13): no B manifest; the file must equal its copy at tag e5-A-frozen
+            try:
+                src, _ = reg.verify_a_source(e["source"])
+            except ValueError as err:
+                return False, f"{asset.name} -> {fid} -> {err}"
+            ok = asset.exists() and _sha(asset) == _sha(regfile) == _sha(src)
+            return ok, f"{asset.name} -> {fid} -> {e['source']} ({e['run_id']})"
+        src = reg.STAGES / e["source"]
         stage, task = Path(e["source"]).parts[:2]
         man = json.loads((reg.STAGES / stage / task / "outputs" / "_manifest.json").read_text())
         mrel = src.relative_to(B.parents[2]).as_posix()
