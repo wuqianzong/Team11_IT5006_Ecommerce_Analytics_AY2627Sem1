@@ -1,4 +1,4 @@
-## 6 Model deployment and application
+## 8 Deployment and dashboard
 
 **Release package.** The two frozen models of each task (B, and A as fallback) are packaged with their schemas, training profiles and checksums. Reloaded from disk, they re-predict the saved test predictions exactly (largest difference {{B10.reg.parity_max}} for regression, {{B10.clf.parity_max}} for classification), from test rows rebuilt with every label column emptied.
 

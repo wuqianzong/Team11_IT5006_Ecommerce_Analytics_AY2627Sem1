@@ -1,4 +1,4 @@
-## References and appendices
+## References
 
 - Olist Brazilian E-Commerce Public Dataset (Kaggle); Canvas copy used.
 - James, Witten, Hastie and Tibshirani (2023), *An Introduction to Statistical Learning with Applications in Python*, Springer.

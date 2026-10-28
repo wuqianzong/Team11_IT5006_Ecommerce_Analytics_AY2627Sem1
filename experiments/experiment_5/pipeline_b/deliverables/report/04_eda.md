@@ -1,4 +1,4 @@
-## 3 Exploratory analysis highlights
+## 4 Exploratory analysis
 
 EDA used development orders only (before each task's test cutoff), so it never saw test outcomes.
 

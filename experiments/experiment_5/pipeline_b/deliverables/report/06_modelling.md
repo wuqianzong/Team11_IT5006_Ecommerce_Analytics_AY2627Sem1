@@ -1,4 +1,4 @@
-## 4 Modelling approach
+## 6 Modelling and the A-to-B decision
 
 **Two pipelines, one change request.** Pipeline A replays the course workflow in ten steps (problem, data, EDA, features, partition, training, tuning, selection, conclusion, release). Pipeline B is A plus change request CR-054 and nothing else: B's population, prediction moment and new features; every other choice (folds, model families, grids, selection rule, metrics, calibration and threshold procedure) is inherited from A and reused through A's own code.
 

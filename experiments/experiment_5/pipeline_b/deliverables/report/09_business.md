@@ -1,4 +1,4 @@
-## 7 Business recommendations and impact
+## 9 Business recommendations
 
 Each recommendation is labelled as an observation (measured here), a literature-supported hypothesis or an unmeasured mechanism.
 

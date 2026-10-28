@@ -197,7 +197,7 @@
 - {id: B7.clf.plain_vs_tuned, kind: table, source: b07/classification/outputs/plain_vs_tuned.csv, columns: [family, plain_mean, tuned_mean, tuned_se, paired_gain_of_tuned, paired_se, carried], evidence: B7.5, used_in: [report 6]}
 - {id: B7.reg.grid, kind: table, source: b07/regression/outputs/grid_results.csv, columns: [family, params, validation_mean, validation_se, train_validation_gap], evidence: B7.5, used_in: [report appendix]}
 - {id: B7.clf.grid, kind: table, source: b07/classification/outputs/grid_results.csv, columns: [family, params, validation_mean, validation_se, train_validation_gap], evidence: B7.5, used_in: [report appendix]}
-- {id: B9.clf.label_sensitivity, kind: table, source: b09/classification/outputs/label_sensitivity.csv, evidence: B9.6, used_in: [report 3, report 7]}
+- {id: B9.clf.label_sensitivity, kind: table, source: b09/classification/outputs/label_sensitivity.csv, select: {rows: "B test rows", model: [B frozen, A frozen]}, columns: [model, label, ap, roc_auc, brier, precision, recall], evidence: B9.6, used_in: [report 3, report 7]}
 - {id: F.reg.family_ladder, kind: figure, source: b06/regression/outputs/figures/family_ladder.png, caption: "Model ladder on the five folds, lead time", evidence: B6.2, used_in: [report 6, deck 11]}
 - {id: F.clf.family_ladder, kind: figure, source: b06/classification/outputs/figures/family_ladder.png, caption: "Model ladder on the five folds, detractor alert", evidence: B6.2, used_in: [report 6, deck 11]}
 - {id: F.clf.auc_brier, kind: figure, source: doc_support/classification/outputs/figures/r06_auc_brier.png, caption: "ROC-AUC and Brier by population, detractor alert", evidence: DS.6, used_in: [report 7, deck 14]}

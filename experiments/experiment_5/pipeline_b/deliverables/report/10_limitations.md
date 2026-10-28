@@ -1,4 +1,4 @@
-## 8 Limitations and next steps
+## 10 Limitations
 
 - **Scope.** B covers only orders whose customer and seller are in the seven states; other orders get A's baseline model.
 - **Different prediction moments.** B's classifier acts at handover and A's at checkout, so part of B's gain is the later moment.
