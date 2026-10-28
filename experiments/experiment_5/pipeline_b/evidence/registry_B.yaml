@@ -10,6 +10,19 @@
 - {id: B2.reg.removed_cap, kind: number, source: b02/regression/outputs/exclusion_counts_B.csv, select: {step: "removed: B_LEAD_CAP"}, value: rows, format: "{:,}", evidence: B2.1, used_in: [report 2]}
 - {id: B2.reg.removed_warmup, kind: number, source: b02/regression/outputs/exclusion_counts_B.csv, select: {step: "removed: B_WARMUP"}, value: rows, format: "{:,}", evidence: B2.1, used_in: [report 2]}
 - {id: B2.reg.exclusions, kind: table, source: b02/regression/outputs/exclusion_counts_B.csv, evidence: B2.1, used_in: [report 2]}
+- {id: B2.reg.dev_rows_B, kind: number, source: b02/regression/outputs/exclusion_counts_B.csv, select: {step: "B development rows"}, value: rows, format: "{:,}", evidence: B2.1, used_in: [report 2]}
+- {id: B2.clf.dev_rows_A, kind: number, source: b02/classification/outputs/exclusion_counts_B.csv, select: {step: "A development rows (s02, pre-cutoff, eligible)"}, value: rows, format: "{:,}", evidence: B2.1, used_in: [report 2]}
+- {id: B2.clf.removed_state, kind: number, source: b02/classification/outputs/exclusion_counts_B.csv, select: {step: "removed: B_STATE"}, value: rows, format: "{:,}", evidence: B2.1, used_in: [report 2]}
+- {id: B2.clf.removed_distance, kind: number, source: b02/classification/outputs/exclusion_counts_B.csv, select: {step: "removed: B_DISTANCE"}, value: rows, format: "{:,}", evidence: B2.1, used_in: [report 2]}
+- {id: B2.clf.removed_no_handover, kind: number, source: b02/classification/outputs/exclusion_counts_B.csv, select: {step: "removed: B_NO_HANDOVER"}, value: rows, format: "{:,}", evidence: B2.1, used_in: [report 2]}
+- {id: B2.clf.removed_review_before_handover, kind: number, source: b02/classification/outputs/exclusion_counts_B.csv, select: {step: "removed: B_REVIEW_BEFORE_HANDOVER"}, value: rows, format: "{:,}", evidence: B2.1, used_in: [report 2]}
+- {id: B2.clf.removed_warmup, kind: number, source: b02/classification/outputs/exclusion_counts_B.csv, select: {step: "removed: B_WARMUP"}, value: rows, format: "{:,}", evidence: B2.1, used_in: [report 2]}
+- {id: B2.clf.dev_rows_B, kind: number, source: b02/classification/outputs/exclusion_counts_B.csv, select: {step: "B development rows"}, value: rows, format: "{:,}", evidence: B2.1, used_in: [report 2]}
+- {id: T1.reg.fit_rows_B, kind: number, source: t1_joint_test/regression/outputs/test_size_B.json, value: b_final_fit_rows, format: "{:,}", evidence: T1.1, used_in: [report 2]}
+- {id: B5.reg.fold5_train_rows, kind: number, source: b05/regression/outputs/fold_summary_B.csv, select: {fold: 5}, value: train_rows, format: "{:,}", evidence: B5.2, used_in: [report 2]}
+- {id: B5.reg.fold5_validation_rows, kind: number, source: b05/regression/outputs/fold_summary_B.csv, select: {fold: 5}, value: validation_rows, format: "{:,}", evidence: B5.2, used_in: [report 2]}
+- {id: B5.clf.fold5_train_rows, kind: number, source: b05/classification/outputs/fold_summary_B.csv, select: {fold: 5}, value: train_rows, format: "{:,}", evidence: B5.2, used_in: [report 2]}
+- {id: B5.clf.fold5_validation_rows, kind: number, source: b05/classification/outputs/fold_summary_B.csv, select: {fold: 5}, value: validation_rows, format: "{:,}", evidence: B5.2, used_in: [report 2]}
 - {id: B2.clf.exclusions, kind: table, source: b02/classification/outputs/exclusion_counts_B.csv, evidence: B2.1, used_in: [report 2]}
 - {id: T1.clf.test_rows_B, kind: number, source: t1_joint_test/classification/outputs/test_size_B.json, value: b_test_rows, format: "{:,}", evidence: T1.1, used_in: [report 5]}
 - {id: T1.clf.test_detractors_B, kind: number, source: t1_joint_test/classification/outputs/test_size_B.json, value: b_test_detractors, format: "{:,}", evidence: T1.1, used_in: [report 5]}

@@ -313,3 +313,20 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
   round 3, round 2 kept below as superseded); B10 and B11 sections appended to the blueprints tab (renamed "B blueprints
   B2–B11 and joint test"). doc_outbox/README.md marks every file published. Mirror spec/team_doc/ refreshed.
 - Next for Henry: branch from milestone-3 for new work. Benson: e5-release-1, migration, app.
+
+## 2026-10-28 · Henry + Claude · deliverables branch: population-chain register items
+
+**Done**
+- Branch `e5/deliverables-henry` cut from `milestone-3` at 86538e0 (after bc35656; tags e5-release-2, e5-reproduced).
+- Register: 13 items for the report's population chain (TA point 2), all from Current B files, no stage or A file read:
+  B2 classification removals and B development rows (both tasks, `exclusion_counts_B.csv`, B2.1); regression final-fit
+  rows (T1 `test_size_B.json`, T1.1); fold-5 training and validation rows (B5 `fold_summary_B.csv`, B5.2).
+- Read-only check (scratchpad, not cited): the 6 classification orders in the final fit but in no fold are not a payment
+  issue (all have instalments and a payment type; none belongs to a test customer). They were purchased in
+  Mar–Jun 2017 and reviewed 10–13 months later (Apr–May 2018): too late to be a training label in any fold, too early
+  to be a validation row, but reviewed before the test cutoff, so the final fit keeps them.
+- Decisions with Henry: chain starts at A's development rows (A's rules in words, no A counts); dashboard keeps A's
+  fallback at 1/6 (B10-D2), statistics panel only, 1/6 for B not shown in the dashboard.
+
+**Questions for Benson**
+- None.
