@@ -1,6 +1,6 @@
 # Dashboard plan (contract between Henry and Solomon)
 
-Status: DRAFT for Henry's approval, 2026-10-28 (decisions of 2026-10-28 applied). Owner: Henry (content). Builder: Solomon (`app/` in this folder).
+Status: APPROVED by Henry, 2026-10-28 (all review comments and the decisions of 2026-10-28 applied). Owner: Henry (content). Builder: Solomon (`app/` in this folder).
 A change to this plan is Henry's commit (HANDOVER_TO_HENRY.md §4.7).
 
 ## 0. Rules the app follows
@@ -45,8 +45,7 @@ BA or SC and whose distance is known; Pipeline A's frozen model scores every oth
 | 3 Detractor risk at handover | Model results, classification (B inside, A outside) | files in §4 |
 
 Tab 1 keeps the Phase 1 sections (KPI matrix, category overview, revenue variance, SLA, buyer and seller
-profiles). How Solomon reuses `deployment/app.py` without editing it (import or copy into `app/`) is the open
-point in §6.
+profiles). How Solomon reuses `deployment/app.py` without editing it is decided in §6.1.
 
 ## 3. Tab 2: Delivery lead time
 
@@ -99,4 +98,4 @@ point in §6.
 
 ## 7. Waits for later
 
-App URL and screenshots (for the report §8 and deck slide "deploy"); hosting (Benson).
+App URL and screenshots (for the report §8 and deck slide 15, "use"); hosting (Benson).
