@@ -388,3 +388,19 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
   labelled unmeasured. (3) Delay first, value as the tie-break (proposed).
 - To apply after Henry's review: a §9 capacity paragraph with the fallback's own row, one line on deck slide 15,
   and a reply in the doc thread.
+
+## 2026-10-28 · Henry + Claude · literature check, dashboard approval, push
+
+**Done**
+- 7f1bad0: references and literature register checked against publisher records (Crossref, NeurIPS proceedings,
+  library catalogues). ISLP fifth author added; van den Goorbergh et al. full list; Grinsztajn et al. page range
+  removed; initials added; ISLP dropped for the one-SE rule and VIF (no chapter abstract supports them; the report
+  used both uncited). Detail in deliverables/report/CHANGES.md and literature_register.md.
+- 9b5da75: DASHBOARD_PLAN.md APPROVED by Henry; stale references fixed.
+- `build_evidence_B.py check`: all placeholders resolve in the report and the deck.
+- Branch e5/deliverables-henry pushed to origin (Henry's instruction).
+
+**Not done yet**
+- `audit_deliverables_B.py` not run: its chart checks need figure_map.json updated by Benson (questions above).
+- Review doc reference list still shows the old author forms; refresh after Henry's review.
+- Alert priority text (report §9, deck slide 15) waits on the two open points recorded above.
