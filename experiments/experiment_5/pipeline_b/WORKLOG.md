@@ -531,5 +531,6 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
 
 **Not done yet**
 - Charts whose own text is small (A's s03 screens on slide 9, the two-chart slides 6, 10, 12, 15) stay hard to read
+  (Decision 3 in the Benson handshake asks for presentation renders from the saved figure data).
   at half width; a fix needs presentation renders with larger fonts (Benson's call) or more slides.
 - Audit on v2 waits on Benson's figure_map update; nothing pushed.
