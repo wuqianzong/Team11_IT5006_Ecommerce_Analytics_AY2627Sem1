@@ -560,3 +560,21 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
   (`st.dataframe`, `selection_mode="single-row-required"`): one order always picked, the first by default, reset per
   page. DASHBOARD_PLAN.md 4.1 row updated (revision 2.2).
 - App tests 19/19. Browser pass on the tab: picking a row updates 4.2; page 2 opens on sn 26; no console error.
+
+## 2026-10-29 · Henry + Claude · speaker notes, app screenshots, report review
+
+**Done**
+- Brief checked: the final report limit is 15–20 pages (excluding cover, references, appendices), 12 pt,
+  single-spaced, with figure captions and table labels; no word limit. The ~8,150 words in plan v2 was our own
+  estimate of what fits 18–20 pages with the figures. The talk is 10 minutes plus 5 of Q&A (plan v2 assumed 12).
+- Speaker notes rewritten for a 10-minute slot (9:00 of slides at about 110 words a minute, then a 1:00 demo), in
+  each slide template's notes; deck v2 version 28 (1793274446-5837), slide bodies unchanged. 80 register ids, all in
+  the report. Printable script with the demo steps: deliverables/deck/SPEAKER_NOTES.md.
+- Eight app screenshots at 1600x1000 from the local app (headless Edge, stored outputs only):
+  deliverables/dashboard/app/screenshots/2026-10-29/. Not yet placed in the deck (would need deck-map entries).
+
+**Noticed**
+- Panel 2.4 (promise buffer) opens on "A on A's test rows"; B's view should probably be the default.
+
+**Not done yet**
+- Hosting and the live URL: Benson (with the branch merge).
