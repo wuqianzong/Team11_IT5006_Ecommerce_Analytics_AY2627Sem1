@@ -4,7 +4,7 @@ Models are compared from the simplest upwards, on the same time-ordered folds, u
 
 ### 6.1 Validation design
 
-Orders are dated and customers return, so a random or stratified split would train on orders placed after the ones it predicts, and could put one customer on both sides (Kapoor and Narayanan, 2023). We therefore use five chronological, expanding folds before the test period: each fold trains on all orders up to a date and validates on the following weeks. Customers seen in a validation window are removed from its training rows, and a training order counts only if its label (delivery or review) was known before the validation window starts.
+Leakage takes several forms beyond rows shared between training and test (Kapoor and Narayanan, 2023). Our orders are dated and customers return, so a random or stratified split would train on orders placed after the ones it predicts, and could put one customer on both sides; we apply the warning to that case. We therefore use five chronological, expanding folds before the test period: each fold trains on all orders up to a date and validates on the following weeks. Customers seen in a validation window are removed from its training rows, and a training order counts only if its label (delivery or review) was known before the validation window starts.
 
 *Figure: Time-ordered folds and the test period (F.reg.partition).*
 
@@ -14,7 +14,7 @@ Each fold must have at least {{B5.min_train_rows}} training orders and, for the 
 
 ### 6.2 Model ladder
 
-We use two model families, linear and tree-based, each started from its simplest form (James et al., 2023): a dummy that predicts the median lead time or the detractor share; plain linear regression or unpenalised logistic regression; a single decision tree; and a random forest of 200 trees (Breiman, 2001). Tree ensembles are the natural non-linear comparison for tabular data of this kind (Grinsztajn et al., 2022). Plain least squares and unpenalised logistic regression need a full-rank design matrix, which section 5.3 shows holds in every fold. Stacking (Wolpert, 1992) and gradient boosting (Chen and Guestrin, 2016) were considered but not added: the project limits the number of model families, and the forest itself did not clear the selection rule.
+We use two model families, linear and tree-based, each started from its simplest variant, as the project description requires: a dummy that predicts the median lead time or the detractor share; plain linear regression or unpenalised logistic regression; a single decision tree; and a random forest of 200 trees (Breiman, 2001). Tree ensembles are the natural non-linear comparison for tabular data of this kind (Grinsztajn et al., 2022). Plain least squares and unpenalised logistic regression need a full-rank design matrix, which section 5.3 shows holds in every fold. Stacking (Wolpert, 1992) and gradient boosting (Chen and Guestrin, 2016) were considered but not added: the project limits the number of model families, and the forest itself did not clear the selection rule.
 
 Each step up the ladder must beat the step below it on the same folds. The table gives the mean gain over the five folds, its paired standard error and the number of folds in which the more complex model wins (MAE in days, a positive gain means lower error; AP for the alert).
 
@@ -32,7 +32,7 @@ The linear and logistic models beat the dummy in every fold. The single tree is 
 
 ### 6.3 Tuning
 
-Each family was then tuned on the same folds, with grids fixed before any tuning result was seen: Ridge alpha and logistic C from 0.01 to 100; tree depth 4 to 18 and minimum leaf size 20 to 200; forest depth 8 to 18 and leaf size 20 to 200 with square-root feature sampling; and class weight (none or balanced) for every classifier (appendix F). Class weighting is how the grid treats the imbalance. We did not resample: the alert uses calibrated probabilities and a cost-based threshold, and in logistic risk models imbalance corrections can distort the calibration of the predicted risk (Van den Goorbergh et al., 2022; He and Garcia, 2009).
+Each family was then tuned on the same folds, with grids fixed before any tuning result was seen: Ridge alpha and logistic C from 0.01 to 100; tree depth 4 to 18 and minimum leaf size 20 to 200; forest depth 8 to 18 and leaf size 20 to 200 with square-root feature sampling; and class weight (none or balanced) for every classifier (appendix F). Class weighting is how the grid treats the imbalance. We did not resample: the alert uses calibrated probabilities and a cost-based threshold, and in logistic risk models imbalance corrections can distort the calibration of the predicted risk (Van den Goorbergh et al., 2022).
 
 Lead time:
 

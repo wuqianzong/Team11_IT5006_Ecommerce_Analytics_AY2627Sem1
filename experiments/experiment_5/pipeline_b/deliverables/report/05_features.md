@@ -35,7 +35,7 @@ A seller with no earlier handovers takes the recent mean of sellers in the same 
 
 *Figure: Share of rows with their own seller and route history, by quarter (F.reg.history_coverage).*
 
-**Grounding.** Studies of e-commerce platforms examine how logistics performance relates to customer ratings and purchasing (Deshpande and Pendem, 2023); we cite this for the question it studies, not for any effect size. Our seller features measure the logistics performance of the seller who ships the order. For the route features we found no audited source, so their use rests on an operational assumption: a route that was slow last week is likely to be slow this week. Section 7 tests that assumption against the data instead of taking it for granted.
+**Grounding.** Logistics performance is studied alongside ratings and sales on e-commerce platforms (Deshpande and Pendem, 2023); we cite this for the question it studies, not for any effect or direction. The reason to expect the seller's history to matter comes from our own development data: late delivery goes with more detractors, and the share of late handovers differs between seller states and routes (section 4). Our seller features measure the logistics performance of the seller who ships the order. For the route features we found no audited source, so their use rests on an operational assumption: a route that was slow last week is likely to be slow this week. Section 7 tests that assumption against the data instead of taking it for granted.
 
 ### 5.3 Multicollinearity check
 
