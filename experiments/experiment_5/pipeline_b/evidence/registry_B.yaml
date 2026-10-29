@@ -228,3 +228,9 @@
 - {id: B9.reg.rank_top10, kind: number, source: b09/regression/outputs/ranking_consistency.json, value: top10_overlap, format: "{}", evidence: B9.5, used_in: [report 7]}
 - {id: B9.clf.rank_spearman, kind: number, source: b09/classification/outputs/ranking_consistency.json, value: spearman, format: "{:.2f}", evidence: B9.5, used_in: [report 7]}
 - {id: B9.clf.rank_top10, kind: number, source: b09/classification/outputs/ranking_consistency.json, value: top10_overlap, format: "{}", evidence: B9.5, used_in: [report 7]}
+# Deck v2 (2026-10-29): A's join diagram (B-G-13) and A's s03 screens behind the "three limits" slide (B-G-11)
+- {id: F.A2.data_structure, kind: figure, source: A/s02_data/common/outputs/figures/data_structure.png, caption: "From nine source tables to one row per order (Pipeline A data stage)", evidence: "2.12", used_in: [deck 3]}
+- {id: F.A3.reg.cumulative_importance, kind: figure, source: A/s03_eda/regression/outputs/figures/cumulative_importance.png, caption: "Baseline candidate ranking and cumulative importance, lead time (Pipeline A EDA)", evidence: "3.9", used_in: [deck 6]}
+- {id: F.A3.clf.cumulative_importance, kind: figure, source: A/s03_eda/classification/outputs/figures/cumulative_importance.png, caption: "Baseline candidate ranking and cumulative importance, detractor alert (Pipeline A EDA)", evidence: "3.9", used_in: [deck 6]}
+- {id: F.A3.clf.screen_promise, kind: figure, source: A/s03_eda/classification/outputs/figures/candidate_screen_promise.png, caption: "Promised delivery days at checkout barely separate detractors (Pipeline A EDA screen 3.11)", evidence: "3.11", used_in: [deck 9]}
+- {id: F.A3.clf.screen_region, kind: figure, source: A/s03_eda/classification/outputs/figures/candidate_screen_region.png, caption: "Detractor rate by macro-region and region pair (Pipeline A EDA screen 3.12)", evidence: "3.12", used_in: [deck 9]}

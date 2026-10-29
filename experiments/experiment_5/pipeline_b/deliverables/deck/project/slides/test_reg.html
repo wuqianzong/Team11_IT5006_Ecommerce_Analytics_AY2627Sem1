@@ -1,0 +1,24 @@
+<section id="test_reg" data-transition="fade" style="background:#FBFBF8;color:#14213D;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#C2410C">Test · regression · delivery lead time</p>
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:56px;font-weight:600;line-height:1.1">B’s promise errors are smaller on the same orders</h2>
+<div style="display:flex;gap:32px;align-items:start">
+<table style="width:640px;font-size:24px;color:#14213D;border-collapse:collapse">
+<tr><th style="text-align:left;padding:8px 12px;border-bottom:2px solid #14213D;width:52%">Test, B’s rows</th><th style="text-align:left;padding:8px 12px;border-bottom:2px solid #14213D;width:24%">B</th><th style="text-align:left;padding:8px 12px;border-bottom:2px solid #14213D;width:24%">A</th></tr>
+<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">MAE, days</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3"><b>{{B9.reg.test_mae_B}}</b></td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">{{B9.reg.test_mae_A_on_B}}</td></tr>
+<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">B’s MAE, 95% interval</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">{{B9.reg.test_mae_B_lo}}–{{B9.reg.test_mae_B_hi}}</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">—</td></tr>
+<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Difference B − A</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">{{B9.reg.mae_diff}}</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">[{{B9.reg.mae_diff_lo}}, {{B9.reg.mae_diff_hi}}]</td></tr>
+<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Within 3 days</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3"><b>{{B9.reg.test_within3_B}}</b></td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">{{B9.reg.test_within3_A_on_B}}</td></tr>
+<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">More than 3 days late</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">{{B9.reg.late_3d_B}}</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">{{B9.reg.late_3d_A_on_B}}</td></tr>
+<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">More than 6 days late</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">{{B9.reg.late_6d_B}}</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">—</td></tr>
+<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Mean residual, val → test</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">{{B9.reg.resid_mean_val_B}} → {{B9.reg.resid_mean_test_B}}</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">—</td></tr>
+<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Dummy MAE</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">{{B9.reg.test_mae_dummy_B}}</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">—</td></tr>
+<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Routes where B is better</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">{{B9.reg.routes_B_better}} of {{B9.reg.routes_judged}}</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">—</td></tr>
+</table>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px">
+<img src="/_blob/2115d248dad9982981df2fa7b285a8ef" alt="Residuals on B's test rows: B vs A" style="width:992px;height:300px;object-fit:contain;background:#FFFFFF;border-radius:16px">
+<img src="/_blob/26f9c651ce7ea4e5efb4bb0af3d32962" alt="Lead-time error by customer state" style="width:992px;height:300px;object-fit:contain;background:#FFFFFF;border-radius:16px">
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6B7280">Team 11 · IT5006 · 13/15 · Report section 7.1 · {{T1.reg.test_rows_B}} test orders, read once</p>
+<aside>0:55. The test, read once. B’s MAE is lower by about three quarters of a day, and the interval excludes zero; it is better on every route judged. One honest caveat: B leaves more orders more than 3 days late than A does, so the promise should carry a buffer (slide 15). The test period was faster than development: B’s mean residual moves from late on validation to early on the test.</aside>
+</section>

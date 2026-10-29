@@ -494,3 +494,24 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
   (all 1,967 free-shipping rows fall below R$ 7.39, the 1st percentile of freight, so that result is an
   extrapolation and is marked "outside training range"); logistics + freight 78 to 451. All labelled as associations.
 - Plan revision 2.1 (panels 4.1–4.3); tests 19/19; browser pass, no exception.
+
+## 2026-10-29 · Henry + Claude · deck v2 (A first)
+
+**Done**
+- Henry's five deck comments (slides 7, 11, 12, 13, 14): A first, A's limits shown by charts, then B; combined pages;
+  validation and test on separate slides; regression and classification test on one slide each, labelled by task,
+  with more data.
+- v1 kept: https://claude.ai/artifact/VtyNdrjEovfAvycTPmvy23 untouched; its sources frozen in deliverables/deck_v1/
+  (identical to the live v1 after fill).
+- v2: new deck https://claude.ai/artifact/NBiGTdX9JKB5kAeeX34gvc, 15 slides (cover, problem, data, prep, eda,
+  a_features, a_select, a_models, a_limits, b_features, b_scope, validation, test_reg, test_clf, use); sources replace
+  deliverables/deck/. 88 register ids, all also in the report; 18 charts uploaded to the v2 deck.
+- Register: 5 new figure items (A's s02 join diagram under B-G-13; A's s03 cumulative importance and screens 3.11,
+  3.12 under B-G-11); 207 items.
+
+**Not done yet**
+- Slides 7 and 8 carry pending chart slots for A's s04–s08 figures; audit on v2 needs the deck map updated.
+
+**Questions for Benson** (spec/doc_outbox/handshake_benson_deck_v2.md)
+1. Extend B-G-13 to A's s04–s08 figures (proposed B-G-14)?
+2. Replace figure_map.json's deck section with the v2 asset map.

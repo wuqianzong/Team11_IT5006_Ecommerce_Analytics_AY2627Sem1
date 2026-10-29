@@ -2305,5 +2305,60 @@
     ],
     "value": 6,
     "text": "6"
+  },
+  "F.A2.data_structure": {
+    "kind": "figure",
+    "source": "A/s02_data/common/outputs/figures/data_structure.png",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.12",
+    "used_in": [
+      "deck 3"
+    ],
+    "file": "evidence/build/figures/F.A2.data_structure.png",
+    "caption": "From nine source tables to one row per order (Pipeline A data stage)"
+  },
+  "F.A3.reg.cumulative_importance": {
+    "kind": "figure",
+    "source": "A/s03_eda/regression/outputs/figures/cumulative_importance.png",
+    "run_id": "20261023T083326Z @ e5-A-frozen",
+    "evidence": "3.9",
+    "used_in": [
+      "deck 6"
+    ],
+    "file": "evidence/build/figures/F.A3.reg.cumulative_importance.png",
+    "caption": "Baseline candidate ranking and cumulative importance, lead time (Pipeline A EDA)"
+  },
+  "F.A3.clf.cumulative_importance": {
+    "kind": "figure",
+    "source": "A/s03_eda/classification/outputs/figures/cumulative_importance.png",
+    "run_id": "20261023T083353Z @ e5-A-frozen",
+    "evidence": "3.9",
+    "used_in": [
+      "deck 6"
+    ],
+    "file": "evidence/build/figures/F.A3.clf.cumulative_importance.png",
+    "caption": "Baseline candidate ranking and cumulative importance, detractor alert (Pipeline A EDA)"
+  },
+  "F.A3.clf.screen_promise": {
+    "kind": "figure",
+    "source": "A/s03_eda/classification/outputs/figures/candidate_screen_promise.png",
+    "run_id": "20261023T083353Z @ e5-A-frozen",
+    "evidence": "3.11",
+    "used_in": [
+      "deck 9"
+    ],
+    "file": "evidence/build/figures/F.A3.clf.screen_promise.png",
+    "caption": "Promised delivery days at checkout barely separate detractors (Pipeline A EDA screen 3.11)"
+  },
+  "F.A3.clf.screen_region": {
+    "kind": "figure",
+    "source": "A/s03_eda/classification/outputs/figures/candidate_screen_region.png",
+    "run_id": "20261023T083353Z @ e5-A-frozen",
+    "evidence": "3.12",
+    "used_in": [
+      "deck 9"
+    ],
+    "file": "evidence/build/figures/F.A3.clf.screen_region.png",
+    "caption": "Detractor rate by macro-region and region pair (Pipeline A EDA screen 3.12)"
   }
 }

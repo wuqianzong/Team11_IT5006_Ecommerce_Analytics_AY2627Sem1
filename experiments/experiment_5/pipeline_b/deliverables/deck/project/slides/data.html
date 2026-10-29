@@ -1,26 +1,15 @@
-<section id="data" data-transition="fade" style="background:#FBFBF8;color:#14213D;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
-<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#C2410C">Data, joins and leakage</p>
-<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:60px;font-weight:600;line-height:1.1">Nine tables become one row per order</h2>
-<div style="display:flex;gap:24px;align-items:center">
-<div style="width:560px;display:flex;flex-direction:column;gap:12px">
-<div style="background:#FFFFFF;padding:24px 28px;border:1px solid #D5DBE3;border-radius:16px"><p style="font-size:26px"><b>Several rows per order</b>, aggregated first: items, payments, reviews</p></div>
-<div style="background:#FFFFFF;padding:24px 28px;border:1px solid #D5DBE3;border-radius:16px"><p style="font-size:26px"><b>Lookups</b>: products, sellers, category names, ZIP-prefix geolocation</p></div>
-<div style="background:#FFFFFF;padding:24px 28px;border:1px solid #D5DBE3;border-radius:16px"><p style="font-size:26px"><b>Customers</b> matched on customer_unique_id, one side of every split</p></div>
-</div>
-<p style="font-size:64px;color:#C2410C">→</p>
-<div style="width:300px;background:#14213D;padding:32px;border-radius:16px"><p style="font-size:32px;font-weight:600;color:#FBFBF8">Orders</p><p style="font-size:24px;color:#C9D3E3">one row per order, joined one to one</p></div>
-<div style="flex:1;display:flex;flex-direction:column;gap:12px;padding-left:24px">
-<p style="font-size:26px"><b>Primary item</b>: the highest-priced; gives category and seller</p>
-<p style="font-size:26px"><b>Distance</b>: largest seller-to-customer distance</p>
-<p style="font-size:26px"><b>Never used</b>: Olist's estimated delivery date</p>
+<section id="data" data-transition="fade" style="background:#FBFBF8;color:#14213D;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#4A5568">Data, joins and leakage</p>
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:56px;font-weight:600;line-height:1.1">Nine tables become one row per order</h2>
+<div style="display:flex;gap:40px;align-items:start">
+<img src="/_blob/599ab1acabc2699da29fdc0ffc40a0fe" alt="From nine source tables to one row per order (Pipeline A data stage)" style="width:980px;height:560px;object-fit:contain;background:#FFFFFF;border-radius:16px">
+<div style="flex:1;display:flex;flex-direction:column;gap:14px">
+<div style="background:#FFFFFF;padding:20px 24px;border:1px solid #D5DBE3;border-radius:16px"><p style="font-size:24px"><b>Aggregate first</b>: items, payments and reviews have several rows per order; each is reduced to the order, then joined one to one</p></div>
+<div style="background:#FFFFFF;padding:20px 24px;border:1px solid #D5DBE3;border-radius:16px"><p style="font-size:24px"><b>Primary item</b>: the highest-priced; gives the category and the seller</p></div>
+<div style="background:#FFFFFF;padding:20px 24px;border:1px solid #D5DBE3;border-radius:16px"><p style="font-size:24px"><b>Customers</b> matched on customer_unique_id, so one customer stays on one side of every split</p></div>
+<div style="background:#FFFFFF;padding:20px 24px;border:1px solid #D5DBE3;border-radius:16px"><p style="font-size:24px"><b>Leakage rule</b>: a column is a predictor only if it exists at the prediction moment; delivery, carrier and review fields never are; Olist’s estimated date is never used</p></div>
 </div>
 </div>
-<div style="display:flex;align-items:stretch">
-<div style="flex:1;background:#FFFFFF;padding:20px;border:1px solid #D5DBE3"><p style="font-size:26px;font-weight:600">1 Purchase</p><p style="font-size:24px;color:#C2410C">Lead time predicted at checkout</p></div>
-<div style="flex:1;background:#FFFFFF;padding:20px;border:1px solid #D5DBE3;border-left:none"><p style="font-size:26px;font-weight:600">2 Carrier handover</p><p style="font-size:24px;color:#C2410C">Improved alert predicted</p></div>
-<div style="flex:1;background:#FFFFFF;padding:20px;border:1px solid #D5DBE3;border-left:none"><p style="font-size:26px;font-weight:600">3 Delivery</p><p style="font-size:24px;color:#4A5568">Outcome, never a predictor</p></div>
-<div style="flex:1;background:#FFFFFF;padding:20px;border:1px solid #D5DBE3;border-left:none"><p style="font-size:26px;font-weight:600">4 Review</p><p style="font-size:24px;color:#4A5568">Outcome, never a predictor</p></div>
-</div>
-<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6B7280">Team 11 · IT5006 · 3/15 · Report section 3</p>
-<aside>0:50. Items, payments and reviews have several rows per order, so each is aggregated to the order before the join; that keeps the join one to one. A column may be a predictor only if its value exists at the prediction moment. At checkout that excludes every delivery, carrier and review field. At handover the improved alert may use this order's dispatch delay, but still not its delivery or review. History features use only other orders whose events were complete in earlier weeks.</aside>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6B7280">Team 11 · IT5006 · 3/15 · Report section 3 · join diagram from Pipeline A’s data stage (B-G-13)</p>
+<aside>0:50. The diagram is Pipeline A’s stored data-structure figure: the order is the unit, every many-rows table is aggregated before the join so the join stays one to one. A column may be a predictor only if its value exists at the prediction moment. At checkout that excludes every delivery, carrier and review field.</aside>
 </section>

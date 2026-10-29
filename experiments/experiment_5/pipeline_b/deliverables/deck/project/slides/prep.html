@@ -1,30 +1,22 @@
-<section id="prep" data-transition="fade" style="background:#FBFBF8;color:#14213D;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
-<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#C2410C">Preprocessing</p>
-<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:60px;font-weight:600;line-height:1.1">Every step has a rule, a reason and a row count</h2>
+<section id="prep" data-transition="fade" style="background:#FBFBF8;color:#14213D;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#4A5568">Preprocessing</p>
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:56px;font-weight:600;line-height:1.1">Every learned step is fitted on the training fold only</h2>
 <div style="display:flex;gap:48px;align-items:start">
-<table style="width:740px;font-size:24px;color:#14213D;border-collapse:collapse">
-<tr><th style="text-align:left;padding:8px 12px;border-bottom:2px solid #14213D">Step</th><th style="text-align:left;padding:8px 12px;border-bottom:2px solid #14213D">Rule, fitted on the training fold</th></tr>
-<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Missing numbers</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Median fill plus a missing indicator</td></tr>
-<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Missing categories</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Their own "Unknown" level</td></tr>
-<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Skew</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">log(1 + x): money, size, distance, days</td></tr>
-<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Late tail</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Kept; predict log(1 + lead time)</td></tr>
-<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Encoding</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">One-hot; linear models drop one level</td></tr>
-<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Scaling</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Standardised, linear and logistic only</td></tr>
-<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Test period</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Newest 20%, held out first, read once</td></tr>
+<table style="width:1040px;font-size:26px;color:#14213D;border-collapse:collapse">
+<tr><th style="text-align:left;padding:8px 12px;border-bottom:2px solid #14213D;width:28%">Step</th><th style="text-align:left;padding:8px 12px;border-bottom:2px solid #14213D;width:44%">Rule</th><th style="text-align:left;padding:8px 12px;border-bottom:2px solid #14213D;width:28%">Why</th></tr>
+<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Missing numbers</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Training-fold median plus a missing indicator</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Tells a filled value from a real one</td></tr>
+<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Missing categories</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Their own "Unknown" level</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">No row dropped</td></tr>
+<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Skew</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">log(1 + x): money, size, distance, days</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Long right tails</td></tr>
+<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Late tail</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Kept; predict log(1 + lead time)</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Very late orders are real</td></tr>
+<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Encoding</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">One-hot; linear models drop one level</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Full-rank design matrix</td></tr>
+<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Scaling</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Standardised, linear and logistic only</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Comparable coefficients</td></tr>
+<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Test period</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Newest 20%, held out first, read once</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Unbiased final score</td></tr>
 </table>
-<table style="flex:1;font-size:24px;color:#14213D;border-collapse:collapse">
-<tr><th style="text-align:left;padding:8px 12px;border-bottom:2px solid #14213D">Improved pipeline's orders</th><th style="text-align:left;padding:8px 12px;border-bottom:2px solid #14213D">Lead time</th><th style="text-align:left;padding:8px 12px;border-bottom:2px solid #14213D">Alert</th></tr>
-<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Baseline development orders</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">{{B2.reg.dev_rows_A}}</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">{{B2.clf.dev_rows_A}}</td></tr>
-<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Outside the seven states</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">− {{B2.reg.removed_state}}</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">− {{B2.clf.removed_state}}</td></tr>
-<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Distance unknown</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">− {{B2.reg.removed_distance}}</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">− {{B2.clf.removed_distance}}</td></tr>
-<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Above the lead-time cap</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">− {{B2.reg.removed_cap}}</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">—</td></tr>
-<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Never handed over</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">—</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">− {{B2.clf.removed_no_handover}}</td></tr>
-<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Reviewed before handover</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">—</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">− {{B2.clf.removed_review_before_handover}}</td></tr>
-<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">History warm-up, six weeks</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">− {{B2.reg.removed_warmup}}</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">− {{B2.clf.removed_warmup}}</td></tr>
-<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3"><b>Development orders</b></td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3"><b>{{B2.reg.dev_rows_B}}</b></td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3"><b>{{B2.clf.dev_rows_B}}</b></td></tr>
-<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Test orders</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">{{T1.reg.test_rows_B}}</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">{{T1.clf.test_rows_B}}</td></tr>
-</table>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px">
+<div style="background:#FFFFFF;padding:20px 24px;border:1px solid #D5DBE3;border-radius:16px"><p style="font-size:24px;color:#4A5568">Pipeline A development orders</p><p style="font-size:32px"><b>{{B2.reg.dev_rows_A}}</b> lead time · <b>{{B2.clf.dev_rows_A}}</b> alert</p></div>
+<div style="background:#FFFFFF;padding:20px 24px;border:1px solid #D5DBE3;border-radius:16px"><p style="font-size:26px">All steps sit inside one scikit-learn pipeline per fold, cloned for each model, so no validation or test statistic reaches a model</p></div>
 </div>
-<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6B7280">Team 11 · IT5006 · 4/15 · Report section 3 · learned steps sit inside one scikit-learn pipeline per fold</p>
-<aside>0:50. Every learned step, imputation, encoding and scaling, is fitted on the training fold only, inside one pipeline, so no statistic from a validation or test order reaches a model. The late tail is real customer experience, so it is kept and modelled on the log scale rather than trimmed. The chain on the right accounts for every order from the baseline's development set to the improved pipeline's rows; the final fit uses {{T1.reg.fit_rows_B}} and {{T1.clf.fit_rows_B}} rows because a label must be known before the test period.</aside>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6B7280">Team 11 · IT5006 · 4/15 · Report section 3</p>
+<aside>0:45. Every learned step, imputation, encoding and scaling, is fitted on the training fold only, inside one pipeline that is cloned for each model, so no statistic from a validation or test order reaches a model. The late tail is real customer experience, so it is kept and modelled on the log scale rather than trimmed. Both pipelines share these steps.</aside>
 </section>
