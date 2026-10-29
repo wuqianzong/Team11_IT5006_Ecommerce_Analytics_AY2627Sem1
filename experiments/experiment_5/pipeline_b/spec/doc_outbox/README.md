@@ -26,4 +26,5 @@ Benson's account. Each file is written in the style of the tabs mirrored in `../
 | sync_for_benson_r2.md | not a doc tab: read after sync_for_benson.md (changes since 8b6d7fb) | — |
 | handshake_benson_2026-10-28.md | not a doc tab: prompt for Benson's Claude (figure_map, audit) | Answered by Benson, 2026-10-28 (250204b); complete |
 | handshake_solomon_2026-10-28.md | not a doc tab: prompt for Solomon's Claude (dashboard build) | Open: app not yet on `e5/deliverables-henry` |
-| handshake_benson_2026-10-28_2127.md | not a doc tab: prompt for Benson's Claude (chart_ok fix for A sources, closing his handover files) | Open |
+| handshake_benson_2026-10-28_2127.md | not a doc tab: prompt for Benson's Claude (chart_ok fix for A sources, closing his handover files) | Answered by Benson, 2026-10-28 (e302e8b); complete |
+| handshake_solomon_2026-10-29_0904.md | not a doc tab: app review for Solomon (cap wording fix, 4 improvements, hosting) | Open |

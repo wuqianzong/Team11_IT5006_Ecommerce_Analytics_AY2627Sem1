@@ -47,7 +47,7 @@
     }
   ],
   "passed": true,
-  "doc_sha256": "eb5a629608e9cfb36d95820513593c4023855a821293d4784ba14da663cb7f0b",
+  "doc_sha256": "9f2314a350b13b15b00fa9336fdbcef297e216fa44e31cfba4ce6893b1b79fb3",
   "deck_slides": {
     "atob.html": "40714437acb8343ac49ce60762bbeb6dee124005688c32e99ccb6a4f5769cb11",
     "collin.html": "6aa4777f98b520bf818e8c2f6840996741bc846f95f60bffd33f73968ce5fc2b",
@@ -63,6 +63,6 @@
     "results.html": "09b58c4202dfb1f9fcff2fe54cbe9ed1e9e7d4c03ed84fc034e249eefbea8a67",
     "routes.html": "ebb5eca74e1cf789c88a19b29efddc97acc51f69b7ea7d07af7ae9bdf00225ad",
     "selection.html": "72f1237bec7e77af14149c9ebe5d8550269636a5c75aa79dae3e27815a2ad7a7",
-    "use.html": "3e9237786eaa24233eeb1782923a14631e9fdd41b74005957463b0bdfe6225f3"
+    "use.html": "13fdd7459724205d8d723934c305d38840d1680bab44d164994e6fe09d6e4271"
   }
 }

@@ -438,3 +438,22 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
 **Not done yet**
 - Solomon's app is not on any origin branch (checked after fetch).
 - A's join diagram (B-G-13) not placed: Henry to decide.
+
+## 2026-10-29 · Henry + Claude · Solomon's app reviewed; report §8; cap statement restored
+
+**Done**
+- Pulled e302e8b (Benson: chart_ok handles A sources; audit 9/9 on rev 34; his handover files complete) and
+  Solomon's 9d6cc35 and 12d2614 (app in deliverables/dashboard/app/).
+- Python 3.12.10 installed (per user); app .venv built from requirements.txt (git-ignored). 13 of 13 app tests pass.
+  The app runs with no error on any tab; all 19 planned panels are present; the test-view numbers at 4/15 match the
+  report. Review findings for Solomon in spec/doc_outbox/handshake_solomon_2026-10-29_0904.md: one wording fix (3.4
+  compares the combined volume with the 6-a-day cap, which applies to B alone), four small improvements (4/15
+  label, visible intervals, test-view screenshot, panel test) and the hosting request.
+- Report §8: placeholder replaced by "Using the app" (local URL; hosted address to follow).
+- Report §9 and deck slide 15 notes: review-cap statement restored (B-CR-30 requires it; the plan-v2 rewrite had
+  dropped it).
+- Audit (official script): 9/9 PASS on doc rev 36 with the live deck (version 17); one run takes about 16 s.
+- Reminder set for Henry: finish review, proofreading and PDF on 2026-10-30.
+
+**Not done yet**
+- Hosting and a public URL (Solomon, with Benson). Proofreading and PDF (Henry, by 2026-10-30).
