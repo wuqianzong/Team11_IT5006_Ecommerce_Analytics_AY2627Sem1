@@ -2,23 +2,9 @@
 
 Every feature has a definition, a time window and a reason. Correlated and nested features are removed by a stated rule before selection, and a ranking rule then keeps the smallest set that carries 99% of the ranked signal. Both steps run on development orders only, never on the test period.
 
-### 5.1 Pipeline A's predictor pool
+### 5.1 Pipeline B's feature set
 
-Pipeline A starts from 24 predictors that are all known at checkout, grouped as follows:
-
-- **Basket:** counts of items, products, sellers and categories.
-- **Price and freight:** total price, total freight and the freight-to-price ratio.
-- **Physical size:** total weight and volume, with the share of items whose size is missing.
-- **Product:** the primary category, with the share of items whose category is missing.
-- **Geography:** customer state, primary seller state, the largest seller-to-customer distance with the share of items whose distance is missing, and the share of items shipped across a state border.
-- **Calendar:** purchase month, day of week and hour.
-- **Payment:** main payment type, largest number of instalments and number of payment methods.
-
-The alert adds three candidates kept after the exploratory screening: the primary product's photo count and description length, and the seller's average review score on earlier orders. Skewed money, size, distance and day-count features are log-transformed, as described in section 3.
-
-### 5.2 Pipeline B's new features
-
-The new features describe how this seller and this route have delivered recently, measured only on other orders. None uses Olist's estimated delivery date, so none inherits the old promise.
+Pipeline B's new features describe how this seller and this route have delivered recently, measured only on other orders. None uses Olist's estimated delivery date, so none inherits the old promise.
 
 *Table 6. Pipeline B's new features.*
 
@@ -39,26 +25,29 @@ A seller with no earlier handovers takes the recent mean of sellers in the same 
 
 **Grounding.** Logistics performance is studied alongside ratings and sales on e-commerce platforms (Deshpande and Pendem, 2023); we cite this for the question it studies, not for any effect or direction. The reason to expect the seller's history to matter comes from our own development data: late delivery goes with more detractors, and the share of late handovers differs between seller states and routes (section 4). Our seller features measure the logistics performance of the seller who ships the order. For the route features we found no audited source, so their use rests on an operational assumption: a route that was slow last week is likely to be slow this week. Section 7 tests that assumption against the data instead of taking it for granted.
 
-### 5.3 Multicollinearity check
+**Inherited from Pipeline A.** Pipeline B also starts from Pipeline A's 24 checkout predictors: basket counts, price and freight, physical size, product category, geography (customer and seller state, distance, interstate share), purchase calendar and payment. For the alert Pipeline A added three candidates kept after the exploratory screening: the primary product's photo count and description length, and the seller's average review score on earlier orders. Skewed money, size, distance and day-count features are log-transformed, as described in section 3.
+
+### 5.2 Multicollinearity check
 
 Strongly correlated predictors make linear coefficients unstable and split importance between partners, even when accuracy is unaffected. The check uses only stored outputs:
 
-- **Pipeline A's pool.** The exploratory stage computed pairwise correlations and a variance inflation factor (VIF) for each numeric predictor on development orders. A pair is flagged above an absolute correlation of {{A3.corr_cut}}, and a predictor above a VIF of {{A3.vif_cut}}. No predictor reached the VIF cut-off in either task (appendix J). One pair was identical on every development order, the missing-weight and missing-volume shares; the lower-ranked of the two was dropped.
-
-*Table 7. Pipeline A's predictor pairs above the correlation cut-off.*
-
-{{table:A3.reg.collinear_pairs}}
-
-- **Pipeline B.** The route determines both the customer state and the seller state: every route level fixes both, so their one-hot columns are sums of the route's columns. Keeping all three would make the linear design matrix rank-deficient, so the two state columns are dropped whenever the route is kept. The same step drops the missing-distance share, which is constant because every kept order has a distance, and the duplicate pair found in Pipeline A's pool.
+- **Pipeline B.** The route determines both the customer state and the seller state: every route level fixes both, so their one-hot columns are sums of the route's columns. Keeping all three would make the linear design matrix rank-deficient, so the two state columns are dropped whenever the route is kept. The same step drops the missing-distance share, which is constant because every kept order has a distance, and the duplicate pair found in Pipeline A's pool (below).
 
 *Table 8. Features removed by Pipeline B's reduction step, lead time.*
 
 {{table:B4.reg.reduction}}
 
 - **Every fold.** After the drops, the linear design matrix is full rank in every training fold, so plain least squares and unpenalised logistic regression have unique coefficients. The condition number shows how close the columns come to collinearity (appendix C).
+
+- **Pipeline A's pool, the inherited base.** The exploratory stage computed pairwise correlations and a variance inflation factor (VIF) for each numeric predictor on development orders. A pair is flagged above an absolute correlation of {{A3.corr_cut}}, and a predictor above a VIF of {{A3.vif_cut}}. No predictor reached the VIF cut-off in either task (appendix J). One pair was identical on every development order, the missing-weight and missing-volume shares; the lower-ranked of the two was dropped.
+
+*Table 7. Pipeline A's predictor pairs above the correlation cut-off.*
+
+{{table:A3.reg.collinear_pairs}}
+
 - **What was not measured.** Correlation and VIF were not computed for the new history features. They are averages of related quantities (for example, a seller's late-handover rate and late days), so some correlation among them is likely. The full-rank check rules out exact dependence but not strong correlation, and the stored outputs cannot show more. We state this as a limit (section 10) rather than run new analysis.
 
-### 5.4 Feature selection
+### 5.3 Feature selection
 
 Selection ranks each candidate by its association with the target on development orders: the absolute Spearman correlation for lead time and mutual information for the alert. It then keeps features in rank order until they reach 99% of the cumulative score.
 

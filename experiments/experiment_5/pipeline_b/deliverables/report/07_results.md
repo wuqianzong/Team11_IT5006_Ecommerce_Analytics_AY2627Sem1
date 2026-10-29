@@ -72,7 +72,7 @@ Permutation importance measures how much each feature contributes to the frozen 
 
 *Figure: Permutation importance, lead time (F.reg.importance) and detractor alert (F.clf.importance).*
 
-This ranking differs from the selection ranking of section 5.4: Spearman correlation {{B9.reg.rank_spearman}} for lead time and {{B9.clf.rank_spearman}} for the alert, with {{B9.reg.rank_top10}} and {{B9.clf.rank_top10}} of the top ten features shared. The difference is expected: selection scored one feature at a time on development orders, whereas importance measures each feature inside the fitted model on the test period, where correlated features share credit.
+This ranking differs from the selection ranking of section 5.3: Spearman correlation {{B9.reg.rank_spearman}} for lead time and {{B9.clf.rank_spearman}} for the alert, with {{B9.reg.rank_top10}} and {{B9.clf.rank_top10}} of the top ten features shared. The difference is expected: selection scored one feature at a time on development orders, whereas importance measures each feature inside the fitted model on the test period, where correlated features share credit.
 
 *Figure: Coefficients, lead time (F.reg.coefficients); odds ratios, detractor alert (F.clf.coefficients).*
 

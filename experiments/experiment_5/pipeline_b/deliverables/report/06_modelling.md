@@ -16,7 +16,7 @@ Each fold must have at least {{B5.min_train_rows}} training orders and, for the 
 
 ### 6.2 Model ladder
 
-We use two model families, linear and tree-based, each started from its simplest variant, as the project description requires: a dummy that predicts the median lead time or the detractor share; plain linear regression or unpenalised logistic regression; a single decision tree; and a random forest of 200 trees (Breiman, 2001). Tree ensembles are the natural non-linear comparison for tabular data of this kind (Grinsztajn et al., 2022). Plain least squares and unpenalised logistic regression need a full-rank design matrix, which section 5.3 shows holds in every fold. Stacking (Wolpert, 1992) and gradient boosting (Chen and Guestrin, 2016) were considered but not added: the project limits the number of model families, and the forest itself did not clear the selection rule.
+We use two model families, linear and tree-based, each started from its simplest variant, as the project description requires: a dummy that predicts the median lead time or the detractor share; plain linear regression or unpenalised logistic regression; a single decision tree; and a random forest of 200 trees (Breiman, 2001). Tree ensembles are the natural non-linear comparison for tabular data of this kind (Grinsztajn et al., 2022). Plain least squares and unpenalised logistic regression need a full-rank design matrix, which section 5.2 shows holds in every fold. Stacking (Wolpert, 1992) and gradient boosting (Chen and Guestrin, 2016) were considered but not added: the project limits the number of model families, and the forest itself did not clear the selection rule.
 
 Each step up the ladder must beat the step below it on the same folds. The table gives the mean gain over the five folds, its paired standard error and the number of folds in which the more complex model wins (MAE in days, a positive gain means lower error; AP for the alert).
 
@@ -63,7 +63,7 @@ Pipeline A was complete and sound, and its own evidence showed where it could no
 | What Pipeline A's evidence showed | Change in Pipeline B | How it was checked before the test |
 | --- | --- | --- |
 | The strongest driver of a bad review, late delivery ({{A3.clf.detractor_rate_late}} detractors when late against {{A3.clf.detractor_rate_on_time}} on time), is unknown at checkout | The alert moves to carrier handover, where this order's dispatch delay is known; orders never handed over are flagged by a rule | Validation AP on the same rows (below) |
-| Delivery speed varies with the route and changes over time (section 4), but checkout features carry no recent seller or route behaviour | Seller and route history features (section 5.2) | Ranking and selection (section 5.4); validation scores |
+| Delivery speed varies with the route and changes over time (section 4), but checkout features carry no recent seller or route behaviour | Seller and route history features (section 5.1) | Ranking and selection (section 5.3); validation scores |
 | Distant, thinly served states add noise that a single model fits poorly | Scope narrowed to the seven largest states with known distance; Pipeline A serves every other order | The scope effect is measured separately (section 7) |
 
 Pipeline A's validation results set the bar: MAE {{B9.reg.val_mae_A_on_A}} days against {{B9.reg.val_mae_Adummy_on_A}} for its dummy, and AP {{B9.clf.val_ap_A_on_A}} against {{B9.clf.val_ap_Adummy_on_A}}.

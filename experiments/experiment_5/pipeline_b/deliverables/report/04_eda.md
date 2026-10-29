@@ -18,7 +18,7 @@ Exploration used development orders only, before each task's test period, so it 
 
 **Detractors are a minority.** {{A3.clf.dev_prevalence}} of development orders are detractors (on Pipeline B's test orders, {{B9.clf.test_prevalence_B}}), so a model that never alerts would look accurate. We report average precision against the detractor share and set the alert threshold from error costs.
 
-**Predictors overlap little.** A first look at pairwise correlations among the numeric predictors found one identical pair and no other pair above the cut-off; section 5.3 checks this formally with the variance inflation factor.
+**Predictors overlap little.** A first look at pairwise correlations among the numeric predictors found one identical pair and no other pair above the cut-off; section 5.2 checks this formally with the variance inflation factor.
 
 **The newest weeks may be incomplete.** The data ends in late 2018. The slowest deliveries for orders placed in the final weeks may not have arrived when the data was extracted, so the test period, the newest fifth of orders, may under-represent very late deliveries and make its error look slightly better (section 10).
 
