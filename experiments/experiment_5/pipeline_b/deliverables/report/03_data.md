@@ -25,7 +25,7 @@ Every model row is one order, built only from what is known at that task's predi
 
 **Test period.** For each task the newest 20% of eligible orders, by purchase time, form the test period. It was held out before any exploration or feature work, and development customers who reappear in it were removed. It was scored exactly once, for both pipelines together.
 
-**Pipeline B's population.** Pipeline B (section 6) keeps orders whose customer and primary seller are both in the seven largest states (SP, MG, RJ, PR, RS, BA, SC) and whose distance is known, applies a tighter lead-time cap computed on its own rows (mean plus 8 standard deviations), and drops the first six weeks of data, which are needed to start the seller and route history. For the alert it also drops orders never handed over and orders reviewed before their handover. The chain below accounts for every order from Pipeline A's development set to the rows each model trains on.
+**Pipeline B's population.** Pipeline B (section 1.1) keeps orders whose customer and primary seller are both in the seven largest states (SP, MG, RJ, PR, RS, BA, SC) and whose distance is known, applies a tighter lead-time cap computed on its own rows (mean plus 8 standard deviations), and drops the first six weeks of data, which are needed to start the seller and route history. For the alert it also drops orders never handed over and orders reviewed before their handover. The chain below accounts for every order from Pipeline A's development set to the rows each model trains on.
 
 *Table 4. Population chain from Pipeline A's development orders to Pipeline B's rows.*
 

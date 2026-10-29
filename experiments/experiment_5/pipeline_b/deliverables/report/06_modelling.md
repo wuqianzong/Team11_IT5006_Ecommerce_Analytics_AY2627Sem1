@@ -54,19 +54,9 @@ Tuning changed little: no tuned configuration beat its plain model by enough to 
 
 **Threshold.** With a missed detractor weighted as five false alerts, an alert pays off when the predicted risk exceeds 1/6, and that is the frozen threshold. After the test, the business chose a higher operating threshold for Pipeline B, 4/15, to cut false alarms; the frozen 1/6 result stays the unbiased test result (section 7).
 
-### 6.5 Why A became B
+### 6.5 Adopting Pipeline B
 
-Pipeline A was complete and sound, and its own evidence showed where it could not go further:
-
-*Table 14. Pipeline A's evidence and the changes it led to.*
-
-| What Pipeline A's evidence showed | Change in Pipeline B | How it was checked before the test |
-| --- | --- | --- |
-| The strongest driver of a bad review, late delivery ({{A3.clf.detractor_rate_late}} detractors when late against {{A3.clf.detractor_rate_on_time}} on time), is unknown at checkout | The alert moves to carrier handover, where this order's dispatch delay is known; orders never handed over are flagged by a rule | Validation AP on the same rows (below) |
-| Delivery speed varies with the route and changes over time (section 4), but checkout features carry no recent seller or route behaviour | Seller and route history features (section 5.1) | Ranking and selection (section 5.3); validation scores |
-| Distant, thinly served states add noise that a single model fits poorly | Scope narrowed to the seven largest states with known distance; Pipeline A serves every other order | The scope effect is measured separately (section 7) |
-
-Pipeline A's validation results set the bar: MAE {{B9.reg.val_mae_A_on_A}} days against {{B9.reg.val_mae_Adummy_on_A}} for its dummy, and AP {{B9.clf.val_ap_A_on_A}} against {{B9.clf.val_ap_Adummy_on_A}}.
+Section 1.1 sets out Pipeline A's limits and the change each one led to.
 
 **The adoption rule, fixed before the test.** Pipeline B is adopted for a task if, on its own validation rows, its five-fold mean beats Pipeline A's frozen model refitted on the same folds, even by a small margin. It did, in every fold of both tasks:
 

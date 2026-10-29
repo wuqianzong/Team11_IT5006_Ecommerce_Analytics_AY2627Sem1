@@ -17,6 +17,22 @@ Olist is a Brazilian marketplace: independent sellers ship each order to the cus
 
 **Why MAE and AP.** MAE is measured in days, the unit of the promise, and is less driven by a few very late orders than RMSE, which we report alongside. Detractors are a minority of orders ({{B9.clf.test_prevalence_B}} of Pipeline B's test orders), so accuracy would look high for a model that never alerts: with imbalanced classes, accuracy can hide weak detection of the minority class (He and Garcia, 2009). AP summarises precision over all recall levels; a random ranking scores about the detractor share, so that share is the baseline AP is judged against. The cost weighting turns the ranking into a decision: the alert threshold is the probability above which an alert costs less than a likely missed detractor.
 
-**How we judge success.** Each task has two yardsticks, both measured on the same test orders. The first is the dummy model, which predicts the median lead time or the detractor share for every order: a useful model must beat it clearly. On the test, the delivered model's MAE is {{B9.reg.test_mae_B}} days against {{B9.reg.test_mae_dummy_B}} for the dummy, and its AP is {{B9.clf.test_ap_B}} against a detractor share of {{B9.clf.test_prevalence_B}}. The second is Pipeline A, scored on the same orders (section 6). The rules for keeping a more complex model and for adopting Pipeline B were fixed before the test was read; no business target in days or AP was set in advance, so these yardsticks are how we judge the result, not a promise made beforehand.
+**How we judge success.** Each task has two yardsticks, both measured on the same test orders. The first is the dummy model, which predicts the median lead time or the detractor share for every order: a useful model must beat it clearly. On the test, the delivered model's MAE is {{B9.reg.test_mae_B}} days against {{B9.reg.test_mae_dummy_B}} for the dummy, and its AP is {{B9.clf.test_ap_B}} against a detractor share of {{B9.clf.test_prevalence_B}}. The second is Pipeline A, scored on the same orders (section 1.1). The rules for keeping a more complex model and for adopting Pipeline B were fixed before the test was read; no business target in days or AP was set in advance, so these yardsticks are how we judge the result, not a promise made beforehand.
 
 **Stakeholders.** Fulfilment owns the delivery promise; customer service owns the alert and the contact; seller management uses both to see which sellers and routes fall behind. Each gets a view in the dashboard (section 8).
+
+### 1.1 From baseline to delivered model
+
+Pipeline A was built first, for every order, and is sound. Its validation results beat its dummies: MAE {{B9.reg.val_mae_A_on_A}} days against {{B9.reg.val_mae_Adummy_on_A}} for its dummy, and AP {{B9.clf.val_ap_A_on_A}} against {{B9.clf.val_ap_Adummy_on_A}}.
+
+Its own exploration then showed three limits, and each led to one change in Pipeline B, the delivered model:
+
+*Table 14. Pipeline A's evidence and the changes it led to.*
+
+| What Pipeline A's evidence showed | Change in Pipeline B | How it was checked before the test |
+| --- | --- | --- |
+| The strongest driver of a bad review, late delivery ({{A3.clf.detractor_rate_late}} detractors when late against {{A3.clf.detractor_rate_on_time}} on time), is unknown at checkout | The alert moves to carrier handover, where this order's dispatch delay is known; orders never handed over are flagged by a rule | Validation AP on the same rows (section 6.5) |
+| Delivery speed varies with the route and changes over time (section 4), but checkout features carry no recent seller or route behaviour | Seller and route history features (section 5.1) | Ranking and selection (section 5.3); validation scores |
+| Distant, thinly served states add noise that a single model fits poorly | Scope narrowed to the seven largest states with known distance; Pipeline A serves every other order | The scope effect is measured separately (section 7) |
+
+Pipeline B was adopted only after it beat Pipeline A on the same validation folds, under a rule fixed before the test (section 6.5). Pipeline A's frozen model still serves every order outside the seven states.
