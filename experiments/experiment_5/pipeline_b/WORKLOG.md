@@ -534,3 +534,21 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
   (Decision 3 in the Benson handshake asks for presentation renders from the saved figure data).
   at half width; a fix needs presentation renders with larger fonts (Benson's call) or more slides.
 - Audit on v2 waits on Benson's figure_map update; nothing pushed.
+
+## 2026-10-29 · Henry + Claude · deck v2, review round 3 (one type scale); Benson prompt combined
+
+**Done**
+- Pushed e5/deliverables-henry (2 commits from round 2 and the literature audit).
+- Henry's round 3 comments: slide 5 caption at least 28 px; slide 10 "(limit 2)" unclear (it named A's limit 2 on
+  slide 9, never a cap) → replaced by a table column "Answers A's limit" with the limit spelled out; slide 11 table and
+  text box fonts balanced; "balance font size, chart size and table size" across the deck.
+- Every slide on one scale: body, tables and chart labels 28 px, titles 48 px, section labels 24 px, footers 22 px;
+  padding 88/112/128 px. Wide tables on slides 11, 13 and 14 transposed (metrics as rows) so they fit at 28 px;
+  Brier moved into the ranking table on slide 14. Henry's editor edits on slides 8, 9, 11, 13 were layout only (text
+  checked identical) and were rebuilt on the scale. Local headless render: no slide past y 952, no horizontal
+  overflow. 88 register ids, all also in the report. v2 deck version 27 (1793270042-108a).
+- spec/doc_outbox/handshake_benson_2026-10-29_combined.md (D1–D7): merges the unsent deck v2 and Pipeline A report
+  prompts, which both proposed B-G-14; deck chart boxes updated to round 3 (bdb47ae, pushed).
+
+**Not done yet**
+- Audit on v2 waits on Benson (D2 deck map). Chart-internal text still small until D3 renders exist.
