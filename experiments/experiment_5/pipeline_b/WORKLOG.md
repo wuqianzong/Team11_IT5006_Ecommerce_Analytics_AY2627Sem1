@@ -552,3 +552,11 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
 
 **Not done yet**
 - Audit on v2 waits on Benson (D2 deck map). Chart-internal text still small until D3 renders exist.
+
+## 2026-10-29 · Henry + Claude · Score an order 4.1: selector in the table (revision 2.2)
+
+**Done**
+- 4.1: the radio row under the table is replaced by the table's own selection column at the left
+  (`st.dataframe`, `selection_mode="single-row-required"`): one order always picked, the first by default, reset per
+  page. DASHBOARD_PLAN.md 4.1 row updated (revision 2.2).
+- App tests 19/19. Browser pass on the tab: picking a row updates 4.2; page 2 opens on sn 26; no console error.

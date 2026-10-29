@@ -67,13 +67,20 @@ def _alert_list() -> pd.Series | None:
     pages = (len(table) - 1) // PAGE_SIZE + 1
     page = st.number_input(f"Page (of {pages}, {PAGE_SIZE} orders each)", 1, pages, 1, key="score_page")
     window = table.iloc[(page - 1) * PAGE_SIZE: page * PAGE_SIZE]
-    st.dataframe(
+    st.caption("Pick an order with the selector in the table's left column; the first order is picked by default.")
+    # The selection column sits at the left of the table; one row is always selected.
+    event = st.dataframe(
         window,
         width="stretch",
         hide_index=True,
         column_config={"risk": st.column_config.NumberColumn(format="%.3f")},
+        on_select="rerun",
+        selection_mode="single-row-required",
+        key=f"score_table_{page}_{len(shown)}",
     )
-    sn = st.radio("Select an order (sn)", window["sn"].tolist(), horizontal=True, key=f"score_sn_{page}")
+    rows = event.selection.rows
+    pick = rows[0] if rows and rows[0] < len(window) else 0
+    sn = window["sn"].iloc[pick]
     return shown[shown["review_position"] == sn].iloc[0]
 
 
