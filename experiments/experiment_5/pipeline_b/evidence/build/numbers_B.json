@@ -1565,6 +1565,83 @@
     "value": 4478,
     "text": "4,478"
   },
+  "A3.trend.late_2017_10": {
+    "kind": "number",
+    "source": "A/s03_eda/regression/outputs/outcome_trends.csv",
+    "run_id": "20261023T083326Z @ e5-A-frozen",
+    "evidence": "3.3",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 0.0529254131308619,
+    "text": "5.3%"
+  },
+  "A3.trend.late_2017_11": {
+    "kind": "number",
+    "source": "A/s03_eda/regression/outputs/outcome_trends.csv",
+    "run_id": "20261023T083326Z @ e5-A-frozen",
+    "evidence": "3.3",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 0.1426414058209774,
+    "text": "14.3%"
+  },
+  "A3.trend.late_2018_03": {
+    "kind": "number",
+    "source": "A/s03_eda/regression/outputs/outcome_trends.csv",
+    "run_id": "20261023T083326Z @ e5-A-frozen",
+    "evidence": "3.3",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 0.2136227331143795,
+    "text": "21.4%"
+  },
+  "A3.trend.detractor_2017_10": {
+    "kind": "number",
+    "source": "A/s03_eda/classification/outputs/outcome_trends.csv",
+    "run_id": "20261023T083353Z @ e5-A-frozen",
+    "evidence": "3.3",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 0.1188470066518847,
+    "text": "11.9%"
+  },
+  "A3.trend.detractor_2018_03": {
+    "kind": "number",
+    "source": "A/s03_eda/classification/outputs/outcome_trends.csv",
+    "run_id": "20261023T083353Z @ e5-A-frozen",
+    "evidence": "3.3",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 0.2250211089220377,
+    "text": "22.5%"
+  },
+  "A3.reg.price_mean": {
+    "kind": "number",
+    "source": "A/s03_eda/regression/outputs/numeric_feature_target_lead_days.csv",
+    "run_id": "20261023T083326Z @ e5-A-frozen",
+    "evidence": "3.4",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 136.57385297367566,
+    "text": "137"
+  },
+  "A3.reg.freight_mean": {
+    "kind": "number",
+    "source": "A/s03_eda/regression/outputs/numeric_feature_target_lead_days.csv",
+    "run_id": "20261023T083326Z @ e5-A-frozen",
+    "evidence": "3.4",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 22.269861423464413,
+    "text": "22"
+  },
   "B12.reg.rank_selected": {
     "kind": "number",
     "source": "b12/regression/outputs/ranking_stability.json",
