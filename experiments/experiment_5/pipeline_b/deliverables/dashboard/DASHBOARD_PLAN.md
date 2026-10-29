@@ -1,6 +1,6 @@
 # Dashboard plan (contract between Henry and Solomon)
 
-Status: APPROVED by Henry, 2026-10-28 (all review comments and the decisions of 2026-10-28 applied). Owner: Henry (content). Builder: Solomon (`app/` in this folder).
+Status: APPROVED by Henry, revision 2, 2026-10-29 (decisions D1–D5 of the gap analysis https://claude.ai/artifact/WNhnLGdNqzWRWsjdBrwBwU; revision 1 approved 2026-10-28). Owner: Henry (content). Builder: Solomon (revision 1); Henry's side (revision 2 and hosting).
 A change to this plan is Henry's commit (HANDOVER_TO_HENRY.md §4.7).
 
 ## 0. Rules the app follows
@@ -43,9 +43,16 @@ BA or SC and whose distance is known; Pipeline A's frozen model scores every oth
 | 1 Business overview | Descriptive, all orders and statuses (Phase 1 dashboard, extended, not rebuilt; D-3, D-4) | `data/business/dashboard/` only; labelled "Descriptive view of all orders; not model results"; incomplete months stay excluded from monthly charts |
 | 2 Delivery lead time | Model results, regression (B inside, A outside) | files in §3 |
 | 3 Detractor risk at handover | Model results, classification (B inside, A outside) | files in §4 |
+| 4 Score an order | Inference on held-out orders the models alert on (B at 4/15 inside the seven states, A at 1/6 elsewhere), with order details and scenarios | §4a |
 
-Tab 1 keeps the Phase 1 sections (KPI matrix, category overview, revenue variance, SLA, buyer and seller
-profiles). How Solomon reuses `deployment/app.py` without editing it is decided in §6.1.
+Tab 1 keeps every Phase 1 section, ported from `deployment/app.py` with provenance comments (revision 2, D1):
+KPI matrix per period against sidebar benchmarks with misses highlighted; KPI diagnostic stack; period-over-period
+growth; category top and bottom 10 with highlighting; revenue variance; category deep dive (review-score mix over
+time, SLA); order-level SLA; buyer and seller profiles with cohort growth. Revision 2 adds two panels:
+**customer rating distribution** (share of orders by star 1–5, overall and by month; each order counted once at its
+lowest valid score, the detractor label's rule, D2) and **seller rating distribution** (histogram of each seller's
+average score, sellers with at least 10 reviewed orders, with the share below 3.5). Benchmarks live in the session,
+not in a file.
 
 ## 3. Tab 2: Delivery lead time
 
@@ -76,11 +83,22 @@ profiles). How Solomon reuses `deployment/app.py` without editing it is decided 
 | 3.9 | Score an order | Pick or upload held-out orders: risk score, alert yes/no at the model's threshold (B 4/15, A 1/6), which model, "not scored yet" before handover, input-check messages | Demonstrates the deployed model | Bundles `t1_joint_test/classification/bundles/{A,B}/` via `serving.py`; `b10/classification/serving_config.json` (B10.3), `input_validation.json` (B10.5) | Form + result card; CSV download |
 | 3.10 | Data health and transparency | As 2.9, classification files | As 2.9 | `b09/classification/drift.csv` (B9.4); `b10/classification/drift_profile.json` (B10.6); `a_fallback_by_scope.csv` (B9.15); `serving_config.json` (B10.3) | Tables + text |
 
+## 4a. Tab 4: Score an order (revision 2, D3–D4)
+
+Panels 2.8 and 3.9 move here; tabs 2 and 3 point to this tab.
+
+| # | Panel | Content | Source |
+| --- | --- | --- | --- |
+| 4.1 | Alerted orders | Held-out (test-period) orders the serving rule alerts on: B frozen on B's test rows at 4/15; A frozen at 1/6 on orders outside B's scope. Filter by model, state, category; pick one | `t1_joint_test/classification/predictions_test.csv.gz` (order_id, model, rows, y_pred only; the label column is never read); scope from the router (`serving.py`) |
+| 4.2 | Order details | Only what is known at carrier handover: customer (city, state), seller (city, state, prior average review), items (category, price, freight, weight, volume), payment type and instalments, purchase time, shipping limit, handover time, dispatch days, handover delay. Delivery dates, order status and the order's own review are never shown | `data/raw/` via the frozen T1 row builder, label columns excluded |
+| 4.3 | Predictions | Model badge; alert risk against its threshold; predicted lead time with the stored-residual interval and estimated arrival; estimated transit = predicted lead time − dispatch days (≥ 0) | Bundles via `serving.py`; `residuals_summary.csv` (B9.16) |
+| 4.4 | Scenarios | Logistics −10%: estimated arrival earlier by 10% of the estimated transit; the alert model's route inputs (recent carrier transit days, recent delivery days) cut by the same days. Freight −20%, −30%, −50% and "Free shipping" (modelled as −99%, stated in the small print): freight and freight-to-price ratio scaled. Each shows risk before and after and whether the alert still fires; out-of-profile warning where it applies. Logistics applies to B orders only (A has no route inputs). Label: "Scenario on the model's inputs: an association, not the effect of the action" | Bundles via `serving.py` (inference only) |
+
 ## 5. Suggested panels not built (D-6b)
 
 | Suggestion | Decision | Reason |
 | --- | --- | --- |
-| Alert work queue (daily list of alerted orders) | Dropped (Henry, 2026-10-28) | Statistics panel 3.4 instead |
+| Alert work queue (daily list of alerted orders) | Replaced in revision 2 by panel 4.1 (alerted held-out orders) | Henry, 2026-10-29 |
 | Seller watchlist (rising late handover) | Dropped | No stored output; the evidence is frozen |
 | Weekly model health monitoring | Dropped | No live data; 2.9 / 3.10 show the stored drift instead |
 | Threshold slider for A's fallback | Not built | A's out-of-scope counts are stored at 1/6 only; a slider would need new evidence (Henry chose option 4) |
@@ -96,6 +114,17 @@ profiles). How Solomon reuses `deployment/app.py` without editing it is decided 
    orders) with the frozen bundles; they are not the dropped work queue.
 4. **Thresholds:** B dynamic, A fixed at 1/6 (option 4); report and deck use A 1/6 and B 4/15.
 
+## 6a. Decisions taken (Henry, 2026-10-29, revision 2)
+
+1. **Ownership (D5):** Henry's side implements revision 2 and the review fixes in `app/`; Solomon is told.
+2. **Hosting (D5):** the frozen models are served from Render.com (free tier) as a small prediction API; the app is
+   hosted on Streamlit Community Cloud (free tier) and calls the API when `MODEL_API_URL` is set, else predicts
+   locally with the same bundles. Accounts and repository access are set up by Henry or Benson.
+3. **Review fixes:** the cap sentence (B-CR-30), TP / FP / FN on their own row, 4/15 and 1/6 slider labels, visible
+   95% intervals and B minus A cards, a test-view screenshot, a panel-presence test.
+4. **What the scenarios are:** inference with edited inputs through the frozen bundles; no refit, no new feature
+   (the regression's estimate is shown beside the alert model, never fed into it).
+
 ## 7. Waits for later
 
-App URL and screenshots (for the report §8 and deck slide 15, "use"); hosting (Benson).
+App URL and screenshots (for the report §8 and deck slide 15, "use"), after hosting.

@@ -4,8 +4,10 @@ from __future__ import annotations
 import streamlit as st
 
 from dashboard_core import business_tab as business_panel
+from dashboard_core import model_client
 from dashboard_core import classification_tab as classification_panel
 from dashboard_core import regression_tab as regression_panel
+from dashboard_core import score_tab as score_panel
 from dashboard_core.loaders import load_task_config
 from dashboard_core.paths import TASKS
 
@@ -32,12 +34,14 @@ with st.sidebar:
             f"{task.title()}: {source_counts[task]} mapped app-source elements"
         )
     st.caption("No model is fitted and no test label is read.")
+    st.caption(f"Predictions: {model_client.source_label()}")
 
-business_tab, lead_time_tab, detractor_tab = st.tabs(
+business_tab, lead_time_tab, detractor_tab, score_tab = st.tabs(
     [
         "Business overview",
         "Delivery lead time",
         "Detractor risk at handover",
+        "Score an order",
     ]
 )
 
@@ -49,4 +53,7 @@ with lead_time_tab:
 
 with detractor_tab:
     classification_panel.render()
+
+with score_tab:
+    score_panel.render()
 

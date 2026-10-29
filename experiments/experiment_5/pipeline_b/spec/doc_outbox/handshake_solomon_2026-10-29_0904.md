@@ -1,5 +1,7 @@
 # Handshake prompt for Solomon's Claude (from Henry, 2026-10-29 09:04)
 
+**Superseded (never sent):** replaced by `handshake_solomon_2026-10-29_1015.md`; Henry's side made these changes itself.
+
 Paste everything below the line into Solomon's Claude Code session at the repo root.
 
 ---

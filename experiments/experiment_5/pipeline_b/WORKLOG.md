@@ -457,3 +457,27 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
 
 **Not done yet**
 - Hosting and a public URL (Solomon, with Benson). Proofreading and PDF (Henry, by 2026-10-30).
+
+## 2026-10-29 · Henry + Claude · dashboard plan revision 2 implemented on our side
+
+**Done**
+- Gap analysis and fix plan (Claude Doc https://claude.ai/artifact/WNhnLGdNqzWRWsjdBrwBwU); Henry's decisions D1–D5
+  recorded there. DASHBOARD_PLAN.md revision 2 (APPROVED 2026-10-29): Tab 1 ports every Phase 1 section plus customer
+  and seller rating distributions (each order once at its lowest valid score); new Tab 4 "Score an order"; hosting
+  on Render.com (model API) and Streamlit Community Cloud (app); 2.8 and 3.9 point to Tab 4.
+- App (Solomon's code, edited on our side per D5): review fixes G1–G4 (cap sentence per B-CR-30; TP/FP/FN row;
+  4/15 and 1/6 labels; visible intervals and B-minus-A cards); Tab 1 rewritten from deployment/app.py@f31998e;
+  new alerts.py, score_tab.py, model_client.py. The alert list comes from T1's stored predictions without the label
+  column: 540 B alerts at 4/15 and 1,428 A alerts at 1/6 outside the scope (the report's 5.6 and 14.9 a day); live
+  rebuilt scores equal the stored ones (largest difference 1.7e-16). Scenarios: logistics −10% (regression's
+  estimated transit = predicted lead time − dispatch days; the alert model's two route inputs cut by the same days;
+  B only) and freight −20/−30/−50/−99% ("Free shipping"); all labelled as associations.
+- Model API (deliverables/dashboard/api/, FastAPI): same predictions as the local path (≤ 1e-11 over JSON);
+  hosting settings in api/README.md. Accounts and repository access are Henry's or Benson's to set up.
+- Tests: app 18/18, API 3/3 (Python 3.12.10). Browser pass over all four tabs, no exception.
+- Report §8 updated (four tabs, Score an order, API); review doc rev 37; audit 9/9 on rev 37.
+- Solomon: handshake_solomon_2026-10-29_1015.md (what changed; check it runs); the 09:04 one superseded, never sent.
+
+**Not done yet**
+- G5: new screenshots (test view at 4/15, the new tabs) — to take from the hosted app.
+- Hosting: Render and Streamlit accounts, repository access, branch choice (Henry or Benson).

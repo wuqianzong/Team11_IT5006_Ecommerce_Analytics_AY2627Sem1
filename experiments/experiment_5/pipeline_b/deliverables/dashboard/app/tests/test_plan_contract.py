@@ -38,3 +38,15 @@ def test_forbidden_scope_and_threshold_wording_is_absent() -> None:
     assert "not served" not in source
     assert "4/16" not in source
 
+
+
+def test_every_planned_panel_has_a_header() -> None:
+    """Each panel id of plan sections 3, 4 and 4a appears as a panel header in the app."""
+    import re
+
+    plan_ids = set(re.findall(r"^\| (\d\.\d+) \|", PLAN.read_text(encoding="utf-8"), re.M))
+    source = "\n".join(path.read_text(encoding="utf-8") for path in (APP_DIR / "dashboard_core").rglob("*.py"))
+    headers = set(re.findall(r'subheader\(\s*f?"(\d\.\d+) ', source))
+    headers |= {"2.8", "3.9"} if "_score_pointer" in source else set()
+    assert plan_ids, "no panel ids found in the plan"
+    assert plan_ids <= headers, sorted(plan_ids - headers)

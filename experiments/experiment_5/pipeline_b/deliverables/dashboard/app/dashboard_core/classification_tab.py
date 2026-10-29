@@ -41,19 +41,25 @@ def _headline() -> None:
         & (metrics["metric"] == "prevalence")
     ]["value"].iloc[0]
 
-    cols = st.columns(5)
+    diff = pairs[
+        (pairs["comparison"] == "B frozen minus A frozen")
+        & (pairs["rows"] == "B test rows")
+        & (pairs["metric"] == "ap")
+    ].iloc[0]
+    cols = st.columns(6)
     for column, metric, label in zip(
         cols[:3],
         ("ap", "roc_auc", "brier"),
         ("AP", "ROC-AUC", "Brier"),
     ):
-        column.metric(
-            f"B {label}",
-            f"{b.loc[metric, 'test']:.3f}",
-            help=f"95% CI {b.loc[metric, 'test_ci_low']:.3f}–{b.loc[metric, 'test_ci_high']:.3f}",
+        column.metric(f"B {label}", f"{b.loc[metric, 'test']:.3f}")
+        column.caption(
+            f"95% CI {b.loc[metric, 'test_ci_low']:.3f}–{b.loc[metric, 'test_ci_high']:.3f}"
         )
     cols[3].metric("A AP on same orders", f"{a.loc['ap', 'test']:.3f}")
-    cols[4].metric("Detractor prevalence", f"{prevalence:.1%}")
+    cols[4].metric("B minus A (AP)", f"{diff['difference']:+.4f}")
+    cols[4].caption(f"95% CI {diff['ci_low']:+.4f} to {diff['ci_high']:+.4f}")
+    cols[5].metric("Detractor prevalence", f"{prevalence:.1%}")
     compare = pairs[
         (pairs["comparison"] == "B frozen minus A frozen")
         & (pairs["rows"] == "B test rows")
@@ -95,6 +101,21 @@ def _stored_threshold_choices(curve: pd.DataFrame) -> list[float]:
     return sorted({nearest(float(value)) for value in candidates})
 
 
+def _threshold_label(value: float) -> str:
+    if np.isclose(value, 4 / 15, atol=1e-4):
+        return "4/15 (operating)"
+    if np.isclose(value, 1 / 6, atol=1e-4):
+        return "1/6 (frozen)"
+    return f"{value:.2f}"
+
+
+def _counts_row(stats: pd.Series) -> None:
+    """TP, FP and FN on their own row, so the full counts are readable."""
+    cols = st.columns(3)
+    for column, key, label in zip(cols, ("tp", "fp", "fn"), ("True positives", "False positives", "False negatives")):
+        column.metric(label, "-" if pd.isna(stats[key]) else f"{int(stats[key]):,}")
+
+
 def _alert_statistics() -> float:
     st.subheader("3.4 Alert work statistics")
     st.caption("B9.10 / B10.3 · Validation is the selection view; test is post-test only.")
@@ -116,7 +137,7 @@ def _alert_statistics() -> float:
         "B threshold (seven states)",
         options=choices,
         value=min(choices, key=lambda value: abs(value - 4 / 15)),
-        format_func=lambda value: f"{value:.4f}" + (" (operating)" if np.isclose(value, 4 / 15) else ""),
+        format_func=_threshold_label,
         key="classification_threshold",
     )
     row = b_curve.iloc[(b_curve["threshold"] - selected).abs().argmin()]
@@ -131,29 +152,24 @@ def _alert_statistics() -> float:
     ].iloc[0]
 
     st.markdown("**B — seven states**")
-    cols = st.columns(7)
+    cols = st.columns(6)
     cols[0].metric("Alerts/day", f"{row['alerts_per_day']:.2f}")
     cols[1].metric("Precision", f"{row['precision']:.1%}")
     cols[2].metric("Recall", f"{row['recall']:.1%}")
     cols[3].metric("FP per TP", f"{row['fp_per_tp']:.2f}")
     cols[4].metric("Cost 5:1", f"{row['cost_5_to_1']:,.0f}")
     cols[5].metric("Cost 1:1", f"{row['cost_1_to_1']:,.0f}")
-    cols[6].metric("TP / FP / FN", f"{int(row['tp']):,} / {int(row['fp']):,} / {int(row['fn']):,}")
+    _counts_row(row)
 
     st.markdown("**A — other orders, fixed at 1/6**")
-    a_cols = st.columns(7)
+    a_cols = st.columns(6)
     a_cols[0].metric("Alerts/day", f"{a_row['alerts_per_day']:.2f}")
     a_cols[1].metric("Precision", f"{a_row['precision']:.1%}")
     a_cols[2].metric("Recall", f"{a_row['recall']:.1%}")
     a_cols[3].metric("FP per TP", "-" if pd.isna(a_row["fp_per_tp"]) else f"{a_row['fp_per_tp']:.2f}")
     a_cols[4].metric("Cost 5:1", "-" if pd.isna(a_row["cost_5_to_1"]) else f"{a_row['cost_5_to_1']:,.0f}")
     a_cols[5].metric("Cost 1:1", "-" if pd.isna(a_row["cost_1_to_1"]) else f"{a_row['cost_1_to_1']:,.0f}")
-    a_cols[6].metric(
-        "TP / FP / FN",
-        "-"
-        if pd.isna([a_row["tp"], a_row["fp"], a_row["fn"]]).any()
-        else f"{int(a_row['tp']):,} / {int(a_row['fp']):,} / {int(a_row['fn']):,}",
-    )
+    _counts_row(a_row)
 
     st.markdown("**Combined serving rule**")
     if np.isclose(selected, 4 / 15):
@@ -183,7 +199,7 @@ def _alert_statistics() -> float:
     cap = json.loads(paths.serving_config_path("classification").read_text(encoding="utf-8"))[
         "review_alert_cap_per_day"
     ]
-    axis2.axhline(cap, color="#7c3aed", linestyle=":", linewidth=1.2, label=f"{cap}/day review cap")
+    axis2.axhline(cap, color="#7c3aed", linestyle=":", linewidth=1.2, label=f"{cap}/day review cap (B only)")
     axis2.set_ylabel("Alerts/day")
     lines = axis.get_legend_handles_labels()
     lines2 = axis2.get_legend_handles_labels()
@@ -211,8 +227,10 @@ def _alert_statistics() -> float:
     if np.isclose(selected, 4 / 15):
         view_label = "validation" if view == "Validation" else "test (post-test view)"
         st.info(
-            f"The stored combined {view_label} volume is {combined_row['alerts_per_day']:.2f} alerts/day, "
-            f"against the {cap}/day review cap."
+            f"The {cap}-a-day review cap applies to Pipeline B's alerts: B sends "
+            f"{row['alerts_per_day']:.2f} a day at 4/15 ({view_label}). The combined volume, "
+            f"{combined_row['alerts_per_day']:.2f} a day, includes A's fallback and is higher, "
+            "as the team accepted."
         )
     st.info(
         "Alert review order when capacity is short (operational rule, not a measured result): "
@@ -400,6 +418,12 @@ def _data_health() -> None:
     )
 
 
+def _score_pointer(panel: str) -> None:
+    st.subheader(f"{panel} Score an order")
+    st.info("Scoring moved to the Score an order tab (plan revision 2): alerted held-out orders, "
+            "their details, both predictions and scenarios.")
+
+
 def render() -> None:
     st.header("Detractor risk at handover")
     config = json.loads(paths.serving_config_path("classification").read_text(encoding="utf-8"))
@@ -412,6 +436,6 @@ def render() -> None:
     _detractors_by_state()
     _operational_priorities()
     _why()
-    _score_order(threshold)
+    _score_pointer("3.9")
     _data_health()
 

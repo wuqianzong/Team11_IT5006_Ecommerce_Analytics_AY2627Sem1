@@ -15,6 +15,13 @@ The approved dashboard plan is implemented:
 - the Detractor risk panels, including the B threshold slider and held-out scoring;
 - loader, routing and AppTest coverage.
 
+## Revision 2 (Henry's side, 2026-10-29)
+
+Plan revision 2 (`../DASHBOARD_PLAN.md`) adds a fourth tab, **Score an order** (alerted held-out orders, their
+details at handover, both predictions, scenarios), ports every Phase 1 section into Tab 1 with the customer and
+seller rating distributions, and applies the review fixes (cap wording, 4/15 label, intervals, TP/FP/FN row).
+Hosting: the model API in `../api/` on Render.com and this app on Streamlit Community Cloud; see `../api/README.md`.
+
 ## Run locally
 
 The app has its own isolated environment under `app/.venv`. It uses Python 3.12

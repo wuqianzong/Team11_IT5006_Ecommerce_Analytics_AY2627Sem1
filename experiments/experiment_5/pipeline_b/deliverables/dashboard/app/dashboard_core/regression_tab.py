@@ -32,15 +32,19 @@ def _headline() -> None:
 
     st.subheader("2.1 Headline")
     st.caption("Validation = selection score; test = read once. B10.3 / B9.1–B9.2.")
-    cols = st.columns(4)
-    cols[0].metric(
-        "B MAE (days)",
-        f"{b.loc['mae', 'test']:.2f}",
-        help=f"95% CI {b.loc['mae', 'test_ci_low']:.2f}–{b.loc['mae', 'test_ci_high']:.2f}",
-    )
-    cols[1].metric("Within ±3 days", f"{b.loc['within_3d', 'test']:.1%}")
-    cols[2].metric("A MAE on same orders", f"{a.loc['mae', 'test']:.2f}")
-    cols[3].metric("Test rows", f"{int(b.loc['mae', 'test_rows']):,}")
+    diff = pairs[
+        (pairs["comparison"] == "B frozen minus A frozen")
+        & (pairs["rows"] == "B test rows")
+        & (pairs["metric"] == "mae")
+    ].iloc[0]
+    cols = st.columns(5)
+    cols[0].metric("B MAE (days)", f"{b.loc['mae', 'test']:.2f}")
+    cols[0].caption(f"95% CI {b.loc['mae', 'test_ci_low']:.2f}–{b.loc['mae', 'test_ci_high']:.2f}")
+    cols[1].metric("A MAE on same orders", f"{a.loc['mae', 'test']:.2f}")
+    cols[2].metric("B minus A (days)", f"{diff['difference']:+.3f}")
+    cols[2].caption(f"95% CI {diff['ci_low']:+.3f} to {diff['ci_high']:+.3f}")
+    cols[3].metric("Within ±3 days", f"{b.loc['within_3d', 'test']:.1%}")
+    cols[4].metric("Test rows", f"{int(b.loc['mae', 'test_rows']):,}")
 
     compare = pairs[
         (pairs["comparison"].isin(["B frozen minus A frozen", "B frozen minus B dummy"]))
@@ -256,6 +260,12 @@ def _data_health() -> None:
     )
 
 
+def _score_pointer(panel: str) -> None:
+    st.subheader(f"{panel} Score an order")
+    st.info("Scoring moved to the Score an order tab (plan revision 2): alerted held-out orders, "
+            "their details, both predictions and scenarios.")
+
+
 def render() -> None:
     st.header("Delivery lead time")
     config = __import__("json").loads(
@@ -269,6 +279,6 @@ def render() -> None:
     _accuracy_by_segment()
     _operational_priorities()
     _why()
-    _score_order()
+    _score_pointer("2.8")
     _data_health()
 
