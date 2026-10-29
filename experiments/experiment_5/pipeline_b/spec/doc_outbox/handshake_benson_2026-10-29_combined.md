@@ -123,4 +123,19 @@ register can read them as a Current run:
 Already stored, not needed: T1 has A's test metrics, confusion matrix at 1/6 and fold-and-test table on A's rows; B9's
 `train_val_test.csv` and `threshold_options.csv` carry A's rows.
 
+## D8. `figure_map.json` doc section for the report at rev 56 (added later on 2026-10-29)
+
+Henry moved four charts from the report body to the appendices (drift, ROC-AUC/Brier by population, ranking
+stability pair, A's correlation heatmap) and added table labels, a cover page, RMSE, R² and F1. The doc still has 28
+charts with the same assets, but 23 of them now carry a different figure number. The audit still passes, because
+`chart_ok` compares each asset with its register figure and not with its position, so the map's numbers are stale
+without the audit noticing. The corrected doc section is in
+`spec/doc_outbox/figure_map_doc_rev56_proposed.json` (same blob and asset ids, renumbered in reading order). Please
+replace the `doc` section with it. Audit on rev 56 (export in `deliverables/audit/inputs/report_export_rev56.md`):
+8 of 9 pass; the ninth is the deck map (D2).
+
+The report also shows two app screenshots in section 8, captioned "Screenshots 1–2." rather than "Figure", because
+they are not register charts; the audit's chart check does not cover them. Tell us if you want them handled
+differently.
+
 Rules unchanged: no stage reruns, no refits; never push to `main`.

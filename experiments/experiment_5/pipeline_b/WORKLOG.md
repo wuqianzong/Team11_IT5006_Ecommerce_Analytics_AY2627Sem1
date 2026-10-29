@@ -578,3 +578,23 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
 
 **Not done yet**
 - Hosting and the live URL: Benson (with the branch merge).
+
+## 2026-10-29 · Henry + Claude · report: cover, table labels, page count, RMSE/R²/F1, trims, screenshots
+
+**Done**
+- Cover page (00_cover.md): title, course, team, app URL and member names as placeholders, GitHub link, date.
+- Table labels on all 44 tables (body Tables 1–22, appendix A1–J3), numbered in the sources so they match the doc.
+- Register 216 items: test RMSE and R² for both pipelines; F1, and A's precision and recall, at 1/6 (b09
+  train_val_test, B9.1). §7.1 table gains RMSE and R² (A's R² on B's test orders is below zero, stated); §7.2 adds F1.
+- §2 literature cut to about 430 words; the source table removed (its content is in records/literature_register.md).
+- Four charts moved to appendices A, E, I, J; §8 gains two app screenshots (captioned "Screenshots 1–2.").
+- Page check: the filled report rendered at 12 pt Times New Roman, single-spaced, A4, 2 cm margins, every figure,
+  printed with headless Edge. Body (executive summary to limitations) 16 pages, was 18; whole document 24.
+- Review doc rev 56 (body replaced from the sources; the header note's date removed, which the audit read as a
+  number). Audit on the rev 56 export: 8/9 pass; deck charts fail until Benson maps v2 (D2).
+- Restructure plan for items 4–6 (B first, naming), for Henry's review before any change:
+  https://claude.ai/artifact/FRCGWYMKA4Q4fAKoWvaVqi
+- Benson prompt gains D8: figure_map doc section renumbered for rev 56 (spec/doc_outbox/figure_map_doc_rev56_proposed.json).
+
+**Not done yet**
+- Items 4–6 wait on Henry's review of the plan. Member names and the live URL on the cover.

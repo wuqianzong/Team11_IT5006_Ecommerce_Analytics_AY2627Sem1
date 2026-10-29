@@ -4,13 +4,15 @@ On the same test orders the improved pipeline beats the baseline in both tasks. 
 
 ### 7.1 Delivery lead time
 
-| | Validation MAE (selection) | Test MAE [95% interval] | Within 3 days (test) |
-| --- | --- | --- | --- |
-| Improved pipeline (delivered) | {{B9.reg.val_mae_B}} | {{B9.reg.test_mae_B}} [{{B9.reg.test_mae_B_lo}}, {{B9.reg.test_mae_B_hi}}] | {{B9.reg.test_within3_B}} |
-| Baseline on the same test orders | | {{B9.reg.test_mae_A_on_B}} | {{B9.reg.test_within3_A_on_B}} |
-| Dummy (median) on the same test orders | | {{B9.reg.test_mae_dummy_B}} | |
+*Table 17. Delivery lead time, validation and test results.*
 
-The improved pipeline's MAE minus the baseline's is {{B9.reg.mae_diff}} days on the same {{T1.reg.test_rows_B}} test orders (paired bootstrap interval {{B9.reg.mae_diff_lo}} to {{B9.reg.mae_diff_hi}}), so the gain is not an accident of the sample.
+| | Validation MAE (selection) | Test MAE [95% interval] | Test RMSE | Test R² | Within 3 days (test) |
+| --- | --- | --- | --- | --- | --- |
+| Improved pipeline (delivered) | {{B9.reg.val_mae_B}} | {{B9.reg.test_mae_B}} [{{B9.reg.test_mae_B_lo}}, {{B9.reg.test_mae_B_hi}}] | {{B9.reg.test_rmse_B}} | {{B9.reg.test_r2_B}} | {{B9.reg.test_within3_B}} |
+| Baseline on the same test orders | | {{B9.reg.test_mae_A_on_B}} | {{B9.reg.test_rmse_A_on_B}} | {{B9.reg.test_r2_A_on_B}} | {{B9.reg.test_within3_A_on_B}} |
+| Dummy (median) on the same test orders | | {{B9.reg.test_mae_dummy_B}} | | | |
+
+The improved pipeline's MAE minus the baseline's is {{B9.reg.mae_diff}} days on the same {{T1.reg.test_rows_B}} test orders (paired bootstrap interval {{B9.reg.mae_diff_lo}} to {{B9.reg.mae_diff_hi}}), so the gain is not an accident of the sample. RMSE, which weights large misses more, and R², the share of the variation in lead time that the model explains, point the same way. R² is low for both: much of the variation in delivery time is not visible at checkout. The baseline's R² on these orders is below zero, so it does worse than predicting the test period's average lead time, consistent with the faster test period (section 7.4).
 
 *Figure: Lead time by validation fold and on the test, with time windows (F.reg.validation_and_test).*
 
@@ -20,11 +22,15 @@ The improved pipeline's MAE minus the baseline's is {{B9.reg.mae_diff}} days on 
 
 **Where it errs.** Slices are judged only with at least 100 test orders. The improved pipeline is better than the baseline in every judged customer state, distance band and basket size, on {{B9.reg.routes_B_better}} of the {{B9.reg.routes_judged}} routes with enough orders, and in most months:
 
+*Table 18. Lead-time error by slice, test orders.*
+
 {{table:B9.reg.slices_aggregate}}
 
 *Figure: Lead-time error by customer state (F.reg.by_state).*
 
 ### 7.2 Detractor alert
+
+*Table 19. Detractor alert, validation and test results.*
 
 | | Validation AP (selection) | Test AP [95% interval] | Test ROC-AUC | Test Brier |
 | --- | --- | --- | --- | --- |
@@ -35,7 +41,7 @@ The improved pipeline ranks detractors better by {{B9.clf.ap_diff}} AP (paired i
 
 *Figure: Detractor alert by validation fold and on the test (F.clf.validation_and_test); PR, ROC and reliability curves on the test (F.clf.test_curves).*
 
-**At the threshold.** At the frozen 1/6, the unbiased result, the improved pipeline sends {{B10.clf.B_1_6_test_alerts_day}} alerts a day on the test with precision {{B10.clf.B_1_6_test_precision}} and recall {{B10.clf.B_1_6_test_recall}}. After the test the business moved its operating threshold to 4/15 to cut false alarms, a post-test change reported beside the frozen result: {{B10.clf.B_4_15_test_alerts_day}} alerts a day, precision {{B10.clf.B_4_15_test_precision}}, recall {{B10.clf.B_4_15_test_recall}}. Orders outside the seven states are alerted by the baseline at its frozen 1/6 (section 9).
+**At the threshold.** At the frozen 1/6, the unbiased result, the improved pipeline sends {{B10.clf.B_1_6_test_alerts_day}} alerts a day on the test with precision {{B10.clf.B_1_6_test_precision}} and recall {{B10.clf.B_1_6_test_recall}}, an F1 score of {{B9.clf.test_f1_B}}; the baseline at its own 1/6 on the same orders has precision {{B9.clf.test_precision_A_on_B}}, recall {{B9.clf.test_recall_A_on_B}} and F1 {{B9.clf.test_f1_A_on_B}}. After the test the business moved its operating threshold to 4/15 to cut false alarms, a post-test change reported beside the frozen result: {{B10.clf.B_4_15_test_alerts_day}} alerts a day, precision {{B10.clf.B_4_15_test_precision}}, recall {{B10.clf.B_4_15_test_recall}}. Orders outside the seven states are alerted by the baseline at its frozen 1/6 (section 9).
 
 *Figure: Precision, recall and alerts per day against the threshold, marking 1/6 and 4/15 (F.clf.threshold_options).*
 
@@ -49,14 +55,16 @@ The improved pipeline ranks detractors better by {{B9.clf.ap_diff}} AP (paired i
 
 The improved pipeline changed three things at once: the scope, the features and, for the alert, the prediction moment. Scoring the baseline's frozen model on the improved pipeline's own validation rows separates the scope effect from the rest (five-fold means):
 
+*Table 20. Where the gain comes from: validation scores by population.*
+
 | | Baseline, all states | Baseline, seven-state rows | Improved, seven-state rows |
 | --- | --- | --- | --- |
 | Lead time, MAE (days) | {{B8.reg.pop_A_on_A}} | {{B8.reg.pop_A_on_B}} | {{B8.reg.pop_B_on_B}} |
 | Detractor alert, AP | {{B8.clf.pop_A_on_A}} | {{B8.clf.pop_A_on_B}} | {{B8.clf.pop_B_on_B}} |
 
-For lead time most of the lower error comes from the narrower scope, because the baseline is already better on the seven-state rows, and the rest from the new features. For the alert the scope changes almost nothing, so the gain comes from the history features and the later prediction moment.
+For lead time most of the lower error comes from the narrower scope, because the baseline is already better on the seven-state rows, and the rest from the new features. For the alert the scope changes almost nothing, so the gain comes from the history features and the later prediction moment. ROC-AUC and Brier by population are in appendix E.
 
-*Figure: Where the gain comes from: scope vs features (F.reg.population); ROC-AUC and Brier by population (F.clf.auc_brier).*
+*Figure: Where the gain comes from: scope vs features (F.reg.population).*
 
 ### 7.4 What drives the predictions, and drift
 
@@ -68,6 +76,4 @@ This ranking differs from the selection ranking of section 5.4: Spearman correla
 
 *Figure: Coefficients, lead time (F.reg.coefficients); odds ratios, detractor alert (F.clf.coefficients).*
 
-The test period differs from development: deliveries were faster and reviews happier, and the route history features shifted most. Validation and test scores therefore describe different periods, and the test gain partly reflects that the history features track the faster period as it happens.
-
-*Figure: Drift between development and test, by fold (F.reg.drift).*
+The test period differs from development: deliveries were faster and reviews happier, and the route history features shifted most. Validation and test scores therefore describe different periods, and the test gain partly reflects that the history features track the faster period as it happens (drift by fold in appendix A).

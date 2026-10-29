@@ -31,4 +31,4 @@ Benson's account. Each file is written in the style of the tabs mirrored in `../
 | handshake_solomon_2026-10-29_1015.md | not a doc tab: what Henry's side changed in the app (revision 2), check it runs, hosting is Henry's | Open |
 | handshake_benson_deck_v2.md | not a doc tab: prompt for Benson's Claude (B-G-14 for deck slots, v2 deck map, chart renders) | Superseded by handshake_benson_2026-10-29_combined.md, never sent |
 | m2_rework_handshake.md | not a doc tab: prompt for Benson's Claude (Pipeline A report: B-G-14, location, audit, outputs) | Superseded by handshake_benson_2026-10-29_combined.md, never sent |
-| handshake_benson_2026-10-29_combined.md | not a doc tab: one prompt for Benson's Claude, D1–D7 (B-G-14 for A's s01 and s04–s08, v2 deck map, chart renders, Pipeline A report) | Open |
+| handshake_benson_2026-10-29_combined.md | not a doc tab: one prompt for Benson's Claude, D1–D8 (B-G-14 for A's s01 and s04–s08, v2 deck map, chart renders, Pipeline A report; D8 report figure map at rev 56) | Open |

@@ -2,6 +2,8 @@
 
 Three actions follow from the results; each is labelled as an observation (measured here), a literature-supported hypothesis or an unmeasured mechanism, and the dashboard shows the detail behind each.
 
+*Table 21. Recommended actions and their evidence.*
+
 | Action | What the evidence shows | Label | Dashboard |
 | --- | --- | --- | --- |
 | Promise a range, not a date | On validation, a buffer of {{B12.reg.buffer_90}} days puts 90% of orders on time and {{B12.reg.buffer_95}} days 95%; on the faster test period those buffers leave {{B12.reg.buffer_90_test_late}} and {{B12.reg.buffer_95_test_late}} late. Choose the buffer on recent weeks and watch the late share by state. Overly optimistic promises carry costs after the sale (Cui et al., 2024) | Observation; literature-supported hypothesis for the cost of over-promising | Lead time, promise buffer |

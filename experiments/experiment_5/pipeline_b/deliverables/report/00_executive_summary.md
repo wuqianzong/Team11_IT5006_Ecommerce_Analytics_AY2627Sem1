@@ -4,6 +4,8 @@ For each Olist order the business needs two answers: how many days delivery will
 
 **Method.** Every model row holds only what is known at its prediction moment; every step learned from data is fitted inside time-ordered, customer-purged folds; correlated and nested features are removed by a stated rule before selection; and models are compared from the simplest upwards, keeping the simpler one unless a more complex one is better by more than the fold-to-fold variation. We first built a complete baseline (Pipeline A) and then one focused improvement (Pipeline B): the seven largest states, the seller's and the route's recent delivery history, and the alert moved to carrier handover. The rule for adopting the improvement was fixed before the test, and both pipelines were frozen and scored once on the same test period.
 
+*Table 1. Headline test results, improved pipeline and baseline on the same test orders.*
+
 | Task | Improved pipeline | Baseline on the same orders | Difference (95% interval) |
 | --- | --- | --- | --- |
 | Delivery lead time, MAE in days (lower is better) | {{B9.reg.test_mae_B}} | {{B9.reg.test_mae_A_on_B}} | {{B9.reg.mae_diff}} [{{B9.reg.mae_diff_lo}}, {{B9.reg.mae_diff_hi}}] |

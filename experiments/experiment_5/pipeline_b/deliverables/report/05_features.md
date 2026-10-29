@@ -20,6 +20,8 @@ The alert adds three candidates kept after the exploratory screening: the primar
 
 The new features describe how this seller and this route have delivered recently, measured only on other orders. None uses Olist's estimated delivery date, so none inherits the old promise.
 
+*Table 6. The improved pipeline's new features.*
+
 | Feature | Definition | Window | Reason |
 | --- | --- | --- | --- |
 | Route (seller state → customer state) | The pair of states the parcel travels between | — | Delivery time differs by origin and destination in ways distance alone misses |
@@ -43,11 +45,13 @@ Strongly correlated predictors make linear coefficients unstable and split impor
 
 - **Baseline pool.** The exploratory stage computed pairwise correlations and a variance inflation factor (VIF) for each numeric predictor on development orders. A pair is flagged above an absolute correlation of {{A3.corr_cut}}, and a predictor above a VIF of {{A3.vif_cut}}. No predictor reached the VIF cut-off in either task (appendix J). One pair was identical on every development order, the missing-weight and missing-volume shares; the lower-ranked of the two was dropped.
 
+*Table 7. Baseline predictor pairs above the correlation cut-off.*
+
 {{table:A3.reg.collinear_pairs}}
 
-*Figure: Pairwise correlations of the baseline's numeric predictors (F.A3.reg.correlation_heatmap).*
-
 - **Improved pipeline.** The route determines both the customer state and the seller state: every route level fixes both, so their one-hot columns are sums of the route's columns. Keeping all three would make the linear design matrix rank-deficient, so the two state columns are dropped whenever the route is kept. The same step drops the missing-distance share, which is constant because every kept order has a distance, and the duplicate pair found in the baseline pool.
+
+*Table 8. Features removed by the improved pipeline's reduction step, lead time.*
 
 {{table:B4.reg.reduction}}
 
@@ -65,8 +69,6 @@ Ranking once on all development orders is a design choice, and it makes the vali
 - **Lead time:** the selected sets overlap by {{B12.reg.rank_jaccard_min}} to 1.00 (mean {{B12.reg.rank_jaccard_mean}}), and {{B12.reg.rank_always}} of the {{B12.reg.rank_selected}} selected features are kept in every fold.
 - **Detractor alert:** overlap {{B12.clf.rank_jaccard_min}} to 1.00 (mean {{B12.clf.rank_jaccard_mean}}), weakest in fold 1, which has the fewest training orders; {{B12.clf.rank_always}} of {{B12.clf.rank_selected}} are kept in every fold.
 
-For lead time the ranking is stable: the route and its recent speed, distance and the interstate share stay at the top in every fold. For the alert the ranks move a lot between folds, even for features ranked near the top on all development orders, and several of them drop out of one fold's selection; the early folds, with the fewest training orders, move most. A likely reason, not tested here, is that mutual information estimated on a minority-class target varies more on small samples. The selected set for the alert should therefore be read as a reasonable choice, not a uniquely determined one (section 10).
-
-*Figure: Ranking stability across the five folds, lead time (F.reg.ranking_stability) and detractor alert (F.clf.ranking_stability).*
+For lead time the ranking is stable: the route and its recent speed, distance and the interstate share stay at the top in every fold. For the alert the ranks move a lot between folds, even for features ranked near the top on all development orders, and several of them drop out of one fold's selection; the early folds, with the fewest training orders, move most. A likely reason, not tested here, is that mutual information estimated on a minority-class target varies more on small samples. The selected set for the alert should therefore be read as a reasonable choice, not a uniquely determined one (section 10; ranking charts by fold in appendix I).
 
 Every new feature passed the cut in both tasks where it applies. The full list of selected features, with transforms and ranks, is in appendix D, beside the baseline's, so the two pipelines can be compared feature by feature.

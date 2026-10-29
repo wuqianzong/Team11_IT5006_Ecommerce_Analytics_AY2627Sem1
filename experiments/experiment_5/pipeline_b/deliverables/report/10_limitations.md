@@ -2,6 +2,8 @@
 
 All limitations are collected here. All validation in this project uses time-ordered, customer-purged folds, and the test period was read once; the limits below are what remains.
 
+*Table 22. Limitations and how each is handled.*
+
 | Limit | What it means | How it is handled |
 | --- | --- | --- |
 | Seven-state scope | The improved pipeline covers only orders whose customer and seller are in the seven states with a known distance | The baseline's frozen model serves every other order, and each prediction shows which model made it |

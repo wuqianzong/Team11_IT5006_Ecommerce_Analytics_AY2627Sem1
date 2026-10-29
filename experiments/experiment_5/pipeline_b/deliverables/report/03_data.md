@@ -6,6 +6,8 @@ Every model row is one order, built only from what is known at that task's predi
 
 **Targets.** Lead time is the number of days from purchase to delivery, for delivered orders with valid timestamps. The detractor label is 1 when the order's lowest valid review score is 1 or 2. An order can have more than one review; taking the lowest could bias the label towards detractors, so every classification result is also scored against the first-review label. The two agree closely on the test (table below), so the choice does not drive the conclusions.
 
+*Table 3. Detractor results under the lowest-review and first-review labels, test orders.*
+
 {{table:B9.clf.label_sensitivity}}
 
 **Which orders each task keeps.** Both tasks drop orders purchased before 2017 (the 2016 months are too thin to represent the business), orders without items, orders without a usable payment or with missing instalments, orders with a negative price, freight, weight, volume or distance, and orders whose distance exceeds the width of Brazil. Regression keeps delivered orders with a valid lead time, and removes lead times that are extreme against the development orders (above the larger of 100 days and the mean plus 12 standard deviations). Classification keeps orders that were not cancelled or unavailable and have a valid review; an order whose review is dated at or before its purchase is removed, because its label cannot be trusted. These are the eligible orders.
@@ -24,6 +26,8 @@ Every model row is one order, built only from what is known at that task's predi
 **Test period.** For each task the newest 20% of eligible orders, by purchase time, form the test period. It was held out before any exploration or feature work, and development customers who reappear in it were removed. It was scored exactly once, for both pipelines together.
 
 **The improved pipeline's population.** The improved pipeline (section 6) keeps orders whose customer and primary seller are both in the seven largest states (SP, MG, RJ, PR, RS, BA, SC) and whose distance is known, applies a tighter lead-time cap computed on its own rows (mean plus 8 standard deviations), and drops the first six weeks of data, which are needed to start the seller and route history. For the alert it also drops orders never handed over and orders reviewed before their handover. The chain below accounts for every order from the baseline's development set to the rows each model trains on.
+
+*Table 4. Population chain from the baseline's development orders to the improved pipeline's rows.*
 
 | Step | Lead time | Detractor alert |
 | --- | --- | --- |

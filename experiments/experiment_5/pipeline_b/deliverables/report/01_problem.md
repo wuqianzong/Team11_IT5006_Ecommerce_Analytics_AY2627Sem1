@@ -2,6 +2,8 @@
 
 Olist is a Brazilian marketplace: independent sellers ship each order to the customer through a carrier, and the customer reviews the purchase afterwards. Two things go wrong often enough to matter. Deliveries arrive later than the customer expected, and a share of customers leave a 1 or 2 star review, which hurts the seller's and the platform's reputation. We frame one delivery experience as two prediction tasks, each made at the moment the business can still act on it.
 
+*Table 2. The two prediction tasks.*
+
 | | Regression: delivery lead time | Classification: detractor alert |
 | --- | --- | --- |
 | Question | How many days from purchase to delivery? | Will the customer leave a 1–2 star review? |

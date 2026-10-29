@@ -8,6 +8,8 @@ Leakage takes several forms beyond rows shared between training and test (Kapoor
 
 *Figure: Time-ordered folds and the test period (F.reg.partition).*
 
+*Table 9. Fold windows and sizes, lead time.*
+
 {{table:B5.reg.folds}}
 
 Each fold must have at least {{B5.min_train_rows}} training orders and, for the alert, 100 detractors in each part; the minimums were set before the folds were built. Fold 1 of the improved pipeline falls short on training orders ({{B5.reg.fold1_train_rows}} for lead time, {{B5.clf.fold1_train_rows}} for the alert), because the seven-state scope and the warm-up remove early orders. We kept it, as a recorded deviation, so the two pipelines are compared on identical periods; every detractor minimum is met. Instead of stratifying, each fold's detractor share is reported, and it moves with the business over time (appendix A).
@@ -20,11 +22,11 @@ Each step up the ladder must beat the step below it on the same folds. The table
 
 *Figure: Model ladder on the five folds, lead time (F.reg.family_ladder) and detractor alert (F.clf.family_ladder).*
 
-Lead time:
+*Table 10. Model ladder on the five folds, lead time (MAE in days).*
 
 {{table:B6.reg.ladder}}
 
-Detractor alert:
+*Table 11. Model ladder on the five folds, detractor alert (AP).*
 
 {{table:B6.clf.ladder}}
 
@@ -34,11 +36,11 @@ The linear and logistic models beat the dummy in every fold. The single tree is 
 
 Each family was then tuned on the same folds, with grids fixed before any tuning result was seen: Ridge alpha and logistic C from 0.01 to 100; tree depth 4 to 18 and minimum leaf size 20 to 200; forest depth 8 to 18 and leaf size 20 to 200 with square-root feature sampling; and class weight (none or balanced) for every classifier (appendix F). Class weighting is how the grid treats the imbalance. We did not resample: the alert uses calibrated probabilities and a cost-based threshold, and in logistic risk models imbalance corrections can distort the calibration of the predicted risk (Van den Goorbergh et al., 2022).
 
-Lead time:
+*Table 12. Plain against tuned models, lead time.*
 
 {{table:B7.reg.plain_vs_tuned}}
 
-Detractor alert:
+*Table 13. Plain against tuned models, detractor alert.*
 
 {{table:B7.clf.plain_vs_tuned}}
 
@@ -56,6 +58,8 @@ Tuning changed little: no tuned configuration beat its plain model by enough to 
 
 The baseline was complete and sound, and its own evidence showed where it could not go further:
 
+*Table 14. The baseline's evidence and the changes it led to.*
+
 | What the baseline's evidence showed | Change in the improved pipeline | How it was checked before the test |
 | --- | --- | --- |
 | The strongest driver of a bad review, late delivery ({{A3.clf.detractor_rate_late}} detractors when late against {{A3.clf.detractor_rate_on_time}} on time), is unknown at checkout | The alert moves to carrier handover, where this order's dispatch delay is known; orders never handed over are flagged by a rule | Validation AP on the same rows (below) |
@@ -66,11 +70,11 @@ The baseline's validation results set the bar: MAE {{B9.reg.val_mae_A_on_A}} day
 
 **The adoption rule, fixed before the test.** The improved pipeline is adopted for a task if, on its own validation rows, its five-fold mean beats the baseline's frozen model refitted on the same folds, even by a small margin. It did, in every fold of both tasks:
 
-Lead time (MAE in days):
+*Table 15. Adoption check on the improved pipeline's folds, lead time (MAE in days).*
 
 {{table:B8.reg.adoption}}
 
-Detractor alert (AP):
+*Table 16. Adoption check on the improved pipeline's folds, detractor alert (AP).*
 
 {{table:B8.clf.adoption}}
 

@@ -331,6 +331,50 @@
     "value": 3.299187669974489,
     "text": "3.30"
   },
+  "B9.reg.test_rmse_B": {
+    "kind": "number",
+    "source": "b09/regression/outputs/train_val_test.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 4.7749934883518055,
+    "text": "4.77"
+  },
+  "B9.reg.test_rmse_A_on_B": {
+    "kind": "number",
+    "source": "b09/regression/outputs/train_val_test.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 5.358556681190052,
+    "text": "5.36"
+  },
+  "B9.reg.test_r2_B": {
+    "kind": "number",
+    "source": "b09/regression/outputs/train_val_test.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 0.184892749535466,
+    "text": "0.185"
+  },
+  "B9.reg.test_r2_A_on_B": {
+    "kind": "number",
+    "source": "b09/regression/outputs/train_val_test.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 7"
+    ],
+    "value": -0.0265139288397586,
+    "text": "-0.027"
+  },
   "B9.reg.test_mae_B_lo": {
     "kind": "number",
     "source": "b09/regression/outputs/train_val_test.csv",
@@ -643,6 +687,50 @@
     ],
     "value": 0.6360308265356858,
     "text": "0.636"
+  },
+  "B9.clf.test_f1_B": {
+    "kind": "number",
+    "source": "b09/classification/outputs/train_val_test.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 0.2456233421750663,
+    "text": "0.246"
+  },
+  "B9.clf.test_f1_A_on_B": {
+    "kind": "number",
+    "source": "b09/classification/outputs/train_val_test.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 0.2190685588646811,
+    "text": "0.219"
+  },
+  "B9.clf.test_precision_A_on_B": {
+    "kind": "number",
+    "source": "b09/classification/outputs/train_val_test.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 0.1582900057770075,
+    "text": "0.158"
+  },
+  "B9.clf.test_recall_A_on_B": {
+    "kind": "number",
+    "source": "b09/classification/outputs/train_val_test.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 0.3556132381570409,
+    "text": "0.356"
   },
   "B9.clf.test_prevalence_B": {
     "kind": "number",

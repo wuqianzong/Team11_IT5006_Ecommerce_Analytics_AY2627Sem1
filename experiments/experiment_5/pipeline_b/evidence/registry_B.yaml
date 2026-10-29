@@ -38,6 +38,10 @@
 
 # ---------------------------------------------------------------- regression results (B9.1, B9.2, B9.16)
 - {id: B9.reg.test_mae_B, kind: number, source: b09/regression/outputs/train_val_test.csv, select: {model: B frozen, rows: B test rows, metric: mae}, value: test, format: "{:.2f}", evidence: B9.1, used_in: [report 0, report 5, deck 6]}
+- {id: B9.reg.test_rmse_B, kind: number, source: b09/regression/outputs/train_val_test.csv, select: {model: B frozen, rows: B test rows, metric: rmse}, value: test, format: "{:.2f}", evidence: B9.1, used_in: [report 7]}
+- {id: B9.reg.test_rmse_A_on_B, kind: number, source: b09/regression/outputs/train_val_test.csv, select: {model: A frozen, rows: B test rows, metric: rmse}, value: test, format: "{:.2f}", evidence: B9.1, used_in: [report 7]}
+- {id: B9.reg.test_r2_B, kind: number, source: b09/regression/outputs/train_val_test.csv, select: {model: B frozen, rows: B test rows, metric: r2}, value: test, format: "{:.3f}", evidence: B9.1, used_in: [report 7]}
+- {id: B9.reg.test_r2_A_on_B, kind: number, source: b09/regression/outputs/train_val_test.csv, select: {model: A frozen, rows: B test rows, metric: r2}, value: test, format: "{:.3f}", evidence: B9.1, used_in: [report 7]}
 - {id: B9.reg.test_mae_B_lo, kind: number, source: b09/regression/outputs/train_val_test.csv, select: {model: B frozen, rows: B test rows, metric: mae}, value: test_ci_low, format: "{:.2f}", evidence: B9.1, used_in: [report 5]}
 - {id: B9.reg.test_mae_B_hi, kind: number, source: b09/regression/outputs/train_val_test.csv, select: {model: B frozen, rows: B test rows, metric: mae}, value: test_ci_high, format: "{:.2f}", evidence: B9.1, used_in: [report 5]}
 - {id: B9.reg.val_mae_B, kind: number, source: b09/regression/outputs/train_val_test.csv, select: {model: B frozen, rows: B test rows, metric: mae}, value: validation_mean, format: "{:.2f}", evidence: B9.1, used_in: [report 5]}
@@ -67,6 +71,10 @@
 - {id: B9.clf.val_ap_B, kind: number, source: b09/classification/outputs/train_val_test.csv, select: {model: B frozen, rows: B test rows, metric: ap}, value: validation_mean, format: "{:.3f}", evidence: B9.1, used_in: [report 5]}
 - {id: B9.clf.test_ap_A_on_B, kind: number, source: b09/classification/outputs/train_val_test.csv, select: {model: A frozen, rows: B test rows, metric: ap}, value: test, format: "{:.3f}", evidence: B9.1, used_in: [report 0, report 5, deck 7]}
 - {id: B9.clf.test_auc_B, kind: number, source: b09/classification/outputs/train_val_test.csv, select: {model: B frozen, rows: B test rows, metric: roc_auc}, value: test, format: "{:.3f}", evidence: B9.1, used_in: [report 5]}
+- {id: B9.clf.test_f1_B, kind: number, source: b09/classification/outputs/train_val_test.csv, select: {model: B frozen, rows: B test rows, metric: f1}, value: test, format: "{:.3f}", evidence: B9.1, used_in: [report 7]}
+- {id: B9.clf.test_f1_A_on_B, kind: number, source: b09/classification/outputs/train_val_test.csv, select: {model: A frozen, rows: B test rows, metric: f1}, value: test, format: "{:.3f}", evidence: B9.1, used_in: [report 7]}
+- {id: B9.clf.test_precision_A_on_B, kind: number, source: b09/classification/outputs/train_val_test.csv, select: {model: A frozen, rows: B test rows, metric: precision}, value: test, format: "{:.3f}", evidence: B9.1, used_in: [report 7]}
+- {id: B9.clf.test_recall_A_on_B, kind: number, source: b09/classification/outputs/train_val_test.csv, select: {model: A frozen, rows: B test rows, metric: recall}, value: test, format: "{:.3f}", evidence: B9.1, used_in: [report 7]}
 - {id: B9.clf.test_prevalence_B, kind: number, source: b09/classification/outputs/train_val_test.csv, select: {model: B dummy, rows: B test rows, metric: ap}, value: test, format: "{:.1%}", evidence: B9.1, used_in: [report 5]}
 - {id: B9.clf.ap_diff, kind: number, source: b09/classification/outputs/paired_test_differences.csv, select: {comparison: B frozen minus A frozen, metric: ap}, value: difference, format: "{:+.4f}", evidence: B9.2, used_in: [report 0, report 5, deck 7]}
 - {id: B9.clf.ap_diff_lo, kind: number, source: b09/classification/outputs/paired_test_differences.csv, select: {comparison: B frozen minus A frozen, metric: ap}, value: ci_low, format: "{:+.4f}", evidence: B9.2, used_in: [report 5]}
