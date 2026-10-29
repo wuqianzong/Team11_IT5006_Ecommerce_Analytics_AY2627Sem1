@@ -613,6 +613,8 @@ stored anywhere the register may read; Henry chose stored figures only (no new r
   placeholder. Body 17 pages at 12 pt.
 - Deck footers that cite report sections updated (slides 7, 9, 10).
 
+- Henry approved the result. Review doc rev 57: body replaced from the sources (doc_body builder v4). Export in
+  deliverables/audit/inputs/report_export_rev57.md. Audit 8/9 pass; the ninth is the deck chart map (Benson D2).
+
 **Not done yet**
-- Review doc refresh and audit, after Henry approves the result in the repository (plan safeguard 6).
-- figure_map D8 still holds: no figure changed order.
+- figure_map D8 still holds: no figure changed order. Member names and the live URL on the cover.
