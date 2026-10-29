@@ -1,6 +1,6 @@
 ## 6 Modelling and the A-to-B decision
 
-Models are compared from the simplest upwards, on the same time-ordered folds, under rules fixed before any test order was read. We first built a complete baseline (Pipeline A), then one focused improvement (Pipeline B) that changes only what the baseline's evidence pointed to; both were frozen and scored once on the test together.
+Models are compared from the simplest upwards, on the same time-ordered folds, under rules fixed before any test order was read. We first built a complete baseline (Pipeline A), then one focused improvement (Pipeline B) that changes only what Pipeline A's evidence pointed to; both were frozen and scored once on the test together.
 
 ### 6.1 Validation design
 
@@ -12,7 +12,7 @@ Leakage takes several forms beyond rows shared between training and test (Kapoor
 
 {{table:B5.reg.folds}}
 
-Each fold must have at least {{B5.min_train_rows}} training orders and, for the alert, 100 detractors in each part; the minimums were set before the folds were built. Fold 1 of the improved pipeline falls short on training orders ({{B5.reg.fold1_train_rows}} for lead time, {{B5.clf.fold1_train_rows}} for the alert), because the seven-state scope and the warm-up remove early orders. We kept it, as a recorded deviation, so the two pipelines are compared on identical periods; every detractor minimum is met. Instead of stratifying, each fold's detractor share is reported, and it moves with the business over time (appendix A).
+Each fold must have at least {{B5.min_train_rows}} training orders and, for the alert, 100 detractors in each part; the minimums were set before the folds were built. Fold 1 of Pipeline B falls short on training orders ({{B5.reg.fold1_train_rows}} for lead time, {{B5.clf.fold1_train_rows}} for the alert), because the seven-state scope and the warm-up remove early orders. We kept it, as a recorded deviation, so the two pipelines are compared on identical periods; every detractor minimum is met. Instead of stratifying, each fold's detractor share is reported, and it moves with the business over time (appendix A).
 
 ### 6.2 Model ladder
 
@@ -52,30 +52,30 @@ Tuning changed little: no tuned configuration beat its plain model by enough to 
 
 **Calibration.** The alert's probabilities are calibrated with a sigmoid fitted on time-ordered inner splits, so that both pipelines share one probability scale for thresholds and costs. The pre-set rule would have kept the raw probabilities, which had a slightly better Brier score; we kept the sigmoid for comparability and record it as a deviation (section 10).
 
-**Threshold.** With a missed detractor weighted as five false alerts, an alert pays off when the predicted risk exceeds 1/6, and that is the frozen threshold. After the test, the business chose a higher operating threshold for the improved pipeline, 4/15, to cut false alarms; the frozen 1/6 result stays the unbiased test result (section 7).
+**Threshold.** With a missed detractor weighted as five false alerts, an alert pays off when the predicted risk exceeds 1/6, and that is the frozen threshold. After the test, the business chose a higher operating threshold for Pipeline B, 4/15, to cut false alarms; the frozen 1/6 result stays the unbiased test result (section 7).
 
 ### 6.5 Why A became B
 
-The baseline was complete and sound, and its own evidence showed where it could not go further:
+Pipeline A was complete and sound, and its own evidence showed where it could not go further:
 
-*Table 14. The baseline's evidence and the changes it led to.*
+*Table 14. Pipeline A's evidence and the changes it led to.*
 
-| What the baseline's evidence showed | Change in the improved pipeline | How it was checked before the test |
+| What Pipeline A's evidence showed | Change in Pipeline B | How it was checked before the test |
 | --- | --- | --- |
 | The strongest driver of a bad review, late delivery ({{A3.clf.detractor_rate_late}} detractors when late against {{A3.clf.detractor_rate_on_time}} on time), is unknown at checkout | The alert moves to carrier handover, where this order's dispatch delay is known; orders never handed over are flagged by a rule | Validation AP on the same rows (below) |
 | Delivery speed varies with the route and changes over time (section 4), but checkout features carry no recent seller or route behaviour | Seller and route history features (section 5.2) | Ranking and selection (section 5.4); validation scores |
-| Distant, thinly served states add noise that a single model fits poorly | Scope narrowed to the seven largest states with known distance; the baseline serves every other order | The scope effect is measured separately (section 7) |
+| Distant, thinly served states add noise that a single model fits poorly | Scope narrowed to the seven largest states with known distance; Pipeline A serves every other order | The scope effect is measured separately (section 7) |
 
-The baseline's validation results set the bar: MAE {{B9.reg.val_mae_A_on_A}} days against {{B9.reg.val_mae_Adummy_on_A}} for its dummy, and AP {{B9.clf.val_ap_A_on_A}} against {{B9.clf.val_ap_Adummy_on_A}}.
+Pipeline A's validation results set the bar: MAE {{B9.reg.val_mae_A_on_A}} days against {{B9.reg.val_mae_Adummy_on_A}} for its dummy, and AP {{B9.clf.val_ap_A_on_A}} against {{B9.clf.val_ap_Adummy_on_A}}.
 
-**The adoption rule, fixed before the test.** The improved pipeline is adopted for a task if, on its own validation rows, its five-fold mean beats the baseline's frozen model refitted on the same folds, even by a small margin. It did, in every fold of both tasks:
+**The adoption rule, fixed before the test.** Pipeline B is adopted for a task if, on its own validation rows, its five-fold mean beats Pipeline A's frozen model refitted on the same folds, even by a small margin. It did, in every fold of both tasks:
 
-*Table 15. Adoption check on the improved pipeline's folds, lead time (MAE in days).*
+*Table 15. Adoption check on Pipeline B's folds, lead time (MAE in days).*
 
 {{table:B8.reg.adoption}}
 
-*Table 16. Adoption check on the improved pipeline's folds, detractor alert (AP).*
+*Table 16. Adoption check on Pipeline B's folds, detractor alert (AP).*
 
 {{table:B8.clf.adoption}}
 
-Both pipelines then went to the single test read regardless of this result, and the test did not re-choose any model, calibration or threshold. Everything else was inherited unchanged from the baseline: the folds, the model families and grids, the selection rule, the metrics and the calibration and threshold procedure.
+Both pipelines then went to the single test read regardless of this result, and the test did not re-choose any model, calibration or threshold. Everything else was inherited unchanged from Pipeline A: the folds, the model families and grids, the selection rule, the metrics and the calibration and threshold procedure.

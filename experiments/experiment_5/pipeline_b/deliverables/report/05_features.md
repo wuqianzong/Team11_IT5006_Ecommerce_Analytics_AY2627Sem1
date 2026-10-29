@@ -2,9 +2,9 @@
 
 Every feature has a definition, a time window and a reason. Correlated and nested features are removed by a stated rule before selection, and a ranking rule then keeps the smallest set that carries 99% of the ranked signal. Both steps run on development orders only, never on the test period.
 
-### 5.1 The baseline's predictor pool
+### 5.1 Pipeline A's predictor pool
 
-The baseline pipeline starts from 24 predictors that are all known at checkout, grouped as follows:
+Pipeline A starts from 24 predictors that are all known at checkout, grouped as follows:
 
 - **Basket:** counts of items, products, sellers and categories.
 - **Price and freight:** total price, total freight and the freight-to-price ratio.
@@ -16,11 +16,11 @@ The baseline pipeline starts from 24 predictors that are all known at checkout, 
 
 The alert adds three candidates kept after the exploratory screening: the primary product's photo count and description length, and the seller's average review score on earlier orders. Skewed money, size, distance and day-count features are log-transformed, as described in section 3.
 
-### 5.2 The improved pipeline's new features
+### 5.2 Pipeline B's new features
 
 The new features describe how this seller and this route have delivered recently, measured only on other orders. None uses Olist's estimated delivery date, so none inherits the old promise.
 
-*Table 6. The improved pipeline's new features.*
+*Table 6. Pipeline B's new features.*
 
 | Feature | Definition | Window | Reason |
 | --- | --- | --- | --- |
@@ -43,15 +43,15 @@ A seller with no earlier handovers takes the recent mean of sellers in the same 
 
 Strongly correlated predictors make linear coefficients unstable and split importance between partners, even when accuracy is unaffected. The check uses only stored outputs:
 
-- **Baseline pool.** The exploratory stage computed pairwise correlations and a variance inflation factor (VIF) for each numeric predictor on development orders. A pair is flagged above an absolute correlation of {{A3.corr_cut}}, and a predictor above a VIF of {{A3.vif_cut}}. No predictor reached the VIF cut-off in either task (appendix J). One pair was identical on every development order, the missing-weight and missing-volume shares; the lower-ranked of the two was dropped.
+- **Pipeline A's pool.** The exploratory stage computed pairwise correlations and a variance inflation factor (VIF) for each numeric predictor on development orders. A pair is flagged above an absolute correlation of {{A3.corr_cut}}, and a predictor above a VIF of {{A3.vif_cut}}. No predictor reached the VIF cut-off in either task (appendix J). One pair was identical on every development order, the missing-weight and missing-volume shares; the lower-ranked of the two was dropped.
 
-*Table 7. Baseline predictor pairs above the correlation cut-off.*
+*Table 7. Pipeline A's predictor pairs above the correlation cut-off.*
 
 {{table:A3.reg.collinear_pairs}}
 
-- **Improved pipeline.** The route determines both the customer state and the seller state: every route level fixes both, so their one-hot columns are sums of the route's columns. Keeping all three would make the linear design matrix rank-deficient, so the two state columns are dropped whenever the route is kept. The same step drops the missing-distance share, which is constant because every kept order has a distance, and the duplicate pair found in the baseline pool.
+- **Pipeline B.** The route determines both the customer state and the seller state: every route level fixes both, so their one-hot columns are sums of the route's columns. Keeping all three would make the linear design matrix rank-deficient, so the two state columns are dropped whenever the route is kept. The same step drops the missing-distance share, which is constant because every kept order has a distance, and the duplicate pair found in Pipeline A's pool.
 
-*Table 8. Features removed by the improved pipeline's reduction step, lead time.*
+*Table 8. Features removed by Pipeline B's reduction step, lead time.*
 
 {{table:B4.reg.reduction}}
 
@@ -71,4 +71,4 @@ Ranking once on all development orders is a design choice, and it makes the vali
 
 For lead time the ranking is stable: the route and its recent speed, distance and the interstate share stay at the top in every fold. For the alert the ranks move a lot between folds, even for features ranked near the top on all development orders, and several of them drop out of one fold's selection; the early folds, with the fewest training orders, move most. A likely reason, not tested here, is that mutual information estimated on a minority-class target varies more on small samples. The selected set for the alert should therefore be read as a reasonable choice, not a uniquely determined one (section 10; ranking charts by fold in appendix I).
 
-Every new feature passed the cut in both tasks where it applies. The full list of selected features, with transforms and ranks, is in appendix D, beside the baseline's, so the two pipelines can be compared feature by feature.
+Every new feature passed the cut in both tasks where it applies. The full list of selected features, with transforms and ranks, is in appendix D, beside Pipeline A's, so the two pipelines can be compared feature by feature.

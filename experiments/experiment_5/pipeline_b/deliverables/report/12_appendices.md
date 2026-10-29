@@ -88,7 +88,7 @@ Every configuration of every family, with its mean and standard error over the f
 
 ### G. Population chain detail
 
-Every removal from the improved pipeline's population, by rule.
+Every removal from Pipeline B's population, by rule.
 
 *Table G1. Exclusions by rule, lead time.*
 
@@ -124,21 +124,21 @@ The selection ranking repeated inside each training fold.
 
 ### J. Correlation and variance inflation
 
-Variance inflation factor of each numeric predictor in the baseline pool, development orders.
+Variance inflation factor of each numeric predictor in Pipeline A's pool, development orders.
 
-*Table J1. Variance inflation factors of the baseline pool, lead time.*
+*Table J1. Variance inflation factors of Pipeline A's pool, lead time.*
 
 {{table:A3.reg.vif}}
 
-*Table J2. Variance inflation factors of the baseline pool, detractor alert.*
+*Table J2. Variance inflation factors of Pipeline A's pool, detractor alert.*
 
 {{table:A3.clf.vif}}
 
-*Table J3. Features dropped by the improved pipeline's reduction step, detractor alert.*
+*Table J3. Features dropped by Pipeline B's reduction step, detractor alert.*
 
 {{table:B4.clf.reduction}}
 
-*Figure: Pairwise correlations of the baseline's numeric predictors, development orders (F.A3.reg.correlation_heatmap).*
+*Figure: Pairwise correlations of Pipeline A's numeric predictors, development orders (F.A3.reg.correlation_heatmap).*
 
 ### K. Declaration of AI use
 

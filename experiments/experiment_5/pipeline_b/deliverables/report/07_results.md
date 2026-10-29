@@ -1,6 +1,6 @@
 ## 7 Results
 
-On the same test orders the improved pipeline beats the baseline in both tasks. Validation scores were used to choose the models, so they are optimistic selection scores; only the test, read once, is an unbiased estimate. Fold-by-fold validation results and the test are shown together, each with its time window, because each fold is itself a later period that the model had not seen.
+On the same test orders Pipeline B beats Pipeline A in both tasks. Validation scores were used to choose the models, so they are optimistic selection scores; only the test, read once, is an unbiased estimate. Fold-by-fold validation results and the test are shown together, each with its time window, because each fold is itself a later period that the model had not seen.
 
 ### 7.1 Delivery lead time
 
@@ -8,19 +8,19 @@ On the same test orders the improved pipeline beats the baseline in both tasks. 
 
 | | Validation MAE (selection) | Test MAE [95% interval] | Test RMSE | Test R² | Within 3 days (test) |
 | --- | --- | --- | --- | --- | --- |
-| Improved pipeline (delivered) | {{B9.reg.val_mae_B}} | {{B9.reg.test_mae_B}} [{{B9.reg.test_mae_B_lo}}, {{B9.reg.test_mae_B_hi}}] | {{B9.reg.test_rmse_B}} | {{B9.reg.test_r2_B}} | {{B9.reg.test_within3_B}} |
-| Baseline on the same test orders | | {{B9.reg.test_mae_A_on_B}} | {{B9.reg.test_rmse_A_on_B}} | {{B9.reg.test_r2_A_on_B}} | {{B9.reg.test_within3_A_on_B}} |
+| Pipeline B (delivered) | {{B9.reg.val_mae_B}} | {{B9.reg.test_mae_B}} [{{B9.reg.test_mae_B_lo}}, {{B9.reg.test_mae_B_hi}}] | {{B9.reg.test_rmse_B}} | {{B9.reg.test_r2_B}} | {{B9.reg.test_within3_B}} |
+| Pipeline A on the same test orders | | {{B9.reg.test_mae_A_on_B}} | {{B9.reg.test_rmse_A_on_B}} | {{B9.reg.test_r2_A_on_B}} | {{B9.reg.test_within3_A_on_B}} |
 | Dummy (median) on the same test orders | | {{B9.reg.test_mae_dummy_B}} | | | |
 
-The improved pipeline's MAE minus the baseline's is {{B9.reg.mae_diff}} days on the same {{T1.reg.test_rows_B}} test orders (paired bootstrap interval {{B9.reg.mae_diff_lo}} to {{B9.reg.mae_diff_hi}}), so the gain is not an accident of the sample. RMSE, which weights large misses more, and R², the share of the variation in lead time that the model explains, point the same way. R² is low for both: much of the variation in delivery time is not visible at checkout. The baseline's R² on these orders is below zero, so it does worse than predicting the test period's average lead time, consistent with the faster test period (section 7.4).
+Pipeline B's MAE minus Pipeline A's is {{B9.reg.mae_diff}} days on the same {{T1.reg.test_rows_B}} test orders (paired bootstrap interval {{B9.reg.mae_diff_lo}} to {{B9.reg.mae_diff_hi}}), so the gain is not an accident of the sample. RMSE, which weights large misses more, and R², the share of the variation in lead time that the model explains, point the same way. R² is low for both: much of the variation in delivery time is not visible at checkout. Pipeline A's R² on these orders is below zero, so it does worse than predicting the test period's average lead time, consistent with the faster test period (section 7.4).
 
 *Figure: Lead time by validation fold and on the test, with time windows (F.reg.validation_and_test).*
 
-**Residuals, read honestly.** On validation the errors lean late: the average order arrives {{B9.reg.resid_mean_val_B}} days after the prediction, with a long right tail. On the test they lean early: mean {{B9.reg.resid_mean_test_B}} days, median {{B9.reg.resid_median_B}}, because the test period was faster than the development period (section 7.4). The residuals are therefore neither centred on zero nor constant in spread, and a promise built on the prediction needs a buffer chosen for the current period (section 9). {{B9.reg.late_3d_B}} of test orders arrive more than 3 days after the prediction ({{B9.reg.late_3d_A_on_B}} for the baseline) and {{B9.reg.late_6d_B}} more than 6 days after.
+**Residuals, read honestly.** On validation the errors lean late: the average order arrives {{B9.reg.resid_mean_val_B}} days after the prediction, with a long right tail. On the test they lean early: mean {{B9.reg.resid_mean_test_B}} days, median {{B9.reg.resid_median_B}}, because the test period was faster than the development period (section 7.4). The residuals are therefore neither centred on zero nor constant in spread, and a promise built on the prediction needs a buffer chosen for the current period (section 9). {{B9.reg.late_3d_B}} of test orders arrive more than 3 days after the prediction ({{B9.reg.late_3d_A_on_B}} for Pipeline A) and {{B9.reg.late_6d_B}} more than 6 days after.
 
-*Figure: Residuals on the test orders, improved pipeline and baseline (F.reg.residuals).*
+*Figure: Residuals on the test orders, Pipeline B and Pipeline A (F.reg.residuals).*
 
-**Where it errs.** Slices are judged only with at least 100 test orders. The improved pipeline is better than the baseline in every judged customer state, distance band and basket size, on {{B9.reg.routes_B_better}} of the {{B9.reg.routes_judged}} routes with enough orders, and in most months:
+**Where it errs.** Slices are judged only with at least 100 test orders. Pipeline B is better than Pipeline A in every judged customer state, distance band and basket size, on {{B9.reg.routes_B_better}} of the {{B9.reg.routes_judged}} routes with enough orders, and in most months:
 
 *Table 18. Lead-time error by slice, test orders.*
 
@@ -34,18 +34,18 @@ The improved pipeline's MAE minus the baseline's is {{B9.reg.mae_diff}} days on 
 
 | | Validation AP (selection) | Test AP [95% interval] | Test ROC-AUC | Test Brier |
 | --- | --- | --- | --- | --- |
-| Improved pipeline (at handover) | {{B9.clf.val_ap_B}} | {{B9.clf.test_ap_B}} [{{B9.clf.test_ap_B_lo}}, {{B9.clf.test_ap_B_hi}}] | {{B9.clf.test_auc_B}} | {{B9.clf.test_brier_B}} |
-| Baseline on the same test orders (at checkout) | | {{B9.clf.test_ap_A_on_B}} | {{B9.clf.test_auc_A_on_B}} | {{B9.clf.test_brier_A_on_B}} |
+| Pipeline B (at handover) | {{B9.clf.val_ap_B}} | {{B9.clf.test_ap_B}} [{{B9.clf.test_ap_B_lo}}, {{B9.clf.test_ap_B_hi}}] | {{B9.clf.test_auc_B}} | {{B9.clf.test_brier_B}} |
+| Pipeline A on the same test orders (at checkout) | | {{B9.clf.test_ap_A_on_B}} | {{B9.clf.test_auc_A_on_B}} | {{B9.clf.test_brier_A_on_B}} |
 
-The improved pipeline ranks detractors better by {{B9.clf.ap_diff}} AP (paired interval {{B9.clf.ap_diff_lo}} to {{B9.clf.ap_diff_hi}}) on {{T1.clf.test_rows_B}} test orders with {{T1.clf.test_detractors_B}} detractors, and is better on ROC-AUC and on the Brier score, which measures how well calibrated the probabilities are. The two pipelines predict at different moments, so part of the gain is the later moment itself.
+Pipeline B ranks detractors better by {{B9.clf.ap_diff}} AP (paired interval {{B9.clf.ap_diff_lo}} to {{B9.clf.ap_diff_hi}}) on {{T1.clf.test_rows_B}} test orders with {{T1.clf.test_detractors_B}} detractors, and is better on ROC-AUC and on the Brier score, which measures how well calibrated the probabilities are. The two pipelines predict at different moments, so part of the gain is the later moment itself.
 
 *Figure: Detractor alert by validation fold and on the test (F.clf.validation_and_test); PR, ROC and reliability curves on the test (F.clf.test_curves).*
 
-**At the threshold.** At the frozen 1/6, the unbiased result, the improved pipeline sends {{B10.clf.B_1_6_test_alerts_day}} alerts a day on the test with precision {{B10.clf.B_1_6_test_precision}} and recall {{B10.clf.B_1_6_test_recall}}, an F1 score of {{B9.clf.test_f1_B}}; the baseline at its own 1/6 on the same orders has precision {{B9.clf.test_precision_A_on_B}}, recall {{B9.clf.test_recall_A_on_B}} and F1 {{B9.clf.test_f1_A_on_B}}. After the test the business moved its operating threshold to 4/15 to cut false alarms, a post-test change reported beside the frozen result: {{B10.clf.B_4_15_test_alerts_day}} alerts a day, precision {{B10.clf.B_4_15_test_precision}}, recall {{B10.clf.B_4_15_test_recall}}. Orders outside the seven states are alerted by the baseline at its frozen 1/6 (section 9).
+**At the threshold.** At the frozen 1/6, the unbiased result, Pipeline B sends {{B10.clf.B_1_6_test_alerts_day}} alerts a day on the test with precision {{B10.clf.B_1_6_test_precision}} and recall {{B10.clf.B_1_6_test_recall}}, an F1 score of {{B9.clf.test_f1_B}}; Pipeline A at its own 1/6 on the same orders has precision {{B9.clf.test_precision_A_on_B}}, recall {{B9.clf.test_recall_A_on_B}} and F1 {{B9.clf.test_f1_A_on_B}}. After the test the business moved its operating threshold to 4/15 to cut false alarms, a post-test change reported beside the frozen result: {{B10.clf.B_4_15_test_alerts_day}} alerts a day, precision {{B10.clf.B_4_15_test_precision}}, recall {{B10.clf.B_4_15_test_recall}}. Orders outside the seven states are alerted by Pipeline A at its frozen 1/6 (section 9).
 
 *Figure: Precision, recall and alerts per day against the threshold, marking 1/6 and 4/15 (F.clf.threshold_options).*
 
-**Slices.** Precision and recall by customer state and route are judged only where the test has more than 100 detractors, which holds for few slices (appendix E). In every judged slice the improved pipeline is more precise; the baseline, which alerts more orders, has the higher recall in most of them.
+**Slices.** Precision and recall by customer state and route are judged only where the test has more than 100 detractors, which holds for few slices (appendix E). In every judged slice Pipeline B is more precise; Pipeline A, which alerts more orders, has the higher recall in most of them.
 
 *Figure: Detractor alert by customer state (F.clf.by_state).*
 
@@ -53,16 +53,16 @@ The improved pipeline ranks detractors better by {{B9.clf.ap_diff}} AP (paired i
 
 ### 7.3 Where the gain comes from
 
-The improved pipeline changed three things at once: the scope, the features and, for the alert, the prediction moment. Scoring the baseline's frozen model on the improved pipeline's own validation rows separates the scope effect from the rest (five-fold means):
+Pipeline B changed three things at once: the scope, the features and, for the alert, the prediction moment. Scoring Pipeline A's frozen model on Pipeline B's own validation rows separates the scope effect from the rest (five-fold means):
 
 *Table 20. Where the gain comes from: validation scores by population.*
 
-| | Baseline, all states | Baseline, seven-state rows | Improved, seven-state rows |
+| | Pipeline A, all states | Pipeline A, seven-state rows | Pipeline B, seven-state rows |
 | --- | --- | --- | --- |
 | Lead time, MAE (days) | {{B8.reg.pop_A_on_A}} | {{B8.reg.pop_A_on_B}} | {{B8.reg.pop_B_on_B}} |
 | Detractor alert, AP | {{B8.clf.pop_A_on_A}} | {{B8.clf.pop_A_on_B}} | {{B8.clf.pop_B_on_B}} |
 
-For lead time most of the lower error comes from the narrower scope, because the baseline is already better on the seven-state rows, and the rest from the new features. For the alert the scope changes almost nothing, so the gain comes from the history features and the later prediction moment. ROC-AUC and Brier by population are in appendix E.
+For lead time most of the lower error comes from the narrower scope, because Pipeline A is already better on the seven-state rows, and the rest from the new features. For the alert the scope changes almost nothing, so the gain comes from the history features and the later prediction moment. ROC-AUC and Brier by population are in appendix E.
 
 *Figure: Where the gain comes from: scope vs features (F.reg.population).*
 

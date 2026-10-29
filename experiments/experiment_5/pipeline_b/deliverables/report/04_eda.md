@@ -6,7 +6,7 @@ Exploration used development orders only, before each task's test period, so it 
 
 *Figure: Lead-time distribution, development orders (F.A3.reg.target_kde).*
 
-**Late delivery and bad reviews go together.** Among orders delivered after Olist's promised date, the detractor rate is {{A3.clf.detractor_rate_late}}; among orders delivered on time it is {{A3.clf.detractor_rate_on_time}}. Lateness is known only after delivery, so it is never a predictor. But it explains why an alert made at checkout has little to work with, and why the improved pipeline waits for carrier handover, when the seller's part of any delay is already known.
+**Late delivery and bad reviews go together.** Among orders delivered after Olist's promised date, the detractor rate is {{A3.clf.detractor_rate_late}}; among orders delivered on time it is {{A3.clf.detractor_rate_on_time}}. Lateness is known only after delivery, so it is never a predictor. But it explains why an alert made at checkout has little to work with, and why Pipeline B waits for carrier handover, when the seller's part of any delay is already known.
 
 **Speed depends on the route.** Median lead time ranges from {{A3.reg.median_lead_SP}} days for customers in SP to {{A3.reg.median_lead_AM}} days in AM, and the share of late handovers differs between seller states and routes. A single distance number does not capture this, which motivated the route feature and the route's recent speed.
 
@@ -16,7 +16,7 @@ Exploration used development orders only, before each task's test period, so it 
 
 *Figure: Monthly orders and lead time (F.A3.reg.outcome_trends) and monthly detractor rate (F.A3.clf.outcome_trends), development orders.*
 
-**Detractors are a minority.** {{A3.clf.dev_prevalence}} of development orders are detractors (on the improved pipeline's test orders, {{B9.clf.test_prevalence_B}}), so a model that never alerts would look accurate. We report average precision against the detractor share and set the alert threshold from error costs.
+**Detractors are a minority.** {{A3.clf.dev_prevalence}} of development orders are detractors (on Pipeline B's test orders, {{B9.clf.test_prevalence_B}}), so a model that never alerts would look accurate. We report average precision against the detractor share and set the alert threshold from error costs.
 
 **Predictors overlap little.** A first look at pairwise correlations among the numeric predictors found one identical pair and no other pair above the cut-off; section 5.3 checks this formally with the variance inflation factor.
 
