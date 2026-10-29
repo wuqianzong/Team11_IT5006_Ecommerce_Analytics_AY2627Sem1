@@ -8,7 +8,7 @@ Leakage takes several forms beyond rows shared between training and test (Kapoor
 
 *Figure: Time-ordered folds and the test period (F.reg.partition).*
 
-*Table 9. Fold windows and sizes, lead time.*
+*Table 10. Fold windows and sizes, lead time.*
 
 {{table:B5.reg.folds}}
 
@@ -22,11 +22,11 @@ Each step up the ladder must beat the step below it on the same folds. The table
 
 *Figure: Model ladder on the five folds, lead time (F.reg.family_ladder) and detractor alert (F.clf.family_ladder).*
 
-*Table 10. Model ladder on the five folds, lead time (MAE in days).*
+*Table 11. Model ladder on the five folds, lead time (MAE in days).*
 
 {{table:B6.reg.ladder}}
 
-*Table 11. Model ladder on the five folds, detractor alert (AP).*
+*Table 12. Model ladder on the five folds, detractor alert (AP).*
 
 {{table:B6.clf.ladder}}
 
@@ -36,11 +36,11 @@ The linear and logistic models beat the dummy in every fold. The single tree is 
 
 Each family was then tuned on the same folds, with grids fixed before any tuning result was seen: Ridge alpha and logistic C from 0.01 to 100; tree depth 4 to 18 and minimum leaf size 20 to 200; forest depth 8 to 18 and leaf size 20 to 200 with square-root feature sampling; and class weight (none or balanced) for every classifier (appendix F). Class weighting is how the grid treats the imbalance. We did not resample: the alert uses calibrated probabilities and a cost-based threshold, and in logistic risk models imbalance corrections can distort the calibration of the predicted risk (Van den Goorbergh et al., 2022).
 
-*Table 12. Plain against tuned models, lead time.*
+*Table 13. Plain against tuned models, lead time.*
 
 {{table:B7.reg.plain_vs_tuned}}
 
-*Table 13. Plain against tuned models, detractor alert.*
+*Table 14. Plain against tuned models, detractor alert.*
 
 {{table:B7.clf.plain_vs_tuned}}
 

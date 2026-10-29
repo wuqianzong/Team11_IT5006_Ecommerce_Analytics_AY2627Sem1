@@ -598,3 +598,21 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
 
 **Not done yet**
 - Items 4–6 wait on Henry's review of the plan. Member names and the live URL on the cover.
+
+## 2026-10-29: report restructure (items 4–6), business background, screenshots to appendix
+
+Henry approved the restructure plan (https://claude.ai/artifact/FRCGWYMKA4Q4fAKoWvaVqi) with its recommended options
+and asked for business figures in §1 and the screenshots in the appendix. Revenue and repeat-customer figures are not
+stored anywhere the register may read; Henry chose stored figures only (no new run).
+
+- 9b77200 item 6: "Pipeline A" / "Pipeline B" throughout (66 lines, list in report/records/naming_changes_item6.txt).
+- 6e872e0 item 5: §5 leads with Pipeline B's features; A's pool condensed to one inherited-base paragraph.
+- b204328 item 4: new §1.1 holds Table 14 (now Table 3); §6.5 "Adopting Pipeline B".
+- This commit: §1 "Why it matters to the business" (7 new A3 register items, 223 built); screenshots to appendix K;
+  tables renumbered. Each step: placeholder set compared with the previous commit, `check` resolves every
+  placeholder. Body 17 pages at 12 pt.
+- Deck footers that cite report sections updated (slides 7, 9, 10).
+
+**Not done yet**
+- Review doc refresh and audit, after Henry approves the result in the repository (plan safeguard 6).
+- figure_map D8 still holds: no figure changed order.

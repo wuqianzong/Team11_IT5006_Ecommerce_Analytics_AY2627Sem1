@@ -156,6 +156,13 @@
 - {id: A3.reg.median_lead_AM, kind: number, source: A/s03_eda/regression/outputs/categorical_feature_target_lead_days.csv, select: {feature: customer_state, level: AM}, value: target_median, format: "{:.1f}", evidence: "3.5", used_in: [report 3]}
 - {id: A3.trend.orders_2017_11, kind: number, source: A/s03_eda/regression/outputs/outcome_trends.csv, select: {month: "2017-11"}, value: orders, format: "{:,}", evidence: "3.3", used_in: [report 3]}
 - {id: A3.trend.orders_2017_10, kind: number, source: A/s03_eda/regression/outputs/outcome_trends.csv, select: {month: "2017-10"}, value: orders, format: "{:,}", evidence: "3.3", used_in: [report 3]}
+- {id: A3.trend.late_2017_10, kind: number, source: A/s03_eda/regression/outputs/outcome_trends.csv, select: {month: "2017-10"}, value: late_vs_promised_rate, format: "{:.1%}", evidence: "3.3", used_in: [report 1]}
+- {id: A3.trend.late_2017_11, kind: number, source: A/s03_eda/regression/outputs/outcome_trends.csv, select: {month: "2017-11"}, value: late_vs_promised_rate, format: "{:.1%}", evidence: "3.3", used_in: [report 1]}
+- {id: A3.trend.late_2018_03, kind: number, source: A/s03_eda/regression/outputs/outcome_trends.csv, select: {month: "2018-03"}, value: late_vs_promised_rate, format: "{:.1%}", evidence: "3.3", used_in: [report 1]}
+- {id: A3.trend.detractor_2017_10, kind: number, source: A/s03_eda/classification/outputs/outcome_trends.csv, select: {month: "2017-10"}, value: detractor_rate, format: "{:.1%}", evidence: "3.3", used_in: [report 1]}
+- {id: A3.trend.detractor_2018_03, kind: number, source: A/s03_eda/classification/outputs/outcome_trends.csv, select: {month: "2018-03"}, value: detractor_rate, format: "{:.1%}", evidence: "3.3", used_in: [report 1]}
+- {id: A3.reg.price_mean, kind: number, source: A/s03_eda/regression/outputs/numeric_feature_target_lead_days.csv, select: {feature: total_price}, value: feature_mean, format: "{:.0f}", evidence: "3.4", used_in: [report 1]}
+- {id: A3.reg.freight_mean, kind: number, source: A/s03_eda/regression/outputs/numeric_feature_target_lead_days.csv, select: {feature: total_freight}, value: feature_mean, format: "{:.0f}", evidence: "3.4", used_in: [report 1]}
 
 # ---------------------------------------------------------------- Milestone 2 feedback checks (B12; TA points 3 and 10)
 - {id: B12.reg.rank_selected, kind: number, source: b12/regression/outputs/ranking_stability.json, value: selected_by_B4, format: "{:,}", evidence: B12.1, used_in: [report 4, report 8]}

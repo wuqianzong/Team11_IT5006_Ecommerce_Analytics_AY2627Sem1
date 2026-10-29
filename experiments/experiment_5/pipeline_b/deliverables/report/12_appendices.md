@@ -140,6 +140,12 @@ Variance inflation factor of each numeric predictor in Pipeline A's pool, develo
 
 *Figure: Pairwise correlations of Pipeline A's numeric predictors, development orders (F.A3.reg.correlation_heatmap).*
 
-### K. Declaration of AI use
+### K. Dashboard screenshots
+
+Two views of the app, reading the stored test outputs.
+
+*Screenshots 1–2. The detractor tab's alert statistics on the test period at the operating threshold 4/15 (S.05_alert_stats_test_4_15) and the Score an order tab's list of alerted held-out orders (S.06_score_alert_list).*
+
+### L. Declaration of AI use
 
 The team used Anthropic's Claude (Claude Code) throughout. It wrote and ran most of the pipeline code under the team's instructions, drafted the stage documentation, built the number register, and drafted this report and the slides. The team set the problem, the scope and every decision recorded in the project's decision logs, reviewed each stage before it was accepted, and checked the drafts. Every number in the report is filled from the stored pipeline outputs through the register, never typed; an audit script compares the report and slides against those outputs. Every reference was checked by the team against the publisher's record, and the claims made from each source were checked against that record (literature register).

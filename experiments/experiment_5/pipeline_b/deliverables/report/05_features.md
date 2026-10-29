@@ -6,7 +6,7 @@ Every feature has a definition, a time window and a reason. Correlated and neste
 
 Pipeline B's new features describe how this seller and this route have delivered recently, measured only on other orders. None uses Olist's estimated delivery date, so none inherits the old promise.
 
-*Table 6. Pipeline B's new features.*
+*Table 7. Pipeline B's new features.*
 
 | Feature | Definition | Window | Reason |
 | --- | --- | --- | --- |
@@ -41,7 +41,7 @@ Strongly correlated predictors make linear coefficients unstable and split impor
 
 - **Pipeline A's pool, the inherited base.** The exploratory stage computed pairwise correlations and a variance inflation factor (VIF) for each numeric predictor on development orders. A pair is flagged above an absolute correlation of {{A3.corr_cut}}, and a predictor above a VIF of {{A3.vif_cut}}. No predictor reached the VIF cut-off in either task (appendix J). One pair was identical on every development order, the missing-weight and missing-volume shares; the lower-ranked of the two was dropped.
 
-*Table 7. Pipeline A's predictor pairs above the correlation cut-off.*
+*Table 9. Pipeline A's predictor pairs above the correlation cut-off.*
 
 {{table:A3.reg.collinear_pairs}}
 

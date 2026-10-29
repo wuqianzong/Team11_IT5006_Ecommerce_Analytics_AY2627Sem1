@@ -22,7 +22,7 @@ Exploration used development orders only, before each task's test period, so it 
 
 **The newest weeks may be incomplete.** The data ends in late 2018. The slowest deliveries for orders placed in the final weeks may not have arrived when the data was extracted, so the test period, the newest fifth of orders, may under-represent very late deliveries and make its error look slightly better (section 10).
 
-*Table 5. Exploratory findings and the decisions they led to.*
+*Table 6. Exploratory findings and the decisions they led to.*
 
 | What the data shows | Decision it led to | Section |
 | --- | --- | --- |

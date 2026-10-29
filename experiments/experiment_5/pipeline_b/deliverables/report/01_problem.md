@@ -1,6 +1,10 @@
 ## 1 Problem and metrics
 
-Olist is a Brazilian marketplace: independent sellers ship each order to the customer through a carrier, and the customer reviews the purchase afterwards. Two things go wrong often enough to matter. Deliveries arrive later than the customer expected, and a share of customers leave a 1 or 2 star review, which hurts the seller's and the platform's reputation. We frame one delivery experience as two prediction tasks, each made at the moment the business can still act on it.
+Olist is a Brazilian marketplace: independent sellers ship each order to the customer through a carrier, and the customer reviews the purchase afterwards. Two things go wrong often enough to matter. Deliveries arrive later than the customer expected, and a share of customers leave a 1 or 2 star review, which hurts the seller's and the platform's reputation.
+
+**Why it matters to the business.** The development period, January 2017 to late May 2018, holds {{B2.reg.dev_rows_A}} delivered orders, each worth on average R$ {{A3.reg.price_mean}} in goods plus R$ {{A3.reg.freight_mean}} in freight, so a customer lost to a poor experience is revenue lost to the seller and the platform. Delivery is where the experience breaks under pressure. When volume jumped in November 2017 (Black Friday: {{A3.trend.orders_2017_11}} orders against {{A3.trend.orders_2017_10}} in October), the share of orders delivered after Olist's promised date rose from {{A3.trend.late_2017_10}} to {{A3.trend.late_2017_11}}, and it peaked at {{A3.trend.late_2018_03}} in March 2018. Late orders drive bad reviews: {{A3.clf.detractor_rate_late}} of late orders received a 1 or 2 star review, against {{A3.clf.detractor_rate_on_time}} of orders delivered on time, and the detractor share rose from {{A3.trend.detractor_2017_10}} in October 2017 to {{A3.trend.detractor_2018_03}} in March 2018 ({{A3.clf.dev_prevalence}} over the whole period). Reviews are public, and a disappointed customer may not buy again. Promising faster is not a free fix either: in an experiment with an online retailer, faster delivery promises raised sales and profit but also reduced customer retention (Cui et al., 2024). Our data do not measure churn directly, so we treat the bad review as its measurable warning sign.
+
+The two models answer these two problems. The lead-time model gives a delivery promise the operation can keep, so sales are not bought with broken promises; the detractor alert lets customer service reach an at-risk customer before the review is written. We frame one delivery experience as two prediction tasks, each made at the moment the business can still act on it.
 
 *Table 2. The two prediction tasks.*
 
@@ -27,7 +31,7 @@ Pipeline A was built first, for every order, and is sound. Its validation result
 
 Its own exploration then showed three limits, and each led to one change in Pipeline B, the delivered model:
 
-*Table 14. Pipeline A's evidence and the changes it led to.*
+*Table 3. Pipeline A's evidence and the changes it led to.*
 
 | What Pipeline A's evidence showed | Change in Pipeline B | How it was checked before the test |
 | --- | --- | --- |

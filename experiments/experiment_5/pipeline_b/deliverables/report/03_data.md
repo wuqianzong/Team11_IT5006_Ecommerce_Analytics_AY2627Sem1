@@ -6,7 +6,7 @@ Every model row is one order, built only from what is known at that task's predi
 
 **Targets.** Lead time is the number of days from purchase to delivery, for delivered orders with valid timestamps. The detractor label is 1 when the order's lowest valid review score is 1 or 2. An order can have more than one review; taking the lowest could bias the label towards detractors, so every classification result is also scored against the first-review label. The two agree closely on the test (table below), so the choice does not drive the conclusions.
 
-*Table 3. Detractor results under the lowest-review and first-review labels, test orders.*
+*Table 4. Detractor results under the lowest-review and first-review labels, test orders.*
 
 {{table:B9.clf.label_sensitivity}}
 
@@ -27,7 +27,7 @@ Every model row is one order, built only from what is known at that task's predi
 
 **Pipeline B's population.** Pipeline B (section 1.1) keeps orders whose customer and primary seller are both in the seven largest states (SP, MG, RJ, PR, RS, BA, SC) and whose distance is known, applies a tighter lead-time cap computed on its own rows (mean plus 8 standard deviations), and drops the first six weeks of data, which are needed to start the seller and route history. For the alert it also drops orders never handed over and orders reviewed before their handover. The chain below accounts for every order from Pipeline A's development set to the rows each model trains on.
 
-*Table 4. Population chain from Pipeline A's development orders to Pipeline B's rows.*
+*Table 5. Population chain from Pipeline A's development orders to Pipeline B's rows.*
 
 | Step | Lead time | Detractor alert |
 | --- | --- | --- |
