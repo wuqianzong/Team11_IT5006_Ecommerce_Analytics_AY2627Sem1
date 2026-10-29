@@ -2360,5 +2360,16 @@
     ],
     "file": "evidence/build/figures/F.A3.clf.screen_region.png",
     "caption": "Detractor rate by macro-region and region pair (Pipeline A EDA screen 3.12)"
+  },
+  "F.A3.clf.target_bar": {
+    "kind": "figure",
+    "source": "A/s03_eda/classification/outputs/figures/target_is_detractor_bar.png",
+    "run_id": "20261023T083353Z @ e5-A-frozen",
+    "evidence": "3.2",
+    "used_in": [
+      "deck 5"
+    ],
+    "file": "evidence/build/figures/F.A3.clf.target_bar.png",
+    "caption": "Detractor share, development orders (Pipeline A EDA)"
   }
 }

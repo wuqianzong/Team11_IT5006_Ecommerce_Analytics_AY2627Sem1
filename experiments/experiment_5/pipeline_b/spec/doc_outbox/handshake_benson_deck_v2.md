@@ -50,7 +50,13 @@ aa6cd5caccd3fe6ac92b480d32d0a4af F.reg.history_coverage
 c0167aa70f2b3c125c93c281284b33ee F.clf.test_curves
 3c4521d33750d6d01c73aea996074711 F.clf.threshold_options
 0b1999c18bfdd5e4c2809437c9e0bb90 F.reg.buffer_curve
+983e32ca72a793c5d24b51528b2c2082 F.A3.clf.target_bar
+7e345f291b0060d62a700120becf0e1e F.reg.partition
 ```
+
+Review round 2 (2026-10-29) added the last two: A's detractor target bar beside the lead-time KDE on slide 5 (new
+register item, A evidence 3.2, B-G-11 source), and the existing fold chart `F.reg.partition` (A's boundaries) on
+slide 8. `F.clf.threshold_options` moved from slide 14 to slide 15.
 
 `F.A2.data_structure` and the three `F.A3.clf.screen_*` / `F.A3.*.cumulative_importance` items are new register items
 (B-G-13 and B-G-11 sources). `chart_ok` already checks A sources against `e5-A-frozen` (B-CR-40). Then run the audit

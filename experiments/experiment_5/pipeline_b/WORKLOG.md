@@ -515,3 +515,21 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
 **Questions for Benson** (spec/doc_outbox/handshake_benson_deck_v2.md)
 1. Extend B-G-13 to A's s04–s08 figures (proposed B-G-14)?
 2. Replace figure_map.json's deck section with the v2 asset map.
+
+## 2026-10-29 · Henry + Claude · deck v2, review round 2 (bigger charts)
+
+**Done**
+- Henry's five v2 comments (slides 5-9 and "all the following slides"): slides 5-15 relaid chart first (narrower
+  margins, smaller title, text moved into short card rows or wide two-row tables, details to speaker notes).
+- Slide 5: A's detractor target bar (new register item F.A3.clf.target_bar, A evidence 3.2, B-G-11) beside the KDE.
+- Slide 7: heatmap enlarged; the pending A selection-curve note moved to the bottom.
+- Slide 8: the fold chart F.reg.partition (A's boundaries, B's rows inside) full width, as in v1; A's own ladder
+  chart is still pending the A-source rule (B's ladder is not shown on an A slide).
+- Slide 14: test curves full width with a wide table; the threshold chart moved to slide 15 next to the buffer.
+- Checked rendered at 1920x1080 (local headless Edge with the register PNGs): no overlaps; 88 ids, all in the report.
+- Register 208 items; v2 deck version 4; handshake deck map gains the two new asset ids.
+
+**Not done yet**
+- Charts whose own text is small (A's s03 screens on slide 9, the two-chart slides 6, 10, 12, 15) stay hard to read
+  at half width; a fix needs presentation renders with larger fonts (Benson's call) or more slides.
+- Audit on v2 waits on Benson's figure_map update; nothing pushed.

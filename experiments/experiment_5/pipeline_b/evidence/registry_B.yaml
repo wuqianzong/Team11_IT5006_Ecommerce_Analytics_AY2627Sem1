@@ -234,3 +234,5 @@
 - {id: F.A3.clf.cumulative_importance, kind: figure, source: A/s03_eda/classification/outputs/figures/cumulative_importance.png, caption: "Baseline candidate ranking and cumulative importance, detractor alert (Pipeline A EDA)", evidence: "3.9", used_in: [deck 6]}
 - {id: F.A3.clf.screen_promise, kind: figure, source: A/s03_eda/classification/outputs/figures/candidate_screen_promise.png, caption: "Promised delivery days at checkout barely separate detractors (Pipeline A EDA screen 3.11)", evidence: "3.11", used_in: [deck 9]}
 - {id: F.A3.clf.screen_region, kind: figure, source: A/s03_eda/classification/outputs/figures/candidate_screen_region.png, caption: "Detractor rate by macro-region and region pair (Pipeline A EDA screen 3.12)", evidence: "3.12", used_in: [deck 9]}
+# Deck v2 review 2 (2026-10-29): A's detractor target chart beside the lead-time KDE on slide 5 (B-G-11)
+- {id: F.A3.clf.target_bar, kind: figure, source: A/s03_eda/classification/outputs/figures/target_is_detractor_bar.png, caption: "Detractor share, development orders (Pipeline A EDA)", evidence: "3.2", used_in: [deck 5]}
