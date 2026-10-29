@@ -33,11 +33,21 @@ def test_live_scores_equal_the_stored_t1_predictions() -> None:
 def test_scenarios_are_labelled_and_freight_lowers_the_risk() -> None:
     order = alerts.alert_queue().iloc[1]
     row = alerts.model_rows("classification", (order["order_id"],))
-    scenarios = score_tab._scenario_rows(row, order["pipeline"], transit_saving=0.5)
-    assert set(scenarios["scenario"]) == {
-        "As is", "Logistics −10%", "Freight −20%", "Freight −30%", "Freight −50%", "Free shipping"
-    }
+    scenarios = score_tab._scenario_rows(row, order["pipeline"] == "B", 0.5)
+    assert set(scenarios["scenario"]) == {"As is"} | {label for label, _, _ in score_tab.SCENARIOS}
+    assert len(score_tab.SCENARIOS) == 9  # 5 single scenarios + logistics with each of the 4 freight cuts
     scored = model_client.predict("classification", scenarios).assign(scenario=scenarios["scenario"].to_numpy())
     risk = scored.set_index("scenario")["prediction"]
     assert risk["Free shipping"] < risk["As is"]
     assert scenarios.loc[scenarios["scenario"] == "As is", "total_freight"].iloc[0] == row["total_freight"].iloc[0]
+
+
+def test_flips_cover_every_alert_and_logistics_only_b() -> None:
+    flips = score_tab.scenario_flips()
+    per = flips.groupby("scenario")["base_order_id"].nunique()
+    assert per["Freight −20%"] == 1968
+    assert per["Logistics −10%"] <= 540
+    assert set(flips.loc[flips["scenario"].str.startswith("Logistics"), "pipeline"]) == {"B"}
+    # an alert that stops has a risk below its threshold
+    stops = flips[flips["alert stops"]]
+    assert (stops["risk after"] < stops["threshold"]).all()

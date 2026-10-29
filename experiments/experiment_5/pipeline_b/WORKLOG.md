@@ -481,3 +481,16 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
 **Not done yet**
 - G5: new screenshots (test view at 4/15, the new tabs) — to take from the hosted app.
 - Hosting: Render and Streamlit accounts, repository access, branch choice (Henry or Benson).
+
+## 2026-10-29 · Henry + Claude · Score an order tab, revision 2.1
+
+**Done** (Henry's four points)
+- 4.1: one order picked with a radio button over a 25-order page (the table's checkbox selection removed);
+  review_position shown as sn; model column moved to the right.
+- 4.2: order id, sn and model shown first; predictions and scenarios renumbered 4.2.1 and 4.2.2.
+- New 4.3: every alerted order under every scenario (5 single + logistics −10% with each of the 4 freight cuts):
+  counts of alerts that would stop, and the list for the scenarios picked (downloadable). Results on the 1,968
+  alerts: logistics −10% stops 34 of 536 B alerts; freight −20% 227, −30% 353, −50% 647, free shipping 1,765
+  (all 1,967 free-shipping rows fall below R$ 7.39, the 1st percentile of freight, so that result is an
+  extrapolation and is marked "outside training range"); logistics + freight 78 to 451. All labelled as associations.
+- Plan revision 2.1 (panels 4.1–4.3); tests 19/19; browser pass, no exception.

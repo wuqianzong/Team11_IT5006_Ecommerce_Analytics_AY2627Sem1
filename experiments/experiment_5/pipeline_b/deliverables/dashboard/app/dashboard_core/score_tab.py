@@ -1,4 +1,4 @@
-"""Tab 4: Score an order (plan revision 2, panels 4.1-4.4).
+"""Tab 4: Score an order (plan revision 2, panels 4.1, 4.2 with 4.2.1-4.2.2, and 4.3).
 
 Held-out orders the serving rule alerts on, the facts known at carrier handover, both
 predictions, and scenarios on the alert model's inputs. Inference only: the frozen
@@ -16,6 +16,14 @@ from dashboard_core.data import evidence_table
 
 LOGISTICS_CUT = 0.10
 FREIGHT_CUTS = (("Freight −20%", 0.20), ("Freight −30%", 0.30), ("Freight −50%", 0.50), ("Free shipping", 0.99))
+LOGISTICS = "Logistics −10%"
+# (label, logistics cut applied, freight cut): the 5 single scenarios, then logistics combined with each freight cut.
+SCENARIOS = (
+    ((LOGISTICS, True, 0.0),)
+    + tuple((label, False, cut) for label, cut in FREIGHT_CUTS)
+    + tuple((f"{LOGISTICS} + {label}", True, cut) for label, cut in FREIGHT_CUTS)
+)
+PAGE_SIZE = 25
 ROUTE_INPUTS = ("route_recent_carrier_transit_days", "route_recent_delivery_days")
 SCENARIO_LABEL = "Scenario on the model's inputs: an association, not the effect of the action."
 
@@ -47,33 +55,31 @@ def _alert_list() -> pd.Series | None:
     cols[0].metric("Pipeline B alerts", f"{int(counts.get('B', 0)):,}")
     cols[1].metric("Pipeline A alerts", f"{int(counts.get('A', 0)):,}")
     cols[2].metric("Shown after filters", f"{len(shown):,}")
-    table = shown[
-        [
-            "review_position", "order_id", "pipeline", "stored_risk", "customer_state", "seller_state",
-            "primary_category", "total_price", "total_freight", "handover_delay_days",
-        ]
-    ].rename(columns={"stored_risk": "risk", "handover_delay_days": "handover delay (days)"})
-    event = st.dataframe(
-        table,
-        width="stretch",
-        hide_index=True,
-        height=320,
-        on_select="rerun",
-        selection_mode="single-row",
-        key="score_queue",
-        column_config={"risk": st.column_config.NumberColumn(format="%.3f")},
-    )
     if not len(shown):
         st.info("No alerted order matches the filters.")
         return None
-    selected = event.selection.rows if event is not None else []
-    position = selected[0] if selected else 0
-    st.caption("Select a row to open the order; the first row is open by default.")
-    return shown.iloc[position]
+    table = shown[
+        [
+            "review_position", "order_id", "stored_risk", "customer_state", "seller_state",
+            "primary_category", "total_price", "total_freight", "handover_delay_days", "pipeline",
+        ]
+    ].rename(columns={"review_position": "sn", "stored_risk": "risk", "handover_delay_days": "handover delay (days)"})
+    pages = (len(table) - 1) // PAGE_SIZE + 1
+    page = st.number_input(f"Page (of {pages}, {PAGE_SIZE} orders each)", 1, pages, 1, key="score_page")
+    window = table.iloc[(page - 1) * PAGE_SIZE: page * PAGE_SIZE]
+    st.dataframe(
+        window,
+        width="stretch",
+        hide_index=True,
+        column_config={"risk": st.column_config.NumberColumn(format="%.3f")},
+    )
+    sn = st.radio("Select an order (sn)", window["sn"].tolist(), horizontal=True, key=f"score_sn_{page}")
+    return shown[shown["review_position"] == sn].iloc[0]
 
 
 def _details(order: pd.Series) -> None:
     st.subheader("4.2 Order details (known at carrier handover)")
+    st.markdown(f"**Order** `{order['order_id']}` · sn {int(order['review_position'])} · Pipeline {order['pipeline']}")
     records = alerts._records()
     record = records[records["order_id"] == order["order_id"]].iloc[0]
     place = alerts.places(str(record["customer_id"]), str(order.get("seller_id", "")))
@@ -121,21 +127,31 @@ def _details(order: pd.Series) -> None:
     st.dataframe(alerts.order_items(str(order["order_id"])), width="stretch", hide_index=True)
 
 
-def _scenario_rows(row: pd.DataFrame, pipeline: str, transit_saving: float | None) -> pd.DataFrame:
-    frames = [row.assign(scenario="As is")]
-    if pipeline == "B" and transit_saving is not None and all(c in row for c in ROUTE_INPUTS):
-        faster = row.copy()
-        for column in ROUTE_INPUTS:
-            faster[column] = (faster[column] - transit_saving).clip(lower=0)
-        frames.append(faster.assign(scenario="Logistics −10%"))
-    for label, cut in FREIGHT_CUTS:
-        cheaper = row.copy()
+def _scenario_rows(rows: pd.DataFrame, logistics_ok, transit_saving) -> pd.DataFrame:
+    """The as-is rows plus every scenario of SCENARIOS, for one or many orders.
+
+    logistics_ok and transit_saving are per row (or scalars): the logistics cut applies only
+    to Pipeline B orders with an estimated transit; other rows get no logistics scenario.
+    """
+    rows = rows.reset_index(drop=True)
+    saving = pd.Series(transit_saving, index=rows.index, dtype=float)
+    ok = pd.Series(logistics_ok, index=rows.index).astype(bool) & saving.notna()
+    ok &= all(c in rows for c in ROUTE_INPUTS)
+    frames = [rows.assign(scenario="As is")]
+    for label, logistics, cut in SCENARIOS:
+        changed = (rows[ok] if logistics else rows).copy()
+        if not len(changed):
+            continue
+        if logistics:
+            for column in ROUTE_INPUTS:
+                changed[column] = (changed[column] - saving[changed.index]).clip(lower=0)
         for column in ("total_freight", "freight_ratio"):
-            if column in cheaper:
-                cheaper[column] = cheaper[column] * (1 - cut)
-        frames.append(cheaper.assign(scenario=label))
+            if column in changed and cut:
+                changed[column] = changed[column] * (1 - cut)
+        frames.append(changed.assign(scenario=label))
     scenarios = pd.concat(frames, ignore_index=True)
-    scenarios["order_id"] = scenarios["order_id"].astype(str) + "#" + scenarios["scenario"]
+    scenarios["base_order_id"] = scenarios["order_id"].astype(str)
+    scenarios["order_id"] = scenarios["base_order_id"] + "#" + scenarios["scenario"]
     return scenarios
 
 
@@ -147,7 +163,7 @@ def _predictions_and_scenarios(order: pd.Series) -> None:
     risk = model_client.predict("classification", clf_row).iloc[0]
     lead = model_client.predict("regression", reg_row).iloc[0]
 
-    st.subheader("4.3 Predictions")
+    st.markdown("#### 4.2.1 Predictions")
     badge = "Pipeline B" if risk["model"] == "B frozen" else (
         f"Pipeline A (outside B's scope: {str(risk['scope_reason']).replace('outside: ', '')})"
     )
@@ -174,10 +190,10 @@ def _predictions_and_scenarios(order: pd.Series) -> None:
     cols[3].caption("Predicted lead time minus dispatch days (never below 0)")
     st.caption(f"Predictions from the {model_client.source_label()}; inference only, nothing is fitted.")
 
-    st.subheader("4.4 Scenarios")
+    st.markdown("#### 4.2.2 Scenarios")
     st.warning(SCENARIO_LABEL)
     saving = None if transit is None else LOGISTICS_CUT * transit
-    scenarios = _scenario_rows(clf_row, pipeline, saving)
+    scenarios = _scenario_rows(clf_row, pipeline == "B", saving)
     scored = model_client.predict("classification", scenarios)
     scored["scenario"] = scenarios["scenario"].to_numpy()
     issues = model_client.check("classification", scenarios)
@@ -205,7 +221,7 @@ def _predictions_and_scenarios(order: pd.Series) -> None:
     if saving is not None and pipeline == "B":
         arrival = purchase + pd.Timedelta(days=float(lead["prediction"]) - saving)
         result["estimated arrival"] = np.where(
-            result["scenario"] == "Logistics −10%", arrival.strftime("%Y-%m-%d"), ""
+            result["scenario"].str.startswith(LOGISTICS), arrival.strftime("%Y-%m-%d"), ""
         )
     st.dataframe(result, width="stretch", hide_index=True)
     if base_cols:
@@ -223,9 +239,81 @@ def _predictions_and_scenarios(order: pd.Series) -> None:
             "own transit, and its two route inputs are correlated."
         )
     else:
-        notes.append("Logistics −10% is not shown: Pipeline A's alert model has no route inputs.")
+        notes.append("Logistics −10%, alone or combined, is not shown: Pipeline A's alert model has no route inputs.")
     for note in notes:
         st.caption(note)
+
+
+@st.cache_data(show_spinner="Scoring every alerted order under each scenario…")
+def scenario_flips() -> pd.DataFrame:
+    """Every alerted order under every scenario: risk before and after, and whether the alert stops.
+
+    Inference only, through the same frozen bundles; a B order's estimated transit is its
+    predicted lead time minus its dispatch days, as in 4.2.1.
+    """
+    queue = alerts.alert_queue()
+    info = queue.set_index("order_id")
+    clf = alerts.model_rows("classification", tuple(queue["order_id"]))
+    b_ids = tuple(queue.loc[queue["pipeline"] == "B", "order_id"])
+    lead = model_client.predict("regression", alerts.model_rows("regression", b_ids)).set_index("order_id")["prediction"]
+    order_ids = clf["order_id"].astype(str)
+    is_b = (info.loc[order_ids, "pipeline"] == "B").to_numpy()
+    transit = (lead.reindex(order_ids).to_numpy() - info.loc[order_ids, "dispatch_days"].to_numpy()).clip(min=0)
+    saving = pd.Series(LOGISTICS_CUT * transit).where(is_b)
+    scenarios = _scenario_rows(clf, is_b, saving)
+    scored = model_client.predict("classification", scenarios)
+    scored["scenario"] = scenarios["scenario"].to_numpy()
+    scored["base_order_id"] = scenarios["base_order_id"].to_numpy()
+    base = scored[scored["scenario"] == "As is"].set_index("base_order_id")["prediction"]
+    out = scored[scored["scenario"] != "As is"].drop(columns=["order_id"])
+    out["risk before"] = base.reindex(out["base_order_id"]).to_numpy()
+    out["alert stops"] = out["prediction"] < out["threshold"]
+    # Freight below the 1st percentile of all orders' freight is outside what the model saw.
+    floor = float(alerts._records()["total_freight"].quantile(0.01))
+    after = scenarios.loc[scenarios["scenario"] != "As is", "total_freight"].to_numpy()
+    before = info.loc[out["base_order_id"], "total_freight"].to_numpy()
+    out["outside training range"] = (after < floor) & (before >= floor)
+    out = out.merge(
+        queue[["order_id", "review_position", "pipeline", "customer_state", "primary_category", "total_freight"]],
+        left_on="base_order_id", right_on="order_id",
+    )
+    out = out.rename(columns={"prediction": "risk after", "review_position": "sn"})
+    out["freight floor"] = floor
+    return out
+
+
+def _flips() -> None:
+    st.subheader("4.3 Orders whose alert would stop under a scenario")
+    st.warning(SCENARIO_LABEL)
+    flips = scenario_flips()
+    names = [label for label, _, _ in SCENARIOS]
+    summary = (
+        flips.groupby("scenario")
+        .agg(orders_scored=("order_id", "nunique"), alerts_stop=("alert stops", "sum"),
+             outside_training_range=("outside training range", "sum"))
+        .reindex(names)
+        .reset_index()
+    )
+    summary["share"] = (summary["alerts_stop"] / summary["orders_scored"]).map(lambda v: f"{v:.1%}")
+    st.dataframe(summary, width="stretch", hide_index=True)
+    st.caption(
+        "Logistics scenarios apply to Pipeline B's orders only (A's alert model has no route inputs), so they "
+        "score fewer orders. Thresholds are the serving rule's: B 4/15, A 1/6. "
+        f"outside_training_range counts orders whose freight the scenario takes below R\\$ {flips['freight floor'].iloc[0]:.2f}, "
+        "the 1st percentile of freight across all orders: for those the risk after is an extrapolation of the "
+        "model, not an estimate."
+    )
+    choice = st.multiselect("Scenarios to list", names, default=[LOGISTICS], key="flip_scenarios")
+    listed = flips[flips["scenario"].isin(choice) & flips["alert stops"]]
+    table = listed[["sn", "order_id", "scenario", "risk before", "risk after", "outside training range", "customer_state",
+                    "primary_category", "total_freight", "pipeline"]].sort_values(["sn", "scenario"])
+    st.dataframe(
+        table, width="stretch", hide_index=True, height=360,
+        column_config={"risk before": st.column_config.NumberColumn(format="%.3f"),
+                       "risk after": st.column_config.NumberColumn(format="%.3f")},
+    )
+    st.download_button("Download this list (CSV)", table.to_csv(index=False).encode("utf-8"),
+                       "alerts_that_stop.csv", "text/csv", key="flip_download")
 
 
 def render() -> None:
@@ -236,3 +324,4 @@ def render() -> None:
         return
     _details(order)
     _predictions_and_scenarios(order)
+    _flips()
