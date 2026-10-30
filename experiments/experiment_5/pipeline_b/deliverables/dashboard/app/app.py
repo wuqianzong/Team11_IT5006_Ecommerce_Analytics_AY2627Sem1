@@ -41,7 +41,7 @@ business_tab, lead_time_tab, detractor_tab, score_tab = st.tabs(
         "Business overview",
         "Delivery lead time",
         "Detractor risk at handover",
-        "Score an order",
+        "ML deployment",
     ]
 )
 

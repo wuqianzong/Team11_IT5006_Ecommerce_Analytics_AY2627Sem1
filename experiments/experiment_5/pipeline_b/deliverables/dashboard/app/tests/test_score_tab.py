@@ -1,4 +1,4 @@
-"""Score an order tab (plan revision 2, 4.1-4.4): alert list, no labels, scenarios."""
+"""ML deployment tab (plan revision 2, 4.1-4.4): alert list, no labels, scenarios."""
 import pandas as pd
 
 from dashboard_core import alerts, model_client, score_tab

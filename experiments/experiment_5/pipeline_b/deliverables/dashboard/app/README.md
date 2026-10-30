@@ -17,7 +17,7 @@ The approved dashboard plan is implemented:
 
 ## Revision 2 (Henry's side, 2026-10-29)
 
-Plan revision 2 (`../DASHBOARD_PLAN.md`) adds a fourth tab, **Score an order** (alerted held-out orders, their
+Plan revision 2 (`../DASHBOARD_PLAN.md`) adds a fourth tab, **ML deployment** (named Score an order until revision 2.3; alerted held-out orders, their
 details at handover, both predictions, scenarios), ports every Phase 1 section into Tab 1 with the customer and
 seller rating distributions, and applies the review fixes (cap wording, 4/15 label, intervals, TP/FP/FN row).
 Hosting: the model API in `../api/` on Render.com and this app on Streamlit Community Cloud; see `../api/README.md`.

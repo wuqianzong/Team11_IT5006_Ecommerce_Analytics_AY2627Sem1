@@ -11,8 +11,8 @@ import pandas as pd
 import streamlit as st
 
 from dashboard_core.charts import bar_chart, dual_line_chart, horizontal_bar_chart
-from dashboard_core.data import build_scoring_rows, evidence_table, scoring_order_ids
-from dashboard_core.routing import B_STATES, DashboardRelease
+from dashboard_core.data import evidence_table
+from dashboard_core.routing import B_STATES
 
 
 def _scope_banner(config: dict) -> None:
@@ -321,86 +321,8 @@ def _why() -> None:
     st.dataframe(sensitivity, width="stretch", hide_index=True)
 
 
-def _score_one(
-    frame: pd.DataFrame,
-    router: DashboardRelease,
-    b_threshold: float,
-) -> tuple[pd.Series, str]:
-    scored = router.predict(frame).iloc[0]
-    model_code = "B" if scored["model"] == "B frozen" else "A"
-    threshold = b_threshold if model_code == "B" else router.threshold["A"]
-    scored["threshold"] = threshold
-    if scored["status"] == "scored":
-        scored["alert"] = bool(scored["prediction"] >= threshold)
-    return scored, model_code
-
-
-def _score_order(b_threshold: float) -> None:
-    st.subheader("3.9 Score an order")
-    st.caption("Inference only: frozen bundles are used; nothing is fitted.")
-    upload = st.file_uploader("Upload a CSV of held-out feature rows", type=["csv"], key="clf_score_upload")
-    if upload is not None:
-        frame = pd.read_csv(upload)
-        if "order_id" not in frame:
-            st.error("The CSV must include an order_id column.")
-            return
-        router = DashboardRelease("classification")
-        scored = router.predict(frame)
-        scored["threshold"] = np.where(
-            scored["model"] == "B frozen",
-            b_threshold,
-            router.threshold["A"],
-        )
-        scored["alert"] = np.where(
-            scored["status"] == "scored",
-            scored["prediction"] >= scored["threshold"],
-            np.nan,
-        )
-        st.dataframe(scored, width="stretch", hide_index=True)
-        st.download_button(
-            "Download scored CSV",
-            scored.to_csv(index=False).encode("utf-8"),
-            "classification_scored.csv",
-            "text/csv",
-            key="clf_download",
-        )
-        return
-
-    if not st.checkbox("Load held-out order picker", key="classification_load_scores"):
-        st.caption("Enable the picker to prepare frozen-model inputs from held-out orders.")
-        return
-    with st.spinner("Preparing held-out feature rows…"):
-        frame = build_scoring_rows("classification")
-    choices = scoring_order_ids("classification")
-    order_id = st.selectbox("Held-out order", choices, key="classification_order")
-    base_frame = frame[frame["order_id"].astype(str) == order_id].iloc[[0]].copy()
-    router = DashboardRelease("classification")
-    base, model_code = _score_one(base_frame, router, b_threshold)
-    badge = (
-        "Pipeline B"
-        if model_code == "B"
-        else f"Pipeline A (outside B's scope: {base['scope_reason'].replace('outside: ', '')})"
-    )
-
-    if base["status"] != "scored":
-        st.warning(
-            "Not scored yet: scored at carrier handover. If the shipping limit passes "
-            "without handover, the missed-dispatch rule flags it."
-        )
-        return
-    st.metric("Risk score", f"{base['prediction']:.3f}")
-    st.write(f"**Model:** {badge}")
-    st.write(f"**Threshold:** {base['threshold']:.4f}")
-    st.write(f"**Alert:** {'yes' if base['alert'] else 'no'}")
-
-    issues = router.check(base_frame)
-    if len(issues):
-        st.warning("Input-check messages")
-        st.dataframe(issues, width="stretch", hide_index=True)
-
-
 def _data_health() -> None:
-    st.subheader("3.10 Data health and transparency")
+    st.subheader("3.9 Data health and transparency")
     drift = evidence_table("classification", "b09", "drift.csv")
     fallback = evidence_table("classification", "b09", "a_fallback_by_scope.csv")
     config = json.loads(paths.serving_config_path("classification").read_text(encoding="utf-8"))
@@ -418,12 +340,6 @@ def _data_health() -> None:
     )
 
 
-def _score_pointer(panel: str) -> None:
-    st.subheader(f"{panel} Score an order")
-    st.info("Scoring moved to the Score an order tab (plan revision 2): alerted held-out orders, "
-            "their details, both predictions and scenarios.")
-
-
 def render() -> None:
     st.header("Detractor risk at handover")
     config = json.loads(paths.serving_config_path("classification").read_text(encoding="utf-8"))
@@ -436,6 +352,5 @@ def render() -> None:
     _detractors_by_state()
     _operational_priorities()
     _why()
-    _score_pointer("3.9")
     _data_health()
 

@@ -1,4 +1,4 @@
-"""Tab 4: Score an order (plan revision 2, panels 4.1, 4.2 with 4.2.1-4.2.2, and 4.3).
+"""Tab 4: ML deployment (plan revision 2, panels 4.1, 4.2 with 4.2.1-4.2.2, and 4.3).
 
 Held-out orders the serving rule alerts on, the facts known at carrier handover, both
 predictions, and scenarios on the alert model's inputs. Inference only: the frozen
@@ -324,7 +324,7 @@ def _flips() -> None:
 
 
 def render() -> None:
-    st.header("Score an order")
+    st.header("ML deployment")
     st.info("Inference on held-out orders with the frozen models. Nothing is fitted and no test label is read.")
     order = _alert_list()
     if order is None:

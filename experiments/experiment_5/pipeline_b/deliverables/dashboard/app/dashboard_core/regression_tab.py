@@ -1,14 +1,12 @@
 """Delivery lead-time tab."""
 from __future__ import annotations
 
-import pandas as pd
 import streamlit as st
 
 from dashboard_core import paths
 from dashboard_core.charts import bar_chart, dual_line_chart, horizontal_bar_chart, line_chart
-from dashboard_core.data import evidence_table, scoring_order_ids, build_scoring_rows
+from dashboard_core.data import evidence_table
 from dashboard_core.loaders import load_bundle_schema
-from dashboard_core.routing import DashboardRelease
 
 
 def _scope_banner(config: dict) -> None:
@@ -151,61 +149,6 @@ def _why() -> None:
     st.caption("B9.5 · Coefficients describe the frozen model; they are not causal effects.")
 
 
-def _score_order() -> None:
-    st.subheader("2.8 Score an order")
-    st.caption("Inference only: frozen bundles are used; no model is fitted.")
-    upload = st.file_uploader("Upload a CSV of held-out feature rows", type=["csv"], key="reg_score_upload")
-    if upload is not None:
-        frame = pd.read_csv(upload)
-        if "order_id" not in frame:
-            st.error("The CSV must include an order_id column.")
-            return
-        router = DashboardRelease("regression")
-        scored = router.predict(frame)
-        st.dataframe(scored, width="stretch", hide_index=True)
-        st.download_button(
-            "Download scored CSV",
-            scored.to_csv(index=False).encode("utf-8"),
-            "regression_scored.csv",
-            "text/csv",
-        )
-        return
-
-    if not st.checkbox("Load held-out order picker", key="regression_load_scores"):
-        st.caption("Enable the picker to prepare frozen-model inputs from held-out orders.")
-        return
-    with st.spinner("Preparing held-out feature rows…"):
-        frame = build_scoring_rows("regression")
-    choices = scoring_order_ids("regression")
-    order_id = st.selectbox("Held-out order", choices, key="regression_order")
-    row = frame[frame["order_id"].astype(str) == order_id].iloc[[0]].copy()
-    router = DashboardRelease("regression")
-    result = router.predict(row).iloc[0]
-    interval = evidence_table("regression", "b09", "residuals_summary.csv")
-    interval_row = interval[
-        interval["series"].eq(
-            "B on B's test rows"
-            if result["model"] == "B frozen"
-            else "A on A's test rows"
-        )
-    ].iloc[0]
-    low = result["prediction"] + interval_row["p05"]
-    high = result["prediction"] + interval_row["p95"]
-    model_text = (
-        "Pipeline B"
-        if result["model"] == "B frozen"
-        else f"Pipeline A (outside B's scope: {result['scope_reason'].replace('outside: ', '')})"
-    )
-    st.metric("Predicted delivery lead time", f"{result['prediction']:.2f} days")
-    st.write(f"**Model:** {model_text}")
-    st.write(f"**Stored-residual interval:** {low:.2f}–{high:.2f} days")
-    st.caption("Empirical p05–p95 interval; not a per-order confidence interval.")
-    issues = router.check(row)
-    if len(issues):
-        st.warning("Input checks")
-        st.dataframe(issues, width="stretch", hide_index=True)
-
-
 def _fit_over_time() -> None:
     st.subheader("2.2 Fit over time")
     table = evidence_table("regression", "t1_joint_test", "fold_and_test_table.csv")
@@ -233,7 +176,7 @@ def _prediction_miss() -> None:
 
 
 def _data_health() -> None:
-    st.subheader("2.9 Data health and transparency")
+    st.subheader("2.8 Data health and transparency")
     drift = evidence_table("regression", "b09", "drift.csv")
     fallback = evidence_table("regression", "b09", "a_fallback_by_scope.csv")
     serving = paths.serving_config_path("regression")
@@ -260,12 +203,6 @@ def _data_health() -> None:
     )
 
 
-def _score_pointer(panel: str) -> None:
-    st.subheader(f"{panel} Score an order")
-    st.info("Scoring moved to the Score an order tab (plan revision 2): alerted held-out orders, "
-            "their details, both predictions and scenarios.")
-
-
 def render() -> None:
     st.header("Delivery lead time")
     config = __import__("json").loads(
@@ -279,6 +216,5 @@ def render() -> None:
     _accuracy_by_segment()
     _operational_priorities()
     _why()
-    _score_pointer("2.8")
     _data_health()
 

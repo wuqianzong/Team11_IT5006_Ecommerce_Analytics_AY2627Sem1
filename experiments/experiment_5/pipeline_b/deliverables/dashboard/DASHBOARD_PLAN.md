@@ -1,6 +1,6 @@
 # Dashboard plan (contract between Henry and Solomon)
 
-Status: APPROVED by Henry, revision 2.1, 2026-10-29 (2.1: Tab 4 layout and panel 4.3, Henry's comments of 2026-10-29); revision 2 (decisions D1–D5 of the gap analysis https://claude.ai/artifact/WNhnLGdNqzWRWsjdBrwBwU; revision 1 approved 2026-10-28). Owner: Henry (content). Builder: Solomon (revision 1); Henry's side (revision 2 and hosting).
+Status: APPROVED by Henry, revision 2.3, 2026-10-30 (2.3: the score panels leave tabs 2 and 3, data health becomes 2.8 and 3.9, Tab 4 renamed "ML deployment", Henry 2026-10-30); revision 2.1, 2026-10-29 (2.1: Tab 4 layout and panel 4.3, Henry's comments of 2026-10-29); revision 2 (decisions D1–D5 of the gap analysis https://claude.ai/artifact/WNhnLGdNqzWRWsjdBrwBwU; revision 1 approved 2026-10-28). Owner: Henry (content). Builder: Solomon (revision 1); Henry's side (revision 2 and hosting).
 A change to this plan is Henry's commit (HANDOVER_TO_HENRY.md §4.7).
 
 ## 0. Rules the app follows
@@ -43,7 +43,7 @@ BA or SC and whose distance is known; Pipeline A's frozen model scores every oth
 | 1 Business overview | Descriptive, all orders and statuses (Phase 1 dashboard, extended, not rebuilt; D-3, D-4) | `data/business/dashboard/` only; labelled "Descriptive view of all orders; not model results"; incomplete months stay excluded from monthly charts |
 | 2 Delivery lead time | Model results, regression (B inside, A outside) | files in §3 |
 | 3 Detractor risk at handover | Model results, classification (B inside, A outside) | files in §4 |
-| 4 Score an order | Inference on held-out orders the models alert on (B at 4/15 inside the seven states, A at 1/6 elsewhere), with order details and scenarios | §4a |
+| 4 ML deployment | Inference on held-out orders the models alert on (B at 4/15 inside the seven states, A at 1/6 elsewhere), with order details and scenarios | §4a |
 
 Tab 1 keeps every Phase 1 section, ported from `deployment/app.py` with provenance comments (revision 2, D1):
 KPI matrix per period against sidebar benchmarks with misses highlighted; KPI diagnostic stack; period-over-period
@@ -65,8 +65,7 @@ not in a file.
 | 2.5 | Where it errs | MAE of A and B by customer state, route, distance band, month, with order counts; slices with fewer than 100 orders marked "too few to judge" | Where to monitor or adjust promises | `b09/regression/subgroups.csv` (B9.3) | Bar chart (gain B − A) + table |
 | 2.6 | Operational priorities (R-14, D-6a) | Quarter selector: top 5 routes and top 5 categories by observed mean lead time (≥ 100 orders), model coefficient beside; all routes on the test period below | Which routes and categories need operational attention | `b10/regression/top_routes_categories.csv` (B10.7); `b09/regression/business_by_route.csv` (B9.13) | Two bar charts + full table |
 | 2.7 | Why | Permutation importance; coefficients as "ratio per unit" with the reading note | Which factors drive delivery time | `b09/regression/permutation_importance.csv`, `coefficients.csv` (B9.5) | Horizontal bars + table |
-| 2.8 | Score an order | Pick a held-out order (or upload a CSV of held-out orders): prediction in days, interval from test residual quantiles (p05–p95), which model scored it, input-check messages | Demonstrates the deployed model | Bundles `t1_joint_test/regression/bundles/{A,B}/` via `serving.py`; `b10/regression/serving_config.json` (B10.3), `input_validation.json` (B10.5); interval from `residuals_summary.csv` (B9.16) | Form + result card; CSV download |
-| 2.9 | Data health and transparency | Drift between development and test; out-of-profile warning rule (4 SD, B10-D11); A's results inside vs outside B's scope; model version, release tag, training period, definitions, limits | Can the numbers be trusted today? | `b09/regression/drift.csv` (B9.4); `b10/regression/drift_profile.json` (B10.6); `b09/regression/a_fallback_by_scope.csv` (B9.15); `b10/regression/serving_config.json` (B10.3) | Tables + text |
+| 2.8 | Data health and transparency | Drift between development and test; out-of-profile warning rule (4 SD, B10-D11); A's results inside vs outside B's scope; model version, release tag, training period, definitions, limits | Can the numbers be trusted today? | `b09/regression/drift.csv` (B9.4); `b10/regression/drift_profile.json` (B10.6); `b09/regression/a_fallback_by_scope.csv` (B9.15); `b10/regression/serving_config.json` (B10.3) | Tables + text |
 
 ## 4. Tab 3: Detractor risk at handover
 
@@ -80,12 +79,11 @@ not in a file.
 | 3.6 | Detractors by state | Test period: for each of the seven states (B's test rows) the orders, the detractors and the detractor share; one row "Other states" for the orders scored by A (outside B's scope: other customer or seller states, or distance unknown) with the same three columns. Share = detractors ÷ orders, derived for display. No alert metrics here (the stored per-state alert results are at the frozen 1/6) | Where bad reviews concentrate geographically | Seven states: `b09/classification/subgroups.csv` (B9.3), rows slice = customer_state, columns value, orders, detractors. Other states: `b09/classification/a_fallback_by_scope.csv` (B9.15), row period = test, scope = "outside B's scope", columns orders, detractors | Bar chart of the share + table |
 | 3.7 | Operational priorities (R-14) | Quarter selector: top 5 routes and categories by observed detractor share (≥ 100 orders), odds-ratio coefficient beside; all routes on the test period below | Where to act on sellers, routes, categories | `b10/classification/top_routes_categories.csv` (B10.7); `b09/classification/business_by_route.csv` (B9.13) | Two bar charts + full table |
 | 3.8 | Why | Permutation importance; odds ratios with the reading note; label sensitivity (first vs lowest review) | Which factors drive bad reviews | `b09/classification/permutation_importance.csv`, `coefficients.csv` (B9.5); `label_sensitivity.csv` (B9.6) | Horizontal bars + tables |
-| 3.9 | Score an order | Pick or upload held-out orders: risk score, alert yes/no at the model's threshold (B 4/15, A 1/6), which model, "not scored yet" before handover, input-check messages | Demonstrates the deployed model | Bundles `t1_joint_test/classification/bundles/{A,B}/` via `serving.py`; `b10/classification/serving_config.json` (B10.3), `input_validation.json` (B10.5) | Form + result card; CSV download |
-| 3.10 | Data health and transparency | As 2.9, classification files | As 2.9 | `b09/classification/drift.csv` (B9.4); `b10/classification/drift_profile.json` (B10.6); `a_fallback_by_scope.csv` (B9.15); `serving_config.json` (B10.3) | Tables + text |
+| 3.9 | Data health and transparency | As 2.8, classification files | As 2.8 | `b09/classification/drift.csv` (B9.4); `b10/classification/drift_profile.json` (B10.6); `a_fallback_by_scope.csv` (B9.15); `serving_config.json` (B10.3) | Tables + text |
 
-## 4a. Tab 4: Score an order (revision 2, D3–D4)
+## 4a. Tab 4: ML deployment (revision 2, D3–D4; named "Score an order" until revision 2.3)
 
-Panels 2.8 and 3.9 move here; tabs 2 and 3 point to this tab.
+The score panels of tabs 2 and 3 moved here; from revision 2.3 tabs 2 and 3 no longer list them, and their data-health panels are 2.8 and 3.9.
 
 | # | Panel | Content | Source |
 | --- | --- | --- | --- |
@@ -101,7 +99,7 @@ Panels 2.8 and 3.9 move here; tabs 2 and 3 point to this tab.
 | --- | --- | --- |
 | Alert work queue (daily list of alerted orders) | Replaced in revision 2 by panel 4.1 (alerted held-out orders) | Henry, 2026-10-29 |
 | Seller watchlist (rising late handover) | Dropped | No stored output; the evidence is frozen |
-| Weekly model health monitoring | Dropped | No live data; 2.9 / 3.10 show the stored drift instead |
+| Weekly model health monitoring | Dropped | No live data; 2.8 / 3.9 show the stored drift instead |
 | Threshold slider for A's fallback | Not built | A's out-of-scope counts are stored at 1/6 only; a slider would need new evidence (Henry chose option 4) |
 
 ## 6. Decisions taken (Henry, 2026-10-28)
@@ -111,7 +109,7 @@ Panels 2.8 and 3.9 move here; tabs 2 and 3 point to this tab.
    Benson (HANDOVER §4.2).
 2. **Panel 3.6:** detractors by state for the seven states plus one "Other states" row, counts and share; no alert
    metrics (see the panel).
-3. **Score panels 2.8 and 3.9:** built. They score one held-out order at a time (or an uploaded CSV of held-out
+3. **Score panels (2.8 and 3.9 until revision 2.3):** built, then moved to Tab 4 in revision 2. They score one held-out order at a time (or an uploaded CSV of held-out
    orders) with the frozen bundles; they are not the dropped work queue.
 4. **Thresholds:** B dynamic, A fixed at 1/6 (option 4); report and deck use A 1/6 and B 4/15.
 

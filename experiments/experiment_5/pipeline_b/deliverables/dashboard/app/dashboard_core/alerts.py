@@ -1,4 +1,4 @@
-"""Alerted held-out orders for the Score an order tab (plan revision 2, panel 4.1-4.2).
+"""Alerted held-out orders for the ML deployment tab (plan revision 2, panel 4.1-4.2).
 
 The alert list is read from T1's stored test predictions (order_id, model, rows and
 y_pred only; the label column y_true is never read) and the serving rule's thresholds.
