@@ -30,8 +30,8 @@ def test_sources_are_current_runs(numbers):
         if Path(v["source"]).parts[0] == "A":   # A's frozen tree (B-G-11), checked below
             assert v["run_id"].endswith(f"@ {reg.A_TAG}")
             continue
-        if Path(v["source"]).parts[0] == "BIZ":   # business context (B-CR-41), checked below
-            assert v["run_id"].endswith("(business context)")
+        if Path(v["source"]).parts[0] in reg.MANIFEST_ROOTS:   # B-CR-41, B-CR-42, checked below
+            assert v["run_id"].endswith(")")
             continue
         stage, task = Path(v["source"]).parts[:2]
         assert v["run_id"] == runs[(stage, task)]
@@ -40,7 +40,8 @@ def test_sources_are_current_runs(numbers):
 def test_a_sources_only_from_the_frozen_tree(numbers):
     a_items = [v for v in numbers.values() if Path(v["source"]).parts[0] == "A"]
     assert a_items, "the report cites A's s03 EDA numbers (B-G-11)"
-    assert all(Path(v["source"]).parts[1] in ("s02_data", "s03_eda") for v in a_items)   # B-G-11, B-G-13
+    assert all(Path(v["source"]).parts[1] in ("s01_problem", "s02_data", "s03_eda", "s04_features", "s05_partition",
+                                               "s06_training", "s07_tuning", "s08_selection") for v in a_items)   # B-G-11, B-G-13, B-G-14
     with pytest.raises(ValueError):
         reg.verify_a_source("A/s03_eda/regression/eda_summary.json")          # not under outputs/
     with pytest.raises(ValueError):

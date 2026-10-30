@@ -44,6 +44,8 @@ BUILD = B_ROOT / "evidence" / "build"
 A_STAGES = B_ROOT.parent / "stages"     # Pipeline A's frozen tree (read only)
 A_TAG = "e5-A-frozen"
 BIZ_OUT = B_ROOT / "deliverables" / "business_context" / "outputs"   # business context (B-CR-41)
+# Read-only analyses outside the stages, each with its own _manifest.json: prefix -> outputs folder (B-CR-41, B-CR-42)
+MANIFEST_ROOTS = {"BIZ": BIZ_OUT, "M2A": B_ROOT / "deliverables" / "m2_report" / "a_interpretation" / "outputs"}
 PLACEHOLDER = re.compile(r"\{\{\s*([A-Za-z0-9_.\-]+)\s*\}\}")
 
 
@@ -97,27 +99,31 @@ def verify_a_source(src: str) -> tuple[Path, str]:
     return path, f"{man['run_id']} @ {A_TAG}"
 
 
-def verify_biz_source(src: str) -> tuple[Path, str]:
-    """BIZ/<file>: the file and its input data must match business_context/outputs/_manifest.json (B-CR-41)."""
+def verify_manifest_source(src: str) -> tuple[Path, str]:
+    """BIZ/<file> or M2A/<file>: the file and its inputs must match that folder's _manifest.json (B-CR-41, B-CR-42)."""
     parts = Path(src).parts
-    if len(parts) < 2 or parts[0] != "BIZ":
-        raise ValueError(f"{src}: expected BIZ/<file>")
-    path = BIZ_OUT.joinpath(*parts[1:])
+    if len(parts) < 2 or parts[0] not in MANIFEST_ROOTS:
+        raise ValueError(f"{src}: expected one of {sorted(MANIFEST_ROOTS)}/<file>")
+    root = MANIFEST_ROOTS[parts[0]]
+    path = root.joinpath(*parts[1:])
     if not path.is_file():
-        raise ValueError(f"{src}: no such file in {BIZ_OUT}")
-    man = json.loads((BIZ_OUT / "_manifest.json").read_text())
+        raise ValueError(f"{src}: no such file in {root}")
+    man = json.loads((root / "_manifest.json").read_text())
     repo = B_ROOT.parents[2]
     if man["outputs"].get(path.relative_to(repo).as_posix()) != _sha(path):
-        raise ValueError(f"{src}: sha256 does not match the business-context manifest")
+        raise ValueError(f"{src}: sha256 does not match its manifest")
     for rel, sha in man["inputs"].items():
         if _sha(repo / rel) != sha:
             raise ValueError(f"{src}: input {rel} changed since run {man['run_id']}")
-    return path, f"{man['run_id']} (business context)"
+    return path, f"{man['run_id']} ({man['node']})"
+
+
+verify_biz_source = verify_manifest_source   # B-CR-41 name, kept for the tests and the audit
 
 
 def _outputs(src: str, path: Path) -> tuple[Path, str]:
     """The outputs folder holding the source and the file's path inside it (key of _evidence_index.json)."""
-    head = {"A": 4, "BIZ": 1}.get(Path(src).parts[0], 3)
+    head = {"A": 4, "BIZ": 1, "M2A": 1}.get(Path(src).parts[0], 3)
     inner = Path(*Path(src).parts[head:])
     return path.parents[len(inner.parts) - 1], inner.as_posix()
 
@@ -167,8 +173,8 @@ def build(out_dir: Path = BUILD) -> dict:
         try:
             if Path(it["source"]).parts[0] == "A":
                 path, run_id = verify_a_source(it["source"])
-            elif Path(it["source"]).parts[0] == "BIZ":
-                path, run_id = verify_biz_source(it["source"])
+            elif Path(it["source"]).parts[0] in MANIFEST_ROOTS:
+                path, run_id = verify_manifest_source(it["source"])
             else:
                 path, run_id = verify_source(it["source"], runs)
             outs, inner = _outputs(it["source"], path)

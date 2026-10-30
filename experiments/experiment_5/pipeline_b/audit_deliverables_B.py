@@ -69,10 +69,10 @@ def main() -> int:
                 return False, f"{asset.name} -> {fid} -> {err}"
             ok = asset.exists() and _sha(asset) == _sha(regfile) == _sha(src)
             return ok, f"{asset.name} -> {fid} -> {e['source']} ({e['run_id']})"
-        if e["source"].startswith("BIZ/"):
-            # business context (B-CR-41): no stage manifest; the file must match business_context's manifest
+        if Path(e["source"]).parts[0] in reg.MANIFEST_ROOTS:
+            # read-only analyses (B-CR-41, B-CR-42): no stage manifest; the file must match its folder's manifest
             try:
-                src, _ = reg.verify_biz_source(e["source"])
+                src, _ = reg.verify_manifest_source(e["source"])
             except ValueError as err:
                 return False, f"{asset.name} -> {fid} -> {err}"
             ok = asset.exists() and _sha(asset) == _sha(regfile) == _sha(src)
