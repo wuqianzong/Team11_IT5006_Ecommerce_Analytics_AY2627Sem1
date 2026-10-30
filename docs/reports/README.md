@@ -1,14 +1,19 @@
 # Milestone 2 Technical Reports Directory — IT5006 Group 11
 
-This directory houses the authoritative technical reports, documentation, and graphical figures for **IT5006 Milestone 2 (AY 2026/27 Semester 1)**.
+> **Superseded (2026-10-30).** The files in this directory are the Milestone 2 report **as submitted on 11 October**,
+> kept unchanged as the submitted record. The reworked Milestone 2 report is built only on Experiment 5's Pipeline A
+> and lives in [`experiments/experiment_5/pipeline_b/deliverables/m2_report/`](../../experiments/experiment_5/pipeline_b/deliverables/m2_report/);
+> every number in it comes from the Experiment 5 number register, not from the pipeline described below.
+
+This directory houses the technical report, documentation, and graphical figures submitted for **IT5006 Milestone 2 (AY 2026/27 Semester 1)** on 11 October.
 
 ---
 
-## 📄 Authoritative Deliverables
+## 📄 Submitted Deliverables (11 October)
 
 | Deliverable | File Path | Format & Scope |
 | :--- | :--- | :--- |
-| **Final Technical Report (Markdown Source)** | [`Team11_Phase2_IT5006_AY2627Sem1_final.md`](Team11_Phase2_IT5006_AY2627Sem1_final.md) | Authoritative, fully elaborated Markdown document containing all 17 tables, CRISP-DM methodology, leakage analyses, and links to all 15 figures. |
+| **Final Technical Report (Markdown Source)** | [`Team11_Phase2_IT5006_AY2627Sem1_final.md`](Team11_Phase2_IT5006_AY2627Sem1_final.md) | Fully elaborated Markdown document containing all 17 tables, CRISP-DM methodology, leakage analyses, and links to all 15 figures. |
 | **Final Technical Report (Word Document)** | [`Team11_Phase2_IT5006_AY2627Sem1_final.docx`](Team11_Phase2_IT5006_AY2627Sem1_final.docx) | Exact 1:1 publication Word document compiled via `src/models/export_final_docx.py` with all 17 native tables and 15 figures directly embedded. |
 | **High-Resolution Figures** | [`figures/`](figures/) | Directory of 15 diagnostic charts, correlation matrices, residual distributions, and threshold optimization curves. |
 

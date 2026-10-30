@@ -2,7 +2,7 @@
 
 This document explains where the dashboard's business data, model evidence, model files, scoring inputs, and inference results come from.
 
-The dashboard reads only frozen and accepted local Experiment 5 outputs. It does not call an external API, retrain a model, or read test labels to select a model or threshold.
+The dashboard reads only frozen and accepted Experiment 5 outputs. It never retrains a model or reads test labels to select a model or threshold. Predictions run on the local frozen bundles by default, or on the model API (the same bundles, served) when `MODEL_API_URL` is set (section 7).
 
 ## 1. End-to-end provenance
 
@@ -227,65 +227,46 @@ All other orders use Pipeline A.
 
 For classification, in-scope orders that have not yet been handed over are not scored. The missed-dispatch rule flags them after the shipping limit passes.
 
-## 7. Score-panel inputs and inference
+## 7. ML deployment tab: inputs and inference
 
-The Score panels are the only dashboard components that execute model inference.
+The ML deployment tab (tab 4, plan revision 2.3) is the only part of the dashboard that runs model inference.
+Tabs 2 and 3 show stored evidence only.
 
-### Model loading
+### Alerted orders (panel 4.1)
 
-Models are loaded through:
+The list comes from T1's stored test predictions, reading only `order_id`, `model`, `rows` and `y_pred`:
 
 ```text
-experiments/experiment_5/pipeline_b/e5b/serving.py
-Release.load(task)
+stages/t1_joint_test/classification/outputs/predictions_test.csv.gz
 ```
 
-### Held-out feature rows
+An order is listed when the serving rule alerts on it: Pipeline B at 4/15 inside the seven states, Pipeline A at
+1/6 elsewhere. The label column is never read.
 
-The held-out demo picker uses:
+### Model inputs (panels 4.2 and 4.3)
+
+Each listed order's inputs are rebuilt from the cleaned records and the frozen T1 row builder:
 
 ```text
 experiments/experiment_5/stages/s02_data/common/outputs/records.csv.gz
-```
-
-Test-row IDs are taken from:
-
-```text
-stages/t1_joint_test/<task>/outputs/predictions_test.csv.gz
-```
-
-Regression and classification B history features are rebuilt with the frozen T1 row builder:
-
-```text
 e5b.t1_joint_test.b_rows
 ```
 
-All target and label columns are excluded before feature construction. No test label is read for scoring or model selection.
-
-For a responsive local demonstration, the dropdown uses a deterministic 500-row held-out sample with:
-
-```text
-random_state = 42
-```
-
-Users may also upload a feature-level CSV for batch scoring.
+All target and label columns are excluded before feature construction.
 
 ### Prediction
 
-Prediction is executed through:
+`dashboard_core/model_client.py` sends rows to one of two paths, which run the same frozen T1 bundles through
+`e5b.serving.Release`:
 
-```text
-DashboardRelease.predict(...)
-```
+- **local (default):** `DashboardRelease(task).predict(...)`;
+- **model API:** when `MODEL_API_URL` is set, `POST {MODEL_API_URL}/predict/{task}` to the service in
+  `deliverables/dashboard/api/`, whose tests check it returns what the local path returns.
 
-The dashboard does not call `.fit()`, refit, tune, or change calibration.
-
-Regression prediction intervals use the p05–p95 residual quantiles stored in B9 `residuals_summary.csv`.
-
-Classification alerts use:
-
-- Pipeline B: the threshold selected on the dashboard slider, default `4/15`;
-- Pipeline A: the fixed fallback threshold `1/6`.
+Neither path calls `.fit()`, refits, tunes or changes calibration. Lead-time intervals use the p05–p95 residual
+quantiles stored in B9 `residuals_summary.csv`. Alerts use Pipeline B's threshold from the slider (default 4/15)
+and Pipeline A's fixed fallback of 1/6. The scenarios (logistics 10% faster; freight discounts up to free shipping)
+re-score the alert model's inputs and are labelled as associations, not the effect of the action.
 
 ## 8. Thresholds and derived values
 

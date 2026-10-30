@@ -174,7 +174,7 @@ def deck_pack():
         val = e.get("text", "") if e["kind"] == "number" else (f"{e.get('rows')} rows" if e["kind"] == "table" else "chart")
         rows.append(f"| {i} | {e['kind']} | {str(val).replace('|', '/')} | {src_path(e['source'])} | {e['run_id']} | {e['evidence']} | {sid} |")
     head = ["# Deck v2 (Milestone 3 presentation): audit copy", "",
-            f"Generated on {TODAY} from repository commit `{commit}`; live deck {DECK_URL} (version 35).", "",
+            f"Generated on {TODAY} from repository commit `{commit}`; live deck {DECK_URL} (version 36).", "",
             "## How this copy was made", "",
             "- **Source.** The slide templates in `experiments/experiment_5/pipeline_b/deliverables/deck/project/slides/*.html`, in the order of `deck.json`, with every `{{id}}` filled from the number register. The deliverables audit checks that each live slide equals a fresh fill of its template.",
             "- **Images.** Each slide image is mapped to a register figure by `deliverables/audit/figure_map.json` (deck section) and copied here byte for byte. Fourteen of the twenty are presentation renders (register ids ending `.deck`, B-CR-43): the chart redrawn from its stored data file at the slide box size; the other six are the stored originals.",
@@ -192,7 +192,7 @@ ROLES = {"Henry": "report owner", "Solomon": "dashboard developer", "Benson": "e
 
 def dashboard_pack():
     app = Path("deliverables/dashboard/app")
-    shots = sorted((app / "screenshots/2026-10-29").glob("*.png"))
+    shots = sorted((app / "screenshots/2026-10-30").glob("*.png"))
     demote = lambda md: re.sub(r"(?m)^(#{1,5}) ", lambda m: "#" + m.group(1) + " ", md)  # noqa: E731
     rows = []
     body = ["# Dashboard (Streamlit app, plan revision 2.3): audit copy", "",
@@ -200,14 +200,15 @@ def dashboard_pack():
             "## How this copy was made", "",
             "- **App.** `experiments/experiment_5/pipeline_b/deliverables/dashboard/app/` (entry `app.py`, panels in `dashboard_core/`, tests in `tests/`). Four tabs: Business overview, Delivery lead time, Detractor risk at handover, ML deployment.",
             "- **What it reads.** Only committed files: the dashboard's business data (`data/business/dashboard/`), stored Pipeline B stage outputs (b09, b10, b12, T1) and the frozen model bundles in T1. No model is fitted and no test label is read to choose a model or threshold (sources document below).",
-            "- **Tests.** `python -m pytest -q` in the app folder, with its own environment (`requirements.txt`): 19 passed on this commit.",
+            "- **Tests.** `python -m pytest -q` in the app folder, with its own environment (`requirements.txt`): 20 passed on this commit.",
             "- **Hosting.** Not yet hosted; planned as a Streamlit Community Cloud app on the merged branch. Locally: `streamlit run app.py` from the app folder.",
             "- **Names.** The three project documents below record who decided what; in this copy each team member's name is replaced by their role (report owner, dashboard developer, experiment lead).",
-            "- **Screenshots.** Captured 2026-10-29 at 1600 x 1000 with headless Edge. Revision 2.3 (2026-10-30) removed the old score pointers 2.8 and 3.9 and renamed tab 4; the captured panels are unchanged, and a recapture on 2026-10-30 produced byte-identical files.",
+            "- **Screenshots.** Captured 2026-10-30 at 1600 x 1000 with headless Edge, after revision 2.3 (old score pointers 2.8 and 3.9 removed, tab 4 renamed ML deployment, promise buffer opening on Pipeline B). The final report's appendix uses two captures from the 2026-10-29 set (05 and 06), byte-identical to 05 and 06 here.",
+            "- **Environment.** The audit, the dashboard tests and this pack need `deliverables/audit/requirements-audit.txt` on top of the app's `requirements.txt`.",
             "", "---", "", "## Screenshots", ""]
     for s in shots:
         shutil.copyfile(s, OUT / "figures" / f"dashboard_{s.name}")
-        rows.append(f"| {s.name} | experiments/experiment_5/pipeline_b/deliverables/dashboard/app/screenshots/2026-10-29/{s.name} | `{hashlib.sha256(s.read_bytes()).hexdigest()}` |")
+        rows.append(f"| {s.name} | experiments/experiment_5/pipeline_b/deliverables/dashboard/app/screenshots/2026-10-30/{s.name} | `{hashlib.sha256(s.read_bytes()).hexdigest()}` |")
         body += [f"![{s.stem}](figures/dashboard_{s.name})", "", f"*{s.stem}*", ""]
     body += ["| Screenshot | Stored file | SHA-256 |", "| --- | --- | --- |"] + rows
     for title, f in (("Dashboard plan (panels, questions and sources)", "deliverables/dashboard/DASHBOARD_PLAN.md"),

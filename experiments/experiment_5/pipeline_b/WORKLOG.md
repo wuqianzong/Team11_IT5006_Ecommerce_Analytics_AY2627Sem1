@@ -680,3 +680,21 @@ more on the test than sending no alert, because the test period had fewer detrac
   the deck (15 slides, speaker notes, 20 mapped images) and the dashboard (plan, sources, README, 8 screenshots), each
   with a data-source index; output goes to the local `deliverables/exports/` (not committed) with an audit prompt.
 - Not merged into milestone-3 (Henry: hold the merge until the audit).
+
+## 2026-10-30 · Henry + Claude · third-party audit fixes (B-CR-44)
+
+**Done**
+- Fixes approved by Henry ("Yes, as recommended"): C-01, C-02, P-02, A-01, A-02, A-03, R-01, R-02, D-01, D-03, P-01, P-03.
+  R-03 (PDF) deferred until the merge and the app URL; A-01's branch name kept as decided.
+- Deck renders rerun (run 20261030T135524Z), 18 renders uploaded, deck v2 version 36 published; register rebuilt
+  (352 items). Review docs: final report rev 72, Milestone 2 rev 12. Screenshots in `screenshots/2026-10-30/`.
+- Audit inputs replaced: report export rev 72, deck v36 slide files (the committed copy was still deck v1).
+- Audit pack rebuilt into `_for_audit/` (untracked: its prompt summarises the private brief).
+
+**Checks**
+- Deliverables audit on the committed inputs: 9/9 PASS. Pipeline B tests 22 passed, 5 skipped; app tests 20 passed;
+  `build_evidence_B.py check` on both reports: all placeholders resolve.
+
+**Next**
+- Benson: app URL; then PDFs and the merge into `milestone-3` (not merged yet, as instructed).
+

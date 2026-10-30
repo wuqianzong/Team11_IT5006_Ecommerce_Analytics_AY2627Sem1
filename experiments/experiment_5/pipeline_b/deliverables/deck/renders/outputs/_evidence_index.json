@@ -84,6 +84,30 @@
         "B9.10"
       ],
       "kind": "figure"
+    },
+    "F.A2.data_structure.deck.png": {
+      "ids": [
+        "2.12"
+      ],
+      "kind": "figure"
+    },
+    "F.reg.partition.deck.png": {
+      "ids": [
+        "DS.3"
+      ],
+      "kind": "figure"
+    },
+    "F.reg.history_coverage.deck.png": {
+      "ids": [
+        "DS.1"
+      ],
+      "kind": "figure"
+    },
+    "F.clf.test_curves.deck.png": {
+      "ids": [
+        "T1.4"
+      ],
+      "kind": "figure"
     }
   }
 }

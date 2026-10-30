@@ -3285,17 +3285,6 @@
     "value": 4,
     "text": "4"
   },
-  "M2.clf.test_ap_first_A": {
-    "kind": "number",
-    "source": "b09/classification/outputs/label_sensitivity.csv",
-    "run_id": "20261025T132538Z",
-    "evidence": "B9.6",
-    "used_in": [
-      "m2"
-    ],
-    "value": 0.175039298077632,
-    "text": "0.175"
-  },
   "M2.reg.selection_ranking": {
     "kind": "table",
     "source": "A/s04_features/regression/outputs/selection_ranking.csv",
@@ -3773,7 +3762,7 @@
   "F.A3.reg.cumulative_importance.deck": {
     "kind": "figure",
     "source": "DECK/F.A3.reg.cumulative_importance.deck.png",
-    "run_id": "20261030T100629Z (DECK/deck_renders)",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
     "evidence": "3.9",
     "used_in": [
       "deck"
@@ -3784,7 +3773,7 @@
   "F.A3.clf.cumulative_importance.deck": {
     "kind": "figure",
     "source": "DECK/F.A3.clf.cumulative_importance.deck.png",
-    "run_id": "20261030T100629Z (DECK/deck_renders)",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
     "evidence": "3.9",
     "used_in": [
       "deck"
@@ -3795,7 +3784,7 @@
   "F.A3.reg.correlation_heatmap.deck": {
     "kind": "figure",
     "source": "DECK/F.A3.reg.correlation_heatmap.deck.png",
-    "run_id": "20261030T100629Z (DECK/deck_renders)",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
     "evidence": "3.8",
     "used_in": [
       "deck"
@@ -3806,7 +3795,7 @@
   "F.A3.clf.screen_promise.deck": {
     "kind": "figure",
     "source": "DECK/F.A3.clf.screen_promise.deck.png",
-    "run_id": "20261030T100629Z (DECK/deck_renders)",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
     "evidence": "3.11",
     "used_in": [
       "deck"
@@ -3817,7 +3806,7 @@
   "F.reg.lateness_by_route.deck": {
     "kind": "figure",
     "source": "DECK/F.reg.lateness_by_route.deck.png",
-    "run_id": "20261030T100629Z (DECK/deck_renders)",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
     "evidence": "DS.1",
     "used_in": [
       "deck"
@@ -3828,7 +3817,7 @@
   "F.A3.clf.screen_region.deck": {
     "kind": "figure",
     "source": "DECK/F.A3.clf.screen_region.deck.png",
-    "run_id": "20261030T100629Z (DECK/deck_renders)",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
     "evidence": "3.12",
     "used_in": [
       "deck"
@@ -3839,7 +3828,7 @@
   "F.reg.selection.deck": {
     "kind": "figure",
     "source": "DECK/F.reg.selection.deck.png",
-    "run_id": "20261030T100629Z (DECK/deck_renders)",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
     "evidence": "DS.2",
     "used_in": [
       "deck"
@@ -3850,7 +3839,7 @@
   "F.clf.selection.deck": {
     "kind": "figure",
     "source": "DECK/F.clf.selection.deck.png",
-    "run_id": "20261030T100629Z (DECK/deck_renders)",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
     "evidence": "DS.2",
     "used_in": [
       "deck"
@@ -3861,7 +3850,7 @@
   "F.reg.population.deck": {
     "kind": "figure",
     "source": "DECK/F.reg.population.deck.png",
-    "run_id": "20261030T100629Z (DECK/deck_renders)",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
     "evidence": "DS.5",
     "used_in": [
       "deck"
@@ -3872,7 +3861,7 @@
   "F.clf.confusion.deck": {
     "kind": "figure",
     "source": "DECK/F.clf.confusion.deck.png",
-    "run_id": "20261030T100629Z (DECK/deck_renders)",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
     "evidence": "DS.6",
     "used_in": [
       "deck"
@@ -3883,7 +3872,7 @@
   "F.reg.residuals.deck": {
     "kind": "figure",
     "source": "DECK/F.reg.residuals.deck.png",
-    "run_id": "20261030T100629Z (DECK/deck_renders)",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
     "evidence": "B9.16",
     "used_in": [
       "deck"
@@ -3894,7 +3883,7 @@
   "F.reg.by_state.deck": {
     "kind": "figure",
     "source": "DECK/F.reg.by_state.deck.png",
-    "run_id": "20261030T100629Z (DECK/deck_renders)",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
     "evidence": "B9.3",
     "used_in": [
       "deck"
@@ -3905,7 +3894,7 @@
   "F.reg.buffer_curve.deck": {
     "kind": "figure",
     "source": "DECK/F.reg.buffer_curve.deck.png",
-    "run_id": "20261030T100629Z (DECK/deck_renders)",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
     "evidence": "B12.2",
     "used_in": [
       "deck"
@@ -3916,12 +3905,56 @@
   "F.clf.threshold_options.deck": {
     "kind": "figure",
     "source": "DECK/F.clf.threshold_options.deck.png",
-    "run_id": "20261030T100629Z (DECK/deck_renders)",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
     "evidence": "B9.10",
     "used_in": [
       "deck"
     ],
     "file": "evidence/build/figures/F.clf.threshold_options.deck.png",
     "caption": "Precision, recall and alerts per day against the threshold (presentation render)"
+  },
+  "F.A2.data_structure.deck": {
+    "kind": "figure",
+    "source": "DECK/F.A2.data_structure.deck.png",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "evidence": "2.12",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.A2.data_structure.deck.png",
+    "caption": "From nine source tables to one row per order (presentation render)"
+  },
+  "F.reg.partition.deck": {
+    "kind": "figure",
+    "source": "DECK/F.reg.partition.deck.png",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "evidence": "DS.3",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.reg.partition.deck.png",
+    "caption": "Time-ordered folds and the test period (presentation render)"
+  },
+  "F.reg.history_coverage.deck": {
+    "kind": "figure",
+    "source": "DECK/F.reg.history_coverage.deck.png",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "evidence": "DS.1",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.reg.history_coverage.deck.png",
+    "caption": "Share of rows with their own seller and route history, by quarter (presentation render)"
+  },
+  "F.clf.test_curves.deck": {
+    "kind": "figure",
+    "source": "DECK/F.clf.test_curves.deck.png",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "evidence": "T1.4",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.clf.test_curves.deck.png",
+    "caption": "PR, ROC and reliability curves on B's test rows (presentation render)"
   }
 }

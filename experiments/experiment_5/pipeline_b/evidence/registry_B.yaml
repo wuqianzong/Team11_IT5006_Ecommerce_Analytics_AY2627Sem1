@@ -320,7 +320,6 @@
 - {id: M2.clf.excl_invalid_review_time, kind: number, source: A/s02_data/common/outputs/exclusion_counts.csv, select: {task: classification, reason_code: INVALID_REVIEW_TIME}, value: orders, format: "{:,}", evidence: "2.8", used_in: [m2]}
 - {id: M2.clf.excl_missing_installments, kind: number, source: A/s02_data/common/outputs/exclusion_counts.csv, select: {task: classification, reason_code: MISSING_INSTALLMENTS}, value: orders, format: "{:,}", evidence: "2.8", used_in: [m2]}
 - {id: M2.clf.excl_no_usable_payment, kind: number, source: A/s02_data/common/outputs/exclusion_counts.csv, select: {task: classification, reason_code: NO_USABLE_PAYMENT}, value: orders, format: "{:,}", evidence: "2.8", used_in: [m2]}
-- {id: M2.clf.test_ap_first_A, kind: number, source: b09/classification/outputs/label_sensitivity.csv, select: {model: A frozen, rows: A test rows, label: "is_detractor_first (first review)"}, value: ap, format: "{:.3f}", evidence: "B9.6", used_in: [m2]}
 - {id: M2.reg.selection_ranking, kind: table, source: A/s04_features/regression/outputs/selection_ranking.csv, columns: [feature, rank, value, cumulative_share, selected], evidence: "4.4", used_in: [m2]}
 - {id: M2.clf.selection_ranking, kind: table, source: A/s04_features/classification/outputs/selection_ranking.csv, columns: [feature, rank, value, cumulative_share, selected], evidence: "4.4", used_in: [m2]}
 - {id: M2.reg.val_dummy, kind: number, source: A/s08_selection/regression/outputs/candidates.csv, select: {candidate_id: "reg.sel.log.dummy_median"}, value: validation_mean, format: "{:.2f}", evidence: "8.1", used_in: [m2]}
@@ -379,3 +378,7 @@
 - {id: F.reg.by_state.deck, kind: figure, source: DECK/F.reg.by_state.deck.png, caption: "Lead-time error by customer state (presentation render)", evidence: "B9.3", used_in: [deck]}
 - {id: F.reg.buffer_curve.deck, kind: figure, source: DECK/F.reg.buffer_curve.deck.png, caption: "Promise buffer: share of orders delivered later than prediction plus buffer; buffer chosen on validation, read on the test (presentation render)", evidence: "B12.2", used_in: [deck]}
 - {id: F.clf.threshold_options.deck, kind: figure, source: DECK/F.clf.threshold_options.deck.png, caption: "Precision, recall and alerts per day against the threshold (presentation render)", evidence: "B9.10", used_in: [deck]}
+- {id: F.A2.data_structure.deck, kind: figure, source: DECK/F.A2.data_structure.deck.png, caption: "From nine source tables to one row per order (presentation render)", evidence: "2.12", used_in: [deck]}
+- {id: F.reg.partition.deck, kind: figure, source: DECK/F.reg.partition.deck.png, caption: "Time-ordered folds and the test period (presentation render)", evidence: "DS.3", used_in: [deck]}
+- {id: F.reg.history_coverage.deck, kind: figure, source: DECK/F.reg.history_coverage.deck.png, caption: "Share of rows with their own seller and route history, by quarter (presentation render)", evidence: "DS.1", used_in: [deck]}
+- {id: F.clf.test_curves.deck, kind: figure, source: DECK/F.clf.test_curves.deck.png, caption: "PR, ROC and reliability curves on B's test rows (presentation render)", evidence: "T1.4", used_in: [deck]}
