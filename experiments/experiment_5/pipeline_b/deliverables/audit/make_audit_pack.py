@@ -4,9 +4,12 @@ as standalone Markdown, each filled from the number register, its figures copied
     cd experiments/experiment_5/pipeline_b
     python deliverables/audit/make_audit_pack.py <out dir>
 
-Reads only committed sources and the register build (evidence/build/). deliverables/exports/ is local, not committed."""
+Needs deliverables/audit/requirements-audit.txt. Reads only committed sources and the register build
+(evidence/build/). deliverables/exports/ is local, not committed."""
 import hashlib, json, re, shutil, subprocess, sys
 from pathlib import Path
+
+from bs4 import BeautifulSoup   # checked before any output is written (requirements-audit.txt)
 sys.path.insert(0, '.')
 import build_evidence_B as reg
 OUT = Path(sys.argv[1]); (OUT / "figures").mkdir(parents=True, exist_ok=True)
@@ -105,7 +108,6 @@ pack("milestone2_report_audit.md", "deliverables/m2_report", "Revised Phase 2 re
 
 
 # ---------------------------------------------------------------------------------------------------------------
-from bs4 import BeautifulSoup  # noqa: E402
 
 DECK_URL = "https://claude.ai/artifact/NBiGTdX9JKB5kAeeX34gvc"
 

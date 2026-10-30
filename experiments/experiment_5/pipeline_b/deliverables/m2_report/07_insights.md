@@ -8,7 +8,7 @@
 
 **Limitations.**
 
-- **What checkout cannot see.** The strongest driver of a bad review, a late delivery, is unknown at checkout, which keeps the alert weak; a later prediction moment, once the order is dispatched, would know more.
+- **What checkout cannot see.** The strongest signal of a bad review, a late delivery, is unknown at checkout, which keeps the alert weak; a later prediction moment, once the order is dispatched, would know more.
 - **Weak fit for lead time.** R² is low: much of the variation in delivery time depends on events after checkout.
 - **The threshold did not transfer.** The test period had fewer detractors, so the frozen 1/6 alerted too often and cost more than no alert; the threshold needs monitoring and re-setting.
 - **Optimistic validation.** Features were ranked once on all development orders, so validation scores are slightly optimistic; the test is unaffected.

@@ -38,7 +38,7 @@ Validation uses five time-ordered folds: train on the past, validate on the foll
 
 ## 9. What the baseline cannot see at checkout (0:45)
 
-But A's own evidence showed three limits. One: late delivery drives bad reviews, 57.2% detractors when late against 9.5% on time, yet at checkout lateness is unknown. Two: speed depends on the route and changes over time, from a median of 7.8 days to Sao Paulo to 27.1 to Amazonas, and checkout features carry no recent behaviour. Three: thin, distant routes are noisy and one model fits them poorly. Each limit points to one change in Pipeline B.
+But A's own evidence showed three limits. One: late delivery goes with bad reviews, 57.2% detractors when late against 9.5% on time, yet at checkout lateness is unknown. Two: speed depends on the route and changes over time, from a median of 7.8 days to Sao Paulo to 27.1 to Amazonas, and checkout features carry no recent behaviour. Three: thin, distant routes are noisy and one model fits them poorly. Each limit points to one change in Pipeline B.
 
 ## 10. Recent seller and route history rank at the top (0:40)
 

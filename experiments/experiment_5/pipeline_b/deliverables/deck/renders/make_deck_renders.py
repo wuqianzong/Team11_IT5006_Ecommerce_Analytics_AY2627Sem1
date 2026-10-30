@@ -3,6 +3,8 @@
 Each render redraws one register chart from the data file saved beside its stored PNG, sized to its slide box with
 text of at least 18 pt at that size, so it can be read in presentation mode. No stage is rerun, no model is fitted
 and no number is computed that the stored data file does not hold; the original PNGs and the report are unchanged.
+The test-curve render draws its PR and ROC panels from T1's stored test predictions, the data T1 drew the
+original from, because the data file beside the original keeps only the reliability points. All text is 18 pt.
 
     python experiments/experiment_5/pipeline_b/deliverables/deck/renders/make_deck_renders.py
 
@@ -38,7 +40,7 @@ FONT = 18
 INPUTS: list[Path] = []
 
 plt.rcParams.update({"font.size": FONT, "axes.titlesize": FONT, "axes.labelsize": FONT, "xtick.labelsize": FONT,
-                     "ytick.labelsize": FONT, "legend.fontsize": FONT - 2, "axes.spines.top": False,
+                     "ytick.labelsize": FONT, "legend.fontsize": FONT, "axes.spines.top": False,
                      "axes.spines.right": False, "axes.titlelocation": "left"})
 
 
@@ -76,7 +78,7 @@ def cumulative(task: str, name: str) -> None:
         ax.axvline(c + 0.5, color=col, linestyle="--", linewidth=1.5)
         ax.text(c + 0.3, 0.62 if q == "0.95" else 0.48, f"{int(float(q) * 100)}%: top {c}", color=col, rotation=90, va="bottom")
     top = ", ".join(d["feature"].head(3))
-    ax.text(0.3, 0.47, f"Top 3: {top}", transform=ax.transAxes, va="top", fontsize=FONT - 3, wrap=True)
+    ax.text(0.3, 0.47, f"Top 3: {top}", transform=ax.transAxes, va="top", fontsize=FONT, wrap=True)
     ax.set_xlabel("feature rank (of 24)")
     ax.set_ylabel("share")
     ax.set_xticks([1, 5, 10, 15, 20, 24])
@@ -92,16 +94,17 @@ def heatmap(name: str) -> None:
     d = d[d.feature_a < d.feature_b].assign(strength=lambda x: x.spearman.abs())
     s = d[d.strength >= 0.5].sort_values("strength")
     fig, ax = _fig(820, 700)
-    ax.barh([f"{a}\n– {b}" for a, b in zip(s.feature_a, s.feature_b)], s.strength,
+    short = lambda f: f.replace("_fraction", "").replace("_cm3", "").replace("_g", "").replace("_km_max", "")  # noqa: E731
+    ax.barh([f"{short(a)} – {short(b)}" for a, b in zip(s.feature_a, s.feature_b)], s.strength,
             color=[RED if v > 0 else BLUE for v in s.spearman], height=0.7)
     for i, v in enumerate(s.spearman):
-        ax.text(abs(v) + 0.01, i, f"{v:+.2f}", va="center", fontsize=FONT - 2)
+        ax.text(abs(v) + 0.01, i, f"{v:+.2f}", va="center", fontsize=FONT)
     ax.axvline(0.9, color="#111827", linestyle="--", linewidth=1.5)
-    ax.text(0.905, len(s) - 0.4, "flag at 0.9", fontsize=FONT - 2)
+    ax.text(0.905, len(s) - 0.4, "flag at 0.9", fontsize=FONT)
     ax.set_xlim(0.4, 1.12)
     ax.set_xlabel("|Spearman ρ|  (red +, blue −)")
     ax.set_title(f"{len(s)} pairs with |ρ| ≥ 0.5")
-    ax.tick_params(axis="y", labelsize=FONT - 3)
+    ax.tick_params(axis="y", labelsize=FONT)
     _grid(ax, "x")
     fig.tight_layout()
     _save(fig, name)
@@ -129,7 +132,7 @@ def lateness_by_route(name: str) -> None:
     a2.set_title("median delivery days")
     for a in (a1, a2):
         a.set_xticks(x)
-        a.set_xticklabels(d["route"], rotation=90, fontsize=FONT - 2)
+        a.set_xticklabels(d["route"], rotation=90, fontsize=FONT)
         _grid(a)
     fig.tight_layout(w_pad=2)
     _save(fig, name)
@@ -154,7 +157,7 @@ def screen_region(name: str) -> None:
         ax.bar(range(len(s)), s.detractor_rate * 100, color="#e06666", width=0.7)
         ax.axhline(overall, color="#111827", linestyle="--", linewidth=1.2)
         ax.set_xticks(range(len(s)))
-        ax.set_xticklabels(labels, rotation=90 if feat == "region_pair" else 0, fontsize=FONT - 2)
+        ax.set_xticklabels(labels, rotation=90 if feat == "region_pair" else 0, fontsize=FONT)
         ax.set_title(title)
         _grid(ax)
     axs[0].set_ylabel("detractors %")
@@ -165,13 +168,13 @@ def screen_region(name: str) -> None:
 def selection(task: str, name: str) -> None:
     d = _read(B_OUT / f"doc_support/{task}/outputs/figures/b4_selection.csv").sort_values("rank")
     kept, total = int(d.selected.astype(bool).sum()), len(d)
-    t = d.head(8).iloc[::-1]
+    t = d.head(6).iloc[::-1]
     fig, ax = _fig(836, 330)
     colors = [BLUE if str(s).startswith("B-") else "#c4c9d1" for s in t.source]
     ax.barh(t.feature, t.share * 100, color=colors, height=0.7)
     ax.set_xlabel("share of total ranking score, %")
-    ax.tick_params(axis="y", labelsize=FONT - 2)
-    ax.set_title(f"top 8 of {total}; {kept} kept (99% rule)", fontsize=FONT - 2)
+    ax.tick_params(axis="y", labelsize=FONT)
+    ax.set_title(f"top 6 of {total} · {kept} kept", fontsize=FONT)
     _grid(ax, "x")
     fig.tight_layout()
     _save(fig, name)
@@ -227,7 +230,7 @@ def residuals(name: str) -> None:
         ax.step(s.bin_from_days, share, where="post", color=col, linewidth=2.5, label=lab)
     for x, lab in ((3, "3 days late"), (6, "6 days late")):
         ax.axvline(x, color=RED, linestyle="--", linewidth=1.3)
-        ax.text(x + 0.3, ax.get_ylim()[1] * 0.35, lab, color=RED, fontsize=FONT - 3, rotation=90, va="bottom")
+        ax.text(x + 0.3, ax.get_ylim()[1] * 0.35, lab, color=RED, fontsize=FONT, rotation=90, va="bottom")
     ax.set_xlabel("actual − predicted lead time, days (positive = late)")
     ax.set_ylabel("% of orders")
     ax.set_xlim(-20, 20)
@@ -244,7 +247,7 @@ def by_state(name: str) -> None:
     ax.bar(x - 0.2, d.mae_A, 0.4, color=GREY, label="Pipeline A")
     ax.bar(x + 0.2, d.mae_B, 0.4, color=BLUE, label="Pipeline B")
     ax.set_xticks(x)
-    ax.set_xticklabels([f"{v}\n{n:,}" for v, n in zip(d.value, d.orders)], fontsize=FONT - 2)
+    ax.set_xticklabels([f"{v}\n{n:,}" for v, n in zip(d.value, d.orders)], fontsize=FONT)
     ax.set_ylabel("test MAE (days)")
     ax.legend(frameon=False, ncol=2, loc="upper left")
     _grid(ax)
@@ -263,8 +266,8 @@ def buffer_curve(name: str) -> None:
         ax.plot(s.buffer_days, s.share_late * 100, color=col, linestyle=ls, linewidth=2.5, label=lab)
     for _, r in ch.iterrows():
         ax.axvline(r.buffer_days_chosen_on_validation, color=RED, linestyle=":", linewidth=1.5)
-        ax.text(r.buffer_days_chosen_on_validation - 1.4, 18, f"{int(r.on_time_target * 100)}% on time",
-                color=RED, fontsize=FONT - 3, rotation=90, va="bottom")
+        ax.text(r.buffer_days_chosen_on_validation + 0.3, 30 if r.on_time_target < 0.95 else 8,
+                f"{int(r.on_time_target * 100)}%", color=RED, fontsize=FONT)
     ax.set_xlabel("buffer added to the prediction (days)")
     ax.set_ylabel("% delivered late")
     ax.legend(frameon=False, loc="upper right")
@@ -290,13 +293,96 @@ def threshold_options(name: str) -> None:
     for a in (a1, a2):
         for t, lab in ((1 / 6, "1/6"), (4 / 15, "4/15")):
             a.axvline(t, color="#111827", linestyle=":", linewidth=1.2)
-            a.text(t + 0.005, a.get_ylim()[1] * 0.9, lab, fontsize=FONT - 3)
+            a.text(t + 0.005, a.get_ylim()[1] * 0.9, lab, fontsize=FONT)
         a.set_xlabel("threshold")
         _grid(a)
     a1.set_title("precision and recall")
     a2.set_title("alerts per day")
     a1.legend(frameon=False, loc="upper right", bbox_to_anchor=(1.0, 1.02))
     a2.legend(frameon=False, loc="upper right")
+    fig.tight_layout(w_pad=2)
+    _save(fig, name)
+
+
+def data_structure(name: str) -> None:
+    d = _read(A_OUT / "s02_data/common/outputs/figures/data_structure.csv")
+    pos = {"customers": (0.12, 0.62), "orders": (0.42, 0.62), "order_items": (0.72, 0.80), "order_payments": (0.72, 0.55),
+           "order_reviews": (0.72, 0.30), "products": (0.42, 0.92), "sellers": (0.92, 0.95),
+           "category_translation": (0.14, 0.92), "geolocation": (0.35, 0.18)}
+    fig, ax = _fig(900, 680)
+    ax.set_xlim(0, 1.05); ax.set_ylim(0, 1.05); ax.axis("off")
+    for _, r in d.iterrows():
+        (x0, y0), (x1, y1) = pos[r.from_table], pos[r.to_table]
+        ax.annotate("", xy=(x1, y1), xytext=(x0, y0), arrowprops=dict(arrowstyle="-|>", color="#9ca3af", lw=1.6,
+                    shrinkA=34, shrinkB=34))
+    for tbl, (x, y) in pos.items():
+        ax.text(x, y, tbl.replace("_", "\n", 1) if len(tbl) > 12 else tbl, ha="center", va="center",
+                bbox=dict(boxstyle="round,pad=0.45", fc="#eff6ff" if tbl != "orders" else "#dbeafe", ec=BLUE, lw=1.5))
+    ax.text(0.0, 0.0, "arrow: one side to many side; geolocation joins by ZIP prefix", fontsize=FONT, color=GREY)
+    fig.tight_layout()
+    _save(fig, name)
+
+
+def partition(name: str) -> None:
+    d = _read(B_OUT / "doc_support/regression/outputs/figures/b5_partition.csv")
+    cut = pd.Timestamp(_json(A_OUT / "s05_partition/regression/outputs/counts.json")["test_cutoff"])
+    fig, ax = _fig(1696, 470)
+    for i, r in d.iterrows():
+        y = len(d) - i
+        t0, t1 = pd.Timestamp(r.a_train_start), pd.Timestamp(r.a_train_end)
+        v0, v1 = pd.Timestamp(r.a_validation_start), pd.Timestamp(r.a_validation_end)
+        ax.barh(y, (t1 - t0).days, left=t0, color="#93c5fd", height=0.6)
+        ax.barh(y, (v1 - v0).days, left=v0, color=ORANGE, height=0.6)
+    ax.axvline(cut, color=RED, linestyle="--", linewidth=2)
+    ax.text(cut + pd.Timedelta(days=4), len(d) + 0.55, "test period from here, read once", color=RED, va="center")
+    ax.set_yticks(range(1, len(d) + 1))
+    ax.set_yticklabels([f"fold {k}" for k in range(len(d), 0, -1)])
+    from matplotlib.patches import Patch
+    ax.legend(handles=[Patch(color="#93c5fd", label="training window"), Patch(color=ORANGE, label="validation window")],
+              frameon=False, loc="upper left", ncol=2)
+    ax.set_ylim(0.4, len(d) + 1.6)
+    ax.set_xlim(pd.Timestamp("2017-01-01"), cut + pd.Timedelta(days=200))
+    _grid(ax, "x")
+    fig.tight_layout()
+    _save(fig, name)
+
+
+def history_coverage(name: str) -> None:
+    d = _read(B_OUT / "doc_support/regression/outputs/figures/b2_history_coverage.csv")
+    own = d[d.source.str.startswith("own")]
+    fig, ax = _fig(812, 300)
+    for (feat, g), col in zip(own.groupby("feature", sort=False), (BLUE, ORANGE, GREY)):
+        ax.plot(g.quarter, g.share * 100, marker="o", linewidth=2.5, color=col,
+                label={"seller_prior": "seller history"}.get(feat, feat.replace("route_recent_", "route ").replace("_", " ")))
+    ax.set_ylabel("% own history")
+    ax.set_ylim(0, 105)
+    ax.tick_params(axis="x", rotation=45)
+    ax.legend(frameon=False, loc="lower right")
+    _grid(ax)
+    fig.tight_layout()
+    _save(fig, name)
+
+
+def test_curves(name: str) -> None:
+    from sklearn.metrics import precision_recall_curve, roc_curve
+    rel = _read(B_OUT / "t1_joint_test/classification/outputs/figures/test_curves.csv")
+    pred = _read(B_OUT / "t1_joint_test/classification/outputs/predictions_test.csv.gz")
+    pred = pred[pred.rows == "B test rows"]
+    fig, axs = _fig(1696, 380, ncols=3)
+    for model, col, lab in (("B frozen", BLUE, "Pipeline B"), ("A frozen", GREY, "Pipeline A")):
+        s = pred[pred.model == model]
+        pr, rc, _ = precision_recall_curve(s.y_true, s.y_pred)
+        fpr, tpr, _ = roc_curve(s.y_true, s.y_pred)
+        axs[0].plot(rc, pr, color=col, linewidth=2.2, label=lab)
+        axs[1].plot(fpr, tpr, color=col, linewidth=2.2, label=lab)
+        r = rel[rel.model == model]
+        axs[2].plot(r.x, r.y, color=col, marker="o", linewidth=2.2, label=lab)
+    axs[1].plot([0, 1], [0, 1], color="#d1d5db", linestyle="--")
+    axs[2].plot([0, 0.6], [0, 0.6], color="#d1d5db", linestyle="--")
+    for ax, (title, xl, yl) in zip(axs, (("precision–recall", "recall", "precision"), ("ROC", "false positive rate", "true positive rate"),
+                                          ("reliability", "predicted risk", "observed share"))):
+        ax.set_title(title); ax.set_xlabel(xl); ax.set_ylabel(yl); _grid(ax)
+    axs[0].legend(frameon=False, loc="upper right")
     fig.tight_layout(w_pad=2)
     _save(fig, name)
 
@@ -316,6 +402,10 @@ RENDERS = {
     "F.reg.by_state": (by_state, None),
     "F.reg.buffer_curve": (buffer_curve, None),
     "F.clf.threshold_options": (threshold_options, None),
+    "F.A2.data_structure": (data_structure, None),
+    "F.reg.partition": (partition, None),
+    "F.reg.history_coverage": (history_coverage, None),
+    "F.clf.test_curves": (test_curves, None),
 }
 
 

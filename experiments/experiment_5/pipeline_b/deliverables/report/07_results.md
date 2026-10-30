@@ -66,7 +66,7 @@ For lead time most of the lower error comes from the narrower scope, because Pip
 
 *Figure: Where the gain comes from: scope vs features (F.reg.population).*
 
-### 7.4 What drives the predictions, and drift
+### 7.4 What the models rely on, and drift
 
 Permutation importance measures how much each feature contributes to the frozen model on the test orders: the score lost when the feature is shuffled. For lead time the seller's earlier dispatch days, the route and the distance rank highest, so the seller's own delay matters at least as much as the journey. For the alert, the number of sellers in the order and the route's recent delivery and transit times rank above this order's handover delay, so route conditions and basket complexity carry more signal about a bad review than the dispatch delay alone. These are associations in the frozen model, not causes.
 

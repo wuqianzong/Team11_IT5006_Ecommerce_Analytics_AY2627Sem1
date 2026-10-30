@@ -1,0 +1,6 @@
+# Environment for reviewing the deliverables: the dashboard's pinned runtime (which also runs the register build,
+# the deliverables audit and the Pipeline B tests) plus the audit-pack generator and the API tests.
+-r ../dashboard/app/requirements.txt
+beautifulsoup4==4.13.5
+fastapi==0.120.0
+httpx==0.28.1

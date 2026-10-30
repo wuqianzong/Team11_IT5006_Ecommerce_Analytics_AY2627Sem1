@@ -57,7 +57,9 @@ def _promise_buffer() -> None:
     curve = evidence_table("regression", "b12", "buffer_curve.csv")
     choice = evidence_table("regression", "b12", "buffer_choice.csv")
     state = evidence_table("regression", "b12", "buffer_by_state.csv")
-    series = st.selectbox("View", sorted(curve["series"].dropna().unique()), key="buffer_series")
+    options = sorted(curve["series"].dropna().unique())
+    default = "B on B's validation rows (out-of-fold)"   # the adopted model's curve, from which the buffers are chosen
+    series = st.selectbox("View", options, index=options.index(default) if default in options else 0, key="buffer_series")
     selected = curve[curve["series"] == series]
     line_chart(
         selected,
