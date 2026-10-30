@@ -69,6 +69,14 @@ def main() -> int:
                 return False, f"{asset.name} -> {fid} -> {err}"
             ok = asset.exists() and _sha(asset) == _sha(regfile) == _sha(src)
             return ok, f"{asset.name} -> {fid} -> {e['source']} ({e['run_id']})"
+        if e["source"].startswith("BIZ/"):
+            # business context (B-CR-41): no stage manifest; the file must match business_context's manifest
+            try:
+                src, _ = reg.verify_biz_source(e["source"])
+            except ValueError as err:
+                return False, f"{asset.name} -> {fid} -> {err}"
+            ok = asset.exists() and _sha(asset) == _sha(regfile) == _sha(src)
+            return ok, f"{asset.name} -> {fid} -> {e['source']} ({e['run_id']})"
         src = reg.STAGES / e["source"]
         stage, task = Path(e["source"]).parts[:2]
         man = json.loads((reg.STAGES / stage / task / "outputs" / "_manifest.json").read_text())
