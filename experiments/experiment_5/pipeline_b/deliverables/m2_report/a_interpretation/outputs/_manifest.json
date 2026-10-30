@@ -1,0 +1,37 @@
+{
+  "node": "M2A/a_interpretation",
+  "run_id": "20261030T010520Z",
+  "commit": "f772f048699d652f300d9e6e0953f26aa16b8e6a",
+  "dirty": false,
+  "inputs": {
+    "experiments/experiment_5/pipeline_b/stages/t1_joint_test/classification/outputs/bundles/A/model.joblib": "d50e87844893130bf0c32a8f0b32f6648906a9e1a4da47b60868a601e2a603a0",
+    "experiments/experiment_5/pipeline_b/stages/t1_joint_test/classification/outputs/predictions_test.csv.gz": "c13076921c074e2a383c35808fb4d32a80d43a570abe821e7522a952a4bbed96",
+    "experiments/experiment_5/pipeline_b/stages/t1_joint_test/regression/outputs/bundles/A/model.joblib": "2f77e781f7c4a609f3fef11bef20dcf5995915498d17da44caecb43b9e677b70",
+    "experiments/experiment_5/pipeline_b/stages/t1_joint_test/regression/outputs/predictions_test.csv.gz": "32d5699953c15456523bd7f016684f96954d7116455f7d5ff78e7d8c95987f63",
+    "experiments/experiment_5/stages/s02_data/common/outputs/records.csv.gz": "3a86d161df392891c499b9f1d88cc7d2145d94b4015721fc631dc360dcbc4f5a",
+    "experiments/experiment_5/stages/s05_partition/classification/outputs/test_manifest.csv": "b8afcc693e0a83eddfabfca11a0e203d9ea92bbeaefec5a5db12e867baafa043",
+    "experiments/experiment_5/stages/s05_partition/regression/outputs/test_manifest.csv": "630e3ee134c20f2256c75883a6f1d4e20ac4d13b35d0ce38982b4cc62bba7a7c",
+    "experiments/experiment_5/stages/s08_selection/classification/outputs/selected_spec.json": "6404262331834d1c466caaeedc51f68cefd56f440f71e48703b83d49330cc149",
+    "experiments/experiment_5/stages/s08_selection/regression/outputs/selected_spec.json": "7b9d955aabd4a155a50ec22dd270390ec6f4f7a833d1faede6f771349055c6ba"
+  },
+  "code": {
+    "experiments/experiment_5/pipeline_b/deliverables/m2_report/a_interpretation/make_a_interpretation.py": "2110eec25e9c8f05ec9481c810c470ff15e87f099557eaf169d99cc2707696b6"
+  },
+  "outputs": {
+    "experiments/experiment_5/pipeline_b/deliverables/m2_report/a_interpretation/outputs/_evidence_index.json": "b24b913768505f4391ebeccd562faadb91aa1e0fae7e9897a42e27e34b1ea064",
+    "experiments/experiment_5/pipeline_b/deliverables/m2_report/a_interpretation/outputs/classification/coefficients.csv": "8e2a22624b7e39194131a71bd37131bf39be0dd4ab242dd420ae1d9739c54001",
+    "experiments/experiment_5/pipeline_b/deliverables/m2_report/a_interpretation/outputs/classification/figures/coefficients.csv": "343499f889effc733e0feec7a8f44dd2a66f26836434dcfe43a3204a3fdd7308",
+    "experiments/experiment_5/pipeline_b/deliverables/m2_report/a_interpretation/outputs/classification/figures/coefficients.png": "29147910ea6cf0c4a2a0a4a4c4ccbfd8cad2b530dc1d57c6115d1992234a4701",
+    "experiments/experiment_5/pipeline_b/deliverables/m2_report/a_interpretation/outputs/classification/figures/permutation_importance.csv": "658cb2410d4242c3e18a571369f5efddbae5fffaed335496e6da72060dd1b70f",
+    "experiments/experiment_5/pipeline_b/deliverables/m2_report/a_interpretation/outputs/classification/figures/permutation_importance.png": "d59ffaefa80fc70fdcffc464e2272b6ab9b719ede8567f9a10ca79a10917e74a",
+    "experiments/experiment_5/pipeline_b/deliverables/m2_report/a_interpretation/outputs/classification/permutation_importance.csv": "e2574999602786f87c1e55a0e2bd936d561f70165b4274cebad2f3537abeba23",
+    "experiments/experiment_5/pipeline_b/deliverables/m2_report/a_interpretation/outputs/classification/summary.json": "eb161f6f821888002b44250c89cf284bb20bf5866596b98aa3a11c4cb6202906",
+    "experiments/experiment_5/pipeline_b/deliverables/m2_report/a_interpretation/outputs/regression/coefficients.csv": "4f746e85c10235d1f4973f5f787c3d4b82d2c0d8c7bbbb5b998f2767777375ac",
+    "experiments/experiment_5/pipeline_b/deliverables/m2_report/a_interpretation/outputs/regression/figures/coefficients.csv": "86a3939dd80ed1a860cd18ee5e98864e9cedc6f56d562c0aacda9c65503d5281",
+    "experiments/experiment_5/pipeline_b/deliverables/m2_report/a_interpretation/outputs/regression/figures/coefficients.png": "351d069a2d8c56287ff5a7e2f6b91936c9459bbcaa4eef45fb0061f0f96170fa",
+    "experiments/experiment_5/pipeline_b/deliverables/m2_report/a_interpretation/outputs/regression/figures/permutation_importance.csv": "1727c20e4cda8a169ffcc681e1be5db9c9a6269a472e9cd4a8df8891537d3da6",
+    "experiments/experiment_5/pipeline_b/deliverables/m2_report/a_interpretation/outputs/regression/figures/permutation_importance.png": "f2e81f4112e1ac17a2b59e5d97ffdea4fbf802fb3ab9d53699b540cb35afcd0e",
+    "experiments/experiment_5/pipeline_b/deliverables/m2_report/a_interpretation/outputs/regression/permutation_importance.csv": "a318122dec3bfc46711b90c4f2da94a196eb4eb063863021bc5bfa059fc8baae",
+    "experiments/experiment_5/pipeline_b/deliverables/m2_report/a_interpretation/outputs/regression/summary.json": "d1fa80600975d242d0e47a2b90321650c89bcadab08e9a60b65967a86819aed1"
+  }
+}

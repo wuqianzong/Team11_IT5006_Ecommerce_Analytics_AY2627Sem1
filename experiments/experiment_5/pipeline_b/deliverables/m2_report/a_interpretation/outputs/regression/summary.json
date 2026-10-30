@@ -1,0 +1,9 @@
+{
+  "rows": 18788,
+  "reprediction_max_difference": 2.1316282072803006e-14,
+  "seed": 42,
+  "n_repeats": 5,
+  "top_feature": "distance_km_max",
+  "features": 18,
+  "terms": 137
+}
