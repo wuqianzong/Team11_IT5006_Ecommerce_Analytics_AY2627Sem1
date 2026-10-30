@@ -16,7 +16,9 @@ Validation folds are selection scores; the test was read once.
 
 {{table:B5.clf.folds}}
 
-*Figure: Drift between development and test, by fold (F.reg.drift).*
+Drift is measured for each fold as the standardised mean difference of each numeric feature, and of the target, between the fold's validation rows and its training rows: the difference of the two means divided by the pooled standard deviation, the square root of the average of the two variances. The last column compares the test rows with the rows of the final fit in the same way. A positive value means the later rows have the higher mean.
+
+*Figure: Drift by fold, lead time: standardised mean difference of each feature and of the target, validation rows against training rows for each fold, and test rows against the final fit's rows (F.reg.drift).*
 
 ### B. Metric glossary
 
@@ -57,6 +59,16 @@ Full rank means no column is an exact linear combination of the others, so the c
 *Table D2. Selected features, detractor alert.*
 
 {{table:APX.clf.features}}
+
+**Derived features.** Almost every feature is computed from the nine raw tables rather than read from one column; a feature read straight from a raw column shows that column. Tables D3 and D4 give the formula of each, as stored with the feature pipelines. Order-level sums, counts and shares are taken over the order's items after the joins of section 3; history features use only other orders whose events were complete before this order's prediction week.
+
+*Table D3. Pipeline A's features and how each is derived (both tasks; the missing-value indicators are added inside each fold).*
+
+{{table:APX.features_derived_A}}
+
+*Table D4. Pipeline B's new features and how each is derived.*
+
+{{table:APX.features_derived_B}}
 
 ### E. Train, validation and test tables
 

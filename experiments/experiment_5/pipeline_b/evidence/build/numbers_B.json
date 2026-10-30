@@ -3746,5 +3746,28 @@
     ],
     "value": 0.0267223466730134,
     "text": "0.027"
+  },
+  "APX.features_derived_A": {
+    "kind": "table",
+    "source": "A/s04_features/classification/outputs/feature_dictionary.csv",
+    "run_id": "20261023T083401Z @ e5-A-frozen",
+    "evidence": "4.6",
+    "used_in": [
+      "report D",
+      "m2"
+    ],
+    "file": "evidence/build/tables/APX.features_derived_A.csv",
+    "rows": 33
+  },
+  "APX.features_derived_B": {
+    "kind": "table",
+    "source": "b04/classification/outputs/feature_dictionary_B.csv",
+    "run_id": "20261023T154833Z",
+    "evidence": "B4.5",
+    "used_in": [
+      "report D"
+    ],
+    "file": "evidence/build/tables/APX.features_derived_B.csv",
+    "rows": 9
   }
 }

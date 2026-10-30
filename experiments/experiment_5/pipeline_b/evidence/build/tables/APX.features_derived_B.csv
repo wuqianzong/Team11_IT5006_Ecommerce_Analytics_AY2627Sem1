@@ -1,0 +1,10 @@
+feature,definition,formula
+route_recent_carrier_transit_days,Recent route carrier transit days: recent typical carrier-to-customer time on the route,"as route_recent_delivery_days, on (delivery date - carrier date)"
+route_recent_delivery_days,Recent route delivery days: recent typical purchase-to-delivery time on the route,"weighted 3-week mean (0.5, 0.3, 0.2) of the route's weekly median lead days; < 10 route events -> 0.7 x seller state + 0.3 x customer state, then overall"
+seller_prior_dispatch_days,Prior seller dispatch days: mean days from purchase to carrier handover over the seller's earlier orders,mean of (carrier date - purchase time) over the seller's earlier handovers; same fallback
+seller_prior_late_handover_days,Prior seller late-handover days: mean days by which the seller's earlier handovers missed the shipping limit (0 if on time),"mean of max(0, carrier date - last shipping_limit_date) over the seller's earlier handovers; same fallback"
+order_dispatch_days,Days from purchase to this order's carrier handover,carrier date - purchase time of this order
+route_seller_to_customer_state,Route of the order: primary seller's state to the customer's state,primary_seller_state + '->' + customer_state
+seller_prior_late_handover_rate,Prior seller late-handover rate: share of the seller's earlier handovers made after their last shipping limit,mean over the seller's handovers in weeks before the prediction week of 1[carrier date > last shipping_limit_date]; new seller: weighted 3-week mean of sellers in the same state
+order_handover_late_days,Days this order's handover missed the shipping limit (0 if on time),"max(0, carrier date - last shipping_limit_date) of this order"
+order_handed_over_late,This order was handed to the carrier after its last shipping limit,1[carrier date > last shipping_limit_date] of this order (known at handover)

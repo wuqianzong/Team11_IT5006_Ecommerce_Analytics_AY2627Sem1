@@ -621,9 +621,11 @@ Validation folds are selection scores; the test was read once.
 | 4 | 2017-01-05 11:56:06 | 2018-02-01 13:41:36 | 2018-02-04 16:10:12 | 2018-03-31 20:05:18 | 37140 | 2017-02-12 00:20:45 | 2018-02-01 13:41:36 | 47933 | 4472 | 0.1204 | 10453 | 2018-02-04 16:10:12 | 2018-03-31 20:05:18 | 12925 | 2173 | 0.2079 |
 | 5 | 2017-01-05 11:56:06 | 2018-03-28 11:52:01 | 2018-03-31 20:10:17 | 2018-05-23 11:29:51 | 47237 | 2017-02-12 00:20:45 | 2018-03-28 11:52:01 | 60361 | 6363 | 0.1347 | 8646 | 2018-03-31 20:10:17 | 2018-05-23 11:29:51 | 10251 | 873 | 0.101 |
 
+Drift is measured for each fold as the standardised mean difference of each numeric feature, and of the target, between the fold's validation rows and its training rows: the difference of the two means divided by the pooled standard deviation, the square root of the average of the two variances. The last column compares the test rows with the rows of the final fit in the same way. A positive value means the later rows have the higher mean.
+
 &#91;image: Drift by fold, regression\]
 
-*Figure 25. Drift between development and test, by fold (F.reg.drift).*
+*Figure 25. Drift by fold, lead time: standardised mean difference of each feature and of the target, validation rows against training rows for each fold, and test rows against the final fit's rows (F.reg.drift).*
 
 ### B. Metric glossary
 
@@ -724,6 +726,60 @@ Full rank means no column is an exact linear combination of the others, so the c
 | interstate\_share | numeric | never logged: bounded 0-1 share (G-47) (A's 4.2 rule on B rows) | 24 |
 | n\_categories | numeric | never logged: integer count (G-62, G-70) (A's 4.2 rule on B rows) | 25 |
 | payment\_installments\_max | numeric | never logged: integer count (G-62, G-70) (A's 4.2 rule on B rows) | 26 |
+
+**Derived features.** Almost every feature is computed from the nine raw tables rather than read from one column; a feature read straight from a raw column shows that column. Tables D3 and D4 give the formula of each, as stored with the feature pipelines. Order-level sums, counts and shares are taken over the order's items after the joins of section 3; history features use only other orders whose events were complete before this order's prediction week.
+
+*Table D3. Pipeline A's features and how each is derived (both tasks; the missing-value indicators are added inside each fold).*
+
+| feature | formula |
+| --- | --- |
+| n\_items | order\_items.order\_item\_id (count) |
+| n\_products | order\_items.product\_id (distinct) |
+| n\_sellers | order\_items.seller\_id (distinct) |
+| n\_categories | products.category (distinct, English) |
+| total\_price | order\_items.price (sum; missing if any item invalid) |
+| total\_freight | order\_items.freight\_value (sum; missing if any item invalid) |
+| freight\_ratio | total\_freight / total\_price |
+| total\_weight\_g | products.product\_weight\_g (sum) |
+| total\_volume\_cm3 | products length x height x width (sum) |
+| weight\_missing\_fraction | share of items without a valid weight |
+| volume\_missing\_fraction | share of items without valid dimensions |
+| primary\_category | category of the highest-priced item (English) |
+| category\_missing\_fraction | share of items without a translated category |
+| customer\_state | customers.customer\_state |
+| primary\_seller\_state | sellers.seller\_state of the primary item |
+| distance\_km\_max | max haversine customer-seller distance over distinct sellers (IBGE-filtered ZIP centroids) |
+| distance\_missing\_fraction | share of distinct sellers without a resolved distance |
+| interstate\_share | share of distinct sellers in another state |
+| purchase\_month | orders.order\_purchase\_timestamp (month, numeric) |
+| purchase\_dayofweek | orders.order\_purchase\_timestamp (Monday = 0, numeric) |
+| purchase\_hour | orders.order\_purchase\_timestamp (hour, numeric) |
+| primary\_payment\_type | order\_payments (type with the largest usable value) |
+| payment\_installments\_max | order\_payments.payment\_installments (max over usable lines) |
+| n\_payment\_methods | order\_payments.payment\_type (distinct usable) |
+| product\_photos\_qty | products.product\_photos\_qty of the primary item |
+| product\_description\_lenght | products.product\_description\_lenght of the primary item |
+| seller\_prior\_review\_mean | mean valid review score of the primary seller's earlier orders, reviews answered strictly before this purchase (own order excluded) |
+| missingindicator\_seller\_prior\_review\_mean | 1 if seller\_prior\_review\_mean is missing, else 0 |
+| missingindicator\_total\_volume\_cm3 | 1 if total\_volume\_cm3 is missing, else 0 |
+| missingindicator\_product\_description\_lenght | 1 if product\_description\_lenght is missing, else 0 |
+| missingindicator\_total\_weight\_g | 1 if total\_weight\_g is missing, else 0 |
+| distance\_km\_max\_missing | 1 if distance\_km\_max is missing, else 0 |
+| missingindicator\_product\_photos\_qty | 1 if product\_photos\_qty is missing, else 0 |
+
+*Table D4. Pipeline B's new features and how each is derived.*
+
+| feature | definition | formula |
+| --- | --- | --- |
+| route\_recent\_carrier\_transit\_days | Recent route carrier transit days: recent typical carrier-to-customer time on the route | as route\_recent\_delivery\_days, on (delivery date - carrier date) |
+| route\_recent\_delivery\_days | Recent route delivery days: recent typical purchase-to-delivery time on the route | weighted 3-week mean (0.5, 0.3, 0.2) of the route's weekly median lead days; < 10 route events -> 0.7 x seller state + 0.3 x customer state, then overall |
+| seller\_prior\_dispatch\_days | Prior seller dispatch days: mean days from purchase to carrier handover over the seller's earlier orders | mean of (carrier date - purchase time) over the seller's earlier handovers; same fallback |
+| seller\_prior\_late\_handover\_days | Prior seller late-handover days: mean days by which the seller's earlier handovers missed the shipping limit (0 if on time) | mean of max(0, carrier date - last shipping\_limit\_date) over the seller's earlier handovers; same fallback |
+| order\_dispatch\_days | Days from purchase to this order's carrier handover | carrier date - purchase time of this order |
+| route\_seller\_to\_customer\_state | Route of the order: primary seller's state to the customer's state | primary\_seller\_state + '->' + customer\_state |
+| seller\_prior\_late\_handover\_rate | Prior seller late-handover rate: share of the seller's earlier handovers made after their last shipping limit | mean over the seller's handovers in weeks before the prediction week of 1\[carrier date > last shipping\_limit\_date\]; new seller: weighted 3-week mean of sellers in the same state |
+| order\_handover\_late\_days | Days this order's handover missed the shipping limit (0 if on time) | max(0, carrier date - last shipping\_limit\_date) of this order |
+| order\_handed\_over\_late | This order was handed to the carrier after its last shipping limit | 1\[carrier date > last shipping\_limit\_date\] of this order (known at handover) |
 
 ### E. Train, validation and test tables
 
