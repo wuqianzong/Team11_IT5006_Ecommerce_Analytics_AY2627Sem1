@@ -653,3 +653,14 @@ asked for a fresh audit of the literature links and claims.
   5 body pages at 12 pt, over the 3.8 planned: sections 5–7 and the summary must fit in about 3 pages.
 - Typed counts (verified against A's s04 `selected_features.json`): 24 predictors, 3 alert candidates, 18 and 19
   selected.
+
+## 2026-10-30: Milestone 2 report, full draft
+
+Henry approved sections 1–4. Sections 5–7, the executive summary, references and appendices A–E written from A's
+stored outputs (s05 folds, s06 ladder, s07 tuning, s08 finalists and recipe, T1 on A's test rows, M2A
+interpretation); 39 more register items (333 built). Body 8 pages at 12 pt (the brief allows 6–8).
+Review doc: https://claude.ai/artifact/JySsRqxpAETeEN7rAj8dUj (rev 4), 10 figures.
+
+Findings stated plainly in the report: the lead-time model beats the dummy on every test measure; the alert's AP is
+above the detractor share but weak, and at the frozen 1/6 it sends about 51 alerts a day (24 on validation) and costs
+more on the test than sending no alert, because the test period had fewer detractors.

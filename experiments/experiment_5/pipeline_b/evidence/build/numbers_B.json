@@ -3317,5 +3317,434 @@
     ],
     "file": "evidence/build/tables/M2.clf.selection_ranking.csv",
     "rows": 26
+  },
+  "M2.reg.val_dummy": {
+    "kind": "number",
+    "source": "A/s08_selection/regression/outputs/candidates.csv",
+    "run_id": "20261023T084947Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 6.494565088383941,
+    "text": "6.49"
+  },
+  "M2.reg.val_se_dummy": {
+    "kind": "number",
+    "source": "A/s08_selection/regression/outputs/candidates.csv",
+    "run_id": "20261023T084947Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.6888964137291838,
+    "text": "0.69"
+  },
+  "M2.reg.val_linear": {
+    "kind": "number",
+    "source": "A/s08_selection/regression/outputs/candidates.csv",
+    "run_id": "20261023T084947Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 5.470111342962177,
+    "text": "5.47"
+  },
+  "M2.reg.val_se_linear": {
+    "kind": "number",
+    "source": "A/s08_selection/regression/outputs/candidates.csv",
+    "run_id": "20261023T084947Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.6733199840340964,
+    "text": "0.67"
+  },
+  "M2.reg.val_tree": {
+    "kind": "number",
+    "source": "A/s08_selection/regression/outputs/candidates.csv",
+    "run_id": "20261023T084947Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 5.424351731874954,
+    "text": "5.42"
+  },
+  "M2.reg.val_se_tree": {
+    "kind": "number",
+    "source": "A/s08_selection/regression/outputs/candidates.csv",
+    "run_id": "20261023T084947Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.7146899662890046,
+    "text": "0.71"
+  },
+  "M2.reg.val_forest": {
+    "kind": "number",
+    "source": "A/s08_selection/regression/outputs/candidates.csv",
+    "run_id": "20261023T084947Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 5.443363700053296,
+    "text": "5.44"
+  },
+  "M2.reg.val_se_forest": {
+    "kind": "number",
+    "source": "A/s08_selection/regression/outputs/candidates.csv",
+    "run_id": "20261023T084947Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.6826474837302121,
+    "text": "0.68"
+  },
+  "M2.reg.ladder": {
+    "kind": "table",
+    "source": "A/s06_training/regression/outputs/paired_differences.csv",
+    "run_id": "20261023T083517Z @ e5-A-frozen",
+    "evidence": "6.2",
+    "used_in": [
+      "m2"
+    ],
+    "file": "evidence/build/tables/M2.reg.ladder.csv",
+    "rows": 3
+  },
+  "M2.reg.plain_vs_tuned": {
+    "kind": "table",
+    "source": "A/s07_tuning/regression/outputs/plain_vs_tuned.csv",
+    "run_id": "20261023T084131Z @ e5-A-frozen",
+    "evidence": "7.5",
+    "used_in": [
+      "m2"
+    ],
+    "file": "evidence/build/tables/M2.reg.plain_vs_tuned.csv",
+    "rows": 3
+  },
+  "M2.reg.folds": {
+    "kind": "table",
+    "source": "A/s05_partition/regression/outputs/fold_summary.csv",
+    "run_id": "20261023T083431Z @ e5-A-frozen",
+    "evidence": "5.5",
+    "used_in": [
+      "m2"
+    ],
+    "file": "evidence/build/tables/M2.reg.folds.csv",
+    "rows": 5
+  },
+  "F.M2A.reg.importance": {
+    "kind": "figure",
+    "source": "M2A/regression/figures/permutation_importance.png",
+    "run_id": "20261030T010520Z (M2A/a_interpretation)",
+    "evidence": "M2A.1",
+    "used_in": [
+      "m2"
+    ],
+    "file": "evidence/build/figures/F.M2A.reg.importance.png",
+    "caption": "Permutation importance, lead time, A's test rows"
+  },
+  "F.M2A.reg.coefficients": {
+    "kind": "figure",
+    "source": "M2A/regression/figures/coefficients.png",
+    "run_id": "20261030T010520Z (M2A/a_interpretation)",
+    "evidence": "M2A.1",
+    "used_in": [
+      "m2"
+    ],
+    "file": "evidence/build/figures/F.M2A.reg.coefficients.png",
+    "caption": "Coefficients, lead time, A's frozen model"
+  },
+  "M2.clf.val_dummy": {
+    "kind": "number",
+    "source": "A/s08_selection/classification/outputs/candidates.csv",
+    "run_id": "20261023T085014Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.1481830943938916,
+    "text": "0.148"
+  },
+  "M2.clf.val_se_dummy": {
+    "kind": "number",
+    "source": "A/s08_selection/classification/outputs/candidates.csv",
+    "run_id": "20261023T085014Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.0197683738781132,
+    "text": "0.020"
+  },
+  "M2.clf.val_linear": {
+    "kind": "number",
+    "source": "A/s08_selection/classification/outputs/candidates.csv",
+    "run_id": "20261023T085014Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.243507462225636,
+    "text": "0.244"
+  },
+  "M2.clf.val_se_linear": {
+    "kind": "number",
+    "source": "A/s08_selection/classification/outputs/candidates.csv",
+    "run_id": "20261023T085014Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.0314215062776998,
+    "text": "0.031"
+  },
+  "M2.clf.val_tree": {
+    "kind": "number",
+    "source": "A/s08_selection/classification/outputs/candidates.csv",
+    "run_id": "20261023T085014Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.2158110084748255,
+    "text": "0.216"
+  },
+  "M2.clf.val_se_tree": {
+    "kind": "number",
+    "source": "A/s08_selection/classification/outputs/candidates.csv",
+    "run_id": "20261023T085014Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.0233331907145646,
+    "text": "0.023"
+  },
+  "M2.clf.val_forest": {
+    "kind": "number",
+    "source": "A/s08_selection/classification/outputs/candidates.csv",
+    "run_id": "20261023T085014Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.2544423933354366,
+    "text": "0.254"
+  },
+  "M2.clf.val_se_forest": {
+    "kind": "number",
+    "source": "A/s08_selection/classification/outputs/candidates.csv",
+    "run_id": "20261023T085014Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.0267031932741394,
+    "text": "0.027"
+  },
+  "M2.clf.ladder": {
+    "kind": "table",
+    "source": "A/s06_training/classification/outputs/paired_differences.csv",
+    "run_id": "20261023T083612Z @ e5-A-frozen",
+    "evidence": "6.2",
+    "used_in": [
+      "m2"
+    ],
+    "file": "evidence/build/tables/M2.clf.ladder.csv",
+    "rows": 3
+  },
+  "M2.clf.plain_vs_tuned": {
+    "kind": "table",
+    "source": "A/s07_tuning/classification/outputs/plain_vs_tuned.csv",
+    "run_id": "20261023T084930Z @ e5-A-frozen",
+    "evidence": "7.5",
+    "used_in": [
+      "m2"
+    ],
+    "file": "evidence/build/tables/M2.clf.plain_vs_tuned.csv",
+    "rows": 3
+  },
+  "M2.clf.folds": {
+    "kind": "table",
+    "source": "A/s05_partition/classification/outputs/fold_summary.csv",
+    "run_id": "20261023T083414Z @ e5-A-frozen",
+    "evidence": "5.5",
+    "used_in": [
+      "m2"
+    ],
+    "file": "evidence/build/tables/M2.clf.folds.csv",
+    "rows": 5
+  },
+  "F.M2A.clf.importance": {
+    "kind": "figure",
+    "source": "M2A/classification/figures/permutation_importance.png",
+    "run_id": "20261030T010520Z (M2A/a_interpretation)",
+    "evidence": "M2A.1",
+    "used_in": [
+      "m2"
+    ],
+    "file": "evidence/build/figures/F.M2A.clf.importance.png",
+    "caption": "Permutation importance, detractor alert, A's test rows"
+  },
+  "F.M2A.clf.coefficients": {
+    "kind": "figure",
+    "source": "M2A/classification/figures/coefficients.png",
+    "run_id": "20261030T010520Z (M2A/a_interpretation)",
+    "evidence": "M2A.1",
+    "used_in": [
+      "m2"
+    ],
+    "file": "evidence/build/figures/F.M2A.clf.coefficients.png",
+    "caption": "Odds ratios, detractor alert, A's frozen model"
+  },
+  "M2.clf.test_tp_A": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.4",
+    "used_in": [
+      "m2"
+    ],
+    "value": 748.0,
+    "text": "748"
+  },
+  "M2.clf.test_fp_A": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.4",
+    "used_in": [
+      "m2"
+    ],
+    "value": 4153.0,
+    "text": "4,153"
+  },
+  "M2.clf.test_fn_A": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.4",
+    "used_in": [
+      "m2"
+    ],
+    "value": 1220.0,
+    "text": "1,220"
+  },
+  "M2.clf.test_tn_A": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.4",
+    "used_in": [
+      "m2"
+    ],
+    "value": 12845.0,
+    "text": "12,845"
+  },
+  "M2.clf.test_alerts_per_day_A": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.4",
+    "used_in": [
+      "m2"
+    ],
+    "value": 51.052083333333336,
+    "text": "51"
+  },
+  "M2.clf.test_cost_A": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.4",
+    "used_in": [
+      "m2"
+    ],
+    "value": 10253.0,
+    "text": "10,253"
+  },
+  "M2.clf.test_cost_Adummy": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.4",
+    "used_in": [
+      "m2"
+    ],
+    "value": 9840.0,
+    "text": "9,840"
+  },
+  "M2.clf.daily_alert_cap": {
+    "kind": "number",
+    "source": "A/s08_selection/classification/outputs/frozen_recipe.json",
+    "run_id": "20261023T085014Z @ e5-A-frozen",
+    "evidence": "8.5",
+    "used_in": [
+      "m2"
+    ],
+    "value": 25,
+    "text": "25"
+  },
+  "M2.clf.oof_alerts_per_day": {
+    "kind": "number",
+    "source": "A/s08_selection/classification/outputs/frozen_recipe.json",
+    "run_id": "20261023T085014Z @ e5-A-frozen",
+    "evidence": "8.5",
+    "used_in": [
+      "m2"
+    ],
+    "value": 23.860869565217392,
+    "text": "24"
+  },
+  "M2.clf.oof_precision": {
+    "kind": "number",
+    "source": "A/s08_selection/classification/outputs/frozen_recipe.json",
+    "run_id": "20261023T085014Z @ e5-A-frozen",
+    "evidence": "8.5",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.2523080660835763,
+    "text": "0.252"
+  },
+  "M2.clf.oof_recall": {
+    "kind": "number",
+    "source": "A/s08_selection/classification/outputs/frozen_recipe.json",
+    "run_id": "20261023T085014Z @ e5-A-frozen",
+    "evidence": "8.5",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.223405399591266,
+    "text": "0.223"
+  },
+  "M2A.reg.top_importance": {
+    "kind": "number",
+    "source": "M2A/regression/permutation_importance.csv",
+    "run_id": "20261030T010520Z (M2A/a_interpretation)",
+    "evidence": "M2A.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.200524392920686,
+    "text": "0.20"
+  },
+  "M2A.clf.top_importance": {
+    "kind": "number",
+    "source": "M2A/classification/permutation_importance.csv",
+    "run_id": "20261030T010520Z (M2A/a_interpretation)",
+    "evidence": "M2A.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.0267223466730134,
+    "text": "0.027"
   }
 }

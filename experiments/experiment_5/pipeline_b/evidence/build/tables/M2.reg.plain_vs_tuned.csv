@@ -1,0 +1,4 @@
+family,plain_mean,tuned_best,tuned_mean,tuned_se,paired_gain_of_tuned,tuned_better_folds,carried
+linear/logistic,5.470111342962178,reg.sel.log.ridge.alpha=100,5.464196762348434,0.6711090637665718,0.0059145806137429,4,plain
+single tree,5.424351731874955,reg.sel.log.tree_reg.max_depth=4.min_samples_leaf=200,5.433199851595366,0.7125150621076641,-0.0088481197204108,1,plain
+forest,5.443363700053296,reg.sel.log.forest_reg.max_depth=8.max_features=sqrt.min_samples_leaf=200,5.577160890746881,0.6758177329698498,-0.1337971906935856,0,plain
