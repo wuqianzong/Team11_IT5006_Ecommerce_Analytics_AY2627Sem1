@@ -1,14 +1,14 @@
 feature,kind,transform,pool_rank
 route_seller_to_customer_state,categorical,"categorical: one-hot (drop-first for linear/logistic, every level for trees)",1
-route_recent_carrier_transit_days,numeric,log1p: day count (Henry),2
-route_recent_delivery_days,numeric,log1p: day count (Henry),3
+route_recent_carrier_transit_days,numeric,log1p: day count,2
+route_recent_delivery_days,numeric,log1p: day count,3
 distance_km_max,numeric,log1p because pre-cutoff skewness 1.26 > 1 (A's 4.2 rule on B rows),4
 interstate_share,numeric,never logged: bounded 0-1 share (G-47) (A's 4.2 rule on B rows),5
 total_freight,numeric,log1p because pre-cutoff skewness 9.42 > 1 (A's 4.2 rule on B rows),7
-seller_prior_dispatch_days,numeric,log1p: day count (Henry),8
+seller_prior_dispatch_days,numeric,log1p: day count,8
 primary_category,categorical,"categorical: one-hot, never logged (A's 4.2 rule on B rows)",9
-seller_prior_late_handover_rate,numeric,"never logged: rate or flag, scaled only (Henry)",10
-seller_prior_late_handover_days,numeric,log1p: day count (Henry),11
+seller_prior_late_handover_rate,numeric,"never logged: rate or flag, scaled only",10
+seller_prior_late_handover_days,numeric,log1p: day count,11
 freight_ratio,numeric,never logged: team decision in the s01 review (G-62) (A's 4.2 rule on B rows),12
 total_weight_g,numeric,log1p because pre-cutoff skewness 6.94 > 1 (A's 4.2 rule on B rows),14
 total_price,numeric,log1p because pre-cutoff skewness 11.03 > 1 (A's 4.2 rule on B rows),15

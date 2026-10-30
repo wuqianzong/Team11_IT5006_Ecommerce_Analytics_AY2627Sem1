@@ -1,24 +1,24 @@
 feature,kind,transform,pool_rank
-route_recent_carrier_transit_days,numeric,log1p: day count (Henry),1
-route_recent_delivery_days,numeric,log1p: day count (Henry),2
-seller_prior_dispatch_days,numeric,log1p: day count (Henry),3
-seller_prior_late_handover_days,numeric,log1p: day count (Henry),4
+route_recent_carrier_transit_days,numeric,log1p: day count,1
+route_recent_delivery_days,numeric,log1p: day count,2
+seller_prior_dispatch_days,numeric,log1p: day count,3
+seller_prior_late_handover_days,numeric,log1p: day count,4
 seller_prior_review_mean,numeric,never logged: 1-5 rating (G-70) (A's 4.2 rule on B rows),5
-order_dispatch_days,numeric,log1p: day count (Henry),6
+order_dispatch_days,numeric,log1p: day count,6
 freight_ratio,numeric,never logged: team decision in the s01 review (G-62) (A's 4.2 rule on B rows),7
 total_freight,numeric,log1p because pre-cutoff skewness 9.45 > 1 (A's 4.2 rule on B rows),8
 total_volume_cm3,numeric,log1p because pre-cutoff skewness 7.65 > 1 (A's 4.2 rule on B rows),9
 n_items,numeric,"never logged: integer count (G-62, G-70) (A's 4.2 rule on B rows)",10
 route_seller_to_customer_state,categorical,"categorical: one-hot (drop-first for linear/logistic, every level for trees)",11
-seller_prior_late_handover_rate,numeric,"never logged: rate or flag, scaled only (Henry)",12
+seller_prior_late_handover_rate,numeric,"never logged: rate or flag, scaled only",12
 total_price,numeric,log1p because pre-cutoff skewness 11.11 > 1 (A's 4.2 rule on B rows),13
-order_handover_late_days,numeric,log1p: day count (Henry),14
+order_handover_late_days,numeric,log1p: day count,14
 total_weight_g,numeric,log1p because pre-cutoff skewness 6.94 > 1 (A's 4.2 rule on B rows),15
 product_description_lenght,numeric,log1p because pre-cutoff skewness 2.06 > 1 (A's 4.2 rule on B rows),16
 n_products,numeric,"never logged: integer count (G-62, G-70) (A's 4.2 rule on B rows)",18
 n_sellers,numeric,"never logged: integer count (G-62, G-70) (A's 4.2 rule on B rows)",19
 purchase_month,numeric,"never logged: numeric calendar position (G-22, G-47) (A's 4.2 rule on B rows)",20
-order_handed_over_late,numeric,"never logged: rate or flag, scaled only (Henry)",21
+order_handed_over_late,numeric,"never logged: rate or flag, scaled only",21
 distance_km_max,numeric,log1p because pre-cutoff skewness 1.26 > 1 (A's 4.2 rule on B rows),22
 primary_category,categorical,"categorical: one-hot, never logged (A's 4.2 rule on B rows)",23
 interstate_share,numeric,never logged: bounded 0-1 share (G-47) (A's 4.2 rule on B rows),24

@@ -190,6 +190,8 @@ def build(out_dir: Path = BUILD) -> dict:
             elif it["kind"] == "table":
                 df = _select(pd.read_csv(path), it.get("select"))
                 df = df[it["columns"]] if it.get("columns") else df
+                for pat, rep in it.get("replace", []):   # text cleanup for the report only, e.g. decision-maker names
+                    df = df.apply(lambda s: s.str.replace(pat, rep, regex=True) if s.dtype == object else s)
                 out = out_dir / "tables" / f"{it['id']}.csv"
                 df.to_csv(out, index=False, lineterminator="\n")
                 entry.update(file=_rel(out), rows=int(len(df)))
