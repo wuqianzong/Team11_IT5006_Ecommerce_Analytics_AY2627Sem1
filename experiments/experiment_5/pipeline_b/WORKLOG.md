@@ -637,3 +637,19 @@ Business overview data and without touching Pipelines A or B.
 - Milestone 2 report (Pipeline A only, 6–8 pages): plan next.
 - Deck v2 chart map (D2) and the cover's member names and app URL.
 
+
+## 2026-10-30: Milestone 2 report, sections 1–4 (B-CR-42)
+
+Henry approved the M2 plan (https://claude.ai/artifact/DSshn5jDZdE1EobfG4PQxN) with the recommended decisions and
+asked for a fresh audit of the literature links and claims.
+
+- B-CR-42: B-G-14 (register reads A's s01, s04–s08 at e5-A-frozen); `m2_report/a_interpretation/` run
+  20261030T010520Z on f772f04 (A's frozen T1 bundles re-predict T1 exactly; coefficients and permutation importance on
+  A's test rows, B9.5's method); `M2A/` sources share B-CR-41's manifest check. Register 294 items (64 `M2.` items).
+- Literature: all 9 cited sources re-checked (Crossref metadata, abstracts from Crossref, NeurIPS, OpenAlex, Semantic
+  Scholar); all links resolve and metadata matches; each claim checked against its abstract and its section
+  (`m2_report/records/literature_audit_m2_2026-10-30.md`).
+- Sections 1–4 drafted from the final report's text, Pipeline B removed, alert at checkout; every placeholder resolves.
+  5 body pages at 12 pt, over the 3.8 planned: sections 5–7 and the summary must fit in about 3 pages.
+- Typed counts (verified against A's s04 `selected_features.json`): 24 predictors, 3 alert candidates, 18 and 19
+  selected.

@@ -1645,7 +1645,7 @@
   "BIZ.rev_2017_03": {
     "kind": "number",
     "source": "BIZ/summary.json",
-    "run_id": "20261030T004253Z (business context)",
+    "run_id": "20261030T004253Z (BIZ/business_context)",
     "evidence": "BIZ.1",
     "used_in": [
       "report 1"
@@ -1656,7 +1656,7 @@
   "BIZ.rev_2018_04": {
     "kind": "number",
     "source": "BIZ/summary.json",
-    "run_id": "20261030T004253Z (business context)",
+    "run_id": "20261030T004253Z (BIZ/business_context)",
     "evidence": "BIZ.1",
     "used_in": [
       "report 1"
@@ -1667,7 +1667,7 @@
   "BIZ.rev_growth": {
     "kind": "number",
     "source": "BIZ/summary.json",
-    "run_id": "20261030T004253Z (business context)",
+    "run_id": "20261030T004253Z (BIZ/business_context)",
     "evidence": "BIZ.1",
     "used_in": [
       "report 1"
@@ -1678,7 +1678,7 @@
   "BIZ.rev_2017_10": {
     "kind": "number",
     "source": "BIZ/summary.json",
-    "run_id": "20261030T004253Z (business context)",
+    "run_id": "20261030T004253Z (BIZ/business_context)",
     "evidence": "BIZ.1",
     "used_in": [
       "report 1"
@@ -1689,7 +1689,7 @@
   "BIZ.rev_peak": {
     "kind": "number",
     "source": "BIZ/summary.json",
-    "run_id": "20261030T004253Z (business context)",
+    "run_id": "20261030T004253Z (BIZ/business_context)",
     "evidence": "BIZ.1",
     "used_in": [
       "report 1"
@@ -1700,7 +1700,7 @@
   "BIZ.repeat_mean": {
     "kind": "number",
     "source": "BIZ/summary.json",
-    "run_id": "20261030T004253Z (business context)",
+    "run_id": "20261030T004253Z (BIZ/business_context)",
     "evidence": "BIZ.1",
     "used_in": [
       "report 1"
@@ -1711,7 +1711,7 @@
   "BIZ.repeat_min": {
     "kind": "number",
     "source": "BIZ/summary.json",
-    "run_id": "20261030T004253Z (business context)",
+    "run_id": "20261030T004253Z (BIZ/business_context)",
     "evidence": "BIZ.1",
     "used_in": [
       "report 1"
@@ -1722,7 +1722,7 @@
   "BIZ.repeat_max": {
     "kind": "number",
     "source": "BIZ/summary.json",
-    "run_id": "20261030T004253Z (business context)",
+    "run_id": "20261030T004253Z (BIZ/business_context)",
     "evidence": "BIZ.1",
     "used_in": [
       "report 1"
@@ -1733,7 +1733,7 @@
   "F.BIZ.revenue_repeat": {
     "kind": "figure",
     "source": "BIZ/figures/revenue_repeat_by_month.png",
-    "run_id": "20261030T004253Z (business context)",
+    "run_id": "20261030T004253Z (BIZ/business_context)",
     "evidence": "BIZ.1",
     "used_in": [
       "report 1"
@@ -2635,5 +2635,687 @@
     ],
     "file": "evidence/build/figures/F.A3.clf.target_bar.png",
     "caption": "Detractor share, development orders (Pipeline A EDA)"
+  },
+  "M2.reg.test_mae_A": {
+    "kind": "number",
+    "source": "t1_joint_test/regression/outputs/metrics_test.csv",
+    "run_id": "20261024T044531Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 4.336370023389838,
+    "text": "4.34"
+  },
+  "M2.reg.test_rmse_A": {
+    "kind": "number",
+    "source": "t1_joint_test/regression/outputs/metrics_test.csv",
+    "run_id": "20261024T044531Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 5.7288510437860936,
+    "text": "5.73"
+  },
+  "M2.reg.test_r2_A": {
+    "kind": "number",
+    "source": "t1_joint_test/regression/outputs/metrics_test.csv",
+    "run_id": "20261024T044531Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.0339743051036662,
+    "text": "0.034"
+  },
+  "M2.reg.test_within_3d_A": {
+    "kind": "number",
+    "source": "t1_joint_test/regression/outputs/metrics_test.csv",
+    "run_id": "20261024T044531Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.4137747498403236,
+    "text": "41.4%"
+  },
+  "M2.reg.test_mae_Aplain": {
+    "kind": "number",
+    "source": "t1_joint_test/regression/outputs/metrics_test.csv",
+    "run_id": "20261024T044531Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 4.336370023389838,
+    "text": "4.34"
+  },
+  "M2.reg.test_rmse_Aplain": {
+    "kind": "number",
+    "source": "t1_joint_test/regression/outputs/metrics_test.csv",
+    "run_id": "20261024T044531Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 5.7288510437860936,
+    "text": "5.73"
+  },
+  "M2.reg.test_r2_Aplain": {
+    "kind": "number",
+    "source": "t1_joint_test/regression/outputs/metrics_test.csv",
+    "run_id": "20261024T044531Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.0339743051036662,
+    "text": "0.034"
+  },
+  "M2.reg.test_within_3d_Aplain": {
+    "kind": "number",
+    "source": "t1_joint_test/regression/outputs/metrics_test.csv",
+    "run_id": "20261024T044531Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.4137747498403236,
+    "text": "41.4%"
+  },
+  "M2.reg.test_mae_Adummy": {
+    "kind": "number",
+    "source": "t1_joint_test/regression/outputs/metrics_test.csv",
+    "run_id": "20261024T044531Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 4.875529484052271,
+    "text": "4.88"
+  },
+  "M2.reg.test_rmse_Adummy": {
+    "kind": "number",
+    "source": "t1_joint_test/regression/outputs/metrics_test.csv",
+    "run_id": "20261024T044531Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 6.261373381950908,
+    "text": "6.26"
+  },
+  "M2.reg.test_r2_Adummy": {
+    "kind": "number",
+    "source": "t1_joint_test/regression/outputs/metrics_test.csv",
+    "run_id": "20261024T044531Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": -0.153965494684978,
+    "text": "-0.154"
+  },
+  "M2.reg.test_within_3d_Adummy": {
+    "kind": "number",
+    "source": "t1_joint_test/regression/outputs/metrics_test.csv",
+    "run_id": "20261024T044531Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.3213221205024483,
+    "text": "32.1%"
+  },
+  "M2.reg.test_rows_A": {
+    "kind": "number",
+    "source": "t1_joint_test/regression/outputs/metrics_test.csv",
+    "run_id": "20261024T044531Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 18788.0,
+    "text": "18,788"
+  },
+  "M2.reg.eligible_orders": {
+    "kind": "number",
+    "source": "A/s05_partition/regression/outputs/counts.json",
+    "run_id": "20261023T083431Z @ e5-A-frozen",
+    "evidence": "5.2",
+    "used_in": [
+      "m2"
+    ],
+    "value": 96166,
+    "text": "96,166"
+  },
+  "M2.reg.development_orders": {
+    "kind": "number",
+    "source": "A/s05_partition/regression/outputs/counts.json",
+    "run_id": "20261023T083431Z @ e5-A-frozen",
+    "evidence": "5.2",
+    "used_in": [
+      "m2"
+    ],
+    "value": 76925,
+    "text": "76,925"
+  },
+  "M2.reg.test_before_purge": {
+    "kind": "number",
+    "source": "A/s05_partition/regression/outputs/counts.json",
+    "run_id": "20261023T083431Z @ e5-A-frozen",
+    "evidence": "5.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 19241,
+    "text": "19,241"
+  },
+  "M2.reg.test_purged_repeat_customer_orders": {
+    "kind": "number",
+    "source": "A/s05_partition/regression/outputs/counts.json",
+    "run_id": "20261023T083431Z @ e5-A-frozen",
+    "evidence": "5.4",
+    "used_in": [
+      "m2"
+    ],
+    "value": 453,
+    "text": "453"
+  },
+  "M2.reg.test_orders": {
+    "kind": "number",
+    "source": "A/s05_partition/regression/outputs/counts.json",
+    "run_id": "20261023T083431Z @ e5-A-frozen",
+    "evidence": "5.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 18788,
+    "text": "18,788"
+  },
+  "F.M2.reg.selection_cumulative": {
+    "kind": "figure",
+    "source": "A/s04_features/regression/outputs/figures/selection_cumulative.png",
+    "run_id": "20261023T083426Z @ e5-A-frozen",
+    "evidence": "4.4",
+    "used_in": [
+      "m2"
+    ],
+    "file": "evidence/build/figures/F.M2.reg.selection_cumulative.png",
+    "caption": "Selection ranking and the 99% rule, lead time (Pipeline A s04)"
+  },
+  "M2.clf.test_ap_A": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.1750203549528702,
+    "text": "0.175"
+  },
+  "M2.clf.test_roc_auc_A": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.5952418361988068,
+    "text": "0.595"
+  },
+  "M2.clf.test_brier_A": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.0932795595594819,
+    "text": "0.093"
+  },
+  "M2.clf.test_precision_A": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.1526219138951234,
+    "text": "0.153"
+  },
+  "M2.clf.test_recall_A": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.3800813008130081,
+    "text": "0.380"
+  },
+  "M2.clf.test_f1_A": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.2177900713349832,
+    "text": "0.218"
+  },
+  "M2.clf.test_prevalence_A": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.103764631445745,
+    "text": "10.4%"
+  },
+  "M2.clf.test_ap_Aplain": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.1775254055850686,
+    "text": "0.178"
+  },
+  "M2.clf.test_roc_auc_Aplain": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.5995427965222115,
+    "text": "0.600"
+  },
+  "M2.clf.test_brier_Aplain": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.0934958407301799,
+    "text": "0.093"
+  },
+  "M2.clf.test_precision_Aplain": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.1506653019447287,
+    "text": "0.151"
+  },
+  "M2.clf.test_recall_Aplain": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.3739837398373983,
+    "text": "0.374"
+  },
+  "M2.clf.test_f1_Aplain": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.2147964395155406,
+    "text": "0.215"
+  },
+  "M2.clf.test_prevalence_Aplain": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.103764631445745,
+    "text": "10.4%"
+  },
+  "M2.clf.test_ap_Adummy": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.103764631445745,
+    "text": "0.104"
+  },
+  "M2.clf.test_roc_auc_Adummy": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.5,
+    "text": "0.500"
+  },
+  "M2.clf.test_brier_Adummy": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.0948374306895757,
+    "text": "0.095"
+  },
+  "M2.clf.test_prevalence_Adummy": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.103764631445745,
+    "text": "10.4%"
+  },
+  "M2.clf.test_rows_A": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 18966.0,
+    "text": "18,966"
+  },
+  "M2.clf.eligible_orders": {
+    "kind": "number",
+    "source": "A/s05_partition/classification/outputs/counts.json",
+    "run_id": "20261023T083414Z @ e5-A-frozen",
+    "evidence": "5.2",
+    "used_in": [
+      "m2"
+    ],
+    "value": 97170,
+    "text": "97,170"
+  },
+  "M2.clf.development_orders": {
+    "kind": "number",
+    "source": "A/s05_partition/classification/outputs/counts.json",
+    "run_id": "20261023T083414Z @ e5-A-frozen",
+    "evidence": "5.2",
+    "used_in": [
+      "m2"
+    ],
+    "value": 77736,
+    "text": "77,736"
+  },
+  "M2.clf.test_before_purge": {
+    "kind": "number",
+    "source": "A/s05_partition/classification/outputs/counts.json",
+    "run_id": "20261023T083414Z @ e5-A-frozen",
+    "evidence": "5.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 19434,
+    "text": "19,434"
+  },
+  "M2.clf.test_purged_repeat_customer_orders": {
+    "kind": "number",
+    "source": "A/s05_partition/classification/outputs/counts.json",
+    "run_id": "20261023T083414Z @ e5-A-frozen",
+    "evidence": "5.4",
+    "used_in": [
+      "m2"
+    ],
+    "value": 468,
+    "text": "468"
+  },
+  "M2.clf.test_orders": {
+    "kind": "number",
+    "source": "A/s05_partition/classification/outputs/counts.json",
+    "run_id": "20261023T083414Z @ e5-A-frozen",
+    "evidence": "5.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 18966,
+    "text": "18,966"
+  },
+  "F.M2.clf.selection_cumulative": {
+    "kind": "figure",
+    "source": "A/s04_features/classification/outputs/figures/selection_cumulative.png",
+    "run_id": "20261023T083401Z @ e5-A-frozen",
+    "evidence": "4.4",
+    "used_in": [
+      "m2"
+    ],
+    "file": "evidence/build/figures/F.M2.clf.selection_cumulative.png",
+    "caption": "Selection ranking and the 99% rule, detractor alert (Pipeline A s04)"
+  },
+  "M2.clf.test_positives": {
+    "kind": "number",
+    "source": "A/s05_partition/classification/outputs/counts.json",
+    "run_id": "20261023T083414Z @ e5-A-frozen",
+    "evidence": "5.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 1968,
+    "text": "1,968"
+  },
+  "M2.raw_orders": {
+    "kind": "number",
+    "source": "A/s02_data/common/outputs/audit.json",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.2",
+    "used_in": [
+      "m2"
+    ],
+    "value": 99441,
+    "text": "99,441"
+  },
+  "M2.reg.excl_before_data_start": {
+    "kind": "number",
+    "source": "A/s02_data/common/outputs/exclusion_counts.csv",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.8",
+    "used_in": [
+      "m2"
+    ],
+    "value": 329,
+    "text": "329"
+  },
+  "M2.reg.excl_invalid_lead_time": {
+    "kind": "number",
+    "source": "A/s02_data/common/outputs/exclusion_counts.csv",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.8",
+    "used_in": [
+      "m2"
+    ],
+    "value": 2971,
+    "text": "2,971"
+  },
+  "M2.reg.excl_zero_items": {
+    "kind": "number",
+    "source": "A/s02_data/common/outputs/exclusion_counts.csv",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.8",
+    "used_in": [
+      "m2"
+    ],
+    "value": 775,
+    "text": "775"
+  },
+  "M2.reg.excl_missing_installments": {
+    "kind": "number",
+    "source": "A/s02_data/common/outputs/exclusion_counts.csv",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.8",
+    "used_in": [
+      "m2"
+    ],
+    "value": 6,
+    "text": "6"
+  },
+  "M2.reg.excl_no_usable_payment": {
+    "kind": "number",
+    "source": "A/s02_data/common/outputs/exclusion_counts.csv",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.8",
+    "used_in": [
+      "m2"
+    ],
+    "value": 4,
+    "text": "4"
+  },
+  "M2.reg.excl_lead_days_outlier": {
+    "kind": "number",
+    "source": "A/s02_data/common/outputs/exclusion_counts.csv",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.8",
+    "used_in": [
+      "m2"
+    ],
+    "value": 35,
+    "text": "35"
+  },
+  "M2.clf.excl_before_data_start": {
+    "kind": "number",
+    "source": "A/s02_data/common/outputs/exclusion_counts.csv",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.8",
+    "used_in": [
+      "m2"
+    ],
+    "value": 329,
+    "text": "329"
+  },
+  "M2.clf.excl_zero_items": {
+    "kind": "number",
+    "source": "A/s02_data/common/outputs/exclusion_counts.csv",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.8",
+    "used_in": [
+      "m2"
+    ],
+    "value": 775,
+    "text": "775"
+  },
+  "M2.clf.excl_cancelled_or_unavailable": {
+    "kind": "number",
+    "source": "A/s02_data/common/outputs/exclusion_counts.csv",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.8",
+    "used_in": [
+      "m2"
+    ],
+    "value": 1234,
+    "text": "1,234"
+  },
+  "M2.clf.excl_no_valid_review": {
+    "kind": "number",
+    "source": "A/s02_data/common/outputs/exclusion_counts.csv",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.8",
+    "used_in": [
+      "m2"
+    ],
+    "value": 768,
+    "text": "768"
+  },
+  "M2.clf.excl_invalid_review_time": {
+    "kind": "number",
+    "source": "A/s02_data/common/outputs/exclusion_counts.csv",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.8",
+    "used_in": [
+      "m2"
+    ],
+    "value": 63,
+    "text": "63"
+  },
+  "M2.clf.excl_missing_installments": {
+    "kind": "number",
+    "source": "A/s02_data/common/outputs/exclusion_counts.csv",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.8",
+    "used_in": [
+      "m2"
+    ],
+    "value": 6,
+    "text": "6"
+  },
+  "M2.clf.excl_no_usable_payment": {
+    "kind": "number",
+    "source": "A/s02_data/common/outputs/exclusion_counts.csv",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.8",
+    "used_in": [
+      "m2"
+    ],
+    "value": 4,
+    "text": "4"
+  },
+  "M2.clf.test_ap_first_A": {
+    "kind": "number",
+    "source": "b09/classification/outputs/label_sensitivity.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.6",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.175039298077632,
+    "text": "0.175"
+  },
+  "M2.reg.selection_ranking": {
+    "kind": "table",
+    "source": "A/s04_features/regression/outputs/selection_ranking.csv",
+    "run_id": "20261023T083426Z @ e5-A-frozen",
+    "evidence": "4.4",
+    "used_in": [
+      "m2"
+    ],
+    "file": "evidence/build/tables/M2.reg.selection_ranking.csv",
+    "rows": 23
+  },
+  "M2.clf.selection_ranking": {
+    "kind": "table",
+    "source": "A/s04_features/classification/outputs/selection_ranking.csv",
+    "run_id": "20261023T083401Z @ e5-A-frozen",
+    "evidence": "4.4",
+    "used_in": [
+      "m2"
+    ],
+    "file": "evidence/build/tables/M2.clf.selection_ranking.csv",
+    "rows": 26
   }
 }
