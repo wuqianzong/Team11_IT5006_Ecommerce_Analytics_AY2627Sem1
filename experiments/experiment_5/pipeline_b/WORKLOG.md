@@ -673,3 +673,10 @@ more on the test than sending no alert, because the test period had fewer detrac
   deck's uploaded assets). Report export rev 68 (names removed from Tables D1–D2). Audit 9/9.
 - Not merged into milestone-3 (Henry: hold the merge).
 
+
+## 2026-10-30: audit pack for a third-party review before the merge
+
+- `deliverables/audit/make_audit_pack.py` writes standalone Markdown for the final report, the Milestone 2 report,
+  the deck (15 slides, speaker notes, 20 mapped images) and the dashboard (plan, sources, README, 8 screenshots), each
+  with a data-source index; output goes to the local `deliverables/exports/` (not committed) with an audit prompt.
+- Not merged into milestone-3 (Henry: hold the merge until the audit).
