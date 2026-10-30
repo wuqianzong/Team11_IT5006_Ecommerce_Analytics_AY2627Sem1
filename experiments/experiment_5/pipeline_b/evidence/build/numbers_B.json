@@ -3769,5 +3769,159 @@
     ],
     "file": "evidence/build/tables/APX.features_derived_B.csv",
     "rows": 9
+  },
+  "F.A3.reg.cumulative_importance.deck": {
+    "kind": "figure",
+    "source": "DECK/F.A3.reg.cumulative_importance.deck.png",
+    "run_id": "20261030T100629Z (DECK/deck_renders)",
+    "evidence": "3.9",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.A3.reg.cumulative_importance.deck.png",
+    "caption": "Baseline candidate ranking and cumulative importance, lead time (Pipeline A EDA) (presentation render)"
+  },
+  "F.A3.clf.cumulative_importance.deck": {
+    "kind": "figure",
+    "source": "DECK/F.A3.clf.cumulative_importance.deck.png",
+    "run_id": "20261030T100629Z (DECK/deck_renders)",
+    "evidence": "3.9",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.A3.clf.cumulative_importance.deck.png",
+    "caption": "Baseline candidate ranking and cumulative importance, detractor alert (Pipeline A EDA) (presentation render)"
+  },
+  "F.A3.reg.correlation_heatmap.deck": {
+    "kind": "figure",
+    "source": "DECK/F.A3.reg.correlation_heatmap.deck.png",
+    "run_id": "20261030T100629Z (DECK/deck_renders)",
+    "evidence": "3.8",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.A3.reg.correlation_heatmap.deck.png",
+    "caption": "Pairwise correlations of A's numeric predictors (Pipeline A EDA) (presentation render)"
+  },
+  "F.A3.clf.screen_promise.deck": {
+    "kind": "figure",
+    "source": "DECK/F.A3.clf.screen_promise.deck.png",
+    "run_id": "20261030T100629Z (DECK/deck_renders)",
+    "evidence": "3.11",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.A3.clf.screen_promise.deck.png",
+    "caption": "Promised delivery days at checkout barely separate detractors (Pipeline A EDA screen 3.11) (presentation render)"
+  },
+  "F.reg.lateness_by_route.deck": {
+    "kind": "figure",
+    "source": "DECK/F.reg.lateness_by_route.deck.png",
+    "run_id": "20261030T100629Z (DECK/deck_renders)",
+    "evidence": "DS.1",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.reg.lateness_by_route.deck.png",
+    "caption": "Late handover by route (B2) (presentation render)"
+  },
+  "F.A3.clf.screen_region.deck": {
+    "kind": "figure",
+    "source": "DECK/F.A3.clf.screen_region.deck.png",
+    "run_id": "20261030T100629Z (DECK/deck_renders)",
+    "evidence": "3.12",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.A3.clf.screen_region.deck.png",
+    "caption": "Detractor rate by macro-region and region pair (Pipeline A EDA screen 3.12) (presentation render)"
+  },
+  "F.reg.selection.deck": {
+    "kind": "figure",
+    "source": "DECK/F.reg.selection.deck.png",
+    "run_id": "20261030T100629Z (DECK/deck_renders)",
+    "evidence": "DS.2",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.reg.selection.deck.png",
+    "caption": "Feature ranking and the 99% rule, regression (presentation render)"
+  },
+  "F.clf.selection.deck": {
+    "kind": "figure",
+    "source": "DECK/F.clf.selection.deck.png",
+    "run_id": "20261030T100629Z (DECK/deck_renders)",
+    "evidence": "DS.2",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.clf.selection.deck.png",
+    "caption": "Feature ranking and the 99% rule, detractor alert (presentation render)"
+  },
+  "F.reg.population.deck": {
+    "kind": "figure",
+    "source": "DECK/F.reg.population.deck.png",
+    "run_id": "20261030T100629Z (DECK/deck_renders)",
+    "evidence": "DS.5",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.reg.population.deck.png",
+    "caption": "Where B's gain comes from: scope vs features (presentation render)"
+  },
+  "F.clf.confusion.deck": {
+    "kind": "figure",
+    "source": "DECK/F.clf.confusion.deck.png",
+    "run_id": "20261030T100629Z (DECK/deck_renders)",
+    "evidence": "DS.6",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.clf.confusion.deck.png",
+    "caption": "Confusion matrices, A and B on B's validation rows (presentation render)"
+  },
+  "F.reg.residuals.deck": {
+    "kind": "figure",
+    "source": "DECK/F.reg.residuals.deck.png",
+    "run_id": "20261030T100629Z (DECK/deck_renders)",
+    "evidence": "B9.16",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.reg.residuals.deck.png",
+    "caption": "Residuals on B's test rows: B vs A (presentation render)"
+  },
+  "F.reg.by_state.deck": {
+    "kind": "figure",
+    "source": "DECK/F.reg.by_state.deck.png",
+    "run_id": "20261030T100629Z (DECK/deck_renders)",
+    "evidence": "B9.3",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.reg.by_state.deck.png",
+    "caption": "Lead-time error by customer state (presentation render)"
+  },
+  "F.reg.buffer_curve.deck": {
+    "kind": "figure",
+    "source": "DECK/F.reg.buffer_curve.deck.png",
+    "run_id": "20261030T100629Z (DECK/deck_renders)",
+    "evidence": "B12.2",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.reg.buffer_curve.deck.png",
+    "caption": "Promise buffer: share of orders delivered later than prediction plus buffer; buffer chosen on validation, read on the test (presentation render)"
+  },
+  "F.clf.threshold_options.deck": {
+    "kind": "figure",
+    "source": "DECK/F.clf.threshold_options.deck.png",
+    "run_id": "20261030T100629Z (DECK/deck_renders)",
+    "evidence": "B9.10",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.clf.threshold_options.deck.png",
+    "caption": "Precision, recall and alerts per day against the threshold (presentation render)"
   }
 }

@@ -1,0 +1,45 @@
+{
+  "node": "DECK/deck_renders",
+  "run_id": "20261030T100629Z",
+  "commit": "94eb47a439870657b0a868a0a37715eb0d7354ae",
+  "dirty": false,
+  "inputs": {
+    "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/figures/threshold_options.csv": "c28c37205f607ec8ca2b6e680da33cb7a02ac79d5f9b804d59f7454676dd85f2",
+    "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/by_customer_state.csv": "8712066d5912a6aca432e9f1efa44b42a407f4009023c694f841501109d6ffe6",
+    "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/residuals.csv": "97aab8ae50aa38cdadf1a8922efdb2a7cc80fe9b687e55839ab4618eaab35038",
+    "experiments/experiment_5/pipeline_b/stages/b12/regression/outputs/buffer_choice.csv": "deec20950de2db04ebbe96f504729db632a36c5de76a133fe8b9a4499c6667e2",
+    "experiments/experiment_5/pipeline_b/stages/b12/regression/outputs/figures/buffer_curve.csv": "d73e37840c67af29090c5065b3514bea89b17a8f6bf309b76b724f69121a93a3",
+    "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/b4_selection.csv": "b895bd2bbd0106db0d9590d237d2f5e1a7f83bd57eaf7d9841583c746127e056",
+    "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/r06_confusion.csv": "f2ce6d4e9f4883fed89d59a889139b3ddec1dcd7bf8f1e3f1a3873d3bb7932d0",
+    "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/figures/b2_lateness_by_route.csv": "1e382660d1a9703376f07c6ba67b78b58f9da5810ee7593a632ecd4215976e62",
+    "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/figures/b4_selection.csv": "f2a7ed7e1c2046441cee06ad1c52a884238f7812f638f6c060440f76a1a569c1",
+    "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/figures/r05_population.csv": "92d7f1c1744aea9980cc09143acc08bcc88e0bd324081813a623e9feb104af76",
+    "experiments/experiment_5/stages/s03_eda/classification/outputs/eda_summary.json": "67ebea2b21078714a0e4a51a79a129811f3937a57fa6d20fe0a7fc72e707182c",
+    "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/candidate_screen_promise.csv": "55898330397f405b9d24bc23970b62440268d2f441f8011ccca3e3c05c41d713",
+    "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/candidate_screen_region.csv": "62eb2c0931d4ef2ccdcbb0f3fecafcdad43c87979310a67dae5b177e920aa817",
+    "experiments/experiment_5/stages/s03_eda/classification/outputs/figures/cumulative_importance.csv": "09b0ce464bde96a6ef3f36d9d5635b4648f08b8fc8483fcd22b9db805df33bf0",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/eda_summary.json": "11926258b63044800aed154f72271d4926a6d92cc891a5149e91dbb8283da6b2",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/cumulative_importance.csv": "ea82192f3e9fed8b910c50a75ff50fc1ecd4d2dd1f6695f03bf1ea9433ef0775",
+    "experiments/experiment_5/stages/s03_eda/regression/outputs/figures/numeric_correlation_heatmap.csv": "939286d02625c627efb9fd7d6c45a2adf1ddedd30611b64c78787de9d978fdd5"
+  },
+  "code": {
+    "experiments/experiment_5/pipeline_b/deliverables/deck/renders/make_deck_renders.py": "529c29efdbc5b345a80f97008a174c4f1a74c52b58f494af05c93543883dff5a"
+  },
+  "outputs": {
+    "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/_evidence_index.json": "d971860b1628401dc9ac1e12910758f0f1c12ee16c75f02611bc2e8c244e3093",
+    "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.A3.clf.cumulative_importance.deck.png": "8a839784a86f3144d9b7479764c512d280377893c32047b17c0af8ccda529d03",
+    "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.A3.clf.screen_promise.deck.png": "99b3af2632626439cd669a9ee0800feeb599953d857ba02d521531a947a8bcd7",
+    "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.A3.clf.screen_region.deck.png": "ebaf673c0a3486abd226087d007ff4994c895735d5ba9d0eb199447d217d3574",
+    "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.A3.reg.correlation_heatmap.deck.png": "0f8be79490057a854cb7e759239125285b03a4d3e43c10e64aeafdd21423ac8e",
+    "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.A3.reg.cumulative_importance.deck.png": "2012fc7ead6ab72a7016bfb875fec6df4874b5858a879b17b7c64a5daf785b58",
+    "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.clf.confusion.deck.png": "d4ba0dc42eefaeaf816de66ccbd700863b712beaa755367e998753ac81478670",
+    "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.clf.selection.deck.png": "5f4cd729763d13ca3ec2c51f55c7c8f47c4787a5c83349f25baba0b9b56dfd8a",
+    "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.clf.threshold_options.deck.png": "9c0520229791af58cf790afedb5202d6a35ac62060699a6d7c0478f2e66c1d2a",
+    "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.reg.buffer_curve.deck.png": "5fd1c53dd8667c86f4729cc6d744cbc7e123b822151296eda71882ff15d127d9",
+    "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.reg.by_state.deck.png": "d26ead027cafb05823fadf69afe5fcf58c1e6b22fdcb16392e051e939efce497",
+    "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.reg.lateness_by_route.deck.png": "f5a119c1062ee48573c422e72f70fdfca439c9b5c115c475094afcb80abcf610",
+    "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.reg.population.deck.png": "f7249c4fa9072df9c476e2026a725f527d7cc5aa5d707cabbcfbe86699cf0d5b",
+    "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.reg.residuals.deck.png": "779ec10023046b473596228fad547dff1bd84e3ebfe92dea440be8d32b7a9581",
+    "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.reg.selection.deck.png": "b46a007863bdca8847e512858d385137bd7dcb0251949cfbcedb2355d7ded5dd"
+  }
+}

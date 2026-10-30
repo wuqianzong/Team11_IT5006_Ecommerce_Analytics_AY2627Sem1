@@ -664,3 +664,12 @@ Review doc: https://claude.ai/artifact/JySsRqxpAETeEN7rAj8dUj (rev 4), 10 figure
 Findings stated plainly in the report: the lead-time model beats the dummy on every test measure; the alert's AP is
 above the detractor share but weak, and at the frozen 1/6 it sends about 51 alerts a day (24 on validation) and costs
 more on the test than sending no alert, because the test period had fewer detractors.
+
+## 2026-10-30: deck v2 chart map and presentation renders (B-CR-43)
+
+- 14 deck charts re-rendered from their stored data at slide-box size, text at least 18 pt (run 20261030T100629Z);
+  correlation heatmap shown as the 10 pairs with |rho| >= 0.5, selection charts as the top 8. Register 349 items.
+- Deck v2 version 35 uses the renders; figure_map deck section maps all 20 images (6 originals verified against the
+  deck's uploaded assets). Report export rev 68 (names removed from Tables D1–D2). Audit 9/9.
+- Not merged into milestone-3 (Henry: hold the merge).
+

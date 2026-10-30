@@ -36,6 +36,8 @@ The Pipeline A report needs the rest of the list.
 
 ## D2. `figure_map.json` deck section for v2
 
+**Done 2026-10-30 by Henry, as delegated lead (B-CR-43):** see `notice_benson_2026-10-30_B-CR-43.md`.
+
 Replace the deck section with the v2 asset map (v2 asset → register figure). `chart_ok` already checks A sources
 against `e5-A-frozen` (B-CR-40). Then run the audit against the v2 deck.
 
@@ -63,6 +65,8 @@ c0167aa70f2b3c125c93c281284b33ee F.clf.test_curves
 ```
 
 ## D3. Presentation renders of the deck charts, with larger fonts
+
+**Done 2026-10-30 by Henry, as delegated lead (B-CR-43):** see `notice_benson_2026-10-30_B-CR-43.md`.
 
 In presentation mode the text inside several charts cannot be read. Review round 3 (2026-10-29) put every slide on one
 type scale (body, tables and chart labels 28 px) and gave each chart the largest box left, so the remaining fix is in

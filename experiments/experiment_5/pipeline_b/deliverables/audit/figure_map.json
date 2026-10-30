@@ -1,5 +1,5 @@
 {
-  "note": "Where each chart in the live report doc and deck comes from. Doc: figure number -> doc blob -> uploaded asset (read back from the doc's blob records, 2026-10-26; rebuilt for the 28 charts of rev 33, 2026-10-28). Deck: <img src> asset id. Every asset must equal the register figure byte for byte. Doc section renumbered 2026-10-30 for review doc rev 58: the business-context chart is figure 1 (B-CR-41), the rest follow in reading order (Henry, delegated lead; replaces Benson D8).",
+  "note": "Where each chart in the live report doc and deck comes from. Doc: figure number -> doc blob -> uploaded asset (read back from the doc's blob records, 2026-10-26; rebuilt for the 28 charts of rev 33, 2026-10-28). Deck: <img src> asset id. Every asset must equal the register figure byte for byte. Doc section renumbered 2026-10-30 for review doc rev 58: the business-context chart is figure 1 (B-CR-41), the rest follow in reading order (Henry, delegated lead; replaces Benson D8). Deck section rebuilt 2026-10-30 for deck v2 (B-CR-43): 6 original charts and 14 presentation renders (replaces Benson D2).",
   "doc": {
     "1": {
       "blob": "c12be487-a6f7",
@@ -148,19 +148,25 @@
     }
   },
   "deck": {
-    "23cdda4993be49405ece860887b5ab17": "F.reg.validation_and_test",
-    "3d0b5f02eb6dc455989c59806e160595": "F.clf.validation_and_test",
-    "1abc90f25e7b95a5bc9fd7b0363a8c66": "F.reg.population",
-    "5c1cf0eca3fc4217eeb264acb02321e6": "F.clf.threshold_options",
-    "9705c7c37257f61a05455e97d64db2f0": "F.reg.partition",
-    "50fdc703d99e15f5c4a7777ee6fbd14b": "F.A3.reg.target_kde",
-    "55679204d325313ce29239b9bb6233b0": "F.reg.lateness_by_route",
-    "8bc9d14e0f89ead4d86268b56740e773": "F.A3.reg.outcome_trends",
-    "92b53ee5e77920e4ed1d4d3413e42f9c": "F.reg.history_coverage",
-    "c4ea3f0a8d8c5c3d379501a5c9bd9f98": "F.A3.reg.correlation_heatmap",
-    "4bd6826282b44966a891f99a10bea5aa": "F.reg.selection",
-    "87433e4d8e5e7299c327c25d0b3ab428": "F.clf.ranking_stability",
-    "8c3466a8505cdbaac46fe14c08d92041": "F.reg.family_ladder",
-    "926ff6cf67efd1bc07c1c4667eebe324": "F.clf.family_ladder"
+    "599ab1acabc2699da29fdc0ffc40a0fe": "F.A2.data_structure",
+    "617e556f7ca00f5865ddcc3d68cef704": "F.A3.reg.target_kde",
+    "983e32ca72a793c5d24b51528b2c2082": "F.A3.clf.target_bar",
+    "7e345f291b0060d62a700120becf0e1e": "F.reg.partition",
+    "aa6cd5caccd3fe6ac92b480d32d0a4af": "F.reg.history_coverage",
+    "c0167aa70f2b3c125c93c281284b33ee": "F.clf.test_curves",
+    "2a6365f829e2822ff6c92544fab2d92d": "F.A3.reg.cumulative_importance.deck",
+    "785d263105cf7f15cc19fbd767dad52a": "F.A3.clf.cumulative_importance.deck",
+    "9383fd854fba99c9bd1f710938373440": "F.A3.reg.correlation_heatmap.deck",
+    "dc6f17b783107d270f95adc414d3311e": "F.A3.clf.screen_promise.deck",
+    "8fb09b23acb158b8010b8f5123403940": "F.reg.lateness_by_route.deck",
+    "4b74e5fe450746cc20ce695f408e75dc": "F.A3.clf.screen_region.deck",
+    "3222f0061fd14147959ae014b6fd5f95": "F.reg.selection.deck",
+    "b58a48a482720528cb733c865b0dbd03": "F.clf.selection.deck",
+    "026a772c9003c03bfd7c0486483796f8": "F.reg.population.deck",
+    "c5829d88541c7ace2666e4c9770595bc": "F.clf.confusion.deck",
+    "827db1e983922bb7d4e74004613c85d4": "F.reg.residuals.deck",
+    "e9313fdfaeee4911134f0de7501faf27": "F.reg.by_state.deck",
+    "88dc565dc4fb0aa00f314352e60f1d35": "F.reg.buffer_curve.deck",
+    "a77d7d0308c768d9dea4ac2b6e120893": "F.clf.threshold_options.deck"
   }
 }

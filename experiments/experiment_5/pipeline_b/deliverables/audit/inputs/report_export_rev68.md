@@ -676,15 +676,15 @@ Full rank means no column is an exact linear combination of the others, so the c
 | feature | kind | transform | pool\_rank |
 | --- | --- | --- | --- |
 | route\_seller\_to\_customer\_state | categorical | categorical: one-hot (drop-first for linear/logistic, every level for trees) | 1 |
-| route\_recent\_carrier\_transit\_days | numeric | log1p: day count (Henry) | 2 |
-| route\_recent\_delivery\_days | numeric | log1p: day count (Henry) | 3 |
+| route\_recent\_carrier\_transit\_days | numeric | log1p: day count | 2 |
+| route\_recent\_delivery\_days | numeric | log1p: day count | 3 |
 | distance\_km\_max | numeric | log1p because pre-cutoff skewness 1.26 > 1 (A's 4.2 rule on B rows) | 4 |
 | interstate\_share | numeric | never logged: bounded 0-1 share (G-47) (A's 4.2 rule on B rows) | 5 |
 | total\_freight | numeric | log1p because pre-cutoff skewness 9.42 > 1 (A's 4.2 rule on B rows) | 7 |
-| seller\_prior\_dispatch\_days | numeric | log1p: day count (Henry) | 8 |
+| seller\_prior\_dispatch\_days | numeric | log1p: day count | 8 |
 | primary\_category | categorical | categorical: one-hot, never logged (A's 4.2 rule on B rows) | 9 |
-| seller\_prior\_late\_handover\_rate | numeric | never logged: rate or flag, scaled only (Henry) | 10 |
-| seller\_prior\_late\_handover\_days | numeric | log1p: day count (Henry) | 11 |
+| seller\_prior\_late\_handover\_rate | numeric | never logged: rate or flag, scaled only | 10 |
+| seller\_prior\_late\_handover\_days | numeric | log1p: day count | 11 |
 | freight\_ratio | numeric | never logged: team decision in the s01 review (G-62) (A's 4.2 rule on B rows) | 12 |
 | total\_weight\_g | numeric | log1p because pre-cutoff skewness 6.94 > 1 (A's 4.2 rule on B rows) | 14 |
 | total\_price | numeric | log1p because pre-cutoff skewness 11.03 > 1 (A's 4.2 rule on B rows) | 15 |
@@ -701,26 +701,26 @@ Full rank means no column is an exact linear combination of the others, so the c
 
 | feature | kind | transform | pool\_rank |
 | --- | --- | --- | --- |
-| route\_recent\_carrier\_transit\_days | numeric | log1p: day count (Henry) | 1 |
-| route\_recent\_delivery\_days | numeric | log1p: day count (Henry) | 2 |
-| seller\_prior\_dispatch\_days | numeric | log1p: day count (Henry) | 3 |
-| seller\_prior\_late\_handover\_days | numeric | log1p: day count (Henry) | 4 |
+| route\_recent\_carrier\_transit\_days | numeric | log1p: day count | 1 |
+| route\_recent\_delivery\_days | numeric | log1p: day count | 2 |
+| seller\_prior\_dispatch\_days | numeric | log1p: day count | 3 |
+| seller\_prior\_late\_handover\_days | numeric | log1p: day count | 4 |
 | seller\_prior\_review\_mean | numeric | never logged: 1-5 rating (G-70) (A's 4.2 rule on B rows) | 5 |
-| order\_dispatch\_days | numeric | log1p: day count (Henry) | 6 |
+| order\_dispatch\_days | numeric | log1p: day count | 6 |
 | freight\_ratio | numeric | never logged: team decision in the s01 review (G-62) (A's 4.2 rule on B rows) | 7 |
 | total\_freight | numeric | log1p because pre-cutoff skewness 9.45 > 1 (A's 4.2 rule on B rows) | 8 |
 | total\_volume\_cm3 | numeric | log1p because pre-cutoff skewness 7.65 > 1 (A's 4.2 rule on B rows) | 9 |
 | n\_items | numeric | never logged: integer count (G-62, G-70) (A's 4.2 rule on B rows) | 10 |
 | route\_seller\_to\_customer\_state | categorical | categorical: one-hot (drop-first for linear/logistic, every level for trees) | 11 |
-| seller\_prior\_late\_handover\_rate | numeric | never logged: rate or flag, scaled only (Henry) | 12 |
+| seller\_prior\_late\_handover\_rate | numeric | never logged: rate or flag, scaled only | 12 |
 | total\_price | numeric | log1p because pre-cutoff skewness 11.11 > 1 (A's 4.2 rule on B rows) | 13 |
-| order\_handover\_late\_days | numeric | log1p: day count (Henry) | 14 |
+| order\_handover\_late\_days | numeric | log1p: day count | 14 |
 | total\_weight\_g | numeric | log1p because pre-cutoff skewness 6.94 > 1 (A's 4.2 rule on B rows) | 15 |
 | product\_description\_lenght | numeric | log1p because pre-cutoff skewness 2.06 > 1 (A's 4.2 rule on B rows) | 16 |
 | n\_products | numeric | never logged: integer count (G-62, G-70) (A's 4.2 rule on B rows) | 18 |
 | n\_sellers | numeric | never logged: integer count (G-62, G-70) (A's 4.2 rule on B rows) | 19 |
 | purchase\_month | numeric | never logged: numeric calendar position (G-22, G-47) (A's 4.2 rule on B rows) | 20 |
-| order\_handed\_over\_late | numeric | never logged: rate or flag, scaled only (Henry) | 21 |
+| order\_handed\_over\_late | numeric | never logged: rate or flag, scaled only | 21 |
 | distance\_km\_max | numeric | log1p because pre-cutoff skewness 1.26 > 1 (A's 4.2 rule on B rows) | 22 |
 | primary\_category | categorical | categorical: one-hot, never logged (A's 4.2 rule on B rows) | 23 |
 | interstate\_share | numeric | never logged: bounded 0-1 share (G-47) (A's 4.2 rule on B rows) | 24 |
