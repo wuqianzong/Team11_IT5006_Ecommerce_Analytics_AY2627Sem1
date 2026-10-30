@@ -163,6 +163,15 @@
 - {id: A3.trend.detractor_2018_03, kind: number, source: A/s03_eda/classification/outputs/outcome_trends.csv, select: {month: "2018-03"}, value: detractor_rate, format: "{:.1%}", evidence: "3.3", used_in: [report 1]}
 - {id: A3.reg.price_mean, kind: number, source: A/s03_eda/regression/outputs/numeric_feature_target_lead_days.csv, select: {feature: total_price}, value: feature_mean, format: "{:.0f}", evidence: "3.4", used_in: [report 1]}
 - {id: A3.reg.freight_mean, kind: number, source: A/s03_eda/regression/outputs/numeric_feature_target_lead_days.csv, select: {feature: total_freight}, value: feature_mean, format: "{:.0f}", evidence: "3.4", used_in: [report 1]}
+- {id: BIZ.rev_2017_03, kind: number, source: BIZ/summary.json, value: revenue.first_month_brl, format: "{:,.0f}", evidence: BIZ.1, used_in: [report 1]}
+- {id: BIZ.rev_2018_04, kind: number, source: BIZ/summary.json, value: revenue.last_month_brl, format: "{:,.0f}", evidence: BIZ.1, used_in: [report 1]}
+- {id: BIZ.rev_growth, kind: number, source: BIZ/summary.json, value: revenue.growth_ratio, format: "{:.1f}", evidence: BIZ.1, used_in: [report 1]}
+- {id: BIZ.rev_2017_10, kind: number, source: BIZ/summary.json, value: revenue.oct_2017_brl, format: "{:,.0f}", evidence: BIZ.1, used_in: [report 1]}
+- {id: BIZ.rev_peak, kind: number, source: BIZ/summary.json, value: revenue.peak_brl, format: "{:,.0f}", evidence: BIZ.1, used_in: [report 1]}
+- {id: BIZ.repeat_mean, kind: number, source: BIZ/summary.json, value: repeat_rate.mean, format: "{:.1%}", evidence: BIZ.1, used_in: [report 1]}
+- {id: BIZ.repeat_min, kind: number, source: BIZ/summary.json, value: repeat_rate.min, format: "{:.1%}", evidence: BIZ.1, used_in: [report 1]}
+- {id: BIZ.repeat_max, kind: number, source: BIZ/summary.json, value: repeat_rate.max, format: "{:.1%}", evidence: BIZ.1, used_in: [report 1]}
+- {id: F.BIZ.revenue_repeat, kind: figure, source: BIZ/figures/revenue_repeat_by_month.png, evidence: BIZ.1, caption: "Monthly revenue and customer repeat rate, March 2017 to April 2018 (dashboard Business overview data)", used_in: [report 1]}
 
 # ---------------------------------------------------------------- Milestone 2 feedback checks (B12; TA points 3 and 10)
 - {id: B12.reg.rank_selected, kind: number, source: b12/regression/outputs/ranking_stability.json, value: selected_by_B4, format: "{:,}", evidence: B12.1, used_in: [report 4, report 8]}

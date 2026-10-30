@@ -66,7 +66,7 @@ What can operations do now? Promise a range: a 12.0-day buffer, chosen on valida
 
 ## Demo (1:00)
 
-1. Open the app on the **Score an order** tab. "These are held-out test orders that the serving rule alerts on, B first by risk."
+1. Open the app on the **ML deployment** tab. "These are held-out test orders that the serving rule alerts on, B first by risk."
 2. The first order is already picked in 4.1. Point at 4.2: "what we know at handover: the seller's delay, the route, both predictions, and which model made them."
 3. In 4.2.2, show **Logistics −10%**: "if this route were 10% faster, the risk drops; this is an association, not the effect of the action."
 4. Switch to **Detractor risk at handover**, panel 3.4: move the slider off 4/15 and back. "Operations choose the volume; precision and cost follow."

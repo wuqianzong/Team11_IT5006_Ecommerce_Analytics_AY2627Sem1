@@ -125,6 +125,8 @@ Already stored, not needed: T1 has A's test metrics, confusion matrix at 1/6 and
 
 ## D8. `figure_map.json` doc section for the report at rev 56 (added later on 2026-10-29)
 
+**Superseded 2026-10-30:** Henry, as delegated lead, rebuilt the doc section for rev 58 (B-CR-41 notice); no action needed.
+
 Henry moved four charts from the report body to the appendices (drift, ROC-AUC/Brier by population, ranking
 stability pair, A's correlation heatmap) and added table labels, a cover page, RMSE, R² and F1. The doc still has 28
 charts with the same assets, but 23 of them now carry a different figure number. The audit still passes, because

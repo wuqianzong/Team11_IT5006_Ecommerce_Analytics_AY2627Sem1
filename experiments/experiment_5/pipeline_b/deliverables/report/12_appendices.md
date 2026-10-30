@@ -144,7 +144,7 @@ Variance inflation factor of each numeric predictor in Pipeline A's pool, develo
 
 Two views of the app, reading the stored test outputs.
 
-*Screenshots 1–2. The detractor tab's alert statistics on the test period at the operating threshold 4/15 (S.05_alert_stats_test_4_15) and the Score an order tab's list of alerted held-out orders (S.06_score_alert_list).*
+*Screenshots 1–2. The detractor tab's alert statistics on the test period at the operating threshold 4/15 (S.05_alert_stats_test_4_15) and the ML deployment tab's list of alerted held-out orders (S.06_score_alert_list).*
 
 ### L. Declaration of AI use
 

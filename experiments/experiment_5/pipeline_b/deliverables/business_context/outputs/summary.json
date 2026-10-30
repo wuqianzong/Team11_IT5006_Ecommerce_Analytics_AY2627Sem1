@@ -1,0 +1,25 @@
+{
+  "window": {
+    "first_month": "2017-03",
+    "last_month": "2018-04",
+    "months": 14
+  },
+  "revenue": {
+    "first_month_brl": 374255.3,
+    "last_month_brl": 944974.83,
+    "growth_ratio": 2.524947088257668,
+    "peak_month": "2017-11",
+    "peak_brl": 1010016.37,
+    "oct_2017_brl": 664219.43,
+    "window_total_brl": 9494719.15
+  },
+  "repeat_rate": {
+    "mean": 0.01544663126074945,
+    "min": 0.007550077041602465,
+    "max": 0.022681992337164752
+  },
+  "definitions": {
+    "revenue_brl": "sum of item prices (freight excluded) of the month's orders, as the dashboard's KPI matrix",
+    "repeat_rate": "share of the month's customers (customer_unique_id) with more than one order in that month"
+  }
+}

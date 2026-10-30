@@ -618,3 +618,22 @@ stored anywhere the register may read; Henry chose stored figures only (no new r
 
 **Not done yet**
 - figure_map D8 still holds: no figure changed order. Member names and the live URL on the cover.
+
+## 2026-10-30: business context in §1, dashboard revision 2.3
+
+Henry (delegated lead) kept the report at 12 pt single-spaced (the brief's format) and asked for revenue and the
+customer repeat rate in the problem statement, quoted in the text under the audit's rules, from the dashboard's
+Business overview data and without touching Pipelines A or B.
+
+- Dashboard revision 2.3: the score panels leave tabs 2 and 3 (data health is now 2.8 and 3.9), tab 4 is named
+  "ML deployment"; app tests 19/19; checked in the browser. Screenshots unchanged (the tab bar is not in them).
+- B-CR-41: `deliverables/business_context/make_business_context.py` (dashboard code, March 2017 to April 2018,
+  before the test period) wrote run 20261030T004253Z on commit 3268c20; the register reads it as `BIZ/<file>`
+  and the audit checks the chart against its manifest. 9 register items (232 built).
+- §1: revenue sentence and repeat rate (replaces "churn is not measured"), new Figure 1. figure_map doc section
+  rebuilt for 29 figures (replaces Benson's D8). Review doc rev 58; audit 8/9 (deck map, D2). Body 17 pages.
+
+**Not done yet**
+- Milestone 2 report (Pipeline A only, 6–8 pages): plan next.
+- Deck v2 chart map (D2) and the cover's member names and app URL.
+

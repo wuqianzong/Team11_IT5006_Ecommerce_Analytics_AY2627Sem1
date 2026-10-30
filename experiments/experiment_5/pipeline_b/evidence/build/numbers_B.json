@@ -1642,6 +1642,105 @@
     "value": 22.269861423464413,
     "text": "22"
   },
+  "BIZ.rev_2017_03": {
+    "kind": "number",
+    "source": "BIZ/summary.json",
+    "run_id": "20261030T004253Z (business context)",
+    "evidence": "BIZ.1",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 374255.3,
+    "text": "374,255"
+  },
+  "BIZ.rev_2018_04": {
+    "kind": "number",
+    "source": "BIZ/summary.json",
+    "run_id": "20261030T004253Z (business context)",
+    "evidence": "BIZ.1",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 944974.83,
+    "text": "944,975"
+  },
+  "BIZ.rev_growth": {
+    "kind": "number",
+    "source": "BIZ/summary.json",
+    "run_id": "20261030T004253Z (business context)",
+    "evidence": "BIZ.1",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 2.524947088257668,
+    "text": "2.5"
+  },
+  "BIZ.rev_2017_10": {
+    "kind": "number",
+    "source": "BIZ/summary.json",
+    "run_id": "20261030T004253Z (business context)",
+    "evidence": "BIZ.1",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 664219.43,
+    "text": "664,219"
+  },
+  "BIZ.rev_peak": {
+    "kind": "number",
+    "source": "BIZ/summary.json",
+    "run_id": "20261030T004253Z (business context)",
+    "evidence": "BIZ.1",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 1010016.37,
+    "text": "1,010,016"
+  },
+  "BIZ.repeat_mean": {
+    "kind": "number",
+    "source": "BIZ/summary.json",
+    "run_id": "20261030T004253Z (business context)",
+    "evidence": "BIZ.1",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 0.01544663126074945,
+    "text": "1.5%"
+  },
+  "BIZ.repeat_min": {
+    "kind": "number",
+    "source": "BIZ/summary.json",
+    "run_id": "20261030T004253Z (business context)",
+    "evidence": "BIZ.1",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 0.007550077041602465,
+    "text": "0.8%"
+  },
+  "BIZ.repeat_max": {
+    "kind": "number",
+    "source": "BIZ/summary.json",
+    "run_id": "20261030T004253Z (business context)",
+    "evidence": "BIZ.1",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 0.022681992337164752,
+    "text": "2.3%"
+  },
+  "F.BIZ.revenue_repeat": {
+    "kind": "figure",
+    "source": "BIZ/figures/revenue_repeat_by_month.png",
+    "run_id": "20261030T004253Z (business context)",
+    "evidence": "BIZ.1",
+    "used_in": [
+      "report 1"
+    ],
+    "file": "evidence/build/figures/F.BIZ.revenue_repeat.png",
+    "caption": "Monthly revenue and customer repeat rate, March 2017 to April 2018 (dashboard Business overview data)"
+  },
   "B12.reg.rank_selected": {
     "kind": "number",
     "source": "b12/regression/outputs/ranking_stability.json",

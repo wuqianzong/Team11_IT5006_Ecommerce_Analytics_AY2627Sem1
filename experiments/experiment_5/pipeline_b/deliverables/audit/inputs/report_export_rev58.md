@@ -40,7 +40,11 @@ Pipeline B is better on the same test orders in both tasks, and both intervals e
 
 Olist is a Brazilian marketplace: independent sellers ship each order to the customer through a carrier, and the customer reviews the purchase afterwards. Two things go wrong often enough to matter. Deliveries arrive later than the customer expected, and a share of customers leave a 1 or 2 star review, which hurts the seller's and the platform's reputation.
 
-**Why it matters to the business.** The development period, January 2017 to late May 2018, holds 76,925 delivered orders, each worth on average R$ 137 in goods plus R$ 22 in freight, so a customer lost to a poor experience is revenue lost to the seller and the platform. Delivery is where the experience breaks under pressure. When volume jumped in November 2017 (Black Friday: 7,284 orders against 4,478 in October), the share of orders delivered after Olist's promised date rose from 5.3% to 14.3%, and it peaked at 21.4% in March 2018. Late orders drive bad reviews: 57.2% of late orders received a 1 or 2 star review, against 9.5% of orders delivered on time, and the detractor share rose from 11.9% in October 2017 to 22.5% in March 2018 (14.8% over the whole period). Reviews are public, and a disappointed customer may not buy again. Promising faster is not a free fix either: in an experiment with an online retailer, faster delivery promises raised sales and profit but also reduced customer retention (Cui et al., 2024). Our data do not measure churn directly, so we treat the bad review as its measurable warning sign.
+**Why it matters to the business.** The development period, January 2017 to late May 2018, holds 76,925 delivered orders, each worth on average R$ 137 in goods plus R$ 22 in freight, so a customer lost to a poor experience is revenue lost to the seller and the platform. The business grew fast: monthly revenue from item prices rose from R$ 374,255 in March 2017 to R$ 944,975 in April 2018, 2.5 times as much, with a peak of R$ 1,010,016 in November 2017 against R$ 664,219 in October (figure below). Delivery is where the experience breaks under pressure. When volume jumped in November 2017 (Black Friday: 7,284 orders against 4,478 in October), the share of orders delivered after Olist's promised date rose from 5.3% to 14.3%, and it peaked at 21.4% in March 2018. Late orders drive bad reviews: 57.2% of late orders received a 1 or 2 star review, against 9.5% of orders delivered on time, and the detractor share rose from 11.9% in October 2017 to 22.5% in March 2018 (14.8% over the whole period). Reviews are public, and a disappointed customer may not buy again. Promising faster is not a free fix either: in an experiment with an online retailer, faster delivery promises raised sales and profit but also reduced customer retention (Cui et al., 2024). Few customers order again soon: in a typical month only 1.5% of customers placed more than one order in that month (between 0.8% and 2.3%), so revenue rests on many occasional buyers, for whom one late delivery or one bad review can be the whole experience of the platform.
+
+&#91;image: Monthly revenue and customer repeat rate, March 2017 to April 2018 (dashboard Business overview data)\]
+
+*Figure 1. Monthly revenue (item prices, freight excluded) and customer repeat rate, March 2017 to April 2018, the last full month before the test period; Business overview data of the dashboard, computed with the dashboard's own code (F.BIZ.revenue\_repeat).*
 
 The two models answer these two problems. The lead-time model gives a delivery promise the operation can keep, so sales are not bought with broken promises; the detractor alert lets customer service reach an at-risk customer before the review is written. We frame one delivery experience as two prediction tasks, each made at the moment the business can still act on it.
 
@@ -149,7 +153,7 @@ Exploration used development orders only, before each task's test period, so it 
 
 &#91;image: Lead-time distribution, development orders (Pipeline A EDA)\]
 
-*Figure 1. Lead-time distribution, development orders (F.A3.reg.target\_kde).*
+*Figure 2. Lead-time distribution, development orders (F.A3.reg.target\_kde).*
 
 **Late delivery and bad reviews go together.** Among orders delivered after Olist's promised date, the detractor rate is 57.2%; among orders delivered on time it is 9.5%. Lateness is known only after delivery, so it is never a predictor. But it explains why an alert made at checkout has little to work with, and why Pipeline B waits for carrier handover, when the seller's part of any delay is already known.
 
@@ -157,7 +161,7 @@ Exploration used development orders only, before each task's test period, so it 
 
 &#91;image: Late handover by route (B2)\]
 
-*Figure 2. Late handover by route (F.reg.lateness\_by\_route).*
+*Figure 3. Late handover by route (F.reg.lateness\_by\_route).*
 
 **The business changes over time.** Order volume, lead time, the late-delivery rate and the detractor rate all move across 2017 and 2018. November 2017, with Black Friday, had 7,284 orders against 4,478 in October, and delivery slowed in the weeks after. A model evaluated on a random split would mix these periods; every evaluation here is time-ordered instead.
 
@@ -165,9 +169,9 @@ Exploration used development orders only, before each task's test period, so it 
 
 &#91;image: Monthly detractor rate, development orders (Pipeline A EDA)\]
 
-*Figure 3. Monthly orders and lead time (F.A3.reg.outcome\_trends).*
+*Figure 4. Monthly orders and lead time (F.A3.reg.outcome\_trends).*
 
-*Figure 4. Monthly detractor rate (F.A3.clf.outcome\_trends), development orders.*
+*Figure 5. Monthly detractor rate (F.A3.clf.outcome\_trends), development orders.*
 
 **Detractors are a minority.** 14.8% of development orders are detractors (on Pipeline B's test orders, 9.9%), so a model that never alerts would look accurate. We report average precision against the detractor share and set the alert threshold from error costs.
 
@@ -211,7 +215,7 @@ A seller with no earlier handovers takes the recent mean of sellers in the same 
 
 &#91;image: Share of rows with their own seller and route history, by quarter\]
 
-*Figure 5. Share of rows with their own seller and route history, by quarter (F.reg.history\_coverage).*
+*Figure 6. Share of rows with their own seller and route history, by quarter (F.reg.history\_coverage).*
 
 **Grounding.** Logistics performance is studied alongside ratings and sales on e-commerce platforms (Deshpande and Pendem, 2023); we cite this for the question it studies, not for any effect or direction. The reason to expect the seller's history to matter comes from our own development data: late delivery goes with more detractors, and the share of late handovers differs between seller states and routes (section 4). Our seller features measure the logistics performance of the seller who ships the order. For the route features we found no audited source, so their use rests on an operational assumption: a route that was slow last week is likely to be slow this week. Section 7 tests that assumption against the data instead of taking it for granted.
 
@@ -251,9 +255,9 @@ Selection ranks each candidate by its association with the target on development
 
 &#91;image: Feature ranking and the 99% rule, detractor alert\]
 
-*Figure 6. Feature ranking and the 99% rule, lead time (F.reg.selection).*
+*Figure 7. Feature ranking and the 99% rule, lead time (F.reg.selection).*
 
-*Figure 7. Feature ranking and the 99% rule, detractor alert (F.clf.selection).*
+*Figure 8. Feature ranking and the 99% rule, detractor alert (F.clf.selection).*
 
 Ranking once on all development orders is a design choice, and it makes the validation scores slightly optimistic, because the folds' validation orders helped choose the features; the test period is unaffected. To check how much the choice depends on the rows, the ranking was repeated inside each training fold.
 
@@ -274,7 +278,7 @@ Leakage takes several forms beyond rows shared between training and test (Kapoor
 
 &#91;image: Time-ordered folds and the test period\]
 
-*Figure 8. Time-ordered folds and the test period (F.reg.partition).*
+*Figure 9. Time-ordered folds and the test period (F.reg.partition).*
 
 *Table 10. Fold windows and sizes, lead time.*
 
@@ -298,9 +302,9 @@ Each step up the ladder must beat the step below it on the same folds. The table
 
 &#91;image: Model ladder on the five folds, detractor alert\]
 
-*Figure 9. Model ladder on the five folds, lead time (F.reg.family\_ladder).*
+*Figure 10. Model ladder on the five folds, lead time (F.reg.family\_ladder).*
 
-*Figure 10. Model ladder on the five folds, detractor alert (F.clf.family\_ladder).*
+*Figure 11. Model ladder on the five folds, detractor alert (F.clf.family\_ladder).*
 
 *Table 11. Model ladder on the five folds, lead time (MAE in days).*
 
@@ -396,13 +400,13 @@ Pipeline B's MAE minus Pipeline A's is -0.729 days on the same 15,422 test order
 
 &#91;image: Delivery lead time: validation folds (selection scores) and the test, A and B\]
 
-*Figure 11. Lead time by validation fold and on the test, with time windows (F.reg.validation\_and\_test).*
+*Figure 12. Lead time by validation fold and on the test, with time windows (F.reg.validation\_and\_test).*
 
 **Residuals, read honestly.** On validation the errors lean late: the average order arrives +2.9 days after the prediction, with a long right tail. On the test they lean early: mean -1.1 days, median -1.6, because the test period was faster than the development period (section 7.4). The residuals are therefore neither centred on zero nor constant in spread, and a promise built on the prediction needs a buffer chosen for the current period (section 9). 11.1% of test orders arrive more than 3 days after the prediction (9.3% for Pipeline A) and 4.7% more than 6 days after.
 
 &#91;image: Residuals on B's test rows: B vs A\]
 
-*Figure 12. Residuals on the test orders, Pipeline B and Pipeline A (F.reg.residuals).*
+*Figure 13. Residuals on the test orders, Pipeline B and Pipeline A (F.reg.residuals).*
 
 **Where it errs.** Slices are judged only with at least 100 test orders. Pipeline B is better than Pipeline A in every judged customer state, distance band and basket size, on 20 of the 20 routes with enough orders, and in most months:
 
@@ -418,7 +422,7 @@ Pipeline B's MAE minus Pipeline A's is -0.729 days on the same 15,422 test order
 
 &#91;image: Lead-time error by customer state\]
 
-*Figure 13. Lead-time error by customer state (F.reg.by\_state).*
+*Figure 14. Lead-time error by customer state (F.reg.by\_state).*
 
 ### 7.2 Detractor alert
 
@@ -435,21 +439,21 @@ Pipeline B ranks detractors better by +0.0187 AP (paired interval +0.0089 to +0.
 
 &#91;image: PR, ROC and reliability curves on B's test rows\]
 
-*Figure 14. Detractor alert by validation fold and on the test (F.clf.validation\_and\_test).*
+*Figure 15. Detractor alert by validation fold and on the test (F.clf.validation\_and\_test).*
 
-*Figure 15. PR, ROC and reliability curves on the test (F.clf.test\_curves).*
+*Figure 16. PR, ROC and reliability curves on the test (F.clf.test\_curves).*
 
 **At the threshold.** At the frozen 1/6, the unbiased result, Pipeline B sends 23.2 alerts a day on the test with precision 0.208 and recall 0.300, an F1 score of 0.246; Pipeline A at its own 1/6 on the same orders has precision 0.158, recall 0.356 and F1 0.219. After the test the business moved its operating threshold to 4/15 to cut false alarms, a post-test change reported beside the frozen result: 5.6 alerts a day, precision 0.346, recall 0.121. Orders outside the seven states are alerted by Pipeline A at its frozen 1/6 (section 9).
 
 &#91;image: Precision, recall and alerts per day against the threshold\]
 
-*Figure 16. Precision, recall and alerts per day against the threshold, marking 1/6 and 4/15 (F.clf.threshold\_options).*
+*Figure 17. Precision, recall and alerts per day against the threshold, marking 1/6 and 4/15 (F.clf.threshold\_options).*
 
 **Slices.** Precision and recall by customer state and route are judged only where the test has more than 100 detractors, which holds for few slices (appendix E). In every judged slice Pipeline B is more precise; Pipeline A, which alerts more orders, has the higher recall in most of them.
 
 &#91;image: Detractor alert precision and recall by customer state\]
 
-*Figure 17. Detractor alert by customer state (F.clf.by\_state).*
+*Figure 18. Detractor alert by customer state (F.clf.by\_state).*
 
 **Label choice.** Scored against the first review instead of the lowest, both pipelines' results change only in the fourth decimal (section 3), so the label rule does not drive the comparison.
 
@@ -468,7 +472,7 @@ For lead time most of the lower error comes from the narrower scope, because Pip
 
 &#91;image: Where B's gain comes from: scope vs features\]
 
-*Figure 18. Where the gain comes from: scope vs features (F.reg.population).*
+*Figure 19. Where the gain comes from: scope vs features (F.reg.population).*
 
 ### 7.4 What drives the predictions, and drift
 
@@ -478,9 +482,9 @@ Permutation importance measures how much each feature contributes to the frozen 
 
 &#91;image: Permutation importance, B classification (test rows)\]
 
-*Figure 19. Permutation importance, lead time (F.reg.importance).*
+*Figure 20. Permutation importance, lead time (F.reg.importance).*
 
-*Figure 20. Permutation importance, detractor alert (F.clf.importance).*
+*Figure 21. Permutation importance, detractor alert (F.clf.importance).*
 
 This ranking differs from the selection ranking of section 5.3: Spearman correlation 0.16 for lead time and 0.31 for the alert, with 7 and 6 of the top ten features shared. The difference is expected: selection scored one feature at a time on development orders, whereas importance measures each feature inside the fitted model on the test period, where correlated features share credit.
 
@@ -488,9 +492,9 @@ This ranking differs from the selection ranking of section 5.3: Spearman correla
 
 &#91;image: B's classification odds ratios\]
 
-*Figure 21. Coefficients, lead time (F.reg.coefficients).*
+*Figure 22. Coefficients, lead time (F.reg.coefficients).*
 
-*Figure 22. Odds ratios, detractor alert (F.clf.coefficients).*
+*Figure 23. Odds ratios, detractor alert (F.clf.coefficients).*
 
 The test period differs from development: deliveries were faster and reviews happier, and the route history features shifted most. Validation and test scores therefore describe different periods, and the test gain partly reflects that the history features track the faster period as it happens (drift by fold in appendix A).
 
@@ -504,9 +508,9 @@ The released models predict exactly what was tested, and the dashboard shows onl
 
 **Input checks.** Unknown states, impossible distances, orders without items and missing instalments are rejected with a clear message. Missing values, unseen categories and numeric inputs more than 4 standard deviations from the training mean are accepted with a warning.
 
-**Dashboard.** A Streamlit app with four tabs: a business overview of all orders (descriptive, labelled as a separate scope from the model results), delivery lead time, detractor risk at handover, and scoring of the alerted held-out orders. The model tabs read only stored outputs and score held-out historical orders. The alert tab's threshold slider moves Pipeline B's threshold over the stored options (default 4/15) and shows alerts per day, precision, recall and cost; the baseline's fallback stays at its frozen 1/6.
+**Dashboard.** A Streamlit app with four tabs: a business overview of all orders (descriptive, labelled as a separate scope from the model results), delivery lead time, detractor risk at handover, and ML deployment, which scores the alerted held-out orders. The model tabs read only stored outputs and score held-out historical orders. The alert tab's threshold slider moves Pipeline B's threshold over the stored options (default 4/15) and shows alerts per day, precision, recall and cost; the baseline's fallback stays at its frozen 1/6.
 
-**Using the app.** The app lives in `deliverables/dashboard/app/` with its own environment (Python 3.12 and the package versions pinned in its requirements file, which load the frozen models unchanged). Running `streamlit run app.py` from that folder opens it at `http://localhost:8501`; the README there gives the exact commands. For hosting, the frozen models are served by a small prediction API that returns exactly what the local models return, and the hosted address will be added here once it is live. The sidebar names the stored outputs each tab reads and states that no model is fitted and no test label is read. On the detractor tab, a radio button switches the alert statistics between validation (the selection view) and the test (a post-test view), and the slider moves Pipeline B's threshold, starting at 4/15. A fourth tab, Score an order, lists the held-out orders the serving rule alerts on, in the review order of section 9, with each order's details as known at handover, both predictions and two kinds of scenario on the alert model's inputs (logistics 10% faster; freight discounts up to free shipping), each labelled as an association, not the effect of the action. The app's tests check the file loaders and the router, that every slider position is a stored threshold, that the forbidden scope and threshold wording is absent, that every planned panel is present, and that the alert list and its scores match the stored test predictions without reading a label. Screenshots of the detractor tab and the Score an order tab are in appendix K.
+**Using the app.** The app lives in `deliverables/dashboard/app/` with its own environment (Python 3.12 and the package versions pinned in its requirements file, which load the frozen models unchanged). Running `streamlit run app.py` from that folder opens it at `http://localhost:8501`; the README there gives the exact commands. For hosting, the frozen models are served by a small prediction API that returns exactly what the local models return, and the hosted address will be added here once it is live. The sidebar names the stored outputs each tab reads and states that no model is fitted and no test label is read. On the detractor tab, a radio button switches the alert statistics between validation (the selection view) and the test (a post-test view), and the slider moves Pipeline B's threshold, starting at 4/15. A fourth tab, ML deployment, lists the held-out orders the serving rule alerts on, in the review order of section 9, with each order's details as known at handover, both predictions and two kinds of scenario on the alert model's inputs (logistics 10% faster; freight discounts up to free shipping), each labelled as an association, not the effect of the action. The app's tests check the file loaders and the router, that every slider position is a stored threshold, that the forbidden scope and threshold wording is absent, that every planned panel is present, and that the alert list and its scores match the stored test predictions without reading a label. Screenshots of the detractor tab and the ML deployment tab are in appendix K.
 
 ## 9 Business recommendations
 
@@ -522,7 +526,7 @@ Three actions follow from the results; each is labelled as an observation (measu
 
 &#91;image: Promise buffer: share of orders delivered later than prediction plus buffer; buffer chosen on validation, read on the test\]
 
-*Figure 23. Share of orders late against buffer size, validation and test (F.reg.buffer\_curve).*
+*Figure 24. Share of orders late against buffer size, validation and test (F.reg.buffer\_curve).*
 
 **Cost.** Weighting a missed detractor as five false alerts, the serving rule's test cost is 9,211 (7,123 from Pipeline B and 2,088 from the fallback). The weighting is an assumption; the dashboard shows the trade-off at other thresholds.
 
@@ -619,7 +623,7 @@ Validation folds are selection scores; the test was read once.
 
 &#91;image: Drift by fold, regression\]
 
-*Figure 24. Drift between development and test, by fold (F.reg.drift).*
+*Figure 25. Drift between development and test, by fold (F.reg.drift).*
 
 ### B. Metric glossary
 
@@ -821,7 +825,7 @@ Full rank means no column is an exact linear combination of the others, so the c
 
 &#91;image: ROC-AUC and Brier by population, detractor alert\]
 
-*Figure 25. ROC-AUC and Brier by population, detractor alert (F.clf.auc\_brier).*
+*Figure 26. ROC-AUC and Brier by population, detractor alert (F.clf.auc\_brier).*
 
 ### F. Tuning grids and the grid edge
 
@@ -1119,9 +1123,9 @@ The selection ranking repeated inside each training fold.
 
 &#91;image: Detractor alert: feature ranking on all development rows vs each training fold\]
 
-*Figure 26. Ranking stability across the five folds, lead time (F.reg.ranking\_stability).*
+*Figure 27. Ranking stability across the five folds, lead time (F.reg.ranking\_stability).*
 
-*Figure 27. Ranking stability across the five folds, detractor alert (F.clf.ranking\_stability).*
+*Figure 28. Ranking stability across the five folds, detractor alert (F.clf.ranking\_stability).*
 
 ### J. Correlation and variance inflation
 
@@ -1188,7 +1192,7 @@ Variance inflation factor of each numeric predictor in Pipeline A's pool, develo
 
 &#91;image: Pairwise correlations of A's numeric predictors (Pipeline A EDA)\]
 
-*Figure 28. Pairwise correlations of Pipeline A's numeric predictors, development orders (F.A3.reg.correlation\_heatmap).*
+*Figure 29. Pairwise correlations of Pipeline A's numeric predictors, development orders (F.A3.reg.correlation\_heatmap).*
 
 ### K. Dashboard screenshots
 
@@ -1198,7 +1202,7 @@ Two views of the app, reading the stored test outputs.
 
 &#91;image: App screenshot\]
 
-*Screenshots 1–2. The detractor tab's alert statistics on the test period at the operating threshold 4/15 (S.05\_alert\_stats\_test\_4\_15) and the Score an order tab's list of alerted held-out orders (S.06\_score\_alert\_list).*
+*Screenshots 1–2. The detractor tab's alert statistics on the test period at the operating threshold 4/15 (S.05\_alert\_stats\_test\_4\_15) and the ML deployment tab's list of alerted held-out orders (S.06\_score\_alert\_list).*
 
 ### L. Declaration of AI use
 
