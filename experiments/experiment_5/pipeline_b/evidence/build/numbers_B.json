@@ -3754,7 +3754,7 @@
     "evidence": "4.6",
     "used_in": [
       "report D",
-      "m2"
+      "m2 B"
     ],
     "file": "evidence/build/tables/APX.features_derived_A.csv",
     "rows": 33

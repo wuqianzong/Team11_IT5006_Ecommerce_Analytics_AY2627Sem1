@@ -2,7 +2,7 @@
 
 Every feature has a definition, a reason and a time window: all are known at checkout. Correlated features are removed by a stated rule before selection, and a ranking rule then keeps the smallest set that carries 99% of the ranked signal. Both steps use development orders only.
 
-**Predictor pool.** We start from 24 predictors known at checkout, grouped by what they describe:
+**Predictor pool.** We start from 24 predictors known at checkout, grouped by what they describe (formulas in appendix B):
 
 - **Basket:** counts of items, products, sellers and categories. More sellers mean more parcels that must all arrive.
 - **Price and freight:** total price, total freight and the freight-to-price ratio. Freight reflects distance and size as the seller priced them.

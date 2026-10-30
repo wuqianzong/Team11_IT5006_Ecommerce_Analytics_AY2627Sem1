@@ -10,21 +10,27 @@
 
 {{table:M2.clf.folds}}
 
-### B. Multicollinearity and selection
+### B. Derived features, multicollinearity and selection
 
-*Table B1. Variance inflation factors, lead time.*
+**Derived features.** Almost every feature is computed from the nine raw tables rather than read from one column; a feature read straight from a raw column shows that column. Table B1 gives the formula of each, as stored with the feature pipeline. Order-level sums, counts and shares are taken over the order's items after the joins of section 2.
+
+*Table B1. Features and how each is derived (both tasks; the missing-value indicators are added inside each fold).*
+
+{{table:APX.features_derived_A}}
+
+*Table B2. Variance inflation factors, lead time.*
 
 {{table:A3.reg.vif}}
 
-*Table B2. Variance inflation factors, detractor alert.*
+*Table B3. Variance inflation factors, detractor alert.*
 
 {{table:A3.clf.vif}}
 
-*Table B3. Selection ranking and the 99% rule, lead time (absolute Spearman correlation).*
+*Table B4. Selection ranking and the 99% rule, lead time (absolute Spearman correlation).*
 
 {{table:M2.reg.selection_ranking}}
 
-*Table B4. Selection ranking and the 99% rule, detractor alert (mutual information).*
+*Table B5. Selection ranking and the 99% rule, detractor alert (mutual information).*
 
 {{table:M2.clf.selection_ranking}}
 

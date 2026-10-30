@@ -362,5 +362,5 @@
 - {id: M2.clf.oof_recall, kind: number, source: A/s08_selection/classification/outputs/frozen_recipe.json, value: threshold.oof_recall, format: "{:.3f}", evidence: "8.5", used_in: [m2]}
 - {id: M2A.reg.top_importance, kind: number, source: M2A/regression/permutation_importance.csv, select: {feature: distance_km_max}, value: importance_mean, format: "{:.2f}", evidence: "M2A.1", used_in: [m2]}
 - {id: M2A.clf.top_importance, kind: number, source: M2A/classification/permutation_importance.csv, select: {feature: n_sellers}, value: importance_mean, format: "{:.3f}", evidence: "M2A.1", used_in: [m2]}
-- {id: APX.features_derived_A, kind: table, source: A/s04_features/classification/outputs/feature_dictionary.csv, columns: [feature, formula], evidence: "4.6", used_in: [report D, m2]}
+- {id: APX.features_derived_A, kind: table, source: A/s04_features/classification/outputs/feature_dictionary.csv, columns: [feature, formula], evidence: "4.6", used_in: [report D, m2 B]}
 - {id: APX.features_derived_B, kind: table, source: b04/classification/outputs/feature_dictionary_B.csv, select: {source: ["Pipeline B (B-C6)", "Pipeline B (B-C7)", "Pipeline B (B-C8)", "Pipeline B (B-C8b)", "Pipeline B (B-C9)"]}, columns: [feature, definition, formula], evidence: B4.5, used_in: [report D]}
