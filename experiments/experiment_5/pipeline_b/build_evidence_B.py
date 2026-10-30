@@ -45,7 +45,8 @@ A_STAGES = B_ROOT.parent / "stages"     # Pipeline A's frozen tree (read only)
 A_TAG = "e5-A-frozen"
 BIZ_OUT = B_ROOT / "deliverables" / "business_context" / "outputs"   # business context (B-CR-41)
 # Read-only analyses outside the stages, each with its own _manifest.json: prefix -> outputs folder (B-CR-41, B-CR-42)
-MANIFEST_ROOTS = {"BIZ": BIZ_OUT, "M2A": B_ROOT / "deliverables" / "m2_report" / "a_interpretation" / "outputs"}
+MANIFEST_ROOTS = {"BIZ": BIZ_OUT, "M2A": B_ROOT / "deliverables" / "m2_report" / "a_interpretation" / "outputs",
+                  "DECK": B_ROOT / "deliverables" / "deck" / "renders" / "outputs"}   # B-CR-43
 PLACEHOLDER = re.compile(r"\{\{\s*([A-Za-z0-9_.\-]+)\s*\}\}")
 
 
@@ -123,7 +124,7 @@ verify_biz_source = verify_manifest_source   # B-CR-41 name, kept for the tests 
 
 def _outputs(src: str, path: Path) -> tuple[Path, str]:
     """The outputs folder holding the source and the file's path inside it (key of _evidence_index.json)."""
-    head = {"A": 4, "BIZ": 1, "M2A": 1}.get(Path(src).parts[0], 3)
+    head = {"A": 4, "BIZ": 1, "M2A": 1, "DECK": 1}.get(Path(src).parts[0], 3)
     inner = Path(*Path(src).parts[head:])
     return path.parents[len(inner.parts) - 1], inner.as_posix()
 
