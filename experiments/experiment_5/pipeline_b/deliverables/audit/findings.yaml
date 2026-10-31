@@ -10,12 +10,12 @@
   severity: high
   item: "business_context manifest records smartcommerce_consolidated.csv by its Windows CRLF hash (f130077f...); git stores LF (32c2f4ee...), so on macOS, Linux, Streamlit Cloud and the teacher's machine test_biz_sources_match_their_manifest fails, 6 register tests error and the audit fails F.BIZ.revenue_repeat"
   owner: Henry
-  status: Open
+  status: Fixed
   due: 2026-11-02
   decision: B-G-15
-  fix: {plan: "hash text inputs with CRLF normalised to LF in the manifest producers (business_context, M2A, DECK) and in build_evidence_B.verify_manifest_source; rerun the business_context producer; rebuild the register", cr: "CR-063 / B-CR-46 (planned)", commit: null}
+  fix: {done: "text files hashed with CRLF read as LF in build_evidence_B._sha and the business_context, M2A and DECK producers; business_context rerun 20261031T150536Z (input 32c2f4ee...); register rebuilt", cr: CR-063 / B-CR-46, commit: "f460a90 (code), next commit (rerun and register)"}
   files: [pipeline_b/deliverables/business_context/outputs/_manifest.json, pipeline_b/build_evidence_B.py]
-  guard: "new test: a CRLF and an LF copy of a text input hash alike; test_biz_sources_match_their_manifest on the Mac"
+  guard: "test_text_inputs_hash_alike_with_crlf_or_lf; test_biz_sources_match_their_manifest (to recheck on the Mac)"
   verified_by: null
 
 - id: T-10
@@ -67,10 +67,10 @@
   severity: medium
   item: "50 text reads and writes without an explicit encoding or newline: 18 in tooling and tests, 32 in frozen e5b modules; CR-058 deferred the fix to migration step 3, which CR-061 removed"
   owner: Henry
-  status: Open
+  status: Fixed
   due: 2026-11-02
   decision: B-G-16
-  fix: {plan: "option 1: encoding='utf-8' (newline='\\n' where missing) in build_evidence_B.py, audit_deliverables_B.py, tests/test_register_B.py, test_adapter.py, test_serving.py, test_evidence_register.py; option 2b: exclude by name the 8 frozen e5b modules in tests/test_guards.py with reason and CR number (the only change allowed there)", cr: "CR-063 / B-CR-46 (planned)", commit: null}
+  fix: {plan: "option 1: encoding='utf-8' (newline='\\n' where missing) in build_evidence_B.py, audit_deliverables_B.py, tests/test_register_B.py, test_adapter.py, test_serving.py, test_evidence_register.py; option 2b: exclude by name the 8 frozen e5b modules in tests/test_guards.py with reason and CR number (the only change allowed there)", cr: CR-063 / B-CR-46, commit: f460a90}
   files: [tests/test_guards.py]
   guard: test_text_io_names_an_encoding
   verified_by: null

@@ -16,7 +16,8 @@ tests and the audit pack need):
 
 `findings.yaml` holds every finding and action item from every audit (ID, source, severity, owner, status, due,
 decision, fix, guard, verified by); `runs/` keeps each audit report as received with
-its triage. Open on 2026-10-31: T-11 and T-06 (Benson's validation at 54bc6d0), T-07, T-08, T-09.
+its triage. Open on 2026-10-31: T-07, T-08, T-09; T-11 and T-06 (Benson's validation at 54bc6d0) fixed in CR-063 / B-CR-46, awaiting
+Benson's recheck.
 
 ## Inputs
 
@@ -43,6 +44,8 @@ members' names and the course: all 9 checks PASS (`audit_result.json`).
   "header kept".
 
 ## Earlier runs
+
+- 2026-10-31, report rev 73 and deck version 39, after CR-063 / B-CR-46 (line-ending-safe hashes, encoding guard): 9/9.
 
 - 2026-10-30, report rev 72 and deck version 36, after B-CR-44: 9/9.
 - 2026-10-26, report rev 28 and deck v1: 9/9; third-party audit V2 answered in `third_party_audit_v2_response.md`.

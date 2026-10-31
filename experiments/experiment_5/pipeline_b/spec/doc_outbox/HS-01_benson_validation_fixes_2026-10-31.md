@@ -1,5 +1,5 @@
 # HS-01 · from: Benson · to: Henry (delegated lead) · validation fixes on milestone-3
-Status: SENT 2026-10-31 (received, in progress) · Answer by: 2026-11-02 (proposed) · Type: TASK
+Status: ANSWERED 2026-10-31 (fixed; awaiting Benson's recheck on the Mac) · Answer by: 2026-11-02 (proposed) · Type: TASK
 
 ## Get the right state
 git fetch origin; git switch e5/validation-fixes-henry (cut from milestone-3 at 54bc6d0)

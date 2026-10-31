@@ -751,3 +751,21 @@ more on the test than sending no alert, because the test period had fewer detrac
 
 **Questions for Benson**
 - None; due date 2026-11-02 proposed for both items.
+
+## 2026-10-31 · Henry + Claude · T-11 and T-06 fixed (CR-063 / B-CR-46)
+
+**Done**
+- f460a90: text files hashed with CRLF read as LF in `build_evidence_B._sha` and the business_context, M2A and DECK
+  producers, with a test; tooling and tests name `encoding="utf-8"`; `tests/test_guards.py` skips the 8 frozen e5b modules.
+- business_context producer rerun (20261031T150536Z): outputs byte-identical, input hash `32c2f4ee…`; register rebuilt.
+
+**Checks**
+- A suite 59 passed; `pipeline_b/tests` 23 passed, 5 skipped; deliverables audit 9/9 on report rev 73 and deck version 39.
+- Before the rerun, the register test failed on Windows exactly as on Benson's Mac, so the new hash rule is exercised.
+
+**Next**
+- Benson's Claude rechecks on the Mac; on PASS, T-11 and T-06 become Verified and HS-01 CLOSED. Merge to milestone-3 after that.
+
+**Questions for Benson**
+- The register build also changed `registry_sha256` in `build_manifest.json`: the committed build predated e35c041's
+  registry edit. Accept as part of B-CR-46?
