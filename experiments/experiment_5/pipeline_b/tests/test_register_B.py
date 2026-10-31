@@ -1,5 +1,6 @@
 """B11.1 number register: builds from Current runs only; placeholders fill or fail; superseded evidence is never cited."""
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -30,6 +31,9 @@ def test_sources_are_current_runs(numbers):
         if Path(v["source"]).parts[0] == "A":   # A's frozen tree (B-G-11), checked below
             assert v["run_id"].endswith(f"@ {reg.A_TAG}")
             continue
+        if Path(v["source"]).parts[0] in reg.MANIFEST_ROOTS:   # B-CR-41, B-CR-42, checked below
+            assert v["run_id"].endswith(")")
+            continue
         stage, task = Path(v["source"]).parts[:2]
         assert v["run_id"] == runs[(stage, task)]
 
@@ -37,7 +41,8 @@ def test_sources_are_current_runs(numbers):
 def test_a_sources_only_from_the_frozen_tree(numbers):
     a_items = [v for v in numbers.values() if Path(v["source"]).parts[0] == "A"]
     assert a_items, "the report cites A's s03 EDA numbers (B-G-11)"
-    assert all(Path(v["source"]).parts[1] == "s03_eda" for v in a_items)
+    assert all(Path(v["source"]).parts[1] in ("s01_problem", "s02_data", "s03_eda", "s04_features", "s05_partition",
+                                               "s06_training", "s07_tuning", "s08_selection") for v in a_items)   # B-G-11, B-G-13, B-G-14
     with pytest.raises(ValueError):
         reg.verify_a_source("A/s03_eda/regression/eda_summary.json")          # not under outputs/
     with pytest.raises(ValueError):
@@ -85,3 +90,27 @@ def test_table_placeholder(numbers):
 
 def test_build_leaves_tracked_register_untouched(numbers):
     assert all(not Path(v["file"]).is_relative_to(reg.BUILD) for v in numbers.values() if "file" in v)
+
+
+def test_biz_sources_match_their_manifest(monkeypatch):
+    """B-CR-41: business-context files are accepted only while they and their input match the manifest."""
+    src = "BIZ/summary.json"
+    assert reg.verify_biz_source(src)[0].is_file()
+    with pytest.raises(ValueError):
+        reg.verify_biz_source("BIZ/no_such_file.csv")
+    monkeypatch.setattr(reg, "_sha", lambda p: "0" * 64)
+    with pytest.raises(ValueError, match="does not match"):
+        reg.verify_biz_source(src)
+
+
+def test_replace_strips_names_under_any_string_dtype():
+    """A table item's `replace` must work for object and pandas string dtypes alike (pandas 2 and 3)."""
+    import yaml
+    items = [i for i in yaml.safe_load(reg.REGISTRY.read_text(encoding="utf-8")) if i.get("replace")]
+    assert items, "the feature tables carry a name-stripping replace rule"
+    nums = json.loads((reg.BUILD / "numbers_B.json").read_text(encoding="utf-8"))
+    for it in items:
+        text = (reg.B_ROOT / nums[it["id"]]["file"]).read_text(encoding="utf-8")
+        for pat, _ in it["replace"]:
+            assert not re.search(pat, text), f"{it['id']} still matches {pat}"
+

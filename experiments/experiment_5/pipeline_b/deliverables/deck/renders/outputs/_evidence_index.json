@@ -1,0 +1,113 @@
+{
+  "node": "DECK/deck_renders",
+  "files": {
+    "F.A3.reg.cumulative_importance.deck.png": {
+      "ids": [
+        "3.9"
+      ],
+      "kind": "figure"
+    },
+    "F.A3.clf.cumulative_importance.deck.png": {
+      "ids": [
+        "3.9"
+      ],
+      "kind": "figure"
+    },
+    "F.A3.reg.correlation_heatmap.deck.png": {
+      "ids": [
+        "3.8"
+      ],
+      "kind": "figure"
+    },
+    "F.A3.clf.screen_promise.deck.png": {
+      "ids": [
+        "3.11"
+      ],
+      "kind": "figure"
+    },
+    "F.reg.lateness_by_route.deck.png": {
+      "ids": [
+        "DS.1"
+      ],
+      "kind": "figure"
+    },
+    "F.A3.clf.screen_region.deck.png": {
+      "ids": [
+        "3.12"
+      ],
+      "kind": "figure"
+    },
+    "F.reg.selection.deck.png": {
+      "ids": [
+        "DS.2"
+      ],
+      "kind": "figure"
+    },
+    "F.clf.selection.deck.png": {
+      "ids": [
+        "DS.2"
+      ],
+      "kind": "figure"
+    },
+    "F.reg.population.deck.png": {
+      "ids": [
+        "DS.5"
+      ],
+      "kind": "figure"
+    },
+    "F.clf.confusion.deck.png": {
+      "ids": [
+        "DS.6"
+      ],
+      "kind": "figure"
+    },
+    "F.reg.residuals.deck.png": {
+      "ids": [
+        "B9.16"
+      ],
+      "kind": "figure"
+    },
+    "F.reg.by_state.deck.png": {
+      "ids": [
+        "B9.3"
+      ],
+      "kind": "figure"
+    },
+    "F.reg.buffer_curve.deck.png": {
+      "ids": [
+        "B12.2"
+      ],
+      "kind": "figure"
+    },
+    "F.clf.threshold_options.deck.png": {
+      "ids": [
+        "B9.10"
+      ],
+      "kind": "figure"
+    },
+    "F.A2.data_structure.deck.png": {
+      "ids": [
+        "2.12"
+      ],
+      "kind": "figure"
+    },
+    "F.reg.partition.deck.png": {
+      "ids": [
+        "DS.3"
+      ],
+      "kind": "figure"
+    },
+    "F.reg.history_coverage.deck.png": {
+      "ids": [
+        "DS.1"
+      ],
+      "kind": "figure"
+    },
+    "F.clf.test_curves.deck.png": {
+      "ids": [
+        "T1.4"
+      ],
+      "kind": "figure"
+    }
+  }
+}

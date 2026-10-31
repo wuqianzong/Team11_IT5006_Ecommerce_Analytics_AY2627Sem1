@@ -60,14 +60,37 @@ def main() -> int:
     # 1 charts ------------------------------------------------------------------------------------------
     def chart_ok(asset: Path, fid: str) -> tuple[bool, str]:
         e = nums[fid]
-        regfile, src = B / e["file"], reg.STAGES / e["source"]
+        regfile = B / e["file"]
+        if e["source"].startswith("A/"):
+            # Pipeline A source (B-G-11, B-G-13): no B manifest; the file must equal its copy at tag e5-A-frozen
+            try:
+                src, _ = reg.verify_a_source(e["source"])
+            except ValueError as err:
+                return False, f"{asset.name} -> {fid} -> {err}"
+            ok = asset.exists() and _sha(asset) == _sha(regfile) == _sha(src)
+            return ok, f"{asset.name} -> {fid} -> {e['source']} ({e['run_id']})"
+        if Path(e["source"]).parts[0] in reg.MANIFEST_ROOTS:
+            # read-only analyses (B-CR-41, B-CR-42): no stage manifest; the file must match its folder's manifest
+            try:
+                src, _ = reg.verify_manifest_source(e["source"])
+            except ValueError as err:
+                return False, f"{asset.name} -> {fid} -> {err}"
+            ok = asset.exists() and _sha(asset) == _sha(regfile) == _sha(src)
+            return ok, f"{asset.name} -> {fid} -> {e['source']} ({e['run_id']})"
+        src = reg.STAGES / e["source"]
         stage, task = Path(e["source"]).parts[:2]
         man = json.loads((reg.STAGES / stage / task / "outputs" / "_manifest.json").read_text())
         mrel = src.relative_to(B.parents[2]).as_posix()
         ok = asset.exists() and _sha(asset) == _sha(regfile) == _sha(src) == man["outputs"].get(mrel)
         return ok, f"{asset.name} -> {fid} -> {e['source']} ({e['run_id']})"
     bad = [d for n, m in fmap["doc"].items() for ok, d in [chart_ok(Path(a.doc_assets) / f"{m['asset']}.png", m["register"])] if not ok]
-    check("report charts: all 16 equal their register figure and the stage output in its manifest", not bad and len(fmap["doc"]) == 16, "; ".join(bad))
+    # the expected count comes from the map, and the doc's figure captions must number exactly the map's keys
+    captions = sorted(int(n) for n in re.findall(r"^\*Figure (\d+)\.", Path(a.doc).read_text(encoding="utf-8"), re.M))
+    unmapped = sorted(set(captions) ^ {int(n) for n in fmap["doc"]})
+    check(f"report charts: the doc's {len(captions)} figure captions match the map's {len(fmap['doc'])} entries, and each "
+          "chart equals its register figure and the stage output in its manifest",
+          not bad and not unmapped and len(captions) == len(fmap["doc"]),
+          "; ".join(bad + ([f"figure numbers in only one of doc and map: {unmapped}"] if unmapped else [])))
     deck_srcs = set()
     for f in sorted(Path(a.deck, "project", "slides").glob("*.html")):
         deck_srcs |= set(re.findall(r'src="/_blob/([0-9a-f]{32})"', f.read_text(encoding="utf-8")))

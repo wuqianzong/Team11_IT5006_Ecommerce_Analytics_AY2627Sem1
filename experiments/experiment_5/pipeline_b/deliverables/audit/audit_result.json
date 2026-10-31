@@ -1,14 +1,14 @@
 {
   "checks": [
     {
-      "check": "report charts: all 16 equal their register figure and the stage output in its manifest",
+      "check": "report charts: the doc's 29 figure captions match the map's 29 entries, and each chart equals its register figure and the stage output in its manifest",
       "passed": true,
       "detail": ""
     },
     {
       "check": "deck charts: every <img> on a slide is mapped, and equals its register figure and stage output",
       "passed": true,
-      "detail": "6 images"
+      "detail": "20 images"
     },
     {
       "check": "deck slides: each live slide equals a fresh fill of its template (no hand-typed or stale number)",
@@ -28,7 +28,7 @@
     {
       "check": "report text: the live doc's body equals the filled sources line for line (beyond its title, date and review note)",
       "passed": true,
-      "detail": "header kept: # Team 11 final report \u2014 delivery time and detractor alerts / Oct 26, 2026 \u00b7 @Henry / Draft for team review. Every number is filled from the Pipeline B register (pipeline_b/evidence/registry_B.yaml); comment on any point."
+      "detail": "header kept: # Team 11 final report \u2014 delivery time and detractor alerts / Oct 26, 2026 \u00b7 @Henry / Draft for team review. Every number is filled from the Pipeline B register (pipeline_b/evidence/registry_B.yaml); comment on any point. Revised: the full report written to plan v2, with the alert review order in section 9 and references checked against publisher records, and every cited claim re-audited; the dated change record is pipeline_b/deliverables/report/records/CHANGES.md, and earlier drafts stay in the doc history."
     },
     {
       "check": "independent recomputation from T1's saved predictions matches the register (12 numbers)",
@@ -47,19 +47,22 @@
     }
   ],
   "passed": true,
-  "doc_sha256": "3c2ce10650b3b2b88ed18c7f58dfb23f55ab39eaf4f75c1dcf52c8761cd0b95a",
+  "doc_sha256": "213a5b76092b0724bba54605954ffa20c1acde5070a3402d60db3604c96e73e0",
   "deck_slides": {
-    "actions.html": "1ef3667baa893fc9e34134d2d3dd5233549e162a599497b8ebc8d03743c72fcb",
-    "alerts.html": "e8d2d9c7d75daf0f3068b1eff09cfba60f86fa84a2f749db5eeaa97b03c81e03",
-    "atob.html": "aaf6068439ad9d7f4914e6173ed970dc5fc59c95aa6830d276f61252fdf418a1",
-    "clf.html": "796afa301420edc3ee2f5d917a15e1e0edf877e1b193b4677c63a585927105f5",
-    "close.html": "58c98c20ba1b00bd9ff70c8195b943a98d1e71c2be2373e9528114750fc8c0a9",
-    "cover.html": "d6420d02539c7d5d2e7d2f4b0ca57bf8ce12767b9f9dbcd932fd03a07080f572",
-    "data.html": "52ee0e15b20d8b8cebde58606943b3d6a4951f64b5692da66ea3ac38eaa162a5",
-    "deploy.html": "aa7bc9e90adf84fd4e78a0b677cfc698c01ffdf4dedc885763f01f9aabcb46c5",
-    "limits.html": "c3ed913ad56fcffef0e03e1c329674552b1dac376c115288ab38320faec493b6",
-    "method.html": "3a65630f4c7b651c86f853f82fb6b0a34fccbc43b8a390e72ee9710570493c4e",
-    "problem.html": "8fa4532ce106a4593a3a5b0eda458bda01112960fceeaad105d85610fed96d00",
-    "reg.html": "fb4fe716d6582d69af5e8eead0539c419a44c0a8485c4eb3c05b05745af73f66"
+    "a_features.html": "522a6b95da7220a95a0ad9bcde25c4a7430c6900baa6793ec11cb8d77b64144b",
+    "a_limits.html": "8bf19c97baef72dac21e98afc35d99da834041889f72ab6641eea94b31b9bc28",
+    "a_models.html": "4362024e489cec3d32c4e380d31ec7ee7f308dce69df74ac867424476fa8b094",
+    "a_select.html": "8d283182ee25b7d820ead1f44b097c0f85a437ac35e4fdb16e8f2a9aef62d869",
+    "b_features.html": "be4f815ab5ee62c397266d0ee5015d136a079b88bd5376f3eaafac4233758e42",
+    "b_scope.html": "8aa47ba366128e1bd472c7712cedb3042860af4fa5c0e4ebefbc287e874cad32",
+    "cover.html": "dd8452dbf7933dc4bd5474f7065ab5d88d793a1b837e0e8084bba0a6aa6c56e8",
+    "data.html": "56ef6a6a5d788ff29158b803cc5b23db1a30e970ca2171f38e1b2c459223871f",
+    "eda.html": "77ca77e8511ac9e77d583530cf3cc48935f40250bbadeb140e185ceba38b3872",
+    "prep.html": "6cfc0eec86c297cc94adefdce4c1a21f77b51e7afcadffcfcdb843a65d9cc396",
+    "problem.html": "04a21a302ab6c80a17e900d0f9ca57a2b12dd0e91845dbc0ff1025c22e6704c6",
+    "test_clf.html": "1c277b6db32d3d7476342fe6ca1c3c5b916f1d13e9922559dc7db86f71c6798f",
+    "test_reg.html": "9deebee92357fcee43390510ee6e5833618ec8afbed28e8b79538b418cddbd74",
+    "use.html": "01ab57e74b9bf2601b8ce85b28522be820067db6a2e22a2ca315d929cea23749",
+    "validation.html": "f74ffdde57e9951db4ebe07116df05e581884b99b042c01e8b6ebd15cc1d89a0"
   }
 }

@@ -19,7 +19,9 @@ A source is accepted only if its stage/task folder holds the run listed Current 
 sha256 equals the one in that run's _manifest.json. Separate from A's build_evidence.py (B11-D3). A's baseline
 numbers come from B's T1 and B9 files, which score A. The one exception (B-G-11): a source written
 A/<stage>/<task>/outputs/<file> is read from A's frozen tree, read only, and accepted only if the file's sha256
-equals the file at tag e5-A-frozen.
+equals the file at tag e5-A-frozen. Business context (B-CR-41): a source written BIZ/<file> is read from
+deliverables/business_context/outputs/ (descriptive dashboard data, not model evidence) and accepted only if the file's
+sha256 equals that folder's _manifest.json and the input data still has the sha256 recorded there.
 """
 from __future__ import annotations
 
@@ -41,6 +43,10 @@ REGISTRY = B_ROOT / "evidence" / "registry_B.yaml"
 BUILD = B_ROOT / "evidence" / "build"
 A_STAGES = B_ROOT.parent / "stages"     # Pipeline A's frozen tree (read only)
 A_TAG = "e5-A-frozen"
+BIZ_OUT = B_ROOT / "deliverables" / "business_context" / "outputs"   # business context (B-CR-41)
+# Read-only analyses outside the stages, each with its own _manifest.json: prefix -> outputs folder (B-CR-41, B-CR-42)
+MANIFEST_ROOTS = {"BIZ": BIZ_OUT, "M2A": B_ROOT / "deliverables" / "m2_report" / "a_interpretation" / "outputs",
+                  "DECK": B_ROOT / "deliverables" / "deck" / "renders" / "outputs"}   # B-CR-43
 PLACEHOLDER = re.compile(r"\{\{\s*([A-Za-z0-9_.\-]+)\s*\}\}")
 
 
@@ -90,13 +96,35 @@ def verify_a_source(src: str) -> tuple[Path, str]:
         raise ValueError(f"{src}: not in tag {A_TAG}")
     if hashlib.sha256(tagged.stdout).hexdigest() != _sha(path):
         raise ValueError(f"{src}: sha256 differs from the file at tag {A_TAG}")
-    man = json.loads((path.parents[len(parts) - 5] / "_manifest.json").read_text())
+    man = json.loads((path.parents[len(parts) - 5] / "_manifest.json").read_text(encoding="utf-8"))
     return path, f"{man['run_id']} @ {A_TAG}"
+
+
+def verify_manifest_source(src: str) -> tuple[Path, str]:
+    """BIZ/<file> or M2A/<file>: the file and its inputs must match that folder's _manifest.json (B-CR-41, B-CR-42)."""
+    parts = Path(src).parts
+    if len(parts) < 2 or parts[0] not in MANIFEST_ROOTS:
+        raise ValueError(f"{src}: expected one of {sorted(MANIFEST_ROOTS)}/<file>")
+    root = MANIFEST_ROOTS[parts[0]]
+    path = root.joinpath(*parts[1:])
+    if not path.is_file():
+        raise ValueError(f"{src}: no such file in {root}")
+    man = json.loads((root / "_manifest.json").read_text())
+    repo = B_ROOT.parents[2]
+    if man["outputs"].get(path.relative_to(repo).as_posix()) != _sha(path):
+        raise ValueError(f"{src}: sha256 does not match its manifest")
+    for rel, sha in man["inputs"].items():
+        if _sha(repo / rel) != sha:
+            raise ValueError(f"{src}: input {rel} changed since run {man['run_id']}")
+    return path, f"{man['run_id']} ({man['node']})"
+
+
+verify_biz_source = verify_manifest_source   # B-CR-41 name, kept for the tests and the audit
 
 
 def _outputs(src: str, path: Path) -> tuple[Path, str]:
     """The outputs folder holding the source and the file's path inside it (key of _evidence_index.json)."""
-    head = 4 if Path(src).parts[0] == "A" else 3
+    head = {"A": 4, "BIZ": 1, "M2A": 1, "DECK": 1}.get(Path(src).parts[0], 3)
     inner = Path(*Path(src).parts[head:])
     return path.parents[len(inner.parts) - 1], inner.as_posix()
 
@@ -146,6 +174,8 @@ def build(out_dir: Path = BUILD) -> dict:
         try:
             if Path(it["source"]).parts[0] == "A":
                 path, run_id = verify_a_source(it["source"])
+            elif Path(it["source"]).parts[0] in MANIFEST_ROOTS:
+                path, run_id = verify_manifest_source(it["source"])
             else:
                 path, run_id = verify_source(it["source"], runs)
             outs, inner = _outputs(it["source"], path)
@@ -161,6 +191,9 @@ def build(out_dir: Path = BUILD) -> dict:
             elif it["kind"] == "table":
                 df = _select(pd.read_csv(path), it.get("select"))
                 df = df[it["columns"]] if it.get("columns") else df
+                for pat, rep in it.get("replace", []):   # text cleanup for the report only, e.g. decision-maker names
+                    df = df.apply(lambda s: s.astype(str).str.replace(pat, rep, regex=True)
+                                  if pd.api.types.is_string_dtype(s) or s.dtype == object else s)
                 out = out_dir / "tables" / f"{it['id']}.csv"
                 df.to_csv(out, index=False, lineterminator="\n")
                 entry.update(file=_rel(out), rows=int(len(df)))

@@ -1,5 +1,10 @@
 # Pipeline B handover (B10 Release)
 
+**Status: CLOSED (2026-10-28).** B10 is finished: branch `e5/b10-henry` was merged into `milestone-3` on
+2026-10-27 and is not worked on again. Henry's current work (report, deck, dashboard plan) is on
+`e5/deliverables-henry`; its state is in `WORKLOG.md`. The open items below are kept as a record; the ones still
+live (release tag, migration, app URL) are Benson's or Solomon's and are tracked in `WORKLOG.md`.
+
 **Who is working:** Henry and his Claude, on branch `e5/b10-henry`, while Benson (Wu Qianzong,
 experiment lead) is away. Benson's Claude resumes from this file and `WORKLOG.md`.
 

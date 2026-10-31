@@ -1,0 +1,29 @@
+{
+  "node": "BIZ/business_context",
+  "files": {
+    "monthly_kpis.csv": {
+      "ids": [
+        "BIZ.1"
+      ],
+      "kind": "table"
+    },
+    "summary.json": {
+      "ids": [
+        "BIZ.1"
+      ],
+      "kind": "json"
+    },
+    "figures/revenue_repeat_by_month.png": {
+      "ids": [
+        "BIZ.1"
+      ],
+      "kind": "figure"
+    },
+    "figures/revenue_repeat_by_month.csv": {
+      "ids": [
+        "BIZ.1"
+      ],
+      "kind": "figure_data"
+    }
+  }
+}

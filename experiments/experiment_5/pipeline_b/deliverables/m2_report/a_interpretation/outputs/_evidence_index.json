@@ -1,0 +1,89 @@
+{
+  "node": "M2A/a_interpretation",
+  "files": {
+    "regression/coefficients.csv": {
+      "ids": [
+        "M2A.1"
+      ],
+      "kind": "table"
+    },
+    "regression/permutation_importance.csv": {
+      "ids": [
+        "M2A.1"
+      ],
+      "kind": "table"
+    },
+    "regression/summary.json": {
+      "ids": [
+        "M2A.1"
+      ],
+      "kind": "json"
+    },
+    "regression/figures/permutation_importance.png": {
+      "ids": [
+        "M2A.1"
+      ],
+      "kind": "figure"
+    },
+    "regression/figures/permutation_importance.csv": {
+      "ids": [
+        "M2A.1"
+      ],
+      "kind": "figure_data"
+    },
+    "regression/figures/coefficients.png": {
+      "ids": [
+        "M2A.1"
+      ],
+      "kind": "figure"
+    },
+    "regression/figures/coefficients.csv": {
+      "ids": [
+        "M2A.1"
+      ],
+      "kind": "figure_data"
+    },
+    "classification/coefficients.csv": {
+      "ids": [
+        "M2A.1"
+      ],
+      "kind": "table"
+    },
+    "classification/permutation_importance.csv": {
+      "ids": [
+        "M2A.1"
+      ],
+      "kind": "table"
+    },
+    "classification/summary.json": {
+      "ids": [
+        "M2A.1"
+      ],
+      "kind": "json"
+    },
+    "classification/figures/permutation_importance.png": {
+      "ids": [
+        "M2A.1"
+      ],
+      "kind": "figure"
+    },
+    "classification/figures/permutation_importance.csv": {
+      "ids": [
+        "M2A.1"
+      ],
+      "kind": "figure_data"
+    },
+    "classification/figures/coefficients.png": {
+      "ids": [
+        "M2A.1"
+      ],
+      "kind": "figure"
+    },
+    "classification/figures/coefficients.csv": {
+      "ids": [
+        "M2A.1"
+      ],
+      "kind": "figure_data"
+    }
+  }
+}

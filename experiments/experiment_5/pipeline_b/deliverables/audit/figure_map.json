@@ -1,29 +1,172 @@
 {
-  "note": "Where each chart in the live report doc and deck comes from. Doc: figure number -> doc blob -> uploaded asset (read back from the doc's blob records, 2026-10-26). Deck: <img src> asset id. Every asset must equal the register figure byte for byte.",
+  "note": "Where each chart in the live report doc and deck comes from. Doc: figure number -> doc blob -> uploaded asset (read back from the doc's blob records, 2026-10-26; rebuilt for the 28 charts of rev 33, 2026-10-28). Deck: <img src> asset id. Every asset must equal the register figure byte for byte. Doc section renumbered 2026-10-30 for review doc rev 58: the business-context chart is figure 1 (B-CR-41), the rest follow in reading order (Henry, delegated lead; replaces Benson D8). Deck section rebuilt 2026-10-30 for deck v2 (B-CR-43): 6 original charts and 14 presentation renders (replaces Benson D2). Deck section rebuilt again 2026-10-30 after the audit (renders at 18 pt; 18 renders, 2 originals).",
   "doc": {
-    "1": {"blob": "1e83700d-ccd5", "asset": "e3a617b8a96158ad50e7e2846cb98d7d", "register": "F.reg.lateness_by_route"},
-    "2": {"blob": "ac313dbb-6094", "asset": "8d7ccc33132ce4a2cedf550670df07a9", "register": "F.reg.selection"},
-    "3": {"blob": "ef7ddcd2-29d7", "asset": "22ad2f14fd2fcc17abe3d83388b2c694", "register": "F.reg.partition"},
-    "4": {"blob": "e5771478-8c10", "asset": "2f616a61d5ae1e2a79a190f2f90671d1", "register": "F.reg.validation_and_test"},
-    "5": {"blob": "c8cf7cd4-645e", "asset": "903264b70eb2450828326a4891813ffe", "register": "F.reg.population"},
-    "6": {"blob": "1e815550-65b5", "asset": "1024d7f7886cdd313777639c1c7f3059", "register": "F.reg.residuals"},
-    "7": {"blob": "bc453993-27ea", "asset": "3d3d69640777465b5c1f4fffb0472a7d", "register": "F.reg.by_state"},
-    "8": {"blob": "9363bc4e-1f4a", "asset": "6d46292845630a79e8596a4d14de22cc", "register": "F.clf.validation_and_test"},
-    "9": {"blob": "d489593c-d647", "asset": "b4d39c548071e4c9113f761c2b653bf7", "register": "F.clf.test_curves"},
-    "10": {"blob": "2e4392d5-de2e", "asset": "94f1284a6e5a899ab7f853747b3cda03", "register": "F.clf.threshold_options"},
-    "11": {"blob": "da0ee23b-03c1", "asset": "06c1669f91bd1ab15590ba5cc018de30", "register": "F.clf.by_state"},
-    "12": {"blob": "62a70e0e-d353", "asset": "4c8da4e7671a4d518b3d5799d7c94696", "register": "F.reg.importance"},
-    "13": {"blob": "609b5c44-bd63", "asset": "77b7a30d9bace32a53d5ee313044b1dc", "register": "F.clf.importance"},
-    "14": {"blob": "95350dc6-df02", "asset": "97393287d52bfdd3388d2bc78e07c328", "register": "F.reg.coefficients"},
-    "15": {"blob": "0aebebef-1f5a", "asset": "7c160977cf7ee2012293e2744da2c62a", "register": "F.clf.coefficients"},
-    "16": {"blob": "dccfeb98-7cec", "asset": "738c2c0f350b0fb8c63da04a4dc94036", "register": "F.reg.drift"}
+    "1": {
+      "blob": "c12be487-a6f7",
+      "asset": "e699aebbb80498bbf4b23105e0c57f03",
+      "register": "F.BIZ.revenue_repeat"
+    },
+    "2": {
+      "blob": "8339181d-5267",
+      "asset": "b83d0eee1968834d72d509ae144bd025",
+      "register": "F.A3.reg.target_kde"
+    },
+    "3": {
+      "blob": "1e83700d-ccd5",
+      "asset": "e3a617b8a96158ad50e7e2846cb98d7d",
+      "register": "F.reg.lateness_by_route"
+    },
+    "4": {
+      "blob": "d74ff836-7bd4",
+      "asset": "250ce1755500b479e1a86ac4bd0f8354",
+      "register": "F.A3.reg.outcome_trends"
+    },
+    "5": {
+      "blob": "98ace730-b532",
+      "asset": "46045d759a84c439887e4bcc0e51958f",
+      "register": "F.A3.clf.outcome_trends"
+    },
+    "6": {
+      "blob": "914ec01d-9e51",
+      "asset": "d7e4e0fb33d23b0921d539d2e38a8a5c",
+      "register": "F.reg.history_coverage"
+    },
+    "7": {
+      "blob": "ac313dbb-6094",
+      "asset": "8d7ccc33132ce4a2cedf550670df07a9",
+      "register": "F.reg.selection"
+    },
+    "8": {
+      "blob": "42157256-7b88",
+      "asset": "3c27bf0107e1cb86d102d00328fa70dc",
+      "register": "F.clf.selection"
+    },
+    "9": {
+      "blob": "ef7ddcd2-29d7",
+      "asset": "22ad2f14fd2fcc17abe3d83388b2c694",
+      "register": "F.reg.partition"
+    },
+    "10": {
+      "blob": "11276969-f35a",
+      "asset": "9e879809b91ffd961bfaf59f064796ed",
+      "register": "F.reg.family_ladder"
+    },
+    "11": {
+      "blob": "c26f6dfc-698d",
+      "asset": "55f8a719b7dbf2d87277105031d0ee87",
+      "register": "F.clf.family_ladder"
+    },
+    "12": {
+      "blob": "e5771478-8c10",
+      "asset": "2f616a61d5ae1e2a79a190f2f90671d1",
+      "register": "F.reg.validation_and_test"
+    },
+    "13": {
+      "blob": "1e815550-65b5",
+      "asset": "1024d7f7886cdd313777639c1c7f3059",
+      "register": "F.reg.residuals"
+    },
+    "14": {
+      "blob": "bc453993-27ea",
+      "asset": "3d3d69640777465b5c1f4fffb0472a7d",
+      "register": "F.reg.by_state"
+    },
+    "15": {
+      "blob": "9363bc4e-1f4a",
+      "asset": "6d46292845630a79e8596a4d14de22cc",
+      "register": "F.clf.validation_and_test"
+    },
+    "16": {
+      "blob": "d489593c-d647",
+      "asset": "b4d39c548071e4c9113f761c2b653bf7",
+      "register": "F.clf.test_curves"
+    },
+    "17": {
+      "blob": "2e4392d5-de2e",
+      "asset": "94f1284a6e5a899ab7f853747b3cda03",
+      "register": "F.clf.threshold_options"
+    },
+    "18": {
+      "blob": "da0ee23b-03c1",
+      "asset": "06c1669f91bd1ab15590ba5cc018de30",
+      "register": "F.clf.by_state"
+    },
+    "19": {
+      "blob": "c8cf7cd4-645e",
+      "asset": "903264b70eb2450828326a4891813ffe",
+      "register": "F.reg.population"
+    },
+    "20": {
+      "blob": "62a70e0e-d353",
+      "asset": "4c8da4e7671a4d518b3d5799d7c94696",
+      "register": "F.reg.importance"
+    },
+    "21": {
+      "blob": "609b5c44-bd63",
+      "asset": "77b7a30d9bace32a53d5ee313044b1dc",
+      "register": "F.clf.importance"
+    },
+    "22": {
+      "blob": "95350dc6-df02",
+      "asset": "97393287d52bfdd3388d2bc78e07c328",
+      "register": "F.reg.coefficients"
+    },
+    "23": {
+      "blob": "0aebebef-1f5a",
+      "asset": "7c160977cf7ee2012293e2744da2c62a",
+      "register": "F.clf.coefficients"
+    },
+    "24": {
+      "blob": "ef04f6b4-bdb5",
+      "asset": "0dc1378b8cbcae8439108ddec09d6553",
+      "register": "F.reg.buffer_curve"
+    },
+    "25": {
+      "blob": "dccfeb98-7cec",
+      "asset": "738c2c0f350b0fb8c63da04a4dc94036",
+      "register": "F.reg.drift"
+    },
+    "26": {
+      "blob": "3fe38cbf-9b92",
+      "asset": "7201f70bbbbc9e9356463a2433532d7f",
+      "register": "F.clf.auc_brier"
+    },
+    "27": {
+      "blob": "3044a81c-e3ed",
+      "asset": "71f47477e53bf88342a14e968ced81d3",
+      "register": "F.reg.ranking_stability"
+    },
+    "28": {
+      "blob": "c87abb1f-57ab",
+      "asset": "4cde9e271b91f8092ee24f41f39cafac",
+      "register": "F.clf.ranking_stability"
+    },
+    "29": {
+      "blob": "1636d72e-cff4",
+      "asset": "378153d8abf9da9bf248e084e5dc8a34",
+      "register": "F.A3.reg.correlation_heatmap"
+    }
   },
   "deck": {
-    "23cdda4993be49405ece860887b5ab17": "F.reg.validation_and_test",
-    "3d0b5f02eb6dc455989c59806e160595": "F.clf.validation_and_test",
-    "1abc90f25e7b95a5bc9fd7b0363a8c66": "F.reg.population",
-    "2dcb30e76a21fdd99e64a0c250dc9b36": "F.reg.residuals",
-    "5c1cf0eca3fc4217eeb264acb02321e6": "F.clf.threshold_options",
-    "9705c7c37257f61a05455e97d64db2f0": "F.reg.partition"
+    "617e556f7ca00f5865ddcc3d68cef704": "F.A3.reg.target_kde",
+    "983e32ca72a793c5d24b51528b2c2082": "F.A3.clf.target_bar",
+    "32dc239c628561befb5ba111fc0c322e": "F.A2.data_structure.deck",
+    "6596c99de9de8e121208c24bdd63b43d": "F.A3.clf.cumulative_importance.deck",
+    "cd0d4e11ccd023aa72fc65f192c9fef1": "F.A3.clf.screen_promise.deck",
+    "f781fbec348d3623e101f9dc0fe76636": "F.A3.clf.screen_region.deck",
+    "9987d145468b77fd6f9707054be4c349": "F.A3.reg.correlation_heatmap.deck",
+    "1507a8a29d250614f65e1d03fde4b4ce": "F.A3.reg.cumulative_importance.deck",
+    "4ff590c8dc8ca8b43cce3a61331dacd2": "F.clf.confusion.deck",
+    "cf5c5e6bf0e46b893e1704833385ce31": "F.clf.selection.deck",
+    "87e0a9d2dbde03256cea98f2201ed9ac": "F.clf.test_curves.deck",
+    "9e898f72dd106fb4b7673c06131710f8": "F.clf.threshold_options.deck",
+    "3e4d6a7f94e4639d8454e489117ff2e4": "F.reg.buffer_curve.deck",
+    "de6385ded7a97f6b3e6afc20d16ebb95": "F.reg.by_state.deck",
+    "06b4bc79faf72f4416ba6c32f84bb6db": "F.reg.history_coverage.deck",
+    "70364efe40fd3ccfa163b1dcc9a67fca": "F.reg.lateness_by_route.deck",
+    "02f95c8e62920c4a1aa9166828d17530": "F.reg.partition.deck",
+    "ccbd79d72416402c405f08eea8169b28": "F.reg.population.deck",
+    "fef7294b8441e3a554f807e44099d53b": "F.reg.residuals.deck",
+    "6dc70455e7fbd4ec89b3fdc5ef10e71f": "F.reg.selection.deck"
   }
 }

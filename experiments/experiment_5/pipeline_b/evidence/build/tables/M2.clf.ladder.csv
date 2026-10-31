@@ -1,0 +1,4 @@
+comparison,mean_gain,paired_se,folds_better,kept_by_one_se_rule
+linear/logistic vs dummy,0.0953243678317443,0.0157363770371049,5,True
+single tree vs linear/logistic,-0.0276964537508104,0.0114579715404109,0,False
+forest vs linear/logistic,0.0109349311098005,0.0063054866645121,4,False

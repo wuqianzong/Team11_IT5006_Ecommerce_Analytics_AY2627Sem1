@@ -1,0 +1,25 @@
+{
+  "node": "BIZ/business_context",
+  "run_id": "20261030T004253Z",
+  "commit": "3268c2019f1c12ef0c3826a9c156a2cfabb20a3c",
+  "dirty": false,
+  "window": {
+    "first_month": "2017-03",
+    "last_month": "2018-04"
+  },
+  "inputs": {
+    "data/business/dashboard/smartcommerce_consolidated.csv": "f130077f98005d3e94747c195dfe29132aca4840efec6c6ff8f753e3f7e3f1ef"
+  },
+  "code": {
+    "experiments/experiment_5/pipeline_b/deliverables/business_context/make_business_context.py": "aa0c22852d4e467c8799eec8f46562f600f39fa91d0b9d110fe097233eaf9228",
+    "experiments/experiment_5/pipeline_b/deliverables/dashboard/app/dashboard_core/data.py": "83d51a6369926f9c82c82bcafd3b60f36f172013f55f823c96c79ff5d7649d17",
+    "experiments/experiment_5/pipeline_b/deliverables/dashboard/app/dashboard_core/business_tab.py": "b7553cceac1b4034d27229c21f251fadf1667fe1851b0e2a56f31f25bfde12e4"
+  },
+  "outputs": {
+    "experiments/experiment_5/pipeline_b/deliverables/business_context/outputs/_evidence_index.json": "4b593ed6b25bb29c70b7b2fb1e740ff3cd2ef1e88d4d876433bb4d6134284454",
+    "experiments/experiment_5/pipeline_b/deliverables/business_context/outputs/figures/revenue_repeat_by_month.csv": "941cd9210029906ee4e5583c0fb10fa1fec69f5e01ef1c4f4388ca7dc7df50d7",
+    "experiments/experiment_5/pipeline_b/deliverables/business_context/outputs/figures/revenue_repeat_by_month.png": "14ac764455525d966baffffc983e6dc009de88f65f03bc4522938eb5bd285af2",
+    "experiments/experiment_5/pipeline_b/deliverables/business_context/outputs/monthly_kpis.csv": "941cd9210029906ee4e5583c0fb10fa1fec69f5e01ef1c4f4388ca7dc7df50d7",
+    "experiments/experiment_5/pipeline_b/deliverables/business_context/outputs/summary.json": "8d84a4f957cc2887d383735fd3e1a29bae04890a7539c578d8cfc371973104a1"
+  }
+}

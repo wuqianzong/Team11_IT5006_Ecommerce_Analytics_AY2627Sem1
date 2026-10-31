@@ -10,7 +10,7 @@ T1_TAG = "e5-T1-tested"
 
 
 def _current_rows():
-    text = (B_ROOT / "EVIDENCE.md").read_text()
+    text = (B_ROOT / "EVIDENCE.md").read_text(encoding="utf-8")
     table = text.split("## Current runs")[1].split("\n## ")[0]
     rows = re.findall(r"^\| (b\d\d|t1_joint_test|doc_support) \| (\w+) \| (\d{8}T\d{6}Z) \| (\w+) \| ([\w-]+) \|", table, re.M)
     assert rows, "no current rows in EVIDENCE.md"

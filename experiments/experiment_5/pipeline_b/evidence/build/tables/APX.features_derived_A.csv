@@ -1,0 +1,34 @@
+feature,formula
+n_items,order_items.order_item_id (count)
+n_products,order_items.product_id (distinct)
+n_sellers,order_items.seller_id (distinct)
+n_categories,"products.category (distinct, English)"
+total_price,order_items.price (sum; missing if any item invalid)
+total_freight,order_items.freight_value (sum; missing if any item invalid)
+freight_ratio,total_freight / total_price
+total_weight_g,products.product_weight_g (sum)
+total_volume_cm3,products length x height x width (sum)
+weight_missing_fraction,share of items without a valid weight
+volume_missing_fraction,share of items without valid dimensions
+primary_category,category of the highest-priced item (English)
+category_missing_fraction,share of items without a translated category
+customer_state,customers.customer_state
+primary_seller_state,sellers.seller_state of the primary item
+distance_km_max,max haversine customer-seller distance over distinct sellers (IBGE-filtered ZIP centroids)
+distance_missing_fraction,share of distinct sellers without a resolved distance
+interstate_share,share of distinct sellers in another state
+purchase_month,"orders.order_purchase_timestamp (month, numeric)"
+purchase_dayofweek,"orders.order_purchase_timestamp (Monday = 0, numeric)"
+purchase_hour,"orders.order_purchase_timestamp (hour, numeric)"
+primary_payment_type,order_payments (type with the largest usable value)
+payment_installments_max,order_payments.payment_installments (max over usable lines)
+n_payment_methods,order_payments.payment_type (distinct usable)
+product_photos_qty,products.product_photos_qty of the primary item
+product_description_lenght,products.product_description_lenght of the primary item
+seller_prior_review_mean,"mean valid review score of the primary seller's earlier orders, reviews answered strictly before this purchase (own order excluded)"
+missingindicator_seller_prior_review_mean,"1 if seller_prior_review_mean is missing, else 0"
+missingindicator_total_volume_cm3,"1 if total_volume_cm3 is missing, else 0"
+missingindicator_product_description_lenght,"1 if product_description_lenght is missing, else 0"
+missingindicator_total_weight_g,"1 if total_weight_g is missing, else 0"
+distance_km_max_missing,"1 if distance_km_max is missing, else 0"
+missingindicator_product_photos_qty,"1 if product_photos_qty is missing, else 0"

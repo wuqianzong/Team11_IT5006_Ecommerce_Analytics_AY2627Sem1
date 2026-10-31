@@ -1,5 +1,9 @@
 # Doc outbox (for the team doc)
 
+**Status (2026-10-28):** every B10 and B11 file below is published and complete, and both sync notes were read
+and acted on by Benson; they are kept as a record and are not edited again. Of the 2026-10-28 handshakes, Benson's is
+answered (commit 250204b); Solomon's is open until his app is on the branch.
+
 Doc-ready Markdown that nobody on branch `e5/b10-henry` can publish, because the team doc lives in
 Benson's account. Each file is written in the style of the tabs mirrored in `../team_doc/`.
 
@@ -20,3 +24,11 @@ Benson's account. Each file is written in the style of the tabs mirrored in `../
 | b10_review_r3_regression.md | B10 Release › regression: round 3 section | Benson's Claude, 2026-10-27 (tab "B10 › regression", round 3 section) |
 | b10_review_r3_classification.md | B10 Release › classification: round 3 section | Benson's Claude, 2026-10-27 (tab "B10 › classification", round 3 section) |
 | sync_for_benson_r2.md | not a doc tab: read after sync_for_benson.md (changes since 8b6d7fb) | — |
+| handshake_benson_2026-10-28.md | not a doc tab: prompt for Benson's Claude (figure_map, audit) | Answered by Benson, 2026-10-28 (250204b); complete |
+| handshake_solomon_2026-10-28.md | not a doc tab: prompt for Solomon's Claude (dashboard build) | Open: app not yet on `e5/deliverables-henry` |
+| handshake_benson_2026-10-28_2127.md | not a doc tab: prompt for Benson's Claude (chart_ok fix for A sources, closing his handover files) | Answered by Benson, 2026-10-28 (e302e8b); complete |
+| handshake_solomon_2026-10-29_0904.md | not a doc tab: app review for Solomon (cap wording fix, 4 improvements, hosting) | Superseded, never sent |
+| handshake_solomon_2026-10-29_1015.md | not a doc tab: what Henry's side changed in the app (revision 2), check it runs, hosting is Henry's | Open |
+| handshake_benson_deck_v2.md | not a doc tab: prompt for Benson's Claude (B-G-14 for deck slots, v2 deck map, chart renders) | Superseded by handshake_benson_2026-10-29_combined.md, never sent |
+| m2_rework_handshake.md | not a doc tab: prompt for Benson's Claude (Pipeline A report: B-G-14, location, audit, outputs) | Superseded by handshake_benson_2026-10-29_combined.md, never sent |
+| handshake_benson_2026-10-29_combined.md | not a doc tab: one prompt for Benson's Claude, D1–D8 (B-G-14 for A's s01 and s04–s08, v2 deck map, chart renders, Pipeline A report; D8 report figure map at rev 56) | Open |

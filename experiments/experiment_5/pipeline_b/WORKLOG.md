@@ -313,3 +313,411 @@ Newest at the bottom. Never edit an earlier entry; correct it in a later one.
   round 3, round 2 kept below as superseded); B10 and B11 sections appended to the blueprints tab (renamed "B blueprints
   B2–B11 and joint test"). doc_outbox/README.md marks every file published. Mirror spec/team_doc/ refreshed.
 - Next for Henry: branch from milestone-3 for new work. Benson: e5-release-1, migration, app.
+
+## 2026-10-28 · Henry + Claude · deliverables branch: population-chain register items
+
+**Done**
+- Branch `e5/deliverables-henry` cut from `milestone-3` at 86538e0 (after bc35656; tags e5-release-2, e5-reproduced).
+- Register: 13 items for the report's population chain (TA point 2), all from Current B files, no stage or A file read:
+  B2 classification removals and B development rows (both tasks, `exclusion_counts_B.csv`, B2.1); regression final-fit
+  rows (T1 `test_size_B.json`, T1.1); fold-5 training and validation rows (B5 `fold_summary_B.csv`, B5.2).
+- Read-only check (scratchpad, not cited): the 6 classification orders in the final fit but in no fold are not a payment
+  issue (all have instalments and a payment type; none belongs to a test customer). They were purchased in
+  Mar–Jun 2017 and reviewed 10–13 months later (Apr–May 2018): too late to be a training label in any fold, too early
+  to be a validation row, but reviewed before the test cutoff, so the final fit keeps them.
+- Decisions with Henry: chain starts at A's development rows (A's rules in words, no A counts); dashboard keeps A's
+  fallback at 1/6 (B10-D2), statistics panel only, 1/6 for B not shown in the dashboard.
+
+**Questions for Benson**
+- None.
+
+## 2026-10-28 · Henry + Claude · report plan v2 and first report sections
+
+**Done**
+- Plan v2 doc "Team 11 final report and deck plan v2" (https://claude.ai/artifact/GLWW2y5uMfHUd3Riewju1m): Henry's
+  comments applied and answered (18–20 pages; 15 slides in 12 minutes; 12 audited sources only; stored collinearity
+  outputs only, no rerun; change record; manual literature checklist; A's stored EDA figures may be shown).
+- deliverables/report/CHANGES.md and literature_register.md started (c9c693b).
+- Register: 202 items (plan v2 exhibits from stored outputs, A's s03 under B-G-11; §6 and §7 items), rebuilt each time.
+- Report sources renumbered to plan v2 (02 literature and 05 features new) and §1, §3, §5, §6, §7 written
+  (3702134, b72f3fc, dd15c8f, 4ac27fd and the §7 commit). Claims were checked against the stored files; two drafted
+  claims were corrected (alert ranking stability; slice recall).
+
+**Not done yet**
+- Executive summary, §2 literature, §4 EDA, §8–§10, references, appendices; review doc refresh; deck rework.
+
+**Questions for Benson**
+1. audit_deliverables_B.py line 70 expects exactly 16 report charts; plan v2 adds more. May the check read the count
+   from figure_map.json instead (your file)?
+2. A's s02 data-structure figure (join diagram) would serve report §3 and deck slide 3; B-G-11 covers A's s03 only.
+   May the register read A's s02 figures under the same rule?
+
+## 2026-10-28 · Henry + Claude · review doc refresh and 15-slide deck
+
+**Done**
+- Report sources complete (17d6db1); change record hashes filled in.
+- Review doc https://claude.ai/artifact/Gp8qHXHdffLf3t78JcMWid (rev 30): body replaced by the full filled report,
+  28 figures (16 earlier doc blobs plus 12 new register figures uploaded to the doc), revision note dated 2026-10-28.
+  One open question thread (alert cut order) lost its anchor; answered in the thread.
+- Deck https://claude.ai/artifact/VtyNdrjEovfAvycTPmvy23 (version 13): reworked to the 15 slides of plan v2
+  (cover, problem, data, prep, eda, routes, features, collin, selection, method, ladder, atob, gain, results, use);
+  retired reg, clf, alerts, actions, deploy, limits, close. 82 register ids, all also in the report; 9 new register
+  figures uploaded as deck assets.
+
+**Not done yet**
+- Audit not run: its chart checks need figure_map.json updated (Benson's file): 28 doc charts (line 70 hard-codes 16)
+  and the deck's new image map below. Team review of doc and deck; app URL and screenshots (report §8).
+
+**Questions for Benson**
+1. (repeat) May audit line 70 read the chart count from figure_map.json?
+2. Deck entries for figure_map.json, asset id → register figure:
+   50fdc703d99e15f5c4a7777ee6fbd14b F.A3.reg.target_kde; 55679204d325313ce29239b9bb6233b0 F.reg.lateness_by_route;
+   8bc9d14e0f89ead4d86268b56740e773 F.A3.reg.outcome_trends; 92b53ee5e77920e4ed1d4d3413e42f9c F.reg.history_coverage;
+   c4ea3f0a8d8c5c3d379501a5c9bd9f98 F.A3.reg.correlation_heatmap; 4bd6826282b44966a891f99a10bea5aa F.reg.selection;
+   87433e4d8e5e7299c327c25d0b3ab428 F.clf.ranking_stability; 8c3466a8505cdbaac46fe14c08d92041 F.reg.family_ladder;
+   926ff6cf67efd1bc07c1c4667eebe324 F.clf.family_ladder. Keep 23cdda49…, 3d0b5f02…, 1abc90f2…, 5c1cf0ec…, 9705c7c3…;
+   drop 2dcb30e7… (residuals, no longer on the deck).
+
+## 2026-10-28 · Henry · decision: alert priority when review capacity is short
+
+- Henry's decision: alerts from the improved pipeline at 4/15 come first. The baseline fallback's alerts come next,
+  sorted by handover delay, then by order value.
+- Settled by Henry (later 2026-10-28): the fallback's alerts are reviewed at handover; delay first, order value as
+  the tie-break. Written into report §9 (review-order paragraph with the fallback's own alerts a day and precision)
+  and deck slide 15, labelled an operational rule, not a measured result. Review doc rev 32 and deck version 14
+  updated; the doc thread on the cut order answered.
+  and a reply in the doc thread.
+
+## 2026-10-28 · Henry + Claude · literature check, dashboard approval, push
+
+**Done**
+- 7f1bad0: references and literature register checked against publisher records (Crossref, NeurIPS proceedings,
+  library catalogues). ISLP fifth author added; van den Goorbergh et al. full list; Grinsztajn et al. page range
+  removed; initials added; ISLP dropped for the one-SE rule and VIF (no chapter abstract supports them; the report
+  used both uncited). Detail in deliverables/report/CHANGES.md and literature_register.md.
+- 9b5da75: DASHBOARD_PLAN.md APPROVED by Henry; stale references fixed.
+- `build_evidence_B.py check`: all placeholders resolve in the report and the deck.
+- Branch e5/deliverables-henry pushed to origin (Henry's instruction).
+
+**Not done yet**
+- `audit_deliverables_B.py` not run: its chart checks need figure_map.json updated by Benson (questions above).
+- Review doc reference list still shows the old author forms; refresh after Henry's review.
+- Alert priority text (report §9, deck slide 15) waits on the two open points recorded above.
+
+## 2026-10-28 · Henry + Claude · Benson's audit steps (after 250204b)
+
+**Done**
+- Pulled 250204b (audit counts charts from figure_map and checks captions; deck map; B-G-13).
+- Review doc rev 34: every chart has its own "Figure N." caption (the 8 combined captions split, since the check
+  counts `*Figure N.`); the header note no longer carries dates (its numbers counted as report numbers).
+- figure_map.json `doc` section rebuilt for the 28 charts (blob and asset read from the doc's blob records), under
+  Benson's one-time exception; `deck` and `note` sections unchanged except the note's date.
+- Audit inputs: report_export_rev34.md, 28 doc assets, 14 deck assets, the 15 live slides; rev29 export and the
+  residuals asset removed.
+- Report sources: paragraphs unwrapped to one line each, so they compare line for line with the doc export (text
+  unchanged). CHANGES.md and literature_register.md moved to deliverables/report/records/, because the audit reads
+  every *.md in deliverables/report/ as report text.
+- Handover files: HANDOVER.md marked CLOSED; spec/doc_outbox/README.md marks the B10/B11 files and the sync notes
+  complete, Benson's handshake answered, Solomon's open.
+
+**Audit result**
+- The official run stops with an error before any result: `chart_ok` reads the manifest at
+  `stages/A/s03_eda/outputs/_manifest.json`, but the four A-source charts (F.A3.reg.target_kde,
+  F.A3.reg.outcome_trends, F.A3.clf.outcome_trends, F.A3.reg.correlation_heatmap) come from A's frozen tree.
+- Checked by hand: each of the four doc assets equals its register figure, and the register figure equals A's file at
+  `e5-A-frozen` (sha256).
+- A diagnostic copy of the script (scratchpad only, not committed), which skips the manifest lookup for those four,
+  gives PASS on all 9 checks.
+
+**Questions for Benson**
+1. audit_deliverables_B.py `chart_ok`: please handle A sources (B-G-11, B-G-13): check against A's file at
+   `e5-A-frozen` instead of a B manifest. Then the official run can pass.
+2. HANDOVER_TO_HENRY.md, DELIVERABLE_IDEAS.md and M2_FEEDBACK_GAPS.md are yours: mark them complete when you agree
+   (report and deck done; app URL and screenshots, final proofreading and PDF still open).
+
+**Not done yet**
+- Solomon's app is not on any origin branch (checked after fetch).
+- A's join diagram (B-G-13) not placed: Henry to decide.
+
+## 2026-10-29 · Henry + Claude · Solomon's app reviewed; report §8; cap statement restored
+
+**Done**
+- Pulled e302e8b (Benson: chart_ok handles A sources; audit 9/9 on rev 34; his handover files complete) and
+  Solomon's 9d6cc35 and 12d2614 (app in deliverables/dashboard/app/).
+- Python 3.12.10 installed (per user); app .venv built from requirements.txt (git-ignored). 13 of 13 app tests pass.
+  The app runs with no error on any tab; all 19 planned panels are present; the test-view numbers at 4/15 match the
+  report. Review findings for Solomon in spec/doc_outbox/handshake_solomon_2026-10-29_0904.md: one wording fix (3.4
+  compares the combined volume with the 6-a-day cap, which applies to B alone), four small improvements (4/15
+  label, visible intervals, test-view screenshot, panel test) and the hosting request.
+- Report §8: placeholder replaced by "Using the app" (local URL; hosted address to follow).
+- Report §9 and deck slide 15 notes: review-cap statement restored (B-CR-30 requires it; the plan-v2 rewrite had
+  dropped it).
+- Audit (official script): 9/9 PASS on doc rev 36 with the live deck (version 17); one run takes about 16 s.
+- Reminder set for Henry: finish review, proofreading and PDF on 2026-10-30.
+
+**Not done yet**
+- Hosting and a public URL (Solomon, with Benson). Proofreading and PDF (Henry, by 2026-10-30).
+
+## 2026-10-29 · Henry + Claude · dashboard plan revision 2 implemented on our side
+
+**Done**
+- Gap analysis and fix plan (Claude Doc https://claude.ai/artifact/WNhnLGdNqzWRWsjdBrwBwU); Henry's decisions D1–D5
+  recorded there. DASHBOARD_PLAN.md revision 2 (APPROVED 2026-10-29): Tab 1 ports every Phase 1 section plus customer
+  and seller rating distributions (each order once at its lowest valid score); new Tab 4 "Score an order"; hosting
+  on Render.com (model API) and Streamlit Community Cloud (app); 2.8 and 3.9 point to Tab 4.
+- App (Solomon's code, edited on our side per D5): review fixes G1–G4 (cap sentence per B-CR-30; TP/FP/FN row;
+  4/15 and 1/6 labels; visible intervals and B-minus-A cards); Tab 1 rewritten from deployment/app.py@f31998e;
+  new alerts.py, score_tab.py, model_client.py. The alert list comes from T1's stored predictions without the label
+  column: 540 B alerts at 4/15 and 1,428 A alerts at 1/6 outside the scope (the report's 5.6 and 14.9 a day); live
+  rebuilt scores equal the stored ones (largest difference 1.7e-16). Scenarios: logistics −10% (regression's
+  estimated transit = predicted lead time − dispatch days; the alert model's two route inputs cut by the same days;
+  B only) and freight −20/−30/−50/−99% ("Free shipping"); all labelled as associations.
+- Model API (deliverables/dashboard/api/, FastAPI): same predictions as the local path (≤ 1e-11 over JSON);
+  hosting settings in api/README.md. Accounts and repository access are Henry's or Benson's to set up.
+- Tests: app 18/18, API 3/3 (Python 3.12.10). Browser pass over all four tabs, no exception.
+- Report §8 updated (four tabs, Score an order, API); review doc rev 37; audit 9/9 on rev 37.
+- Solomon: handshake_solomon_2026-10-29_1015.md (what changed; check it runs); the 09:04 one superseded, never sent.
+
+**Not done yet**
+- G5: new screenshots (test view at 4/15, the new tabs) — to take from the hosted app.
+- Hosting: Render and Streamlit accounts, repository access, branch choice (Henry or Benson).
+
+## 2026-10-29 · Henry + Claude · Score an order tab, revision 2.1
+
+**Done** (Henry's four points)
+- 4.1: one order picked with a radio button over a 25-order page (the table's checkbox selection removed);
+  review_position shown as sn; model column moved to the right.
+- 4.2: order id, sn and model shown first; predictions and scenarios renumbered 4.2.1 and 4.2.2.
+- New 4.3: every alerted order under every scenario (5 single + logistics −10% with each of the 4 freight cuts):
+  counts of alerts that would stop, and the list for the scenarios picked (downloadable). Results on the 1,968
+  alerts: logistics −10% stops 34 of 536 B alerts; freight −20% 227, −30% 353, −50% 647, free shipping 1,765
+  (all 1,967 free-shipping rows fall below R$ 7.39, the 1st percentile of freight, so that result is an
+  extrapolation and is marked "outside training range"); logistics + freight 78 to 451. All labelled as associations.
+- Plan revision 2.1 (panels 4.1–4.3); tests 19/19; browser pass, no exception.
+
+## 2026-10-29 · Henry + Claude · deck v2 (A first)
+
+**Done**
+- Henry's five deck comments (slides 7, 11, 12, 13, 14): A first, A's limits shown by charts, then B; combined pages;
+  validation and test on separate slides; regression and classification test on one slide each, labelled by task,
+  with more data.
+- v1 kept: https://claude.ai/artifact/VtyNdrjEovfAvycTPmvy23 untouched; its sources frozen in deliverables/deck_v1/
+  (identical to the live v1 after fill).
+- v2: new deck https://claude.ai/artifact/NBiGTdX9JKB5kAeeX34gvc, 15 slides (cover, problem, data, prep, eda,
+  a_features, a_select, a_models, a_limits, b_features, b_scope, validation, test_reg, test_clf, use); sources replace
+  deliverables/deck/. 88 register ids, all also in the report; 18 charts uploaded to the v2 deck.
+- Register: 5 new figure items (A's s02 join diagram under B-G-13; A's s03 cumulative importance and screens 3.11,
+  3.12 under B-G-11); 207 items.
+
+**Not done yet**
+- Slides 7 and 8 carry pending chart slots for A's s04–s08 figures; audit on v2 needs the deck map updated.
+
+**Questions for Benson** (spec/doc_outbox/handshake_benson_deck_v2.md)
+1. Extend B-G-13 to A's s04–s08 figures (proposed B-G-14)?
+2. Replace figure_map.json's deck section with the v2 asset map.
+
+## 2026-10-29 · Henry + Claude · deck v2, review round 2 (bigger charts)
+
+**Done**
+- Henry's five v2 comments (slides 5-9 and "all the following slides"): slides 5-15 relaid chart first (narrower
+  margins, smaller title, text moved into short card rows or wide two-row tables, details to speaker notes).
+- Slide 5: A's detractor target bar (new register item F.A3.clf.target_bar, A evidence 3.2, B-G-11) beside the KDE.
+- Slide 7: heatmap enlarged; the pending A selection-curve note moved to the bottom.
+- Slide 8: the fold chart F.reg.partition (A's boundaries, B's rows inside) full width, as in v1; A's own ladder
+  chart is still pending the A-source rule (B's ladder is not shown on an A slide).
+- Slide 14: test curves full width with a wide table; the threshold chart moved to slide 15 next to the buffer.
+- Checked rendered at 1920x1080 (local headless Edge with the register PNGs): no overlaps; 88 ids, all in the report.
+- Register 208 items; v2 deck version 4; handshake deck map gains the two new asset ids.
+
+**Not done yet**
+- Charts whose own text is small (A's s03 screens on slide 9, the two-chart slides 6, 10, 12, 15) stay hard to read
+  (Decision 3 in the Benson handshake asks for presentation renders from the saved figure data).
+  at half width; a fix needs presentation renders with larger fonts (Benson's call) or more slides.
+- Audit on v2 waits on Benson's figure_map update; nothing pushed.
+
+## 2026-10-29 · Henry + Claude · deck v2, review round 3 (one type scale); Benson prompt combined
+
+**Done**
+- Pushed e5/deliverables-henry (2 commits from round 2 and the literature audit).
+- Henry's round 3 comments: slide 5 caption at least 28 px; slide 10 "(limit 2)" unclear (it named A's limit 2 on
+  slide 9, never a cap) → replaced by a table column "Answers A's limit" with the limit spelled out; slide 11 table and
+  text box fonts balanced; "balance font size, chart size and table size" across the deck.
+- Every slide on one scale: body, tables and chart labels 28 px, titles 48 px, section labels 24 px, footers 22 px;
+  padding 88/112/128 px. Wide tables on slides 11, 13 and 14 transposed (metrics as rows) so they fit at 28 px;
+  Brier moved into the ranking table on slide 14. Henry's editor edits on slides 8, 9, 11, 13 were layout only (text
+  checked identical) and were rebuilt on the scale. Local headless render: no slide past y 952, no horizontal
+  overflow. 88 register ids, all also in the report. v2 deck version 27 (1793270042-108a).
+- spec/doc_outbox/handshake_benson_2026-10-29_combined.md (D1–D7): merges the unsent deck v2 and Pipeline A report
+  prompts, which both proposed B-G-14; deck chart boxes updated to round 3 (bdb47ae, pushed).
+
+**Not done yet**
+- Audit on v2 waits on Benson (D2 deck map). Chart-internal text still small until D3 renders exist.
+
+## 2026-10-29 · Henry + Claude · Score an order 4.1: selector in the table (revision 2.2)
+
+**Done**
+- 4.1: the radio row under the table is replaced by the table's own selection column at the left
+  (`st.dataframe`, `selection_mode="single-row-required"`): one order always picked, the first by default, reset per
+  page. DASHBOARD_PLAN.md 4.1 row updated (revision 2.2).
+- App tests 19/19. Browser pass on the tab: picking a row updates 4.2; page 2 opens on sn 26; no console error.
+
+## 2026-10-29 · Henry + Claude · speaker notes, app screenshots, report review
+
+**Done**
+- Brief checked: the final report limit is 15–20 pages (excluding cover, references, appendices), 12 pt,
+  single-spaced, with figure captions and table labels; no word limit. The ~8,150 words in plan v2 was our own
+  estimate of what fits 18–20 pages with the figures. The talk is 10 minutes plus 5 of Q&A (plan v2 assumed 12).
+- Speaker notes rewritten for a 10-minute slot (9:00 of slides at about 110 words a minute, then a 1:00 demo), in
+  each slide template's notes; deck v2 version 28 (1793274446-5837), slide bodies unchanged. 80 register ids, all in
+  the report. Printable script with the demo steps: deliverables/deck/SPEAKER_NOTES.md.
+- Eight app screenshots at 1600x1000 from the local app (headless Edge, stored outputs only):
+  deliverables/dashboard/app/screenshots/2026-10-29/. Not yet placed in the deck (would need deck-map entries).
+
+**Noticed**
+- Panel 2.4 (promise buffer) opens on "A on A's test rows"; B's view should probably be the default.
+
+**Not done yet**
+- Hosting and the live URL: Benson (with the branch merge).
+
+## 2026-10-29 · Henry + Claude · report: cover, table labels, page count, RMSE/R²/F1, trims, screenshots
+
+**Done**
+- Cover page (00_cover.md): title, course, team, app URL and member names as placeholders, GitHub link, date.
+- Table labels on all 44 tables (body Tables 1–22, appendix A1–J3), numbered in the sources so they match the doc.
+- Register 216 items: test RMSE and R² for both pipelines; F1, and A's precision and recall, at 1/6 (b09
+  train_val_test, B9.1). §7.1 table gains RMSE and R² (A's R² on B's test orders is below zero, stated); §7.2 adds F1.
+- §2 literature cut to about 430 words; the source table removed (its content is in records/literature_register.md).
+- Four charts moved to appendices A, E, I, J; §8 gains two app screenshots (captioned "Screenshots 1–2.").
+- Page check: the filled report rendered at 12 pt Times New Roman, single-spaced, A4, 2 cm margins, every figure,
+  printed with headless Edge. Body (executive summary to limitations) 16 pages, was 18; whole document 24.
+- Review doc rev 56 (body replaced from the sources; the header note's date removed, which the audit read as a
+  number). Audit on the rev 56 export: 8/9 pass; deck charts fail until Benson maps v2 (D2).
+- Restructure plan for items 4–6 (B first, naming), for Henry's review before any change:
+  https://claude.ai/artifact/FRCGWYMKA4Q4fAKoWvaVqi
+- Benson prompt gains D8: figure_map doc section renumbered for rev 56 (spec/doc_outbox/figure_map_doc_rev56_proposed.json).
+
+**Not done yet**
+- Items 4–6 wait on Henry's review of the plan. Member names and the live URL on the cover.
+
+## 2026-10-29: report restructure (items 4–6), business background, screenshots to appendix
+
+Henry approved the restructure plan (https://claude.ai/artifact/FRCGWYMKA4Q4fAKoWvaVqi) with its recommended options
+and asked for business figures in §1 and the screenshots in the appendix. Revenue and repeat-customer figures are not
+stored anywhere the register may read; Henry chose stored figures only (no new run).
+
+- 9b77200 item 6: "Pipeline A" / "Pipeline B" throughout (66 lines, list in report/records/naming_changes_item6.txt).
+- 6e872e0 item 5: §5 leads with Pipeline B's features; A's pool condensed to one inherited-base paragraph.
+- b204328 item 4: new §1.1 holds Table 14 (now Table 3); §6.5 "Adopting Pipeline B".
+- This commit: §1 "Why it matters to the business" (7 new A3 register items, 223 built); screenshots to appendix K;
+  tables renumbered. Each step: placeholder set compared with the previous commit, `check` resolves every
+  placeholder. Body 17 pages at 12 pt.
+- Deck footers that cite report sections updated (slides 7, 9, 10).
+
+- Henry approved the result. Review doc rev 57: body replaced from the sources (doc_body builder v4). Export in
+  deliverables/audit/inputs/report_export_rev57.md. Audit 8/9 pass; the ninth is the deck chart map (Benson D2).
+
+**Not done yet**
+- figure_map D8 still holds: no figure changed order. Member names and the live URL on the cover.
+
+## 2026-10-30: business context in §1, dashboard revision 2.3
+
+Henry (delegated lead) kept the report at 12 pt single-spaced (the brief's format) and asked for revenue and the
+customer repeat rate in the problem statement, quoted in the text under the audit's rules, from the dashboard's
+Business overview data and without touching Pipelines A or B.
+
+- Dashboard revision 2.3: the score panels leave tabs 2 and 3 (data health is now 2.8 and 3.9), tab 4 is named
+  "ML deployment"; app tests 19/19; checked in the browser. Screenshots unchanged (the tab bar is not in them).
+- B-CR-41: `deliverables/business_context/make_business_context.py` (dashboard code, March 2017 to April 2018,
+  before the test period) wrote run 20261030T004253Z on commit 3268c20; the register reads it as `BIZ/<file>`
+  and the audit checks the chart against its manifest. 9 register items (232 built).
+- §1: revenue sentence and repeat rate (replaces "churn is not measured"), new Figure 1. figure_map doc section
+  rebuilt for 29 figures (replaces Benson's D8). Review doc rev 58; audit 8/9 (deck map, D2). Body 17 pages.
+
+**Not done yet**
+- Milestone 2 report (Pipeline A only, 6–8 pages): plan next.
+- Deck v2 chart map (D2) and the cover's member names and app URL.
+
+
+## 2026-10-30: Milestone 2 report, sections 1–4 (B-CR-42)
+
+Henry approved the M2 plan (https://claude.ai/artifact/DSshn5jDZdE1EobfG4PQxN) with the recommended decisions and
+asked for a fresh audit of the literature links and claims.
+
+- B-CR-42: B-G-14 (register reads A's s01, s04–s08 at e5-A-frozen); `m2_report/a_interpretation/` run
+  20261030T010520Z on f772f04 (A's frozen T1 bundles re-predict T1 exactly; coefficients and permutation importance on
+  A's test rows, B9.5's method); `M2A/` sources share B-CR-41's manifest check. Register 294 items (64 `M2.` items).
+- Literature: all 9 cited sources re-checked (Crossref metadata, abstracts from Crossref, NeurIPS, OpenAlex, Semantic
+  Scholar); all links resolve and metadata matches; each claim checked against its abstract and its section
+  (`m2_report/records/literature_audit_m2_2026-10-30.md`).
+- Sections 1–4 drafted from the final report's text, Pipeline B removed, alert at checkout; every placeholder resolves.
+  5 body pages at 12 pt, over the 3.8 planned: sections 5–7 and the summary must fit in about 3 pages.
+- Typed counts (verified against A's s04 `selected_features.json`): 24 predictors, 3 alert candidates, 18 and 19
+  selected.
+
+## 2026-10-30: Milestone 2 report, full draft
+
+Henry approved sections 1–4. Sections 5–7, the executive summary, references and appendices A–E written from A's
+stored outputs (s05 folds, s06 ladder, s07 tuning, s08 finalists and recipe, T1 on A's test rows, M2A
+interpretation); 39 more register items (333 built). Body 8 pages at 12 pt (the brief allows 6–8).
+Review doc: https://claude.ai/artifact/JySsRqxpAETeEN7rAj8dUj (rev 4), 10 figures.
+
+Findings stated plainly in the report: the lead-time model beats the dummy on every test measure; the alert's AP is
+above the detractor share but weak, and at the frozen 1/6 it sends about 51 alerts a day (24 on validation) and costs
+more on the test than sending no alert, because the test period had fewer detractors.
+
+## 2026-10-30: deck v2 chart map and presentation renders (B-CR-43)
+
+- 14 deck charts re-rendered from their stored data at slide-box size, text at least 18 pt (run 20261030T100629Z);
+  correlation heatmap shown as the 10 pairs with |rho| >= 0.5, selection charts as the top 8. Register 349 items.
+- Deck v2 version 35 uses the renders; figure_map deck section maps all 20 images (6 originals verified against the
+  deck's uploaded assets). Report export rev 68 (names removed from Tables D1–D2). Audit 9/9.
+- Not merged into milestone-3 (Henry: hold the merge).
+
+
+## 2026-10-30: audit pack for a third-party review before the merge
+
+- `deliverables/audit/make_audit_pack.py` writes standalone Markdown for the final report, the Milestone 2 report,
+  the deck (15 slides, speaker notes, 20 mapped images) and the dashboard (plan, sources, README, 8 screenshots), each
+  with a data-source index; output goes to the local `deliverables/exports/` (not committed) with an audit prompt.
+- Not merged into milestone-3 (Henry: hold the merge until the audit).
+
+## 2026-10-30 · Henry + Claude · third-party audit fixes (B-CR-44)
+
+**Done**
+- Fixes approved by Henry ("Yes, as recommended"): C-01, C-02, P-02, A-01, A-02, A-03, R-01, R-02, D-01, D-03, P-01, P-03.
+  R-03 (PDF) deferred until the merge and the app URL; A-01's branch name kept as decided.
+- Deck renders rerun (run 20261030T135524Z), 18 renders uploaded, deck v2 version 36 published; register rebuilt
+  (352 items). Review docs: final report rev 72, Milestone 2 rev 12. Screenshots in `screenshots/2026-10-30/`.
+- Audit inputs replaced: report export rev 72, deck v36 slide files (the committed copy was still deck v1).
+- Audit pack rebuilt into `_for_audit/` (untracked: its prompt summarises the private brief).
+
+**Checks**
+- Deliverables audit on the committed inputs: 9/9 PASS. Pipeline B tests 22 passed, 5 skipped; app tests 20 passed;
+  `build_evidence_B.py check` on both reports: all placeholders resolve.
+
+**Next**
+- Benson: app URL; then PDFs and the merge into `milestone-3` (not merged yet, as instructed).
+
+## 2026-10-31 · Henry + Claude · audit pack location
+
+**Done**
+- Correction to the 2026-10-30 entries: the audit packs no longer sit in `pipeline_b/_for_audit/` or
+  `deliverables/exports/`. The current pack, both audit reports and our response, plus the earlier pack
+  (`audit_2026-10-30/` and `Team11_audit_pack_2026-10-30.zip`), are kept in `_DONOTCOMMIT/_for_audit/` (local,
+  never committed). `deliverables/exports/2026-10-29/` (HTML exports of report and deck) stays where it was.
+
+## 2026-10-31 · Henry + Claude · own pre-merge audit (B-CR-45)
+
+**Done**
+- Audit of git state, structure, tags, frozen outputs, private files, tests, register, deliverables audit, data
+  sources, text, literature and past findings: `deliverables/audit/own_audit_2026-10-31.md`.
+- Fixed: 3 text I/O lines without encoding; KPI shares shown as R$; screenshot 01 recaptured.
+
+**Checks**
+- Deliverables audit 9/9; Pipeline B 22 passed, 5 skipped; app 21 passed; API 3 passed; Pipeline A 58 passed,
+  1 failed (guard test, fails on `milestone-3` too; 50 offending lines left, all pre-existing).
+- Trial merge into `milestone-3`: clean.
+
+**Next**
+- Merge `e5/deliverables-henry` into `milestone-3` when Henry gives the go-ahead.
+

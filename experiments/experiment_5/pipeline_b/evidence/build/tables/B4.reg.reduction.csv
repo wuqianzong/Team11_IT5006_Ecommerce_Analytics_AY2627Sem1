@@ -1,0 +1,5 @@
+feature,flagged_by,paired_with
+customer_state,nested in route (B-G-02),route_seller_to_customer_state
+primary_seller_state,nested in route (B-G-02),route_seller_to_customer_state
+distance_missing_fraction,constant,
+weight_missing_fraction,duplicate,volume_missing_fraction

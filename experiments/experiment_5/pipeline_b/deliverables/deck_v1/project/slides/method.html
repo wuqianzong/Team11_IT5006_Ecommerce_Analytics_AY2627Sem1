@@ -1,0 +1,15 @@
+<section id="method" data-transition="fade" data-section="Modelling and the A-to-B decision" style="background:#FBFBF8;color:#14213D;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#C2410C">Validation design</p>
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:60px;font-weight:600;line-height:1.1">Five time-ordered, customer-purged folds; one test read</h2>
+<div style="display:flex;gap:48px;align-items:start">
+<img src="/_blob/9705c7c37257f61a05455e97d64db2f0" alt="Time-ordered folds and the test period" style="width:960px;height:520px;object-fit:contain;background:#FFFFFF;border-radius:16px">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<div style="background:#FFFFFF;padding:24px 28px;border:1px solid #D5DBE3;border-radius:16px"><p style="font-size:26px">Expanding folds: train on all orders up to a date, validate on the next weeks</p></div>
+<div style="background:#FFFFFF;padding:24px 28px;border:1px solid #D5DBE3;border-radius:16px"><p style="font-size:26px">Validation customers are purged from training; a training label must be known before the window</p></div>
+<div style="background:#FFFFFF;padding:24px 28px;border:1px solid #D5DBE3;border-radius:16px"><p style="font-size:26px">Fold 5, lead time: {{B5.reg.fold5_train_rows}} training and {{B5.reg.fold5_validation_rows}} validation orders</p></div>
+<div style="background:#FFFFFF;padding:24px 28px;border:1px solid #D5DBE3;border-radius:16px"><p style="font-size:26px">Minimum {{B5.min_train_rows}} training orders; fold 1 has {{B5.reg.fold1_train_rows}}, a recorded deviation</p></div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6B7280">Team 11 · IT5006 · 10/15 · Report section 6.1, appendix A</p>
+<aside>0:45. A random or stratified split would train on orders placed after the ones it predicts and could put one customer on both sides. So folds are chronological and customer-purged, and each fold's detractor share is reported instead of stratified. Fold 1 of the improved pipeline is below the pre-set minimum because of the scope and warm-up; we kept it so both pipelines are compared on identical periods.</aside>
+</section>

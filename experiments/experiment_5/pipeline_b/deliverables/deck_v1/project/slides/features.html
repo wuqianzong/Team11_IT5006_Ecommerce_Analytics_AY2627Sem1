@@ -1,0 +1,22 @@
+<section id="features" data-transition="fade" style="background:#FBFBF8;color:#14213D;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#C2410C">Features</p>
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:60px;font-weight:600;line-height:1.1">New features describe recent seller and route behaviour</h2>
+<div style="display:flex;gap:40px;align-items:start">
+<table style="width:900px;font-size:24px;color:#14213D;border-collapse:collapse">
+<tr><th style="text-align:left;padding:8px 12px;border-bottom:2px solid #14213D">Improved pipeline's new feature</th><th style="text-align:left;padding:8px 12px;border-bottom:2px solid #14213D">Window</th></tr>
+<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Route, seller state to customer state</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">—</td></tr>
+<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Seller prior late-handover rate and days</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Earlier complete weeks</td></tr>
+<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Seller prior dispatch days</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Earlier complete weeks</td></tr>
+<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Route recent delivery days</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Last 3 weeks, weights 0.5/0.3/0.2</td></tr>
+<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Route recent carrier transit days</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">Last 3 weeks, as above</td></tr>
+<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">This order's handover lateness (alert)</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">At handover</td></tr>
+<tr><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">This order's dispatch days (alert)</td><td style="padding:8px 12px;border-bottom:1px solid #D5DBE3">At handover</td></tr>
+</table>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px">
+<img src="/_blob/92b53ee5e77920e4ed1d4d3413e42f9c" alt="Share of rows with their own seller and route history, by quarter" style="width:724px;height:400px;object-fit:contain;background:#FFFFFF;border-radius:16px">
+<p style="font-size:24px;color:#4A5568">Baseline pool: 24 checkout predictors (basket, price, size, product, geography, calendar, payment).</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6B7280">Team 11 · IT5006 · 7/15 · Report section 5.2 · history uses only other orders, never this order's outcome</p>
+<aside>0:50. Each new feature has a formula, a window and a reason. Seller history captures packing and dispatch habits; route history captures recent carrier conditions. A seller or route without enough history falls back to state means, and the first six weeks are a warm-up. None of them uses Olist's estimated delivery date, so none inherits the old promise.</aside>
+</section>

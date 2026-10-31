@@ -13,6 +13,17 @@ message or memory. `tests/test_evidence_register.py` fails if this table and the
 
 Pipeline A's evidence is frozen at tag `e5-A-frozen`: cite A only from `../stages/` at that tag.
 
+## Business context (B-CR-41, not model evidence)
+
+The report's problem statement quotes monthly revenue and customer repeat rate from the dashboard's Business
+overview data. They are read as `BIZ/<file>` from `deliverables/business_context/outputs/`, accepted only if each
+file and the input data match that folder's `_manifest.json` (run id, commit, sha256). They are descriptive, end
+before the test period, and never support a model claim.
+
+The same check covers `M2A/<file>` (B-CR-42): Pipeline A's coefficients and permutation importance on A's test rows,
+from A's frozen T1 bundles (no fit), in `deliverables/m2_report/a_interpretation/outputs/`, for the Milestone 2 report.
+B-G-14 lets the register read A's s01 and s04–s08 outputs at tag e5-A-frozen, as B-G-11 and B-G-13 do for s03 and s02.
+
 ## Current runs
 
 | Stage | Task | Current run_id | Code commit | Tag | Round |

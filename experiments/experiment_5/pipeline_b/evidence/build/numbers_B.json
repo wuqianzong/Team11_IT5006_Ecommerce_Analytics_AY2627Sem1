@@ -65,6 +65,149 @@
     "file": "evidence/build/tables/B2.reg.exclusions.csv",
     "rows": 6
   },
+  "B2.reg.dev_rows_B": {
+    "kind": "number",
+    "source": "b02/regression/outputs/exclusion_counts_B.csv",
+    "run_id": "20261023T154814Z",
+    "evidence": "B2.1",
+    "used_in": [
+      "report 2"
+    ],
+    "value": 61233,
+    "text": "61,233"
+  },
+  "B2.clf.dev_rows_A": {
+    "kind": "number",
+    "source": "b02/classification/outputs/exclusion_counts_B.csv",
+    "run_id": "20261023T154822Z",
+    "evidence": "B2.1",
+    "used_in": [
+      "report 2"
+    ],
+    "value": 77736,
+    "text": "77,736"
+  },
+  "B2.clf.removed_state": {
+    "kind": "number",
+    "source": "b02/classification/outputs/exclusion_counts_B.csv",
+    "run_id": "20261023T154822Z",
+    "evidence": "B2.1",
+    "used_in": [
+      "report 2"
+    ],
+    "value": 13983,
+    "text": "13,983"
+  },
+  "B2.clf.removed_distance": {
+    "kind": "number",
+    "source": "b02/classification/outputs/exclusion_counts_B.csv",
+    "run_id": "20261023T154822Z",
+    "evidence": "B2.1",
+    "used_in": [
+      "report 2"
+    ],
+    "value": 618,
+    "text": "618"
+  },
+  "B2.clf.removed_no_handover": {
+    "kind": "number",
+    "source": "b02/classification/outputs/exclusion_counts_B.csv",
+    "run_id": "20261023T154822Z",
+    "evidence": "B2.1",
+    "used_in": [
+      "report 2"
+    ],
+    "value": 461,
+    "text": "461"
+  },
+  "B2.clf.removed_review_before_handover": {
+    "kind": "number",
+    "source": "b02/classification/outputs/exclusion_counts_B.csv",
+    "run_id": "20261023T154822Z",
+    "evidence": "B2.1",
+    "used_in": [
+      "report 2"
+    ],
+    "value": 146,
+    "text": "146"
+  },
+  "B2.clf.removed_warmup": {
+    "kind": "number",
+    "source": "b02/classification/outputs/exclusion_counts_B.csv",
+    "run_id": "20261023T154822Z",
+    "evidence": "B2.1",
+    "used_in": [
+      "report 2"
+    ],
+    "value": 1270,
+    "text": "1,270"
+  },
+  "B2.clf.dev_rows_B": {
+    "kind": "number",
+    "source": "b02/classification/outputs/exclusion_counts_B.csv",
+    "run_id": "20261023T154822Z",
+    "evidence": "B2.1",
+    "used_in": [
+      "report 2"
+    ],
+    "value": 61258,
+    "text": "61,258"
+  },
+  "T1.reg.fit_rows_B": {
+    "kind": "number",
+    "source": "t1_joint_test/regression/outputs/test_size_B.json",
+    "run_id": "20261024T044531Z",
+    "evidence": "T1.1",
+    "used_in": [
+      "report 2"
+    ],
+    "value": 59683,
+    "text": "59,683"
+  },
+  "B5.reg.fold5_train_rows": {
+    "kind": "number",
+    "source": "b05/regression/outputs/fold_summary_B.csv",
+    "run_id": "20261023T160529Z",
+    "evidence": "B5.2",
+    "used_in": [
+      "report 2"
+    ],
+    "value": 47415,
+    "text": "47,415"
+  },
+  "B5.reg.fold5_validation_rows": {
+    "kind": "number",
+    "source": "b05/regression/outputs/fold_summary_B.csv",
+    "run_id": "20261023T160529Z",
+    "evidence": "B5.2",
+    "used_in": [
+      "report 2"
+    ],
+    "value": 9059,
+    "text": "9,059"
+  },
+  "B5.clf.fold5_train_rows": {
+    "kind": "number",
+    "source": "b05/classification/outputs/fold_summary_B.csv",
+    "run_id": "20261023T160533Z",
+    "evidence": "B5.2",
+    "used_in": [
+      "report 2"
+    ],
+    "value": 47237,
+    "text": "47,237"
+  },
+  "B5.clf.fold5_validation_rows": {
+    "kind": "number",
+    "source": "b05/classification/outputs/fold_summary_B.csv",
+    "run_id": "20261023T160533Z",
+    "evidence": "B5.2",
+    "used_in": [
+      "report 2"
+    ],
+    "value": 8646,
+    "text": "8,646"
+  },
   "B2.clf.exclusions": {
     "kind": "table",
     "source": "b02/classification/outputs/exclusion_counts_B.csv",
@@ -185,8 +328,52 @@
       "report 5",
       "deck 6"
     ],
-    "value": 3.2991876699744895,
+    "value": 3.299187669974489,
     "text": "3.30"
+  },
+  "B9.reg.test_rmse_B": {
+    "kind": "number",
+    "source": "b09/regression/outputs/train_val_test.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 4.7749934883518055,
+    "text": "4.77"
+  },
+  "B9.reg.test_rmse_A_on_B": {
+    "kind": "number",
+    "source": "b09/regression/outputs/train_val_test.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 5.358556681190052,
+    "text": "5.36"
+  },
+  "B9.reg.test_r2_B": {
+    "kind": "number",
+    "source": "b09/regression/outputs/train_val_test.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 0.184892749535466,
+    "text": "0.185"
+  },
+  "B9.reg.test_r2_A_on_B": {
+    "kind": "number",
+    "source": "b09/regression/outputs/train_val_test.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 7"
+    ],
+    "value": -0.0265139288397586,
+    "text": "-0.027"
   },
   "B9.reg.test_mae_B_lo": {
     "kind": "number",
@@ -196,7 +383,7 @@
     "used_in": [
       "report 5"
     ],
-    "value": 3.2448697751501716,
+    "value": 3.244869775150172,
     "text": "3.24"
   },
   "B9.reg.test_mae_B_hi": {
@@ -500,6 +687,50 @@
     ],
     "value": 0.6360308265356858,
     "text": "0.636"
+  },
+  "B9.clf.test_f1_B": {
+    "kind": "number",
+    "source": "b09/classification/outputs/train_val_test.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 0.2456233421750663,
+    "text": "0.246"
+  },
+  "B9.clf.test_f1_A_on_B": {
+    "kind": "number",
+    "source": "b09/classification/outputs/train_val_test.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 0.2190685588646811,
+    "text": "0.219"
+  },
+  "B9.clf.test_precision_A_on_B": {
+    "kind": "number",
+    "source": "b09/classification/outputs/train_val_test.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 0.1582900057770075,
+    "text": "0.158"
+  },
+  "B9.clf.test_recall_A_on_B": {
+    "kind": "number",
+    "source": "b09/classification/outputs/train_val_test.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 0.3556132381570409,
+    "text": "0.356"
   },
   "B9.clf.test_prevalence_B": {
     "kind": "number",
@@ -1334,6 +1565,182 @@
     "value": 4478,
     "text": "4,478"
   },
+  "A3.trend.late_2017_10": {
+    "kind": "number",
+    "source": "A/s03_eda/regression/outputs/outcome_trends.csv",
+    "run_id": "20261023T083326Z @ e5-A-frozen",
+    "evidence": "3.3",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 0.0529254131308619,
+    "text": "5.3%"
+  },
+  "A3.trend.late_2017_11": {
+    "kind": "number",
+    "source": "A/s03_eda/regression/outputs/outcome_trends.csv",
+    "run_id": "20261023T083326Z @ e5-A-frozen",
+    "evidence": "3.3",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 0.1426414058209774,
+    "text": "14.3%"
+  },
+  "A3.trend.late_2018_03": {
+    "kind": "number",
+    "source": "A/s03_eda/regression/outputs/outcome_trends.csv",
+    "run_id": "20261023T083326Z @ e5-A-frozen",
+    "evidence": "3.3",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 0.2136227331143795,
+    "text": "21.4%"
+  },
+  "A3.trend.detractor_2017_10": {
+    "kind": "number",
+    "source": "A/s03_eda/classification/outputs/outcome_trends.csv",
+    "run_id": "20261023T083353Z @ e5-A-frozen",
+    "evidence": "3.3",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 0.1188470066518847,
+    "text": "11.9%"
+  },
+  "A3.trend.detractor_2018_03": {
+    "kind": "number",
+    "source": "A/s03_eda/classification/outputs/outcome_trends.csv",
+    "run_id": "20261023T083353Z @ e5-A-frozen",
+    "evidence": "3.3",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 0.2250211089220377,
+    "text": "22.5%"
+  },
+  "A3.reg.price_mean": {
+    "kind": "number",
+    "source": "A/s03_eda/regression/outputs/numeric_feature_target_lead_days.csv",
+    "run_id": "20261023T083326Z @ e5-A-frozen",
+    "evidence": "3.4",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 136.57385297367566,
+    "text": "137"
+  },
+  "A3.reg.freight_mean": {
+    "kind": "number",
+    "source": "A/s03_eda/regression/outputs/numeric_feature_target_lead_days.csv",
+    "run_id": "20261023T083326Z @ e5-A-frozen",
+    "evidence": "3.4",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 22.269861423464413,
+    "text": "22"
+  },
+  "BIZ.rev_2017_03": {
+    "kind": "number",
+    "source": "BIZ/summary.json",
+    "run_id": "20261030T004253Z (BIZ/business_context)",
+    "evidence": "BIZ.1",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 374255.3,
+    "text": "374,255"
+  },
+  "BIZ.rev_2018_04": {
+    "kind": "number",
+    "source": "BIZ/summary.json",
+    "run_id": "20261030T004253Z (BIZ/business_context)",
+    "evidence": "BIZ.1",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 944974.83,
+    "text": "944,975"
+  },
+  "BIZ.rev_growth": {
+    "kind": "number",
+    "source": "BIZ/summary.json",
+    "run_id": "20261030T004253Z (BIZ/business_context)",
+    "evidence": "BIZ.1",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 2.524947088257668,
+    "text": "2.5"
+  },
+  "BIZ.rev_2017_10": {
+    "kind": "number",
+    "source": "BIZ/summary.json",
+    "run_id": "20261030T004253Z (BIZ/business_context)",
+    "evidence": "BIZ.1",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 664219.43,
+    "text": "664,219"
+  },
+  "BIZ.rev_peak": {
+    "kind": "number",
+    "source": "BIZ/summary.json",
+    "run_id": "20261030T004253Z (BIZ/business_context)",
+    "evidence": "BIZ.1",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 1010016.37,
+    "text": "1,010,016"
+  },
+  "BIZ.repeat_mean": {
+    "kind": "number",
+    "source": "BIZ/summary.json",
+    "run_id": "20261030T004253Z (BIZ/business_context)",
+    "evidence": "BIZ.1",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 0.01544663126074945,
+    "text": "1.5%"
+  },
+  "BIZ.repeat_min": {
+    "kind": "number",
+    "source": "BIZ/summary.json",
+    "run_id": "20261030T004253Z (BIZ/business_context)",
+    "evidence": "BIZ.1",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 0.007550077041602465,
+    "text": "0.8%"
+  },
+  "BIZ.repeat_max": {
+    "kind": "number",
+    "source": "BIZ/summary.json",
+    "run_id": "20261030T004253Z (BIZ/business_context)",
+    "evidence": "BIZ.1",
+    "used_in": [
+      "report 1"
+    ],
+    "value": 0.022681992337164752,
+    "text": "2.3%"
+  },
+  "F.BIZ.revenue_repeat": {
+    "kind": "figure",
+    "source": "BIZ/figures/revenue_repeat_by_month.png",
+    "run_id": "20261030T004253Z (BIZ/business_context)",
+    "evidence": "BIZ.1",
+    "used_in": [
+      "report 1"
+    ],
+    "file": "evidence/build/figures/F.BIZ.revenue_repeat.png",
+    "caption": "Monthly revenue and customer repeat rate, March 2017 to April 2018 (dashboard Business overview data)"
+  },
   "B12.reg.rank_selected": {
     "kind": "number",
     "source": "b12/regression/outputs/ranking_stability.json",
@@ -1585,5 +1992,1969 @@
     ],
     "file": "evidence/build/figures/F.clf.ranking_stability.png",
     "caption": "Detractor alert: feature ranking on all development rows vs each training fold"
+  },
+  "F.A3.reg.target_kde": {
+    "kind": "figure",
+    "source": "A/s03_eda/regression/outputs/figures/target_lead_days_kde.png",
+    "run_id": "20261023T083326Z @ e5-A-frozen",
+    "evidence": "3.1",
+    "used_in": [
+      "report 4",
+      "deck 5"
+    ],
+    "file": "evidence/build/figures/F.A3.reg.target_kde.png",
+    "caption": "Lead-time distribution, development orders (Pipeline A EDA)"
+  },
+  "F.A3.reg.outcome_trends": {
+    "kind": "figure",
+    "source": "A/s03_eda/regression/outputs/figures/outcome_trends.png",
+    "run_id": "20261023T083326Z @ e5-A-frozen",
+    "evidence": "3.3",
+    "used_in": [
+      "report 4",
+      "deck 6"
+    ],
+    "file": "evidence/build/figures/F.A3.reg.outcome_trends.png",
+    "caption": "Monthly orders and outcomes, development orders (Pipeline A EDA)"
+  },
+  "F.A3.clf.outcome_trends": {
+    "kind": "figure",
+    "source": "A/s03_eda/classification/outputs/figures/outcome_trends.png",
+    "run_id": "20261023T083353Z @ e5-A-frozen",
+    "evidence": "3.3",
+    "used_in": [
+      "report 4"
+    ],
+    "file": "evidence/build/figures/F.A3.clf.outcome_trends.png",
+    "caption": "Monthly detractor rate, development orders (Pipeline A EDA)"
+  },
+  "F.A3.reg.correlation_heatmap": {
+    "kind": "figure",
+    "source": "A/s03_eda/regression/outputs/figures/numeric_correlation_heatmap.png",
+    "run_id": "20261023T083326Z @ e5-A-frozen",
+    "evidence": "3.8",
+    "used_in": [
+      "report 5",
+      "deck 8"
+    ],
+    "file": "evidence/build/figures/F.A3.reg.correlation_heatmap.png",
+    "caption": "Pairwise correlations of A's numeric predictors (Pipeline A EDA)"
+  },
+  "A3.reg.vif": {
+    "kind": "table",
+    "source": "A/s03_eda/regression/outputs/feature_quality.csv",
+    "run_id": "20261023T083326Z @ e5-A-frozen",
+    "evidence": "3.8",
+    "used_in": [
+      "report 5",
+      "report appendix",
+      "deck 8"
+    ],
+    "file": "evidence/build/tables/A3.reg.vif.csv",
+    "rows": 20
+  },
+  "A3.clf.vif": {
+    "kind": "table",
+    "source": "A/s03_eda/classification/outputs/feature_quality.csv",
+    "run_id": "20261023T083353Z @ e5-A-frozen",
+    "evidence": "3.8",
+    "used_in": [
+      "report appendix"
+    ],
+    "file": "evidence/build/tables/A3.clf.vif.csv",
+    "rows": 20
+  },
+  "A3.reg.collinear_pairs": {
+    "kind": "table",
+    "source": "A/s03_eda/regression/outputs/collinear_pairs.csv",
+    "run_id": "20261023T083326Z @ e5-A-frozen",
+    "evidence": "3.8",
+    "used_in": [
+      "report 5"
+    ],
+    "file": "evidence/build/tables/A3.reg.collinear_pairs.csv",
+    "rows": 1
+  },
+  "A3.corr_cut": {
+    "kind": "number",
+    "source": "A/s03_eda/regression/outputs/eda_summary.json",
+    "run_id": "20261023T083326Z @ e5-A-frozen",
+    "evidence": "3.8",
+    "used_in": [
+      "report 5",
+      "deck 8"
+    ],
+    "value": 0.9,
+    "text": "0.9"
+  },
+  "A3.vif_cut": {
+    "kind": "number",
+    "source": "A/s03_eda/regression/outputs/eda_summary.json",
+    "run_id": "20261023T083326Z @ e5-A-frozen",
+    "evidence": "3.8",
+    "used_in": [
+      "report 5",
+      "deck 8"
+    ],
+    "value": 10.0,
+    "text": "10"
+  },
+  "B4.reg.reduction": {
+    "kind": "table",
+    "source": "b04/regression/outputs/reduction_B.csv",
+    "run_id": "20261023T154827Z",
+    "evidence": "B4.3",
+    "used_in": [
+      "report 5",
+      "deck 8"
+    ],
+    "file": "evidence/build/tables/B4.reg.reduction.csv",
+    "rows": 4
+  },
+  "B4.clf.reduction": {
+    "kind": "table",
+    "source": "b04/classification/outputs/reduction_B.csv",
+    "run_id": "20261023T154833Z",
+    "evidence": "B4.3",
+    "used_in": [
+      "report 5"
+    ],
+    "file": "evidence/build/tables/B4.clf.reduction.csv",
+    "rows": 4
+  },
+  "B5.reg.folds": {
+    "kind": "table",
+    "source": "b05/regression/outputs/fold_summary_B.csv",
+    "run_id": "20261023T160529Z",
+    "evidence": "B5.2",
+    "used_in": [
+      "report 6",
+      "report appendix",
+      "deck 10"
+    ],
+    "file": "evidence/build/tables/B5.reg.folds.csv",
+    "rows": 5
+  },
+  "B5.clf.folds": {
+    "kind": "table",
+    "source": "b05/classification/outputs/fold_summary_B.csv",
+    "run_id": "20261023T160533Z",
+    "evidence": "B5.2",
+    "used_in": [
+      "report 6",
+      "report appendix",
+      "deck 10"
+    ],
+    "file": "evidence/build/tables/B5.clf.folds.csv",
+    "rows": 5
+  },
+  "B6.reg.ladder": {
+    "kind": "table",
+    "source": "b06/regression/outputs/paired_differences.csv",
+    "run_id": "20261023T162830Z",
+    "evidence": "B6.2",
+    "used_in": [
+      "report 6",
+      "deck 11"
+    ],
+    "file": "evidence/build/tables/B6.reg.ladder.csv",
+    "rows": 3
+  },
+  "B6.clf.ladder": {
+    "kind": "table",
+    "source": "b06/classification/outputs/paired_differences.csv",
+    "run_id": "20261023T162918Z",
+    "evidence": "B6.2",
+    "used_in": [
+      "report 6",
+      "deck 11"
+    ],
+    "file": "evidence/build/tables/B6.clf.ladder.csv",
+    "rows": 3
+  },
+  "B6.reg.candidates": {
+    "kind": "table",
+    "source": "b06/regression/outputs/candidates.csv",
+    "run_id": "20261023T162830Z",
+    "evidence": "B6.2",
+    "used_in": [
+      "report 6"
+    ],
+    "file": "evidence/build/tables/B6.reg.candidates.csv",
+    "rows": 4
+  },
+  "B6.clf.candidates": {
+    "kind": "table",
+    "source": "b06/classification/outputs/candidates.csv",
+    "run_id": "20261023T162918Z",
+    "evidence": "B6.2",
+    "used_in": [
+      "report 6"
+    ],
+    "file": "evidence/build/tables/B6.clf.candidates.csv",
+    "rows": 4
+  },
+  "B7.reg.plain_vs_tuned": {
+    "kind": "table",
+    "source": "b07/regression/outputs/plain_vs_tuned.csv",
+    "run_id": "20261023T163311Z",
+    "evidence": "B7.5",
+    "used_in": [
+      "report 6"
+    ],
+    "file": "evidence/build/tables/B7.reg.plain_vs_tuned.csv",
+    "rows": 3
+  },
+  "B7.clf.plain_vs_tuned": {
+    "kind": "table",
+    "source": "b07/classification/outputs/plain_vs_tuned.csv",
+    "run_id": "20261023T164241Z",
+    "evidence": "B7.5",
+    "used_in": [
+      "report 6"
+    ],
+    "file": "evidence/build/tables/B7.clf.plain_vs_tuned.csv",
+    "rows": 3
+  },
+  "B7.reg.grid": {
+    "kind": "table",
+    "source": "b07/regression/outputs/grid_results.csv",
+    "run_id": "20261023T163311Z",
+    "evidence": "B7.5",
+    "used_in": [
+      "report appendix"
+    ],
+    "file": "evidence/build/tables/B7.reg.grid.csv",
+    "rows": 69
+  },
+  "B7.clf.grid": {
+    "kind": "table",
+    "source": "b07/classification/outputs/grid_results.csv",
+    "run_id": "20261023T164241Z",
+    "evidence": "B7.5",
+    "used_in": [
+      "report appendix"
+    ],
+    "file": "evidence/build/tables/B7.clf.grid.csv",
+    "rows": 138
+  },
+  "B9.clf.label_sensitivity": {
+    "kind": "table",
+    "source": "b09/classification/outputs/label_sensitivity.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.6",
+    "used_in": [
+      "report 3",
+      "report 7"
+    ],
+    "file": "evidence/build/tables/B9.clf.label_sensitivity.csv",
+    "rows": 4
+  },
+  "F.reg.family_ladder": {
+    "kind": "figure",
+    "source": "b06/regression/outputs/figures/family_ladder.png",
+    "run_id": "20261023T162830Z",
+    "evidence": "B6.2",
+    "used_in": [
+      "report 6",
+      "deck 11"
+    ],
+    "file": "evidence/build/figures/F.reg.family_ladder.png",
+    "caption": "Model ladder on the five folds, lead time"
+  },
+  "F.clf.family_ladder": {
+    "kind": "figure",
+    "source": "b06/classification/outputs/figures/family_ladder.png",
+    "run_id": "20261023T162918Z",
+    "evidence": "B6.2",
+    "used_in": [
+      "report 6",
+      "deck 11"
+    ],
+    "file": "evidence/build/figures/F.clf.family_ladder.png",
+    "caption": "Model ladder on the five folds, detractor alert"
+  },
+  "F.clf.auc_brier": {
+    "kind": "figure",
+    "source": "doc_support/classification/outputs/figures/r06_auc_brier.png",
+    "run_id": "20261025T132552Z",
+    "evidence": "DS.6",
+    "used_in": [
+      "report 7",
+      "deck 14"
+    ],
+    "file": "evidence/build/figures/F.clf.auc_brier.png",
+    "caption": "ROC-AUC and Brier by population, detractor alert"
+  },
+  "F.clf.confusion": {
+    "kind": "figure",
+    "source": "doc_support/classification/outputs/figures/r06_confusion.png",
+    "run_id": "20261025T132552Z",
+    "evidence": "DS.6",
+    "used_in": [
+      "report 7"
+    ],
+    "file": "evidence/build/figures/F.clf.confusion.png",
+    "caption": "Confusion matrices, A and B on B's validation rows"
+  },
+  "F.reg.history_coverage": {
+    "kind": "figure",
+    "source": "doc_support/regression/outputs/figures/b2_history_coverage.png",
+    "run_id": "20261025T132541Z",
+    "evidence": "DS.1",
+    "used_in": [
+      "report 5"
+    ],
+    "file": "evidence/build/figures/F.reg.history_coverage.png",
+    "caption": "Share of rows with their own seller and route history, by quarter"
+  },
+  "F.clf.selection": {
+    "kind": "figure",
+    "source": "doc_support/classification/outputs/figures/b4_selection.png",
+    "run_id": "20261025T132552Z",
+    "evidence": "DS.2",
+    "used_in": [
+      "report 5",
+      "deck 9"
+    ],
+    "file": "evidence/build/figures/F.clf.selection.png",
+    "caption": "Feature ranking and the 99% rule, detractor alert"
+  },
+  "B8.reg.adoption": {
+    "kind": "table",
+    "source": "b08/regression/outputs/adoption_comparison.csv",
+    "run_id": "20261024T042516Z",
+    "evidence": "B8.A",
+    "used_in": [
+      "report 6",
+      "deck 12"
+    ],
+    "file": "evidence/build/tables/B8.reg.adoption.csv",
+    "rows": 5
+  },
+  "B8.clf.adoption": {
+    "kind": "table",
+    "source": "b08/classification/outputs/adoption_comparison.csv",
+    "run_id": "20261024T042619Z",
+    "evidence": "B8.A",
+    "used_in": [
+      "report 6",
+      "deck 12"
+    ],
+    "file": "evidence/build/tables/B8.clf.adoption.csv",
+    "rows": 5
+  },
+  "B9.reg.val_mae_A_on_A": {
+    "kind": "number",
+    "source": "b09/regression/outputs/train_val_test.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 5.470111342962177,
+    "text": "5.47"
+  },
+  "B9.reg.val_mae_Adummy_on_A": {
+    "kind": "number",
+    "source": "b09/regression/outputs/train_val_test.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 6.494565088383939,
+    "text": "6.49"
+  },
+  "B9.clf.val_ap_A_on_A": {
+    "kind": "number",
+    "source": "b09/classification/outputs/train_val_test.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 0.2317254314437797,
+    "text": "0.232"
+  },
+  "B9.clf.val_ap_Adummy_on_A": {
+    "kind": "number",
+    "source": "b09/classification/outputs/train_val_test.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 0.1481830943938916,
+    "text": "0.148"
+  },
+  "B5.reg.fold1_train_rows": {
+    "kind": "number",
+    "source": "b05/regression/outputs/minimums_B.csv",
+    "run_id": "20261023T160529Z",
+    "evidence": "B5.3",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 7932,
+    "text": "7,932"
+  },
+  "B5.clf.fold1_train_rows": {
+    "kind": "number",
+    "source": "b05/classification/outputs/minimums_B.csv",
+    "run_id": "20261023T160533Z",
+    "evidence": "B5.3",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 7592,
+    "text": "7,592"
+  },
+  "B5.min_train_rows": {
+    "kind": "number",
+    "source": "b05/regression/outputs/minimums_B.csv",
+    "run_id": "20261023T160529Z",
+    "evidence": "B5.3",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 10000,
+    "text": "10,000"
+  },
+  "B8.clf.pop_A_on_A": {
+    "kind": "number",
+    "source": "b08/classification/outputs/population_summary.csv",
+    "run_id": "20261024T042619Z",
+    "evidence": "B8.A",
+    "used_in": [
+      "report 7",
+      "deck 13"
+    ],
+    "value": 0.243507462225636,
+    "text": "0.244"
+  },
+  "B8.clf.pop_A_on_B": {
+    "kind": "number",
+    "source": "b08/classification/outputs/population_summary.csv",
+    "run_id": "20261024T042619Z",
+    "evidence": "B8.A",
+    "used_in": [
+      "report 7",
+      "deck 13"
+    ],
+    "value": 0.2418771435789408,
+    "text": "0.242"
+  },
+  "B8.clf.pop_B_on_B": {
+    "kind": "number",
+    "source": "b08/classification/outputs/population_summary.csv",
+    "run_id": "20261024T042619Z",
+    "evidence": "B8.A",
+    "used_in": [
+      "report 7",
+      "deck 13"
+    ],
+    "value": 0.2615813375186103,
+    "text": "0.262"
+  },
+  "B9.clf.test_auc_A_on_B": {
+    "kind": "number",
+    "source": "b09/classification/outputs/train_val_test.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 7",
+      "deck 14"
+    ],
+    "value": 0.6040496051560084,
+    "text": "0.604"
+  },
+  "B9.clf.test_brier_B": {
+    "kind": "number",
+    "source": "b09/classification/outputs/train_val_test.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 7",
+      "deck 14"
+    ],
+    "value": 0.0867023878094863,
+    "text": "0.0867"
+  },
+  "B9.clf.test_brier_A_on_B": {
+    "kind": "number",
+    "source": "b09/classification/outputs/train_val_test.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.1",
+    "used_in": [
+      "report 7",
+      "deck 14"
+    ],
+    "value": 0.089260432595265,
+    "text": "0.0893"
+  },
+  "B9.reg.resid_mean_val_B": {
+    "kind": "number",
+    "source": "b09/regression/outputs/residuals_summary.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.16",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 2.918015707067446,
+    "text": "+2.9"
+  },
+  "B9.reg.resid_mean_test_B": {
+    "kind": "number",
+    "source": "b09/regression/outputs/residuals_summary.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.16",
+    "used_in": [
+      "report 7"
+    ],
+    "value": -1.142998043061918,
+    "text": "-1.1"
+  },
+  "B9.reg.resid_median_B": {
+    "kind": "number",
+    "source": "b09/regression/outputs/residuals_summary.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.16",
+    "used_in": [
+      "report 7"
+    ],
+    "value": -1.637482332448262,
+    "text": "-1.6"
+  },
+  "B9.reg.rank_spearman": {
+    "kind": "number",
+    "source": "b09/regression/outputs/ranking_consistency.json",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.5",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 0.16363636363636364,
+    "text": "0.16"
+  },
+  "B9.reg.rank_top10": {
+    "kind": "number",
+    "source": "b09/regression/outputs/ranking_consistency.json",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.5",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 7,
+    "text": "7"
+  },
+  "B9.clf.rank_spearman": {
+    "kind": "number",
+    "source": "b09/classification/outputs/ranking_consistency.json",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.5",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 0.3069230769230769,
+    "text": "0.31"
+  },
+  "B9.clf.rank_top10": {
+    "kind": "number",
+    "source": "b09/classification/outputs/ranking_consistency.json",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.5",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 6,
+    "text": "6"
+  },
+  "F.A2.data_structure": {
+    "kind": "figure",
+    "source": "A/s02_data/common/outputs/figures/data_structure.png",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.12",
+    "used_in": [
+      "deck 3"
+    ],
+    "file": "evidence/build/figures/F.A2.data_structure.png",
+    "caption": "From nine source tables to one row per order (Pipeline A data stage)"
+  },
+  "F.A3.reg.cumulative_importance": {
+    "kind": "figure",
+    "source": "A/s03_eda/regression/outputs/figures/cumulative_importance.png",
+    "run_id": "20261023T083326Z @ e5-A-frozen",
+    "evidence": "3.9",
+    "used_in": [
+      "deck 6"
+    ],
+    "file": "evidence/build/figures/F.A3.reg.cumulative_importance.png",
+    "caption": "Baseline candidate ranking and cumulative importance, lead time (Pipeline A EDA)"
+  },
+  "F.A3.clf.cumulative_importance": {
+    "kind": "figure",
+    "source": "A/s03_eda/classification/outputs/figures/cumulative_importance.png",
+    "run_id": "20261023T083353Z @ e5-A-frozen",
+    "evidence": "3.9",
+    "used_in": [
+      "deck 6"
+    ],
+    "file": "evidence/build/figures/F.A3.clf.cumulative_importance.png",
+    "caption": "Baseline candidate ranking and cumulative importance, detractor alert (Pipeline A EDA)"
+  },
+  "F.A3.clf.screen_promise": {
+    "kind": "figure",
+    "source": "A/s03_eda/classification/outputs/figures/candidate_screen_promise.png",
+    "run_id": "20261023T083353Z @ e5-A-frozen",
+    "evidence": "3.11",
+    "used_in": [
+      "deck 9"
+    ],
+    "file": "evidence/build/figures/F.A3.clf.screen_promise.png",
+    "caption": "Promised delivery days at checkout barely separate detractors (Pipeline A EDA screen 3.11)"
+  },
+  "F.A3.clf.screen_region": {
+    "kind": "figure",
+    "source": "A/s03_eda/classification/outputs/figures/candidate_screen_region.png",
+    "run_id": "20261023T083353Z @ e5-A-frozen",
+    "evidence": "3.12",
+    "used_in": [
+      "deck 9"
+    ],
+    "file": "evidence/build/figures/F.A3.clf.screen_region.png",
+    "caption": "Detractor rate by macro-region and region pair (Pipeline A EDA screen 3.12)"
+  },
+  "F.A3.clf.target_bar": {
+    "kind": "figure",
+    "source": "A/s03_eda/classification/outputs/figures/target_is_detractor_bar.png",
+    "run_id": "20261023T083353Z @ e5-A-frozen",
+    "evidence": "3.2",
+    "used_in": [
+      "deck 5"
+    ],
+    "file": "evidence/build/figures/F.A3.clf.target_bar.png",
+    "caption": "Detractor share, development orders (Pipeline A EDA)"
+  },
+  "M2.reg.test_mae_A": {
+    "kind": "number",
+    "source": "t1_joint_test/regression/outputs/metrics_test.csv",
+    "run_id": "20261024T044531Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 4.336370023389838,
+    "text": "4.34"
+  },
+  "M2.reg.test_rmse_A": {
+    "kind": "number",
+    "source": "t1_joint_test/regression/outputs/metrics_test.csv",
+    "run_id": "20261024T044531Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 5.7288510437860936,
+    "text": "5.73"
+  },
+  "M2.reg.test_r2_A": {
+    "kind": "number",
+    "source": "t1_joint_test/regression/outputs/metrics_test.csv",
+    "run_id": "20261024T044531Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.0339743051036662,
+    "text": "0.034"
+  },
+  "M2.reg.test_within_3d_A": {
+    "kind": "number",
+    "source": "t1_joint_test/regression/outputs/metrics_test.csv",
+    "run_id": "20261024T044531Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.4137747498403236,
+    "text": "41.4%"
+  },
+  "M2.reg.test_mae_Aplain": {
+    "kind": "number",
+    "source": "t1_joint_test/regression/outputs/metrics_test.csv",
+    "run_id": "20261024T044531Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 4.336370023389838,
+    "text": "4.34"
+  },
+  "M2.reg.test_rmse_Aplain": {
+    "kind": "number",
+    "source": "t1_joint_test/regression/outputs/metrics_test.csv",
+    "run_id": "20261024T044531Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 5.7288510437860936,
+    "text": "5.73"
+  },
+  "M2.reg.test_r2_Aplain": {
+    "kind": "number",
+    "source": "t1_joint_test/regression/outputs/metrics_test.csv",
+    "run_id": "20261024T044531Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.0339743051036662,
+    "text": "0.034"
+  },
+  "M2.reg.test_within_3d_Aplain": {
+    "kind": "number",
+    "source": "t1_joint_test/regression/outputs/metrics_test.csv",
+    "run_id": "20261024T044531Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.4137747498403236,
+    "text": "41.4%"
+  },
+  "M2.reg.test_mae_Adummy": {
+    "kind": "number",
+    "source": "t1_joint_test/regression/outputs/metrics_test.csv",
+    "run_id": "20261024T044531Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 4.875529484052271,
+    "text": "4.88"
+  },
+  "M2.reg.test_rmse_Adummy": {
+    "kind": "number",
+    "source": "t1_joint_test/regression/outputs/metrics_test.csv",
+    "run_id": "20261024T044531Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 6.261373381950908,
+    "text": "6.26"
+  },
+  "M2.reg.test_r2_Adummy": {
+    "kind": "number",
+    "source": "t1_joint_test/regression/outputs/metrics_test.csv",
+    "run_id": "20261024T044531Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": -0.153965494684978,
+    "text": "-0.154"
+  },
+  "M2.reg.test_within_3d_Adummy": {
+    "kind": "number",
+    "source": "t1_joint_test/regression/outputs/metrics_test.csv",
+    "run_id": "20261024T044531Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.3213221205024483,
+    "text": "32.1%"
+  },
+  "M2.reg.test_rows_A": {
+    "kind": "number",
+    "source": "t1_joint_test/regression/outputs/metrics_test.csv",
+    "run_id": "20261024T044531Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 18788.0,
+    "text": "18,788"
+  },
+  "M2.reg.eligible_orders": {
+    "kind": "number",
+    "source": "A/s05_partition/regression/outputs/counts.json",
+    "run_id": "20261023T083431Z @ e5-A-frozen",
+    "evidence": "5.2",
+    "used_in": [
+      "m2"
+    ],
+    "value": 96166,
+    "text": "96,166"
+  },
+  "M2.reg.development_orders": {
+    "kind": "number",
+    "source": "A/s05_partition/regression/outputs/counts.json",
+    "run_id": "20261023T083431Z @ e5-A-frozen",
+    "evidence": "5.2",
+    "used_in": [
+      "m2"
+    ],
+    "value": 76925,
+    "text": "76,925"
+  },
+  "M2.reg.test_before_purge": {
+    "kind": "number",
+    "source": "A/s05_partition/regression/outputs/counts.json",
+    "run_id": "20261023T083431Z @ e5-A-frozen",
+    "evidence": "5.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 19241,
+    "text": "19,241"
+  },
+  "M2.reg.test_purged_repeat_customer_orders": {
+    "kind": "number",
+    "source": "A/s05_partition/regression/outputs/counts.json",
+    "run_id": "20261023T083431Z @ e5-A-frozen",
+    "evidence": "5.4",
+    "used_in": [
+      "m2"
+    ],
+    "value": 453,
+    "text": "453"
+  },
+  "M2.reg.test_orders": {
+    "kind": "number",
+    "source": "A/s05_partition/regression/outputs/counts.json",
+    "run_id": "20261023T083431Z @ e5-A-frozen",
+    "evidence": "5.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 18788,
+    "text": "18,788"
+  },
+  "F.M2.reg.selection_cumulative": {
+    "kind": "figure",
+    "source": "A/s04_features/regression/outputs/figures/selection_cumulative.png",
+    "run_id": "20261023T083426Z @ e5-A-frozen",
+    "evidence": "4.4",
+    "used_in": [
+      "m2"
+    ],
+    "file": "evidence/build/figures/F.M2.reg.selection_cumulative.png",
+    "caption": "Selection ranking and the 99% rule, lead time (Pipeline A s04)"
+  },
+  "M2.clf.test_ap_A": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.1750203549528702,
+    "text": "0.175"
+  },
+  "M2.clf.test_roc_auc_A": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.5952418361988068,
+    "text": "0.595"
+  },
+  "M2.clf.test_brier_A": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.0932795595594819,
+    "text": "0.093"
+  },
+  "M2.clf.test_precision_A": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.1526219138951234,
+    "text": "0.153"
+  },
+  "M2.clf.test_recall_A": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.3800813008130081,
+    "text": "0.380"
+  },
+  "M2.clf.test_f1_A": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.2177900713349832,
+    "text": "0.218"
+  },
+  "M2.clf.test_prevalence_A": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.103764631445745,
+    "text": "10.4%"
+  },
+  "M2.clf.test_ap_Aplain": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.1775254055850686,
+    "text": "0.178"
+  },
+  "M2.clf.test_roc_auc_Aplain": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.5995427965222115,
+    "text": "0.600"
+  },
+  "M2.clf.test_brier_Aplain": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.0934958407301799,
+    "text": "0.093"
+  },
+  "M2.clf.test_precision_Aplain": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.1506653019447287,
+    "text": "0.151"
+  },
+  "M2.clf.test_recall_Aplain": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.3739837398373983,
+    "text": "0.374"
+  },
+  "M2.clf.test_f1_Aplain": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.2147964395155406,
+    "text": "0.215"
+  },
+  "M2.clf.test_prevalence_Aplain": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.103764631445745,
+    "text": "10.4%"
+  },
+  "M2.clf.test_ap_Adummy": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.103764631445745,
+    "text": "0.104"
+  },
+  "M2.clf.test_roc_auc_Adummy": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.5,
+    "text": "0.500"
+  },
+  "M2.clf.test_brier_Adummy": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.0948374306895757,
+    "text": "0.095"
+  },
+  "M2.clf.test_prevalence_Adummy": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.103764631445745,
+    "text": "10.4%"
+  },
+  "M2.clf.test_rows_A": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 18966.0,
+    "text": "18,966"
+  },
+  "M2.clf.eligible_orders": {
+    "kind": "number",
+    "source": "A/s05_partition/classification/outputs/counts.json",
+    "run_id": "20261023T083414Z @ e5-A-frozen",
+    "evidence": "5.2",
+    "used_in": [
+      "m2"
+    ],
+    "value": 97170,
+    "text": "97,170"
+  },
+  "M2.clf.development_orders": {
+    "kind": "number",
+    "source": "A/s05_partition/classification/outputs/counts.json",
+    "run_id": "20261023T083414Z @ e5-A-frozen",
+    "evidence": "5.2",
+    "used_in": [
+      "m2"
+    ],
+    "value": 77736,
+    "text": "77,736"
+  },
+  "M2.clf.test_before_purge": {
+    "kind": "number",
+    "source": "A/s05_partition/classification/outputs/counts.json",
+    "run_id": "20261023T083414Z @ e5-A-frozen",
+    "evidence": "5.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 19434,
+    "text": "19,434"
+  },
+  "M2.clf.test_purged_repeat_customer_orders": {
+    "kind": "number",
+    "source": "A/s05_partition/classification/outputs/counts.json",
+    "run_id": "20261023T083414Z @ e5-A-frozen",
+    "evidence": "5.4",
+    "used_in": [
+      "m2"
+    ],
+    "value": 468,
+    "text": "468"
+  },
+  "M2.clf.test_orders": {
+    "kind": "number",
+    "source": "A/s05_partition/classification/outputs/counts.json",
+    "run_id": "20261023T083414Z @ e5-A-frozen",
+    "evidence": "5.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 18966,
+    "text": "18,966"
+  },
+  "F.M2.clf.selection_cumulative": {
+    "kind": "figure",
+    "source": "A/s04_features/classification/outputs/figures/selection_cumulative.png",
+    "run_id": "20261023T083401Z @ e5-A-frozen",
+    "evidence": "4.4",
+    "used_in": [
+      "m2"
+    ],
+    "file": "evidence/build/figures/F.M2.clf.selection_cumulative.png",
+    "caption": "Selection ranking and the 99% rule, detractor alert (Pipeline A s04)"
+  },
+  "M2.clf.test_positives": {
+    "kind": "number",
+    "source": "A/s05_partition/classification/outputs/counts.json",
+    "run_id": "20261023T083414Z @ e5-A-frozen",
+    "evidence": "5.3",
+    "used_in": [
+      "m2"
+    ],
+    "value": 1968,
+    "text": "1,968"
+  },
+  "M2.raw_orders": {
+    "kind": "number",
+    "source": "A/s02_data/common/outputs/audit.json",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.2",
+    "used_in": [
+      "m2"
+    ],
+    "value": 99441,
+    "text": "99,441"
+  },
+  "M2.reg.excl_before_data_start": {
+    "kind": "number",
+    "source": "A/s02_data/common/outputs/exclusion_counts.csv",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.8",
+    "used_in": [
+      "m2"
+    ],
+    "value": 329,
+    "text": "329"
+  },
+  "M2.reg.excl_invalid_lead_time": {
+    "kind": "number",
+    "source": "A/s02_data/common/outputs/exclusion_counts.csv",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.8",
+    "used_in": [
+      "m2"
+    ],
+    "value": 2971,
+    "text": "2,971"
+  },
+  "M2.reg.excl_zero_items": {
+    "kind": "number",
+    "source": "A/s02_data/common/outputs/exclusion_counts.csv",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.8",
+    "used_in": [
+      "m2"
+    ],
+    "value": 775,
+    "text": "775"
+  },
+  "M2.reg.excl_missing_installments": {
+    "kind": "number",
+    "source": "A/s02_data/common/outputs/exclusion_counts.csv",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.8",
+    "used_in": [
+      "m2"
+    ],
+    "value": 6,
+    "text": "6"
+  },
+  "M2.reg.excl_no_usable_payment": {
+    "kind": "number",
+    "source": "A/s02_data/common/outputs/exclusion_counts.csv",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.8",
+    "used_in": [
+      "m2"
+    ],
+    "value": 4,
+    "text": "4"
+  },
+  "M2.reg.excl_lead_days_outlier": {
+    "kind": "number",
+    "source": "A/s02_data/common/outputs/exclusion_counts.csv",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.8",
+    "used_in": [
+      "m2"
+    ],
+    "value": 35,
+    "text": "35"
+  },
+  "M2.clf.excl_before_data_start": {
+    "kind": "number",
+    "source": "A/s02_data/common/outputs/exclusion_counts.csv",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.8",
+    "used_in": [
+      "m2"
+    ],
+    "value": 329,
+    "text": "329"
+  },
+  "M2.clf.excl_zero_items": {
+    "kind": "number",
+    "source": "A/s02_data/common/outputs/exclusion_counts.csv",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.8",
+    "used_in": [
+      "m2"
+    ],
+    "value": 775,
+    "text": "775"
+  },
+  "M2.clf.excl_cancelled_or_unavailable": {
+    "kind": "number",
+    "source": "A/s02_data/common/outputs/exclusion_counts.csv",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.8",
+    "used_in": [
+      "m2"
+    ],
+    "value": 1234,
+    "text": "1,234"
+  },
+  "M2.clf.excl_no_valid_review": {
+    "kind": "number",
+    "source": "A/s02_data/common/outputs/exclusion_counts.csv",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.8",
+    "used_in": [
+      "m2"
+    ],
+    "value": 768,
+    "text": "768"
+  },
+  "M2.clf.excl_invalid_review_time": {
+    "kind": "number",
+    "source": "A/s02_data/common/outputs/exclusion_counts.csv",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.8",
+    "used_in": [
+      "m2"
+    ],
+    "value": 63,
+    "text": "63"
+  },
+  "M2.clf.excl_missing_installments": {
+    "kind": "number",
+    "source": "A/s02_data/common/outputs/exclusion_counts.csv",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.8",
+    "used_in": [
+      "m2"
+    ],
+    "value": 6,
+    "text": "6"
+  },
+  "M2.clf.excl_no_usable_payment": {
+    "kind": "number",
+    "source": "A/s02_data/common/outputs/exclusion_counts.csv",
+    "run_id": "20261023T083314Z @ e5-A-frozen",
+    "evidence": "2.8",
+    "used_in": [
+      "m2"
+    ],
+    "value": 4,
+    "text": "4"
+  },
+  "M2.reg.selection_ranking": {
+    "kind": "table",
+    "source": "A/s04_features/regression/outputs/selection_ranking.csv",
+    "run_id": "20261023T083426Z @ e5-A-frozen",
+    "evidence": "4.4",
+    "used_in": [
+      "m2"
+    ],
+    "file": "evidence/build/tables/M2.reg.selection_ranking.csv",
+    "rows": 23
+  },
+  "M2.clf.selection_ranking": {
+    "kind": "table",
+    "source": "A/s04_features/classification/outputs/selection_ranking.csv",
+    "run_id": "20261023T083401Z @ e5-A-frozen",
+    "evidence": "4.4",
+    "used_in": [
+      "m2"
+    ],
+    "file": "evidence/build/tables/M2.clf.selection_ranking.csv",
+    "rows": 26
+  },
+  "M2.reg.val_dummy": {
+    "kind": "number",
+    "source": "A/s08_selection/regression/outputs/candidates.csv",
+    "run_id": "20261023T084947Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 6.494565088383941,
+    "text": "6.49"
+  },
+  "M2.reg.val_se_dummy": {
+    "kind": "number",
+    "source": "A/s08_selection/regression/outputs/candidates.csv",
+    "run_id": "20261023T084947Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.6888964137291838,
+    "text": "0.69"
+  },
+  "M2.reg.val_linear": {
+    "kind": "number",
+    "source": "A/s08_selection/regression/outputs/candidates.csv",
+    "run_id": "20261023T084947Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 5.470111342962177,
+    "text": "5.47"
+  },
+  "M2.reg.val_se_linear": {
+    "kind": "number",
+    "source": "A/s08_selection/regression/outputs/candidates.csv",
+    "run_id": "20261023T084947Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.6733199840340964,
+    "text": "0.67"
+  },
+  "M2.reg.val_tree": {
+    "kind": "number",
+    "source": "A/s08_selection/regression/outputs/candidates.csv",
+    "run_id": "20261023T084947Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 5.424351731874954,
+    "text": "5.42"
+  },
+  "M2.reg.val_se_tree": {
+    "kind": "number",
+    "source": "A/s08_selection/regression/outputs/candidates.csv",
+    "run_id": "20261023T084947Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.7146899662890046,
+    "text": "0.71"
+  },
+  "M2.reg.val_forest": {
+    "kind": "number",
+    "source": "A/s08_selection/regression/outputs/candidates.csv",
+    "run_id": "20261023T084947Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 5.443363700053296,
+    "text": "5.44"
+  },
+  "M2.reg.val_se_forest": {
+    "kind": "number",
+    "source": "A/s08_selection/regression/outputs/candidates.csv",
+    "run_id": "20261023T084947Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.6826474837302121,
+    "text": "0.68"
+  },
+  "M2.reg.ladder": {
+    "kind": "table",
+    "source": "A/s06_training/regression/outputs/paired_differences.csv",
+    "run_id": "20261023T083517Z @ e5-A-frozen",
+    "evidence": "6.2",
+    "used_in": [
+      "m2"
+    ],
+    "file": "evidence/build/tables/M2.reg.ladder.csv",
+    "rows": 3
+  },
+  "M2.reg.plain_vs_tuned": {
+    "kind": "table",
+    "source": "A/s07_tuning/regression/outputs/plain_vs_tuned.csv",
+    "run_id": "20261023T084131Z @ e5-A-frozen",
+    "evidence": "7.5",
+    "used_in": [
+      "m2"
+    ],
+    "file": "evidence/build/tables/M2.reg.plain_vs_tuned.csv",
+    "rows": 3
+  },
+  "M2.reg.folds": {
+    "kind": "table",
+    "source": "A/s05_partition/regression/outputs/fold_summary.csv",
+    "run_id": "20261023T083431Z @ e5-A-frozen",
+    "evidence": "5.5",
+    "used_in": [
+      "m2"
+    ],
+    "file": "evidence/build/tables/M2.reg.folds.csv",
+    "rows": 5
+  },
+  "F.M2A.reg.importance": {
+    "kind": "figure",
+    "source": "M2A/regression/figures/permutation_importance.png",
+    "run_id": "20261030T010520Z (M2A/a_interpretation)",
+    "evidence": "M2A.1",
+    "used_in": [
+      "m2"
+    ],
+    "file": "evidence/build/figures/F.M2A.reg.importance.png",
+    "caption": "Permutation importance, lead time, A's test rows"
+  },
+  "F.M2A.reg.coefficients": {
+    "kind": "figure",
+    "source": "M2A/regression/figures/coefficients.png",
+    "run_id": "20261030T010520Z (M2A/a_interpretation)",
+    "evidence": "M2A.1",
+    "used_in": [
+      "m2"
+    ],
+    "file": "evidence/build/figures/F.M2A.reg.coefficients.png",
+    "caption": "Coefficients, lead time, A's frozen model"
+  },
+  "M2.clf.val_dummy": {
+    "kind": "number",
+    "source": "A/s08_selection/classification/outputs/candidates.csv",
+    "run_id": "20261023T085014Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.1481830943938916,
+    "text": "0.148"
+  },
+  "M2.clf.val_se_dummy": {
+    "kind": "number",
+    "source": "A/s08_selection/classification/outputs/candidates.csv",
+    "run_id": "20261023T085014Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.0197683738781132,
+    "text": "0.020"
+  },
+  "M2.clf.val_linear": {
+    "kind": "number",
+    "source": "A/s08_selection/classification/outputs/candidates.csv",
+    "run_id": "20261023T085014Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.243507462225636,
+    "text": "0.244"
+  },
+  "M2.clf.val_se_linear": {
+    "kind": "number",
+    "source": "A/s08_selection/classification/outputs/candidates.csv",
+    "run_id": "20261023T085014Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.0314215062776998,
+    "text": "0.031"
+  },
+  "M2.clf.val_tree": {
+    "kind": "number",
+    "source": "A/s08_selection/classification/outputs/candidates.csv",
+    "run_id": "20261023T085014Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.2158110084748255,
+    "text": "0.216"
+  },
+  "M2.clf.val_se_tree": {
+    "kind": "number",
+    "source": "A/s08_selection/classification/outputs/candidates.csv",
+    "run_id": "20261023T085014Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.0233331907145646,
+    "text": "0.023"
+  },
+  "M2.clf.val_forest": {
+    "kind": "number",
+    "source": "A/s08_selection/classification/outputs/candidates.csv",
+    "run_id": "20261023T085014Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.2544423933354366,
+    "text": "0.254"
+  },
+  "M2.clf.val_se_forest": {
+    "kind": "number",
+    "source": "A/s08_selection/classification/outputs/candidates.csv",
+    "run_id": "20261023T085014Z @ e5-A-frozen",
+    "evidence": "8.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.0267031932741394,
+    "text": "0.027"
+  },
+  "M2.clf.ladder": {
+    "kind": "table",
+    "source": "A/s06_training/classification/outputs/paired_differences.csv",
+    "run_id": "20261023T083612Z @ e5-A-frozen",
+    "evidence": "6.2",
+    "used_in": [
+      "m2"
+    ],
+    "file": "evidence/build/tables/M2.clf.ladder.csv",
+    "rows": 3
+  },
+  "M2.clf.plain_vs_tuned": {
+    "kind": "table",
+    "source": "A/s07_tuning/classification/outputs/plain_vs_tuned.csv",
+    "run_id": "20261023T084930Z @ e5-A-frozen",
+    "evidence": "7.5",
+    "used_in": [
+      "m2"
+    ],
+    "file": "evidence/build/tables/M2.clf.plain_vs_tuned.csv",
+    "rows": 3
+  },
+  "M2.clf.folds": {
+    "kind": "table",
+    "source": "A/s05_partition/classification/outputs/fold_summary.csv",
+    "run_id": "20261023T083414Z @ e5-A-frozen",
+    "evidence": "5.5",
+    "used_in": [
+      "m2"
+    ],
+    "file": "evidence/build/tables/M2.clf.folds.csv",
+    "rows": 5
+  },
+  "F.M2A.clf.importance": {
+    "kind": "figure",
+    "source": "M2A/classification/figures/permutation_importance.png",
+    "run_id": "20261030T010520Z (M2A/a_interpretation)",
+    "evidence": "M2A.1",
+    "used_in": [
+      "m2"
+    ],
+    "file": "evidence/build/figures/F.M2A.clf.importance.png",
+    "caption": "Permutation importance, detractor alert, A's test rows"
+  },
+  "F.M2A.clf.coefficients": {
+    "kind": "figure",
+    "source": "M2A/classification/figures/coefficients.png",
+    "run_id": "20261030T010520Z (M2A/a_interpretation)",
+    "evidence": "M2A.1",
+    "used_in": [
+      "m2"
+    ],
+    "file": "evidence/build/figures/F.M2A.clf.coefficients.png",
+    "caption": "Odds ratios, detractor alert, A's frozen model"
+  },
+  "M2.clf.test_tp_A": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.4",
+    "used_in": [
+      "m2"
+    ],
+    "value": 748.0,
+    "text": "748"
+  },
+  "M2.clf.test_fp_A": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.4",
+    "used_in": [
+      "m2"
+    ],
+    "value": 4153.0,
+    "text": "4,153"
+  },
+  "M2.clf.test_fn_A": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.4",
+    "used_in": [
+      "m2"
+    ],
+    "value": 1220.0,
+    "text": "1,220"
+  },
+  "M2.clf.test_tn_A": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.4",
+    "used_in": [
+      "m2"
+    ],
+    "value": 12845.0,
+    "text": "12,845"
+  },
+  "M2.clf.test_alerts_per_day_A": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.4",
+    "used_in": [
+      "m2"
+    ],
+    "value": 51.052083333333336,
+    "text": "51"
+  },
+  "M2.clf.test_cost_A": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.4",
+    "used_in": [
+      "m2"
+    ],
+    "value": 10253.0,
+    "text": "10,253"
+  },
+  "M2.clf.test_cost_Adummy": {
+    "kind": "number",
+    "source": "t1_joint_test/classification/outputs/metrics_test.csv",
+    "run_id": "20261024T044555Z",
+    "evidence": "T1.4",
+    "used_in": [
+      "m2"
+    ],
+    "value": 9840.0,
+    "text": "9,840"
+  },
+  "M2.clf.daily_alert_cap": {
+    "kind": "number",
+    "source": "A/s08_selection/classification/outputs/frozen_recipe.json",
+    "run_id": "20261023T085014Z @ e5-A-frozen",
+    "evidence": "8.5",
+    "used_in": [
+      "m2"
+    ],
+    "value": 25,
+    "text": "25"
+  },
+  "M2.clf.oof_alerts_per_day": {
+    "kind": "number",
+    "source": "A/s08_selection/classification/outputs/frozen_recipe.json",
+    "run_id": "20261023T085014Z @ e5-A-frozen",
+    "evidence": "8.5",
+    "used_in": [
+      "m2"
+    ],
+    "value": 23.860869565217392,
+    "text": "24"
+  },
+  "M2.clf.oof_precision": {
+    "kind": "number",
+    "source": "A/s08_selection/classification/outputs/frozen_recipe.json",
+    "run_id": "20261023T085014Z @ e5-A-frozen",
+    "evidence": "8.5",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.2523080660835763,
+    "text": "0.252"
+  },
+  "M2.clf.oof_recall": {
+    "kind": "number",
+    "source": "A/s08_selection/classification/outputs/frozen_recipe.json",
+    "run_id": "20261023T085014Z @ e5-A-frozen",
+    "evidence": "8.5",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.223405399591266,
+    "text": "0.223"
+  },
+  "M2A.reg.top_importance": {
+    "kind": "number",
+    "source": "M2A/regression/permutation_importance.csv",
+    "run_id": "20261030T010520Z (M2A/a_interpretation)",
+    "evidence": "M2A.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.200524392920686,
+    "text": "0.20"
+  },
+  "M2A.clf.top_importance": {
+    "kind": "number",
+    "source": "M2A/classification/permutation_importance.csv",
+    "run_id": "20261030T010520Z (M2A/a_interpretation)",
+    "evidence": "M2A.1",
+    "used_in": [
+      "m2"
+    ],
+    "value": 0.0267223466730134,
+    "text": "0.027"
+  },
+  "APX.features_derived_A": {
+    "kind": "table",
+    "source": "A/s04_features/classification/outputs/feature_dictionary.csv",
+    "run_id": "20261023T083401Z @ e5-A-frozen",
+    "evidence": "4.6",
+    "used_in": [
+      "report D",
+      "m2 B"
+    ],
+    "file": "evidence/build/tables/APX.features_derived_A.csv",
+    "rows": 33
+  },
+  "APX.features_derived_B": {
+    "kind": "table",
+    "source": "b04/classification/outputs/feature_dictionary_B.csv",
+    "run_id": "20261023T154833Z",
+    "evidence": "B4.5",
+    "used_in": [
+      "report D"
+    ],
+    "file": "evidence/build/tables/APX.features_derived_B.csv",
+    "rows": 9
+  },
+  "F.A3.reg.cumulative_importance.deck": {
+    "kind": "figure",
+    "source": "DECK/F.A3.reg.cumulative_importance.deck.png",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "evidence": "3.9",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.A3.reg.cumulative_importance.deck.png",
+    "caption": "Baseline candidate ranking and cumulative importance, lead time (Pipeline A EDA) (presentation render)"
+  },
+  "F.A3.clf.cumulative_importance.deck": {
+    "kind": "figure",
+    "source": "DECK/F.A3.clf.cumulative_importance.deck.png",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "evidence": "3.9",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.A3.clf.cumulative_importance.deck.png",
+    "caption": "Baseline candidate ranking and cumulative importance, detractor alert (Pipeline A EDA) (presentation render)"
+  },
+  "F.A3.reg.correlation_heatmap.deck": {
+    "kind": "figure",
+    "source": "DECK/F.A3.reg.correlation_heatmap.deck.png",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "evidence": "3.8",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.A3.reg.correlation_heatmap.deck.png",
+    "caption": "Pairwise correlations of A's numeric predictors (Pipeline A EDA) (presentation render)"
+  },
+  "F.A3.clf.screen_promise.deck": {
+    "kind": "figure",
+    "source": "DECK/F.A3.clf.screen_promise.deck.png",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "evidence": "3.11",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.A3.clf.screen_promise.deck.png",
+    "caption": "Promised delivery days at checkout barely separate detractors (Pipeline A EDA screen 3.11) (presentation render)"
+  },
+  "F.reg.lateness_by_route.deck": {
+    "kind": "figure",
+    "source": "DECK/F.reg.lateness_by_route.deck.png",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "evidence": "DS.1",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.reg.lateness_by_route.deck.png",
+    "caption": "Late handover by route (B2) (presentation render)"
+  },
+  "F.A3.clf.screen_region.deck": {
+    "kind": "figure",
+    "source": "DECK/F.A3.clf.screen_region.deck.png",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "evidence": "3.12",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.A3.clf.screen_region.deck.png",
+    "caption": "Detractor rate by macro-region and region pair (Pipeline A EDA screen 3.12) (presentation render)"
+  },
+  "F.reg.selection.deck": {
+    "kind": "figure",
+    "source": "DECK/F.reg.selection.deck.png",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "evidence": "DS.2",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.reg.selection.deck.png",
+    "caption": "Feature ranking and the 99% rule, regression (presentation render)"
+  },
+  "F.clf.selection.deck": {
+    "kind": "figure",
+    "source": "DECK/F.clf.selection.deck.png",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "evidence": "DS.2",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.clf.selection.deck.png",
+    "caption": "Feature ranking and the 99% rule, detractor alert (presentation render)"
+  },
+  "F.reg.population.deck": {
+    "kind": "figure",
+    "source": "DECK/F.reg.population.deck.png",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "evidence": "DS.5",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.reg.population.deck.png",
+    "caption": "Where B's gain comes from: scope vs features (presentation render)"
+  },
+  "F.clf.confusion.deck": {
+    "kind": "figure",
+    "source": "DECK/F.clf.confusion.deck.png",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "evidence": "DS.6",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.clf.confusion.deck.png",
+    "caption": "Confusion matrices, A and B on B's validation rows (presentation render)"
+  },
+  "F.reg.residuals.deck": {
+    "kind": "figure",
+    "source": "DECK/F.reg.residuals.deck.png",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "evidence": "B9.16",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.reg.residuals.deck.png",
+    "caption": "Residuals on B's test rows: B vs A (presentation render)"
+  },
+  "F.reg.by_state.deck": {
+    "kind": "figure",
+    "source": "DECK/F.reg.by_state.deck.png",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "evidence": "B9.3",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.reg.by_state.deck.png",
+    "caption": "Lead-time error by customer state (presentation render)"
+  },
+  "F.reg.buffer_curve.deck": {
+    "kind": "figure",
+    "source": "DECK/F.reg.buffer_curve.deck.png",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "evidence": "B12.2",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.reg.buffer_curve.deck.png",
+    "caption": "Promise buffer: share of orders delivered later than prediction plus buffer; buffer chosen on validation, read on the test (presentation render)"
+  },
+  "F.clf.threshold_options.deck": {
+    "kind": "figure",
+    "source": "DECK/F.clf.threshold_options.deck.png",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "evidence": "B9.10",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.clf.threshold_options.deck.png",
+    "caption": "Precision, recall and alerts per day against the threshold (presentation render)"
+  },
+  "F.A2.data_structure.deck": {
+    "kind": "figure",
+    "source": "DECK/F.A2.data_structure.deck.png",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "evidence": "2.12",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.A2.data_structure.deck.png",
+    "caption": "From nine source tables to one row per order (presentation render)"
+  },
+  "F.reg.partition.deck": {
+    "kind": "figure",
+    "source": "DECK/F.reg.partition.deck.png",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "evidence": "DS.3",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.reg.partition.deck.png",
+    "caption": "Time-ordered folds and the test period (presentation render)"
+  },
+  "F.reg.history_coverage.deck": {
+    "kind": "figure",
+    "source": "DECK/F.reg.history_coverage.deck.png",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "evidence": "DS.1",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.reg.history_coverage.deck.png",
+    "caption": "Share of rows with their own seller and route history, by quarter (presentation render)"
+  },
+  "F.clf.test_curves.deck": {
+    "kind": "figure",
+    "source": "DECK/F.clf.test_curves.deck.png",
+    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "evidence": "T1.4",
+    "used_in": [
+      "deck"
+    ],
+    "file": "evidence/build/figures/F.clf.test_curves.deck.png",
+    "caption": "PR, ROC and reliability curves on B's test rows (presentation render)"
   }
 }

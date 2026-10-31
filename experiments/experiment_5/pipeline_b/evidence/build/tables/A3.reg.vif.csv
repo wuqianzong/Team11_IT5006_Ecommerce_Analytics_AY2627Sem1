@@ -1,0 +1,21 @@
+feature,vif,vif_note
+n_items,1.6560641788874289,
+n_products,1.7986118740660575,
+n_sellers,1.856726534882969,
+n_categories,4.820700013314933,
+total_price,1.4756563643568557,
+total_freight,3.3341365688244857,
+freight_ratio,1.2601179325457217,
+total_weight_g,3.609429683141052,
+total_volume_cm3,3.4726844591514023,
+weight_missing_fraction,,constant on the complete rows
+volume_missing_fraction,,constant on the complete rows
+category_missing_fraction,4.271309058653279,
+distance_km_max,1.6847722256319435,
+distance_missing_fraction,,constant on the complete rows
+interstate_share,1.5007580538175498,
+purchase_month,1.0030284240120246,
+purchase_dayofweek,1.0020317128543776,
+purchase_hour,1.000660755262327,
+payment_installments_max,1.1549686389325489,
+n_payment_methods,1.0022982961685276,
