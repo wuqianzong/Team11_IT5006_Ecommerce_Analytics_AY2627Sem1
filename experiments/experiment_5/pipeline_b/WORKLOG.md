@@ -698,3 +698,26 @@ more on the test than sending no alert, because the test period had fewer detrac
 **Next**
 - Benson: app URL; then PDFs and the merge into `milestone-3` (not merged yet, as instructed).
 
+## 2026-10-31 · Henry + Claude · audit pack location
+
+**Done**
+- Correction to the 2026-10-30 entries: the audit packs no longer sit in `pipeline_b/_for_audit/` or
+  `deliverables/exports/`. The current pack, both audit reports and our response, plus the earlier pack
+  (`audit_2026-10-30/` and `Team11_audit_pack_2026-10-30.zip`), are kept in `_DONOTCOMMIT/_for_audit/` (local,
+  never committed). `deliverables/exports/2026-10-29/` (HTML exports of report and deck) stays where it was.
+
+## 2026-10-31 · Henry + Claude · own pre-merge audit (B-CR-45)
+
+**Done**
+- Audit of git state, structure, tags, frozen outputs, private files, tests, register, deliverables audit, data
+  sources, text, literature and past findings: `deliverables/audit/own_audit_2026-10-31.md`.
+- Fixed: 3 text I/O lines without encoding; KPI shares shown as R$; screenshot 01 recaptured.
+
+**Checks**
+- Deliverables audit 9/9; Pipeline B 22 passed, 5 skipped; app 21 passed; API 3 passed; Pipeline A 58 passed,
+  1 failed (guard test, fails on `milestone-3` too; 50 offending lines left, all pre-existing).
+- Trial merge into `milestone-3`: clean.
+
+**Next**
+- Merge `e5/deliverables-henry` into `milestone-3` when Henry gives the go-ahead.
+

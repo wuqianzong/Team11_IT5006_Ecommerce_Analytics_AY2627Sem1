@@ -96,7 +96,7 @@ def verify_a_source(src: str) -> tuple[Path, str]:
         raise ValueError(f"{src}: not in tag {A_TAG}")
     if hashlib.sha256(tagged.stdout).hexdigest() != _sha(path):
         raise ValueError(f"{src}: sha256 differs from the file at tag {A_TAG}")
-    man = json.loads((path.parents[len(parts) - 5] / "_manifest.json").read_text())
+    man = json.loads((path.parents[len(parts) - 5] / "_manifest.json").read_text(encoding="utf-8"))
     return path, f"{man['run_id']} @ {A_TAG}"
 
 

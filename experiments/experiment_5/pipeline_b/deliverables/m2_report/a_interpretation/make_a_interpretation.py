@@ -84,7 +84,7 @@ def run(task: str, inputs: list[Path]) -> None:
     inputs += [t1 / "bundles/A/model.joblib", t1 / "predictions_test.csv.gz", s08 / "selected_spec.json",
                s05 / "test_manifest.csv", A_RECORDS]
     model = joblib.load(t1 / "bundles/A/model.joblib")
-    spec = json.loads((s08 / "selected_spec.json").read_text())["spec"]
+    spec = json.loads((s08 / "selected_spec.json").read_text(encoding="utf-8"))["spec"]
     a = pd.read_csv(A_RECORDS, parse_dates=["purchase_ts", "review_label_ts", "lead_label_ts"], low_memory=False)
     man = pd.read_csv(s05 / "test_manifest.csv")
     a_test = a[a[f"eligible_{task}"].astype(bool) & a.order_id.isin(man.order_id)].reset_index(drop=True)

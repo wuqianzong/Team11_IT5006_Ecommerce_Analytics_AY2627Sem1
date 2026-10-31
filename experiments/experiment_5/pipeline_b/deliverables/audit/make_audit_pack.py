@@ -5,7 +5,8 @@ as standalone Markdown, each filled from the number register, its figures copied
     python deliverables/audit/make_audit_pack.py <out dir>
 
 Needs deliverables/audit/requirements-audit.txt. Reads only committed sources and the register build
-(evidence/build/). deliverables/exports/ is local, not committed."""
+(evidence/build/). The output folder (first argument) is local and never committed: its prompt summarises the
+private project brief. The team keeps packs in _DONOTCOMMIT/_for_audit/."""
 import hashlib, json, re, shutil, subprocess, sys
 from pathlib import Path
 

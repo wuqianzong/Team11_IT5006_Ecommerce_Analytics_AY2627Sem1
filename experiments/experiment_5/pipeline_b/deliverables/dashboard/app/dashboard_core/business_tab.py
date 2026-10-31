@@ -169,8 +169,8 @@ def _styled(table: pd.DataFrame, targets: dict, metrics_on: str) -> "pd.io.forma
             if isinstance(val, str):
                 formatted.loc[row, col] = val
                 continue
-            is_curr = "Revenue" in metric or "Value" in metric
-            is_pct = ("%" in metric or "Rate" in metric or "Ratio" in metric) and "Value" not in metric
+            is_curr = "(R$)" in metric
+            is_pct = "%" in metric or "Rate" in metric or "Ratio" in metric
             formatted.loc[row, col] = format_business_num(val, is_currency=is_curr, is_pct=is_pct)
             if col != "Benchmark" and is_non_compliant(metric, val, targets.get(metric)):
                 styles.loc[row, col] = RED_CELL_STYLE

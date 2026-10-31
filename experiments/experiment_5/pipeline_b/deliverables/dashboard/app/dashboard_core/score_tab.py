@@ -319,7 +319,7 @@ def _flips() -> None:
         column_config={"risk before": st.column_config.NumberColumn(format="%.3f"),
                        "risk after": st.column_config.NumberColumn(format="%.3f")},
     )
-    st.download_button("Download this list (CSV)", table.to_csv(index=False).encode("utf-8"),
+    st.download_button("Download this list (CSV)", table.to_csv(index=False, lineterminator="\n").encode("utf-8"),
                        "alerts_that_stop.csv", "text/csv", key="flip_download")
 
 
