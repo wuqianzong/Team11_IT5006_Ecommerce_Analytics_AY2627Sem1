@@ -6,9 +6,23 @@ Draft for team review. Every number is filled from the Pipeline B register (pipe
 
 ## Predicting delivery lead time and detractor reviews for Olist orders
 
-**IT5006 Fundamentals of Data Analytics, AY 2026/27 Semester 1: final report**
+**Final report**
 
-**Team 11:** \[member names and student numbers\]
+**Group 11**
+
+ZHANG HANG
+
+YU SUMIN
+
+WU QIANZONG
+
+SII TOH SIM
+
+National University of Singapore
+
+IT5006 Fundamentals Of Data Analytics
+
+AY2026/2027 Semester 1
 
 **Application:** \[live URL, added once the app is hosted\]
 

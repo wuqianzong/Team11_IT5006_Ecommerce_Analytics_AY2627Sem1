@@ -721,3 +721,14 @@ more on the test than sending no alert, because the test period had fewer detrac
 **Next**
 - Merge `e5/deliverables-henry` into `milestone-3` when Henry gives the go-ahead.
 
+## 2026-10-31 · Henry + Claude · cover pages
+
+**Done**
+- Final report and revised Milestone 2 report covers: Group 11, the four members, National University of Singapore,
+  IT5006 Fundamentals Of Data Analytics, AY2026/2027 Semester 1 (sources and review docs, rev 73 and rev 13).
+- Deck cover: Group 11, the four names and "NUS · IT5006"; deck v2 version 39 published (other 14 slides unchanged).
+- Audit inputs refreshed (report export rev 73, deck cover); audit 9/9. Milestone 2 HTML export regenerated locally.
+
+**Checks**
+- Deliverables audit 9/9; Pipeline B tests 22 passed, 5 skipped; placeholders resolve.
+

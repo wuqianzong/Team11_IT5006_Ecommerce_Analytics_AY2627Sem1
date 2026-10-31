@@ -47,22 +47,22 @@
     }
   ],
   "passed": true,
-  "doc_sha256": "213a5b76092b0724bba54605954ffa20c1acde5070a3402d60db3604c96e73e0",
+  "doc_sha256": "10728a3489773b274f5a644d38cdfbe7c0b3b859bfe49e3d083679578124e9d0",
   "deck_slides": {
-    "a_features.html": "522a6b95da7220a95a0ad9bcde25c4a7430c6900baa6793ec11cb8d77b64144b",
-    "a_limits.html": "8bf19c97baef72dac21e98afc35d99da834041889f72ab6641eea94b31b9bc28",
-    "a_models.html": "4362024e489cec3d32c4e380d31ec7ee7f308dce69df74ac867424476fa8b094",
-    "a_select.html": "8d283182ee25b7d820ead1f44b097c0f85a437ac35e4fdb16e8f2a9aef62d869",
-    "b_features.html": "be4f815ab5ee62c397266d0ee5015d136a079b88bd5376f3eaafac4233758e42",
-    "b_scope.html": "8aa47ba366128e1bd472c7712cedb3042860af4fa5c0e4ebefbc287e874cad32",
-    "cover.html": "dd8452dbf7933dc4bd5474f7065ab5d88d793a1b837e0e8084bba0a6aa6c56e8",
-    "data.html": "56ef6a6a5d788ff29158b803cc5b23db1a30e970ca2171f38e1b2c459223871f",
+    "a_features.html": "8aca840addfd20c1454e9d89a2ffce7e1d88fc2225021b702687c8127ff008a9",
+    "a_limits.html": "a1fd02836ed0d7b742f98b8d68074f5b7bf10a5901d98951a7cc2bfedce9cb67",
+    "a_models.html": "e86a2bc2e0fe650d0c31afcee3cd6dd2a0068bee6cfb847718356d32bf88a601",
+    "a_select.html": "ad21c1e20a1753137263a139506ec980e145133f55672991b71c9337eb368d89",
+    "b_features.html": "41723ab0f97725b038e1411dba4083560332a7ec203e662dffb42bdff73af397",
+    "b_scope.html": "28ded7731dc00a2820cce6dcf5023205d87c8a61344eedb192d6a396ebad834d",
+    "cover.html": "883011438ab2d5e57752776e83422dbed425927cef26c8b800d51aa0a67a0571",
+    "data.html": "7299cb67242db130626a69f64e2b416afa54b5e73febeca68465b63c8cf3a6de",
     "eda.html": "77ca77e8511ac9e77d583530cf3cc48935f40250bbadeb140e185ceba38b3872",
     "prep.html": "6cfc0eec86c297cc94adefdce4c1a21f77b51e7afcadffcfcdb843a65d9cc396",
     "problem.html": "04a21a302ab6c80a17e900d0f9ca57a2b12dd0e91845dbc0ff1025c22e6704c6",
-    "test_clf.html": "1c277b6db32d3d7476342fe6ca1c3c5b916f1d13e9922559dc7db86f71c6798f",
-    "test_reg.html": "9deebee92357fcee43390510ee6e5833618ec8afbed28e8b79538b418cddbd74",
-    "use.html": "01ab57e74b9bf2601b8ce85b28522be820067db6a2e22a2ca315d929cea23749",
-    "validation.html": "f74ffdde57e9951db4ebe07116df05e581884b99b042c01e8b6ebd15cc1d89a0"
+    "test_clf.html": "34b5f8a2922d9ab40c00d14bf61e72409af989c11b1c7d33459ad13edd0aaff9",
+    "test_reg.html": "de9d9e3d80e2501cf520867f809de9d165700c17ab3160f6ec19d98275a45ee4",
+    "use.html": "c378dfb9e44318e777a65311301daed93026f5f51b41042095cff175074d5887",
+    "validation.html": "9e12dde711ce13408312654c3c3376849997a68bfd4ad485b299d6bdd958649c"
   }
 }
