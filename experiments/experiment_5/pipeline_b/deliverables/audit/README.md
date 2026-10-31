@@ -12,6 +12,12 @@ tests and the audit pack need):
 
 (`.venv/bin/python` on macOS or Linux.)
 
+## Findings register
+
+`findings.yaml` holds every finding and action item from every audit (ID, source, severity, owner, status, due,
+decision, fix, guard, verified by); `runs/` keeps each audit report as received with
+its triage. Open on 2026-10-31: T-11 and T-06 (Benson's validation at 54bc6d0), T-07, T-08, T-09.
+
 ## Inputs
 
 Inputs are read back from the live artifacts (the report doc exported to Markdown; deck slide files and every chart

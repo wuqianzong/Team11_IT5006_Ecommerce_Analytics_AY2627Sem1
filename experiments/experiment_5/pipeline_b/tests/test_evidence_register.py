@@ -25,7 +25,7 @@ def _code_at_t1_tag(relpath: str) -> bytes:
 
 def test_register_matches_manifests():
     for stage, task, run_id, commit, _tag in _current_rows():
-        man = json.loads((B_ROOT / "stages" / stage / task / "outputs" / "_manifest.json").read_text())
+        man = json.loads((B_ROOT / "stages" / stage / task / "outputs" / "_manifest.json").read_text(encoding="utf-8"))
         assert man["run_id"] == run_id, f"{stage}/{task}: manifest {man['run_id']}, register {run_id}"
         assert man["commit"].startswith(commit), f"{stage}/{task}: manifest commit {man['commit'][:7]}"
         if stage == "t1_joint_test":

@@ -20,7 +20,7 @@ def _order(rls: serving.Release, oid: str, **change) -> pd.DataFrame:
     row = {"order_id": oid, "customer_state": "SP", "primary_seller_state": "SP", "distance_km_max": 20.0,
            "n_items": 1, "payment_installments_max": 1}
     for p in "AB":
-        prof = json.loads((b_outputs_dir("t1_joint_test", rls.task) / f"bundles/{p}/training_profile.json").read_text())
+        prof = json.loads((b_outputs_dir("t1_joint_test", rls.task) / f"bundles/{p}/training_profile.json").read_text(encoding="utf-8"))
         for c in rls.schemas[p]["numeric"]:
             row.setdefault(c, prof[c]["mean"])
         for c in rls.schemas[p]["categorical"]:
@@ -38,11 +38,11 @@ def test_scope_reasons():
 
 
 def test_thresholds_match_decisions():
-    hd = yaml.safe_load((B_ROOT / "spec/human_decisions_B.yaml").read_text())["b10"]["classification"]
+    hd = yaml.safe_load((B_ROOT / "spec/human_decisions_B.yaml").read_text(encoding="utf-8"))["b10"]["classification"]
     assert serving.B_OPERATING == pytest.approx(hd["operating_threshold"]["value"], abs=1e-15)
     assert serving.FROZEN == pytest.approx(hd["out_of_scope_threshold"]["value"], abs=1e-15)
     for p in "AB":
-        schema = json.loads((b_outputs_dir("t1_joint_test", "classification") / f"bundles/{p}/schema.json").read_text())
+        schema = json.loads((b_outputs_dir("t1_joint_test", "classification") / f"bundles/{p}/schema.json").read_text(encoding="utf-8"))
         assert schema["threshold"]["value"] == pytest.approx(serving.FROZEN, abs=1e-15)   # bundles keep the frozen 1/6
 
 

@@ -79,7 +79,7 @@ def main() -> int:
             return ok, f"{asset.name} -> {fid} -> {e['source']} ({e['run_id']})"
         src = reg.STAGES / e["source"]
         stage, task = Path(e["source"]).parts[:2]
-        man = json.loads((reg.STAGES / stage / task / "outputs" / "_manifest.json").read_text())
+        man = json.loads((reg.STAGES / stage / task / "outputs" / "_manifest.json").read_text(encoding="utf-8"))
         mrel = src.relative_to(B.parents[2]).as_posix()
         ok = asset.exists() and _sha(asset) == _sha(regfile) == _sha(src) == man["outputs"].get(mrel)
         return ok, f"{asset.name} -> {fid} -> {e['source']} ({e['run_id']})"
