@@ -732,3 +732,40 @@ more on the test than sending no alert, because the test period had fewer detrac
 **Checks**
 - Deliverables audit 9/9; Pipeline B tests 22 passed, 5 skipped; placeholders resolve.
 
+
+## 2026-10-31 · Henry + Claude · Benson's validation of milestone-3 recorded
+
+**Done**
+- Branch `e5/validation-fixes-henry` from `milestone-3` at 54bc6d0 (CR-057 rule).
+- Benson's validation at 54bc6d0 recorded as an audit run (`deliverables/audit/runs/2026-10-31_benson_validation_54bc6d0.md`),
+  with a findings register `deliverables/audit/findings.yaml` (seeded T-01 to T-10,
+  new T-11), decisions B-G-15 and B-G-16 in `spec/decision_log_B.md`, hand-off `spec/doc_outbox/HS-01_benson_validation_fixes_2026-10-31.md`.
+- Both findings reproduced on Henry's Windows machine: the CSV working copy is CRLF (`f130077f…`), the git blob and
+  the LF-normalised copy are `32c2f4ee…`; the guard test lists 50 violations (18 tooling and tests, 32 frozen e5b).
+
+**Checks**
+- None changed yet: records only, no code.
+
+**Next**
+- Fix T-11 and T-06 as one CR-063 / B-CR-46; run the four acceptance checks; push; send the commit to Benson.
+
+**Questions for Benson**
+- None; due date 2026-11-02 proposed for both items.
+
+## 2026-10-31 · Henry + Claude · T-11 and T-06 fixed (CR-063 / B-CR-46)
+
+**Done**
+- f460a90: text files hashed with CRLF read as LF in `build_evidence_B._sha` and the business_context, M2A and DECK
+  producers, with a test; tooling and tests name `encoding="utf-8"`; `tests/test_guards.py` skips the 8 frozen e5b modules.
+- business_context producer rerun (20261031T150536Z): outputs byte-identical, input hash `32c2f4ee…`; register rebuilt.
+
+**Checks**
+- A suite 59 passed; `pipeline_b/tests` 23 passed, 5 skipped; deliverables audit 9/9 on report rev 73 and deck version 39.
+- Before the rerun, the register test failed on Windows exactly as on Benson's Mac, so the new hash rule is exercised.
+
+**Next**
+- Benson's Claude rechecks on the Mac; on PASS, T-11 and T-06 become Verified and HS-01 CLOSED. Merge to milestone-3 after that.
+
+**Questions for Benson**
+- The register build also changed `registry_sha256` in `build_manifest.json`: the committed build predated e35c041's
+  registry edit. Accept as part of B-CR-46?

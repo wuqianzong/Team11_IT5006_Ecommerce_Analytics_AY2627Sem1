@@ -37,7 +37,7 @@ def _same(a_dir: Path, b_dir: Path, csvs, jsons):
         b = pd.read_csv(b_dir / f, keep_default_na=False).drop(columns=["node"], errors="ignore")
         pd.testing.assert_frame_equal(a, b, check_exact=True)
     for f in jsons:
-        assert _strip_b(json.loads((b_dir / f).read_text())) == json.loads((a_dir / f).read_text()), f
+        assert _strip_b(json.loads((b_dir / f).read_text(encoding="utf-8"))) == json.loads((a_dir / f).read_text(encoding="utf-8")), f
 
 
 @slow
@@ -81,7 +81,7 @@ def test_s08_equivalence_with_a_decisions(task):
 
     adapter.run_a_stage(selection, task, adapter.a_inputs(task, "b08", out), (None, outputs_dir))
     assert adapter.originals_restored()
-    a = json.loads((E5 / "stages/s08_selection" / task / "outputs/frozen_recipe.json").read_text())
-    b = json.loads((out / "frozen_recipe.json").read_text())
+    a = json.loads((E5 / "stages/s08_selection" / task / "outputs/frozen_recipe.json").read_text(encoding="utf-8"))
+    b = json.loads((out / "frozen_recipe.json").read_text(encoding="utf-8"))
     assert b["sha256"] == a["sha256"]
     _same(E5 / "stages/s08_selection" / task / "outputs", out, ["candidates.csv", "ladder.csv"], [])

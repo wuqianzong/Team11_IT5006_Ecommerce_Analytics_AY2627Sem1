@@ -1,4 +1,5 @@
 """B11.1 number register: builds from Current runs only; placeholders fill or fail; superseded evidence is never cited."""
+import hashlib
 import json
 import re
 import sys
@@ -75,8 +76,9 @@ def test_tampered_source_is_refused(tmp_path, monkeypatch):
     fake = tmp_path / "stages"
     for p in ("b09/regression/outputs",):
         (fake / p).mkdir(parents=True)
-    (fake / src).write_text("changed\n")
-    (fake / "b09/regression/outputs/_manifest.json").write_text((reg.STAGES / "b09/regression/outputs/_manifest.json").read_text())
+    (fake / src).write_text("changed\n", encoding="utf-8", newline="\n")
+    manifest = (reg.STAGES / "b09/regression/outputs/_manifest.json").read_text(encoding="utf-8")
+    (fake / "b09/regression/outputs/_manifest.json").write_text(manifest, encoding="utf-8", newline="\n")
     monkeypatch.setattr(reg, "STAGES", fake)
     with pytest.raises(ValueError):
         reg.verify_source(src, runs)
@@ -101,6 +103,17 @@ def test_biz_sources_match_their_manifest(monkeypatch):
     monkeypatch.setattr(reg, "_sha", lambda p: "0" * 64)
     with pytest.raises(ValueError, match="does not match"):
         reg.verify_biz_source(src)
+
+
+def test_text_inputs_hash_alike_with_crlf_or_lf(tmp_path):
+    """B-G-15: a Windows CRLF checkout and the repository's LF copy of a text input give the same manifest hash;
+    binary files are hashed as they are."""
+    lf, crlf, png = tmp_path / "lf.csv", tmp_path / "crlf.csv", tmp_path / "x.png"
+    lf.write_bytes(b"a,b\n1,2\n")
+    crlf.write_bytes(b"a,b\r\n1,2\r\n")
+    png.write_bytes(b"\x89PNG\r\n")
+    assert reg._sha(lf) == reg._sha(crlf) == hashlib.sha256(b"a,b\n1,2\n").hexdigest()
+    assert reg._sha(png) == hashlib.sha256(b"\x89PNG\r\n").hexdigest()
 
 
 def test_replace_strips_names_under_any_string_dtype():

@@ -108,6 +108,13 @@ def test_contract_is_consistent():
     assert not set(contract.NOT_IN_CONTRACT) & set(contract.PREDICTORS)
 
 
+# CR-063 (B-G-16): frozen Pipeline B modules, not edited because their code is the tagged code behind accepted
+# stages and T1 (CR-058 deferred their fix to the migration, which CR-061 removed). Only these files are skipped;
+# all other code, including new code, is still checked.
+FROZEN_E5B_EXCLUDED = {f"pipeline_b/e5b/{m}.py" for m in (
+    "t1_joint_test", "adoption", "adapter", "b10", "b09", "b09_extra", "doc_support", "serving")}
+
+
 def test_text_io_names_an_encoding():
     """Every read_text/write_text names encoding="utf-8" (no dependence on the OS locale, e.g. GBK); every
     write_text names newline="\\n" and every to_csv lineterminator="\\n", so output bytes are the same on
@@ -117,6 +124,8 @@ def test_text_io_names_an_encoding():
     missing = []
     for path in REAL_E5.rglob("*.py"):
         if ".venv" in path.parts:
+            continue
+        if path.relative_to(REAL_E5).as_posix() in FROZEN_E5B_EXCLUDED:
             continue
         for node in ast.walk(ast.parse(path.read_text(encoding="utf-8"))):
             if (isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute)

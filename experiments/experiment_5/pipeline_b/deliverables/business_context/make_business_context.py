@@ -44,7 +44,11 @@ BLUE = "#2563eb"
 
 
 def _sha(p: Path) -> str:
-    return hashlib.sha256(p.read_bytes()).hexdigest()
+    """sha256; text files with CRLF normalised to LF, as build_evidence_B._sha (B-G-15, B-CR-46)."""
+    data = p.read_bytes()
+    if p.suffix.lower() in {".csv", ".json", ".md", ".txt", ".py"}:
+        data = data.replace(b"\r\n", b"\n")
+    return hashlib.sha256(data).hexdigest()
 
 
 def _rel(p: Path) -> str:

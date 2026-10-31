@@ -420,7 +420,11 @@ def main() -> None:
                                               encoding="utf-8", newline="\n")
     git = lambda *a: subprocess.run(["git", *a], cwd=REPO, capture_output=True, text=True).stdout.strip()  # noqa: E731
     rel = lambda p: p.resolve().relative_to(REPO).as_posix()  # noqa: E731
-    sha = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()  # noqa: E731
+    def sha(p: Path) -> str:   # text files with CRLF normalised to LF, as build_evidence_B._sha (B-G-15, B-CR-46)
+        data = p.read_bytes()
+        if p.suffix.lower() in {".csv", ".json", ".md", ".txt", ".py"}:
+            data = data.replace(b"\r\n", b"\n")
+        return hashlib.sha256(data).hexdigest()
     outputs = [p for p in sorted(OUT.iterdir()) if p.is_file() and p.name != "_manifest.json"]
     manifest = {"node": "DECK/deck_renders", "run_id": datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ"),
                 "commit": git("rev-parse", "HEAD"), "dirty": bool(git("status", "--porcelain", "--", rel(Path(__file__)))),

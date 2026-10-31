@@ -57,8 +57,16 @@ def current_runs() -> dict[tuple[str, str], str]:
     return {(s, t): r for s, t, r in rows}
 
 
+TEXT_SUFFIXES = {".csv", ".json", ".md", ".txt", ".py"}   # hashed with CRLF read as LF (B-G-15, B-CR-46)
+
+
 def _sha(p: Path) -> str:
-    return hashlib.sha256(p.read_bytes()).hexdigest()
+    """sha256 of the file; text files are hashed with CRLF normalised to LF, so a Windows checkout (CRLF) and the
+    repository's LF copy give the same hash (B-G-15)."""
+    data = p.read_bytes()
+    if p.suffix.lower() in TEXT_SUFFIXES:
+        data = data.replace(b"\r\n", b"\n")
+    return hashlib.sha256(data).hexdigest()
 
 
 def verify_source(src: str, runs: dict) -> tuple[Path, str]:
@@ -70,7 +78,7 @@ def verify_source(src: str, runs: dict) -> tuple[Path, str]:
     if key not in runs:
         raise ValueError(f"{src}: {key[0]}/{key[1]} has no Current run in EVIDENCE.md")
     out = STAGES / parts[0] / parts[1] / "outputs"
-    man = json.loads((out / "_manifest.json").read_text())
+    man = json.loads((out / "_manifest.json").read_text(encoding="utf-8"))
     if man["run_id"] != runs[key]:
         raise ValueError(f"{src}: manifest run {man['run_id']} is not the Current run {runs[key]}")
     path = STAGES / src
@@ -109,7 +117,7 @@ def verify_manifest_source(src: str) -> tuple[Path, str]:
     path = root.joinpath(*parts[1:])
     if not path.is_file():
         raise ValueError(f"{src}: no such file in {root}")
-    man = json.loads((root / "_manifest.json").read_text())
+    man = json.loads((root / "_manifest.json").read_text(encoding="utf-8"))
     repo = B_ROOT.parents[2]
     if man["outputs"].get(path.relative_to(repo).as_posix()) != _sha(path):
         raise ValueError(f"{src}: sha256 does not match its manifest")
@@ -137,7 +145,7 @@ def _select(df: pd.DataFrame, sel: dict | None) -> pd.DataFrame:
 
 def _value(item: dict, path: Path):
     if path.suffix == ".json":
-        v = json.loads(path.read_text())
+        v = json.loads(path.read_text(encoding="utf-8"))
         for k in str(item["value"]).split("."):
             v = v[int(k)] if isinstance(v, list) else v[k]
         return v
@@ -179,7 +187,7 @@ def build(out_dir: Path = BUILD) -> dict:
             else:
                 path, run_id = verify_source(it["source"], runs)
             outs, inner = _outputs(it["source"], path)
-            idx = json.loads((outs / "_evidence_index.json").read_text())
+            idx = json.loads((outs / "_evidence_index.json").read_text(encoding="utf-8"))
             tagged = idx["files"].get(inner, {}).get("ids", [])
             if it["evidence"] not in tagged:
                 raise ValueError(f"evidence {it['evidence']} is not tagged on {it['source']} (tagged: {tagged})")
