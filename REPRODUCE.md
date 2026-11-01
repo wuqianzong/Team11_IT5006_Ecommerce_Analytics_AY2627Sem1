@@ -16,39 +16,46 @@ The team's rerun of release `e5-release-2` (2026-10-27) and its acceptance are i
 (tag `e5-reproduced`). The `FAIL` verdict in its `reproduction_check.json` comes from the strict identical-files
 rule; the 7 differing B10 files are float noise (at most 2.1e-14) and pass the tolerance rule, as recorded there.
 
-## Rerun it yourself
+## Rerun it yourself (any machine)
 
 ```bash
-# 1. A fresh clone at the reproduced release (keep LF line endings, also on Windows)
-git clone -c core.autocrlf=false https://github.com/wuqianzong/Team11_IT5006_Ecommerce_Analytics_AY2627Sem1.git e5-check
-cd e5-check
-git checkout e5-reproduced      # not e5-release-2: reproduce.py was added after the release commit
+# 1. Clone (keep LF line endings, also on Windows)
+git clone -c core.autocrlf=false https://github.com/wuqianzong/Team11_IT5006_Ecommerce_Analytics_AY2627Sem1.git
+cd Team11_IT5006_Ecommerce_Analytics_AY2627Sem1
 
-# 2. Environment (Python 3.13)
+# 2. Experiment 5 environment (Python 3.13)
 python3.13 -m venv experiments/experiment_5/.venv
 experiments/experiment_5/.venv/bin/pip install -r experiments/experiment_5/requirements.txt
 
-# 3. Rerun Pipeline A s01-s08 and Pipeline B B2-B12 from data/raw (about 25 minutes)
-experiments/experiment_5/.venv/bin/python experiments/experiment_5/reproduce.py run
-
-# 4. Compare every output with the release (writes experiments/experiment_5/reproduction/reproduction_check.json)
-experiments/experiment_5/.venv/bin/python experiments/experiment_5/reproduce.py compare --machine other
+# 3. Rerun all 34 nodes at tag e5-reproduced in a separate worktree (../e5-reproduce-check), then check
+experiments/experiment_5/.venv/bin/python scripts/reproduce_experiment5.py
 ```
 
 On Windows the interpreter is `experiments\experiment_5\.venv\Scripts\python.exe`.
 
+[`scripts/reproduce_experiment5.py`](scripts/reproduce_experiment5.py) reruns Pipeline A s01–s08 and Pipeline
+B B2–B12 with the same commands as `experiments/experiment_5/reproduce.py run`, then runs two checks:
+
+- **decision check** (`decision_check.json`): every model choice, hyperparameter, feature, transform,
+  calibration, row count and alert threshold equals the release, and the frozen T1 models re-predict the stored
+  test predictions within 1e-9. Expected: `PASS` on any machine.
+- **file-by-file check** (`reproduction_check.json`, `reproduce.py compare --machine other`, rule CR-056).
+  Expected: identical files on the reference Mac; on other machines `FAIL` on refitted scores and counts.
+
 The held-out test (T1) is **not** rerun: the test cohort was read exactly once (tag `e5-T1-tested`). Its saved
-predictions and model bundles stay as committed, and B10's parity check re-predicts them without labels.
+predictions and model bundles stay as committed.
 
-On a machine other than the team's reference machine, numbers are judged by tolerance (CR-056): predictions
-within 1e-9, refitted scores within 2e-3, counts and labels equal. Model pickles and PNGs are reported but not
-judged.
+**Machine differences.** Experiment 5 is deterministic on one machine, but floating-point arithmetic differs
+slightly across machines, and refitted scores move in the fourth decimal (largest in the unregularised
+logistic regression). The team documented this on Windows on 2026-10-26 (CR-056), and a full Linux rerun on
+2026-11-01 confirmed it: every decision equal; at the operating thresholds, validation alert counts within
+1.8%. Two exact-match safeguards built for the reference Mac would stop `reproduce.py run` after s06 on another
+machine; the script passes over those two only. Full explanation and sizes:
+[README Appendix A.2.1](README.md#a21-machine-differences-what-to-expect-and-why).
 
-**Known limitation (checked 2026-11-01 on Linux x86-64):** on a machine other than the reference Mac, refitted
-scores differ in the fourth decimal, so step 3 stops after s06 (the stage is marked `REOPENED` and s07 refuses to
-start). Run past that, every model choice and both serving thresholds (4/15 and 1/6) match the release, but B10's
-recipe-hash check fails and a few counts near the thresholds change, so step 4 reports `FAIL`. Details:
-[README Appendix A.2](README.md#a2-check-the-reproduction).
+The team's original procedure, for the reference Mac: in a fresh clone, `git checkout e5-reproduced`, then
+`reproduce.py run` and `reproduce.py compare --machine reference` (use `e5-reproduced`, not `e5-release-2`:
+`reproduce.py` was added after the release commit).
 
 ## Where to look
 

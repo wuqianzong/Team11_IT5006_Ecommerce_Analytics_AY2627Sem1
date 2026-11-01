@@ -82,6 +82,8 @@ The repository strictly follows the official course specification (**Page 7 of t
 ├── app.py                    # Root entrypoint launcher (delegates to deployment/app.py -> Milestone 3 dashboard)
 ├── requirements.txt          # Dashboard / Streamlit Cloud dependencies (Python 3.12-3.14)
 ├── requirements-milestone2.txt # Frozen environment for verifying Milestone 2
+├── scripts/
+│   └── reproduce_experiment5.py # Rerun Experiment 5 on any machine and check it (Appendix A.2)
 ├── REPRODUCE.md              # Short Experiment 5 reproduction card (full guide: Appendix A)
 └── README.md
 ```
@@ -359,80 +361,141 @@ reference machine (the experiment lead's Mac, Python 3.13.9) on 2026-10-27:
   pass. Reproduction accepted; tag `e5-reproduced`.
 - `experiments/experiment_5/reproduction/run_log.txt`: the run log.
 
-**Option 2: rerun it yourself (about 25 minutes on the reference machine; read the limitation at the end of this option first).**
+**Option 2: rerun it yourself, on any machine (recommended).** One script reruns every stage from the raw
+data and checks the result against the release. It works on macOS, Linux and Windows, and gets past the two
+exact-match safeguards that a machine difference would otherwise trip (see
+[A.2.1](#a21-machine-differences-what-to-expect-and-why)).
 
-1. Clone the repository into a **new folder** and check out the reproduced release. On Windows, keep LF line
-   endings: the recorded input hashes were taken on LF bytes, and a CRLF checkout of `data/raw/` makes every
-   stage look stale.
+1. Clone the repository. On Windows, keep LF line endings: the recorded input hashes were taken on LF bytes,
+   and a CRLF checkout of `data/raw/` makes every stage look stale.
 
    ```bash
-   git clone -c core.autocrlf=false https://github.com/wuqianzong/Team11_IT5006_Ecommerce_Analytics_AY2627Sem1.git e5-check
-   cd e5-check
-   git checkout e5-reproduced
+   git clone -c core.autocrlf=false https://github.com/wuqianzong/Team11_IT5006_Ecommerce_Analytics_AY2627Sem1.git
+   cd Team11_IT5006_Ecommerce_Analytics_AY2627Sem1
    ```
 
-   Use `e5-reproduced`, not `e5-release-2`: `reproduce.py` was added after the release commit and is not
-   present at `e5-release-2`. The code and stage outputs of the two tags are the same.
-
-2. Create the Experiment 5 environment (Python 3.13):
+2. Create the Experiment 5 environment (Python 3.13; the same requirements file as at the release):
 
    ```bash
    python3.13 -m venv experiments/experiment_5/.venv
    experiments/experiment_5/.venv/bin/pip install -r experiments/experiment_5/requirements.txt
    ```
 
-   On Windows the interpreter is `experiments\experiment_5\.venv\Scripts\python.exe`; the commands are
-   otherwise the same.
-
-3. Rerun Pipeline A (s01–s08) and Pipeline B (B2–B12) from `data/raw/`. This overwrites the outputs in this
-   clone only, and appends to `reproduction/run_log.txt`:
+3. Run the reproduction:
 
    ```bash
-   experiments/experiment_5/.venv/bin/python experiments/experiment_5/reproduce.py run
+   experiments/experiment_5/.venv/bin/python scripts/reproduce_experiment5.py
    ```
 
-4. Compare every output file with the hash recorded at the release:
+   On Windows: `experiments\experiment_5\.venv\Scripts\python.exe scripts\reproduce_experiment5.py`.
 
-   ```bash
-   experiments/experiment_5/.venv/bin/python experiments/experiment_5/reproduce.py compare --machine other
-   ```
+   The script ([`scripts/reproduce_experiment5.py`](scripts/reproduce_experiment5.py)) does not touch your
+   checkout. It:
 
-   This writes `experiments/experiment_5/reproduction/reproduction_check.json`. On any machine other than the
-   reference machine, numbers are judged by tolerance (rule CR-056), because floating-point results differ
-   slightly across operating systems, CPUs and maths libraries:
+   1. creates a separate git worktree at tag `e5-reproduced`, next to the clone (`../e5-reproduce-check`;
+      change it with `--workdir`);
+   2. reruns the same 34 stage/task nodes, in the same order and with the same commands as
+      `experiments/experiment_5/reproduce.py run`: Pipeline A s01–s08, then Pipeline B B2–B12 (T1 is not
+      rerun). It prints one line per node;
+   3. **decision check:** compares every decision field in the 42 decision files (`decision.json`,
+      `selected_spec.json`, `frozen_recipe.json`, `adoption_decision.json`, `serving_config.json`,
+      `counts.json`) with the release: chosen models, hyperparameters, features, transforms, calibration,
+      row counts and the alert thresholds. Statistics (floating-point scores and out-of-fold counts), free-text
+      notes, hashes and run metadata are not decisions and are left to the next step. It also requires B10's
+      parity check: the frozen T1 models must re-predict the stored test predictions within 1e-9;
+   4. **file-by-file check:** runs `reproduce.py compare --machine other` (rule CR-056).
 
-   - predictions within 1e-9 (absolute);
-   - scores of stages that refit within 2e-3 (absolute);
-   - counts and labels equal.
+   It writes `cross_machine_run.json`, `decision_check.json` and `reproduction_check.json` in the worktree's
+   `experiments/experiment_5/reproduction/`, and ends with a summary. Expected result on any machine: every
+   node runs and the **decision check reports `PASS`**. On the reference Mac the file-by-file check also
+   passes (files byte-identical); on other machines it reports `FAIL` on refitted scores and counts, for the
+   reasons and by the amounts in A.2.1. It takes about 25 minutes on the reference Mac and about 50 minutes
+   on a 4-core cloud Linux machine. Delete the worktree afterwards with
+   `git worktree remove --force ../e5-reproduce-check`.
 
-   Model pickles (`.joblib`, `.pkl`) and PNG figures are reported but not judged.
+   The script stops on any failure other than the two known safeguards.
 
-> [!WARNING]
-> **Known limitation on machines other than the reference Mac** (checked on 2026-11-01 on Linux x86-64,
-> Python 3.13.18, the pinned packages, at `e5-reproduced`):
->
-> - Refitting gives scores that differ in the fourth decimal (for example a paired gain of +0.0268 instead of
->   +0.0267). Because the score text in `decision.json` changes, `run_pipeline.py` marks s06 `REOPENED`,
->   s07 refuses to start, and `reproduce.py run` stops with `STOPPED: a node failed` after s06.
-> - When every stage is run anyway, all of Pipeline A and B2–B9 complete. **Every modelling decision is the
->   same as the release**: the selected models and hyperparameters (`decision.json`, `selected_spec.json`,
->   the frozen recipes' settings) and the serving thresholds (B at 4/15 inside the seven states, A at 1/6
->   elsewhere). Scores differ by about 1e-4 to 1e-3.
-> - B10 classification then fails its own check that the frozen T1 bundles' recipes recompute their sha256,
->   because those recipes record out-of-fold statistics that moved slightly. A few counts near the alert
->   thresholds also change (for example 24.0 instead of 23.9 alerts per day), and the CR-056 rule requires
->   counts to be equal, so `compare --machine other` reports `FAIL`.
->
-> The accepted reproduction is therefore the one on the reference machine (Option 1). On another machine, a
-> rerun shows that the decisions and the reported numbers reproduce to about three decimals, not that every
-> file passes the tolerance rule.
+**Option 2b: the team's original procedure (reference Mac).** In a fresh clone,
+`git checkout e5-reproduced`, then `python experiments/experiment_5/reproduce.py run` and
+`python experiments/experiment_5/reproduce.py compare --machine reference`. This is how the accepted
+reproduction (Option 1) was made. On any other machine, `reproduce.py run` stops after s06 (A.2.1), so use
+Option 2. (Check out `e5-reproduced`, not `e5-release-2`: `reproduce.py` was added after the release commit;
+the code and stage outputs of the two tags are the same.)
+
+#### A.2.1 Machine differences: what to expect and why
+
+**Summary.** Experiment 5 is deterministic: on one machine, a rerun gives byte-identical files. Across
+machines (CPU, operating system, maths library), floating-point arithmetic differs in the last digits, and
+stages that **refit** models carry that difference into their scores. The team found and documented this
+before the release; a full rerun on Linux on 2026-11-01 confirmed it. No modelling decision changes, and the
+results in the report's test section do not depend on a refit.
+
+**Evidence that it is a machine difference, not an error**
+
+| Evidence | Source |
+| --- | --- |
+| Outputs made byte-identical across operating systems (line endings, fixed gzip timestamps), after a Windows audit | CR-031, commit `6e65d94` (2026-10-19) |
+| Reruns byte-identical on the reference Mac at every stage acceptance (forests predict with one thread for this) | CR-051, CR-055; commits `0734057`, `9853ce5`, `6198c2c`, `c7d15c7`, and the B2–B9 acceptance commits (2026-10-21 to 25) |
+| On Henry's Windows machine, refitting the frozen logistic recipe gave fold AP up to about 1.5e-3 away, identical on repeated runs, changing with OpenBLAS settings: "floating-point sensitivity of the unregularised logistic fit, not randomness". Validation alerts at 1/6: 5,833 vs 5,865; test rows (no refit) equal | `experiments/experiment_5/pipeline_b/WORKLOG.md`, 2026-10-26 |
+| Policy: the Mac's hash check is the gate; other machines are judged by tolerance | CR-056 / B-CR-35, commit `46d68a4` (2026-10-27) |
+| Accepted reproduction on the Mac: 34 of 34 nodes, 622 of 629 files byte-identical | CR-062, `reproduction/ACCEPTANCE.md` |
+| Full rerun on Linux x86-64 (Python 3.13.18, pinned packages): repeated runs byte-identical; data, folds and protocol identical to the release; every decision equal; frozen T1 models re-predict the test predictions within 3.6e-13 | Option 2 run, 2026-11-01 |
+
+**Where the differences come from.** Models with a unique, exactly computed fit agree to floating-point
+noise: linear regression within 6e-13; single trees and dummy models identical. Random forests (near-tied
+splits) differ by up to 0.055 days in regression and 0.003 in probability. The largest differences are in
+the plain logistic regression, which has no regularisation (`C=inf`): its out-of-fold probabilities differ by
+up to 0.13 (Pipeline A) and 0.24 (Pipeline B) on individual orders, matching the team's Windows finding of
+"floating-point sensitivity of the unregularised logistic fit". Scores averaged over the folds move much
+less (below).
+
+**Size of the differences (Linux rerun vs the release, 629 files)**
+
+| Group | Files | Difference |
+| --- | --- | --- |
+| Identical | 261 | none |
+| Floating-point noise | 102 | at most 1e-9 |
+| Within the refit tolerance | 95 | at most 2e-3 |
+| Not judged (model pickles, PNG figures, gzip bytes) | 86 | not compared |
+| Above the tolerance | 85 | see below |
+
+The 85 files above the tolerance are:
+
+- **refitted predictions and curves:** as above;
+- **counts at thresholds:** small probability shifts move some orders across a threshold. At the thresholds
+  in use (B10), alerts differ by up to 1.8% (34 of 5,865 validation alerts; about 0.1 alerts per day) and
+  precision by up to 0.006; in the full threshold grids, up to about 10% at extreme thresholds;
+- **two quantities that are noise by nature:** the condition number of the tree family's design matrix,
+  which is rank-deficient (about 1e17 on both machines), and "distinct values" counts in s03 that count floats differing in the last
+  digit as distinct (release 6,373 vs Linux 6,351).
+
+Validation scores in decision notes differ in the fourth decimal (Linux vs release: a paired gain of
++0.0268 vs +0.0267; mean validation AP of the logistic model 0.2436 vs 0.2435).
+
+**Why `reproduce.py run` stops on another machine, and why that is not a failure.** Two safeguards compare
+text or hashes exactly, which holds only on the producing machine:
+
+1. `run_pipeline.py` marks an accepted stage `REOPENED` when any text in its `decision.json` changes, so the
+   team re-reviews a changed result during development (README §9.2 of Experiment 5). The notes in that file
+   print scores to 4 decimals, so a 1e-4 shift changes the text although the decision fields are equal. s07
+   then refuses to start. The script restores the committed status cards after each node: a reproduction is
+   a check, not a new review.
+2. B10 classification checks that the frozen recipes recompute their sha256. Those files also record
+   out-of-fold statistics (Linux vs release: 24.04 vs 23.86 alerts per day), so the hash changes although the recipe
+   settings are equal. The script continues past this one check and records it.
+
+**What a difference does not affect.** T1 (the held-out test) is never rerun. The test results in the report,
+the slides and the dashboard come from T1's stored predictions and frozen bundles, which re-predict exactly on
+any machine (B10 parity). The model choices and thresholds that produced them are the ones the decision check
+compares.
 
 **Option 3: read the results without rerunning.**
 [`notebooks/10_milestone3_experiment5.ipynb`](notebooks/10_milestone3_experiment5.ipynb) shows every stage's
 stored results (partition, model selection, the joint test, the Milestone 2 feedback checks, the number
 register and the deployment inputs). Run it with the Experiment 5 environment as its kernel (install Jupyter
 into it with `pip install jupyter`; Jupyter is not in the pinned set and does not affect any result). Leave
-`RUN_REPRODUCTION = False` on `main`; set it to `True` only in a clone at `e5-reproduced`.
+`RUN_REPRODUCTION = False` on `main`. Its `True` setting calls `reproduce.py run`, which completes only on the
+reference Mac (A.2.1); to rerun on any other machine, use Option 2.
 
 **Read-only checks on `main`** (they change no file), with `PY=experiments/experiment_5/.venv/bin/python`:
 
