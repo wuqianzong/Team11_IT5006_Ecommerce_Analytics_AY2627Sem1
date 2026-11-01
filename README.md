@@ -409,8 +409,8 @@ exact-match safeguards that a machine difference would otherwise trip (see
    `experiments/experiment_5/reproduction/`, and ends with a summary. Expected result on any machine: every
    node runs and the **decision check reports `PASS`**. On the reference Mac the file-by-file check also
    passes (files byte-identical); on other machines it reports `FAIL` on refitted scores and counts, for the
-   reasons and by the amounts in A.2.1. It takes about 25 minutes on the reference Mac and about 50 minutes
-   on a 4-core cloud Linux machine. Delete the worktree afterwards with
+   reasons and by the amounts in A.2.1. It takes about 25 minutes on the reference Mac; on a 4-core cloud
+   Linux machine it took 47 minutes (2026-11-01: 34 of 34 nodes, decision check `PASS`). Delete the worktree afterwards with
    `git worktree remove --force ../e5-reproduce-check`.
 
    The script stops on any failure other than the two known safeguards.
@@ -453,10 +453,10 @@ less (below).
 
 | Group | Files | Difference |
 | --- | --- | --- |
-| Identical | 261 | none |
+| Identical | 258 | none |
 | Floating-point noise | 102 | at most 1e-9 |
 | Within the refit tolerance | 95 | at most 2e-3 |
-| Not judged (model pickles, PNG figures, gzip bytes) | 86 | not compared |
+| Not judged (model pickles, PNG figures, gzip bytes) | 89 | not compared |
 | Above the tolerance | 85 | see below |
 
 The 85 files above the tolerance are:
