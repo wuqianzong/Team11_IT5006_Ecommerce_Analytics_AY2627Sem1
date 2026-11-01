@@ -1,7 +1,8 @@
 """SmartCommerce — Root Streamlit Application Launcher.
 
-Delegates execution directly to the authoritative dashboard implementation in
-deployment/app.py.
+Delegates to deployment/app.py, which runs the Milestone 3 dashboard in
+experiments/experiment_5/pipeline_b/deliverables/dashboard/app/app.py.
+Either `streamlit run app.py` or `streamlit run deployment/app.py` opens it.
 """
 from pathlib import Path
 import runpy

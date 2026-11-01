@@ -20,6 +20,9 @@ Revision 2.3 removed the score pointers that tabs 2 and 3 kept after revision 2 
 tab 4 from "Score an order" to "ML deployment". Hosting plan: the model API in `../api/` and this app on Streamlit
 Community Cloud (`../api/README.md`); the app is not hosted yet.
 
+The repository-root launchers `app.py` and `deployment/app.py` both run this app (the root `requirements.txt` mirrors
+`requirements.txt` here), so `streamlit run app.py` from the repository root also opens it.
+
 ## Run locally
 
 The app has its own isolated environment under `app/.venv`. It uses Python 3.12

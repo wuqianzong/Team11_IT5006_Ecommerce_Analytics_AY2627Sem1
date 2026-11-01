@@ -30,7 +30,8 @@ The repository strictly follows the official course specification (**Page 7 of t
 │   └── 09_refinement_cycle2_migration.ipynb          # Refinement Cycle 2: current champion models (v4: tuned RF + log1p)
 │
 ├── deployment/               # Official directory for the dashboard application
-│   └── app.py                # Executive Operations Master Dashboard (Streamlit application)
+│   ├── app.py                # Launcher: runs the Milestone 3 dashboard (experiments/experiment_5/.../dashboard/app/app.py)
+│   └── app_milestone1.py     # Milestone 1 Executive Operations dashboard (kept for reference)
 │
 ├── src/                      # Reusable Python source code and shared utilities
 │   ├── common/               # Shared schemas, loaders, and utilities
@@ -48,8 +49,8 @@ The repository strictly follows the official course specification (**Page 7 of t
 │       ├── refinement-selected-v3/  # Refinement Cycle 1 accepted bundles & evidence
 │       └── refinement-selected-v4/  # Refinement Cycle 2 (Current Champion) bundles & evidence
 │
-├── app.py                    # Root entrypoint launcher (delegates execution to deployment/app.py)
-├── requirements.txt          # Python dependencies for local run and Streamlit Cloud
+├── app.py                    # Root entrypoint launcher (delegates to deployment/app.py -> Milestone 3 dashboard)
+├── requirements.txt          # Dashboard / Streamlit Cloud dependencies (Python 3.12-3.14)
 └── README.md
 ```
 
@@ -78,8 +79,14 @@ The data is organized into three clean layers under `data/`:
 pip install -r requirements.txt
 ```
 
+Use Python 3.12, 3.13 or 3.14. The pins match the dashboard's own
+`experiments/experiment_5/pipeline_b/deliverables/dashboard/app/requirements.txt`, which load the
+frozen Milestone 3 model bundles.
+
 ### 2. Launch Streamlit
-You can run the dashboard from either the root launcher or directly from `deployment/`:
+Both launchers open the **Milestone 3 dashboard** (Business overview, Delivery lead time,
+Detractor risk at handover, ML deployment), which lives in
+`experiments/experiment_5/pipeline_b/deliverables/dashboard/app/` (see its README):
 ```bash
 streamlit run app.py
 # or
@@ -87,8 +94,12 @@ streamlit run deployment/app.py
 ```
 Open the printed local URL (usually `http://localhost:8501`) in your browser.
 
-> [!TIP]
-> The dashboard application includes an automatic in-memory fallback. If `smartcommerce_consolidated.csv` is not pre-generated on disk, the app dynamically constructs it from the base dashboard CSVs in `data/business/dashboard/` on first load and caches it in memory.
+On Streamlit Community Cloud, either `app.py` or `deployment/app.py` works as the main file; both
+use the root `requirements.txt`. The app predicts with the frozen bundles in the repository unless
+the `MODEL_API_URL` secret points to the model API.
+
+The Milestone 1 dashboard is kept as `deployment/app_milestone1.py`, written for the Milestone 1
+environment (the `milestone-1` branch).
 
 ---
 
@@ -112,7 +123,8 @@ python -m pip install -r requirements-milestone2.txt
 
 Python 3.13.5 with these same numerical versions was also checked for no-fit
 reproduction. This is a model-verification environment; dashboard dependencies
-remain in `requirements.txt`, whose numerical pins now agree with the frozen run.
+are in `requirements.txt`, which since Milestone 3 pins the newer versions the Milestone 3
+dashboard needs, so use this file, not `requirements.txt`, to verify Milestone 2.
 
 ### 2. Run the command printed in the submitted report
 

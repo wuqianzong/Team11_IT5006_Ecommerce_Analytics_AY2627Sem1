@@ -36,7 +36,11 @@ Create app → GitHub repository, then:
 | Python version (Advanced settings) | 3.12 |
 | Secrets (Advanced settings) | `MODEL_API_URL = "https://<service>.onrender.com"` |
 
-Streamlit installs `app/requirements.txt` (next to the main file). The app reads the business data, the stored
+Streamlit installs `app/requirements.txt` (next to the main file).
+
+Alternatively, set the main file path to `app.py` or `deployment/app.py` at the repository root. Both launch this
+dashboard, and Streamlit then installs the root `requirements.txt`, which carries the same pins. This is how the
+app deployed from `main` picks up the Milestone 3 dashboard without changing its settings. The app reads the business data, the stored
 outputs and `data/raw/` from the repository; all are in git. Its sidebar shows where predictions come from.
 
 ## 3. After both are live

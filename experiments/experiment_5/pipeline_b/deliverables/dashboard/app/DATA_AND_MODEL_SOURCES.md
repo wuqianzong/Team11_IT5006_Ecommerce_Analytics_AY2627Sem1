@@ -82,7 +82,8 @@ The dashboard copy is:
 dashboard/app/dashboard_core/business_tab.py
 ```
 
-`deployment/app.py` itself is not modified.
+`deployment/app.py` was not modified while the dashboard was built. After Milestone 3 it became a launcher that runs
+this dashboard; the Phase 1 code it held is kept unchanged as `deployment/app_milestone1.py`.
 
 ## 4. Model-result evidence
 
