@@ -463,8 +463,11 @@ The 85 files above the tolerance are:
 
 - **refitted predictions and curves:** as above;
 - **counts at thresholds:** small probability shifts move some orders across a threshold. At the thresholds
-  in use (B10), alerts differ by up to 1.8% (34 of 5,865 validation alerts; about 0.1 alerts per day) and
-  precision by up to 0.006; in the full threshold grids, up to about 10% at extreme thresholds;
+  in use (B10 `threshold_results.csv`), validation (out-of-fold) alerts differ by -1.81% to +1.15% (B at 4/15:
+  1,381 vs 1,356; B at 1/6: 5,865 vs 5,831; A at 1/6: 2,253 vs 2,279; the whole serving rule: 3,634 vs 3,635)
+  and precision by up to 0.006. **Test rows are identical at every threshold**, because the test is scored by
+  the frozen models, not refitted. In the full threshold grids, counts differ by up to about 10% at extreme
+  thresholds that are not used;
 - **two quantities that are noise by nature:** the condition number of the tree family's design matrix,
   which is rank-deficient (about 1e17 on both machines), and "distinct values" counts in s03 that count floats differing in the last
   digit as distinct (release 6,373 vs Linux 6,351).
