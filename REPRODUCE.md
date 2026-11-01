@@ -44,6 +44,12 @@ On a machine other than the team's reference machine, numbers are judged by tole
 within 1e-9, refitted scores within 2e-3, counts and labels equal. Model pickles and PNGs are reported but not
 judged.
 
+**Known limitation (checked 2026-11-01 on Linux x86-64):** on a machine other than the reference Mac, refitted
+scores differ in the fourth decimal, so step 3 stops after s06 (the stage is marked `REOPENED` and s07 refuses to
+start). Run past that, every model choice and both serving thresholds (4/15 and 1/6) match the release, but B10's
+recipe-hash check fails and a few counts near the thresholds change, so step 4 reports `FAIL`. Details:
+[README Appendix A.2](README.md#a2-check-the-reproduction).
+
 ## Where to look
 
 | What | Where |

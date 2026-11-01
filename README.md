@@ -359,7 +359,7 @@ reference machine (the experiment lead's Mac, Python 3.13.9) on 2026-10-27:
   pass. Reproduction accepted; tag `e5-reproduced`.
 - `experiments/experiment_5/reproduction/run_log.txt`: the run log.
 
-**Option 2: rerun it yourself (about 25 minutes on the reference machine).**
+**Option 2: rerun it yourself (about 25 minutes on the reference machine; read the limitation at the end of this option first).**
 
 1. Clone the repository into a **new folder** and check out the reproduced release. On Windows, keep LF line
    endings: the recorded input hashes were taken on LF bytes, and a CRLF checkout of `data/raw/` makes every
@@ -406,6 +406,26 @@ reference machine (the experiment lead's Mac, Python 3.13.9) on 2026-10-27:
    - counts and labels equal.
 
    Model pickles (`.joblib`, `.pkl`) and PNG figures are reported but not judged.
+
+> [!WARNING]
+> **Known limitation on machines other than the reference Mac** (checked on 2026-11-01 on Linux x86-64,
+> Python 3.13.18, the pinned packages, at `e5-reproduced`):
+>
+> - Refitting gives scores that differ in the fourth decimal (for example a paired gain of +0.0268 instead of
+>   +0.0267). Because the score text in `decision.json` changes, `run_pipeline.py` marks s06 `REOPENED`,
+>   s07 refuses to start, and `reproduce.py run` stops with `STOPPED: a node failed` after s06.
+> - When every stage is run anyway, all of Pipeline A and B2–B9 complete. **Every modelling decision is the
+>   same as the release**: the selected models and hyperparameters (`decision.json`, `selected_spec.json`,
+>   the frozen recipes' settings) and the serving thresholds (B at 4/15 inside the seven states, A at 1/6
+>   elsewhere). Scores differ by about 1e-4 to 1e-3.
+> - B10 classification then fails its own check that the frozen T1 bundles' recipes recompute their sha256,
+>   because those recipes record out-of-fold statistics that moved slightly. A few counts near the alert
+>   thresholds also change (for example 24.0 instead of 23.9 alerts per day), and the CR-056 rule requires
+>   counts to be equal, so `compare --machine other` reports `FAIL`.
+>
+> The accepted reproduction is therefore the one on the reference machine (Option 1). On another machine, a
+> rerun shows that the decisions and the reported numbers reproduce to about three decimals, not that every
+> file passes the tolerance rule.
 
 **Option 3: read the results without rerunning.**
 [`notebooks/10_milestone3_experiment5.ipynb`](notebooks/10_milestone3_experiment5.ipynb) shows every stage's
