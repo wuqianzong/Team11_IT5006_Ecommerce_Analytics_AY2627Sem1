@@ -472,6 +472,30 @@ The 85 files above the tolerance are:
 Validation scores in decision notes differ in the fourth decimal (Linux vs release: a paired gain of
 +0.0268 vs +0.0267; mean validation AP of the logistic model 0.2436 vs 0.2435).
 
+**How to read the file-by-file result off the reference Mac.** The experiment record (CR-056, kept unchanged
+as the record of the team's decision) judges other machines by tolerance: predictions within 1e-9, refitted
+scores within 2e-3, and counts and labels equal. That rule was written before a full rerun had been made off
+the Mac. A full rerun shows that refitted stages cannot meet "counts equal": a probability that moves in the
+fourth decimal moves an order across a threshold, so the counts at that threshold change. The
+`reproduction_check.json` therefore reports `FAIL` on another machine. Read each category this way:
+
+| Category in `reproduction_check.json` | What it means off the Mac | Machine difference? |
+| --- | --- | --- |
+| `identical`, `numbers within 1e-9` | Same result | Not applicable |
+| `numbers within 2e-3` | Refitted scores within the tolerance | Yes, expected |
+| `bytes differ (not gated)` | Model pickles, PNG renders, gzip bytes; not compared by rule | Yes, expected |
+| `DIFFERENT numbers` in refitted stages (s06–s08, B6–B10): predictions, curves, threshold tables, counts | Refitted probabilities move; orders cross thresholds | Yes: sizes in the table above |
+| `DIFFERENT text values` in `decision.json` notes, frozen recipes, `counts.json`, `adoption_decision.json`, `parity.json`, `release_manifest.json` | Scores printed to 4 decimals, out-of-fold statistics, the frozen recipe's sha256 recorded in other files, the recorded interpreter version | Yes, as long as the decision check passes |
+| `DIFFERENT text or labels` in `imputation_by_fold.csv` | Learned imputation medians differing in the 15th–16th significant digit (the file mixes text and numbers, so it is compared as text) | Yes: noise by nature |
+| `DIFFERENT text or labels` in `doc_support/*/b2_lateness_by_route.csv` | The same routes and values; two rows swap order because a mean differs in its last digit (18.79515625 vs 18.795156250000005) | Yes: noise by nature |
+| `DIFFERENT numbers` in s03 `feature_quality.csv` and the s04/B4 design-matrix tables | "Distinct values" counts of floats and the condition number of a rank-deficient matrix | Yes: noise by nature |
+| `DIFFERENT bytes` in review packs and `conclusion.md` | Text reports that quote the moved scores | Yes |
+
+A difference is **not** explained by the machine if the decision check reports `FAIL` (a model, hyperparameter,
+feature, threshold or row count changed), if B10 parity fails (the frozen models no longer re-predict the test),
+or if any file of s01, s02, s05, B2 or B5 (protocol, data, folds) differs beyond 1e-9. On the Linux rerun none
+of these happened.
+
 **Why `reproduce.py run` stops on another machine, and why that is not a failure.** Two safeguards compare
 text or hashes exactly, which holds only on the producing machine:
 
