@@ -1,6 +1,28 @@
 # SmartCommerce — IT5006 Group 11 (Olist E-Commerce Analytics)
 
-Interactive Streamlit Executive Dashboard and Data Analytics Pipeline for the **Olist Brazilian E-Commerce** dataset (2016–2018), built for **IT5006: Fundamentals of Data Analytics (AY 2026/27 Semester 1)**.
+Delivery lead-time prediction, detractor-risk alerts and a Streamlit dashboard for the **Olist Brazilian E-Commerce** dataset (2016–2018), built for **IT5006: Fundamentals of Data Analytics (AY 2026/27 Semester 1)**.
+
+## ▶️ Start here
+
+The final project (**Milestone 3**) is **Experiment 5**, in [`experiments/experiment_5/`](experiments/experiment_5/).
+Its stage outputs, models and evidence register are frozen: the final report, the slides and the dashboard
+read their numbers from them, so they are not edited after the release.
+
+| I want to… | Go to |
+| --- | --- |
+| Open the final dashboard | [How to run the dashboard](#-how-to-run-the-dashboard) (`streamlit run app.py`) |
+| Check how Experiment 5 was reproduced, or rerun it myself | [Appendix A](#appendix-a-reproducing-milestone-3-experiment-5-and-checking-its-dashboard) |
+| Read Experiment 5's results without rerunning anything | [`notebooks/10_milestone3_experiment5.ipynb`](notebooks/10_milestone3_experiment5.ipynb) |
+| Read Experiment 5's protocol and decisions | [`experiments/experiment_5/README.md`](experiments/experiment_5/README.md) |
+| Verify the earlier Milestone 2 results | [Milestone 2 reproduction](#milestone-2-reproduction-and-report-evidence-earlier-milestone) |
+
+Three separate Python environments are used, one per purpose:
+
+| Purpose | Requirements file | Python |
+| --- | --- | --- |
+| Dashboard (local and Streamlit Community Cloud) | `requirements.txt` | 3.12–3.14 |
+| Experiment 5 reproduction and tests | `experiments/experiment_5/requirements.txt` | 3.13 (release built on 3.13.9) |
+| Milestone 2 verification (earlier milestone) | `requirements-milestone2.txt` | 3.10 or 3.13 |
 
 ---
 
@@ -27,7 +49,8 @@ The repository strictly follows the official course specification (**Page 7 of t
 │   ├── 06_model_tuning_and_selection.ipynb           # Historical Baseline (Stage 5B): bounded development selection
 │   ├── 07_final_evaluation_and_scoring.ipynb         # Historical Baseline (Stage 5C): frozen random holdout scoring
 │   ├── 08_refined_models_and_evidence.ipynb         # Refinement Cycle 1: leak-free chronological split (v3: tree/logistic)
-│   └── 09_refinement_cycle2_migration.ipynb          # Refinement Cycle 2: current champion models (v4: tuned RF + log1p)
+│   ├── 09_refinement_cycle2_migration.ipynb          # Refinement Cycle 2: current champion models (v4: tuned RF + log1p)
+│   └── 10_milestone3_experiment5.ipynb               # Milestone 3: Experiment 5 walkthrough from stored outputs (optional rerun)
 │
 ├── deployment/               # Official directory for the dashboard application
 │   ├── app.py                # Launcher: runs the Milestone 3 dashboard (experiments/experiment_5/.../dashboard/app/app.py)
@@ -41,7 +64,14 @@ The repository strictly follows the official course specification (**Page 7 of t
 ├── experiments/              # Systematic experimentation, ablation studies, and trial protocols
 │   ├── refinement_cycle1/    # Whole-cycle orchestration and initial diagnostics
 │   ├── feature_selection_v3/ # Feature blocks, combinations and model comparisons
-│   └── experiment_3/         # Comprehensive 6-phase refinement study (reproducible champion research)
+│   ├── experiment_3/         # Comprehensive 6-phase refinement study (reproducible champion research)
+│   └── experiment_5/         # MILESTONE 3 (final), self-contained; see Appendix A
+│       ├── stages/           # Pipeline A (all states, at checkout): stages s01–s08
+│       ├── pipeline_b/       # Pipeline B (seven states, at carrier handover): B2–B12, joint test T1,
+│       │                     #   evidence register, and deliverables/ (report, deck, dashboard, audit)
+│       ├── reproduction/     # Recorded reproduction of release e5-release-2 (ACCEPTANCE.md)
+│       ├── reproduce.py      # Rerun (run) and compare-with-release (compare)
+│       └── requirements.txt  # Experiment 5 environment (Python 3.13)
 │
 ├── artifacts/                # Serialized model pipelines and evaluation metrics
 │   ├── models/               # .joblib / .pkl model artifacts
@@ -51,6 +81,8 @@ The repository strictly follows the official course specification (**Page 7 of t
 │
 ├── app.py                    # Root entrypoint launcher (delegates to deployment/app.py -> Milestone 3 dashboard)
 ├── requirements.txt          # Dashboard / Streamlit Cloud dependencies (Python 3.12-3.14)
+├── requirements-milestone2.txt # Frozen environment for verifying Milestone 2
+├── REPRODUCE.md              # Short Experiment 5 reproduction card (full guide: Appendix A)
 └── README.md
 ```
 
@@ -98,12 +130,15 @@ On Streamlit Community Cloud, either `app.py` or `deployment/app.py` works as th
 use the root `requirements.txt`. The app predicts with the frozen bundles in the repository unless
 the `MODEL_API_URL` secret points to the model API.
 
+To check the dashboard (tests, what each tab reads, and how it relates to the frozen evidence), see
+[Appendix A.3](#a3-check-the-dashboard).
+
 The Milestone 1 dashboard is kept as `deployment/app_milestone1.py`, written for the Milestone 1
 environment (the `milestone-1` branch).
 
 ---
 
-## Milestone 2 reproduction and report evidence
+## Milestone 2 reproduction and report evidence (earlier milestone)
 
 Start here to verify the submitted Milestone 2 results. The submitted report is
 unchanged. Repository documentation below clarifies its reproduction instructions
@@ -124,7 +159,7 @@ python -m pip install -r requirements-milestone2.txt
 Python 3.13.5 with these same numerical versions was also checked for no-fit
 reproduction. This is a model-verification environment; dashboard dependencies
 are in `requirements.txt`, which since Milestone 3 pins the newer versions the Milestone 3
-dashboard needs, so use this file, not `requirements.txt`, to verify Milestone 2.
+dashboard needs, so use `requirements-milestone2.txt`, not `requirements.txt`, to verify Milestone 2.
 
 ### 2. Run the command printed in the submitted report
 
@@ -281,3 +316,156 @@ For research-stage grouped comparisons and tuning, see
 Their outputs are exploratory screening evidence, separate from the chronological
 confirmation and final terminal metrics. No new training is needed to verify the
 submitted scores.
+
+---
+
+## Appendix A. Reproducing Milestone 3 (Experiment 5) and checking its dashboard
+
+Experiment 5 is reproduced **in place**: everything it needs is in `experiments/experiment_5/` plus the raw
+Olist tables in `data/raw/`. The folders of earlier milestones (`src/`, `artifacts/`, `notebooks/01`–`09`) are
+not used. Its outputs are frozen evidence: a check reruns the pipelines in a **separate clone** and compares,
+and never commits new outputs.
+
+### A.1 Releases and tags
+
+| Tag | Meaning |
+| --- | --- |
+| `e5-A-frozen` | Pipeline A's code frozen; Pipeline B imports it read-only and refuses to run if it changed |
+| `e5-T1-tested` | The held-out test cohort was read once, by the joint test T1 (both pipelines scored) |
+| `e5-release-2` | The release: every stage's current run, recorded in `experiments/experiment_5/pipeline_b/release/e5-release-2.json` |
+| `e5-reproduced` | Release 2 plus `reproduce.py` and the accepted reproduction record (`experiments/experiment_5/reproduction/`) |
+
+Between `e5-release-2` and `e5-reproduced` only the reproduction script, its record and documents were added;
+no code or stage output changed. Between `e5-reproduced` and `main`, no stage output of Pipeline A or B
+changed either: later commits add the report, deck, dashboard, audit and documents. The dashboard on `main`
+therefore reads exactly the reproduced evidence.
+
+**T1 is never rerun.** Rereading the test cohort would turn the test into a selection step. T1's saved
+predictions and model bundles stay as committed; stage B10 re-predicts them from the bundles, without
+labels, as a parity check.
+
+### A.2 Check the reproduction
+
+**Option 1: read the recorded reproduction (no rerun).** The team reran release 2 from the raw data on the
+reference machine (the experiment lead's Mac, Python 3.13.9) on 2026-10-27:
+
+- [`experiments/experiment_5/reproduction/ACCEPTANCE.md`](experiments/experiment_5/reproduction/ACCEPTANCE.md):
+  the decision record. All 34 stage/task nodes (Pipeline A s01–s08, Pipeline B B2–B12) exited 0.
+- `experiments/experiment_5/reproduction/reproduction_check.json`: the file-by-file comparison. 622 of 629
+  output files are byte-identical. Its `verdict` reads `FAIL` because the reference-machine rule requires
+  identical files. The 7 files that differ are all in B10, whose release copy was produced on another machine
+  (Windows, Python 3.13.7). They differ by float noise of at most 2.1e-14 and the recorded interpreter version.
+  The experiment lead therefore judged those 7 files by the cross-machine tolerance rule below, under which they
+  pass. Reproduction accepted; tag `e5-reproduced`.
+- `experiments/experiment_5/reproduction/run_log.txt`: the run log.
+
+**Option 2: rerun it yourself (about 25 minutes on the reference machine).**
+
+1. Clone the repository into a **new folder** and check out the reproduced release. On Windows, keep LF line
+   endings: the recorded input hashes were taken on LF bytes, and a CRLF checkout of `data/raw/` makes every
+   stage look stale.
+
+   ```bash
+   git clone -c core.autocrlf=false https://github.com/wuqianzong/Team11_IT5006_Ecommerce_Analytics_AY2627Sem1.git e5-check
+   cd e5-check
+   git checkout e5-reproduced
+   ```
+
+   Use `e5-reproduced`, not `e5-release-2`: `reproduce.py` was added after the release commit and is not
+   present at `e5-release-2`. The code and stage outputs of the two tags are the same.
+
+2. Create the Experiment 5 environment (Python 3.13):
+
+   ```bash
+   python3.13 -m venv experiments/experiment_5/.venv
+   experiments/experiment_5/.venv/bin/pip install -r experiments/experiment_5/requirements.txt
+   ```
+
+   On Windows the interpreter is `experiments\experiment_5\.venv\Scripts\python.exe`; the commands are
+   otherwise the same.
+
+3. Rerun Pipeline A (s01–s08) and Pipeline B (B2–B12) from `data/raw/`. This overwrites the outputs in this
+   clone only, and appends to `reproduction/run_log.txt`:
+
+   ```bash
+   experiments/experiment_5/.venv/bin/python experiments/experiment_5/reproduce.py run
+   ```
+
+4. Compare every output file with the hash recorded at the release:
+
+   ```bash
+   experiments/experiment_5/.venv/bin/python experiments/experiment_5/reproduce.py compare --machine other
+   ```
+
+   This writes `experiments/experiment_5/reproduction/reproduction_check.json`. On any machine other than the
+   reference machine, numbers are judged by tolerance (rule CR-056), because floating-point results differ
+   slightly across operating systems, CPUs and maths libraries:
+
+   - predictions within 1e-9 (absolute);
+   - scores of stages that refit within 2e-3 (absolute);
+   - counts and labels equal.
+
+   Model pickles (`.joblib`, `.pkl`) and PNG figures are reported but not judged.
+
+**Option 3: read the results without rerunning.**
+[`notebooks/10_milestone3_experiment5.ipynb`](notebooks/10_milestone3_experiment5.ipynb) shows every stage's
+stored results (partition, model selection, the joint test, the Milestone 2 feedback checks, the number
+register and the deployment inputs). Run it with the Experiment 5 environment as its kernel (install Jupyter
+into it with `pip install jupyter`; Jupyter is not in the pinned set and does not affect any result). Leave
+`RUN_REPRODUCTION = False` on `main`; set it to `True` only in a clone at `e5-reproduced`.
+
+**Read-only checks on `main`** (they change no file), with `PY=experiments/experiment_5/.venv/bin/python`:
+
+```bash
+$PY experiments/experiment_5/run_pipeline.py status        # Pipeline A: every s01–s08 output FRESH
+$PY -m pytest -p no:cacheprovider experiments/experiment_5/tests             # 59 tests
+$PY -m pytest -p no:cacheprovider experiments/experiment_5/pipeline_b/tests  # 23 tests (+5 slow, skipped unless E5B_SLOW=1)
+```
+
+In `status`, s08 shows `READY_FOR_REVIEW` and s09, s10 show `TODO`/`MISSING`. This is expected: s08's gate fed
+the joint test T1, and A's s09 and s10 were replaced by T1, B9 and B10 (decision G-79). Pipeline B's current
+runs are listed in `experiments/experiment_5/pipeline_b/EVIDENCE.md`.
+
+### A.3 Check the dashboard
+
+The dashboard is in
+[`experiments/experiment_5/pipeline_b/deliverables/dashboard/app/`](experiments/experiment_5/pipeline_b/deliverables/dashboard/app/).
+It was built after the release, so check it on `main` (it is not in `e5-reproduced`). It fits no model and
+reads no test label: it reads the dashboard business data (`data/business/dashboard/`), stored Pipeline B
+stage outputs (B9, B10, B12, T1) and the frozen T1 model bundles.
+
+1. From the repository root, with the dashboard environment (`pip install -r requirements.txt`, Python
+   3.12–3.14):
+
+   ```bash
+   streamlit run app.py
+   ```
+
+   It opens four tabs: **Business overview**, **Delivery lead time**, **Detractor risk at handover** and
+   **ML deployment**. The sidebar says where predictions come from (`local frozen bundles`, or the model API
+   when `MODEL_API_URL` is set).
+
+2. Run the dashboard's tests (they check the file loaders and router, that every threshold on the slider is a
+   stored threshold, that every planned panel is present, and that the alert list and its scores match the
+   stored test predictions without reading a label):
+
+   ```bash
+   pip install pytest
+   cd experiments/experiment_5/pipeline_b/deliverables/dashboard/app
+   python -m pytest -q -p no:cacheprovider tests      # 21 tests
+   ```
+
+3. Trace any panel to its source:
+   [`DATA_AND_MODEL_SOURCES.md`](experiments/experiment_5/pipeline_b/deliverables/dashboard/app/DATA_AND_MODEL_SOURCES.md)
+   lists every file each tab reads, and the dashboard plan
+   ([`DASHBOARD_PLAN.md`](experiments/experiment_5/pipeline_b/deliverables/dashboard/DASHBOARD_PLAN.md))
+   gives each panel's question and source. Screenshots from 2026-10-30 are in `app/screenshots/2026-10-30/`.
+
+### A.4 How the report and slides use the evidence
+
+The report and slides contain no hand-typed numbers: each number, table and figure has an ID in
+`experiments/experiment_5/pipeline_b/evidence/registry_B.yaml`, and is accepted only if its source file
+matches the hash in the current run's manifest. The built register is `pipeline_b/evidence/build/`
+(`numbers_B.json`, tables, figures). The deliverables audit (9 checks, all passing on report revision 73 and
+deck version 39) and the command to rerun it are in
+[`experiments/experiment_5/pipeline_b/deliverables/audit/README.md`](experiments/experiment_5/pipeline_b/deliverables/audit/README.md).

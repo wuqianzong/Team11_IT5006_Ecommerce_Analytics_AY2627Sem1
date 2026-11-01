@@ -1,63 +1,57 @@
 # Reproducing Milestone 3 (Experiment 5)
 
-Milestone 3 lives entirely in [`experiments/experiment_5/`](experiments/experiment_5/): code, specification,
-stage outputs, models, evidence registers, report and deck sources. It reads only the raw Olist tables in
-`data/raw/`. Earlier milestones' folders (`src/`, `deployment/`, `artifacts/`, `notebooks/01`–`09`,
-`docs/milestone2_*`) are not used by it.
+The full guide, including how to check the dashboard, is
+[Appendix A of the root README](README.md#appendix-a-reproducing-milestone-3-experiment-5-and-checking-its-dashboard).
+This card gives the commands only.
 
-- **Pipeline A** (`experiments/experiment_5/stages/`): all states, prediction at checkout.
-- **Pipeline B** (`experiments/experiment_5/pipeline_b/`): seven states, seller and route history,
-  classification at carrier handover. B reuses A's frozen code read-only.
-- **Walkthrough:** [`notebooks/10_milestone3_experiment5.ipynb`](notebooks/10_milestone3_experiment5.ipynb)
-  shows every stage's results from the stored outputs and can trigger the rerun.
+Milestone 3 lives entirely in [`experiments/experiment_5/`](experiments/experiment_5/) and reads only the raw
+Olist tables in `data/raw/`. Earlier milestones' folders (`src/`, `artifacts/`, `notebooks/01`–`09`,
+`docs/milestone2_*`) are not used by it. Its outputs are frozen evidence: rerun in a separate clone and do not
+commit the rerun's outputs.
 
-## 1. Environment (Python 3.13)
+## Already done: the recorded reproduction
+
+The team's rerun of release `e5-release-2` (2026-10-27) and its acceptance are in
+[`experiments/experiment_5/reproduction/ACCEPTANCE.md`](experiments/experiment_5/reproduction/ACCEPTANCE.md)
+(tag `e5-reproduced`). The `FAIL` verdict in its `reproduction_check.json` comes from the strict identical-files
+rule; the 7 differing B10 files are float noise (at most 2.1e-14) and pass the tolerance rule, as recorded there.
+
+## Rerun it yourself
 
 ```bash
-python3 -m venv experiments/experiment_5/.venv
+# 1. A fresh clone at the reproduced release (keep LF line endings, also on Windows)
+git clone -c core.autocrlf=false https://github.com/wuqianzong/Team11_IT5006_Ecommerce_Analytics_AY2627Sem1.git e5-check
+cd e5-check
+git checkout e5-reproduced      # not e5-release-2: reproduce.py was added after the release commit
+
+# 2. Environment (Python 3.13)
+python3.13 -m venv experiments/experiment_5/.venv
 experiments/experiment_5/.venv/bin/pip install -r experiments/experiment_5/requirements.txt
-```
 
-On Windows the interpreter is `experiments\experiment_5\.venv\Scripts\python.exe`. To open the notebook, also
-install Jupyter into the same environment (`pip install jupyter`). Jupyter is not part of the pinned set and
-does not affect any result.
-
-## 2. Rerun from a clean checkout of the release
-
-```bash
-git checkout e5-release-2
+# 3. Rerun Pipeline A s01-s08 and Pipeline B B2-B12 from data/raw (about 25 minutes)
 experiments/experiment_5/.venv/bin/python experiments/experiment_5/reproduce.py run
-```
 
-This reruns Pipeline A's stages s01–s08 and Pipeline B's B2–B12 in order, from the raw data. It takes about
-25 minutes; the log is `experiments/experiment_5/reproduction/run_log.txt`.
-
-The held-out test (T1) is **not** rerun. The test cohort was read exactly once (tag `e5-T1-tested`); rereading
-it would make the test a selection step. Its saved predictions and model bundles stay as committed, and B10's
-parity check re-predicts them from the bundles without labels.
-
-## 3. Compare with the release
-
-```bash
+# 4. Compare every output with the release (writes experiments/experiment_5/reproduction/reproduction_check.json)
 experiments/experiment_5/.venv/bin/python experiments/experiment_5/reproduce.py compare --machine other
 ```
 
-This writes `experiments/experiment_5/reproduction/reproduction_check.json`, which compares every output file
-with the hash recorded at the release.
+On Windows the interpreter is `experiments\experiment_5\.venv\Scripts\python.exe`.
 
-- **The team's reference machine** used `--machine reference`, which requires identical files.
-- **Any other machine** is judged by tolerance, because floating-point results differ slightly across operating
-  systems and maths libraries (CR-056):
-  - predictions within 1e-9;
-  - refitted scores within 2e-3;
-  - counts and labels equal.
+The held-out test (T1) is **not** rerun: the test cohort was read exactly once (tag `e5-T1-tested`). Its saved
+predictions and model bundles stay as committed, and B10's parity check re-predicts them without labels.
 
-## 4. Where to look
+On a machine other than the team's reference machine, numbers are judged by tolerance (CR-056): predictions
+within 1e-9, refitted scores within 2e-3, counts and labels equal. Model pickles and PNGs are reported but not
+judged.
+
+## Where to look
 
 | What | Where |
 | --- | --- |
+| Walkthrough of every stage's results, no rerun | [`notebooks/10_milestone3_experiment5.ipynb`](notebooks/10_milestone3_experiment5.ipynb) |
 | Protocol and rules | `experiments/experiment_5/README.md` |
 | Decisions | `experiments/experiment_5/spec/blueprints/decision_log.md`, `experiments/experiment_5/pipeline_b/spec/decision_log_B.md` |
 | Which runs are current | `experiments/experiment_5/pipeline_b/EVIDENCE.md` |
 | Release record | `experiments/experiment_5/pipeline_b/release/e5-release-2.json` |
 | Every number in the report and slides | `experiments/experiment_5/pipeline_b/evidence/registry_B.yaml`, built into `evidence/build/` |
+| Dashboard | `experiments/experiment_5/pipeline_b/deliverables/dashboard/app/` (run with `streamlit run app.py` from the root) |
