@@ -850,3 +850,6 @@ more on the test than sending no alert, because the test period had fewer detrac
 
 **Checks**
 - Placeholders resolve; register 375 items; audit 9/9 on the committed inputs (rev 48, deck version 43).
+- Deck retitled v2.2 to match the report (Henry): version 44, title only; a version saved by the open editor one
+  second later has identical slides. `exports/2026-11-02/Team11_final_deck_v2.2.pptx` (basic fonts, 16 slides);
+  audit input `deck.json` refreshed; audit 9/9.

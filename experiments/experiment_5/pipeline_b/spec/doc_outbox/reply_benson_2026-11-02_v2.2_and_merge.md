@@ -10,7 +10,7 @@ Hi Benson, thanks. Your three items are done as B-CR-49 and recorded as your dec
 | T-27 | No rerun. `doc_support/classification` `r06_confusion.csv/.png` are recorded as a known, unused output with doubled counts, caused by the pandas-3 dtype bug that is fixed in code. Slide 12 reads b08's pooled rows |
 
 Henry named the report **v2.2** (review doc rev 48). The Word copy is
-`deliverables/exports/2026-11-02/Team11_final_report_v2.2.docx`; the deck stays v2.1 (version 43, 16 slides).
+`deliverables/exports/2026-11-02/Team11_final_report_v2.2.docx`; the deck is retitled v2.2 to match (version 44, title only; `Team11_final_deck_v2.2.pptx`).
 The register was rebuilt (375 items), the tests pass and the audit passes 9/9 on the committed inputs.
 
 Merge: `e5/validation-fixes-henry` is merged into `milestone-3`, and `main` is fast-forwarded to it, as you asked.

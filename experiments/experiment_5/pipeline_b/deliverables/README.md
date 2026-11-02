@@ -21,7 +21,7 @@ A figure changes only by re-uploading the rebuilt PNG (blobs are immutable).
 
 - Sources: `deck/project/deck.json` and `deck/project/slides/*.html` with `{{id}}` placeholders. Fill each slide with
   `build_evidence_B.py fill` into a publish folder, then publish `project/…` to the deck.
-- Deck: v2.1 https://claude.ai/artifact/NBiGTdX9JKB5kAeeX34gvc (current; v2 until 2 Nov, B-CR-47); v1 https://claude.ai/artifact/VtyNdrjEovfAvycTPmvy23 (Henry's account, private until shared). 12 slides; titles,
+- Deck: v2.2 https://claude.ai/artifact/NBiGTdX9JKB5kAeeX34gvc (current; v2 until 2 Nov, then v2.1 (B-CR-47) and v2.2 (B-CR-49)); v1 https://claude.ai/artifact/VtyNdrjEovfAvycTPmvy23 (Henry's account, private until shared). 12 slides; titles,
   text and tables are editable; charts are uploaded register PNGs (validation_and_test ×2, population, residuals,
   threshold_options, partition).
 - Slide 16 "app" carries the app screenshots (appendix L files, register S.05/S.06), the live URL and the repository
