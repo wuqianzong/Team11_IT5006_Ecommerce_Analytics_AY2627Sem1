@@ -28,7 +28,7 @@
     {
       "check": "report text: the live doc's body equals the filled sources line for line (beyond its title, date and review note)",
       "passed": true,
-      "detail": "header kept: # Team 11 final report v2.1 \u2014 delivery time and detractor alerts / Nov 1, 2026 \u00b7 @Henry / Version 2.1 of the final report, for team review (2 Nov: fixes from Benson's audit of version 2). Seventeen body tables moved to appendix K and their key numbers quoted in the text, so the body fits the page limit; every figure kept. Every number is filled from the Pipeline B register (pipeline_b/evidence/registry_B.yaml). Version 1 stays in its own doc; the dated change record is pipeline_b/deliverables/report/records/CHANGES.md."
+      "detail": "header kept: # Team 11 final report v2.2 \u2014 delivery time and detractor alerts / Nov 1, 2026 \u00b7 @Henry / Version 2.2 of the final report, for team review (2 Nov: fixes from Benson's audit of version 2; appendix N and the section 8 hosting sentence from his recheck). Seventeen body tables moved to appendix K and their key numbers quoted in the text, so the body fits the page limit; every figure kept. Every number is filled from the Pipeline B register (pipeline_b/evidence/registry_B.yaml). Version 1 stays in its own doc; the dated change record is pipeline_b/deliverables/report/records/CHANGES.md."
     },
     {
       "check": "independent recomputation from T1's saved predictions matches the register (12 numbers)",
@@ -47,7 +47,7 @@
     }
   ],
   "passed": true,
-  "doc_sha256": "c6864687196e40f3e97632913c86be6c217e7bc60ad6d75fbdb0fdc7260d8692",
+  "doc_sha256": "084220262fe9d81bf6ae71ab643fb323fed2ce961b075ac366626640e0e0dba5",
   "deck_slides": {
     "a_features.html": "1f6a0afdbe5f23bdd2903969e74609b534803259132e41506fe9ffbb25355114",
     "a_limits.html": "de7c773956974b4abd189a5565d5373607f44aa315c8830a236c2aa1317262d3",

@@ -2,11 +2,11 @@
 
 - `report/NN_*.md`: report sections with `{{id}}` placeholders (sources). Fill with
   `python pipeline_b/build_evidence_B.py fill <src> <out>`; check with `... check report/*.md`.
-- Review copy: Claude Doc "Team 11 final report v2.1 — delivery time and detractor alerts" in Henry's account,
+- Review copy: Claude Doc "Team 11 final report v2.2 — delivery time and detractor alerts" in Henry's account,
   https://claude.ai/artifact/USWnVhiKr35AqXwc4zQHAw (filled text; v1, rev 118, stays at
   https://claude.ai/artifact/Gp8qHXHdffLf3t78JcMWid with its sources frozen in `report_v1/`). The team comments there; changes come back
   here first, then the doc is refreshed.
-- Open placeholders: app URL and screenshots (section 6). Section 3 cites A's s03 EDA from A's frozen tree (B-G-11).
+- No open placeholders (app URL in the cover and §8, screenshots in appendix L; B-CR-49). Section 3 cites A's s03 EDA from A's frozen tree (B-G-11).
   Appendices A–F are done (B-CR-28).
 
 ## Figures in the report doc (uploaded from evidence/build/figures, 2026-10-26)

@@ -11,11 +11,12 @@
   source: "Triage of Benson's v2.1 recheck, 2026-11-02"
   severity: medium
   item: "Report text (the §8 API URL, Appendix N) must change in deliverables/report/*.md first and then in the review doc; typed into the doc alone, the audit's text and number checks fail. Our earlier reply said to type the URL into the doc"
-  owner: Benson
-  status: Open
+  owner: Henry
+  status: Fixed
   due: 2026-11-06
   fix: {note: "stated in the reply of 2026-11-02 (doc_outbox/reply_benson_2026-11-02_v2.1_recheck.md)"}
   verified_by: null
+  fix2: {done: "T-12 and T-21 went through the sources first, then the doc (B-CR-49)"}
 
 - id: T-30
   type: finding
@@ -57,9 +58,10 @@
   severity: low
   item: "doc_support's committed r06_confusion.csv/.png still hold the doubled counts; rerun doc_support (both tasks) in the environment of the 25 Oct run (Python 3.13.9) and check every other output is byte-identical"
   owner: Benson
-  status: Open
+  status: Won't fix
+  decision: B-G-18
   due: 2026-11-06
-  fix: {note: "a rerun on Henry's machine (Python 3.13.7) changed other outputs in the last digits and failed one check; reverted. Not used by the report or the deck"}
+  fix: {decision: "lead: no rerun; recorded as a known, unused output with doubled counts (pandas-3 dtype bug, fixed in code)", note: "a rerun on Henry's machine (Python 3.13.7) changed other outputs in the last digits and failed one check; reverted. Not used by the report or the deck"}
   files: [pipeline_b/stages/doc_support/]
   verified_by: null
 
@@ -130,12 +132,13 @@
   source: "Benson's report v2 audit, 2026-11-02 (point 3, reproduction appendix)"
   severity: medium
   item: "Reproduction appendix: review the cross-machine reproduction result and judge whether its differences affect the report, deck or schedule; keep small differences if the story holds"
-  owner: Benson
-  status: Open
+  owner: Henry
+  status: Fixed
   due: 2026-11-06
-  decision: B-G-17
+  decision: B-G-17, B-G-18
   fix: {note: "handed to Benson, who owns main and its reconciliation; the delivery branch cannot reconcile main"}
   verified_by: null
+  fix2: {done: "Appendix N from the lead's text, three wording fixes; 12_appendices.md and review doc rev 48", cr: B-CR-49}
 
 - id: T-20
   type: finding
@@ -235,11 +238,11 @@
   source: "Benson's report v2 audit, 2026-11-02 (point 2.1)"
   severity: medium
   item: "§8 says the hosted app is served by the prediction API; MODEL_API_URL is not set on Streamlit Cloud, so it runs the local frozen bundles"
-  owner: Benson
-  status: Open
+  owner: Henry
+  status: Fixed
   due: 2026-11-06
-  decision: B-G-17
-  fix: {done: "§8 reworded (same frozen bundles; API provided for hosting at '[API URL to be added]')", todo: "Benson fills the API URL in the review doc once the API has one", cr: B-CR-47}
+  decision: B-G-17, B-G-18
+  fix: {done: "§8 reworded (same frozen bundles; API provided for hosting at '[API URL to be added]')", then: "clause and placeholder deleted (lead's choice, B-G-18): 08_deployment.md, review doc rev 48", cr: B-CR-47, B-CR-49}
   verified_by: null
 
 - id: T-11

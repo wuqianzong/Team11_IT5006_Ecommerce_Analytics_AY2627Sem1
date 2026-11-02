@@ -302,3 +302,9 @@ Two views of the app, reading the stored test outputs.
 ### M. Declaration of AI use
 
 The team used Anthropic's Claude (Claude Code) throughout. It wrote and ran most of the pipeline code under the team's instructions, drafted the stage documentation, built the number register, and drafted this report and the slides. The team set the problem, the scope and every decision recorded in the project's decision logs, reviewed each stage before it was accepted, and checked the drafts. Every number in the report is filled from the stored pipeline outputs through the register, never typed; an audit script compares the report and slides against those outputs. Every reference was checked by the team against the publisher's record, and the claims made from each source were checked against that record (literature register).
+
+### N. Reproducing the experiment
+
+The experiment can be rerun from the raw Olist tables with the code in the project repository (https://github.com/wuqianzong/Team11_IT5006_Ecommerce_Analytics_AY2627Sem1, branch main). The README's own Appendix A gives the setup (Python 3.13 and the pinned packages) and a single script that reruns both pipelines at the released version. The script checks that every modelling decision matches the release, and compares every output file with the release. The held-out test is not rerun, because it was read only once; the test results come from the frozen models, which re-predict them to within 1e-9 on any machine.
+
+On the team's reference machine the rerun matches the release byte for byte, apart from seven files made on another machine that differ only by floating-point noise. On other machines, refitted validation scores can differ slightly, because floating-point arithmetic differs between machines; the modelling decisions and test results are unaffected. The README explains these differences.

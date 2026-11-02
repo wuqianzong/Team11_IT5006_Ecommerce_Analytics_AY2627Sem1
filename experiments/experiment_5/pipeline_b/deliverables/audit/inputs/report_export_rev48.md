@@ -1,8 +1,8 @@
-# Team 11 final report v2.1 — delivery time and detractor alerts
+# Team 11 final report v2.2 — delivery time and detractor alerts
 
 Nov 1, 2026 · @Henry
 
-Version 2.1 of the final report, for team review (2 Nov: fixes from Benson's audit of version 2). Seventeen body tables moved to appendix K and their key numbers quoted in the text, so the body fits the page limit; every figure kept. Every number is filled from the Pipeline B register (pipeline\_b/evidence/registry\_B.yaml). Version 1 stays in its own doc; the dated change record is pipeline\_b/deliverables/report/records/CHANGES.md.
+Version 2.2 of the final report, for team review (2 Nov: fixes from Benson's audit of version 2; appendix N and the section 8 hosting sentence from his recheck). Seventeen body tables moved to appendix K and their key numbers quoted in the text, so the body fits the page limit; every figure kept. Every number is filled from the Pipeline B register (pipeline\_b/evidence/registry\_B.yaml). Version 1 stays in its own doc; the dated change record is pipeline\_b/deliverables/report/records/CHANGES.md.
 
 ## Predicting delivery lead time and detractor reviews for Olist orders
 
@@ -375,7 +375,7 @@ The released models predict exactly what was tested, and the dashboard shows onl
 
 **Dashboard.** A Streamlit app with four tabs: a business overview of all orders (descriptive, labelled as a separate scope from the model results), delivery lead time, detractor risk at handover, and ML deployment, which scores the alerted held-out orders. The model tabs read only stored outputs and score held-out historical orders. The alert tab's threshold slider moves Pipeline B's threshold over the stored options (default 4/15) and shows alerts per day, precision, recall and cost; the baseline's fallback stays at its frozen 1/6.
 
-**Using the app.** The app lives in `deliverables/dashboard/app/` with its own pinned environment; `streamlit run app.py`, from that folder or from the repository root, opens it locally (its README gives the commands). The hosted app at https://it5006grp11ecommerce.streamlit.app/ runs the same frozen bundles; a small prediction API that returns exactly what the local models return is provided for hosting at \[API URL to be added\]. Which stored file each tab reads is listed in `deliverables/dashboard/app/DATA_AND_MODEL_SOURCES.md`. On the detractor tab a radio button switches the alert statistics between validation and the test. The ML deployment tab lists the alerted held-out orders in the review order of section 9, with both predictions and two scenarios on the alert's inputs (logistics 10% faster; freight discounts), each labelled as an association, not the effect of the action. The app's tests check the loaders, the router, the stored thresholds and that the alert list matches the stored test predictions without reading a label. Screenshots are in appendix L.
+**Using the app.** The app lives in `deliverables/dashboard/app/` with its own pinned environment; `streamlit run app.py`, from that folder or from the repository root, opens it locally (its README gives the commands). The hosted app at https://it5006grp11ecommerce.streamlit.app/ runs the same frozen bundles. Which stored file each tab reads is listed in `deliverables/dashboard/app/DATA_AND_MODEL_SOURCES.md`. On the detractor tab a radio button switches the alert statistics between validation and the test. The ML deployment tab lists the alerted held-out orders in the review order of section 9, with both predictions and two scenarios on the alert's inputs (logistics 10% faster; freight discounts), each labelled as an association, not the effect of the action. The app's tests check the loaders, the router, the stored thresholds and that the alert list matches the stored test predictions without reading a label. Screenshots are in appendix L.
 
 ## 9 Business recommendations
 
@@ -1302,3 +1302,9 @@ Two views of the app, reading the stored test outputs.
 ### M. Declaration of AI use
 
 The team used Anthropic's Claude (Claude Code) throughout. It wrote and ran most of the pipeline code under the team's instructions, drafted the stage documentation, built the number register, and drafted this report and the slides. The team set the problem, the scope and every decision recorded in the project's decision logs, reviewed each stage before it was accepted, and checked the drafts. Every number in the report is filled from the stored pipeline outputs through the register, never typed; an audit script compares the report and slides against those outputs. Every reference was checked by the team against the publisher's record, and the claims made from each source were checked against that record (literature register).
+
+### N. Reproducing the experiment
+
+The experiment can be rerun from the raw Olist tables with the code in the project repository (https://github.com/wuqianzong/Team11\_IT5006\_Ecommerce\_Analytics\_AY2627Sem1, branch main). The README's own Appendix A gives the setup (Python 3.13 and the pinned packages) and a single script that reruns both pipelines at the released version. The script checks that every modelling decision matches the release, and compares every output file with the release. The held-out test is not rerun, because it was read only once; the test results come from the frozen models, which re-predict them to within 1e-9 on any machine.
+
+On the team's reference machine the rerun matches the release byte for byte, apart from seven files made on another machine that differ only by floating-point noise. On other machines, refitted validation scores can differ slightly, because floating-point arithmetic differs between machines; the modelling decisions and test results are unaffected. The README explains these differences.

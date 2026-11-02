@@ -839,3 +839,14 @@ more on the test than sending no alert, because the test period had fewer detrac
 
 **Not done yet**
 - Benson: §8 API URL (T-12) and Appendix N (T-21) through the report sources first (T-31); doc_support rerun (T-27).
+
+## 2026-11-02 · Henry + Claude · Report v2.2 and merge (B-CR-49)
+
+**Done**
+- Benson's closing reply applied (B-G-18): §8 drops the API clause and placeholder (T-12); Appendix N from his text,
+  with three wording fixes (T-21); doc_support `r06_confusion` recorded as known and unused, no rerun (T-27, lead's
+  decision); report renamed v2.2 (Henry). Sources first, then review doc rev 48 (T-31).
+- `exports/2026-11-02/Team11_final_report_v2.2.docx` (31 pictures, A4); audit input `report_export_rev48.md`.
+
+**Checks**
+- Placeholders resolve; register 375 items; audit 9/9 on the committed inputs (rev 48, deck version 43).
