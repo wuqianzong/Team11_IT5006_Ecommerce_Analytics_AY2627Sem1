@@ -384,6 +384,9 @@
 - {id: F.reg.partition.deck, kind: figure, source: DECK/F.reg.partition.deck.png, caption: "Time-ordered folds and the test period (presentation render)", evidence: "DS.3", used_in: [deck]}
 - {id: F.reg.history_coverage.deck, kind: figure, source: DECK/F.reg.history_coverage.deck.png, caption: "Share of rows with their own seller and route history, by quarter (presentation render)", evidence: "DS.1", used_in: [deck]}
 - {id: F.clf.test_curves.deck, kind: figure, source: DECK/F.clf.test_curves.deck.png, caption: "PR, ROC and reliability curves on B's test rows (presentation render)", evidence: "T1.4", used_in: [deck]}
+# app screenshots on the deck (B-CR-48): the files of report appendix L, recorded by record_screenshots.py
+- {id: S.05_alert_stats_test_4_15, kind: figure, source: SHOT/05_alert_stats_test_4_15.png, caption: "Detractor tab: alert statistics on the test period at 4/15", evidence: "APP.SHOT", used_in: [deck 16]}
+- {id: S.06_ml_deployment_alert_list, kind: figure, source: SHOT/06_ml_deployment_alert_list.png, caption: "ML deployment tab: alerted held-out orders in review order", evidence: "APP.SHOT", used_in: [deck 16]}
 # report v2 (2026-11-01): key values of the tables moved to appendix K, quoted in the body text
 - {id: B6.reg.gain_linear, kind: number, source: b06/regression/outputs/paired_differences.csv, select: {comparison: linear/logistic vs dummy}, value: mean_gain, format: "{:.2f}", evidence: B6.2, used_in: [report 6]}
 - {id: B6.reg.gain_tree, kind: number, source: b06/regression/outputs/paired_differences.csv, select: {comparison: single tree vs linear/logistic}, value: mean_gain, format: "{:.2f}", evidence: B6.2, used_in: [report 6]}

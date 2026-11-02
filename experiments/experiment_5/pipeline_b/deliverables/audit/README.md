@@ -25,16 +25,15 @@ Inputs are read back from the live artifacts (the report doc exported to Markdow
 asset downloaded), never from local copies. `figure_map.json` records which register figure each chart is.
 
 - `inputs/report_export_rev45.md`: the final report v2.1 review doc exported to Markdown at rev 45 (2026-11-02).
-- `inputs/deck/project/`: the 15 slide files and `deck.json` of deck v2.1, version 41 (2026-11-02).
-- `inputs/doc_assets/` (29) and `inputs/deck_assets/` (20): every chart of the report and the deck. Of the deck's
-  20, 18 are presentation renders (`deck/renders/`, register source `DECK/...`, B-CR-43) and 2 are the original
-  stage PNGs.
+- `inputs/deck/project/`: the 16 slide files and `deck.json` of deck v2.1, version 43 (2026-11-02).
+- `inputs/doc_assets/` (29) and `inputs/deck_assets/` (22): every chart of the report and the deck. Of the deck's
+  22, 18 are presentation renders (`deck/renders/`, register source `DECK/...`, B-CR-43), 2 are the original stage
+  PNGs and 2 are app screenshots (register source `SHOT/...`, B-CR-48).
 
 ## Last run
 
-2026-11-02 on the committed inputs (report v2.1 rev 45, deck v2.1 version 41), after B-CR-47 (Benson's report v2 audit):
-all 9 checks PASS (`audit_result.json`). The number check now skips the doc's three header lines, as the text check
-already did (the v2.1 title carries a version number).
+2026-11-02 on the committed inputs (report v2.1 rev 45, deck v2.1 version 43), after B-CR-48 (Benson's v2.1
+recheck): all 9 checks PASS (`audit_result.json`).
 
 ## Expected differences when re-checking
 
@@ -46,6 +45,7 @@ already did (the v2.1 title carries a version number).
 
 ## Earlier runs
 
+- 2026-11-02, report v2.1 rev 45 and deck v2.1 version 41, after B-CR-47: 9/9 (number check skips the doc header).
 - 2026-11-02, report v2 review doc rev 43 and deck v2 version 40 (live copies), after B-CR-47: 9/9.
 
 - 2026-10-31, report rev 73 and deck version 39, after CR-063 / B-CR-46 (line-ending-safe hashes, encoding guard): 9/9.

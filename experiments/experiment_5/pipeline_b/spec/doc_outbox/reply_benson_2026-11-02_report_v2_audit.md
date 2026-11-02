@@ -14,7 +14,8 @@ because the v2.1 title has a number in it.
 
 1. **§8, hosted app (2.1, T-12).** You were right. §8 now says the hosted app runs the same frozen bundles, and that a
    small prediction API returning the same predictions "is provided for hosting at [API URL to be added]". Please put
-   the URL there in the review doc once the API has one. If you also set `MODEL_API_URL` on Streamlit Cloud, change
+   the URL in `deliverables/report/08_deployment.md` once the API has one, then in the review doc (corrected later
+   on 2 Nov: a change typed into the doc alone fails the audit; see the v2.1 recheck reply, T-31). If you also set `MODEL_API_URL` on Streamlit Cloud, change
    "runs the same frozen bundles" to say the app calls the API.
 2. **Reproduction appendix (T-21).** This is yours, because it means reconciling `main`, and our branch cannot do
    that. Results may not match exactly from one machine to another. Someone has to judge each difference and decide

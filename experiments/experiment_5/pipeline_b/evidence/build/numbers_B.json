@@ -3762,7 +3762,7 @@
   "F.A3.reg.cumulative_importance.deck": {
     "kind": "figure",
     "source": "DECK/F.A3.reg.cumulative_importance.deck.png",
-    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "run_id": "20261102T045335Z (DECK/deck_renders)",
     "evidence": "3.9",
     "used_in": [
       "deck"
@@ -3773,7 +3773,7 @@
   "F.A3.clf.cumulative_importance.deck": {
     "kind": "figure",
     "source": "DECK/F.A3.clf.cumulative_importance.deck.png",
-    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "run_id": "20261102T045335Z (DECK/deck_renders)",
     "evidence": "3.9",
     "used_in": [
       "deck"
@@ -3784,7 +3784,7 @@
   "F.A3.reg.correlation_heatmap.deck": {
     "kind": "figure",
     "source": "DECK/F.A3.reg.correlation_heatmap.deck.png",
-    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "run_id": "20261102T045335Z (DECK/deck_renders)",
     "evidence": "3.8",
     "used_in": [
       "deck"
@@ -3795,7 +3795,7 @@
   "F.A3.clf.screen_promise.deck": {
     "kind": "figure",
     "source": "DECK/F.A3.clf.screen_promise.deck.png",
-    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "run_id": "20261102T045335Z (DECK/deck_renders)",
     "evidence": "3.11",
     "used_in": [
       "deck"
@@ -3806,7 +3806,7 @@
   "F.reg.lateness_by_route.deck": {
     "kind": "figure",
     "source": "DECK/F.reg.lateness_by_route.deck.png",
-    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "run_id": "20261102T045335Z (DECK/deck_renders)",
     "evidence": "DS.1",
     "used_in": [
       "deck"
@@ -3817,7 +3817,7 @@
   "F.A3.clf.screen_region.deck": {
     "kind": "figure",
     "source": "DECK/F.A3.clf.screen_region.deck.png",
-    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "run_id": "20261102T045335Z (DECK/deck_renders)",
     "evidence": "3.12",
     "used_in": [
       "deck"
@@ -3828,7 +3828,7 @@
   "F.reg.selection.deck": {
     "kind": "figure",
     "source": "DECK/F.reg.selection.deck.png",
-    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "run_id": "20261102T045335Z (DECK/deck_renders)",
     "evidence": "DS.2",
     "used_in": [
       "deck"
@@ -3839,7 +3839,7 @@
   "F.clf.selection.deck": {
     "kind": "figure",
     "source": "DECK/F.clf.selection.deck.png",
-    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "run_id": "20261102T045335Z (DECK/deck_renders)",
     "evidence": "DS.2",
     "used_in": [
       "deck"
@@ -3850,7 +3850,7 @@
   "F.reg.population.deck": {
     "kind": "figure",
     "source": "DECK/F.reg.population.deck.png",
-    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "run_id": "20261102T045335Z (DECK/deck_renders)",
     "evidence": "DS.5",
     "used_in": [
       "deck"
@@ -3861,7 +3861,7 @@
   "F.clf.confusion.deck": {
     "kind": "figure",
     "source": "DECK/F.clf.confusion.deck.png",
-    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "run_id": "20261102T045335Z (DECK/deck_renders)",
     "evidence": "DS.6",
     "used_in": [
       "deck"
@@ -3872,7 +3872,7 @@
   "F.reg.residuals.deck": {
     "kind": "figure",
     "source": "DECK/F.reg.residuals.deck.png",
-    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "run_id": "20261102T045335Z (DECK/deck_renders)",
     "evidence": "B9.16",
     "used_in": [
       "deck"
@@ -3883,7 +3883,7 @@
   "F.reg.by_state.deck": {
     "kind": "figure",
     "source": "DECK/F.reg.by_state.deck.png",
-    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "run_id": "20261102T045335Z (DECK/deck_renders)",
     "evidence": "B9.3",
     "used_in": [
       "deck"
@@ -3894,7 +3894,7 @@
   "F.reg.buffer_curve.deck": {
     "kind": "figure",
     "source": "DECK/F.reg.buffer_curve.deck.png",
-    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "run_id": "20261102T045335Z (DECK/deck_renders)",
     "evidence": "B12.2",
     "used_in": [
       "deck"
@@ -3905,7 +3905,7 @@
   "F.clf.threshold_options.deck": {
     "kind": "figure",
     "source": "DECK/F.clf.threshold_options.deck.png",
-    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "run_id": "20261102T045335Z (DECK/deck_renders)",
     "evidence": "B9.10",
     "used_in": [
       "deck"
@@ -3916,7 +3916,7 @@
   "F.A2.data_structure.deck": {
     "kind": "figure",
     "source": "DECK/F.A2.data_structure.deck.png",
-    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "run_id": "20261102T045335Z (DECK/deck_renders)",
     "evidence": "2.12",
     "used_in": [
       "deck"
@@ -3927,7 +3927,7 @@
   "F.reg.partition.deck": {
     "kind": "figure",
     "source": "DECK/F.reg.partition.deck.png",
-    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "run_id": "20261102T045335Z (DECK/deck_renders)",
     "evidence": "DS.3",
     "used_in": [
       "deck"
@@ -3938,7 +3938,7 @@
   "F.reg.history_coverage.deck": {
     "kind": "figure",
     "source": "DECK/F.reg.history_coverage.deck.png",
-    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "run_id": "20261102T045335Z (DECK/deck_renders)",
     "evidence": "DS.1",
     "used_in": [
       "deck"
@@ -3949,13 +3949,35 @@
   "F.clf.test_curves.deck": {
     "kind": "figure",
     "source": "DECK/F.clf.test_curves.deck.png",
-    "run_id": "20261030T135524Z (DECK/deck_renders)",
+    "run_id": "20261102T045335Z (DECK/deck_renders)",
     "evidence": "T1.4",
     "used_in": [
       "deck"
     ],
     "file": "evidence/build/figures/F.clf.test_curves.deck.png",
     "caption": "PR, ROC and reliability curves on B's test rows (presentation render)"
+  },
+  "S.05_alert_stats_test_4_15": {
+    "kind": "figure",
+    "source": "SHOT/05_alert_stats_test_4_15.png",
+    "run_id": "20261102T045456Z (SHOT/2026-10-30)",
+    "evidence": "APP.SHOT",
+    "used_in": [
+      "deck 16"
+    ],
+    "file": "evidence/build/figures/S.05_alert_stats_test_4_15.png",
+    "caption": "Detractor tab: alert statistics on the test period at 4/15"
+  },
+  "S.06_ml_deployment_alert_list": {
+    "kind": "figure",
+    "source": "SHOT/06_ml_deployment_alert_list.png",
+    "run_id": "20261102T045456Z (SHOT/2026-10-30)",
+    "evidence": "APP.SHOT",
+    "used_in": [
+      "deck 16"
+    ],
+    "file": "evidence/build/figures/S.06_ml_deployment_alert_list.png",
+    "caption": "ML deployment tab: alerted held-out orders in review order"
   },
   "B6.reg.gain_linear": {
     "kind": "number",

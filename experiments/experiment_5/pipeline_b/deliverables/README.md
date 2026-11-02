@@ -24,4 +24,5 @@ A figure changes only by re-uploading the rebuilt PNG (blobs are immutable).
 - Deck: v2.1 https://claude.ai/artifact/NBiGTdX9JKB5kAeeX34gvc (current; v2 until 2 Nov, B-CR-47); v1 https://claude.ai/artifact/VtyNdrjEovfAvycTPmvy23 (Henry's account, private until shared). 12 slides; titles,
   text and tables are editable; charts are uploaded register PNGs (validation_and_test ×2, population, residuals,
   threshold_options, partition).
-- Placeholder: app screenshot and live URL on slide "deploy".
+- Slide 16 "app" carries the app screenshots (appendix L files, register S.05/S.06), the live URL and the repository
+  link (B-CR-48); 16 slides.

@@ -821,3 +821,21 @@ more on the test than sending no alert, because the test period had fewer detrac
 
 **Not done yet**
 - Benson: API URL in §8 (T-12), reproduction appendix review (T-21).
+
+## 2026-11-02 · Henry + Claude · Benson's v2.1 recheck
+
+**Done**
+- Validated Benson's recheck (`deliverables/audit/runs/2026-11-02_benson_v2.1_recheck.md`): report v2.1 fixes every
+  v2 finding (T-13 to T-20, T-22, T-23 now Verified); deck findings T-26 to T-30 confirmed; fixes B-CR-48.
+- Slide 12 doubled counts: `doc_support.pooled_confusion()` with tests; the deck render reads b08's pooled rows.
+  A doc_support rerun here did not reproduce the 25 Oct run (Python 3.13.7 vs 3.13.9: last-digit floats, row order,
+  one check failed), so it was reverted; rerun in the run's environment is T-27 (outputs not used in report or deck).
+- Deck v2.1 version 43: slide 16 (appendix L screenshots, app URL, repository link), footers n/16, slide 11 footer.
+  Screenshots traced via the new `SHOT/` register root. Register 375 items. `Team11_final_deck_v2.1.pptx` re-exported
+  from Henry's Chrome (basic fonts, 16 slides).
+
+**Checks**
+- Audit 9/9 on the committed inputs (report rev 45, deck version 43, 22 deck images); tests 36 passed, 5 skipped.
+
+**Not done yet**
+- Benson: §8 API URL (T-12) and Appendix N (T-21) through the report sources first (T-31); doc_support rerun (T-27).

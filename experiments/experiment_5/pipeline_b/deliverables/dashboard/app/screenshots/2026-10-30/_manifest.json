@@ -1,0 +1,20 @@
+{
+  "node": "SHOT/2026-10-30",
+  "run_id": "20261102T045456Z",
+  "commit": "f9de84fac0d784f644adb13c2f980d2acd6a5c60",
+  "dirty": false,
+  "inputs": {},
+  "code": {
+    "experiments/experiment_5/pipeline_b/deliverables/dashboard/app/screenshots/record_screenshots.py": "ff7ed9b3b81dbd96c1a8cbbb246ca01d8beb68ef2f21eee303573fda9055e372"
+  },
+  "outputs": {
+    "experiments/experiment_5/pipeline_b/deliverables/dashboard/app/screenshots/2026-10-30/01_business_overview.png": "923af942efda8d2d939c907857cf36519f6abb63bd9e53609eb150b94da617cc",
+    "experiments/experiment_5/pipeline_b/deliverables/dashboard/app/screenshots/2026-10-30/02_lead_time_headline.png": "0c3f7c1e8b2b4aca05f996a621dac3373bd0cf542e025291b600920fefeb6b5b",
+    "experiments/experiment_5/pipeline_b/deliverables/dashboard/app/screenshots/2026-10-30/03_promise_buffer.png": "d99dc7735d923ba69f89ba881e4f98ea6eef8baa99cd7cd4afd512612ce21a2a",
+    "experiments/experiment_5/pipeline_b/deliverables/dashboard/app/screenshots/2026-10-30/04_detractor_headline.png": "cb48b47327a4a6f02151eef44ad0bae2d0c2ad99a036e700f2fbc8701d328de8",
+    "experiments/experiment_5/pipeline_b/deliverables/dashboard/app/screenshots/2026-10-30/05_alert_stats_test_4_15.png": "4b152ad4f0180977a05a41a779405da0b950874f3622ee3010a9247565c21099",
+    "experiments/experiment_5/pipeline_b/deliverables/dashboard/app/screenshots/2026-10-30/06_ml_deployment_alert_list.png": "ecd1ef70cb272b1069dafcb10a9db8e922c70bfd6463cb8834e705ab2f8d3f17",
+    "experiments/experiment_5/pipeline_b/deliverables/dashboard/app/screenshots/2026-10-30/07_ml_deployment_order_details.png": "1c4c867c175bbfa14a924e434cdaba5d71043f008553edc23a1e25bcd8a6772c",
+    "experiments/experiment_5/pipeline_b/deliverables/dashboard/app/screenshots/2026-10-30/08_ml_deployment_scenarios.png": "66f79941a06f6820c0426eb77e2acca002f27c90b6198fbfa8d6438844948f2e"
+  }
+}

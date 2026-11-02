@@ -8,7 +8,7 @@
     {
       "check": "deck charts: every <img> on a slide is mapped, and equals its register figure and stage output",
       "passed": true,
-      "detail": "20 images"
+      "detail": "22 images"
     },
     {
       "check": "deck slides: each live slide equals a fresh fill of its template (no hand-typed or stale number)",
@@ -49,20 +49,21 @@
   "passed": true,
   "doc_sha256": "c6864687196e40f3e97632913c86be6c217e7bc60ad6d75fbdb0fdc7260d8692",
   "deck_slides": {
-    "a_features.html": "8aca840addfd20c1454e9d89a2ffce7e1d88fc2225021b702687c8127ff008a9",
-    "a_limits.html": "a1fd02836ed0d7b742f98b8d68074f5b7bf10a5901d98951a7cc2bfedce9cb67",
-    "a_models.html": "e86a2bc2e0fe650d0c31afcee3cd6dd2a0068bee6cfb847718356d32bf88a601",
-    "a_select.html": "ad21c1e20a1753137263a139506ec980e145133f55672991b71c9337eb368d89",
-    "b_features.html": "41723ab0f97725b038e1411dba4083560332a7ec203e662dffb42bdff73af397",
-    "b_scope.html": "28ded7731dc00a2820cce6dcf5023205d87c8a61344eedb192d6a396ebad834d",
+    "a_features.html": "1f6a0afdbe5f23bdd2903969e74609b534803259132e41506fe9ffbb25355114",
+    "a_limits.html": "de7c773956974b4abd189a5565d5373607f44aa315c8830a236c2aa1317262d3",
+    "a_models.html": "c38f31baccc3d126f65ef693ee235e32d6be438efeeb8c163eda62bac7703e77",
+    "a_select.html": "40ecacb59e1677df394f64b8de3a79afabff477e994bd203d26d76b421250087",
+    "app.html": "70a1d46734fe5c82ee51101da6486da8fdfe062e79cb447068aac7fa95fcd4f0",
+    "b_features.html": "de0ac89fc927bb4dc5ca7e907cecd4fcfd035d057d68129ef1abd3290f3816d2",
+    "b_scope.html": "e439dec23d8a56956657b3446702d65ff9e01bb5c40109a7058bbafdf12b5053",
     "cover.html": "883011438ab2d5e57752776e83422dbed425927cef26c8b800d51aa0a67a0571",
-    "data.html": "7299cb67242db130626a69f64e2b416afa54b5e73febeca68465b63c8cf3a6de",
-    "eda.html": "77ca77e8511ac9e77d583530cf3cc48935f40250bbadeb140e185ceba38b3872",
-    "prep.html": "6cfc0eec86c297cc94adefdce4c1a21f77b51e7afcadffcfcdb843a65d9cc396",
-    "problem.html": "04a21a302ab6c80a17e900d0f9ca57a2b12dd0e91845dbc0ff1025c22e6704c6",
-    "test_clf.html": "34b5f8a2922d9ab40c00d14bf61e72409af989c11b1c7d33459ad13edd0aaff9",
-    "test_reg.html": "de9d9e3d80e2501cf520867f809de9d165700c17ab3160f6ec19d98275a45ee4",
-    "use.html": "c378dfb9e44318e777a65311301daed93026f5f51b41042095cff175074d5887",
-    "validation.html": "619c900b6f40e3cf9ff6f40991b256a444ce62cbc469049ffd80077d0a05103c"
+    "data.html": "6aea6842c1a6838b9433d9ebe34df78f72228302461bf8159fa030878c5b6e18",
+    "eda.html": "057bc5d3b2e2a2cbf6c4348c590111da11a4dba95dd7d7a723d239806e6f435c",
+    "prep.html": "cf79de80ef402e2f85c2e1791b729ce9ac777d413f63b74a34e85465be5df262",
+    "problem.html": "7d52f1a4a80d73a396bef57a2e55b788038a78ee80c5f5d40e653de0532bdfbf",
+    "test_clf.html": "fbac67f0647143e2f2af85041aee3afd6a698b293afa599afef92e08744dfc12",
+    "test_reg.html": "4e4bc4fead31e2e27ed6f71cf9d360c28782edfb4e93b877af7f7ce55872c920",
+    "use.html": "bd857ddc6158df69450bbcc025afdc592d67618b2b9525bfbe23607d7e04a56d",
+    "validation.html": "91975795d2f6c339218d05bdd3ae13f47b4986edd096c6e246dc03d18317d3fb"
   }
 }
