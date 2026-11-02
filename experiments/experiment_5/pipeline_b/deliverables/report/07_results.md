@@ -1,10 +1,10 @@
 ## 7 Results
 
-On the same test orders Pipeline B beats Pipeline A in both tasks. Validation scores were used to choose the models, so they are optimistic selection scores; only the test, read once, is an unbiased estimate. Fold-by-fold validation results and the test are shown together, each with its time window, because each fold is itself a later period that the model had not seen.
+On the same test orders Pipeline B beats Pipeline A in both tasks. Validation scores were used to choose the models, so they are optimistic selection scores; only the test, read once, is an unbiased estimate.
 
 ### 7.1 Delivery lead time
 
-*Table 17. Delivery lead time, validation and test results.*
+*Table 3. Delivery lead time, validation and test results.*
 
 | | Validation MAE (selection) | Test MAE [95% interval] | Test RMSE | Test R² | Within 3 days (test) |
 | --- | --- | --- | --- | --- | --- |
@@ -20,17 +20,13 @@ Pipeline B's MAE minus Pipeline A's is {{B9.reg.mae_diff}} days on the same {{T1
 
 *Figure: Residuals on the test orders, Pipeline B and Pipeline A (F.reg.residuals).*
 
-**Where it errs.** Slices are judged only with at least 100 test orders. Pipeline B is better than Pipeline A in every judged customer state, distance band and basket size, on {{B9.reg.routes_B_better}} of the {{B9.reg.routes_judged}} routes with enough orders, and in most months:
-
-*Table 18. Lead-time error by slice, test orders.*
-
-{{table:B9.reg.slices_aggregate}}
+**Where it errs.** Slices are judged only with at least 100 test orders. Pipeline B is better than Pipeline A in every judged customer state, distance band and basket size, on {{B9.reg.routes_B_better}} of the {{B9.reg.routes_judged}} routes with enough orders, and in most months (Table K14).
 
 *Figure: Lead-time error by customer state (F.reg.by_state).*
 
 ### 7.2 Detractor alert
 
-*Table 19. Detractor alert, validation and test results.*
+*Table 4. Detractor alert, validation and test results.*
 
 | | Validation AP (selection) | Test AP [95% interval] | Test ROC-AUC | Test Brier |
 | --- | --- | --- | --- | --- |
@@ -49,30 +45,21 @@ Pipeline B ranks detractors better by {{B9.clf.ap_diff}} AP (paired interval {{B
 
 *Figure: Detractor alert by customer state (F.clf.by_state).*
 
-**Label choice.** Scored against the first review instead of the lowest, both pipelines' results change only in the fourth decimal (section 3), so the label rule does not drive the comparison.
-
 ### 7.3 Where the gain comes from
 
-Pipeline B changed three things at once: the scope, the features and, for the alert, the prediction moment. Scoring Pipeline A's frozen model on Pipeline B's own validation rows separates the scope effect from the rest (five-fold means):
+Pipeline B changed three things at once: the scope, the features and, for the alert, the prediction moment. Scoring Pipeline A's frozen model on Pipeline B's own validation rows separates the scope effect from the rest (five-fold means, Table K15).
 
-*Table 20. Where the gain comes from: validation scores by population.*
-
-| | Pipeline A, all states | Pipeline A, seven-state rows | Pipeline B, seven-state rows |
-| --- | --- | --- | --- |
-| Lead time, MAE (days) | {{B8.reg.pop_A_on_A}} | {{B8.reg.pop_A_on_B}} | {{B8.reg.pop_B_on_B}} |
-| Detractor alert, AP | {{B8.clf.pop_A_on_A}} | {{B8.clf.pop_A_on_B}} | {{B8.clf.pop_B_on_B}} |
-
-For lead time most of the lower error comes from the narrower scope, because Pipeline A is already better on the seven-state rows, and the rest from the new features. For the alert the scope changes almost nothing, so the gain comes from the history features and the later prediction moment. ROC-AUC and Brier by population are in appendix E.
+For lead time, Pipeline A's MAE falls from {{B8.reg.pop_A_on_A}} days on all states to {{B8.reg.pop_A_on_B}} on the seven-state rows, and Pipeline B reaches {{B8.reg.pop_B_on_B}}: most of the lower error comes from the narrower scope, the rest from the new features. For the alert, on the calibrated scale of Table 4, Pipeline A's AP barely moves ({{B8.clf.pop_A_on_A}} to {{B8.clf.pop_A_on_B}}) while Pipeline B reaches {{B8.clf.pop_B_on_B}}, so the gain comes from the history features and the later prediction moment. ROC-AUC and Brier by population are in appendix E.
 
 *Figure: Where the gain comes from: scope vs features (F.reg.population).*
 
 ### 7.4 What the models rely on, and drift
 
-Permutation importance measures how much each feature contributes to the frozen model on the test orders: the score lost when the feature is shuffled. For lead time the seller's earlier dispatch days, the route and the distance rank highest, so the seller's own delay matters at least as much as the journey. For the alert, the number of sellers in the order and the route's recent delivery and transit times rank above this order's handover delay, so route conditions and basket complexity carry more signal about a bad review than the dispatch delay alone. These are associations in the frozen model, not causes.
+Permutation importance is the test score the frozen model loses when a feature is shuffled. For lead time the seller's earlier dispatch days, the route and the distance rank highest, so the seller's own delay matters at least as much as the journey. For the alert, the number of sellers in the order and the route's recent delivery and transit times rank above this order's handover delay, so route conditions and basket complexity carry more signal about a bad review than the dispatch delay alone. These are associations in the frozen model, not causes.
 
 *Figure: Permutation importance, lead time (F.reg.importance) and detractor alert (F.clf.importance).*
 
-This ranking differs from the selection ranking of section 5.3: Spearman correlation {{B9.reg.rank_spearman}} for lead time and {{B9.clf.rank_spearman}} for the alert, with {{B9.reg.rank_top10}} and {{B9.clf.rank_top10}} of the top ten features shared. The difference is expected: selection scored one feature at a time on development orders, whereas importance measures each feature inside the fitted model on the test period, where correlated features share credit.
+This ranking differs from the selection ranking of section 5.3: Spearman correlation {{B9.reg.rank_spearman}} for lead time and {{B9.clf.rank_spearman}} for the alert, with {{B9.reg.rank_top10}} and {{B9.clf.rank_top10}} of the top ten features shared. This is expected: selection scored one feature at a time on development orders, while importance is measured inside the fitted model, where correlated features share credit.
 
 *Figure: Coefficients, lead time (F.reg.coefficients); odds ratios, detractor alert (F.clf.coefficients).*
 

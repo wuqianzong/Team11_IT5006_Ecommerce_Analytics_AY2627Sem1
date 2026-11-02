@@ -7,7 +7,7 @@ environment (`.venv`, pandas 3.0.1; `requirements-audit.txt` here pins the extra
 tests and the audit pack need):
 
 ```
-.venv/Scripts/python.exe pipeline_b/audit_deliverables_B.py --doc pipeline_b/deliverables/audit/inputs/report_export_rev73.md --deck pipeline_b/deliverables/audit/inputs/deck --doc-assets pipeline_b/deliverables/audit/inputs/doc_assets --deck-assets pipeline_b/deliverables/audit/inputs/deck_assets
+.venv/Scripts/python.exe pipeline_b/audit_deliverables_B.py --doc pipeline_b/deliverables/audit/inputs/report_export_rev48.md --deck pipeline_b/deliverables/audit/inputs/deck --doc-assets pipeline_b/deliverables/audit/inputs/doc_assets --deck-assets pipeline_b/deliverables/audit/inputs/deck_assets
 ```
 
 (`.venv/bin/python` on macOS or Linux.)
@@ -24,16 +24,16 @@ Benson's recheck.
 Inputs are read back from the live artifacts (the report doc exported to Markdown; deck slide files and every chart
 asset downloaded), never from local copies. `figure_map.json` records which register figure each chart is.
 
-- `inputs/report_export_rev73.md`: the final report review doc exported to Markdown at rev 73 (2026-10-31).
-- `inputs/deck/project/`: the 15 slide files and `deck.json` of deck v2, version 39 (2026-10-31).
-- `inputs/doc_assets/` (29) and `inputs/deck_assets/` (20): every chart of the report and the deck. Of the deck's
-  20, 18 are presentation renders (`deck/renders/`, register source `DECK/...`, B-CR-43) and 2 are the original
-  stage PNGs.
+- `inputs/report_export_rev48.md`: the final report v2.2 review doc exported to Markdown at rev 48 (2026-11-02).
+- `inputs/deck/project/`: the 16 slide files and `deck.json` of deck v2.1, version 43 (2026-11-02).
+- `inputs/doc_assets/` (29) and `inputs/deck_assets/` (22): every chart of the report and the deck. Of the deck's
+  22, 18 are presentation renders (`deck/renders/`, register source `DECK/...`, B-CR-43), 2 are the original stage
+  PNGs and 2 are app screenshots (register source `SHOT/...`, B-CR-48).
 
 ## Last run
 
-2026-10-31 on the committed inputs (report rev 73, deck version 39), after the cover pages gained the group
-members' names and the course: all 9 checks PASS (`audit_result.json`).
+2026-11-02 on the committed inputs (report v2.2 rev 48, deck v2.1 version 43), after B-CR-49 (§8 and appendix N):
+all 9 checks PASS (`audit_result.json`).
 
 ## Expected differences when re-checking
 
@@ -44,6 +44,11 @@ members' names and the course: all 9 checks PASS (`audit_result.json`).
   "header kept".
 
 ## Earlier runs
+
+- 2026-11-02, report v2.1 rev 45 and deck v2.1 version 43, after B-CR-48: 9/9.
+
+- 2026-11-02, report v2.1 rev 45 and deck v2.1 version 41, after B-CR-47: 9/9 (number check skips the doc header).
+- 2026-11-02, report v2 review doc rev 43 and deck v2 version 40 (live copies), after B-CR-47: 9/9.
 
 - 2026-10-31, report rev 73 and deck version 39, after CR-063 / B-CR-46 (line-ending-safe hashes, encoding guard): 9/9.
 

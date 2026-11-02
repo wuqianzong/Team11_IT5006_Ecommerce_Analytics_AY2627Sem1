@@ -769,3 +769,84 @@ more on the test than sending no alert, because the test period had fewer detrac
 **Questions for Benson**
 - The register build also changed `registry_sha256` in `build_manifest.json`: the committed build predated e35c041's
   registry edit. Accept as part of B-CR-46?
+
+## 2026-11-01 · Henry + Claude · final report v2 (page limit)
+
+**Done**
+- Measured v1 in the brief's format (12 pt, single-spaced, A4): body 24 pages; the doc's own Word export (Letter,
+  Calibri 11) runs to 31 and drops 15 of the 31 pictures (filled back from the register PNGs, hashes equal).
+- Report v2: new review doc https://claude.ai/artifact/USWnVhiKr35AqXwc4zQHAw (pictures copied from v1's assets);
+  v1 sources frozen in `deliverables/report_v1/`. 17 body tables moved to appendix K, key numbers quoted in the
+  text (21 new register items, 373 built); cover and §8 take the team's doc edits (app URL, branch). Record in
+  `report/records/CHANGES.md`.
+- Submission copies: `deliverables/exports/2026-11-01/Team11_final_report_v2.docx` and `.pdf` (A4, 2 cm,
+  Times New Roman 12 pt, tables 10 pt, charts 5.5 in or 4.2 in when near-square, cover on its own page).
+  Body pages 2–21 = 20 pages.
+- Trimmed about one page of prose (Henry: room under the limit), no number, table or figure removed; review doc
+  rev 27. Submission copy body now pages 2–20 = 19 pages, ending 72% down page 20.
+
+**Checks**
+- Placeholders resolve; deliverables audit 9/9 on the v2 export (rev 2, and again at rev 27 after the trim) with
+  the committed deck inputs.
+
+**Not done yet**
+- Audit inputs and `figure_map.json` still describe v1 (rev 73); refresh them for v2 when v2 is accepted.
+- WU QIANZONG's matriculation number, added to v1's cover in the doc, is not in v2: Henry to decide.
+- Deck v2 PowerPoint export: needs claude.ai sign-in in the browser pane.
+
+## 2026-11-02 · Henry + Claude · Benson's report v2 audit
+
+**Done**
+- Triage of Benson's audit (`deliverables/audit/runs/2026-11-02_benson_report_v2_audit.md`); Henry's decisions B-G-17;
+  findings T-12 to T-25; fixes B-CR-47.
+- Root cause of the two validation AP values: `B8.clf.pop_*` read b08 `population_summary.csv`, which holds the raw AP
+  of the adoption rule (G-79, set at the gate before B-G-05). B-G-05 added the sigmoid rows to
+  `metrics_by_population.csv` but the register was never re-pointed. Now sigmoid (0.232 / 0.230 / 0.248, equal to
+  B9.clf.val_ap_*); adoption gains stay raw and say so. The b08 code comment that calibration cannot change AP is wrong
+  for refits on inner splits; recorded here, the frozen code is not edited.
+- Report sources, register (373 items), review doc rev 43 (also Table K15 cells and Figure 4 alt text), deck v2
+  version 40 (slide 12).
+- Both renamed v2.1 (Henry): review doc title and note (rev 45), deck title (version 41);
+  `exports/2026-11-02/Team11_final_report_v2.1.docx` (31 pictures, A4; no PDF on this side).
+- Audit inputs refreshed: `inputs/report_export_rev45.md` (rev73 removed), deck slides and index of version 41 (only
+  `deck.json` and `validation.html` differ). `audit_deliverables_B.py`: the number check skips the doc's three header
+  lines, as the text check already did, because the v2.1 title carries a number.
+
+**Checks**
+- Placeholders resolve; deliverables audit 9/9 on the committed inputs (rev 45, version 41); Pipeline B tests and
+  the guard tests pass (33 passed, 5 skipped).
+
+- Deck v2.1 exported from Henry's Chrome (Export › PowerPoint › Basic fonts, as v2):
+  `exports/2026-11-02/Team11_final_deck_v2.1.pptx`, 15 slides, slide 12 shows 0.232 / 0.230 / 0.248.
+
+**Not done yet**
+- Benson: API URL in §8 (T-12), reproduction appendix review (T-21).
+
+## 2026-11-02 · Henry + Claude · Benson's v2.1 recheck
+
+**Done**
+- Validated Benson's recheck (`deliverables/audit/runs/2026-11-02_benson_v2.1_recheck.md`): report v2.1 fixes every
+  v2 finding (T-13 to T-20, T-22, T-23 now Verified); deck findings T-26 to T-30 confirmed; fixes B-CR-48.
+- Slide 12 doubled counts: `doc_support.pooled_confusion()` with tests; the deck render reads b08's pooled rows.
+  A doc_support rerun here did not reproduce the 25 Oct run (Python 3.13.7 vs 3.13.9: last-digit floats, row order,
+  one check failed), so it was reverted; rerun in the run's environment is T-27 (outputs not used in report or deck).
+- Deck v2.1 version 43: slide 16 (appendix L screenshots, app URL, repository link), footers n/16, slide 11 footer.
+  Screenshots traced via the new `SHOT/` register root. Register 375 items. `Team11_final_deck_v2.1.pptx` re-exported
+  from Henry's Chrome (basic fonts, 16 slides).
+
+**Checks**
+- Audit 9/9 on the committed inputs (report rev 45, deck version 43, 22 deck images); tests 36 passed, 5 skipped.
+
+**Not done yet**
+- Benson: §8 API URL (T-12) and Appendix N (T-21) through the report sources first (T-31); doc_support rerun (T-27).
+
+## 2026-11-02 · Henry + Claude · Report v2.2 and merge (B-CR-49)
+
+**Done**
+- Benson's closing reply applied (B-G-18): §8 drops the API clause and placeholder (T-12); Appendix N from his text,
+  with three wording fixes (T-21); doc_support `r06_confusion` recorded as known and unused, no rerun (T-27, lead's
+  decision); report renamed v2.2 (Henry). Sources first, then review doc rev 48 (T-31).
+- `exports/2026-11-02/Team11_final_report_v2.2.docx` (31 pictures, A4); audit input `report_export_rev48.md`.
+
+**Checks**
+- Placeholders resolve; register 375 items; audit 9/9 on the committed inputs (rev 48, deck version 43).

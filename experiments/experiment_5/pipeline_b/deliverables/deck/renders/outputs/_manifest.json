@@ -1,16 +1,16 @@
 {
   "node": "DECK/deck_renders",
-  "run_id": "20261030T135524Z",
-  "commit": "d431589f608d73ead99d32044b1099997cfc6332",
+  "run_id": "20261102T045335Z",
+  "commit": "f9de84fac0d784f644adb13c2f980d2acd6a5c60",
   "dirty": false,
   "inputs": {
+    "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/confusion_comparison.csv": "60cb9727b3b8c7b214676ffffb31839cfa5c320ef23a9bee3de334904247e869",
     "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/figures/threshold_options.csv": "c28c37205f607ec8ca2b6e680da33cb7a02ac79d5f9b804d59f7454676dd85f2",
     "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/by_customer_state.csv": "8712066d5912a6aca432e9f1efa44b42a407f4009023c694f841501109d6ffe6",
     "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/residuals.csv": "97aab8ae50aa38cdadf1a8922efdb2a7cc80fe9b687e55839ab4618eaab35038",
     "experiments/experiment_5/pipeline_b/stages/b12/regression/outputs/buffer_choice.csv": "deec20950de2db04ebbe96f504729db632a36c5de76a133fe8b9a4499c6667e2",
     "experiments/experiment_5/pipeline_b/stages/b12/regression/outputs/figures/buffer_curve.csv": "d73e37840c67af29090c5065b3514bea89b17a8f6bf309b76b724f69121a93a3",
     "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/b4_selection.csv": "b895bd2bbd0106db0d9590d237d2f5e1a7f83bd57eaf7d9841583c746127e056",
-    "experiments/experiment_5/pipeline_b/stages/doc_support/classification/outputs/figures/r06_confusion.csv": "f2ce6d4e9f4883fed89d59a889139b3ddec1dcd7bf8f1e3f1a3873d3bb7932d0",
     "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/figures/b2_history_coverage.csv": "79e1860613170e7766ec65b52c3004ab9e528bd322a53ac576d1ee8e195c80bd",
     "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/figures/b2_lateness_by_route.csv": "1e382660d1a9703376f07c6ba67b78b58f9da5810ee7593a632ecd4215976e62",
     "experiments/experiment_5/pipeline_b/stages/doc_support/regression/outputs/figures/b4_selection.csv": "f2a7ed7e1c2046441cee06ad1c52a884238f7812f638f6c060440f76a1a569c1",
@@ -29,7 +29,7 @@
     "experiments/experiment_5/stages/s05_partition/regression/outputs/counts.json": "03c8f87457529b5cf75fb0ed50c37a51db73f9903a0809cbb3ba3fb3af97e869"
   },
   "code": {
-    "experiments/experiment_5/pipeline_b/deliverables/deck/renders/make_deck_renders.py": "d66e78b6997728e218bdd55b1d30978c652250a50eb061a4e532e9a0e87d1f7b"
+    "experiments/experiment_5/pipeline_b/deliverables/deck/renders/make_deck_renders.py": "5bb32283b7283a3285b39f21cb6e44966de9afe424c52a5aebe4f04b553b21a8"
   },
   "outputs": {
     "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/_evidence_index.json": "4b53d723550e96caf1e93c2b4810823df1d41f9894e5963fe87c228ab91c9712",
@@ -39,7 +39,7 @@
     "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.A3.clf.screen_region.deck.png": "a9de0390f03060edb4b1bb646ac93ae5927aee4acb21aeebd376d8315c1861d3",
     "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.A3.reg.correlation_heatmap.deck.png": "304e9ddd4e5a7e77a1e01dcbe5b6c9b99aecb835f1e7bb61cbdf6e9de62e2176",
     "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.A3.reg.cumulative_importance.deck.png": "e42a2cb23e213ef72275b8835aa642329fd0539811cb1a06c3b2d04e3cee619f",
-    "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.clf.confusion.deck.png": "d4ba0dc42eefaeaf816de66ccbd700863b712beaa755367e998753ac81478670",
+    "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.clf.confusion.deck.png": "1451180219a569ddaa3c48ee5f8d214a132df8237b1d1857d5fd098a79c22a2c",
     "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.clf.selection.deck.png": "e184c288327e77f286049cebcf230161837fe558b664219aece4bff03037d1f4",
     "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.clf.test_curves.deck.png": "068d2a8186fb9512807d9f72ec09095898b0992f9d56e36faea9b55ec40ed460",
     "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.clf.threshold_options.deck.png": "3e5771752ba37b22ecffc7a12d2f1e873ca3e840bebc75a36afe2f2fbb90d0f3",

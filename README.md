@@ -576,6 +576,6 @@ stage outputs (B9, B10, B12, T1) and the frozen T1 model bundles.
 The report and slides contain no hand-typed numbers: each number, table and figure has an ID in
 `experiments/experiment_5/pipeline_b/evidence/registry_B.yaml`, and is accepted only if its source file
 matches the hash in the current run's manifest. The built register is `pipeline_b/evidence/build/`
-(`numbers_B.json`, tables, figures). The deliverables audit (9 checks, all passing on report revision 73 and
-deck version 39) and the command to rerun it are in
+(`numbers_B.json`, tables, figures). The deliverables audit (9 checks, all passing on report v2.2, review doc
+revision 48, and deck v2.1, version 43) and the command to rerun it are in
 [`experiments/experiment_5/pipeline_b/deliverables/audit/README.md`](experiments/experiment_5/pipeline_b/deliverables/audit/README.md).

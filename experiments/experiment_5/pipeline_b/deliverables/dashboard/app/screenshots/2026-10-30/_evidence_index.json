@@ -1,0 +1,53 @@
+{
+  "node": "SHOT/2026-10-30",
+  "files": {
+    "01_business_overview.png": {
+      "ids": [
+        "APP.SHOT"
+      ],
+      "kind": "figure"
+    },
+    "02_lead_time_headline.png": {
+      "ids": [
+        "APP.SHOT"
+      ],
+      "kind": "figure"
+    },
+    "03_promise_buffer.png": {
+      "ids": [
+        "APP.SHOT"
+      ],
+      "kind": "figure"
+    },
+    "04_detractor_headline.png": {
+      "ids": [
+        "APP.SHOT"
+      ],
+      "kind": "figure"
+    },
+    "05_alert_stats_test_4_15.png": {
+      "ids": [
+        "APP.SHOT"
+      ],
+      "kind": "figure"
+    },
+    "06_ml_deployment_alert_list.png": {
+      "ids": [
+        "APP.SHOT"
+      ],
+      "kind": "figure"
+    },
+    "07_ml_deployment_order_details.png": {
+      "ids": [
+        "APP.SHOT"
+      ],
+      "kind": "figure"
+    },
+    "08_ml_deployment_scenarios.png": {
+      "ids": [
+        "APP.SHOT"
+      ],
+      "kind": "figure"
+    }
+  }
+}

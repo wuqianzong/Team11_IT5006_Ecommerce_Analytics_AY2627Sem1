@@ -1,8 +1,8 @@
-# Team 11 final report — delivery time and detractor alerts
+# Team 11 final report v2.2 — delivery time and detractor alerts
 
-Oct 26, 2026 · @Henry
+Nov 1, 2026 · @Henry
 
-Draft for team review. Every number is filled from the Pipeline B register (pipeline\_b/evidence/registry\_B.yaml); comment on any point. Revised: the full report written to plan v2, with the alert review order in section 9 and references checked against publisher records, and every cited claim re-audited; the dated change record is pipeline\_b/deliverables/report/records/CHANGES.md, and earlier drafts stay in the doc history.
+Version 2.2 of the final report, for team review (2 Nov: fixes from Benson's audit of version 2; appendix N and the section 8 hosting sentence from his recheck). Seventeen body tables moved to appendix K and their key numbers quoted in the text, so the body fits the page limit; every figure kept. Every number is filled from the Pipeline B register (pipeline\_b/evidence/registry\_B.yaml). Version 1 stays in its own doc; the dated change record is pipeline\_b/deliverables/report/records/CHANGES.md.
 
 ## Predicting delivery lead time and detractor reviews for Olist orders
 
@@ -24,9 +24,11 @@ IT5006 Fundamentals Of Data Analytics
 
 AY2026/2027 Semester 1
 
-**Application:** \[live URL, added once the app is hosted\]
+**Application:** https://it5006grp11ecommerce.streamlit.app/
 
 **GitHub repository:** https://github.com/wuqianzong/Team11\_IT5006\_Ecommerce\_Analytics\_AY2627Sem1
+
+**Branch:** main or milestone-3
 
 **Submitted:** 8 November 2026
 
@@ -44,7 +46,7 @@ For each Olist order the business needs two answers: how many days delivery will
 | Share of orders predicted within 3 days | 57.6% | 44.3% |  |
 | Detractor ranking, average precision (higher is better) | 0.197 | 0.178 | +0.0187 \[+0.0089, +0.0291\] |
 
-Pipeline B is better on the same test orders in both tasks, and both intervals exclude zero. For lead time most of the gain comes from the narrower scope, the rest from the new features; for the alert it comes from the features and the later moment. Orders outside the seven states are served by Pipeline A's frozen model.
+Pipeline B is better on the same test orders in both tasks, and both intervals exclude zero. On the validation folds, most of the lead-time gain comes from the narrower scope, the rest from the new features; for the alert it comes from the features and the later moment. Orders outside the seven states are served by Pipeline A's frozen model.
 
 **Use.** Show delivery promises as a range around the prediction; alert customer service at handover (about 20.5 alerts a day on the test, including the fallback); flag orders whose shipping limit passes without a handover.
 
@@ -54,7 +56,7 @@ Pipeline B is better on the same test orders in both tasks, and both intervals e
 
 Olist is a Brazilian marketplace: independent sellers ship each order to the customer through a carrier, and the customer reviews the purchase afterwards. Two things go wrong often enough to matter. Deliveries arrive later than the customer expected, and a share of customers leave a 1 or 2 star review, which hurts the seller's and the platform's reputation.
 
-**Why it matters to the business.** The development period, January 2017 to late May 2018, holds 76,925 delivered orders, each worth on average R$ 137 in goods plus R$ 22 in freight, so a customer lost to a poor experience is revenue lost to the seller and the platform. The business grew fast: monthly revenue from item prices rose from R$ 374,255 in March 2017 to R$ 944,975 in April 2018, 2.5 times as much, with a peak of R$ 1,010,016 in November 2017 against R$ 664,219 in October (figure below). Delivery is where the experience breaks under pressure. When volume jumped in November 2017 (Black Friday: 7,284 orders against 4,478 in October), the share of orders delivered after Olist's promised date rose from 5.3% to 14.3%, and it peaked at 21.4% in March 2018. Late orders go with bad reviews: 57.2% of late orders received a 1 or 2 star review, against 9.5% of orders delivered on time, and the detractor share rose from 11.9% in October 2017 to 22.5% in March 2018 (14.8% over the whole period). Reviews are public, and a disappointed customer may not buy again. Promising faster is not a free fix either: in an experiment with an online retailer, faster delivery promises raised sales and profit but also reduced customer retention (Cui et al., 2024). Few customers order again soon: in a typical month only 1.5% of customers placed more than one order in that month (between 0.8% and 2.3%), so revenue rests on many occasional buyers, for whom one late delivery or one bad review can be the whole experience of the platform.
+**Why it matters to the business.** The development period, January 2017 to late May 2018, holds 76,925 delivered orders, each worth on average R$ 137 in goods plus R$ 22 in freight. The business grew fast: monthly revenue from item prices rose from R$ 374,255 in March 2017 to R$ 944,975 in April 2018, 2.5 times as much, with a peak of R$ 1,010,016 in November 2017 against R$ 664,219 in October (figure below). Delivery is where the experience breaks under pressure. When volume jumped in November 2017 (Black Friday: 7,284 orders against 4,478 in October), the share of orders delivered after Olist's promised date rose from 5.3% to 14.3%, and it peaked at 21.4% in March 2018. Late orders go with bad reviews: 57.2% of late orders received a 1 or 2 star review, against 9.5% of orders delivered on time, and the detractor share rose from 11.9% in October 2017 to 22.5% in March 2018 (14.8% over the whole period). Promising faster is not a free fix either: in an experiment with an online retailer, faster delivery promises raised sales and profit but also reduced customer retention (Cui et al., 2024). In a typical month only 1.5% of customers placed more than one order (between 0.8% and 2.3%), so for most customers one late delivery or bad review is their whole experience of the platform.
 
 &#91;image: Monthly revenue and customer repeat rate, March 2017 to April 2018 (dashboard Business overview data)\]
 
@@ -73,11 +75,11 @@ The two models answer these two problems. The lead-time model gives a delivery p
 | Primary metric | MAE in days; RMSE, R² and the share within 3 days reported beside it | Average precision (AP); ROC-AUC, Brier score, precision and recall at the threshold reported beside it |
 | Cost of an error | A late promise breaks the customer's expectation; an early one only looks pessimistic | One missed detractor is weighted as five false alerts (an assumption, used to set the threshold) |
 
-**Why these moments.** At checkout the platform has the basket, the prices, the seller and customer locations and the seller's past behaviour, which is what a delivery promise can use. A review alert at checkout would come too early: the strongest signal of a bad review in our data is a late delivery, and nothing about this order's dispatch is known yet. At carrier handover the seller's own delay is known and there is still time to contact the customer, so the alert is made then. Orders that are never handed over cannot be scored; a simple rule flags them when the shipping limit passes (section 9).
+**Why these moments.** At checkout the platform has the basket, prices, locations and the seller's past behaviour, which is what a delivery promise can use. A review alert at checkout would come too early: the strongest signal of a bad review is a late delivery, and nothing about this order's dispatch is known yet. At carrier handover the seller's delay is known and there is still time to contact the customer. Orders that are never handed over cannot be scored; a simple rule flags them when the shipping limit passes (section 9).
 
 **Why MAE and AP.** MAE is measured in days, the unit of the promise, and is less driven by a few very late orders than RMSE, which we report alongside. Detractors are a minority of orders (9.9% of Pipeline B's test orders), so accuracy would look high for a model that never alerts: with imbalanced classes, accuracy can hide weak detection of the minority class (He and Garcia, 2009). AP summarises precision over all recall levels; a random ranking scores about the detractor share, so that share is the baseline AP is judged against. The cost weighting turns the ranking into a decision: the alert threshold is the probability above which an alert costs less than a likely missed detractor.
 
-**How we judge success.** Each task has two yardsticks, both measured on the same test orders. The first is the dummy model, which predicts the median lead time or the detractor share for every order: a useful model must beat it clearly. On the test, the delivered model's MAE is 3.30 days against 4.38 for the dummy, and its AP is 0.197 against a detractor share of 9.9%. The second is Pipeline A, scored on the same orders (section 1.1). The rules for keeping a more complex model and for adopting Pipeline B were fixed before the test was read; no business target in days or AP was set in advance, so these yardsticks are how we judge the result, not a promise made beforehand.
+**How we judge success.** Each task has two yardsticks on the same test orders. The first is the dummy model (the median lead time or the detractor share for every order), which a useful model must beat clearly: the delivered model's test MAE is 3.30 days against 4.38, and its AP 0.197 against a detractor share of 9.9%. The second is Pipeline A (section 1.1). The rules for keeping a more complex model and for adopting Pipeline B were fixed before the test was read; no business target was set in advance.
 
 **Stakeholders.** Fulfilment owns the delivery promise; customer service owns the alert and the contact; seller management uses both to see which sellers and routes fall behind. Each gets a view in the dashboard (section 8).
 
@@ -85,15 +87,11 @@ The two models answer these two problems. The lead-time model gives a delivery p
 
 Pipeline A was built first, for every order, and is sound. Its validation results beat its dummies: MAE 5.47 days against 6.49 for its dummy, and AP 0.232 against 0.148.
 
-Its own exploration then showed three limits, and each led to one change in Pipeline B, the delivered model:
+Its own exploration then showed three limits, and each led to one change in Pipeline B, the delivered model (Table K1):
 
-*Table 3. Pipeline A's evidence and the changes it led to.*
-
-| What Pipeline A's evidence showed | Change in Pipeline B | How it was checked before the test |
-| --- | --- | --- |
-| The strongest signal of a bad review, late delivery (57.2% detractors when late against 9.5% on time), is unknown at checkout | The alert moves to carrier handover, where this order's dispatch delay is known; orders never handed over are flagged by a rule | Validation AP on the same rows (section 6.5) |
-| Delivery speed varies with the route and changes over time (section 4), but checkout features carry no recent seller or route behaviour | Seller and route history features (section 5.1) | Ranking and selection (section 5.3); validation scores |
-| Distant, thinly served states add noise that a single model fits poorly | Scope narrowed to the seven largest states with known distance; Pipeline A serves every other order | The scope effect is measured separately (section 7) |
+- **Late delivery, the strongest signal of a bad review, is unknown at checkout** (57.2% detractors when late against 9.5% on time). The alert moves to carrier handover, where this order's dispatch delay is known; orders never handed over are flagged by a rule.
+- **Delivery speed varies with the route and over time** (section 4), but checkout features carry no recent seller or route behaviour. Pipeline B adds seller and route history features (section 5.1), checked by ranking and selection (section 5.3) and by validation scores.
+- **Distant, thinly served states add noise** that a single model fits poorly. Pipeline B is scoped to the seven largest states with a known distance; Pipeline A serves every other order, and the scope effect is measured separately (section 7.3).
 
 Pipeline B was adopted only after it beat Pipeline A on the same validation folds, under a rule fixed before the test (section 6.5). Pipeline A's frozen model still serves every order outside the seven states.
 
@@ -111,18 +109,9 @@ The literature shaped what the predictions are for, how the models are compared 
 
 Every model row is one order, built only from what is known at that task's prediction moment, and every step below states its rule, its reason and where it is fitted. Steps learned from data are fitted on each training fold only, inside one scikit-learn pipeline, so no statistic from a validation or test order reaches a model (Kapoor and Narayanan, 2023; Müller and Guido, 2016).
 
-**Sources and joins.** We use the Canvas copy of the Olist dataset: nine tables (orders, order items, payments, reviews, customers, sellers, products, geolocation and the category translation). The order is the unit. Items, payments and reviews have several rows per order, so each is aggregated to the order first and then joined one to one; customers join many to one. From the items we take the counts of items, products, sellers and categories, the total price, freight, weight and volume, and the primary item (the highest-priced, ties broken by item id), which gives the primary category and the primary seller. From the payments we take the main payment type and the largest number of instalments. Locations come from the median latitude and longitude of each ZIP prefix inside Brazil; the distance feature is the largest seller-to-customer distance in the order. Customers are matched across orders on `customer_unique_id`, because `customer_id` is new for every order; this is what lets us keep the same customer out of both training and test.
+**Sources and joins.** We use the nine tables of the Canvas copy of the Olist dataset, with the order as the unit. Items, payments and reviews have several rows per order, so each is aggregated to the order first and then joined one to one; customers join many to one. From the items we take the counts of items, products, sellers and categories, the total price, freight, weight and volume, and the primary item (the highest-priced, ties broken by item id), which gives the primary category and the primary seller. From the payments we take the main payment type and the largest number of instalments. Locations come from the median latitude and longitude of each ZIP prefix inside Brazil; the distance feature is the largest seller-to-customer distance in the order. Customers are matched across orders on `customer_unique_id`, because `customer_id` is new for every order; this is what lets us keep the same customer out of both training and test. Table G1 gives the data model: each table's grain, key and how it reaches the order.
 
-**Targets.** Lead time is the number of days from purchase to delivery, for delivered orders with valid timestamps. The detractor label is 1 when the order's lowest valid review score is 1 or 2. An order can have more than one review; taking the lowest could bias the label towards detractors, so every classification result is also scored against the first-review label. The two agree closely on the test (table below), so the choice does not drive the conclusions.
-
-*Table 4. Detractor results under the lowest-review and first-review labels, test orders.*
-
-| model | label | ap | roc\_auc | brier | precision | recall |
-| --- | --- | --- | --- | --- | --- | --- |
-| B frozen | is\_detractor (agreed label) | 0.1972 | 0.636 | 0.0867 | 0.2077 | 0.3005 |
-| B frozen | is\_detractor\_first (first review) | 0.1972 | 0.6363 | 0.08665 | 0.2077 | 0.3006 |
-| A frozen | is\_detractor (agreed label) | 0.1785 | 0.604 | 0.08926 | 0.1583 | 0.3556 |
-| A frozen | is\_detractor\_first (first review) | 0.1785 | 0.6043 | 0.08921 | 0.1583 | 0.3558 |
+**Targets.** Lead time is the number of days from purchase to delivery, for delivered orders with valid timestamps. The detractor label is 1 when the order's lowest valid review score is 1 or 2. An order can have more than one review; taking the lowest could bias the label towards detractors, so every classification result is also scored against the first-review label. The two agree closely on the test: Pipeline B's AP is 0.197 under the lowest-review label and changes only in the fourth decimal under the first-review label (Table K2), so the choice does not drive the conclusions.
 
 **Which orders each task keeps.** Both tasks drop orders purchased before 2017 (the 2016 months are too thin to represent the business), orders without items, orders without a usable payment or with missing instalments, orders with a negative price, freight, weight, volume or distance, and orders whose distance exceeds the width of Brazil. Regression keeps delivered orders with a valid lead time, and removes lead times that are extreme against the development orders (above the larger of 100 days and the mean plus 12 standard deviations). Classification keeps orders that were not cancelled or unavailable and have a valid review; an order whose review is dated at or before its purchase is removed, because its label cannot be trusted. These are the eligible orders.
 
@@ -139,29 +128,13 @@ Every model row is one order, built only from what is known at that task's predi
 
 **Test period.** For each task the newest 20% of eligible orders, by purchase time, form the test period. It was held out before any exploration or feature work, and development customers who reappear in it were removed. It was scored exactly once, for both pipelines together.
 
-**Pipeline B's population.** Pipeline B (section 1.1) keeps orders whose customer and primary seller are both in the seven largest states (SP, MG, RJ, PR, RS, BA, SC) and whose distance is known, applies a tighter lead-time cap computed on its own rows (mean plus 8 standard deviations), and drops the first six weeks of data, which are needed to start the seller and route history. For the alert it also drops orders never handed over and orders reviewed before their handover. The chain below accounts for every order from Pipeline A's development set to the rows each model trains on.
+**Pipeline B's population.** Pipeline B (section 1.1) keeps orders whose customer and primary seller are both in the seven largest states (SP, MG, RJ, PR, RS, BA, SC) and whose distance is known, applies a tighter lead-time cap computed on its own rows (mean plus 8 standard deviations), and drops the first six weeks of data, which are needed to start the seller and route history. For the alert it also drops orders never handed over and orders reviewed before their handover. Of Pipeline A's 76,925 development orders for lead time, 13,777 have a customer or seller outside the seven states, 606 lack a distance, 45 exceed the tighter cap and 1,264 fall in the warm-up, leaving 61,233. For the alert, the same steps and the two handover rules take 77,736 orders to 61,258. The test period holds 15,422 lead-time orders and 15,492 alert orders, 1,541 of them detractors. Table K3 accounts for every order, including the final fit and fold 5, and appendix G lists every removal by rule.
 
-*Table 5. Population chain from Pipeline A's development orders to Pipeline B's rows.*
-
-| Step | Lead time | Detractor alert |
-| --- | --- | --- |
-| Pipeline A development orders (eligible, before the test period) | 76,925 | 77,736 |
-| Customer or seller outside the seven states | − 13,777 | − 13,983 |
-| Distance unknown | − 606 | − 618 |
-| Lead time above Pipeline B's cap | − 45 | — |
-| Never handed over to the carrier | — | − 461 |
-| Reviewed at or before handover | — | − 146 |
-| First six weeks (history warm-up) | − 1,264 | − 1,270 |
-| Pipeline B's development orders | 61,233 | 61,258 |
-| Of these, with the label known before the test period (final fit) | 59,683 | 59,188 |
-| Fold 5: training rows / validation rows | 47,415 / 9,059 | 47,237 / 8,646 |
-| Test orders | 15,422 | 15,492 (1,541 detractors) |
-
-The final fit uses fewer rows than the development set because a label must be known before the test period starts: an order delivered or reviewed after the cutoff cannot train the model that is tested on that period. Fold 5's training and validation rows together are fewer again, because the folds also purge customers who appear on both sides and require each training label to be known before its validation window (section 6).
+The final fit uses fewer rows than the development set (59,683 for lead time, 59,188 for the alert) because a label must be known before the test period starts: an order delivered or reviewed after the cutoff cannot train the model that is tested on that period. Fold 5's training and validation rows together are fewer again, because the folds also purge customers who appear on both sides and require each training label to be known before its validation window (section 6).
 
 ## 4 Exploratory analysis
 
-Exploration used development orders only, before each task's test period, so it never saw a test outcome. Each fact below led to a decision in the design; the table at the end lists them side by side. Patterns are described, not explained: the data does not record why a route is slow or why a customer is unhappy.
+Exploration used development orders only, before each task's test period, so it never saw a test outcome. Each fact below led to a decision in the design; Table K4 lists them side by side. Patterns are described, not explained: the data does not record why a route is slow or why a customer is unhappy.
 
 **Lead time is right-skewed.** Half of the orders arrive within 11.2 days, but a long tail of very late orders pulls the mean above the median: median 11.2 days, mean 13.4, 95th percentile 31.1, skewness 2.41. A model fitted on raw days would chase the tail, so the regression predicts the log of 1 plus the lead time, and day-count inputs are log-transformed the same way.
 
@@ -179,7 +152,7 @@ Exploration used development orders only, before each task's test period, so it 
 
 **The business changes over time.** Order volume, lead time, the late-delivery rate and the detractor rate all move across 2017 and 2018. November 2017, with Black Friday, had 7,284 orders against 4,478 in October, and delivery slowed in the weeks after. A model evaluated on a random split would mix these periods; every evaluation here is time-ordered instead.
 
-&#91;image: Monthly orders and outcomes, development orders (Pipeline A EDA)\]
+&#91;image: Monthly orders and lead time, development orders (Pipeline A EDA)\]
 
 &#91;image: Monthly detractor rate, development orders (Pipeline A EDA)\]
 
@@ -193,37 +166,13 @@ Exploration used development orders only, before each task's test period, so it 
 
 **The newest weeks may be incomplete.** The data ends in late 2018. The slowest deliveries for orders placed in the final weeks may not have arrived when the data was extracted, so the test period, the newest fifth of orders, may under-represent very late deliveries and make its error look slightly better (section 10).
 
-*Table 6. Exploratory findings and the decisions they led to.*
-
-| What the data shows | Decision it led to | Section |
-| --- | --- | --- |
-| Right-skewed lead time with a long late tail | Log target and log day counts; keep the tail | 3 |
-| Late delivery and bad reviews go together | Alert at carrier handover; lateness never a predictor | 1, 6 |
-| Speed differs by route and state | Route feature and recent route speed; seven-state scope | 5, 6 |
-| Volumes and outcomes change over time | Time-ordered folds and test period | 6 |
-| Detractors are a minority | Average precision; cost-based threshold; class weight in the grid | 1, 6 |
-| One identical predictor pair | Dropped before selection | 5 |
-
 ## 5 Features, multicollinearity and selection
 
 Every feature has a definition, a time window and a reason. Correlated and nested features are removed by a stated rule before selection, and a ranking rule then keeps the smallest set that carries 99% of the ranked signal. Both steps run on development orders only, never on the test period.
 
 ### 5.1 Pipeline B's feature set
 
-Pipeline B's new features describe how this seller and this route have delivered recently, measured only on other orders. None uses Olist's estimated delivery date, so none inherits the old promise.
-
-*Table 7. Pipeline B's new features.*
-
-| Feature | Definition | Window | Reason |
-| --- | --- | --- | --- |
-| Route (seller state → customer state) | The pair of states the parcel travels between | — | Delivery time differs by origin and destination in ways distance alone misses |
-| Seller prior late-handover rate | Share of the seller's earlier handovers made after their shipping limit | All complete weeks before the prediction week | A seller that dispatched late before is likely to do so again |
-| Seller prior late-handover days | Mean days by which those earlier handovers missed the limit (0 if on time) | As above | The size of past delays, not only their frequency |
-| Seller prior dispatch days | Mean days from purchase to handover over the seller's earlier orders | As above | Packing speed is part of every lead time |
-| Route recent delivery days | Typical purchase-to-delivery time on the route | Weighted mean of the last three complete weeks (0.5, 0.3, 0.2) | Recent delivery conditions on the route |
-| Route recent carrier transit days | Typical handover-to-delivery time on the route | As above | The carrier's part of the lead time, with the seller's delay removed |
-| This order's handover lateness (alert only) | Whether, and by how many days, this order's handover missed its shipping limit | At handover | A late dispatch is new information about the coming delivery and review |
-| This order's dispatch days (alert only) | Days from purchase to this order's handover | At handover | How long the customer has already waited |
+Pipeline B's new features describe how this seller and this route have delivered recently, measured only on other orders. None uses Olist's estimated delivery date, so none inherits the old promise. Pipeline B adds the route (seller state to customer state); the seller's prior late-handover rate, late-handover days and dispatch days, over all complete weeks before the prediction week; and the route's recent delivery days and carrier transit days, a weighted mean of the last three complete weeks (0.5, 0.3, 0.2). For the alert it adds two facts known at handover: whether, and by how many days, this order's handover missed its shipping limit, and the days from purchase to handover. Table K5 gives each feature's definition, window and reason.
 
 A seller with no earlier handovers takes the recent mean of sellers in the same state. A route with fewer than ten deliveries in the last three weeks takes a blend of its seller state's and customer state's recent means, and then the overall mean. Most rows soon have their own seller and route history (figure below), which is why the first six weeks are used as a warm-up and not modelled.
 
@@ -231,7 +180,7 @@ A seller with no earlier handovers takes the recent mean of sellers in the same 
 
 *Figure 6. Share of rows with their own seller and route history, by quarter (F.reg.history\_coverage).*
 
-**Grounding.** Logistics performance is studied alongside ratings and sales on e-commerce platforms (Deshpande and Pendem, 2023); we cite this for the question it studies, not for any effect or direction. The reason to expect the seller's history to matter comes from our own development data: late delivery goes with more detractors, and the share of late handovers differs between seller states and routes (section 4). Our seller features measure the logistics performance of the seller who ships the order. For the route features we found no audited source, so their use rests on an operational assumption: a route that was slow last week is likely to be slow this week. Section 7 tests that assumption against the data instead of taking it for granted.
+**Grounding.** Logistics performance is studied alongside ratings and sales on e-commerce platforms (Deshpande and Pendem, 2023; cited for the question only). The reason to expect the seller's history to matter comes from our own data: late delivery goes with more detractors, and late handovers differ between seller states and routes (section 4). For the route features we found no audited source, so they rest on an operational assumption, that a route slow last week is likely slow this week, which section 7 tests.
 
 **Inherited from Pipeline A.** Pipeline B also starts from Pipeline A's 24 checkout predictors: basket counts, price and freight, physical size, product category, geography (customer and seller state, distance, interstate share), purchase calendar and payment. For the alert Pipeline A added three candidates kept after the exploratory screening: the primary product's photo count and description length, and the seller's average review score on earlier orders. Skewed money, size, distance and day-count features are log-transformed, as described in section 3.
 
@@ -239,27 +188,10 @@ A seller with no earlier handovers takes the recent mean of sellers in the same 
 
 Strongly correlated predictors make linear coefficients unstable and split importance between partners, even when accuracy is unaffected. The check uses only stored outputs:
 
-- **Pipeline B.** The route determines both the customer state and the seller state: every route level fixes both, so their one-hot columns are sums of the route's columns. Keeping all three would make the linear design matrix rank-deficient, so the two state columns are dropped whenever the route is kept. The same step drops the missing-distance share, which is constant because every kept order has a distance, and the duplicate pair found in Pipeline A's pool (below).
-
-*Table 8. Features removed by Pipeline B's reduction step, lead time.*
-
-| feature | flagged\_by | paired\_with |
-| --- | --- | --- |
-| customer\_state | nested in route (B-G-02) | route\_seller\_to\_customer\_state |
-| primary\_seller\_state | nested in route (B-G-02) | route\_seller\_to\_customer\_state |
-| distance\_missing\_fraction | constant |  |
-| weight\_missing\_fraction | duplicate | volume\_missing\_fraction |
-
+- **Pipeline B.** The route determines both the customer state and the seller state: every route level fixes both, so their one-hot columns are sums of the route's columns. Keeping all three would make the linear design matrix rank-deficient, so the two state columns are dropped whenever the route is kept. The same step drops the missing-distance share, which is constant because every kept order has a distance, and the duplicate pair found in Pipeline A's pool (below; Table K6). After encoding, a missing-value indicator identical to another column is also dropped (weight for the alert, volume for lead time).
 - **Every fold.** After the drops, the linear design matrix is full rank in every training fold, so plain least squares and unpenalised logistic regression have unique coefficients. The condition number shows how close the columns come to collinearity (appendix C).
-- **Pipeline A's pool, the inherited base.** The exploratory stage computed pairwise correlations and a variance inflation factor (VIF) for each numeric predictor on development orders. A pair is flagged above an absolute correlation of 0.9, and a predictor above a VIF of 10. No predictor reached the VIF cut-off in either task (appendix J). One pair was identical on every development order, the missing-weight and missing-volume shares; the lower-ranked of the two was dropped.
-
-*Table 9. Pipeline A's predictor pairs above the correlation cut-off.*
-
-| feature\_a | feature\_b | pearson | spearman | identical |
-| --- | --- | --- | --- | --- |
-| weight\_missing\_fraction | volume\_missing\_fraction | 1 | 1 | True |
-
-- **What was not measured.** Correlation and VIF were not computed for the new history features. They are averages of related quantities (for example, a seller's late-handover rate and late days), so some correlation among them is likely. The full-rank check rules out exact dependence but not strong correlation, and the stored outputs cannot show more. We state this as a limit (section 10) rather than run new analysis.
+- **Pipeline A's pool, the inherited base.** The exploratory stage computed pairwise correlations and a variance inflation factor (VIF) for each numeric predictor on development orders. A pair is flagged above an absolute correlation of 0.9, and a predictor above a VIF of 10. No predictor reached the VIF cut-off in either task (appendix J). One pair was identical on every development order, the missing-weight and missing-volume shares; the lower-ranked of the two was dropped (Table K7).
+- **What was not measured.** Correlation and VIF were not computed for the new history features, which are averages of related quantities; the full-rank check rules out exact dependence but not strong correlation (section 10).
 
 ### 5.3 Feature selection
 
@@ -278,7 +210,7 @@ Ranking once on all development orders is a design choice, and it makes the vali
 - **Lead time:** the selected sets overlap by 0.90 to 1.00 (mean 0.94), and 17 of the 21 selected features are kept in every fold.
 - **Detractor alert:** overlap 0.68 to 1.00 (mean 0.88), weakest in fold 1, which has the fewest training orders; 18 of 25 are kept in every fold.
 
-For lead time the ranking is stable: the route and its recent speed, distance and the interstate share stay at the top in every fold. For the alert the ranks move a lot between folds, even for features ranked near the top on all development orders, and several of them drop out of one fold's selection; the early folds, with the fewest training orders, move most. A likely reason, not tested here, is that mutual information estimated on a minority-class target varies more on small samples. The selected set for the alert should therefore be read as a reasonable choice, not a uniquely determined one (section 10; ranking charts by fold in appendix I).
+For lead time the ranking is stable: the route and its recent speed, distance and the interstate share stay at the top in every fold. For the alert the ranks move a lot between folds, most in the early folds with the fewest training orders, so its selected set is a reasonable choice, not a uniquely determined one (section 10; charts by fold in appendix I).
 
 Every new feature passed the cut in both tasks where it applies. The full list of selected features, with transforms and ranks, is in appendix D, beside Pipeline A's, so the two pipelines can be compared feature by feature.
 
@@ -288,29 +220,19 @@ Models are compared from the simplest upwards, on the same time-ordered folds, u
 
 ### 6.1 Validation design
 
-Leakage takes several forms beyond rows shared between training and test (Kapoor and Narayanan, 2023). Our orders are dated and customers return, so a random or stratified split would train on orders placed after the ones it predicts, and could put one customer on both sides; we apply the warning to that case. We therefore use five chronological, expanding folds before the test period: each fold trains on all orders up to a date and validates on the following weeks. Customers seen in a validation window are removed from its training rows, and a training order counts only if its label (delivery or review) was known before the validation window starts.
+Leakage takes several forms beyond rows shared between training and test (Kapoor and Narayanan, 2023). Our orders are dated and customers return, so a random or stratified split would train on orders placed after the ones it predicts, and could put one customer on both sides. We therefore use five chronological, expanding folds before the test period: each fold trains on all orders up to a date and validates on the following weeks (windows and sizes in Tables A2 and A3). Customers seen in a validation window are removed from its training rows, and a training order counts only if its label (delivery or review) was known before the validation window starts.
 
 &#91;image: Time-ordered folds and the test period\]
 
 *Figure 9. Time-ordered folds and the test period (F.reg.partition).*
 
-*Table 10. Fold windows and sizes, lead time.*
-
-| fold | train\_first | train\_last | train\_rows | validation\_first | validation\_last | validation\_rows |
-| --- | --- | --- | --- | --- | --- | --- |
-| 1 | 2017-02-12 00:20:45 | 2017-06-15 17:52:57 | 7932 | 2017-06-19 15:25:29 | 2017-09-27 08:48:59 | 10323 |
-| 2 | 2017-02-12 00:20:45 | 2017-09-25 12:23:20 | 18077 | 2017-09-27 08:56:52 | 2017-12-03 17:04:39 | 10364 |
-| 3 | 2017-02-12 00:20:45 | 2017-12-01 08:49:02 | 26184 | 2017-12-03 17:11:47 | 2018-02-05 00:05:58 | 10443 |
-| 4 | 2017-02-12 00:20:45 | 2018-02-02 15:26:38 | 37647 | 2018-02-05 00:06:00 | 2018-04-01 16:46:20 | 10429 |
-| 5 | 2017-02-12 00:20:45 | 2018-03-29 01:12:21 | 47415 | 2018-04-01 16:53:25 | 2018-05-24 18:56:59 | 9059 |
-
-Each fold must have at least 10,000 training orders and, for the alert, 100 detractors in each part; the minimums were set before the folds were built. Fold 1 of Pipeline B falls short on training orders (7,932 for lead time, 7,592 for the alert), because the seven-state scope and the warm-up remove early orders. We kept it, as a recorded deviation, so the two pipelines are compared on identical periods; every detractor minimum is met. Instead of stratifying, each fold's detractor share is reported, and it moves with the business over time (appendix A).
+Each fold must have at least 10,000 training orders and, for the alert, 100 detractors in each part; the minimums were set before the folds were built. Fold 1 of Pipeline B falls short on training orders (7,932 for lead time, 7,592 for the alert), because the seven-state scope and the warm-up remove early orders. We kept it, as a recorded deviation, so the two pipelines are compared on identical periods; every detractor minimum is met. Instead of stratifying, each fold's detractor share is reported, and it moves with the business over time (appendix A). Every metric is defined in appendix B. Every random step (trees, forests, tuning) uses seed 42, and forests predict on a single thread, so a rerun on the same machine reproduces every stored output exactly.
 
 ### 6.2 Model ladder
 
-We use two model families, linear and tree-based, each started from its simplest variant, as the project description requires: a dummy that predicts the median lead time or the detractor share; plain linear regression or unpenalised logistic regression; a single decision tree; and a random forest of 200 trees (Breiman, 2001). Tree ensembles are the natural non-linear comparison for tabular data of this kind (Grinsztajn et al., 2022). Plain least squares and unpenalised logistic regression need a full-rank design matrix, which section 5.2 shows holds in every fold. Stacking (Wolpert, 1992) and gradient boosting (Chen and Guestrin, 2016) were considered but not added: the project limits the number of model families, and the forest itself did not clear the selection rule.
+We use two model families, linear and tree-based, each started from its simplest variant, as the project description requires: a dummy that predicts the median lead time or the detractor share; plain linear regression or unpenalised logistic regression; a single decision tree; and a random forest of 200 trees (Breiman, 2001). Tree ensembles are the natural non-linear comparison for tabular data of this kind (Grinsztajn et al., 2022). Plain least squares and unpenalised logistic regression need a full-rank design matrix, which section 5.2 shows holds in every fold. Stacking and gradient boosting were considered but not added (section 2).
 
-Each step up the ladder must beat the step below it on the same folds. The table gives the mean gain over the five folds, its paired standard error and the number of folds in which the more complex model wins (MAE in days, a positive gain means lower error; AP for the alert).
+Each step up the ladder must beat the step below it on the same folds. Appendix H gives every candidate's fold scores; Tables K8 and K9 give the mean gain over the five folds, its paired standard error and the number of folds in which the more complex model wins (MAE in days, a positive gain means lower error; AP for the alert).
 
 &#91;image: Model ladder on the five folds, lead time\]
 
@@ -320,51 +242,19 @@ Each step up the ladder must beat the step below it on the same folds. The table
 
 *Figure 11. Model ladder on the five folds, detractor alert (F.clf.family\_ladder).*
 
-*Table 11. Model ladder on the five folds, lead time (MAE in days).*
-
-| comparison | mean\_gain | paired\_se | folds\_better | kept\_by\_one\_se\_rule |
-| --- | --- | --- | --- | --- |
-| linear/logistic vs dummy | 0.9442 | 0.1606 | 5 | True |
-| single tree vs linear/logistic | -0.02855 | 0.1027 | 2 | False |
-| forest vs linear/logistic | 0.06193 | 0.0677 | 3 | False |
-
-*Table 12. Model ladder on the five folds, detractor alert (AP).*
-
-| comparison | mean\_gain | paired\_se | folds\_better | kept\_by\_one\_se\_rule |
-| --- | --- | --- | --- | --- |
-| linear/logistic vs dummy | 0.1236 | 0.01742 | 5 | True |
-| single tree vs linear/logistic | -0.02217 | 0.005108 | 0 | False |
-| forest vs linear/logistic | 0.01232 | 0.005154 | 4 | False |
-
-The linear and logistic models beat the dummy in every fold. The single tree is worse than the linear model in both tasks. The forest is slightly better on average, more consistently so for the alert.
+The linear model beats the dummy in every fold, by 0.94 days of MAE on average, and the logistic model by 0.124 AP. The single tree is worse than the linear model in both tasks: -0.03 days, better in 2 of five folds, and -0.022 AP, better in 0. The forest is slightly better on average, 0.06 days (paired standard error 0.07, better in 3 folds), and more consistently so for the alert, 0.012 AP (standard error 0.005, better in 4 folds).
 
 ### 6.3 Tuning
 
 Each family was then tuned on the same folds, with grids fixed before any tuning result was seen: Ridge alpha and logistic C from 0.01 to 100; tree depth 4 to 18 and minimum leaf size 20 to 200; forest depth 8 to 18 and leaf size 20 to 200 with square-root feature sampling; and class weight (none or balanced) for every classifier (appendix F). Class weighting is how the grid treats the imbalance. We did not resample: the alert uses calibrated probabilities and a cost-based threshold, and in logistic risk models imbalance corrections can distort the calibration of the predicted risk (Van den Goorbergh et al., 2022).
 
-*Table 13. Plain against tuned models, lead time.*
-
-| family | plain\_mean | tuned\_mean | tuned\_se | paired\_gain\_of\_tuned | paired\_se | carried |
-| --- | --- | --- | --- | --- | --- | --- |
-| linear/logistic | 5.025 | 5.021 | 0.5946 | 0.00412 | 0.02701 | plain |
-| single tree | 5.053 | 5.084 | 0.6443 | -0.03087 | 0.02687 | plain |
-| forest | 4.963 | 5.082 | 0.649 | -0.1193 | 0.02599 | plain |
-
-*Table 14. Plain against tuned models, detractor alert.*
-
-| family | plain\_mean | tuned\_mean | tuned\_se | paired\_gain\_of\_tuned | paired\_se | carried |
-| --- | --- | --- | --- | --- | --- | --- |
-| linear/logistic | 0.2616 | 0.2734 | 0.03179 | 0.0118 | 0.005107 | plain |
-| single tree | 0.2394 | 0.2298 | 0.02967 | -0.009644 | 0.007588 | plain |
-| forest | 0.2739 | 0.2625 | 0.02971 | -0.01144 | 0.002612 | plain |
-
-Tuning changed little: no tuned configuration beat its plain model by enough to be carried forward. The forest's best configuration sits at the edge of its grid in both tasks: the smallest leaf size, with the deepest trees for lead time and the shallowest for the alert. A best value on the boundary means a wider grid might do better. The grid was fixed in advance and was not extended, because the selection rule below keeps the plain model either way; extending it after the test would mean choosing on the test (section 10).
+Tuning changed little (Tables K10 and K11). For lead time the tuned linear model's paired gain is +0.004 days and the tuned forest's -0.119; for the alert the tuned logistic model gains +0.012 AP, well inside its fold-to-fold standard error of 0.032, and the tuned forest -0.011. No tuned configuration beat its plain model by enough to be carried forward. The forest's best configuration sits at the edge of its grid in both tasks, so a wider grid might do better; the grid was fixed in advance and not extended, because the selection rule below keeps the plain model either way (section 10).
 
 ### 6.4 Selection, calibration and threshold
 
-**The one-standard-error rule.** Among the finalists, we keep the simplest model whose mean validation score is within one standard error of the best mean, where the standard error measures how much the score varies from fold to fold. The forest had the best mean in both tasks, but within one standard error of the plain model, so the plain linear model (lead time) and the plain logistic model (alert) were selected. This is a deliberate preference for simplicity, and it should be read with the paired results above: for the alert the forest beats the logistic model in four of five folds, by more than its paired standard error, but by much less than the fold-to-fold variation that the rule uses. The rule was fixed before training, and the simpler model is easier to explain, calibrate and serve.
+**The one-standard-error rule.** Among the finalists, we keep the simplest model whose mean validation score is within one standard error of the best mean, where the standard error measures how much the score varies from fold to fold. The forest had the best mean in both tasks, but within one standard error of the plain model, so the plain linear model (lead time) and the plain logistic model (alert) were selected. This is a deliberate preference for simplicity: for the alert the forest wins in four of five folds by more than its paired standard error, but by much less than the fold-to-fold variation the rule uses, and the simpler model is easier to explain, calibrate and serve.
 
-**Calibration.** The alert's probabilities are calibrated with a sigmoid fitted on time-ordered inner splits, so that both pipelines share one probability scale for thresholds and costs. The pre-set rule would have kept the raw probabilities, which had a slightly better Brier score; we kept the sigmoid for comparability and record it as a deviation (section 10).
+**Calibration.** The alert's probabilities are calibrated with a sigmoid fitted on time-ordered inner splits, so that both pipelines share one probability scale for thresholds and costs. The pre-set rule preferred the raw probabilities (slightly better Brier score); we kept the sigmoid for comparability, a recorded deviation (section 10).
 
 **Threshold.** With a missed detractor weighted as five false alerts, an alert pays off when the predicted risk exceeds 1/6, and that is the frozen threshold. After the test, the business chose a higher operating threshold for Pipeline B, 4/15, to cut false alarms; the frozen 1/6 result stays the unbiased test result (section 7).
 
@@ -372,37 +262,17 @@ Tuning changed little: no tuned configuration beat its plain model by enough to 
 
 Section 1.1 sets out Pipeline A's limits and the change each one led to.
 
-**The adoption rule, fixed before the test.** Pipeline B is adopted for a task if, on its own validation rows, its five-fold mean beats Pipeline A's frozen model refitted on the same folds, even by a small margin. It did, in every fold of both tasks:
-
-*Table 15. Adoption check on Pipeline B's folds, lead time (MAE in days).*
-
-| fold | b\_rows | a\_model\_on\_b\_rows | b\_model\_on\_b\_rows | paired\_gain\_b\_over\_a |
-| --- | --- | --- | --- | --- |
-| 1 | 10323 | 3.724 | 3.722 | 0.001477 |
-| 2 | 10364 | 5.516 | 5.468 | 0.04797 |
-| 3 | 10443 | 5.755 | 5.614 | 0.1411 |
-| 4 | 10429 | 7.11 | 6.772 | 0.3375 |
-| 5 | 9059 | 3.607 | 3.547 | 0.06012 |
-
-*Table 16. Adoption check on Pipeline B's folds, detractor alert (AP).*
-
-| fold | b\_rows | a\_model\_on\_b\_rows | b\_model\_on\_b\_rows | paired\_gain\_b\_over\_a |
-| --- | --- | --- | --- | --- |
-| 1 | 10324 | 0.1407 | 0.1566 | 0.01585 |
-| 2 | 10342 | 0.2386 | 0.2738 | 0.03512 |
-| 3 | 10450 | 0.25 | 0.2762 | 0.02618 |
-| 4 | 10453 | 0.3563 | 0.3713 | 0.01497 |
-| 5 | 8646 | 0.2237 | 0.2301 | 0.006408 |
+**The adoption rule, fixed before the test.** Pipeline B is adopted for a task if, on its own validation rows, its five-fold mean beats Pipeline A's frozen model refitted on the same folds, even by a small margin. It did, in every fold of both tasks (Tables K12 and K13): Pipeline B's MAE is lower by 0.001 days in fold 1 up to 0.337 in fold 4, and its AP (before calibration, as the rule specifies) higher by 0.006 in fold 5 up to 0.035 in fold 2.
 
 Both pipelines then went to the single test read regardless of this result, and the test did not re-choose any model, calibration or threshold. Everything else was inherited unchanged from Pipeline A: the folds, the model families and grids, the selection rule, the metrics and the calibration and threshold procedure.
 
 ## 7 Results
 
-On the same test orders Pipeline B beats Pipeline A in both tasks. Validation scores were used to choose the models, so they are optimistic selection scores; only the test, read once, is an unbiased estimate. Fold-by-fold validation results and the test are shown together, each with its time window, because each fold is itself a later period that the model had not seen.
+On the same test orders Pipeline B beats Pipeline A in both tasks. Validation scores were used to choose the models, so they are optimistic selection scores; only the test, read once, is an unbiased estimate.
 
 ### 7.1 Delivery lead time
 
-*Table 17. Delivery lead time, validation and test results.*
+*Table 3. Delivery lead time, validation and test results.*
 
 |  | Validation MAE (selection) | Test MAE \[95% interval\] | Test RMSE | Test R² | Within 3 days (test) |
 | --- | --- | --- | --- | --- | --- |
@@ -422,17 +292,7 @@ Pipeline B's MAE minus Pipeline A's is -0.729 days on the same 15,422 test order
 
 *Figure 13. Residuals on the test orders, Pipeline B and Pipeline A (F.reg.residuals).*
 
-**Where it errs.** Slices are judged only with at least 100 test orders. Pipeline B is better than Pipeline A in every judged customer state, distance band and basket size, on 20 of the 20 routes with enough orders, and in most months:
-
-*Table 18. Lead-time error by slice, test orders.*
-
-| slice | judged\_slices | too\_few | pooled\_mae\_A | pooled\_mae\_B | mean\_gain | sd\_gain | slices\_B\_better |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| customer\_state | 7 | 0 | 4.028 | 3.299 | -0.9297 | 0.275 | 7 |
-| route\_seller\_to\_customer\_state | 20 | 28 | 3.97 | 3.233 | -0.8155 | 0.3866 | 20 |
-| distance\_band | 5 | 0 | 4.028 | 3.299 | -0.7444 | 0.3128 | 5 |
-| basket | 3 | 0 | 4.028 | 3.299 | -0.6387 | 0.0949 | 3 |
-| month | 4 | 0 | 4.028 | 3.299 | -0.5456 | 0.5487 | 3 |
+**Where it errs.** Slices are judged only with at least 100 test orders. Pipeline B is better than Pipeline A in every judged customer state, distance band and basket size, on 20 of the 20 routes with enough orders, and in most months (Table K14).
 
 &#91;image: Lead-time error by customer state\]
 
@@ -440,7 +300,7 @@ Pipeline B's MAE minus Pipeline A's is -0.729 days on the same 15,422 test order
 
 ### 7.2 Detractor alert
 
-*Table 19. Detractor alert, validation and test results.*
+*Table 4. Detractor alert, validation and test results.*
 
 |  | Validation AP (selection) | Test AP \[95% interval\] | Test ROC-AUC | Test Brier |
 | --- | --- | --- | --- | --- |
@@ -469,20 +329,11 @@ Pipeline B ranks detractors better by +0.0187 AP (paired interval +0.0089 to +0.
 
 *Figure 18. Detractor alert by customer state (F.clf.by\_state).*
 
-**Label choice.** Scored against the first review instead of the lowest, both pipelines' results change only in the fourth decimal (section 3), so the label rule does not drive the comparison.
-
 ### 7.3 Where the gain comes from
 
-Pipeline B changed three things at once: the scope, the features and, for the alert, the prediction moment. Scoring Pipeline A's frozen model on Pipeline B's own validation rows separates the scope effect from the rest (five-fold means):
+Pipeline B changed three things at once: the scope, the features and, for the alert, the prediction moment. Scoring Pipeline A's frozen model on Pipeline B's own validation rows separates the scope effect from the rest (five-fold means, Table K15).
 
-*Table 20. Where the gain comes from: validation scores by population.*
-
-|  | Pipeline A, all states | Pipeline A, seven-state rows | Pipeline B, seven-state rows |
-| --- | --- | --- | --- |
-| Lead time, MAE (days) | 5.470 | 5.142 | 5.025 |
-| Detractor alert, AP | 0.244 | 0.242 | 0.262 |
-
-For lead time most of the lower error comes from the narrower scope, because Pipeline A is already better on the seven-state rows, and the rest from the new features. For the alert the scope changes almost nothing, so the gain comes from the history features and the later prediction moment. ROC-AUC and Brier by population are in appendix E.
+For lead time, Pipeline A's MAE falls from 5.470 days on all states to 5.142 on the seven-state rows, and Pipeline B reaches 5.025: most of the lower error comes from the narrower scope, the rest from the new features. For the alert, on the calibrated scale of Table 4, Pipeline A's AP barely moves (0.232 to 0.230) while Pipeline B reaches 0.248, so the gain comes from the history features and the later prediction moment. ROC-AUC and Brier by population are in appendix E.
 
 &#91;image: Where B's gain comes from: scope vs features\]
 
@@ -490,7 +341,7 @@ For lead time most of the lower error comes from the narrower scope, because Pip
 
 ### 7.4 What the models rely on, and drift
 
-Permutation importance measures how much each feature contributes to the frozen model on the test orders: the score lost when the feature is shuffled. For lead time the seller's earlier dispatch days, the route and the distance rank highest, so the seller's own delay matters at least as much as the journey. For the alert, the number of sellers in the order and the route's recent delivery and transit times rank above this order's handover delay, so route conditions and basket complexity carry more signal about a bad review than the dispatch delay alone. These are associations in the frozen model, not causes.
+Permutation importance is the test score the frozen model loses when a feature is shuffled. For lead time the seller's earlier dispatch days, the route and the distance rank highest, so the seller's own delay matters at least as much as the journey. For the alert, the number of sellers in the order and the route's recent delivery and transit times rank above this order's handover delay, so route conditions and basket complexity carry more signal about a bad review than the dispatch delay alone. These are associations in the frozen model, not causes.
 
 &#91;image: Permutation importance, B regression (test rows)\]
 
@@ -500,7 +351,7 @@ Permutation importance measures how much each feature contributes to the frozen 
 
 *Figure 21. Permutation importance, detractor alert (F.clf.importance).*
 
-This ranking differs from the selection ranking of section 5.3: Spearman correlation 0.16 for lead time and 0.31 for the alert, with 7 and 6 of the top ten features shared. The difference is expected: selection scored one feature at a time on development orders, whereas importance measures each feature inside the fitted model on the test period, where correlated features share credit.
+This ranking differs from the selection ranking of section 5.3: Spearman correlation 0.16 for lead time and 0.31 for the alert, with 7 and 6 of the top ten features shared. This is expected: selection scored one feature at a time on development orders, while importance is measured inside the fitted model, where correlated features share credit.
 
 &#91;image: B's regression coefficients\]
 
@@ -524,19 +375,17 @@ The released models predict exactly what was tested, and the dashboard shows onl
 
 **Dashboard.** A Streamlit app with four tabs: a business overview of all orders (descriptive, labelled as a separate scope from the model results), delivery lead time, detractor risk at handover, and ML deployment, which scores the alerted held-out orders. The model tabs read only stored outputs and score held-out historical orders. The alert tab's threshold slider moves Pipeline B's threshold over the stored options (default 4/15) and shows alerts per day, precision, recall and cost; the baseline's fallback stays at its frozen 1/6.
 
-**Using the app.** The app lives in `deliverables/dashboard/app/` with its own environment (Python 3.12 and the package versions pinned in its requirements file, which load the frozen models unchanged). Running `streamlit run app.py` from that folder opens it at `http://localhost:8501`; the README there gives the exact commands. For hosting, the frozen models are served by a small prediction API that returns exactly what the local models return, and the hosted address will be added here once it is live. The sidebar names the stored outputs each tab reads and states that no model is fitted and no test label is read. On the detractor tab, a radio button switches the alert statistics between validation (the selection view) and the test (a post-test view), and the slider moves Pipeline B's threshold, starting at 4/15. A fourth tab, ML deployment, lists the held-out orders the serving rule alerts on, in the review order of section 9, with each order's details as known at handover, both predictions and two kinds of scenario on the alert model's inputs (logistics 10% faster; freight discounts up to free shipping), each labelled as an association, not the effect of the action. The app's tests check the file loaders and the router, that every slider position is a stored threshold, that the forbidden scope and threshold wording is absent, that every planned panel is present, and that the alert list and its scores match the stored test predictions without reading a label. Screenshots of the detractor tab and the ML deployment tab are in appendix K.
+**Using the app.** The app lives in `deliverables/dashboard/app/` with its own pinned environment; `streamlit run app.py`, from that folder or from the repository root, opens it locally (its README gives the commands). The hosted app at https://it5006grp11ecommerce.streamlit.app/ runs the same frozen bundles. Which stored file each tab reads is listed in `deliverables/dashboard/app/DATA_AND_MODEL_SOURCES.md`. On the detractor tab a radio button switches the alert statistics between validation and the test. The ML deployment tab lists the alerted held-out orders in the review order of section 9, with both predictions and two scenarios on the alert's inputs (logistics 10% faster; freight discounts), each labelled as an association, not the effect of the action. The app's tests check the loaders, the router, the stored thresholds and that the alert list matches the stored test predictions without reading a label. Screenshots are in appendix L.
 
 ## 9 Business recommendations
 
-Three actions follow from the results; each is labelled as an observation (measured here), a literature-supported hypothesis or an unmeasured mechanism, and the dashboard shows the detail behind each.
+Three actions follow from the results; each is labelled as an observation (measured here), a literature-supported hypothesis or an unmeasured mechanism, and the dashboard shows the detail behind each (Table K16 sets them side by side).
 
-*Table 21. Recommended actions and their evidence.*
+**Promise a range, not a date** (observation; literature-supported hypothesis for the cost of over-promising). On validation, a buffer of 12.0 days puts 90% of orders on time and 17.5 days 95%; on the faster test period those buffers leave 1.5% and 0.7% late. Choose the buffer on recent weeks and watch the late share by state: overly optimistic promises carry costs after the sale (Cui et al., 2024).
 
-| Action | What the evidence shows | Label | Dashboard |
-| --- | --- | --- | --- |
-| Promise a range, not a date | On validation, a buffer of 12.0 days puts 90% of orders on time and 17.5 days 95%; on the faster test period those buffers leave 1.5% and 0.7% late. Choose the buffer on recent weeks and watch the late share by state. Overly optimistic promises carry costs after the sale (Cui et al., 2024) | Observation; literature-supported hypothesis for the cost of over-promising | Lead time, promise buffer |
-| Alert customer service at handover | Pipeline B at 4/15 sends 5.6 alerts a day at precision 0.346; with the baseline's fallback at 1/6 the total is 20.5 a day at precision 0.192 | Observation | Detractor risk, alert statistics |
-| Flag missed dispatch with a rule | Orders whose shipping limit passes without handover are detractors with precision 21.2%, and the rule catches 16.8% of all detractors on the test period, with no model | Observation | Detractor risk, missed dispatch |
+**Alert customer service at handover** (observation). Pipeline B at 4/15 sends 5.6 alerts a day at precision 0.346; with the baseline's fallback at 1/6 the total is 20.5 a day at precision 0.192.
+
+**Flag missed dispatch with a rule** (observation). Orders whose shipping limit passes without handover are detractors with precision 21.2%, and the rule catches 16.8% of all detractors on the test period, with no model.
 
 &#91;image: Promise buffer: share of orders delivered later than prediction plus buffer; buffer chosen on validation, read on the test\]
 
@@ -544,33 +393,22 @@ Three actions follow from the results; each is labelled as an observation (measu
 
 **Cost.** Weighting a missed detractor as five false alerts, the serving rule's test cost is 9,211 (7,123 from Pipeline B and 2,088 from the fallback). The weighting is an assumption; the dashboard shows the trade-off at other thresholds.
 
-**Review order when capacity is short.** Pipeline B's alerts at 4/15 are reviewed first (5.6 a day at precision 0.346). The baseline fallback's alerts outside the seven states come next (14.9 a day at precision 0.133). The review cap of 6 alerts a day asked for at the model review applies to Pipeline B alone; with the fallback the combined volume is higher, which the team accepted. The fallback scores at checkout, but its alerts are reviewed at carrier handover, like Pipeline B's, so each order's handover delay is known by then. Within the fallback, orders are reviewed by handover delay, longest first, with order value as the tie-break; an order not handed over by its shipping limit is flagged by the missed-dispatch rule. This order is an operational rule, not a measured result: the precisions above are measured for each stream, and no stored output evaluates the ordering inside the fallback.
+**Review order when capacity is short.** Pipeline B's alerts at 4/15 are reviewed first. The baseline fallback's alerts outside the seven states come next (14.9 a day at precision 0.133). The review cap of 6 alerts a day applies to Pipeline B alone; the team accepted the higher combined volume. Within the fallback, alerts are reviewed at carrier handover by handover delay, longest first, then by order value. This ordering is an operational rule, not a measured result.
 
 **Slow sellers and routes.** The seller's earlier dispatch delay and the route's recent speed are among the strongest predictors (section 7.4). That late delivery goes with more detractors is an observation in our own data (section 4); that working on these sellers and routes would improve reviews is an unmeasured mechanism, because nothing here tests an intervention. The dashboard ranks routes and categories by observed outcomes for each quarter so operations can choose where to look first.
 
 ## 10 Limitations
 
-All limitations are collected here. All validation in this project uses time-ordered, customer-purged folds, and the test period was read once; the limits below are what remains.
+Table K17 lists every remaining limit and how it is handled; these matter most for reading the results:
 
-*Table 22. Limitations and how each is handled.*
+- **Scope and moment.** Pipeline B covers only orders whose customer and seller are in the seven states with a known distance; Pipeline A's frozen model serves every other order. Pipeline B's alert acts at handover and Pipeline A's at checkout, so part of the alert gain is the later moment.
+- **Post-test threshold.** The operating threshold 4/15 was chosen after the test was read; the frozen 1/6 result is reported as the unbiased one.
+- **Drift and late deliveries possibly missing.** The test period was faster and happier than development, and the slowest deliveries for the newest orders may not have arrived when the data was extracted, so the test error may look better than it will in operation.
+- **Optimistic validation, unstable alert features.** Features were ranked once on all development orders, so validation scores are slightly optimistic (the test is unaffected); the alert's feature ranks move between folds; and correlation among the new history features was not measured.
+- **Recorded deviations.** Sigmoid calibration was kept although the pre-set rule preferred raw probabilities; Pipeline B's fold 1 is below the training minimum; the forest's best configuration sits on its grid edge (section 6).
+- **Associations, not causes.** No feature's effect on the outcome was tested; recommendations are labelled by evidence type (section 9).
 
-| Limit | What it means | How it is handled |
-| --- | --- | --- |
-| Seven-state scope | Pipeline B covers only orders whose customer and seller are in the seven states with a known distance | Pipeline A's frozen model serves every other order, and each prediction shows which model made it |
-| Different prediction moments | Pipeline B's alert acts at handover, Pipeline A's at checkout, so part of the gain is the later moment | Stated wherever the two are compared (section 7) |
-| Post-test threshold | The operating threshold 4/15 was chosen after the test was read | The frozen 1/6 result is reported as the unbiased one |
-| Calibration override | The pre-set rule would have kept raw probabilities; sigmoid calibration was kept so both pipelines share one scale | Recorded as a deviation (section 6.4) |
-| Screening on pooled rows | Features were ranked once on all development orders, so validation scores are slightly optimistic | Ranking stability by fold is reported (section 5.3); the test is unaffected |
-| Unstable alert ranking | For the alert, feature ranks move a lot between folds, most in the early folds | The selected set is read as a reasonable choice, not a unique one |
-| Unmeasured correlation | Correlation and VIF were not computed for the new history features; full rank rules out only exact dependence | Coefficients of related history features are read with care |
-| Grid edge | The forest's best configuration sits on the edge of its grid | The grid was fixed in advance and not extended after the test; the plain model is kept by the selection rule |
-| Fold 1 below minimum | Pipeline B's first fold has fewer training orders than the pre-set minimum | Kept so both pipelines are compared on identical periods |
-| Drift | The test period was faster and happier than development, and the route history features shifted most | Validation and test are reported separately; the promise buffer should be set on recent weeks |
-| Latest deliveries possibly missing | The slowest deliveries for the newest orders may not have arrived when the data was extracted | The test error may look slightly better than it will in operation |
-| Reproducibility | The frozen models' predictions reproduce exactly on another machine; refitting gives slightly different numbers across machines | Reproduction compares predictions exactly and refitted scores within a tolerance |
-| Associations, not causes | Features describe association with the outcome, not the effect of acting on them | Recommendations are labelled by evidence type (section 9) |
-
-**Next steps.** Deploy the app; monitor alert precision and late deliveries by state each month; set the promise buffer on recent weeks; and test the handover alert with customer service before scaling it.
+**Next steps.** Monitor alert precision and late deliveries by state each month; set the promise buffer on recent weeks; and test the handover alert with customer service before scaling it.
 
 ## References
 
@@ -1118,11 +956,27 @@ Every configuration of every family, with its mean and standard error over the f
 | forest | {"class\_weight": "balanced", "max\_depth": 18, "max\_features": "sqrt", "min\_samples\_leaf": 100} | 0.2655 | 0.03005 | 0.0005076 |
 | forest | {"class\_weight": "balanced", "max\_depth": 18, "max\_features": "sqrt", "min\_samples\_leaf": 200} | 0.2589 | 0.02992 | -0.02044 |
 
-### G. Population chain detail
+### G. Data model and population chain
+
+Every model row is one order. Table G1 shows how each of the nine raw tables reaches it (section 3).
+
+*Table G1. Data model: grain, key and join of each raw table.*
+
+| Table | One row per | Key | How it reaches the order | Used for |
+| --- | --- | --- | --- | --- |
+| orders | order | order\_id | the unit of every model row | purchase time and status; delivery and carrier dates only for the lead-time label and the handover moment |
+| order\_items | item of an order | order\_id, order\_item\_id | aggregated to the order, then one to one | counts of items, products, sellers and categories; total price, freight, weight and volume; the primary item |
+| order\_payments | payment of an order | order\_id, payment\_sequential | aggregated to the order, then one to one | main payment type, largest number of instalments |
+| order\_reviews | review of an order | review\_id, order\_id | aggregated to the order, then one to one | the detractor label (lowest valid score; first review as a check); never a predictor |
+| customers | customer of an order | customer\_id | orders to customers, many to one | customer state and ZIP prefix; customer\_unique\_id links repeat customers |
+| sellers | seller | seller\_id | through the items, many to one | seller state and ZIP prefix (primary seller; every seller for distance) |
+| products | product | product\_id | through the items, many to one | category, weight, dimensions |
+| product\_category\_name\_translation | category | product\_category\_name | through the products, many to one | English category name |
+| geolocation | observed point of a ZIP prefix | geolocation\_zip\_code\_prefix | median latitude and longitude per prefix inside Brazil, joined to customers and sellers on the prefix | seller-to-customer distance |
 
 Every removal from Pipeline B's population, by rule.
 
-*Table G1. Exclusions by rule, lead time.*
+*Table G2. Exclusions by rule, lead time.*
 
 | step | rows |
 | --- | --- |
@@ -1133,7 +987,7 @@ Every removal from Pipeline B's population, by rule.
 | removed: B\_WARMUP | 1264 |
 | B development rows | 61233 |
 
-*Table G2. Exclusions by rule, detractor alert.*
+*Table G3. Exclusions by rule, detractor alert.*
 
 | step | rows |
 | --- | --- |
@@ -1264,7 +1118,178 @@ Variance inflation factor of each numeric predictor in Pipeline A's pool, develo
 
 *Figure 29. Pairwise correlations of Pipeline A's numeric predictors, development orders (F.A3.reg.correlation\_heatmap).*
 
-### K. Dashboard screenshots
+### K. Supporting tables for sections 1–10
+
+These tables were moved from the body to keep it within the page limit; the body quotes their key numbers. They are in section order.
+
+*Table K1. Pipeline A's evidence and the changes it led to (section 1.1).*
+
+| What Pipeline A's evidence showed | Change in Pipeline B | How it was checked before the test |
+| --- | --- | --- |
+| The strongest signal of a bad review, late delivery (57.2% detractors when late against 9.5% on time), is unknown at checkout | The alert moves to carrier handover, where this order's dispatch delay is known; orders never handed over are flagged by a rule | Validation AP on the same rows (section 6.5) |
+| Delivery speed varies with the route and changes over time (section 4), but checkout features carry no recent seller or route behaviour | Seller and route history features (section 5.1) | Ranking and selection (section 5.3); validation scores |
+| Distant, thinly served states add noise that a single model fits poorly | Scope narrowed to the seven largest states with known distance; Pipeline A serves every other order | The scope effect is measured separately (section 7) |
+
+*Table K2. Detractor results under the lowest-review and first-review labels, test orders (section 3).*
+
+| model | label | ap | roc\_auc | brier | precision | recall |
+| --- | --- | --- | --- | --- | --- | --- |
+| B frozen | is\_detractor (agreed label) | 0.1972 | 0.636 | 0.0867 | 0.2077 | 0.3005 |
+| B frozen | is\_detractor\_first (first review) | 0.1972 | 0.6363 | 0.08665 | 0.2077 | 0.3006 |
+| A frozen | is\_detractor (agreed label) | 0.1785 | 0.604 | 0.08926 | 0.1583 | 0.3556 |
+| A frozen | is\_detractor\_first (first review) | 0.1785 | 0.6043 | 0.08921 | 0.1583 | 0.3558 |
+
+*Table K3. Population chain from Pipeline A's development orders to Pipeline B's rows (section 3).*
+
+| Step | Lead time | Detractor alert |
+| --- | --- | --- |
+| Pipeline A development orders (eligible, before the test period) | 76,925 | 77,736 |
+| Customer or seller outside the seven states | − 13,777 | − 13,983 |
+| Distance unknown | − 606 | − 618 |
+| Lead time above Pipeline B's cap | − 45 | — |
+| Never handed over to the carrier | — | − 461 |
+| Reviewed at or before handover | — | − 146 |
+| First six weeks (history warm-up) | − 1,264 | − 1,270 |
+| Pipeline B's development orders | 61,233 | 61,258 |
+| Of these, with the label known before the test period (final fit) | 59,683 | 59,188 |
+| Fold 5: training rows / validation rows | 47,415 / 9,059 | 47,237 / 8,646 |
+| Test orders | 15,422 | 15,492 (1,541 detractors) |
+
+*Table K4. Exploratory findings and the decisions they led to (section 4).*
+
+| What the data shows | Decision it led to | Section |
+| --- | --- | --- |
+| Right-skewed lead time with a long late tail | Log target and log day counts; keep the tail | 3 |
+| Late delivery and bad reviews go together | Alert at carrier handover; lateness never a predictor | 1, 6 |
+| Speed differs by route and state | Route feature and recent route speed; seven-state scope | 5, 6 |
+| Volumes and outcomes change over time | Time-ordered folds and test period | 6 |
+| Detractors are a minority | Average precision; cost-based threshold; class weight in the grid | 1, 6 |
+| One identical predictor pair | Dropped before selection | 5 |
+
+*Table K5. Pipeline B's new features (section 5.1).*
+
+| Feature | Definition | Window | Reason |
+| --- | --- | --- | --- |
+| Route (seller state → customer state) | The pair of states the parcel travels between | — | Delivery time differs by origin and destination in ways distance alone misses |
+| Seller prior late-handover rate | Share of the seller's earlier handovers made after their shipping limit | All complete weeks before the prediction week | A seller that dispatched late before is likely to do so again |
+| Seller prior late-handover days | Mean days by which those earlier handovers missed the limit (0 if on time) | As above | The size of past delays, not only their frequency |
+| Seller prior dispatch days | Mean days from purchase to handover over the seller's earlier orders | As above | Packing speed is part of every lead time |
+| Route recent delivery days | Typical purchase-to-delivery time on the route | Weighted mean of the last three complete weeks (0.5, 0.3, 0.2) | Recent delivery conditions on the route |
+| Route recent carrier transit days | Typical handover-to-delivery time on the route | As above | The carrier's part of the lead time, with the seller's delay removed |
+| This order's handover lateness (alert only) | Whether, and by how many days, this order's handover missed its shipping limit | At handover | A late dispatch is new information about the coming delivery and review |
+| This order's dispatch days (alert only) | Days from purchase to this order's handover | At handover | How long the customer has already waited |
+
+*Table K6. Features removed by Pipeline B's reduction step, lead time (section 5.2).*
+
+| feature | flagged\_by | paired\_with |
+| --- | --- | --- |
+| customer\_state | nested in route (B-G-02) | route\_seller\_to\_customer\_state |
+| primary\_seller\_state | nested in route (B-G-02) | route\_seller\_to\_customer\_state |
+| distance\_missing\_fraction | constant |  |
+| weight\_missing\_fraction | duplicate | volume\_missing\_fraction |
+
+*Table K7. Pipeline A's predictor pairs above the correlation cut-off (section 5.2).*
+
+| feature\_a | feature\_b | pearson | spearman | identical |
+| --- | --- | --- | --- | --- |
+| weight\_missing\_fraction | volume\_missing\_fraction | 1 | 1 | True |
+
+*Table K8. Model ladder on the five folds, lead time, MAE in days (section 6.2).*
+
+| comparison | mean\_gain | paired\_se | folds\_better | kept\_by\_one\_se\_rule |
+| --- | --- | --- | --- | --- |
+| linear/logistic vs dummy | 0.9442 | 0.1606 | 5 | True |
+| single tree vs linear/logistic | -0.02855 | 0.1027 | 2 | False |
+| forest vs linear/logistic | 0.06193 | 0.0677 | 3 | False |
+
+*Table K9. Model ladder on the five folds, detractor alert, AP (section 6.2).*
+
+| comparison | mean\_gain | paired\_se | folds\_better | kept\_by\_one\_se\_rule |
+| --- | --- | --- | --- | --- |
+| linear/logistic vs dummy | 0.1236 | 0.01742 | 5 | True |
+| single tree vs linear/logistic | -0.02217 | 0.005108 | 0 | False |
+| forest vs linear/logistic | 0.01232 | 0.005154 | 4 | False |
+
+*Table K10. Plain against tuned models, lead time (section 6.3).*
+
+| family | plain\_mean | tuned\_mean | tuned\_se | paired\_gain\_of\_tuned | paired\_se | carried |
+| --- | --- | --- | --- | --- | --- | --- |
+| linear/logistic | 5.025 | 5.021 | 0.5946 | 0.00412 | 0.02701 | plain |
+| single tree | 5.053 | 5.084 | 0.6443 | -0.03087 | 0.02687 | plain |
+| forest | 4.963 | 5.082 | 0.649 | -0.1193 | 0.02599 | plain |
+
+*Table K11. Plain against tuned models, detractor alert (section 6.3).*
+
+| family | plain\_mean | tuned\_mean | tuned\_se | paired\_gain\_of\_tuned | paired\_se | carried |
+| --- | --- | --- | --- | --- | --- | --- |
+| linear/logistic | 0.2616 | 0.2734 | 0.03179 | 0.0118 | 0.005107 | plain |
+| single tree | 0.2394 | 0.2298 | 0.02967 | -0.009644 | 0.007588 | plain |
+| forest | 0.2739 | 0.2625 | 0.02971 | -0.01144 | 0.002612 | plain |
+
+*Table K12. Adoption check on Pipeline B's folds, lead time, MAE in days (section 6.5).*
+
+| fold | b\_rows | a\_model\_on\_b\_rows | b\_model\_on\_b\_rows | paired\_gain\_b\_over\_a |
+| --- | --- | --- | --- | --- |
+| 1 | 10323 | 3.724 | 3.722 | 0.001477 |
+| 2 | 10364 | 5.516 | 5.468 | 0.04797 |
+| 3 | 10443 | 5.755 | 5.614 | 0.1411 |
+| 4 | 10429 | 7.11 | 6.772 | 0.3375 |
+| 5 | 9059 | 3.607 | 3.547 | 0.06012 |
+
+*Table K13. Adoption check on Pipeline B's folds, detractor alert, AP (section 6.5).*
+
+| fold | b\_rows | a\_model\_on\_b\_rows | b\_model\_on\_b\_rows | paired\_gain\_b\_over\_a |
+| --- | --- | --- | --- | --- |
+| 1 | 10324 | 0.1407 | 0.1566 | 0.01585 |
+| 2 | 10342 | 0.2386 | 0.2738 | 0.03512 |
+| 3 | 10450 | 0.25 | 0.2762 | 0.02618 |
+| 4 | 10453 | 0.3563 | 0.3713 | 0.01497 |
+| 5 | 8646 | 0.2237 | 0.2301 | 0.006408 |
+
+*Table K14. Lead-time error by slice, test orders (section 7.1).*
+
+| slice | judged\_slices | too\_few | pooled\_mae\_A | pooled\_mae\_B | mean\_gain | sd\_gain | slices\_B\_better |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| customer\_state | 7 | 0 | 4.028 | 3.299 | -0.9297 | 0.275 | 7 |
+| route\_seller\_to\_customer\_state | 20 | 28 | 3.97 | 3.233 | -0.8155 | 0.3866 | 20 |
+| distance\_band | 5 | 0 | 4.028 | 3.299 | -0.7444 | 0.3128 | 5 |
+| basket | 3 | 0 | 4.028 | 3.299 | -0.6387 | 0.0949 | 3 |
+| month | 4 | 0 | 4.028 | 3.299 | -0.5456 | 0.5487 | 3 |
+
+*Table K15. Where the gain comes from: validation scores by population (section 7.3).*
+
+|  | Pipeline A, all states | Pipeline A, seven-state rows | Pipeline B, seven-state rows |
+| --- | --- | --- | --- |
+| Lead time, MAE (days) | 5.470 | 5.142 | 5.025 |
+| Detractor alert, AP | 0.232 | 0.230 | 0.248 |
+
+*Table K16. Recommended actions and their evidence (section 9).*
+
+| Action | What the evidence shows | Label | Dashboard |
+| --- | --- | --- | --- |
+| Promise a range, not a date | On validation, a buffer of 12.0 days puts 90% of orders on time and 17.5 days 95%; on the faster test period those buffers leave 1.5% and 0.7% late. Choose the buffer on recent weeks and watch the late share by state. Overly optimistic promises carry costs after the sale (Cui et al., 2024) | Observation; literature-supported hypothesis for the cost of over-promising | Lead time, promise buffer |
+| Alert customer service at handover | Pipeline B at 4/15 sends 5.6 alerts a day at precision 0.346; with the baseline's fallback at 1/6 the total is 20.5 a day at precision 0.192 | Observation | Detractor risk, alert statistics |
+| Flag missed dispatch with a rule | Orders whose shipping limit passes without handover are detractors with precision 21.2%, and the rule catches 16.8% of all detractors on the test period, with no model | Observation | Detractor risk, missed dispatch |
+
+*Table K17. Limitations and how each is handled (section 10).*
+
+| Limit | What it means | How it is handled |
+| --- | --- | --- |
+| Seven-state scope | Pipeline B covers only orders whose customer and seller are in the seven states with a known distance | Pipeline A's frozen model serves every other order, and each prediction shows which model made it |
+| Different prediction moments | Pipeline B's alert acts at handover, Pipeline A's at checkout, so part of the gain is the later moment | Stated wherever the two are compared (section 7) |
+| Post-test threshold | The operating threshold 4/15 was chosen after the test was read | The frozen 1/6 result is reported as the unbiased one |
+| Calibration override | The pre-set rule would have kept raw probabilities; sigmoid calibration was kept so both pipelines share one scale | Recorded as a deviation (section 6.4) |
+| Screening on pooled rows | Features were ranked once on all development orders, so validation scores are slightly optimistic | Ranking stability by fold is reported (section 5.3); the test is unaffected |
+| Unstable alert ranking | For the alert, feature ranks move a lot between folds, most in the early folds | The selected set is read as a reasonable choice, not a unique one |
+| Unmeasured correlation | Correlation and VIF were not computed for the new history features; full rank rules out only exact dependence | Coefficients of related history features are read with care |
+| Grid edge | The forest's best configuration sits on the edge of its grid | The grid was fixed in advance and not extended after the test; the plain model is kept by the selection rule |
+| Fold 1 below minimum | Pipeline B's first fold has fewer training orders than the pre-set minimum | Kept so both pipelines are compared on identical periods |
+| Drift | The test period was faster and happier than development, and the route history features shifted most | Validation and test are reported separately; the promise buffer should be set on recent weeks |
+| Latest deliveries possibly missing | The slowest deliveries for the newest orders may not have arrived when the data was extracted | The test error may look slightly better than it will in operation |
+| Reproducibility | The frozen models' predictions reproduce exactly on another machine; refitting gives slightly different numbers across machines | Reproduction compares predictions exactly and refitted scores within a tolerance |
+| Associations, not causes | Features describe association with the outcome, not the effect of acting on them | Recommendations are labelled by evidence type (section 9) |
+
+### L. Dashboard screenshots
 
 Two views of the app, reading the stored test outputs.
 
@@ -1272,8 +1297,14 @@ Two views of the app, reading the stored test outputs.
 
 &#91;image: App screenshot\]
 
-*Screenshots 1–2. The detractor tab's alert statistics on the test period at the operating threshold 4/15 (S.05\_alert\_stats\_test\_4\_15) and the ML deployment tab's list of alerted held-out orders (S.06\_score\_alert\_list).*
+*Screenshots 1–2. The detractor tab's alert statistics on the test period at the operating threshold 4/15 (S.05\_alert\_stats\_test\_4\_15) and the ML deployment tab's list of alerted held-out orders (S.06\_ml\_deployment\_alert\_list).*
 
-### L. Declaration of AI use
+### M. Declaration of AI use
 
 The team used Anthropic's Claude (Claude Code) throughout. It wrote and ran most of the pipeline code under the team's instructions, drafted the stage documentation, built the number register, and drafted this report and the slides. The team set the problem, the scope and every decision recorded in the project's decision logs, reviewed each stage before it was accepted, and checked the drafts. Every number in the report is filled from the stored pipeline outputs through the register, never typed; an audit script compares the report and slides against those outputs. Every reference was checked by the team against the publisher's record, and the claims made from each source were checked against that record (literature register).
+
+### N. Reproducing the experiment
+
+The experiment can be rerun from the raw Olist tables with the code in the project repository (https://github.com/wuqianzong/Team11\_IT5006\_Ecommerce\_Analytics\_AY2627Sem1, branch main). The README's own Appendix A gives the setup (Python 3.13 and the pinned packages) and a single script that reruns both pipelines at the released version. The script checks that every modelling decision matches the release, and compares every output file with the release. The held-out test is not rerun, because it was read only once; the test results come from the frozen models, which re-predict them to within 1e-9 on any machine.
+
+On the team's reference machine the rerun matches the release byte for byte, apart from seven files made on another machine that differ only by floating-point noise. On other machines, refitted validation scores can differ slightly, because floating-point arithmetic differs between machines; the modelling decisions and test results are unaffected. The README explains these differences.

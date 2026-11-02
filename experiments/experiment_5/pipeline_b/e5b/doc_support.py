@@ -34,6 +34,15 @@ def _plt():
     return plt
 
 
+def pooled_confusion(cc: pd.DataFrame) -> pd.DataFrame:
+    """One pooled confusion row per model: b08's 'all' rows when present, else the sum of the fold rows.
+    The fold column is compared as text, so it works whether pandas reads it as object or str (B-CR-48)."""
+    pooled = cc[cc.fold.astype(str).str.lower().isin(["all", "pooled", "total"])]
+    if pooled.empty:
+        pooled = cc.groupby("model")[["tp", "fp", "fn", "tn"]].sum().reset_index()
+    return pooled
+
+
 def run(task: str) -> None:
     assert_a_frozen()
     w = BWriter(STAGE, task)
@@ -158,9 +167,7 @@ def run(task: str) -> None:
         w.figure("r06_auc_brier", fig, mp, ids=("DS.6",), title="AP, ROC-AUC and Brier by population (R-06)")
         plt.close(fig)
         cc = pd.read_csv(w.read(b_outputs_dir("b08", task) / "confusion_comparison.csv"))
-        pooled = cc[cc.fold.astype(str).str.lower().isin(["all", "pooled", "total"])] if cc.fold.dtype == object else cc.iloc[0:0]
-        if pooled.empty:
-            pooled = cc.groupby("model")[["tp", "fp", "fn", "tn"]].sum().reset_index()
+        pooled = pooled_confusion(cc)
         fig, axes = plt.subplots(1, len(pooled), figsize=(4.5 * len(pooled), 3.8))
         for ax, r in zip(np.atleast_1d(axes), pooled.itertuples()):
             mat = np.array([[r.tn, r.fp], [r.fn, r.tp]], dtype=float)
