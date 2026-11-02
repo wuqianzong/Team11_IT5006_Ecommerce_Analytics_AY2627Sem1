@@ -18,8 +18,10 @@ IT5006 Fundamentals Of Data Analytics
 
 AY2026/2027 Semester 1
 
-**Application:** [live URL, added once the app is hosted]
+**Application:** https://it5006grp11ecommerce.streamlit.app/
 
 **GitHub repository:** https://github.com/wuqianzong/Team11_IT5006_Ecommerce_Analytics_AY2627Sem1
+
+**Branch:** main or milestone-3
 
 **Submitted:** 8 November 2026

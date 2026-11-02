@@ -4,53 +4,33 @@ Models are compared from the simplest upwards, on the same time-ordered folds, u
 
 ### 6.1 Validation design
 
-Leakage takes several forms beyond rows shared between training and test (Kapoor and Narayanan, 2023). Our orders are dated and customers return, so a random or stratified split would train on orders placed after the ones it predicts, and could put one customer on both sides; we apply the warning to that case. We therefore use five chronological, expanding folds before the test period: each fold trains on all orders up to a date and validates on the following weeks. Customers seen in a validation window are removed from its training rows, and a training order counts only if its label (delivery or review) was known before the validation window starts.
+Leakage takes several forms beyond rows shared between training and test (Kapoor and Narayanan, 2023). Our orders are dated and customers return, so a random or stratified split would train on orders placed after the ones it predicts, and could put one customer on both sides. We therefore use five chronological, expanding folds before the test period: each fold trains on all orders up to a date and validates on the following weeks (windows and sizes in Tables A2 and A3). Customers seen in a validation window are removed from its training rows, and a training order counts only if its label (delivery or review) was known before the validation window starts.
 
 *Figure: Time-ordered folds and the test period (F.reg.partition).*
 
-*Table 10. Fold windows and sizes, lead time.*
-
-{{table:B5.reg.folds}}
-
-Each fold must have at least {{B5.min_train_rows}} training orders and, for the alert, 100 detractors in each part; the minimums were set before the folds were built. Fold 1 of Pipeline B falls short on training orders ({{B5.reg.fold1_train_rows}} for lead time, {{B5.clf.fold1_train_rows}} for the alert), because the seven-state scope and the warm-up remove early orders. We kept it, as a recorded deviation, so the two pipelines are compared on identical periods; every detractor minimum is met. Instead of stratifying, each fold's detractor share is reported, and it moves with the business over time (appendix A).
+Each fold must have at least {{B5.min_train_rows}} training orders and, for the alert, 100 detractors in each part; the minimums were set before the folds were built. Fold 1 of Pipeline B falls short on training orders ({{B5.reg.fold1_train_rows}} for lead time, {{B5.clf.fold1_train_rows}} for the alert), because the seven-state scope and the warm-up remove early orders. We kept it, as a recorded deviation, so the two pipelines are compared on identical periods; every detractor minimum is met. Instead of stratifying, each fold's detractor share is reported, and it moves with the business over time (appendix A). Every metric is defined in appendix B. Every random step (trees, forests, tuning) uses seed 42, and forests predict on a single thread, so a rerun on the same machine reproduces every stored output exactly.
 
 ### 6.2 Model ladder
 
-We use two model families, linear and tree-based, each started from its simplest variant, as the project description requires: a dummy that predicts the median lead time or the detractor share; plain linear regression or unpenalised logistic regression; a single decision tree; and a random forest of 200 trees (Breiman, 2001). Tree ensembles are the natural non-linear comparison for tabular data of this kind (Grinsztajn et al., 2022). Plain least squares and unpenalised logistic regression need a full-rank design matrix, which section 5.2 shows holds in every fold. Stacking (Wolpert, 1992) and gradient boosting (Chen and Guestrin, 2016) were considered but not added: the project limits the number of model families, and the forest itself did not clear the selection rule.
+We use two model families, linear and tree-based, each started from its simplest variant, as the project description requires: a dummy that predicts the median lead time or the detractor share; plain linear regression or unpenalised logistic regression; a single decision tree; and a random forest of 200 trees (Breiman, 2001). Tree ensembles are the natural non-linear comparison for tabular data of this kind (Grinsztajn et al., 2022). Plain least squares and unpenalised logistic regression need a full-rank design matrix, which section 5.2 shows holds in every fold. Stacking and gradient boosting were considered but not added (section 2).
 
-Each step up the ladder must beat the step below it on the same folds. The table gives the mean gain over the five folds, its paired standard error and the number of folds in which the more complex model wins (MAE in days, a positive gain means lower error; AP for the alert).
+Each step up the ladder must beat the step below it on the same folds. Appendix H gives every candidate's fold scores; Tables K8 and K9 give the mean gain over the five folds, its paired standard error and the number of folds in which the more complex model wins (MAE in days, a positive gain means lower error; AP for the alert).
 
 *Figure: Model ladder on the five folds, lead time (F.reg.family_ladder) and detractor alert (F.clf.family_ladder).*
 
-*Table 11. Model ladder on the five folds, lead time (MAE in days).*
-
-{{table:B6.reg.ladder}}
-
-*Table 12. Model ladder on the five folds, detractor alert (AP).*
-
-{{table:B6.clf.ladder}}
-
-The linear and logistic models beat the dummy in every fold. The single tree is worse than the linear model in both tasks. The forest is slightly better on average, more consistently so for the alert.
+The linear model beats the dummy in every fold, by {{B6.reg.gain_linear}} days of MAE on average, and the logistic model by {{B6.clf.gain_linear}} AP. The single tree is worse than the linear model in both tasks: {{B6.reg.gain_tree}} days, better in {{B6.reg.gain_tree_folds}} of five folds, and {{B6.clf.gain_tree}} AP, better in {{B6.clf.gain_tree_folds}}. The forest is slightly better on average, {{B6.reg.gain_forest}} days (paired standard error {{B6.reg.gain_forest_se}}, better in {{B6.reg.gain_forest_folds}} folds), and more consistently so for the alert, {{B6.clf.gain_forest}} AP (standard error {{B6.clf.gain_forest_se}}, better in {{B6.clf.gain_forest_folds}} folds).
 
 ### 6.3 Tuning
 
 Each family was then tuned on the same folds, with grids fixed before any tuning result was seen: Ridge alpha and logistic C from 0.01 to 100; tree depth 4 to 18 and minimum leaf size 20 to 200; forest depth 8 to 18 and leaf size 20 to 200 with square-root feature sampling; and class weight (none or balanced) for every classifier (appendix F). Class weighting is how the grid treats the imbalance. We did not resample: the alert uses calibrated probabilities and a cost-based threshold, and in logistic risk models imbalance corrections can distort the calibration of the predicted risk (Van den Goorbergh et al., 2022).
 
-*Table 13. Plain against tuned models, lead time.*
-
-{{table:B7.reg.plain_vs_tuned}}
-
-*Table 14. Plain against tuned models, detractor alert.*
-
-{{table:B7.clf.plain_vs_tuned}}
-
-Tuning changed little: no tuned configuration beat its plain model by enough to be carried forward. The forest's best configuration sits at the edge of its grid in both tasks: the smallest leaf size, with the deepest trees for lead time and the shallowest for the alert. A best value on the boundary means a wider grid might do better. The grid was fixed in advance and was not extended, because the selection rule below keeps the plain model either way; extending it after the test would mean choosing on the test (section 10).
+Tuning changed little (Tables K10 and K11). For lead time the tuned linear model's paired gain is {{B7.reg.tuned_gain_linear}} days and the tuned forest's {{B7.reg.tuned_gain_forest}}; for the alert the tuned logistic model gains {{B7.clf.tuned_gain_linear}} AP, well inside its fold-to-fold standard error of {{B7.clf.tuned_se_linear}}, and the tuned forest {{B7.clf.tuned_gain_forest}}. No tuned configuration beat its plain model by enough to be carried forward. The forest's best configuration sits at the edge of its grid in both tasks, so a wider grid might do better; the grid was fixed in advance and not extended, because the selection rule below keeps the plain model either way (section 10).
 
 ### 6.4 Selection, calibration and threshold
 
-**The one-standard-error rule.** Among the finalists, we keep the simplest model whose mean validation score is within one standard error of the best mean, where the standard error measures how much the score varies from fold to fold. The forest had the best mean in both tasks, but within one standard error of the plain model, so the plain linear model (lead time) and the plain logistic model (alert) were selected. This is a deliberate preference for simplicity, and it should be read with the paired results above: for the alert the forest beats the logistic model in four of five folds, by more than its paired standard error, but by much less than the fold-to-fold variation that the rule uses. The rule was fixed before training, and the simpler model is easier to explain, calibrate and serve.
+**The one-standard-error rule.** Among the finalists, we keep the simplest model whose mean validation score is within one standard error of the best mean, where the standard error measures how much the score varies from fold to fold. The forest had the best mean in both tasks, but within one standard error of the plain model, so the plain linear model (lead time) and the plain logistic model (alert) were selected. This is a deliberate preference for simplicity: for the alert the forest wins in four of five folds by more than its paired standard error, but by much less than the fold-to-fold variation the rule uses, and the simpler model is easier to explain, calibrate and serve.
 
-**Calibration.** The alert's probabilities are calibrated with a sigmoid fitted on time-ordered inner splits, so that both pipelines share one probability scale for thresholds and costs. The pre-set rule would have kept the raw probabilities, which had a slightly better Brier score; we kept the sigmoid for comparability and record it as a deviation (section 10).
+**Calibration.** The alert's probabilities are calibrated with a sigmoid fitted on time-ordered inner splits, so that both pipelines share one probability scale for thresholds and costs. The pre-set rule preferred the raw probabilities (slightly better Brier score); we kept the sigmoid for comparability, a recorded deviation (section 10).
 
 **Threshold.** With a missed detractor weighted as five false alerts, an alert pays off when the predicted risk exceeds 1/6, and that is the frozen threshold. After the test, the business chose a higher operating threshold for Pipeline B, 4/15, to cut false alarms; the frozen 1/6 result stays the unbiased test result (section 7).
 
@@ -58,14 +38,6 @@ Tuning changed little: no tuned configuration beat its plain model by enough to 
 
 Section 1.1 sets out Pipeline A's limits and the change each one led to.
 
-**The adoption rule, fixed before the test.** Pipeline B is adopted for a task if, on its own validation rows, its five-fold mean beats Pipeline A's frozen model refitted on the same folds, even by a small margin. It did, in every fold of both tasks:
-
-*Table 15. Adoption check on Pipeline B's folds, lead time (MAE in days).*
-
-{{table:B8.reg.adoption}}
-
-*Table 16. Adoption check on Pipeline B's folds, detractor alert (AP).*
-
-{{table:B8.clf.adoption}}
+**The adoption rule, fixed before the test.** Pipeline B is adopted for a task if, on its own validation rows, its five-fold mean beats Pipeline A's frozen model refitted on the same folds, even by a small margin. It did, in every fold of both tasks (Tables K12 and K13): Pipeline B's MAE is lower by {{B8.reg.adopt_gain_fold1}} days in fold 1 up to {{B8.reg.adopt_gain_fold4}} in fold 4, and its AP (before calibration, as the rule specifies) higher by {{B8.clf.adopt_gain_fold5}} in fold 5 up to {{B8.clf.adopt_gain_fold2}} in fold 2.
 
 Both pipelines then went to the single test read regardless of this result, and the test did not re-choose any model, calibration or threshold. Everything else was inherited unchanged from Pipeline A: the folds, the model families and grids, the selection rule, the metrics and the calibration and threshold procedure.

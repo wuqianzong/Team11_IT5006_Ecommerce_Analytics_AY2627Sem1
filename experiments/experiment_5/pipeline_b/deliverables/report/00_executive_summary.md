@@ -12,7 +12,7 @@ For each Olist order the business needs two answers: how many days delivery will
 | Share of orders predicted within 3 days | {{B9.reg.test_within3_B}} | {{B9.reg.test_within3_A_on_B}} | |
 | Detractor ranking, average precision (higher is better) | {{B9.clf.test_ap_B}} | {{B9.clf.test_ap_A_on_B}} | {{B9.clf.ap_diff}} [{{B9.clf.ap_diff_lo}}, {{B9.clf.ap_diff_hi}}] |
 
-Pipeline B is better on the same test orders in both tasks, and both intervals exclude zero. For lead time most of the gain comes from the narrower scope, the rest from the new features; for the alert it comes from the features and the later moment. Orders outside the seven states are served by Pipeline A's frozen model.
+Pipeline B is better on the same test orders in both tasks, and both intervals exclude zero. On the validation folds, most of the lead-time gain comes from the narrower scope, the rest from the new features; for the alert it comes from the features and the later moment. Orders outside the seven states are served by Pipeline A's frozen model.
 
 **Use.** Show delivery promises as a range around the prediction; alert customer service at handover (about {{B10.clf.combined_test_alerts_day}} alerts a day on the test, including the fallback); flag orders whose shipping limit passes without a handover.
 

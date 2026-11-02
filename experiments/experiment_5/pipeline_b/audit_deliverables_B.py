@@ -109,8 +109,10 @@ def main() -> int:
     # 3 report numbers ----------------------------------------------------------------------------------
     filled = "\n".join(reg.fill(p.read_text(encoding="utf-8"), nums) for p in sorted((DELIV / "report").glob("*.md")))
     doc = Path(a.doc).read_text(encoding="utf-8")
-    doc_body = re.sub(r"\*Figure \d+\.", "", doc)          # figure numbers
-    doc_body = re.sub(r"^Oct \d+, \d{4}.*$", "", doc_body, flags=re.M)   # as-of date line
+    # title, as-of line, review note: written in the doc only, no results (same header as the text check below)
+    doc_nonblank = [i for i, ln in enumerate(doc.splitlines()) if ln.strip()]
+    doc_body = "\n".join(doc.splitlines()[doc_nonblank[3]:]) if len(doc_nonblank) > 3 else doc
+    doc_body = re.sub(r"\*Figure \d+\.", "", doc_body)     # figure numbers
     extra = sorted(_tokens(doc_body) - _tokens(filled))
     check("report numbers: every number in the live doc is in the filled report sources", not extra, ", ".join(extra))
     missing = sorted(_tokens(filled) - _tokens(doc_body))

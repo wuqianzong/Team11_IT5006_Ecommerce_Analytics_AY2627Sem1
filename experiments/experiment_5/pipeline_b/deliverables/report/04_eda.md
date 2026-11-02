@@ -1,6 +1,6 @@
 ## 4 Exploratory analysis
 
-Exploration used development orders only, before each task's test period, so it never saw a test outcome. Each fact below led to a decision in the design; the table at the end lists them side by side. Patterns are described, not explained: the data does not record why a route is slow or why a customer is unhappy.
+Exploration used development orders only, before each task's test period, so it never saw a test outcome. Each fact below led to a decision in the design; Table K4 lists them side by side. Patterns are described, not explained: the data does not record why a route is slow or why a customer is unhappy.
 
 **Lead time is right-skewed.** Half of the orders arrive within {{A3.reg.lead_median_days}} days, but a long tail of very late orders pulls the mean above the median: median {{A3.reg.lead_median_days}} days, mean {{A3.reg.lead_mean_days}}, 95th percentile {{A3.reg.lead_p95_days}}, skewness {{A3.reg.lead_skewness}}. A model fitted on raw days would chase the tail, so the regression predicts the log of 1 plus the lead time, and day-count inputs are log-transformed the same way.
 
@@ -21,14 +21,3 @@ Exploration used development orders only, before each task's test period, so it 
 **Predictors overlap little.** A first look at pairwise correlations among the numeric predictors found one identical pair and no other pair above the cut-off; section 5.2 checks this formally with the variance inflation factor.
 
 **The newest weeks may be incomplete.** The data ends in late 2018. The slowest deliveries for orders placed in the final weeks may not have arrived when the data was extracted, so the test period, the newest fifth of orders, may under-represent very late deliveries and make its error look slightly better (section 10).
-
-*Table 6. Exploratory findings and the decisions they led to.*
-
-| What the data shows | Decision it led to | Section |
-| --- | --- | --- |
-| Right-skewed lead time with a long late tail | Log target and log day counts; keep the tail | 3 |
-| Late delivery and bad reviews go together | Alert at carrier handover; lateness never a predictor | 1, 6 |
-| Speed differs by route and state | Route feature and recent route speed; seven-state scope | 5, 6 |
-| Volumes and outcomes change over time | Time-ordered folds and test period | 6 |
-| Detractors are a minority | Average precision; cost-based threshold; class weight in the grid | 1, 6 |
-| One identical predictor pair | Dropped before selection | 5 |

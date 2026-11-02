@@ -2015,7 +2015,7 @@
       "deck 6"
     ],
     "file": "evidence/build/figures/F.A3.reg.outcome_trends.png",
-    "caption": "Monthly orders and outcomes, development orders (Pipeline A EDA)"
+    "caption": "Monthly orders and lead time, development orders (Pipeline A EDA)"
   },
   "F.A3.clf.outcome_trends": {
     "kind": "figure",
@@ -2423,39 +2423,39 @@
   },
   "B8.clf.pop_A_on_A": {
     "kind": "number",
-    "source": "b08/classification/outputs/population_summary.csv",
+    "source": "b08/classification/outputs/metrics_by_population.csv",
     "run_id": "20261024T042619Z",
     "evidence": "B8.A",
     "used_in": [
       "report 7",
       "deck 13"
     ],
-    "value": 0.243507462225636,
-    "text": "0.244"
+    "value": 0.2317254314437797,
+    "text": "0.232"
   },
   "B8.clf.pop_A_on_B": {
     "kind": "number",
-    "source": "b08/classification/outputs/population_summary.csv",
+    "source": "b08/classification/outputs/metrics_by_population.csv",
     "run_id": "20261024T042619Z",
     "evidence": "B8.A",
     "used_in": [
       "report 7",
       "deck 13"
     ],
-    "value": 0.2418771435789408,
-    "text": "0.242"
+    "value": 0.2301591305863849,
+    "text": "0.230"
   },
   "B8.clf.pop_B_on_B": {
     "kind": "number",
-    "source": "b08/classification/outputs/population_summary.csv",
+    "source": "b08/classification/outputs/metrics_by_population.csv",
     "run_id": "20261024T042619Z",
     "evidence": "B8.A",
     "used_in": [
       "report 7",
       "deck 13"
     ],
-    "value": 0.2615813375186103,
-    "text": "0.262"
+    "value": 0.2482053394114348,
+    "text": "0.248"
   },
   "B9.clf.test_auc_A_on_B": {
     "kind": "number",
@@ -3956,5 +3956,236 @@
     ],
     "file": "evidence/build/figures/F.clf.test_curves.deck.png",
     "caption": "PR, ROC and reliability curves on B's test rows (presentation render)"
+  },
+  "B6.reg.gain_linear": {
+    "kind": "number",
+    "source": "b06/regression/outputs/paired_differences.csv",
+    "run_id": "20261023T162830Z",
+    "evidence": "B6.2",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 0.9442258607135644,
+    "text": "0.94"
+  },
+  "B6.reg.gain_tree": {
+    "kind": "number",
+    "source": "b06/regression/outputs/paired_differences.csv",
+    "run_id": "20261023T162830Z",
+    "evidence": "B6.2",
+    "used_in": [
+      "report 6"
+    ],
+    "value": -0.0285452761599279,
+    "text": "-0.03"
+  },
+  "B6.reg.gain_tree_folds": {
+    "kind": "number",
+    "source": "b06/regression/outputs/paired_differences.csv",
+    "run_id": "20261023T162830Z",
+    "evidence": "B6.2",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 2,
+    "text": "2"
+  },
+  "B6.reg.gain_forest": {
+    "kind": "number",
+    "source": "b06/regression/outputs/paired_differences.csv",
+    "run_id": "20261023T162830Z",
+    "evidence": "B6.2",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 0.061929586122916,
+    "text": "0.06"
+  },
+  "B6.reg.gain_forest_se": {
+    "kind": "number",
+    "source": "b06/regression/outputs/paired_differences.csv",
+    "run_id": "20261023T162830Z",
+    "evidence": "B6.2",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 0.067703152517409,
+    "text": "0.07"
+  },
+  "B6.reg.gain_forest_folds": {
+    "kind": "number",
+    "source": "b06/regression/outputs/paired_differences.csv",
+    "run_id": "20261023T162830Z",
+    "evidence": "B6.2",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 3,
+    "text": "3"
+  },
+  "B6.clf.gain_linear": {
+    "kind": "number",
+    "source": "b06/classification/outputs/paired_differences.csv",
+    "run_id": "20261023T162918Z",
+    "evidence": "B6.2",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 0.1236105528718997,
+    "text": "0.124"
+  },
+  "B6.clf.gain_tree": {
+    "kind": "number",
+    "source": "b06/classification/outputs/paired_differences.csv",
+    "run_id": "20261023T162918Z",
+    "evidence": "B6.2",
+    "used_in": [
+      "report 6"
+    ],
+    "value": -0.022173135216443,
+    "text": "-0.022"
+  },
+  "B6.clf.gain_tree_folds": {
+    "kind": "number",
+    "source": "b06/classification/outputs/paired_differences.csv",
+    "run_id": "20261023T162918Z",
+    "evidence": "B6.2",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 0,
+    "text": "0"
+  },
+  "B6.clf.gain_forest": {
+    "kind": "number",
+    "source": "b06/classification/outputs/paired_differences.csv",
+    "run_id": "20261023T162918Z",
+    "evidence": "B6.2",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 0.012315016384305,
+    "text": "0.012"
+  },
+  "B6.clf.gain_forest_se": {
+    "kind": "number",
+    "source": "b06/classification/outputs/paired_differences.csv",
+    "run_id": "20261023T162918Z",
+    "evidence": "B6.2",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 0.0051541164657244,
+    "text": "0.005"
+  },
+  "B6.clf.gain_forest_folds": {
+    "kind": "number",
+    "source": "b06/classification/outputs/paired_differences.csv",
+    "run_id": "20261023T162918Z",
+    "evidence": "B6.2",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 4,
+    "text": "4"
+  },
+  "B7.reg.tuned_gain_linear": {
+    "kind": "number",
+    "source": "b07/regression/outputs/plain_vs_tuned.csv",
+    "run_id": "20261023T163311Z",
+    "evidence": "B7.5",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 0.0041202278331324,
+    "text": "+0.004"
+  },
+  "B7.reg.tuned_gain_forest": {
+    "kind": "number",
+    "source": "b07/regression/outputs/plain_vs_tuned.csv",
+    "run_id": "20261023T163311Z",
+    "evidence": "B7.5",
+    "used_in": [
+      "report 6"
+    ],
+    "value": -0.1193168009547214,
+    "text": "-0.119"
+  },
+  "B7.clf.tuned_gain_linear": {
+    "kind": "number",
+    "source": "b07/classification/outputs/plain_vs_tuned.csv",
+    "run_id": "20261023T164241Z",
+    "evidence": "B7.5",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 0.0118004015973224,
+    "text": "+0.012"
+  },
+  "B7.clf.tuned_se_linear": {
+    "kind": "number",
+    "source": "b07/classification/outputs/plain_vs_tuned.csv",
+    "run_id": "20261023T164241Z",
+    "evidence": "B7.5",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 0.0317879660265981,
+    "text": "0.032"
+  },
+  "B7.clf.tuned_gain_forest": {
+    "kind": "number",
+    "source": "b07/classification/outputs/plain_vs_tuned.csv",
+    "run_id": "20261023T164241Z",
+    "evidence": "B7.5",
+    "used_in": [
+      "report 6"
+    ],
+    "value": -0.0114420861348159,
+    "text": "-0.011"
+  },
+  "B8.reg.adopt_gain_fold1": {
+    "kind": "number",
+    "source": "b08/regression/outputs/adoption_comparison.csv",
+    "run_id": "20261024T042516Z",
+    "evidence": "B8.A",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 0.0014771984018939,
+    "text": "0.001"
+  },
+  "B8.reg.adopt_gain_fold4": {
+    "kind": "number",
+    "source": "b08/regression/outputs/adoption_comparison.csv",
+    "run_id": "20261024T042516Z",
+    "evidence": "B8.A",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 0.3374555680832154,
+    "text": "0.337"
+  },
+  "B8.clf.adopt_gain_fold5": {
+    "kind": "number",
+    "source": "b08/classification/outputs/adoption_comparison.csv",
+    "run_id": "20261024T042619Z",
+    "evidence": "B8.A",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 0.0064075546807421,
+    "text": "0.006"
+  },
+  "B8.clf.adopt_gain_fold2": {
+    "kind": "number",
+    "source": "b08/classification/outputs/adoption_comparison.csv",
+    "run_id": "20261024T042619Z",
+    "evidence": "B8.A",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 0.0351171586610304,
+    "text": "0.035"
   }
 }

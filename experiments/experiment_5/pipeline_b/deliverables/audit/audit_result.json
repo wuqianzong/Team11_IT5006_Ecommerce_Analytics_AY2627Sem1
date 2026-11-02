@@ -28,7 +28,7 @@
     {
       "check": "report text: the live doc's body equals the filled sources line for line (beyond its title, date and review note)",
       "passed": true,
-      "detail": "header kept: # Team 11 final report \u2014 delivery time and detractor alerts / Oct 26, 2026 \u00b7 @Henry / Draft for team review. Every number is filled from the Pipeline B register (pipeline_b/evidence/registry_B.yaml); comment on any point. Revised: the full report written to plan v2, with the alert review order in section 9 and references checked against publisher records, and every cited claim re-audited; the dated change record is pipeline_b/deliverables/report/records/CHANGES.md, and earlier drafts stay in the doc history."
+      "detail": "header kept: # Team 11 final report v2.1 \u2014 delivery time and detractor alerts / Nov 1, 2026 \u00b7 @Henry / Version 2.1 of the final report, for team review (2 Nov: fixes from Benson's audit of version 2). Seventeen body tables moved to appendix K and their key numbers quoted in the text, so the body fits the page limit; every figure kept. Every number is filled from the Pipeline B register (pipeline_b/evidence/registry_B.yaml). Version 1 stays in its own doc; the dated change record is pipeline_b/deliverables/report/records/CHANGES.md."
     },
     {
       "check": "independent recomputation from T1's saved predictions matches the register (12 numbers)",
@@ -47,7 +47,7 @@
     }
   ],
   "passed": true,
-  "doc_sha256": "10728a3489773b274f5a644d38cdfbe7c0b3b859bfe49e3d083679578124e9d0",
+  "doc_sha256": "c6864687196e40f3e97632913c86be6c217e7bc60ad6d75fbdb0fdc7260d8692",
   "deck_slides": {
     "a_features.html": "8aca840addfd20c1454e9d89a2ffce7e1d88fc2225021b702687c8127ff008a9",
     "a_limits.html": "a1fd02836ed0d7b742f98b8d68074f5b7bf10a5901d98951a7cc2bfedce9cb67",
@@ -63,6 +63,6 @@
     "test_clf.html": "34b5f8a2922d9ab40c00d14bf61e72409af989c11b1c7d33459ad13edd0aaff9",
     "test_reg.html": "de9d9e3d80e2501cf520867f809de9d165700c17ab3160f6ec19d98275a45ee4",
     "use.html": "c378dfb9e44318e777a65311301daed93026f5f51b41042095cff175074d5887",
-    "validation.html": "9e12dde711ce13408312654c3c3376849997a68bfd4ad485b299d6bdd958649c"
+    "validation.html": "619c900b6f40e3cf9ff6f40991b256a444ce62cbc469049ffd80077d0a05103c"
   }
 }
