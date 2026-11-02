@@ -199,7 +199,10 @@ def population(name: str) -> None:
 
 
 def confusion(name: str) -> None:
-    d = _read(B_OUT / "doc_support/classification/outputs/figures/r06_confusion.csv")
+    # b08's pooled 'all' rows, read as text so pandas 3's str dtype matches (B-CR-48): doc_support's r06_confusion.csv
+    # added the 'all' rows to the fold rows and doubled every count
+    d = _read(B_OUT / "b08/classification/outputs/confusion_comparison.csv")
+    d = d[d.fold.astype(str).str.lower() == "all"]
     fig, axs = _fig(836, 480, ncols=2)
     for ax, (_, r), title in zip(axs, d.iterrows(), ("Pipeline A, 1/6", "Pipeline B, 1/6")):
         m = np.array([[r.tn, r.fp], [r.fn, r.tp]], dtype=float)
