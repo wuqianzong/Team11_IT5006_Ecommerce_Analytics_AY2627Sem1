@@ -577,5 +577,5 @@ The report and slides contain no hand-typed numbers: each number, table and figu
 `experiments/experiment_5/pipeline_b/evidence/registry_B.yaml`, and is accepted only if its source file
 matches the hash in the current run's manifest. The built register is `pipeline_b/evidence/build/`
 (`numbers_B.json`, tables, figures). The deliverables audit (9 checks, all passing on report v2.2, review doc
-revision 48, and deck v2.1, version 43) and the command to rerun it are in
+revision 48, and deck v2.2, version 44) and the command to rerun it are in
 [`experiments/experiment_5/pipeline_b/deliverables/audit/README.md`](experiments/experiment_5/pipeline_b/deliverables/audit/README.md).

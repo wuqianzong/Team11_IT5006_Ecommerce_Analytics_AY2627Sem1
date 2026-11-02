@@ -25,14 +25,14 @@ Inputs are read back from the live artifacts (the report doc exported to Markdow
 asset downloaded), never from local copies. `figure_map.json` records which register figure each chart is.
 
 - `inputs/report_export_rev48.md`: the final report v2.2 review doc exported to Markdown at rev 48 (2026-11-02).
-- `inputs/deck/project/`: the 16 slide files and `deck.json` of deck v2.1, version 43 (2026-11-02).
+- `inputs/deck/project/`: the 16 slide files and `deck.json` of deck v2.2, version 44 (2026-11-02; only the title differs from version 43).
 - `inputs/doc_assets/` (29) and `inputs/deck_assets/` (22): every chart of the report and the deck. Of the deck's
   22, 18 are presentation renders (`deck/renders/`, register source `DECK/...`, B-CR-43), 2 are the original stage
   PNGs and 2 are app screenshots (register source `SHOT/...`, B-CR-48).
 
 ## Last run
 
-2026-11-02 on the committed inputs (report v2.2 rev 48, deck v2.1 version 43), after B-CR-49 (§8 and appendix N):
+2026-11-02 on the committed inputs (report v2.2 rev 48, deck v2.2 version 44), after B-CR-49 (§8, appendix N, deck title):
 all 9 checks PASS (`audit_result.json`).
 
 ## Expected differences when re-checking
