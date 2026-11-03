@@ -1015,3 +1015,8 @@ more on the test than sending no alert, because the test period had fewer detrac
 
 **Questions for Benson**
 - Approve B-G-19, 20, 22, 23, 26, 27; sign literature rows 13 and 14; merge after Henry's 9/9.
+
+## 2026-11-03 · Benson + Claude · Decisions approved (B-CR-59)
+
+- Benson approved B-G-19, 20, 22 (parts superseded by B-G-26), 23, 26 and 27. Open for Benson: literature rows 13
+  and 14, the private-window app check, and the merge after Henry's 9/9.

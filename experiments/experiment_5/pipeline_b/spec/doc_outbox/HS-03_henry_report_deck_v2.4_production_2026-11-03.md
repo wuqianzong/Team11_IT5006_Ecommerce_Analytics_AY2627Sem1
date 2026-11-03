@@ -67,7 +67,7 @@ Read `CHANGELOG_B.md` B-CR-53 to B-CR-58, `spec/doc_outbox/reply_henry_2026-11-0
    anything moved, anything you think is wrong. Set this file's Status to ANSWERED.
 
 ## Not yours
-Benson approves the Proposed decisions (B-G-19, 20, 22, 23, 26, 27), signs literature rows 13 and 14, checks the
+Benson (decisions B-G-19 to B-G-28 are Agreed) signs literature rows 13 and 14, checks the
 hosted app in a private window, and merges into milestone-3 and main.
 
 ## Saving tokens
