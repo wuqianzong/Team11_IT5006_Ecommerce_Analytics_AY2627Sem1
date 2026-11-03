@@ -1,0 +1,21 @@
+{
+  "node": "RTAB/report_tables",
+  "run_id": "20261103T145316Z",
+  "commit": "c9cc1d0b103942b580da3a02d71a9b374ce32869",
+  "dirty": false,
+  "python": "3.13.7",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "inputs": {
+    "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/train_val_test.csv": "468cb072679bb582dfce716a6e98ba82d648b9e452135857b069244ca4ea7a7d",
+    "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/train_val_test.csv": "7390b707b8b965cd9e84dc13be78fdf8c67d8f2fc4af771c672cdedeec056f2e",
+    "experiments/experiment_5/pipeline_b/stages/t1_joint_test/regression/outputs/test_size_B.json": "21f20aab1c1a9e4100e26b0c196aade70918118b27e44625d3581d4d1f7b9aad",
+    "experiments/experiment_5/pipeline_b/stages/t1_joint_test/classification/outputs/test_size_B.json": "dc185638df9603b6a4d42860afd434a64b72d774e1e03dc49823b793934e3a3f"
+  },
+  "code": {
+    "experiments/experiment_5/pipeline_b/deliverables/report/tables/make_report_tables.py": "8fdde5b4e83db1da058c512de6d5c934c155a06ddc735fd93c4c9897cfabbb1a"
+  },
+  "outputs": {
+    "experiments/experiment_5/pipeline_b/deliverables/report/tables/outputs/_evidence_index.json": "3b173f7c15fab5e475b69ac35a5f9b00ce620038d53d4eaeab5da3926852d601",
+    "experiments/experiment_5/pipeline_b/deliverables/report/tables/outputs/train_gap.csv": "884a0d7a27ec6cd043c5f16b86c0a1fcc0cb38dd8b8df875ee01de2c136147ed"
+  }
+}

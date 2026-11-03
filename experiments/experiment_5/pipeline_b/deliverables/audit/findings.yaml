@@ -4,6 +4,52 @@
 # No item without an owner and a due date while it is open. Newest first.
 # T-01 to T-10 collect the findings and action items open or closed as of 2026-10-31.
 
+# T-32 to T-35: brief compliance check of report v2.4, 2026-11-03 (Henry's checklist doc; TA's new Milestone 2 feedback;
+# teammate review). Fixes B-CR-61 (review doc rev 84, deck version 53; audit 9/9).
+- id: T-35
+  type: action
+  source: "Brief compliance check of v2.4, 2026-11-03 (formatting rules)"
+  severity: medium
+  item: "Submitted files must follow the brief's naming: Team11_Phase3_IT5006_AY2627Sem1.pdf for the report and Team11_IT5006_Ecommerce_Analytics_AY2627Sem1.zip for the ZIP; exports are named Team11_final_report_v2.4.docx and Team11_final_deck_v2.4.pptx"
+  owner: Henry
+  status: Open
+  due: 2026-11-08
+  fix: {note: "rename at submission; the slides (PDF or PPT) go to Canvas by 4 Nov 23:59 and the same deck goes in the ZIP"}
+  verified_by: null
+
+- id: T-34
+  type: finding
+  source: "TA feedback on the new Milestone 2 report; teammate review of v2.4"
+  severity: high
+  item: "Feature rationale only in prose and appendix tables (K5, D3); no body table of when each feature is known and why it is included"
+  owner: Henry
+  status: Fixed
+  due: 2026-11-04
+  fix: {cr: B-CR-61, note: "section 5.1 Table 3 by feature family: available at, why included; stated as hypotheses, not causes"}
+  verified_by: null
+
+- id: T-33
+  type: finding
+  source: "TA feedback on the new Milestone 2 report; teammate review of v2.4"
+  severity: high
+  item: "Error analysis mostly in the appendix; TP, FP and FN never named; no residual table in the body"
+  owner: Henry
+  status: Fixed
+  due: 2026-11-04
+  fix: {cr: B-CR-61, note: "new 7.1.1 (Table 7 residuals; early or late; where it errs; slices too small) and 7.2.1 (Table 9 confusion counts at 1/6 and 4/15; FP or FN; threshold by constraint; slices too small)"}
+  verified_by: null
+
+- id: T-32
+  type: finding
+  source: "TA feedback on the new Milestone 2 report; teammate review of v2.4"
+  severity: high
+  item: "Body tables showed validation and test only; appendix Table E2 left the training column out with no reason"
+  owner: Henry
+  status: Fixed
+  due: 2026-11-04
+  fix: {cr: B-CR-61, note: "section 6.2 Tables 4 and 5 (final-fit rows, training, validation, test, gap) and the reason the calibrated model has no training AP; E2 now shows train_mean with the same note"}
+  verified_by: null
+
 # T-26 to T-31: Benson's recheck of v2.1, 2026-11-02 (runs/2026-11-02_benson_v2.1_recheck.md); fixes B-CR-48
 # (deck v2.1 version 43; audit 9/9). Benson verified T-13 to T-20, T-22 and T-23 in that recheck.
 - id: T-31

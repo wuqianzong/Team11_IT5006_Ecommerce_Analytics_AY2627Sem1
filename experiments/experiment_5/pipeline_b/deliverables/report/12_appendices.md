@@ -4,6 +4,8 @@
 
 Validation folds are selection scores; the test was read once.
 
+Each fold must have at least {{B5.min_train_rows}} training orders and, for the alert, 100 detractors in each part; the minimums were set before the folds were built. Fold 1 of Pipeline B falls short on training orders ({{B5.reg.fold1_train_rows}} for lead time, {{B5.clf.fold1_train_rows}} for the alert), because the seven-state scope and the warm-up remove early orders. We kept it, as a recorded deviation, so the two pipelines are compared on identical periods; every detractor minimum is met. Instead of stratifying, each fold's detractor share is reported, and it moves with the business over time. Every metric is defined in appendix B. Every random step (trees, forests, tuning) uses seed 42, and forests predict on a single thread, so a rerun on the same machine reproduces every stored output exactly.
+
 *Table A1. Validation and test windows.*
 
 {{table:APX.windows}}
@@ -17,6 +19,8 @@ Validation folds are selection scores; the test was read once.
 {{table:B5.clf.folds}}
 
 Drift is measured for each fold as the standardised mean difference of each numeric feature, and of the target, between the fold's validation rows and its training rows: the difference of the two means divided by the pooled standard deviation, the square root of the average of the two variances. The last column compares the test rows with the rows of the final fit in the same way. A positive value means the later rows have the higher mean.
+
+The test period differs from development: deliveries were faster and reviews happier, and the route history features shifted most. Validation and test scores therefore describe different periods, and the test gain partly reflects that the history features track the faster period as it happens (figure below).
 
 *Figure: Drift by fold, lead time: standardised mean difference of each feature and of the target, validation rows against training rows for each fold, and test rows against the final fit's rows (F.reg.drift).*
 
@@ -80,11 +84,15 @@ Full rank means no column is an exact linear combination of the others, so the c
 
 {{table:APX.clf.train_val_test}}
 
+In Table E2 the delivered (frozen, calibrated) rows have no training score: the sigmoid is fitted on time-ordered inner splits of each training fold, so the calibrated model scores rows only out of sample. The plain rows give the same logistic model's training score on raw probabilities (Table 5).
+
 *Table E3. Detractor alert by slice, judged only with more than 100 test detractors.*
 
 {{table:B9.clf.slices_aggregate}}
 
 *Figure: ROC-AUC and Brier by population, detractor alert (F.clf.auc_brier).*
+
+*Figure: Residuals on the test orders, Pipeline B and Pipeline A (F.reg.residuals).*
 
 *Figure: Lead-time error by customer state (F.reg.by_state).*
 
@@ -112,6 +120,10 @@ Every configuration of every family, with its mean and standard error over the f
 ### G. Data model and population chain
 
 Every model row is one order. Table G1 shows how each of the nine raw tables reaches it (section 3).
+
+Of Pipeline A's {{B2.reg.dev_rows_A}} development orders for lead time, {{B2.reg.removed_state}} have a customer or seller outside the seven states, {{B2.reg.removed_distance}} lack a distance, {{B2.reg.removed_cap}} exceed the tighter cap and {{B2.reg.removed_warmup}} fall in the warm-up, leaving {{B2.reg.dev_rows_B}}. For the alert, the same steps and the two handover rules take {{B2.clf.dev_rows_A}} orders to {{B2.clf.dev_rows_B}}. The test period holds {{T1.reg.test_rows_B}} lead-time orders and {{T1.clf.test_rows_B}} alert orders, {{T1.clf.test_detractors_B}} of them detractors.
+
+The final fit uses fewer rows than the development set ({{T1.reg.fit_rows_B}} for lead time, {{T1.clf.fit_rows_B}} for the alert) because a label must be known before the test period starts: an order delivered or reviewed after the cutoff cannot train the model that is tested on that period. Fold 5's training and validation rows together are fewer again, because the folds also purge customers who appear on both sides and require each training label to be known before its validation window (section 6).
 
 *Table G1. Data model: grain, key and join of each raw table.*
 
@@ -155,7 +167,12 @@ Tables H1 and H2 give each family's training and validation score (mean of the f
 
 ### I. Feature ranking by fold
 
-The selection ranking repeated inside each training fold.
+To check how much the selection of section 5.3 depends on the rows, the ranking was repeated inside each training fold.
+
+This ranking differs from the selection ranking of section 5.3 (section 7.4): Spearman correlation {{B9.reg.rank_spearman}} for lead time and {{B9.clf.rank_spearman}} for the alert, with {{B9.reg.rank_top10}} and {{B9.clf.rank_top10}} of the top ten features shared. This is expected: selection scored one feature at a time on development orders, while importance is measured inside the fitted model, where correlated features share credit.
+
+- **Lead time:** the selected sets overlap by {{B12.reg.rank_jaccard_min}} to 1.00 (mean {{B12.reg.rank_jaccard_mean}}), and {{B12.reg.rank_always}} of the {{B12.reg.rank_selected}} selected features are kept in every fold.
+- **Detractor alert:** overlap {{B12.clf.rank_jaccard_min}} to 1.00 (mean {{B12.clf.rank_jaccard_mean}}), weakest in fold 1, which has the fewest training orders; {{B12.clf.rank_always}} of {{B12.clf.rank_selected}} are kept in every fold.
 
 *Table I1. Feature ranking by training fold, lead time.*
 
@@ -168,6 +185,10 @@ The selection ranking repeated inside each training fold.
 *Figure: Ranking stability across the five folds, lead time (F.reg.ranking_stability) and detractor alert (F.clf.ranking_stability).*
 
 ### J. Correlation and variance inflation
+
+- **Pipeline A's pool, the inherited base.** The exploratory stage computed pairwise correlations and a variance inflation factor (VIF) for each numeric predictor on development orders. A pair is flagged above an absolute correlation of {{A3.corr_cut}}, and a predictor above a VIF of {{A3.vif_cut}}. No predictor reached the VIF cut-off in either task (appendix J). One pair was identical on every development order, the missing-weight and missing-volume shares; the lower-ranked of the two was dropped (Table K7).
+
+- **What was not measured.** Correlation and VIF were not computed for the new history features, which are averages of related quantities; the full-rank check rules out exact dependence but not strong correlation (section 10).
 
 Variance inflation factor of each numeric predictor in Pipeline A's pool, development orders.
 
@@ -293,6 +314,17 @@ These tables were moved from the body to keep it within the page limit; the body
 | Transit: expedite after a late handover | 10% faster transit would put {{BC.expedite.B6h_share_of_all_late_on_time}} of late orders on time | Scenario; unmeasured mechanism | ML deployment, scenarios |
 | Service recovery: alert at handover | Pipeline B at 4/15: {{B10.clf.B_4_15_test_alerts_day}} alerts a day, precision {{B10.clf.B_4_15_test_precision}}, about {{BC.reach.B415_reached_day}} detractors reached a day; with the fallback at 1/6, {{B10.clf.combined_test_alerts_day}} a day at precision {{B10.clf.combined_test_precision}}; a 30% freight cut moves {{BC.discount.B6h_f30_stops}} of {{BC.discount.B6h_flagged}} still-late flagged orders below 4/15; test cost {{B10.clf.combined_test_cost_5_1}} against {{BC.cost.test_serve_none}} with no alerts (Table K21) | Observation; proposed workflow (operational rule); association for the discount | Detractor risk, ML deployment |
 
+The limits that matter most for reading the results (section 10):
+
+- **Scope and moment.** Pipeline B covers only orders whose customer and seller are in the seven states with a known distance; Pipeline A's frozen model serves every other order. Pipeline B's alert acts at handover and Pipeline A's at checkout, so part of the alert gain is the later moment.
+- **Post-test threshold.** The operating threshold 4/15 was chosen after the test was read; the frozen 1/6 result is reported as the unbiased one.
+- **Drift and late deliveries possibly missing.** The test period was faster and happier than development, and the slowest deliveries for the newest orders may not have arrived when the data was extracted, so the test error may look better than it will in operation.
+- **Optimistic validation, unstable alert features.** Features were ranked once on all development orders, so validation scores are slightly optimistic (the test is unaffected); the alert's feature ranks move between folds; and correlation among the new history features was not measured.
+- **Recorded deviations.** Sigmoid calibration was kept although the pre-set rule preferred raw probabilities; Pipeline B's fold 1 is below the training minimum; the forest's best configuration sits on its grid edge (section 6).
+- **Associations, not causes.** No feature's effect on the outcome was tested; recommendations are labelled by evidence type (section 9).
+
+- **Business case.** Section 9's comparisons were computed after the test, its scenarios are associations, the buffer rule was set on one window, and with no handover feed or action log the effect of a contact is unmeasured.
+
 *Table K17. Limitations and how each is handled (section 10).*
 
 | Limit | What it means | How it is handled |
@@ -376,6 +408,10 @@ The rule and the fallback serve different orders, so one cannot replace the othe
 | Monthly | Promise and alert drift | Reset the buffer on recent weeks after a rolling backtest; check alert precision and late share by state | 2.4 promise buffer; 3.4 alert work statistics | Operational rule |
 
 ### L. Dashboard screenshots
+
+**Input checks.** Unknown states, impossible distances, orders without items and missing instalments are rejected with a clear message. Missing values, unseen categories and numeric inputs more than 4 standard deviations from the training mean are accepted with a warning.
+
+Which stored file each tab reads is listed in `deliverables/dashboard/app/DATA_AND_MODEL_SOURCES.md`. On the detractor tab a radio button switches the alert statistics between validation and the test. The ML deployment tab lists the alerted held-out orders in the review order of section 9, with both predictions and two scenarios on the alert's inputs (logistics 10% faster; freight discounts), each labelled as an association, not the effect of the action. The app's tests check the loaders, the router, the stored thresholds and that the alert list matches the stored test predictions without reading a label. Screenshots follow.
 
 Two views of the app, reading the stored test outputs.
 

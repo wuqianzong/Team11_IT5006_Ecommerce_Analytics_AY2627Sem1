@@ -3806,7 +3806,7 @@
   "F.A3.reg.cumulative_importance.deck": {
     "kind": "figure",
     "source": "DECK/F.A3.reg.cumulative_importance.deck.png",
-    "run_id": "20261103T092352Z (DECK/deck_renders)",
+    "run_id": "20261103T135052Z (DECK/deck_renders)",
     "evidence": "3.9",
     "used_in": [
       "deck"
@@ -3817,7 +3817,7 @@
   "F.A3.clf.cumulative_importance.deck": {
     "kind": "figure",
     "source": "DECK/F.A3.clf.cumulative_importance.deck.png",
-    "run_id": "20261103T092352Z (DECK/deck_renders)",
+    "run_id": "20261103T135052Z (DECK/deck_renders)",
     "evidence": "3.9",
     "used_in": [
       "deck"
@@ -3828,7 +3828,7 @@
   "F.A3.reg.correlation_heatmap.deck": {
     "kind": "figure",
     "source": "DECK/F.A3.reg.correlation_heatmap.deck.png",
-    "run_id": "20261103T092352Z (DECK/deck_renders)",
+    "run_id": "20261103T135052Z (DECK/deck_renders)",
     "evidence": "3.8",
     "used_in": [
       "deck"
@@ -3839,7 +3839,7 @@
   "F.A3.clf.screen_promise.deck": {
     "kind": "figure",
     "source": "DECK/F.A3.clf.screen_promise.deck.png",
-    "run_id": "20261103T092352Z (DECK/deck_renders)",
+    "run_id": "20261103T135052Z (DECK/deck_renders)",
     "evidence": "3.11",
     "used_in": [
       "deck"
@@ -3850,7 +3850,7 @@
   "F.reg.lateness_by_route.deck": {
     "kind": "figure",
     "source": "DECK/F.reg.lateness_by_route.deck.png",
-    "run_id": "20261103T092352Z (DECK/deck_renders)",
+    "run_id": "20261103T135052Z (DECK/deck_renders)",
     "evidence": "DS.1",
     "used_in": [
       "deck"
@@ -3861,7 +3861,7 @@
   "F.A3.clf.screen_region.deck": {
     "kind": "figure",
     "source": "DECK/F.A3.clf.screen_region.deck.png",
-    "run_id": "20261103T092352Z (DECK/deck_renders)",
+    "run_id": "20261103T135052Z (DECK/deck_renders)",
     "evidence": "3.12",
     "used_in": [
       "deck"
@@ -3872,7 +3872,7 @@
   "F.reg.selection.deck": {
     "kind": "figure",
     "source": "DECK/F.reg.selection.deck.png",
-    "run_id": "20261103T092352Z (DECK/deck_renders)",
+    "run_id": "20261103T135052Z (DECK/deck_renders)",
     "evidence": "DS.2",
     "used_in": [
       "deck"
@@ -3883,7 +3883,7 @@
   "F.clf.selection.deck": {
     "kind": "figure",
     "source": "DECK/F.clf.selection.deck.png",
-    "run_id": "20261103T092352Z (DECK/deck_renders)",
+    "run_id": "20261103T135052Z (DECK/deck_renders)",
     "evidence": "DS.2",
     "used_in": [
       "deck"
@@ -3894,7 +3894,7 @@
   "F.reg.population.deck": {
     "kind": "figure",
     "source": "DECK/F.reg.population.deck.png",
-    "run_id": "20261103T092352Z (DECK/deck_renders)",
+    "run_id": "20261103T135052Z (DECK/deck_renders)",
     "evidence": "DS.5",
     "used_in": [
       "deck"
@@ -3905,7 +3905,7 @@
   "F.clf.confusion.deck": {
     "kind": "figure",
     "source": "DECK/F.clf.confusion.deck.png",
-    "run_id": "20261103T092352Z (DECK/deck_renders)",
+    "run_id": "20261103T135052Z (DECK/deck_renders)",
     "evidence": "DS.6",
     "used_in": [
       "deck"
@@ -3916,7 +3916,7 @@
   "F.reg.residuals.deck": {
     "kind": "figure",
     "source": "DECK/F.reg.residuals.deck.png",
-    "run_id": "20261103T092352Z (DECK/deck_renders)",
+    "run_id": "20261103T135052Z (DECK/deck_renders)",
     "evidence": "B9.16",
     "used_in": [
       "deck"
@@ -3927,7 +3927,7 @@
   "F.reg.by_state.deck": {
     "kind": "figure",
     "source": "DECK/F.reg.by_state.deck.png",
-    "run_id": "20261103T092352Z (DECK/deck_renders)",
+    "run_id": "20261103T135052Z (DECK/deck_renders)",
     "evidence": "B9.3",
     "used_in": [
       "deck"
@@ -3938,7 +3938,7 @@
   "F.reg.buffer_curve.deck": {
     "kind": "figure",
     "source": "DECK/F.reg.buffer_curve.deck.png",
-    "run_id": "20261103T092352Z (DECK/deck_renders)",
+    "run_id": "20261103T135052Z (DECK/deck_renders)",
     "evidence": "B12.2",
     "used_in": [
       "deck"
@@ -3949,7 +3949,7 @@
   "F.clf.threshold_options.deck": {
     "kind": "figure",
     "source": "DECK/F.clf.threshold_options.deck.png",
-    "run_id": "20261103T092352Z (DECK/deck_renders)",
+    "run_id": "20261103T135052Z (DECK/deck_renders)",
     "evidence": "B9.10",
     "used_in": [
       "deck"
@@ -3960,7 +3960,7 @@
   "F.A2.data_structure.deck": {
     "kind": "figure",
     "source": "DECK/F.A2.data_structure.deck.png",
-    "run_id": "20261103T092352Z (DECK/deck_renders)",
+    "run_id": "20261103T135052Z (DECK/deck_renders)",
     "evidence": "2.12",
     "used_in": [
       "deck"
@@ -3971,7 +3971,7 @@
   "F.reg.partition.deck": {
     "kind": "figure",
     "source": "DECK/F.reg.partition.deck.png",
-    "run_id": "20261103T092352Z (DECK/deck_renders)",
+    "run_id": "20261103T135052Z (DECK/deck_renders)",
     "evidence": "DS.3",
     "used_in": [
       "deck"
@@ -3982,7 +3982,7 @@
   "F.reg.history_coverage.deck": {
     "kind": "figure",
     "source": "DECK/F.reg.history_coverage.deck.png",
-    "run_id": "20261103T092352Z (DECK/deck_renders)",
+    "run_id": "20261103T135052Z (DECK/deck_renders)",
     "evidence": "DS.1",
     "used_in": [
       "deck"
@@ -3993,7 +3993,7 @@
   "F.clf.test_curves.deck": {
     "kind": "figure",
     "source": "DECK/F.clf.test_curves.deck.png",
-    "run_id": "20261103T092352Z (DECK/deck_renders)",
+    "run_id": "20261103T135052Z (DECK/deck_renders)",
     "evidence": "T1.4",
     "used_in": [
       "deck"
@@ -4257,7 +4257,7 @@
   "BC.promise.olist_median": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -4269,7 +4269,7 @@
   "BC.promise.olist_mae": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -4281,7 +4281,7 @@
   "BC.promise.olist_late": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -4293,7 +4293,7 @@
   "BC.promise.dummy_median": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -4305,7 +4305,7 @@
   "BC.promise.dummy_mae": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -4317,7 +4317,7 @@
   "BC.promise.dummy_late": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -4329,7 +4329,7 @@
   "BC.promise.A_median": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -4341,7 +4341,7 @@
   "BC.promise.A_mae": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -4353,7 +4353,7 @@
   "BC.promise.A_late": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -4365,7 +4365,7 @@
   "BC.promise.B_median": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -4377,7 +4377,7 @@
   "BC.promise.B_mae": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -4389,7 +4389,7 @@
   "BC.promise.B_late": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -4401,7 +4401,7 @@
   "BC.promise.B3_median": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -4413,7 +4413,7 @@
   "BC.promise.B3_mae": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -4425,7 +4425,7 @@
   "BC.promise.B3_late": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -4437,7 +4437,7 @@
   "BC.promise.B5_median": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -4449,7 +4449,7 @@
   "BC.promise.B5_mae": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -4461,7 +4461,7 @@
   "BC.promise.B5_late": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -4473,7 +4473,7 @@
   "BC.promise.B6_median": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -4485,7 +4485,7 @@
   "BC.promise.B6_mae": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -4497,7 +4497,7 @@
   "BC.promise.B6_late": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -4509,7 +4509,7 @@
   "BC.promise.B12_median": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -4521,7 +4521,7 @@
   "BC.promise.B12_mae": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -4533,7 +4533,7 @@
   "BC.promise.B12_late": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -4545,7 +4545,7 @@
   "BC.promise.B10_median": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -4557,7 +4557,7 @@
   "BC.promise.B10_mae": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -4569,7 +4569,7 @@
   "BC.promise.B10_late": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -4581,7 +4581,7 @@
   "BC.promise.olist_mae_2dp": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 0",
@@ -4593,7 +4593,7 @@
   "BC.test_orders": {
     "kind": "number",
     "source": "BCASE/summary.json",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9"
@@ -4604,7 +4604,7 @@
   "BC.buffer.all_buffer_days": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -4616,7 +4616,7 @@
   "BC.buffer.all_validation_share_late": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -4628,7 +4628,7 @@
   "BC.buffer.all_validation_share_late_no_buffer": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -4640,7 +4640,7 @@
   "BC.buffer.all_olist_validation_share_late": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -4652,7 +4652,7 @@
   "BC.buffer.all_test_share_late_B": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -4664,7 +4664,7 @@
   "BC.buffer.all_test_median_promise_days": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -4676,7 +4676,7 @@
   "BC.buffer.all_orders": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -4688,7 +4688,7 @@
   "BC.buffer.all_first_purchase": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -4700,7 +4700,7 @@
   "BC.buffer.all_last_purchase": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -4712,7 +4712,7 @@
   "BC.buffer.recent10_buffer_days": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -4724,7 +4724,7 @@
   "BC.buffer.recent10_validation_share_late": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -4736,7 +4736,7 @@
   "BC.buffer.recent10_validation_share_late_no_buffer": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -4748,7 +4748,7 @@
   "BC.buffer.recent10_olist_validation_share_late": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -4760,7 +4760,7 @@
   "BC.buffer.recent10_test_share_late_B": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -4772,7 +4772,7 @@
   "BC.buffer.recent10_test_median_promise_days": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -4784,7 +4784,7 @@
   "BC.buffer.recent10_orders": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -4796,7 +4796,7 @@
   "BC.buffer.recent10_first_purchase": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -4808,7 +4808,7 @@
   "BC.buffer.recent10_last_purchase": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -4820,7 +4820,7 @@
   "BC.buffer.recentolist_buffer_days": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -4832,7 +4832,7 @@
   "BC.buffer.recentolist_validation_share_late": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -4844,7 +4844,7 @@
   "BC.buffer.recentolist_validation_share_late_no_buffer": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -4856,7 +4856,7 @@
   "BC.buffer.recentolist_olist_validation_share_late": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -4868,7 +4868,7 @@
   "BC.buffer.recentolist_test_share_late_B": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -4880,7 +4880,7 @@
   "BC.buffer.recentolist_test_median_promise_days": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -4892,7 +4892,7 @@
   "BC.buffer.recentolist_orders": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -4904,7 +4904,7 @@
   "BC.buffer.recentolist_first_purchase": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -4916,7 +4916,7 @@
   "BC.buffer.recentolist_last_purchase": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -4928,7 +4928,7 @@
   "BC.expedite.olist_late_orders": {
     "kind": "number",
     "source": "BCASE/expedite.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.3",
     "used_in": [
       "report 9",
@@ -4940,7 +4940,7 @@
   "BC.expedite.olist_late_with_late_handover": {
     "kind": "number",
     "source": "BCASE/expedite.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.3",
     "used_in": [
       "report 9",
@@ -4952,7 +4952,7 @@
   "BC.expedite.olist_share_of_late_with_late_handover": {
     "kind": "number",
     "source": "BCASE/expedite.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.3",
     "used_in": [
       "report 9",
@@ -4964,7 +4964,7 @@
   "BC.expedite.olist_on_time_if_transit_10pct_faster": {
     "kind": "number",
     "source": "BCASE/expedite.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.3",
     "used_in": [
       "report 9",
@@ -4976,7 +4976,7 @@
   "BC.expedite.olist_share_of_late_handover_group_on_time": {
     "kind": "number",
     "source": "BCASE/expedite.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.3",
     "used_in": [
       "report 9",
@@ -4988,7 +4988,7 @@
   "BC.expedite.olist_share_of_all_late_on_time": {
     "kind": "number",
     "source": "BCASE/expedite.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.3",
     "used_in": [
       "report 9",
@@ -5000,7 +5000,7 @@
   "BC.expedite.B10_late_orders": {
     "kind": "number",
     "source": "BCASE/expedite.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.3",
     "used_in": [
       "report 9",
@@ -5012,7 +5012,7 @@
   "BC.expedite.B10_late_with_late_handover": {
     "kind": "number",
     "source": "BCASE/expedite.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.3",
     "used_in": [
       "report 9",
@@ -5024,7 +5024,7 @@
   "BC.expedite.B10_share_of_late_with_late_handover": {
     "kind": "number",
     "source": "BCASE/expedite.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.3",
     "used_in": [
       "report 9",
@@ -5036,7 +5036,7 @@
   "BC.expedite.B10_on_time_if_transit_10pct_faster": {
     "kind": "number",
     "source": "BCASE/expedite.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.3",
     "used_in": [
       "report 9",
@@ -5048,7 +5048,7 @@
   "BC.expedite.B10_share_of_late_handover_group_on_time": {
     "kind": "number",
     "source": "BCASE/expedite.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.3",
     "used_in": [
       "report 9",
@@ -5060,7 +5060,7 @@
   "BC.expedite.B10_share_of_all_late_on_time": {
     "kind": "number",
     "source": "BCASE/expedite.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.3",
     "used_in": [
       "report 9",
@@ -5072,7 +5072,7 @@
   "BC.expedite.B12_late_orders": {
     "kind": "number",
     "source": "BCASE/expedite.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.3",
     "used_in": [
       "report 9",
@@ -5084,7 +5084,7 @@
   "BC.expedite.B12_late_with_late_handover": {
     "kind": "number",
     "source": "BCASE/expedite.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.3",
     "used_in": [
       "report 9",
@@ -5096,7 +5096,7 @@
   "BC.expedite.B12_share_of_late_with_late_handover": {
     "kind": "number",
     "source": "BCASE/expedite.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.3",
     "used_in": [
       "report 9",
@@ -5108,7 +5108,7 @@
   "BC.expedite.B12_on_time_if_transit_10pct_faster": {
     "kind": "number",
     "source": "BCASE/expedite.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.3",
     "used_in": [
       "report 9",
@@ -5120,7 +5120,7 @@
   "BC.expedite.B12_share_of_late_handover_group_on_time": {
     "kind": "number",
     "source": "BCASE/expedite.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.3",
     "used_in": [
       "report 9",
@@ -5132,7 +5132,7 @@
   "BC.expedite.B12_share_of_all_late_on_time": {
     "kind": "number",
     "source": "BCASE/expedite.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.3",
     "used_in": [
       "report 9",
@@ -5144,7 +5144,7 @@
   "BC.discount.olist_still_late": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5156,7 +5156,7 @@
   "BC.discount.olist_flagged": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5168,7 +5168,7 @@
   "BC.discount.olist_detractors": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5180,7 +5180,7 @@
   "BC.discount.olist_f20_stops": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5192,7 +5192,7 @@
   "BC.discount.olist_f20_outside": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5204,7 +5204,7 @@
   "BC.discount.olist_f30_stops": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5216,7 +5216,7 @@
   "BC.discount.olist_f30_outside": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5228,7 +5228,7 @@
   "BC.discount.olist_f50_stops": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5240,7 +5240,7 @@
   "BC.discount.olist_f50_outside": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5252,7 +5252,7 @@
   "BC.discount.olist_free_stops": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5264,7 +5264,7 @@
   "BC.discount.olist_free_outside": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5276,7 +5276,7 @@
   "BC.discount.olist_log_stops": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5288,7 +5288,7 @@
   "BC.discount.olist_log_outside": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5300,7 +5300,7 @@
   "BC.discount.B10_still_late": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5312,7 +5312,7 @@
   "BC.discount.B10_flagged": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5324,7 +5324,7 @@
   "BC.discount.B10_detractors": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5336,7 +5336,7 @@
   "BC.discount.B10_f20_stops": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5348,7 +5348,7 @@
   "BC.discount.B10_f20_outside": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5360,7 +5360,7 @@
   "BC.discount.B10_f30_stops": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5372,7 +5372,7 @@
   "BC.discount.B10_f30_outside": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5384,7 +5384,7 @@
   "BC.discount.B10_f50_stops": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5396,7 +5396,7 @@
   "BC.discount.B10_f50_outside": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5408,7 +5408,7 @@
   "BC.discount.B10_free_stops": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5420,7 +5420,7 @@
   "BC.discount.B10_free_outside": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5432,7 +5432,7 @@
   "BC.discount.B10_log_stops": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5444,7 +5444,7 @@
   "BC.discount.B10_log_outside": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5456,7 +5456,7 @@
   "BC.discount.B12_still_late": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5468,7 +5468,7 @@
   "BC.discount.B12_flagged": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5480,7 +5480,7 @@
   "BC.discount.B12_detractors": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5492,7 +5492,7 @@
   "BC.discount.B12_f20_stops": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5504,7 +5504,7 @@
   "BC.discount.B12_f20_outside": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5516,7 +5516,7 @@
   "BC.discount.B12_f30_stops": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5528,7 +5528,7 @@
   "BC.discount.B12_f30_outside": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5540,7 +5540,7 @@
   "BC.discount.B12_f50_stops": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5552,7 +5552,7 @@
   "BC.discount.B12_f50_outside": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5564,7 +5564,7 @@
   "BC.discount.B12_free_stops": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5576,7 +5576,7 @@
   "BC.discount.B12_free_outside": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5588,7 +5588,7 @@
   "BC.discount.B12_log_stops": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5600,7 +5600,7 @@
   "BC.discount.B12_log_outside": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5612,7 +5612,7 @@
   "BC.reach.B415_alerts_day": {
     "kind": "number",
     "source": "BCASE/reach.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.5",
     "used_in": [
       "report 9",
@@ -5624,7 +5624,7 @@
   "BC.reach.B415_precision": {
     "kind": "number",
     "source": "BCASE/reach.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.5",
     "used_in": [
       "report 9",
@@ -5636,7 +5636,7 @@
   "BC.reach.B415_reached_day": {
     "kind": "number",
     "source": "BCASE/reach.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.5",
     "used_in": [
       "report 9",
@@ -5648,7 +5648,7 @@
   "BC.reach.A16_alerts_day": {
     "kind": "number",
     "source": "BCASE/reach.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.5",
     "used_in": [
       "report 9",
@@ -5660,7 +5660,7 @@
   "BC.reach.A16_precision": {
     "kind": "number",
     "source": "BCASE/reach.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.5",
     "used_in": [
       "report 9",
@@ -5672,7 +5672,7 @@
   "BC.reach.A16_reached_day": {
     "kind": "number",
     "source": "BCASE/reach.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.5",
     "used_in": [
       "report 9",
@@ -5684,7 +5684,7 @@
   "BC.reach.A415_alerts_day": {
     "kind": "number",
     "source": "BCASE/reach.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.5",
     "used_in": [
       "report 9",
@@ -5696,7 +5696,7 @@
   "BC.reach.A415_precision": {
     "kind": "number",
     "source": "BCASE/reach.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.5",
     "used_in": [
       "report 9",
@@ -5708,7 +5708,7 @@
   "BC.reach.A415_reached_day": {
     "kind": "number",
     "source": "BCASE/reach.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.5",
     "used_in": [
       "report 9",
@@ -5720,7 +5720,7 @@
   "BC.reach.rule_alerts_day": {
     "kind": "number",
     "source": "BCASE/reach.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.5",
     "used_in": [
       "report 9",
@@ -5732,7 +5732,7 @@
   "BC.reach.rule_precision": {
     "kind": "number",
     "source": "BCASE/reach.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.5",
     "used_in": [
       "report 9",
@@ -5744,7 +5744,7 @@
   "BC.reach.rule_reached_day": {
     "kind": "number",
     "source": "BCASE/reach.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.5",
     "used_in": [
       "report 9",
@@ -5756,7 +5756,7 @@
   "BC.reach.test_days": {
     "kind": "number",
     "source": "BCASE/reach.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.5",
     "used_in": [
       "report 9"
@@ -5767,7 +5767,7 @@
   "BC.promise.B6h_median": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -5779,7 +5779,7 @@
   "BC.promise.B6h_mae": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -5791,7 +5791,7 @@
   "BC.promise.B6h_late": {
     "kind": "number",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9",
@@ -5803,7 +5803,7 @@
   "BC.buffer.recent5_buffer_days": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -5815,7 +5815,7 @@
   "BC.buffer.recent5_target_share_late": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -5827,7 +5827,7 @@
   "BC.buffer.recent5_validation_share_late": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -5839,7 +5839,7 @@
   "BC.buffer.recent5_test_share_late_B": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -5851,7 +5851,7 @@
   "BC.buffer.recent5_test_median_promise_days": {
     "kind": "number",
     "source": "BCASE/buffer_recent.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.2",
     "used_in": [
       "report 9",
@@ -5863,7 +5863,7 @@
   "BC.expedite.B6h_late_orders": {
     "kind": "number",
     "source": "BCASE/expedite.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.3",
     "used_in": [
       "report 9"
@@ -5874,7 +5874,7 @@
   "BC.expedite.B6h_late_with_late_handover": {
     "kind": "number",
     "source": "BCASE/expedite.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.3",
     "used_in": [
       "report 9"
@@ -5885,7 +5885,7 @@
   "BC.expedite.B6h_share_of_late_with_late_handover": {
     "kind": "number",
     "source": "BCASE/expedite.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.3",
     "used_in": [
       "report 9"
@@ -5896,7 +5896,7 @@
   "BC.expedite.B6h_on_time_if_transit_10pct_faster": {
     "kind": "number",
     "source": "BCASE/expedite.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.3",
     "used_in": [
       "report 9"
@@ -5907,7 +5907,7 @@
   "BC.expedite.B6h_share_of_late_handover_group_on_time": {
     "kind": "number",
     "source": "BCASE/expedite.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.3",
     "used_in": [
       "report 9"
@@ -5918,7 +5918,7 @@
   "BC.expedite.B6h_share_of_all_late_on_time": {
     "kind": "number",
     "source": "BCASE/expedite.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.3",
     "used_in": [
       "report 9"
@@ -5929,7 +5929,7 @@
   "BC.discount.B6h_still_late": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5941,7 +5941,7 @@
   "BC.discount.B6h_flagged": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5953,7 +5953,7 @@
   "BC.discount.B6h_detractors": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5965,7 +5965,7 @@
   "BC.discount.B6h_f20_stops": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5977,7 +5977,7 @@
   "BC.discount.B6h_f20_outside": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -5989,7 +5989,7 @@
   "BC.discount.B6h_f30_stops": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -6001,7 +6001,7 @@
   "BC.discount.B6h_f30_outside": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -6013,7 +6013,7 @@
   "BC.discount.B6h_f50_stops": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -6025,7 +6025,7 @@
   "BC.discount.B6h_f50_outside": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -6037,7 +6037,7 @@
   "BC.discount.B6h_free_stops": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -6049,7 +6049,7 @@
   "BC.discount.B6h_free_outside": {
     "kind": "number",
     "source": "BCASE/discount.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.4",
     "used_in": [
       "report 9",
@@ -6061,7 +6061,7 @@
   "BC.reach.B415_cost": {
     "kind": "number",
     "source": "BCASE/reach.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.5",
     "used_in": [
       "report 9"
@@ -6072,7 +6072,7 @@
   "BC.reach.B415_cost_no_alert": {
     "kind": "number",
     "source": "BCASE/reach.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.5",
     "used_in": [
       "report 9"
@@ -6083,7 +6083,7 @@
   "BC.reach.A16_cost": {
     "kind": "number",
     "source": "BCASE/reach.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.5",
     "used_in": [
       "report 9"
@@ -6094,7 +6094,7 @@
   "BC.reach.A16_cost_no_alert": {
     "kind": "number",
     "source": "BCASE/reach.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.5",
     "used_in": [
       "report 9"
@@ -6105,7 +6105,7 @@
   "BC.reach.A415_cost": {
     "kind": "number",
     "source": "BCASE/reach.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.5",
     "used_in": [
       "report 9"
@@ -6116,7 +6116,7 @@
   "BC.reach.A415_cost_no_alert": {
     "kind": "number",
     "source": "BCASE/reach.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.5",
     "used_in": [
       "report 9"
@@ -6127,7 +6127,7 @@
   "BC.reach.rule_cost": {
     "kind": "number",
     "source": "BCASE/reach.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.5",
     "used_in": [
       "report 9"
@@ -6138,7 +6138,7 @@
   "BC.reach.rule_cost_no_alert": {
     "kind": "number",
     "source": "BCASE/reach.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.5",
     "used_in": [
       "report 9"
@@ -6149,7 +6149,7 @@
   "BC.cost.validation_B_none": {
     "kind": "number",
     "source": "BCASE/cost_check.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.6",
     "used_in": [
       "report 9"
@@ -6160,7 +6160,7 @@
   "BC.cost.validation_B16": {
     "kind": "number",
     "source": "BCASE/cost_check.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.6",
     "used_in": [
       "report 9"
@@ -6171,7 +6171,7 @@
   "BC.cost.validation_B415": {
     "kind": "number",
     "source": "BCASE/cost_check.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.6",
     "used_in": [
       "report 9"
@@ -6182,7 +6182,7 @@
   "BC.cost.validation_A_none": {
     "kind": "number",
     "source": "BCASE/cost_check.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.6",
     "used_in": [
       "report 9"
@@ -6193,7 +6193,7 @@
   "BC.cost.validation_A16": {
     "kind": "number",
     "source": "BCASE/cost_check.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.6",
     "used_in": [
       "report 9"
@@ -6204,7 +6204,7 @@
   "BC.cost.validation_serve_none": {
     "kind": "number",
     "source": "BCASE/cost_check.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.6",
     "used_in": [
       "report 9"
@@ -6215,7 +6215,7 @@
   "BC.cost.validation_serve": {
     "kind": "number",
     "source": "BCASE/cost_check.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.6",
     "used_in": [
       "report 9"
@@ -6226,7 +6226,7 @@
   "BC.cost.validation_serve_nofb": {
     "kind": "number",
     "source": "BCASE/cost_check.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.6",
     "used_in": [
       "report 9"
@@ -6237,7 +6237,7 @@
   "BC.cost.test_B_none": {
     "kind": "number",
     "source": "BCASE/cost_check.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.6",
     "used_in": [
       "report 9"
@@ -6248,7 +6248,7 @@
   "BC.cost.test_B16": {
     "kind": "number",
     "source": "BCASE/cost_check.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.6",
     "used_in": [
       "report 9"
@@ -6259,7 +6259,7 @@
   "BC.cost.test_B415": {
     "kind": "number",
     "source": "BCASE/cost_check.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.6",
     "used_in": [
       "report 9"
@@ -6270,7 +6270,7 @@
   "BC.cost.test_A_none": {
     "kind": "number",
     "source": "BCASE/cost_check.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.6",
     "used_in": [
       "report 9"
@@ -6281,7 +6281,7 @@
   "BC.cost.test_A16": {
     "kind": "number",
     "source": "BCASE/cost_check.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.6",
     "used_in": [
       "report 9"
@@ -6292,7 +6292,7 @@
   "BC.cost.test_A415": {
     "kind": "number",
     "source": "BCASE/cost_check.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.6",
     "used_in": [
       "report 9"
@@ -6303,7 +6303,7 @@
   "BC.cost.test_serve_none": {
     "kind": "number",
     "source": "BCASE/cost_check.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.6",
     "used_in": [
       "report 9"
@@ -6314,7 +6314,7 @@
   "BC.cost.test_serve": {
     "kind": "number",
     "source": "BCASE/cost_check.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.6",
     "used_in": [
       "report 9"
@@ -6325,7 +6325,7 @@
   "BC.cost.test_serve_nofb": {
     "kind": "number",
     "source": "BCASE/cost_check.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.6",
     "used_in": [
       "report 9"
@@ -6336,7 +6336,7 @@
   "BC.retention.customers": {
     "kind": "number",
     "source": "BCASE/retention.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.7",
     "used_in": [
       "report 1"
@@ -6347,7 +6347,7 @@
   "BC.retention.repeat_customers": {
     "kind": "number",
     "source": "BCASE/retention.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.7",
     "used_in": [
       "report 1"
@@ -6358,7 +6358,7 @@
   "BC.retention.share": {
     "kind": "number",
     "source": "BCASE/retention.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.7",
     "used_in": [
       "report 1",
@@ -6370,7 +6370,7 @@
   "BC.cost_table": {
     "kind": "table",
     "source": "BCASE/cost_check.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.6",
     "used_in": [
       "report 9"
@@ -6745,7 +6745,7 @@
   "BC.err.16_TA_n": {
     "kind": "number",
     "source": "BCASE/error_profile.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.8",
     "used_in": [
       "report 7"
@@ -6756,7 +6756,7 @@
   "BC.err.16_TA_late_delivery": {
     "kind": "number",
     "source": "BCASE/error_profile.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.8",
     "used_in": [
       "report 7"
@@ -6767,7 +6767,7 @@
   "BC.err.16_TA_late_handover": {
     "kind": "number",
     "source": "BCASE/error_profile.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.8",
     "used_in": [
       "report 7"
@@ -6778,7 +6778,7 @@
   "BC.err.16_FA_n": {
     "kind": "number",
     "source": "BCASE/error_profile.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.8",
     "used_in": [
       "report 7"
@@ -6789,7 +6789,7 @@
   "BC.err.16_FA_late_delivery": {
     "kind": "number",
     "source": "BCASE/error_profile.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.8",
     "used_in": [
       "report 7"
@@ -6800,7 +6800,7 @@
   "BC.err.16_FA_late_handover": {
     "kind": "number",
     "source": "BCASE/error_profile.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.8",
     "used_in": [
       "report 7"
@@ -6811,7 +6811,7 @@
   "BC.err.16_MD_n": {
     "kind": "number",
     "source": "BCASE/error_profile.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.8",
     "used_in": [
       "report 7"
@@ -6822,7 +6822,7 @@
   "BC.err.16_MD_late_delivery": {
     "kind": "number",
     "source": "BCASE/error_profile.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.8",
     "used_in": [
       "report 7"
@@ -6833,7 +6833,7 @@
   "BC.err.16_MD_late_handover": {
     "kind": "number",
     "source": "BCASE/error_profile.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.8",
     "used_in": [
       "report 7"
@@ -6844,7 +6844,7 @@
   "BC.err.16_QO_n": {
     "kind": "number",
     "source": "BCASE/error_profile.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.8",
     "used_in": [
       "report 7"
@@ -6855,7 +6855,7 @@
   "BC.err.16_QO_late_delivery": {
     "kind": "number",
     "source": "BCASE/error_profile.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.8",
     "used_in": [
       "report 7"
@@ -6866,7 +6866,7 @@
   "BC.err.16_QO_late_handover": {
     "kind": "number",
     "source": "BCASE/error_profile.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.8",
     "used_in": [
       "report 7"
@@ -6877,7 +6877,7 @@
   "BC.err.16_MD_share": {
     "kind": "number",
     "source": "BCASE/error_profile.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.8",
     "used_in": [
       "report 7"
@@ -6888,7 +6888,7 @@
   "BC.err.415_TA_n": {
     "kind": "number",
     "source": "BCASE/error_profile.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.8",
     "used_in": [
       "report 7"
@@ -6899,7 +6899,7 @@
   "BC.err.415_TA_late_delivery": {
     "kind": "number",
     "source": "BCASE/error_profile.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.8",
     "used_in": [
       "report 7"
@@ -6910,7 +6910,7 @@
   "BC.err.415_TA_late_handover": {
     "kind": "number",
     "source": "BCASE/error_profile.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.8",
     "used_in": [
       "report 7"
@@ -6921,7 +6921,7 @@
   "BC.err.415_FA_n": {
     "kind": "number",
     "source": "BCASE/error_profile.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.8",
     "used_in": [
       "report 7"
@@ -6932,7 +6932,7 @@
   "BC.err.415_FA_late_delivery": {
     "kind": "number",
     "source": "BCASE/error_profile.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.8",
     "used_in": [
       "report 7"
@@ -6943,7 +6943,7 @@
   "BC.err.415_FA_late_handover": {
     "kind": "number",
     "source": "BCASE/error_profile.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.8",
     "used_in": [
       "report 7"
@@ -6954,7 +6954,7 @@
   "BC.err.415_MD_n": {
     "kind": "number",
     "source": "BCASE/error_profile.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.8",
     "used_in": [
       "report 7"
@@ -6965,7 +6965,7 @@
   "BC.err.415_MD_late_delivery": {
     "kind": "number",
     "source": "BCASE/error_profile.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.8",
     "used_in": [
       "report 7"
@@ -6976,7 +6976,7 @@
   "BC.err.415_MD_late_handover": {
     "kind": "number",
     "source": "BCASE/error_profile.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.8",
     "used_in": [
       "report 7"
@@ -6987,7 +6987,7 @@
   "BC.err.415_QO_n": {
     "kind": "number",
     "source": "BCASE/error_profile.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.8",
     "used_in": [
       "report 7"
@@ -6998,7 +6998,7 @@
   "BC.err.415_QO_late_delivery": {
     "kind": "number",
     "source": "BCASE/error_profile.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.8",
     "used_in": [
       "report 7"
@@ -7009,7 +7009,7 @@
   "BC.err.415_QO_late_handover": {
     "kind": "number",
     "source": "BCASE/error_profile.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.8",
     "used_in": [
       "report 7"
@@ -7020,7 +7020,7 @@
   "BC.err.415_MD_share": {
     "kind": "number",
     "source": "BCASE/error_profile.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.8",
     "used_in": [
       "report 7"
@@ -7031,7 +7031,7 @@
   "BC.error_table": {
     "kind": "table",
     "source": "BCASE/error_profile.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.8",
     "used_in": [
       "report appendix"
@@ -7042,7 +7042,7 @@
   "BC.promise_table": {
     "kind": "table",
     "source": "BCASE/promise_compare.csv",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9"
@@ -7053,7 +7053,7 @@
   "F.BC.promise_compare": {
     "kind": "figure",
     "source": "BCASE/figures/promise_compare.png",
-    "run_id": "20261103T092348Z (BCASE/business_case)",
+    "run_id": "20261103T135037Z (BCASE/business_case)",
     "evidence": "BC.1",
     "used_in": [
       "report 9"
@@ -7064,12 +7064,771 @@
   "F.BC.promise_compare.deck": {
     "kind": "figure",
     "source": "DECK/F.BC.promise_compare.deck.png",
-    "run_id": "20261103T092352Z (DECK/deck_renders)",
+    "run_id": "20261103T135052Z (DECK/deck_renders)",
     "evidence": "BC.1",
     "used_in": [
       "deck 16"
     ],
     "file": "evidence/build/figures/F.BC.promise_compare.deck.png",
     "caption": "Median promised lead time and late share on Pipeline B's test orders: Olist's estimate, Dummy, A, B and B with buffers (post-test view; presentation render)"
+  },
+  "RT.reg.B.train": {
+    "kind": "number",
+    "source": "RTAB/train_gap.csv",
+    "run_id": "20261103T145316Z (RTAB/report_tables)",
+    "evidence": "RT.1",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 3.860682416386598,
+    "text": "3.86"
+  },
+  "RT.reg.B.validation": {
+    "kind": "number",
+    "source": "RTAB/train_gap.csv",
+    "run_id": "20261103T145316Z (RTAB/report_tables)",
+    "evidence": "RT.1",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 5.024664909635607,
+    "text": "5.02"
+  },
+  "RT.reg.B.test": {
+    "kind": "number",
+    "source": "RTAB/train_gap.csv",
+    "run_id": "20261103T145316Z (RTAB/report_tables)",
+    "evidence": "RT.1",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 3.299187669974489,
+    "text": "3.30"
+  },
+  "RT.reg.B.gap": {
+    "kind": "number",
+    "source": "RTAB/train_gap.csv",
+    "run_id": "20261103T145316Z (RTAB/report_tables)",
+    "evidence": "RT.1",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 1.1639824932490097,
+    "text": "+1.16"
+  },
+  "RT.reg.dummy.train": {
+    "kind": "number",
+    "source": "RTAB/train_gap.csv",
+    "run_id": "20261103T145316Z (RTAB/report_tables)",
+    "evidence": "RT.1",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 4.7937481811720986,
+    "text": "4.79"
+  },
+  "RT.reg.dummy.validation": {
+    "kind": "number",
+    "source": "RTAB/train_gap.csv",
+    "run_id": "20261103T145316Z (RTAB/report_tables)",
+    "evidence": "RT.1",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 5.968890770349172,
+    "text": "5.97"
+  },
+  "RT.reg.dummy.test": {
+    "kind": "number",
+    "source": "RTAB/train_gap.csv",
+    "run_id": "20261103T145316Z (RTAB/report_tables)",
+    "evidence": "RT.1",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 4.38494981991215,
+    "text": "4.38"
+  },
+  "RT.reg.dummy.gap": {
+    "kind": "number",
+    "source": "RTAB/train_gap.csv",
+    "run_id": "20261103T145316Z (RTAB/report_tables)",
+    "evidence": "RT.1",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 1.1751425891770737,
+    "text": "+1.18"
+  },
+  "RT.clf.raw.train": {
+    "kind": "number",
+    "source": "RTAB/train_gap.csv",
+    "run_id": "20261103T145316Z (RTAB/report_tables)",
+    "evidence": "RT.1",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 0.2369444110613106,
+    "text": "0.237"
+  },
+  "RT.clf.raw.validation": {
+    "kind": "number",
+    "source": "RTAB/train_gap.csv",
+    "run_id": "20261103T145316Z (RTAB/report_tables)",
+    "evidence": "RT.1",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 0.2615813375186103,
+    "text": "0.262"
+  },
+  "RT.clf.raw.test": {
+    "kind": "number",
+    "source": "RTAB/train_gap.csv",
+    "run_id": "20261103T145316Z (RTAB/report_tables)",
+    "evidence": "RT.1",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 0.1992301208374248,
+    "text": "0.199"
+  },
+  "RT.clf.raw.gap": {
+    "kind": "number",
+    "source": "RTAB/train_gap.csv",
+    "run_id": "20261103T145316Z (RTAB/report_tables)",
+    "evidence": "RT.1",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 0.0246369264572997,
+    "text": "+0.025"
+  },
+  "RT.clf.cal.validation": {
+    "kind": "number",
+    "source": "RTAB/train_gap.csv",
+    "run_id": "20261103T145316Z (RTAB/report_tables)",
+    "evidence": "RT.1",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 0.2482053394114348,
+    "text": "0.248"
+  },
+  "RT.clf.cal.test": {
+    "kind": "number",
+    "source": "RTAB/train_gap.csv",
+    "run_id": "20261103T145316Z (RTAB/report_tables)",
+    "evidence": "RT.1",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 0.1971806261064724,
+    "text": "0.197"
+  },
+  "RT.clf.dummy.train": {
+    "kind": "number",
+    "source": "RTAB/train_gap.csv",
+    "run_id": "20261103T145316Z (RTAB/report_tables)",
+    "evidence": "RT.1",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 0.1167443851124994,
+    "text": "0.117"
+  },
+  "RT.clf.dummy.validation": {
+    "kind": "number",
+    "source": "RTAB/train_gap.csv",
+    "run_id": "20261103T145316Z (RTAB/report_tables)",
+    "evidence": "RT.1",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 0.1379707846467106,
+    "text": "0.138"
+  },
+  "RT.clf.dummy.test": {
+    "kind": "number",
+    "source": "RTAB/train_gap.csv",
+    "run_id": "20261103T145316Z (RTAB/report_tables)",
+    "evidence": "RT.1",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 0.0994706945520268,
+    "text": "0.099"
+  },
+  "RT.clf.dummy.gap": {
+    "kind": "number",
+    "source": "RTAB/train_gap.csv",
+    "run_id": "20261103T145316Z (RTAB/report_tables)",
+    "evidence": "RT.1",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 0.0212263995342111,
+    "text": "+0.021"
+  },
+  "RT.reg.fit_rows": {
+    "kind": "number",
+    "source": "RTAB/train_gap.csv",
+    "run_id": "20261103T145316Z (RTAB/report_tables)",
+    "evidence": "RT.1",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 59683,
+    "text": "59,683"
+  },
+  "RT.clf.fit_rows": {
+    "kind": "number",
+    "source": "RTAB/train_gap.csv",
+    "run_id": "20261103T145316Z (RTAB/report_tables)",
+    "evidence": "RT.1",
+    "used_in": [
+      "report 6"
+    ],
+    "value": 59188,
+    "text": "59,188"
+  },
+  "RES.B.mean": {
+    "kind": "number",
+    "source": "b09/regression/outputs/residuals_summary.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.16",
+    "used_in": [
+      "report 7"
+    ],
+    "value": -1.142998043061918,
+    "text": "-1.14"
+  },
+  "RES.B.median": {
+    "kind": "number",
+    "source": "b09/regression/outputs/residuals_summary.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.16",
+    "used_in": [
+      "report 7"
+    ],
+    "value": -1.637482332448262,
+    "text": "-1.64"
+  },
+  "RES.B.p05": {
+    "kind": "number",
+    "source": "b09/regression/outputs/residuals_summary.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.16",
+    "used_in": [
+      "report 7"
+    ],
+    "value": -6.931055398447325,
+    "text": "-6.93"
+  },
+  "RES.B.p95": {
+    "kind": "number",
+    "source": "b09/regression/outputs/residuals_summary.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.16",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 5.771540820449189,
+    "text": "+5.77"
+  },
+  "RES.B.within3": {
+    "kind": "number",
+    "source": "b09/regression/outputs/residuals_summary.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.16",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 0.5755414343146155,
+    "text": "57.6%"
+  },
+  "RES.B.early3": {
+    "kind": "number",
+    "source": "b09/regression/outputs/residuals_summary.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.16",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 0.3135131630138763,
+    "text": "31.4%"
+  },
+  "RES.A.mean": {
+    "kind": "number",
+    "source": "b09/regression/outputs/residuals_summary.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.16",
+    "used_in": [
+      "report 7"
+    ],
+    "value": -2.2207851380760477,
+    "text": "-2.22"
+  },
+  "RES.A.median": {
+    "kind": "number",
+    "source": "b09/regression/outputs/residuals_summary.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.16",
+    "used_in": [
+      "report 7"
+    ],
+    "value": -2.723833135324476,
+    "text": "-2.72"
+  },
+  "RES.A.p05": {
+    "kind": "number",
+    "source": "b09/regression/outputs/residuals_summary.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.16",
+    "used_in": [
+      "report 7"
+    ],
+    "value": -8.340573311122403,
+    "text": "-8.34"
+  },
+  "RES.A.p95": {
+    "kind": "number",
+    "source": "b09/regression/outputs/residuals_summary.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.16",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 5.329094513794754,
+    "text": "+5.33"
+  },
+  "RES.A.within3": {
+    "kind": "number",
+    "source": "b09/regression/outputs/residuals_summary.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.16",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 0.4429386590584879,
+    "text": "44.3%"
+  },
+  "RES.A.late6": {
+    "kind": "number",
+    "source": "b09/regression/outputs/residuals_summary.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.16",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 0.0429256905719102,
+    "text": "4.3%"
+  },
+  "RES.A.early3": {
+    "kind": "number",
+    "source": "b09/regression/outputs/residuals_summary.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.16",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 0.4642069770457787,
+    "text": "46.4%"
+  },
+  "CM.B16.alerts": {
+    "kind": "number",
+    "source": "b09/classification/outputs/threshold_options.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.10",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 2229,
+    "text": "2,229"
+  },
+  "CM.B16.tp": {
+    "kind": "number",
+    "source": "b09/classification/outputs/threshold_options.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.10",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 463,
+    "text": "463"
+  },
+  "CM.B16.fp": {
+    "kind": "number",
+    "source": "b09/classification/outputs/threshold_options.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.10",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 1766,
+    "text": "1,766"
+  },
+  "CM.B16.fn": {
+    "kind": "number",
+    "source": "b09/classification/outputs/threshold_options.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.10",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 1078,
+    "text": "1,078"
+  },
+  "CM.B16.precision": {
+    "kind": "number",
+    "source": "b09/classification/outputs/threshold_options.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.10",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 0.2077164647824136,
+    "text": "0.208"
+  },
+  "CM.B16.recall": {
+    "kind": "number",
+    "source": "b09/classification/outputs/threshold_options.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.10",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 0.3004542504866969,
+    "text": "0.300"
+  },
+  "CM.B16.fp_per_tp": {
+    "kind": "number",
+    "source": "b09/classification/outputs/threshold_options.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.10",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 3.814254859611231,
+    "text": "3.8"
+  },
+  "CM.B415.alerts": {
+    "kind": "number",
+    "source": "b09/classification/outputs/threshold_options.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.10",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 540,
+    "text": "540"
+  },
+  "CM.B415.tp": {
+    "kind": "number",
+    "source": "b09/classification/outputs/threshold_options.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.10",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 187,
+    "text": "187"
+  },
+  "CM.B415.fp": {
+    "kind": "number",
+    "source": "b09/classification/outputs/threshold_options.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.10",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 353,
+    "text": "353"
+  },
+  "CM.B415.fn": {
+    "kind": "number",
+    "source": "b09/classification/outputs/threshold_options.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.10",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 1354,
+    "text": "1,354"
+  },
+  "CM.B415.precision": {
+    "kind": "number",
+    "source": "b09/classification/outputs/threshold_options.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.10",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 0.3462962962962962,
+    "text": "0.346"
+  },
+  "CM.B415.recall": {
+    "kind": "number",
+    "source": "b09/classification/outputs/threshold_options.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.10",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 0.1213497728747566,
+    "text": "0.121"
+  },
+  "CM.B415.fp_per_tp": {
+    "kind": "number",
+    "source": "b09/classification/outputs/threshold_options.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.10",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 1.8877005347593585,
+    "text": "1.9"
+  },
+  "CM.A16.alerts": {
+    "kind": "number",
+    "source": "b09/classification/outputs/threshold_options.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.10",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 3462,
+    "text": "3,462"
+  },
+  "CM.A16.tp": {
+    "kind": "number",
+    "source": "b09/classification/outputs/threshold_options.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.10",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 548,
+    "text": "548"
+  },
+  "CM.A16.fp": {
+    "kind": "number",
+    "source": "b09/classification/outputs/threshold_options.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.10",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 2914,
+    "text": "2,914"
+  },
+  "CM.A16.fn": {
+    "kind": "number",
+    "source": "b09/classification/outputs/threshold_options.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.10",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 993,
+    "text": "993"
+  },
+  "CM.A16.precision": {
+    "kind": "number",
+    "source": "b09/classification/outputs/threshold_options.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.10",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 0.1582900057770075,
+    "text": "0.158"
+  },
+  "CM.A16.recall": {
+    "kind": "number",
+    "source": "b09/classification/outputs/threshold_options.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.10",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 0.3556132381570409,
+    "text": "0.356"
+  },
+  "CM.A16.fp_per_tp": {
+    "kind": "number",
+    "source": "b09/classification/outputs/threshold_options.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.10",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 5.317518248175182,
+    "text": "5.3"
+  },
+  "SL.reg.state_BA.mae_B": {
+    "kind": "number",
+    "source": "b09/regression/outputs/subgroups.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.3",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 6.010448457238184,
+    "text": "6.01"
+  },
+  "SL.reg.state_SP.mae_B": {
+    "kind": "number",
+    "source": "b09/regression/outputs/subgroups.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.3",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 2.6097925765968477,
+    "text": "2.61"
+  },
+  "SL.reg.route_SPBA.mae_B": {
+    "kind": "number",
+    "source": "b09/regression/outputs/subgroups.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.3",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 6.116214116748651,
+    "text": "6.12"
+  },
+  "SL.reg.dist_far.mae_B": {
+    "kind": "number",
+    "source": "b09/regression/outputs/subgroups.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.3",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 5.312076067672398,
+    "text": "5.31"
+  },
+  "SL.reg.dist_near.mae_B": {
+    "kind": "number",
+    "source": "b09/regression/outputs/subgroups.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.3",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 2.4569937944592315,
+    "text": "2.46"
+  },
+  "SL.reg.basket_1.mae_B": {
+    "kind": "number",
+    "source": "b09/regression/outputs/subgroups.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.3",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 3.329115004796415,
+    "text": "3.33"
+  },
+  "SL.reg.basket_3.mae_B": {
+    "kind": "number",
+    "source": "b09/regression/outputs/subgroups.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.3",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 3.006996489917365,
+    "text": "3.01"
+  },
+  "SL.reg.month_05.mae_B": {
+    "kind": "number",
+    "source": "b09/regression/outputs/subgroups.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.3",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 3.383382815768015,
+    "text": "3.38"
+  },
+  "SL.reg.month_05.mae_A": {
+    "kind": "number",
+    "source": "b09/regression/outputs/subgroups.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.3",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 3.3297230631667394,
+    "text": "3.33"
+  },
+  "SL.reg.month_05.orders": {
+    "kind": "number",
+    "source": "b09/regression/outputs/subgroups.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.3",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 507,
+    "text": "507"
+  },
+  "SL.reg.routes_too_few": {
+    "kind": "number",
+    "source": "b09/regression/outputs/subgroups_aggregate.csv",
+    "run_id": "20261025T132406Z",
+    "evidence": "B9.3",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 28,
+    "text": "28"
+  },
+  "SL.clf.state_judged": {
+    "kind": "number",
+    "source": "b09/classification/outputs/subgroups_aggregate.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.3",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 3,
+    "text": "3"
+  },
+  "SL.clf.state_too_few": {
+    "kind": "number",
+    "source": "b09/classification/outputs/subgroups_aggregate.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.3",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 4,
+    "text": "4"
+  },
+  "SL.clf.route_judged": {
+    "kind": "number",
+    "source": "b09/classification/outputs/subgroups_aggregate.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.3",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 3,
+    "text": "3"
+  },
+  "SL.clf.route_too_few": {
+    "kind": "number",
+    "source": "b09/classification/outputs/subgroups_aggregate.csv",
+    "run_id": "20261025T132538Z",
+    "evidence": "B9.3",
+    "used_in": [
+      "report 7"
+    ],
+    "value": 45,
+    "text": "45"
   }
 }

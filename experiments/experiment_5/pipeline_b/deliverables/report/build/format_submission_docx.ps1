@@ -29,7 +29,7 @@ try {
     $t.Range.Font.Size = 10; $t.Range.ParagraphFormat.SpaceBefore = 0; $t.Range.ParagraphFormat.SpaceAfter = 0 }
   foreach ($s in $d.InlineShapes) { $s.LockAspectRatio = -1
     if ($s.Range.Information(12)) { $s.Width = 3.3*72; continue }
-    $s.Width = 72; if (($s.Width / $s.Height) -lt 1.7) { $s.Width = 4.2*72 } else { $s.Width = 5.5*72 } }
+    $s.Width = 72; if (($s.Width / $s.Height) -lt 1.7) { $s.Width = 3.9*72 } else { $s.Width = 5.0*72 } }   # v2.4: 3.9 and 5.0 in (were 4.2 and 5.5) to keep the body within page 20
   foreach ($p in $d.Paragraphs) { if ($p.Range.Text.Trim() -eq "Executive summary") { $p.Format.PageBreakBefore = -1; break } }
   $d.Repaginate()
   $exec = 0; $last = 0; $refs = 0

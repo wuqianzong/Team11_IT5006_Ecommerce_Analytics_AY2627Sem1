@@ -1,0 +1,6 @@
+task,row,model,metric,final_fit_rows,train_mean,validation_mean,test,gap_validation_minus_train
+regression,"Pipeline B, plain linear (delivered)",B frozen,mae,59683,3.860682416386598,5.024664909635607,3.299187669974489,1.1639824932490095
+regression,Dummy (median),B dummy,mae,59683,4.7937481811720986,5.968890770349172,4.38494981991215,1.1751425891770735
+classification,"Pipeline B, plain logistic, raw probabilities",B plain,ap,59188,0.2369444110613106,0.2615813375186103,0.1992301208374248,0.0246369264572997
+classification,"Pipeline B, plain logistic, calibrated (delivered)",B frozen,ap,59188,,0.2482053394114348,0.1971806261064724,
+classification,Dummy (detractor share),B dummy,ap,59188,0.1167443851124994,0.1379707846467106,0.0994706945520268,0.021226399534211182

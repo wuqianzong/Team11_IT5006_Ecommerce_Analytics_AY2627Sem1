@@ -15,12 +15,14 @@ PAIRS = [(("Permutation importance, B regression (test rows)", "F.reg.importance
          (("B&apos;s regression coefficients", "F.reg.coefficients"),
           ("B&apos;s classification odds ratios", "F.clf.coefficients"))]
 W_EMU = int(3.3 * 914400)
+SUFFIX = "(half-width report render)"
 media = {}
 paras = list(re.finditer(r"<w:p[ >](?:(?!<w:p[ >]).)*?</w:p>", doc, re.S))
 
 
 def find(alt):
-    return next(k for k, m in enumerate(paras) if f'descr="{alt}"' in m.group(0))
+    # the doc's alt text may already carry the render suffix (review doc since v2.3 rev 55)
+    return next(k for k, m in enumerate(paras) if re.search(rf'descr="{re.escape(alt)}( {re.escape(SUFFIX)})?"', m.group(0)))
 
 
 def picture(p, alt, rid):
@@ -30,7 +32,7 @@ def picture(p, alt, rid):
     target = re.search(rf'Id="{emb}"[^>]*Target="([^"]+)"', rels).group(1)
     media["word/" + target] = png
     p = re.sub(r'cx="\d+" cy="\d+"', f'cx="{W_EMU}" cy="{int(W_EMU * h / w)}"', p)
-    return p.replace(f'descr="{alt}"', f'descr="{alt} (half-width report render)"')
+    return re.sub(rf'descr="{re.escape(alt)}( {re.escape(SUFFIX)})?"', f'descr="{alt} {SUFFIX}"', p)
 
 
 def cell(p):
@@ -50,7 +52,7 @@ for (alt_a, id_a), (alt_b, id_b) in PAIRS:
     assert kb == ka + 1, (ka, kb)
     pa, pb = picture(paras[ka].group(0), alt_a, id_a), picture(paras[kb].group(0), alt_b, id_b)
     capa, capb = paras[ca].group(0), paras[cb].group(0)
-    assert f"({id_a})" in capa and f"({id_b})" in capb, (capa, capb)
+    assert f"({id_a}" in capa and f"({id_b}" in capb, (capa, capb)   # "(F.x)" or "(F.x.report)"
     capa, capb = capa.replace(f"({id_a})", f"({id_a}.report)"), capb.replace(f"({id_b})", f"({id_b}.report)")
     edits.append((paras[ka].start(), paras[cb].end(), TBL.format(cell(pa), cell(pb), cell(capa), cell(capb))))
 for s, e, new in sorted(edits, reverse=True):

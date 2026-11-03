@@ -8,7 +8,7 @@ Leakage takes several forms beyond rows shared between training and test (Kapoor
 
 *Figure: Time-ordered folds and the test period (F.reg.partition).*
 
-Each fold must have at least {{B5.min_train_rows}} training orders and, for the alert, 100 detractors in each part; the minimums were set before the folds were built. Fold 1 of Pipeline B falls short on training orders ({{B5.reg.fold1_train_rows}} for lead time, {{B5.clf.fold1_train_rows}} for the alert), because the seven-state scope and the warm-up remove early orders. We kept it, as a recorded deviation, so the two pipelines are compared on identical periods; every detractor minimum is met. Instead of stratifying, each fold's detractor share is reported, and it moves with the business over time (appendix A). Every metric is defined in appendix B. Every random step (trees, forests, tuning) uses seed 42, and forests predict on a single thread, so a rerun on the same machine reproduces every stored output exactly.
+Minimum fold sizes were set before the folds were built; Pipeline B's fold 1 falls short on training orders and was kept as a recorded deviation, and instead of stratifying, each fold's detractor share is reported (appendix A). Every random step uses seed 42, so a rerun on the same machine reproduces every stored output exactly.
 
 ### 6.2 Model ladder
 
@@ -18,13 +18,28 @@ Each step up the ladder must beat the step below it on the same folds. Appendix 
 
 *Figure: Model ladder on the five folds, lead time (F.reg.family_ladder) and detractor alert (F.clf.family_ladder).*
 
-**Training results** (appendix H). The plain models do not overfit: for lead time a dummy with no features shows the same training-to-validation gap ({{B6.reg.dummy_train}} to {{B6.reg.dummy_validation}} days) as the linear model ({{B6.reg.linear_train}} to {{B6.reg.linear_validation}}), so the gap is a period effect, and for the alert training and validation AP are close ({{B6.clf.linear_train}} and {{B6.clf.linear_validation}}). The learning curves show that the most recent orders predict best and that more data narrows the gap without lifting validation much.
+**Training results.** Tables 4 and 5 put each delivered model's training, validation and test scores side by side. Training and validation are means over the five folds; the test model is refitted once on all development rows. The gap is validation minus training.
 
-The linear model beats the dummy in every fold; the single tree is worse than the linear model in both tasks, and the forest only slightly better (appendix H gives the gains).
+*Table 4. Training results, delivery lead time (MAE in days; lower is better).*
+
+| Model | Final-fit rows | Training MAE | Validation MAE | Test MAE | Gap |
+| --- | --- | --- | --- | --- | --- |
+| Pipeline B, plain linear (delivered) | {{RT.reg.fit_rows}} | {{RT.reg.B.train}} | {{RT.reg.B.validation}} | {{RT.reg.B.test}} | {{RT.reg.B.gap}} |
+| Dummy (median) | {{RT.reg.fit_rows}} | {{RT.reg.dummy.train}} | {{RT.reg.dummy.validation}} | {{RT.reg.dummy.test}} | {{RT.reg.dummy.gap}} |
+
+*Table 5. Training results, detractor alert (AP; higher is better).*
+
+| Model | Final-fit rows | Training AP | Validation AP | Test AP | Gap |
+| --- | --- | --- | --- | --- | --- |
+| Pipeline B, plain logistic, raw probabilities | {{RT.clf.fit_rows}} | {{RT.clf.raw.train}} | {{RT.clf.raw.validation}} | {{RT.clf.raw.test}} | {{RT.clf.raw.gap}} |
+| Pipeline B, plain logistic, calibrated (delivered) | {{RT.clf.fit_rows}} | none (see text) | {{RT.clf.cal.validation}} | {{RT.clf.cal.test}} | none |
+| Dummy (detractor share) | {{RT.clf.fit_rows}} | {{RT.clf.dummy.train}} | {{RT.clf.dummy.validation}} | {{RT.clf.dummy.test}} | {{RT.clf.dummy.gap}} |
+
+The plain models do not overfit. For lead time the dummy, which has no features, shows the same gap as the linear model, so the gap is a period effect: the validation weeks were slower than the training weeks, and the test weeks faster. For the alert, validation AP is slightly above training AP for both the logistic model and the dummy, because the validation windows hold more detractors. The calibrated model has no single training AP: its sigmoid is fitted on time-ordered inner splits of each training fold, so the calibrated scores exist only out of sample. The raw row shows how the same logistic model fits its own training rows; calibration then maps its probabilities onto the shared scale used for the threshold and costs (section 6.4). The learning curves (appendix H) show that the most recent orders predict best and that more data narrows the gap without lifting validation much.
 
 ### 6.3 Tuning
 
-Each family was then tuned on the same folds, with grids fixed before any tuning result was seen: Ridge alpha and logistic C from 0.01 to 100; tree depth 4 to 18 and minimum leaf size 20 to 200; forest depth 8 to 18 and leaf size 20 to 200 with square-root feature sampling; and class weight (none or balanced) for every classifier (appendix F). Class weighting is how the grid treats the imbalance. We did not resample: the alert uses calibrated probabilities and a cost-based threshold, and in logistic risk models imbalance corrections can distort the calibration of the predicted risk (Van den Goorbergh et al., 2022).
+Each family was then tuned on the same folds, with grids fixed before any tuning result was seen (Ridge alpha, logistic C, tree and forest depth and leaf size, and class weight for every classifier; appendix F). Class weighting is how the grid treats the imbalance. We did not resample: the alert uses calibrated probabilities and a cost-based threshold, and in logistic risk models imbalance corrections can distort the calibration of the predicted risk (Van den Goorbergh et al., 2022).
 
 Tuning changed little (Tables K10 and K11). For lead time the tuned linear model's paired gain is {{B7.reg.tuned_gain_linear}} days and the tuned forest's {{B7.reg.tuned_gain_forest}}; for the alert the tuned logistic model gains {{B7.clf.tuned_gain_linear}} AP, well inside its fold-to-fold standard error of {{B7.clf.tuned_se_linear}}, and the tuned forest {{B7.clf.tuned_gain_forest}}. No tuned configuration beat its plain model by enough to be carried forward. The forest's best configuration sits at the edge of its grid in both tasks, so a wider grid might do better; the grid was fixed in advance and not extended, because the selection rule below keeps the plain model either way (section 10).
 

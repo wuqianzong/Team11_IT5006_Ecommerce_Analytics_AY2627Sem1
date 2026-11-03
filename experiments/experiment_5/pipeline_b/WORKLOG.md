@@ -1026,3 +1026,28 @@ more on the test than sending no alert, because the test period had fewer detrac
 - Benson signed literature rows 13 and 14 and checked the hosted app in a private window (works).
 - On Benson's order, merged into milestone-3 and fast-forwarded main before Henry's v2.4 production (HS-03); the
   audit's live-doc and live-deck checks pass again once Henry syncs and refreshes the audit inputs.
+
+## 2026-11-03 · Henry + Claude · v2.4 brief compliance and production (B-CR-61, HS-03)
+
+**Done**
+- Checked report and deck v2.4 against the project brief and the TA's new Milestone 2 feedback; the checklist is in
+  Henry's Claude Doc (Team 11 M3 brief compliance checklist v2.4). Three TA items were only in the appendix and
+  are now in the body: §5.1 Table 3 (feature families: available at, why included), §6.2 Tables 4 and 5 (training
+  results with the gap, and why the calibrated model has no training AP), §7.1.1 and §7.2.1 (residual table, TP/FP/FN
+  counts at 1/6 and 4/15, early or late, FP or FN, threshold by constraint, slices too small to judge).
+- New read-only producer `deliverables/report/tables/make_report_tables.py` (RT.1, register root RTAB); register 691
+  items; Windows rerun of the business case and deck renders (CSV and JSON identical; PNG bytes differ as expected).
+- Review doc rev 87 (title and doc name v2.4), deck version 53 (slides 2, 6, 14–17; title v2.4; new promise chart),
+  `figure_map.json` 31 doc charts, `report_v2_4_figs.tsv`, audit inputs refreshed; audit 9/9; tests 36 passed,
+  5 skipped.
+- Exports in `deliverables/exports/2026-11-03/`: `Team11_final_report_v2.4.docx` (body pages 2–20, references from
+  page 20, 33 pictures, one visual check) and `Team11_final_deck_v2.4.pptx` (18 slides, from Claude in Chrome).
+- Page budget by moving, not cutting (CHANGELOG_B B-CR-61 lists each move); body chart widths 5.0 and 3.9 in.
+
+**Not done**
+- Nothing pushed; no merge into milestone-3 or main (Henry decides; Benson asked for a merge after 9/9).
+- Submitted file names must follow the brief (T-35): Team11_Phase3_IT5006_AY2627Sem1.pdf and
+  Team11_IT5006_Ecommerce_Analytics_AY2627Sem1.zip; slides to Canvas by 4 Nov 23:59.
+
+**Questions for Benson**
+- Please check the moved text in appendices A, G, I, J, K and L reads well on its own.

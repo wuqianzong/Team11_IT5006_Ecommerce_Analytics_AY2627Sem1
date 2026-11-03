@@ -2,7 +2,7 @@
 
 - `report/NN_*.md`: report sections with `{{id}}` placeholders (sources). Fill with
   `python pipeline_b/build_evidence_B.py fill <src> <out>`; check with `... check report/*.md`.
-- Review copy: Claude Doc "Team 11 final report v2.3 — delivery time and detractor alerts" (heading; the doc file name still reads v2.2) in Henry's account,
+- Review copy: Claude Doc "Team 11 final report v2.4 — delivery time and detractor alerts" (heading and doc name; rev 87, B-CR-61) in Henry's account,
   https://claude.ai/artifact/USWnVhiKr35AqXwc4zQHAw (filled text; v1, rev 118, stays at
   https://claude.ai/artifact/Gp8qHXHdffLf3t78JcMWid with its sources frozen in `report_v1/`). The team comments there; changes come back
   here first, then the doc is refreshed.
@@ -21,8 +21,8 @@ A figure changes only by re-uploading the rebuilt PNG (blobs are immutable).
 
 - Sources: `deck/project/deck.json` and `deck/project/slides/*.html` with `{{id}}` placeholders. Fill each slide with
   `build_evidence_B.py fill` into a publish folder, then publish `project/…` to the deck.
-- Sources at v2.4 (B-CR-53, B-CR-54: report `report/*.md`, slides `deck/project/slides/*.html`, deck title in `deck/project/deck.json`); the review doc, deck artifact and exports below stay v2.3 until Henry syncs them.
-- Deck: v2.3 https://claude.ai/artifact/NBiGTdX9JKB5kAeeX34gvc (current, version 48, 18 slides, B-CR-50; v2 until 2 Nov, then v2.1 (B-CR-47), v2.2 (B-CR-49) and v2.3 (B-CR-50)); v1 https://claude.ai/artifact/VtyNdrjEovfAvycTPmvy23 (Henry's account, private until shared). 12 slides; titles,
+- Sources at v2.4 (B-CR-53, B-CR-54: report `report/*.md`, slides `deck/project/slides/*.html`, deck title in `deck/project/deck.json`); review doc (rev 87), deck (version 53) and exports (`exports/2026-11-03/`, `Team11_final_report_v2.4.docx`, `Team11_final_deck_v2.4.pptx`) synced to v2.4 by Henry (B-CR-61).
+- Deck: v2.4 https://claude.ai/artifact/NBiGTdX9JKB5kAeeX34gvc (current, version 53, 18 slides, B-CR-61; v2.3 version 48, B-CR-50; v2 until 2 Nov, then v2.1 (B-CR-47), v2.2 (B-CR-49) and v2.3 (B-CR-50)); v1 https://claude.ai/artifact/VtyNdrjEovfAvycTPmvy23 (Henry's account, private until shared). 12 slides; titles,
   text and tables are editable; charts are uploaded register PNGs (validation_and_test ×2, population, residuals,
   threshold_options, partition).
 - Slide 16 "app" carries the app screenshots (appendix L files, register S.05/S.06), the live URL and the repository

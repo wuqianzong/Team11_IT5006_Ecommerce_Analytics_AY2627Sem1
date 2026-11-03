@@ -1,5 +1,5 @@
 {
-  "note": "Where each chart in the live report doc and deck comes from. Doc: figure number -> doc blob -> uploaded asset (read back from the doc's blob records, 2026-10-26; rebuilt for the 28 charts of rev 33, 2026-10-28). Deck: <img src> asset id. Every asset must equal the register figure byte for byte. Doc section renumbered 2026-10-30 for review doc rev 58: the business-context chart is figure 1 (B-CR-41), the rest follow in reading order (Henry, delegated lead; replaces Benson D8). Deck section rebuilt 2026-10-30 for deck v2 (B-CR-43): 6 original charts and 14 presentation renders (replaces Benson D2). Deck section rebuilt again 2026-10-30 after the audit (renders at 18 pt; 18 renders, 2 originals). Deck section updated 2026-11-02 for deck v2.1 version 43 (B-CR-48): new confusion render from b08's pooled rows, and the two app screenshots on slide 16 (register S.05, S.06, source SHOT/). Updated 2026-11-03 for report v2.3 rev 51 and deck v2.3 version 48 (B-CR-50): figure 24 is now the business-case promise chart (F.BC.promise_compare, blob a0558929-9d71) in place of the buffer curve; on the deck the promise render replaces the buffer-curve render (slide 15 'use' replaced by slides 16 and 17). Updated 2026-11-03 for report v2.3 rev 59 (B-CR-52): figures 20-23 are the half-width report renders (register ids ending .report, source REPORT/), placed side by side in the Word copy; the doc keeps them stacked (it shows every picture full width).",
+  "note": "Where each chart in the live report doc and deck comes from. Doc: figure number -> doc blob -> uploaded asset (read back from the doc's blob records, 2026-10-26; rebuilt for the 28 charts of rev 33, 2026-10-28). Deck: <img src> asset id. Every asset must equal the register figure byte for byte. Doc section renumbered 2026-10-30 for review doc rev 58: the business-context chart is figure 1 (B-CR-41), the rest follow in reading order (Henry, delegated lead; replaces Benson D8). Deck section rebuilt 2026-10-30 for deck v2 (B-CR-43): 6 original charts and 14 presentation renders (replaces Benson D2). Deck section rebuilt again 2026-10-30 after the audit (renders at 18 pt; 18 renders, 2 originals). Deck section updated 2026-11-02 for deck v2.1 version 43 (B-CR-48): new confusion render from b08's pooled rows, and the two app screenshots on slide 16 (register S.05, S.06, source SHOT/). Updated 2026-11-03 for report v2.3 rev 51 and deck v2.3 version 48 (B-CR-50): figure 24 is now the business-case promise chart (F.BC.promise_compare, blob a0558929-9d71) in place of the buffer curve; on the deck the promise render replaces the buffer-curve render (slide 15 'use' replaced by slides 16 and 17). Updated 2026-11-03 for report v2.3 rev 59 (B-CR-52): figures 20-23 are the half-width report renders (register ids ending .report, source REPORT/), placed side by side in the Word copy; the doc keeps them stacked (it shows every picture full width). Doc section renumbered 2026-11-03 for report v2.4 rev 77 (31 charts: learning curves in appendix H, residuals and by-state figures in appendix E, new promise chart; B-CR-61). Deck promise render replaced for deck v2.4 version 53.",
   "doc": {
     "1": {
       "blob": "c12be487-a6f7",
@@ -62,86 +62,96 @@
       "register": "F.reg.validation_and_test"
     },
     "13": {
-      "blob": "1e815550-65b5",
-      "asset": "1024d7f7886cdd313777639c1c7f3059",
-      "register": "F.reg.residuals"
-    },
-    "14": {
-      "blob": "bc453993-27ea",
-      "asset": "3d3d69640777465b5c1f4fffb0472a7d",
-      "register": "F.reg.by_state"
-    },
-    "15": {
       "blob": "9363bc4e-1f4a",
       "asset": "6d46292845630a79e8596a4d14de22cc",
       "register": "F.clf.validation_and_test"
     },
-    "16": {
+    "14": {
       "blob": "d489593c-d647",
       "asset": "b4d39c548071e4c9113f761c2b653bf7",
       "register": "F.clf.test_curves"
     },
-    "17": {
+    "15": {
       "blob": "2e4392d5-de2e",
       "asset": "94f1284a6e5a899ab7f853747b3cda03",
       "register": "F.clf.threshold_options"
     },
-    "18": {
-      "blob": "da0ee23b-03c1",
-      "asset": "06c1669f91bd1ab15590ba5cc018de30",
-      "register": "F.clf.by_state"
-    },
-    "19": {
+    "16": {
       "blob": "c8cf7cd4-645e",
       "asset": "903264b70eb2450828326a4891813ffe",
       "register": "F.reg.population"
     },
-    "20": {
+    "17": {
       "blob": "a1c01433-1e4d",
       "asset": "d3e4167a7181571a9980ed049cf4acf7",
       "register": "F.reg.importance.report"
     },
-    "21": {
+    "18": {
       "blob": "544575e7-0113",
       "asset": "cd9486ae2621d7d44dfb1ffbc75cba1c",
       "register": "F.clf.importance.report"
     },
-    "22": {
+    "19": {
       "blob": "15c1bb39-f457",
       "asset": "628ed20b6db7e791c451550bb78038ec",
       "register": "F.reg.coefficients.report"
     },
-    "23": {
+    "20": {
       "blob": "87c91809-469b",
       "asset": "f4d4691dc1767ffe801ef954b3915ff2",
       "register": "F.clf.coefficients.report"
     },
-    "24": {
-      "blob": "a0558929-9d71",
-      "asset": "ae1663c2e843b12dd0f7b3a6780c2443",
+    "21": {
+      "blob": "f66222ed-f9fd",
+      "asset": "61766021c2510d418659db9a19470f8d",
       "register": "F.BC.promise_compare"
     },
-    "25": {
+    "22": {
       "blob": "dccfeb98-7cec",
       "asset": "738c2c0f350b0fb8c63da04a4dc94036",
       "register": "F.reg.drift"
     },
-    "26": {
+    "23": {
       "blob": "3fe38cbf-9b92",
       "asset": "7201f70bbbbc9e9356463a2433532d7f",
       "register": "F.clf.auc_brier"
     },
+    "24": {
+      "blob": "1e815550-65b5",
+      "asset": "1024d7f7886cdd313777639c1c7f3059",
+      "register": "F.reg.residuals"
+    },
+    "25": {
+      "blob": "bc453993-27ea",
+      "asset": "3d3d69640777465b5c1f4fffb0472a7d",
+      "register": "F.reg.by_state"
+    },
+    "26": {
+      "blob": "da0ee23b-03c1",
+      "asset": "06c1669f91bd1ab15590ba5cc018de30",
+      "register": "F.clf.by_state"
+    },
     "27": {
+      "blob": "9b408c88-e6a3",
+      "asset": "e4abe154a30e02448d4352b7c04ba796",
+      "register": "F.reg.learning_curves"
+    },
+    "28": {
+      "blob": "806be22d-7127",
+      "asset": "6cc75142305a77fcb9c52f17be1719bb",
+      "register": "F.clf.learning_curves"
+    },
+    "29": {
       "blob": "3044a81c-e3ed",
       "asset": "71f47477e53bf88342a14e968ced81d3",
       "register": "F.reg.ranking_stability"
     },
-    "28": {
+    "30": {
       "blob": "c87abb1f-57ab",
       "asset": "4cde9e271b91f8092ee24f41f39cafac",
       "register": "F.clf.ranking_stability"
     },
-    "29": {
+    "31": {
       "blob": "1636d72e-cff4",
       "asset": "378153d8abf9da9bf248e084e5dc8a34",
       "register": "F.A3.reg.correlation_heatmap"
@@ -169,6 +179,6 @@
     "4be878fa4c801ed07452a0c9ef7ea666": "F.clf.confusion.deck",
     "5100fdf515fcea47928a8dd4f6ff89ea": "S.05_alert_stats_test_4_15",
     "ee65bab46d619ab71194334f14580ea4": "S.06_ml_deployment_alert_list",
-    "f2723043dfac0b937d0d4d553aa06258": "F.BC.promise_compare.deck"
+    "55f9a1e8330c937036c3a4a0c86e28e1": "F.BC.promise_compare.deck"
   }
 }

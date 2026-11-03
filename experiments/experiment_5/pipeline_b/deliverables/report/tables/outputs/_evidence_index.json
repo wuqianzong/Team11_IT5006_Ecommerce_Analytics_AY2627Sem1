@@ -1,0 +1,11 @@
+{
+  "node": "RTAB/report_tables",
+  "files": {
+    "train_gap.csv": {
+      "ids": [
+        "RT.1"
+      ],
+      "kind": "table"
+    }
+  }
+}
