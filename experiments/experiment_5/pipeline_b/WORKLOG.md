@@ -1005,3 +1005,13 @@ more on the test than sending no alert, because the test period had fewer detrac
 
 **Checks**
 - Placeholders resolve; tests 36 passed, 5 skipped; audit recomputation and alignment PASS.
+
+## 2026-11-03 · Benson + Claude · v2.4 final check and handover (B-CR-58, HS-03)
+
+**Done**
+- Filled every source and checked: all table, appendix and section references resolve; no stale v2.3 wording;
+  numbers agree between report and deck (alignment PASS). Fixed three slide wordings (B-CR-58).
+- Handover to Henry for the Word and PowerPoint production: HS-03 in `spec/doc_outbox/`.
+
+**Questions for Benson**
+- Approve B-G-19, 20, 22, 23, 26, 27; sign literature rows 13 and 14; merge after Henry's 9/9.
