@@ -1,8 +1,8 @@
 {
   "node": "BCASE/business_case",
-  "run_id": "20261103T035914Z",
-  "commit": "0a54e44e4f0e82b960b83c0c31e38472459dcdc0",
-  "dirty": true,
+  "run_id": "20261103T043357Z",
+  "commit": "18cf301ba4f3f5f80b248eb70413ab374c912622",
+  "dirty": false,
   "events_until": "2100-01-01 00:00:00",
   "inputs": {
     "experiments/experiment_5/pipeline_b/stages/t1_joint_test/regression/outputs/predictions_test.csv.gz": "32d5699953c15456523bd7f016684f96954d7116455f7d5ff78e7d8c95987f63",
