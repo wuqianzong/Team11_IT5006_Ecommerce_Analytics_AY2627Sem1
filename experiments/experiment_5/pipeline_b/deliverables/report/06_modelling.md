@@ -18,6 +18,19 @@ Each step up the ladder must beat the step below it on the same folds. Appendix 
 
 *Figure: Model ladder on the five folds, lead time (F.reg.family_ladder) and detractor alert (F.clf.family_ladder).*
 
+*Table 5. Training and validation scores by model family, mean of the five folds (lead time MAE in days, lower is better; alert AP before calibration, higher is better).*
+
+| Family | Lead time: training MAE | Lead time: validation MAE | Alert: training AP | Alert: validation AP |
+| --- | --- | --- | --- | --- |
+| Dummy | {{B6.reg.dummy_train}} | {{B6.reg.dummy_validation}} | {{B6.clf.dummy_train}} | {{B6.clf.dummy_validation}} |
+| Linear or logistic regression | {{B6.reg.linear_train}} | {{B6.reg.linear_validation}} | {{B6.clf.linear_train}} | {{B6.clf.linear_validation}} |
+| Single tree | {{B6.reg.tree_train}} | {{B6.reg.tree_validation}} | {{B6.clf.tree_train}} | {{B6.clf.tree_validation}} |
+| Random forest | {{B6.reg.forest_train}} | {{B6.reg.forest_validation}} | {{B6.clf.forest_train}} | {{B6.clf.forest_validation}} |
+
+**Training results.** For the alert the plain logistic model scores about the same on its training and validation rows (AP {{B6.clf.linear_train}} against {{B6.clf.linear_validation}}), so it does not memorise the training orders; the forest fits its training rows more closely ({{B6.clf.forest_train}} against {{B6.clf.forest_validation}}). For lead time every family's validation error is higher than its training error, by about as much for the dummy ({{B6.reg.dummy_train}} against {{B6.reg.dummy_validation}} days) as for the linear model ({{B6.reg.linear_train}} against {{B6.reg.linear_validation}}): a model with no features shows the same gap, so it comes from slower validation windows, not from overfitting. The learning curves on fold 5 (figure below) train each model on the most recent 20% to 100% of its {{B6.reg.lc_train_rows_100}} training orders. The linear model's validation MAE is lowest with the most recent 20% ({{B6.reg.lc_plain_validation_20}} days, against {{B6.reg.lc_plain_validation_100}} with all rows): recent orders predict the next weeks best, a sign of drift that Pipeline B's recent-history features address. The logistic model's validation AP stays near {{B6.clf.lc_plain_validation_100}} while its training AP falls from {{B6.clf.lc_plain_train_20}} to {{B6.clf.lc_plain_train_100}}, largely because older rows hold fewer detractors (the dummy's training AP, which equals the detractor share, falls from {{B6.clf.lc_dummy_train_20}} to {{B6.clf.lc_dummy_train_100}}). More data narrows the gap without lifting validation much: the models are limited by what is known at the prediction moment, not by the number of orders.
+
+*Figure: Learning curves on fold 5, lead time (F.reg.learning_curves) and detractor alert (F.clf.learning_curves).*
+
 The linear model beats the dummy in every fold, by {{B6.reg.gain_linear}} days of MAE on average, and the logistic model by {{B6.clf.gain_linear}} AP. The single tree is worse than the linear model in both tasks: {{B6.reg.gain_tree}} days, better in {{B6.reg.gain_tree_folds}} of five folds, and {{B6.clf.gain_tree}} AP, better in {{B6.clf.gain_tree_folds}}. The forest is slightly better on average, {{B6.reg.gain_forest}} days (paired standard error {{B6.reg.gain_forest_se}}, better in {{B6.reg.gain_forest_folds}} folds), and more consistently so for the alert, {{B6.clf.gain_forest}} AP (standard error {{B6.clf.gain_forest_se}}, better in {{B6.clf.gain_forest_folds}} folds).
 
 ### 6.3 Tuning

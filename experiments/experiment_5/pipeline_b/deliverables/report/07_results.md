@@ -6,13 +6,13 @@ On the same test orders Pipeline B beats Pipeline A in both tasks. Validation sc
 
 *Table 3. Delivery lead time, validation and test results.*
 
-| | Validation MAE (selection) | Test MAE [95% interval] | Test RMSE | Test R² | Within 3 days (test) |
-| --- | --- | --- | --- | --- | --- |
-| Pipeline B (delivered) | {{B9.reg.val_mae_B}} | {{B9.reg.test_mae_B}} [{{B9.reg.test_mae_B_lo}}, {{B9.reg.test_mae_B_hi}}] | {{B9.reg.test_rmse_B}} | {{B9.reg.test_r2_B}} | {{B9.reg.test_within3_B}} |
-| Pipeline A on the same test orders | | {{B9.reg.test_mae_A_on_B}} | {{B9.reg.test_rmse_A_on_B}} | {{B9.reg.test_r2_A_on_B}} | {{B9.reg.test_within3_A_on_B}} |
-| Dummy (median) on the same test orders | | {{B9.reg.test_mae_dummy_B}} | | | |
+| | Training MAE | Validation MAE (selection) | Test MAE [95% interval] | Test RMSE | Test R² | Within 3 days (test) |
+| --- | --- | --- | --- | --- | --- | --- |
+| Pipeline B (delivered) | {{B9.reg.train_mae_B}} | {{B9.reg.val_mae_B}} | {{B9.reg.test_mae_B}} [{{B9.reg.test_mae_B_lo}}, {{B9.reg.test_mae_B_hi}}] | {{B9.reg.test_rmse_B}} | {{B9.reg.test_r2_B}} | {{B9.reg.test_within3_B}} |
+| Pipeline A on the same test orders | | | {{B9.reg.test_mae_A_on_B}} | {{B9.reg.test_rmse_A_on_B}} | {{B9.reg.test_r2_A_on_B}} | {{B9.reg.test_within3_A_on_B}} |
+| Dummy (median) on the same test orders | | | {{B9.reg.test_mae_dummy_B}} | | | |
 
-Pipeline B's MAE minus Pipeline A's is {{B9.reg.mae_diff}} days on the same {{T1.reg.test_rows_B}} test orders (paired bootstrap interval {{B9.reg.mae_diff_lo}} to {{B9.reg.mae_diff_hi}}), so the gain is not an accident of the sample. RMSE, which weights large misses more, and R², the share of the variation in lead time that the model explains, point the same way. R² is low for both: much of the variation in delivery time is not visible at checkout. Pipeline A's R² on these orders is below zero, so it does worse than predicting the test period's average lead time, consistent with the faster test period (section 7.4).
+Pipeline B's MAE minus Pipeline A's is {{B9.reg.mae_diff}} days on the same {{T1.reg.test_rows_B}} test orders (paired bootstrap interval {{B9.reg.mae_diff_lo}} to {{B9.reg.mae_diff_hi}}), so the gain is not an accident of the sample. RMSE, which weights large misses more, and R², the share of the variation in lead time that the model explains, point the same way. R² is low for both: much of the variation in delivery time is not visible at checkout. Pipeline A's R² on these orders is below zero, so it does worse than predicting the test period's average lead time, consistent with the faster test period (section 7.4). The training error is lower than the validation error and higher than the test error because the three periods differ in speed, not because the model overfits (section 6.2).
 
 *Figure: Lead time by validation fold and on the test, with time windows (F.reg.validation_and_test).*
 
@@ -44,6 +44,8 @@ Pipeline B ranks detractors better by {{B9.clf.ap_diff}} AP (paired interval {{B
 **Slices.** Precision and recall by customer state and route are judged only where the test has more than 100 detractors, which holds for few slices (appendix E). In every judged slice Pipeline B is more precise; Pipeline A, which alerts more orders, has the higher recall in most of them.
 
 *Figure: Detractor alert by customer state (F.clf.by_state).*
+
+**Which orders the alert gets wrong** (observation on the stored test predictions, no refit; Table K23 gives the counts). At the frozen 1/6, Pipeline B raises {{BC.err.16_TA_n}} true and {{BC.err.16_FA_n}} false alerts and misses {{BC.err.16_MD_n}} detractors, {{BC.err.16_MD_share}} of all detractors on its test orders. Only {{BC.err.16_MD_late_delivery}} of the missed detractors arrived after Olist's estimate and {{BC.err.16_MD_late_handover}} were handed over late (true alerts: {{BC.err.16_TA_late_delivery}} and {{BC.err.16_TA_late_handover}}): for most of them the delivery went to plan, so the reason for the review lies in what the data does not hold at handover, such as the product or the seller's service. The false alerts are the mirror image: {{BC.err.16_FA_late_handover}} were handed over late, but only {{BC.err.16_FA_late_delivery}} arrived after the estimate, so the carrier often made up the seller's delay. The alert catches delivery-driven complaints; the missed ones are a limit of the data, not of the threshold.
 
 ### 7.3 Where the gain comes from
 

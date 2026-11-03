@@ -62,7 +62,7 @@ Full rank means no column is an exact linear combination of the others, so the c
 
 **Derived features.** Almost every feature is computed from the nine raw tables rather than read from one column; a feature read straight from a raw column shows that column. Tables D3 and D4 give the formula of each, as stored with the feature pipelines. Order-level sums, counts and shares are taken over the order's items after the joins of section 3; history features use only other orders whose events were complete before this order's prediction week.
 
-*Table D3. Pipeline A's features and how each is derived (both tasks; the missing-value indicators are added inside each fold).*
+*Table D3. Pipeline A's features, how each is derived and why it may carry a signal (both tasks; the missing-value indicators are added inside each fold; the reasons are hypotheses, not measured effects).*
 
 {{table:APX.features_derived_A}}
 
@@ -355,6 +355,10 @@ The rule and the fallback serve different orders, so one cannot replace the othe
 | Daily | Any contacted customer | Voucher for the next order, to invite a repeat purchase | — | Unmeasured mechanism; the hold-back pilot compares reviews and repeat orders |
 | Weekly | Sellers and routes that fall behind | Seller management works with them | 2.6 and 3.7 operational priorities; 4.3 list | Unmeasured mechanism |
 | Monthly | Promise and alert drift | Reset the buffer on recent weeks after a rolling backtest; check alert precision and late share by state | 2.4 promise buffer; 3.4 alert work statistics | Operational rule |
+
+*Table K23. Pipeline B's alert on its test orders by error group, at the frozen 1/6 and the operating 4/15: orders, orders delivered, share delivered after Olist's estimate (of those delivered), share handed over after the shipping limit, and median predicted risk (section 7.2; post-test view, no refit).*
+
+{{table:BC.error_table}}
 
 ### L. Dashboard screenshots
 

@@ -166,6 +166,7 @@
     "BC.4": "association, not an effect: the alert model's risk under the dashboard's freight scenarios",
     "BC.5": "observation (precision, alerts/day on test, post-test view); reach = precision x alerts/day",
     "BC.6": "assumption (5:1 cost); thresholds set on validation, test costs a post-test view",
-    "BC.7": "observation: repeat customers over the whole window, not a churn or lifetime measure"
+    "BC.7": "observation: repeat customers over the whole window, not a churn or lifetime measure",
+    "BC.8": "observation on test orders (post-test view): error groups of B's alert and their delivery facts"
   }
 }

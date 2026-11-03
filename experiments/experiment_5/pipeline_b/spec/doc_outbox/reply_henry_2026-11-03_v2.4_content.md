@@ -41,3 +41,13 @@ Not for you: Benson approves the Proposed decisions, signs literature rows 13 an
 
 Body text is about 175 words longer than v2.3 by source count. If the Word copy passes page 20, cut first from §1's
 "Why it matters" (the Cui sentence repeats §2) and from §9's opening paragraph.
+
+## Added in B-CR-56 (TA's advice)
+
+| File | Change |
+| --- | --- |
+| `report/05_features.md` | Reason for each Pipeline A feature group |
+| `report/06_modelling.md` | New body Table 5 (training and validation by family), "Training results" paragraph, learning-curve figures `F.reg.learning_curves` and `F.clf.learning_curves` (new pictures: add to `figure_map.json` and the Word picture list) |
+| `report/07_results.md` | Table 3 training MAE column; §7.2 "Which orders the alert gets wrong" |
+| `report/12_appendices.md` | Table D3 gains the reason column; new Table K23 (error profile) |
+| `deck/project/slides/a_features.html`, `test_reg.html`, `test_clf.html` | Feature reasons; training to validation MAE row; error-profile card; notes |

@@ -17,6 +17,8 @@ Outputs (evidence BC.1 to BC.5):
                                 option's population and its cost against no alert on that population (v2.4)
     cost_check.csv        BC.6  5:1 cost of no alert, 1/6 and 4/15 on validation and test, per population (v2.4)
     retention.csv         BC.7  customers with more than one order over March 2017 to April 2018 (v2.4)
+    error_profile.csv     BC.8  Pipeline B's alert on its test orders at 1/6 and 4/15: true and false alerts, missed
+                                detractors and quiet orders, with each group's late-delivery and late-handover share (v2.4)
     summary.json          headline numbers of all five; figures/promise_compare.png (+ .csv)
 with _manifest.json (run id, commit, input and code sha256, output sha256) and _evidence_index.json. The register
 reads these files as BCASE/<file> (build_evidence_B.verify_manifest_source).
@@ -285,10 +287,33 @@ def main() -> None:
                                "definition": "customer_unique_id with more than one order over the whole window "
                                              "(business overview data, dashboard_core.data.load_business_complete_months)"}])
 
+    # BC.8 error profile of B's alert on its test orders (no refit; stored T1 risks and labels) -------------------
+    rec = records.set_index("order_id")
+    lead = pd.read_csv(RECORDS, usecols=["order_id", "lead_days"]).set_index("order_id")["lead_days"]
+    prof_rows = []
+    late_delivery = (lead.reindex(bc.index) > rec["est_delivery_days"].reindex(bc.index))
+    delivered = lead.reindex(bc.index).notna()
+    late_handover = events["h_late"].reindex(bc.index).eq(1)
+    for label, thr in (("1/6 (frozen)", A_THRESHOLD), ("4/15 (operating)", B_THRESHOLD)):
+        alert = bc.y_pred >= thr
+        det = bc.y_true == 1
+        for cell, m in (("true alert", alert & det), ("false alert", alert & ~det),
+                        ("missed detractor", ~alert & det), ("quiet order", ~alert & ~det)):
+            n = int(m.sum())
+            prof_rows.append({"threshold": label, "group": cell, "orders": n,
+                              "share_of_detractors": float(m.sum() / det.sum()) if "detractor" in cell or cell == "true alert" else float("nan"),
+                              "delivered": int((m & delivered).sum()),
+                              "share_delivered_after_olist_estimate": float((m & delivered & late_delivery).sum() / max(1, (m & delivered).sum())),
+                              "share_handed_over_late": float((m & late_handover).sum() / n) if n else float("nan"),
+                              "median_risk": float(bc.loc[m, "y_pred"].median()) if n else float("nan")})
+    profile = pd.DataFrame(prof_rows)
+    assert int(profile.query("threshold == '4/15 (operating)' and group == 'true alert'").orders.iloc[0]) == int(b415.tp)
+
     # outputs --------------------------------------------------------------------------------------------------------
     (OUT / "figures").mkdir(parents=True, exist_ok=True)
     for name, frame in (("promise_compare", compare), ("buffer_recent", recent), ("expedite", expedite),
-                        ("discount", discount), ("reach", reach), ("cost_check", costs), ("retention", retention)):
+                        ("discount", discount), ("reach", reach), ("cost_check", costs), ("retention", retention),
+                        ("error_profile", profile)):
         frame.to_csv(OUT / f"{name}.csv", index=False, lineterminator="\n")
     by = compare.set_index("series")
     freight = discount[discount.scenario.isin([lab for lab, _, _ in score_tab.SCENARIOS])]
@@ -321,6 +346,7 @@ def main() -> None:
             "BC.5": "observation (precision, alerts/day on test, post-test view); reach = precision x alerts/day",
             "BC.6": "assumption (5:1 cost); thresholds set on validation, test costs a post-test view",
             "BC.7": "observation: repeat customers over the whole window, not a churn or lifetime measure",
+            "BC.8": "observation on test orders (post-test view): error groups of B's alert and their delivery facts",
         },
     }
     (OUT / "summary.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8", newline="\n")
@@ -352,7 +378,8 @@ def main() -> None:
         "reach.csv": {"ids": ["BC.5"], "kind": "table"},
         "cost_check.csv": {"ids": ["BC.6"], "kind": "table"},
         "retention.csv": {"ids": ["BC.7"], "kind": "table"},
-        "summary.json": {"ids": ["BC.1", "BC.2", "BC.3", "BC.4", "BC.5", "BC.6", "BC.7"], "kind": "json"},
+        "error_profile.csv": {"ids": ["BC.8"], "kind": "table"},
+        "summary.json": {"ids": ["BC.1", "BC.2", "BC.3", "BC.4", "BC.5", "BC.6", "BC.7", "BC.8"], "kind": "json"},
         "figures/promise_compare.png": {"ids": ["BC.1"], "kind": "figure"},
         "figures/promise_compare.csv": {"ids": ["BC.1"], "kind": "figure_data"},
     }}

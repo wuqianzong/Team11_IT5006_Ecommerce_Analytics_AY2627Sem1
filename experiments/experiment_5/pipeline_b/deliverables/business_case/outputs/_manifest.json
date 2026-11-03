@@ -1,8 +1,8 @@
 {
   "node": "BCASE/business_case",
-  "run_id": "20261103T073432Z",
-  "commit": "fe2867afad5c6818d67345523fb6a3be6ce40584",
-  "dirty": false,
+  "run_id": "20261103T091848Z",
+  "commit": "221369f6ec51e38b48946e4d924a36ad339459da",
+  "dirty": true,
   "events_until": "2100-01-01 00:00:00",
   "python": "3.12.3",
   "platform": "Linux-6.18.44-fc-v230-x86_64-with-glibc2.39",
@@ -21,7 +21,7 @@
     "data/raw/olist_customers_dataset.csv": "983a422239e1712ded753b3bf9ecf47dc73f144d306029dcfa99e70a226883d2"
   },
   "code": {
-    "experiments/experiment_5/pipeline_b/deliverables/business_case/make_business_case.py": "4e340e1fb6fb380d5b57c3e7709f195754db981aa601137374f6303f0a4a1296",
+    "experiments/experiment_5/pipeline_b/deliverables/business_case/make_business_case.py": "817dade6fa02dbacaceabe14d759e9c64bdad322db948e631957c4fb00e4c590",
     "experiments/experiment_5/pipeline_b/deliverables/dashboard/app/dashboard_core/score_tab.py": "5d0b6a3b4059b1c40c99d0a169d30864d12c7df92d5302be876284633a5cbc9b",
     "experiments/experiment_5/pipeline_b/deliverables/dashboard/app/dashboard_core/alerts.py": "4104aacaa3c54f227a02ab4c85d63b65072163c17ec2daf3b0f6a28b7246866e",
     "experiments/experiment_5/pipeline_b/deliverables/dashboard/app/dashboard_core/model_client.py": "515f1046bfea6824ffd7e6ed750e524410ed87d0582c58024d66e6944a9e14ec",
@@ -29,16 +29,17 @@
     "experiments/experiment_5/pipeline_b/deliverables/dashboard/app/dashboard_core/data.py": "83d51a6369926f9c82c82bcafd3b60f36f172013f55f823c96c79ff5d7649d17"
   },
   "outputs": {
-    "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/_evidence_index.json": "cab75ab178bb200a185c4d5503f3a122329ebce4bf3f01db4e5bce43b0414008",
+    "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/_evidence_index.json": "3efe3ef07b5ba4ff5687b907439f9ce441e5f36136edaefb1211d347f6ffb0cb",
     "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/buffer_recent.csv": "ebf3bcec4a5cb02d534aaa05a446c2a7a353cad390d5ffe43f67c619548a9aaa",
     "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/cost_check.csv": "a81db2c428f7c757a54936faae89212a84c2d76a528767cecf0c764c46a3af21",
     "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/discount.csv": "06baf59266d1d9285f03f6ed119cd9ac243264577336b6a14517f70adaa3d362",
+    "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/error_profile.csv": "8dda280a911d166d34b65c01fb0591e7e2aa8ac8e2ad8b3ff3f87aa3bf5efdc8",
     "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/expedite.csv": "2907a51ffdfdf2c876ef3b5dde6f4b1bd0485cba021e9634f9ab3ca12162a42a",
     "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/figures/promise_compare.csv": "761b76d7e4e7aac29dd6c81ac3f2075f879e00068d463a56825729de27144649",
     "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/figures/promise_compare.png": "7063a6c775009db7f2b04c618e6808609118e5313c32edc693b146a4429572a2",
     "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/promise_compare.csv": "761b76d7e4e7aac29dd6c81ac3f2075f879e00068d463a56825729de27144649",
     "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/reach.csv": "7c46bd5279c50365b27d83b555d23c484b40826d335d9f453a5fa9bcfaf97a31",
     "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/retention.csv": "7c2f2c3e87f6f42b901f3643cb12fa65fb9ca50581598072e49f5aca7ed326c6",
-    "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/summary.json": "9bef406fb5b04765e667649f1ef9988d028a1ad2fd7b291e32acdf1218dd8fc0"
+    "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/summary.json": "a75bf9b9a9ad96ac523cdbbaea7ccfff07140899a2c1472d5e044562bbd47b0f"
   }
 }

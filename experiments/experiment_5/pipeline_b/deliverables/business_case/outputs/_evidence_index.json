@@ -43,6 +43,12 @@
       ],
       "kind": "table"
     },
+    "error_profile.csv": {
+      "ids": [
+        "BC.8"
+      ],
+      "kind": "table"
+    },
     "summary.json": {
       "ids": [
         "BC.1",
@@ -51,7 +57,8 @@
         "BC.4",
         "BC.5",
         "BC.6",
-        "BC.7"
+        "BC.7",
+        "BC.8"
       ],
       "kind": "json"
     },

@@ -981,3 +981,17 @@ more on the test than sending no alert, because the test period had fewer detrac
 - Checked Solomon's points against the filled v2.4 sources: 1–4 and 9 incorporated, 7 covered by §9's opening, 8 worded
   (signatures open), 6 waits for the merge, 5 not valid. Benson: revise only what is wrong, not Solomon's suggestions.
 - Fixed four accuracy errors (see B-CR-55). Placeholders resolve; audit recomputation and alignment PASS.
+
+## 2026-11-03 · Benson + Claude · TA's advice: training results, error analysis, feature rationale (B-CR-56)
+
+**Done**
+- Checked v2.4 against the TA's three requirements; each existed only in appendices or partly. Added them to the body
+  and the deck from stored evidence (b06 candidates and learning curves, A's s04 feature dictionary) and one new
+  business-case output (BC.8 error profile, no refit). Register 622 items.
+
+**Checks**
+- Placeholders resolve; tests 36 passed, 5 skipped; audit recomputation and alignment PASS.
+
+**Next (Henry)**
+- Doc and deck sync now also includes two new report figures (learning curves; add them to `figure_map.json` and
+  `report_v2_3_figs.tsv` successor), body Table 5, Table K23 and the D3 column; slides 6, 13 and 14.
