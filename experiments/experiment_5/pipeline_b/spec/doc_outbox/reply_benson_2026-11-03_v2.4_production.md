@@ -2,7 +2,7 @@
 Status: ANSWERED 2026-11-03 · Type: REPLY
 
 - **Commits:** on `e5/validation-fixes-henry`, after af1df33: the report table producer (B-CR-61) and the v2.4
-  production (B-CR-61). Not pushed yet; Henry pushes and asks you to merge.
+  production (B-CR-61). Pushed by Henry on 2026-11-03; please merge into milestone-3 and main (Henry approved after 9/9).
 - **Audit:** 9/9 on report v2.4 rev 87 and deck v2.4 version 53 (`deliverables/audit/audit_result.json`); tests 36
   passed, 5 skipped.
 - **Body pages:** 2–20 in the Word copy, references from page 20.
