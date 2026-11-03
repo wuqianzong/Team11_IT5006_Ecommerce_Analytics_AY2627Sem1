@@ -2,6 +2,8 @@
 
 For each Olist order the business needs two answers: how many days delivery will take, so the customer can be promised a realistic range, and whether the customer is likely to leave a 1 or 2 star review, so customer service can act before it is written. We predict the first at checkout and the second when the parcel is handed to the carrier.
 
+**Why.** Revenue grew {{BIZ.rev_growth}} times, then stalled below its November 2017 peak, while late deliveries reached {{A3.trend.late_2018_03}} and detractors {{A3.trend.detractor_2018_03}} in March 2018; only {{BC.retention.share}} of customers ordered more than once in fourteen months. The goal: restart sales with a promise Olist keeps, and lift retention by reaching unhappy customers first.
+
 **Method.** Every model row holds only what is known at its prediction moment; every step learned from data is fitted inside time-ordered, customer-purged folds; correlated and nested features are removed by a stated rule before selection; and models are compared from the simplest upwards, keeping the simpler one unless a more complex one is better by more than the fold-to-fold variation. We first built Pipeline A, a complete baseline for every order, and then Pipeline B, the delivered model, a focused improvement: the seven largest states, the seller's and the route's recent delivery history, and the alert moved to carrier handover. The rule for adopting the improvement was fixed before the test, and both pipelines were frozen and scored once on the same test period.
 
 *Table 1. Headline test results, Pipeline B and Pipeline A on the same test orders.*

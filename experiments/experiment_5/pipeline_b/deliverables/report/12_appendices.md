@@ -344,6 +344,18 @@ The rule and the fallback serve different orders, so one cannot replace the othe
 | Serving rule: B at 4/15, fallback at 1/6 | {{BC.cost.validation_serve}} | {{BC.cost.test_serve}} |
 | Serving rule: B at 4/15, no fallback alert | {{BC.cost.validation_serve_nofb}} | {{BC.cost.test_serve_nofb}} |
 
+*Table K22. From alert to action: the proposed workflow by the reason for the risk (section 9; operational rule, not a measured result; the contact itself happens outside the dashboard).*
+
+| When | Reason for the risk (what the case file shows) | Action | Dashboard | Evidence |
+| --- | --- | --- | --- | --- |
+| Daily | Seller handed over after the shipping limit (handover delay) | Message with a realistic new arrival date (prediction plus buffer) and an apology | 4.1 queue, 4.2 order details and predictions | Operational rule; that the message prevents the review is unmeasured |
+| Daily | Slow or long route after a late handover | Ask the carrier to expedite | 4.2 scenario "Logistics −10%" | Scenario: 10% faster transit puts {{BC.expedite.B6h_share_of_all_late_on_time}} of late orders on time |
+| Daily | High freight for the order value | Freight refund, or a voucher for the next order | 4.2 freight scenarios; 4.3 list with CSV download | Association: 30% off freight moves {{BC.discount.B6h_f30_stops}} of {{BC.discount.B6h_flagged}} still-late alerts below 4/15 |
+| Daily | No handover by the shipping limit (missed dispatch) | Contact the seller, then offer the customer cancellation or a refund | 3.5 missed-dispatch rule | Observation: precision {{B9.clf.missed_dispatch_precision}}, {{B9.clf.missed_dispatch_share}} of detractors caught |
+| Daily | Any contacted customer | Voucher for the next order, to invite a repeat purchase | — | Unmeasured mechanism; the hold-back pilot compares reviews and repeat orders |
+| Weekly | Sellers and routes that fall behind | Seller management works with them | 2.6 and 3.7 operational priorities; 4.3 list | Unmeasured mechanism |
+| Monthly | Promise and alert drift | Reset the buffer on recent weeks after a rolling backtest; check alert precision and late share by state | 2.4 promise buffer; 3.4 alert work statistics | Operational rule |
+
 ### L. Dashboard screenshots
 
 Two views of the app, reading the stored test outputs.

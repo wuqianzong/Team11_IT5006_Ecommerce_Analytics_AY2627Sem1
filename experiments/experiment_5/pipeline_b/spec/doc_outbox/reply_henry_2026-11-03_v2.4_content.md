@@ -28,3 +28,16 @@ B-G-27, `deliverables/audit/runs/2026-11-03_solomon_v2.3_audit.md`, `WORKLOG.md`
 4. Export v2.4 (.docx, .pptx).
 
 Not for you: Benson approves the Proposed decisions, signs literature rows 13 and 14, and merges.
+
+## Added in B-CR-54 (same day)
+
+| File | Change |
+| --- | --- |
+| `report/00_executive_summary.md` | New "Why" paragraph (trigger and goal) before "Method" |
+| `report/01_problem.md` | Problem statement opens with the business goal |
+| `report/09_business.md` | Dispatch and transit merged (service recovery is now step 3); workflow lets the reason pick the action (Table K22) and hands priorities to seller management weekly |
+| `report/12_appendices.md` | New Table K22 "From alert to action" after K21 |
+| `deck/project/slides/business.html`, `use_clf.html`; `deck/project/deck.json` | Goal on slide 2; slide 17 case-file and weekly cards and notes; deck title v2.4 |
+
+Body text is about 175 words longer than v2.3 by source count. If the Word copy passes page 20, cut first from §1's
+"Why it matters" (the Cui sentence repeats §2) and from §9's opening paragraph.
