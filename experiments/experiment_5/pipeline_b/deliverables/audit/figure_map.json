@@ -1,5 +1,5 @@
 {
-  "note": "Where each chart in the live report doc and deck comes from. Doc: figure number -> doc blob -> uploaded asset (read back from the doc's blob records, 2026-10-26; rebuilt for the 28 charts of rev 33, 2026-10-28). Deck: <img src> asset id. Every asset must equal the register figure byte for byte. Doc section renumbered 2026-10-30 for review doc rev 58: the business-context chart is figure 1 (B-CR-41), the rest follow in reading order (Henry, delegated lead; replaces Benson D8). Deck section rebuilt 2026-10-30 for deck v2 (B-CR-43): 6 original charts and 14 presentation renders (replaces Benson D2). Deck section rebuilt again 2026-10-30 after the audit (renders at 18 pt; 18 renders, 2 originals). Deck section updated 2026-11-02 for deck v2.1 version 43 (B-CR-48): new confusion render from b08's pooled rows, and the two app screenshots on slide 16 (register S.05, S.06, source SHOT/). Updated 2026-11-03 for report v2.3 rev 51 and deck v2.3 version 48 (B-CR-50): figure 24 is now the business-case promise chart (F.BC.promise_compare, blob a0558929-9d71) in place of the buffer curve; on the deck the promise render replaces the buffer-curve render (slide 15 'use' replaced by slides 16 and 17).",
+  "note": "Where each chart in the live report doc and deck comes from. Doc: figure number -> doc blob -> uploaded asset (read back from the doc's blob records, 2026-10-26; rebuilt for the 28 charts of rev 33, 2026-10-28). Deck: <img src> asset id. Every asset must equal the register figure byte for byte. Doc section renumbered 2026-10-30 for review doc rev 58: the business-context chart is figure 1 (B-CR-41), the rest follow in reading order (Henry, delegated lead; replaces Benson D8). Deck section rebuilt 2026-10-30 for deck v2 (B-CR-43): 6 original charts and 14 presentation renders (replaces Benson D2). Deck section rebuilt again 2026-10-30 after the audit (renders at 18 pt; 18 renders, 2 originals). Deck section updated 2026-11-02 for deck v2.1 version 43 (B-CR-48): new confusion render from b08's pooled rows, and the two app screenshots on slide 16 (register S.05, S.06, source SHOT/). Updated 2026-11-03 for report v2.3 rev 51 and deck v2.3 version 48 (B-CR-50): figure 24 is now the business-case promise chart (F.BC.promise_compare, blob a0558929-9d71) in place of the buffer curve; on the deck the promise render replaces the buffer-curve render (slide 15 'use' replaced by slides 16 and 17). Updated 2026-11-03 for report v2.3 rev 59 (B-CR-52): figures 20-23 are the half-width report renders (register ids ending .report, source REPORT/), placed side by side in the Word copy; the doc keeps them stacked (it shows every picture full width).",
   "doc": {
     "1": {
       "blob": "c12be487-a6f7",
@@ -97,24 +97,24 @@
       "register": "F.reg.population"
     },
     "20": {
-      "blob": "62a70e0e-d353",
-      "asset": "4c8da4e7671a4d518b3d5799d7c94696",
-      "register": "F.reg.importance"
+      "blob": "a1c01433-1e4d",
+      "asset": "d3e4167a7181571a9980ed049cf4acf7",
+      "register": "F.reg.importance.report"
     },
     "21": {
-      "blob": "609b5c44-bd63",
-      "asset": "77b7a30d9bace32a53d5ee313044b1dc",
-      "register": "F.clf.importance"
+      "blob": "544575e7-0113",
+      "asset": "cd9486ae2621d7d44dfb1ffbc75cba1c",
+      "register": "F.clf.importance.report"
     },
     "22": {
-      "blob": "95350dc6-df02",
-      "asset": "97393287d52bfdd3388d2bc78e07c328",
-      "register": "F.reg.coefficients"
+      "blob": "15c1bb39-f457",
+      "asset": "628ed20b6db7e791c451550bb78038ec",
+      "register": "F.reg.coefficients.report"
     },
     "23": {
-      "blob": "0aebebef-1f5a",
-      "asset": "7c160977cf7ee2012293e2744da2c62a",
-      "register": "F.clf.coefficients"
+      "blob": "87c91809-469b",
+      "asset": "f4d4691dc1767ffe801ef954b3915ff2",
+      "register": "F.clf.coefficients.report"
     },
     "24": {
       "blob": "a0558929-9d71",

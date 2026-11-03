@@ -887,3 +887,25 @@ more on the test than sending no alert, because the test period had fewer detrac
   (new body text 295 words). Rev 53: audit 9/9; submission .docx body pages 2–20 (references from page 21).
 - Exports in `exports/2026-11-03/`: `Team11_final_report_v2.3.docx` (31 pictures) and `Team11_final_deck_v2.3.pptx`
   (basic fonts, 18 slides), both downloaded in Henry's Chrome with his approval. No existing body text was trimmed.
+
+## 2026-11-03 · Henry + Claude · Report v2.3 figures 20–23 side by side (B-CR-52)
+
+**Done**
+- New producer `deliverables/report/renders/make_report_renders.py` (Experiment 5 `.venv`): four half-width renders of
+  the §7.4 charts from b09's saved data files, manifest and evidence index; register root `REPORT/`, ids `*.report`
+  (B9.5). Register 508 items; only the four new figures were added to `evidence/build/`.
+- Review doc rev 59: four new pictures (alt text = register caption) and captions citing the new ids. Two pictures in
+  one paragraph still render stacked at full width in the doc, so the doc keeps one picture per paragraph.
+- Word copy: the v2.3 session's filled export of rev 53 (`36ce84df…/scratchpad/rev53_filled.docx`) with the four
+  pictures swapped and each pair put in a borderless 2×2 table (`102d2538…/scratchpad/pair_fill.py`), then the
+  extended `format_submission_docx.ps1` (same folder; table pictures 3.3 in, 12 pt captions). Revs 54–59 changed only
+  those pictures and captions (doc read since rev 53), so no new download was needed. Saved over
+  `exports/2026-11-03/Team11_final_report_v2.3.docx`.
+
+**Checks**
+- Audit 9/9 on `report_export_rev59.md` (rev 53's export with the eight changed lines, all confirmed by the doc read);
+  tests 36 passed, 5 skipped; placeholders resolve on report and slides.
+- Submission .docx: body pages 2–20, references from page 20 (was 21); pairs on pages 17 and 18; 31 pictures.
+
+**Questions for Benson**
+- Approve B-CR-52 with B-CR-50 and B-CR-51 before any merge.

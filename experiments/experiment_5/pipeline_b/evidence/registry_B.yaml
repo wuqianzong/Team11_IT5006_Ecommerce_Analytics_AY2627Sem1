@@ -126,6 +126,10 @@
 - {id: F.clf.coefficients, kind: figure, source: b09/classification/outputs/figures/coefficients.png, caption: "B's classification odds ratios", evidence: B9.5, used_in: [report 5]}
 - {id: F.reg.importance, kind: figure, source: b09/regression/outputs/figures/permutation_importance.png, caption: "Permutation importance, B regression (test rows)", evidence: B9.5, used_in: [report 5, deck 6]}
 - {id: F.clf.importance, kind: figure, source: b09/classification/outputs/figures/permutation_importance.png, caption: "Permutation importance, B classification (test rows)", evidence: B9.5, used_in: [report 5, deck 7]}
+- {id: F.reg.importance.report, kind: figure, source: REPORT/F.reg.importance.report.png, caption: "Permutation importance, B regression (test rows) (half-width report render)", evidence: B9.5, used_in: [report 7.4]}
+- {id: F.clf.importance.report, kind: figure, source: REPORT/F.clf.importance.report.png, caption: "Permutation importance, B classification (test rows) (half-width report render)", evidence: B9.5, used_in: [report 7.4]}
+- {id: F.reg.coefficients.report, kind: figure, source: REPORT/F.reg.coefficients.report.png, caption: "B's regression coefficients (half-width report render)", evidence: B9.5, used_in: [report 7.4]}
+- {id: F.clf.coefficients.report, kind: figure, source: REPORT/F.clf.coefficients.report.png, caption: "B's classification odds ratios (half-width report render)", evidence: B9.5, used_in: [report 7.4]}
 - {id: F.clf.threshold_options, kind: figure, source: b09/classification/outputs/figures/threshold_options.png, caption: "Precision, recall and alerts per day against the threshold", evidence: B9.10, used_in: [report 5, deck 8]}
 - {id: F.clf.test_curves, kind: figure, source: t1_joint_test/classification/outputs/figures/test_curves.png, caption: "PR, ROC and reliability curves on B's test rows", evidence: T1.4, used_in: [report 5]}
 - {id: F.reg.drift, kind: figure, source: b09/regression/outputs/figures/drift_by_fold.png, caption: "Drift by fold, regression", evidence: B9.11, used_in: [report 8]}

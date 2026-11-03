@@ -82,3 +82,11 @@ are appendix tables K18, K19 and K20. No register item changed. The real export 
 new text were cut (now 295 words). Review doc rev 53; audit 9/9; the submission .docx body is pages 2–20 with the
 references from page 21. Exports: `deliverables/exports/2026-11-03/Team11_final_report_v2.3.docx` and
 `Team11_final_deck_v2.3.pptx` (18 slides).
+
+## Addendum: figures 20–23 side by side (B-CR-52)
+
+Henry asked for the four §7.4 charts as two side-by-side pairs. A new producer (`deliverables/report/renders/`) redraws
+them from b09's saved data files at 3.3 in with 9 pt text; the register reads them as `REPORT/…` with new ids ending
+`.report` (same evidence B9.5), and nothing else in the register changed. Review doc rev 59 carries the new pictures
+(stacked: the doc shows every picture full width); the Word copy puts each pair in a borderless table. Still v2.3. Audit
+9/9 (`report_export_rev59.md`); tests pass; submission .docx body pages 2–20, references now from page 20.

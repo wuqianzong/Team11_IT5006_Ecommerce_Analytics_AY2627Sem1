@@ -57,10 +57,10 @@ For lead time, Pipeline A's MAE falls from {{B8.reg.pop_A_on_A}} days on all sta
 
 Permutation importance is the test score the frozen model loses when a feature is shuffled. For lead time the seller's earlier dispatch days, the route and the distance rank highest, so the seller's own delay matters at least as much as the journey. For the alert, the number of sellers in the order and the route's recent delivery and transit times rank above this order's handover delay, so route conditions and basket complexity carry more signal about a bad review than the dispatch delay alone. These are associations in the frozen model, not causes.
 
-*Figure: Permutation importance, lead time (F.reg.importance) and detractor alert (F.clf.importance).*
+*Figure: Permutation importance, lead time (F.reg.importance.report) and detractor alert (F.clf.importance.report).*
 
 This ranking differs from the selection ranking of section 5.3: Spearman correlation {{B9.reg.rank_spearman}} for lead time and {{B9.clf.rank_spearman}} for the alert, with {{B9.reg.rank_top10}} and {{B9.clf.rank_top10}} of the top ten features shared. This is expected: selection scored one feature at a time on development orders, while importance is measured inside the fitted model, where correlated features share credit.
 
-*Figure: Coefficients, lead time (F.reg.coefficients); odds ratios, detractor alert (F.clf.coefficients).*
+*Figure: Coefficients, lead time (F.reg.coefficients.report); odds ratios, detractor alert (F.clf.coefficients.report).*
 
 The test period differs from development: deliveries were faster and reviews happier, and the route history features shifted most. Validation and test scores therefore describe different periods, and the test gain partly reflects that the history features track the faster period as it happens (drift by fold in appendix A).
