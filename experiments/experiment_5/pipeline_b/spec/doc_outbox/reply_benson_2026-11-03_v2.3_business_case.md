@@ -78,6 +78,7 @@ charts); `pytest pipeline_b/tests tests/test_guards.py` 36 passed, 5 skipped; da
 
 Henry capped the body growth at 2/3 page. The new body text is now 338 words (it was about 1,245), with no new body
 table: §9 is compact, and the promise comparison (Table 5), the alert options (Table 6) and the freight scenarios
-are appendix tables K18, K19 and K20. No number changed. Review doc rev 52; audit 9/9. On the same local
-pipeline, v2.3's body is 0.3 text-pages longer than v2.2's (about +0.25 page at the official format's scale); the
-real .docx export will confirm that the body ends on or before page 20.
+are appendix tables K18, K19 and K20. No register item changed. The real export of rev 52 still ran two lines into page 21, so about 45 more words of the
+new text were cut (now 295 words). Review doc rev 53; audit 9/9; the submission .docx body is pages 2–20 with the
+references from page 21. Exports: `deliverables/exports/2026-11-03/Team11_final_report_v2.3.docx` and
+`Team11_final_deck_v2.3.pptx` (18 slides).

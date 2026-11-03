@@ -883,8 +883,7 @@ more on the test than sending no alert, because the test period had fewer detrac
   freight scenarios moved to K18, K19 and K20. Review doc rev 52.
 
 **Checks**
-- Audit 9/9 on rev 52 and deck version 48. Local page check (same pipeline for both): v2.2 23.7, v2.3 24.0 text-pages
-  of body, so about +0.25 page in the official format; to confirm on the real export (body must end by page 20).
-
-**Question for Henry**
-- Which existing body text may be trimmed if the real export ends after page 20.
+- The real export of rev 52 ended the body two lines into page 21, so about 45 more words of the new text were cut
+  (new body text 295 words). Rev 53: audit 9/9; submission .docx body pages 2–20 (references from page 21).
+- Exports in `exports/2026-11-03/`: `Team11_final_report_v2.3.docx` (31 pictures) and `Team11_final_deck_v2.3.pptx`
+  (basic fonts, 18 slides), both downloaded in Henry's Chrome with his approval. No existing body text was trimmed.

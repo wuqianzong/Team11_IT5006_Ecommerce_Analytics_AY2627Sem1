@@ -7,7 +7,7 @@ environment (`.venv`, pandas 3.0.1; `requirements-audit.txt` here pins the extra
 tests and the audit pack need):
 
 ```
-.venv/Scripts/python.exe pipeline_b/audit_deliverables_B.py --doc pipeline_b/deliverables/audit/inputs/report_export_rev52.md --deck pipeline_b/deliverables/audit/inputs/deck --doc-assets pipeline_b/deliverables/audit/inputs/doc_assets --deck-assets pipeline_b/deliverables/audit/inputs/deck_assets
+.venv/Scripts/python.exe pipeline_b/audit_deliverables_B.py --doc pipeline_b/deliverables/audit/inputs/report_export_rev53.md --deck pipeline_b/deliverables/audit/inputs/deck --doc-assets pipeline_b/deliverables/audit/inputs/doc_assets --deck-assets pipeline_b/deliverables/audit/inputs/deck_assets
 ```
 
 (`.venv/bin/python` on macOS or Linux.)
@@ -24,7 +24,7 @@ Benson's recheck.
 Inputs are read back from the live artifacts (the report doc exported to Markdown; deck slide files and every chart
 asset downloaded), never from local copies. `figure_map.json` records which register figure each chart is.
 
-- `inputs/report_export_rev52.md`: the final report v2.3 review doc exported to Markdown at rev 52 (2026-11-03, after the page-budget trim, B-CR-51).
+- `inputs/report_export_rev53.md`: the final report v2.3 review doc exported to Markdown at rev 53 (2026-11-03, after the page-budget trim, B-CR-51).
 - `inputs/deck/project/`: the 18 slide files and `deck.json` of deck v2.3, version 48 (2026-11-03; a version saved by
   the open editor one second later has identical files).
 - `inputs/doc_assets/` (29) and `inputs/deck_assets/` (22): every chart of the report and the deck. Of the deck's
@@ -34,7 +34,7 @@ asset downloaded), never from local copies. `figure_map.json` records which regi
 
 ## Last run
 
-2026-11-03 on the committed inputs (report v2.3 rev 52, deck v2.3 version 48), after B-CR-51 (page budget):
+2026-11-03 on the committed inputs (report v2.3 rev 53, deck v2.3 version 48), after B-CR-51 (page budget):
 all 9 checks PASS (`audit_result.json`).
 
 ## Expected differences when re-checking
