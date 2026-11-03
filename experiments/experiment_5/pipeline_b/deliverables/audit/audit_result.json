@@ -28,7 +28,7 @@
     {
       "check": "report text: the live doc's body equals the filled sources line for line (beyond its title, date and review note)",
       "passed": true,
-      "detail": "header kept: # Team 11 final report v2.2 \u2014 delivery time and detractor alerts / Nov 1, 2026 \u00b7 @Henry / Version 2.2 of the final report, for team review (2 Nov: fixes from Benson's audit of version 2; appendix N and the section 8 hosting sentence from his recheck). Seventeen body tables moved to appendix K and their key numbers quoted in the text, so the body fits the page limit; every figure kept. Every number is filled from the Pipeline B register (pipeline_b/evidence/registry_B.yaml). Version 1 stays in its own doc; the dated change record is pipeline_b/deliverables/report/records/CHANGES.md."
+      "detail": "header kept: # Team 11 final report v2.3 \u2014 delivery time and detractor alerts / Nov 1, 2026 \u00b7 @Henry / Version 2.3 of the final report, for team review (3 Nov: the business case \u2014 Olist's own estimate against our promises, the recent-weeks buffer rule, the dispatch, transit and freight scenarios and the alert options \u2014 in sections 1, 2, 9 and 10, Table K16 and the executive summary, from Henry's asks and Benson's brief). Seventeen body tables moved to appendix K and their key numbers quoted in the text, so the body fits the page limit; every figure kept. Every number is filled from the Pipeline B register (pipeline_b/evidence/registry_B.yaml). Version 1 stays in its own doc; the dated change record is pipeline_b/deliverables/report/records/CHANGES.md."
     },
     {
       "check": "independent recomputation from T1's saved predictions matches the register (12 numbers)",
@@ -47,23 +47,25 @@
     }
   ],
   "passed": true,
-  "doc_sha256": "084220262fe9d81bf6ae71ab643fb323fed2ce961b075ac366626640e0e0dba5",
+  "doc_sha256": "dade4b3e640d2e9a63630230f2668047f6dac5249e6af3aadfeecb22efe63d0e",
   "deck_slides": {
-    "a_features.html": "1f6a0afdbe5f23bdd2903969e74609b534803259132e41506fe9ffbb25355114",
-    "a_limits.html": "de7c773956974b4abd189a5565d5373607f44aa315c8830a236c2aa1317262d3",
-    "a_models.html": "c38f31baccc3d126f65ef693ee235e32d6be438efeeb8c163eda62bac7703e77",
-    "a_select.html": "40ecacb59e1677df394f64b8de3a79afabff477e994bd203d26d76b421250087",
-    "app.html": "70a1d46734fe5c82ee51101da6486da8fdfe062e79cb447068aac7fa95fcd4f0",
-    "b_features.html": "de0ac89fc927bb4dc5ca7e907cecd4fcfd035d057d68129ef1abd3290f3816d2",
-    "b_scope.html": "e439dec23d8a56956657b3446702d65ff9e01bb5c40109a7058bbafdf12b5053",
-    "cover.html": "883011438ab2d5e57752776e83422dbed425927cef26c8b800d51aa0a67a0571",
-    "data.html": "6aea6842c1a6838b9433d9ebe34df78f72228302461bf8159fa030878c5b6e18",
-    "eda.html": "057bc5d3b2e2a2cbf6c4348c590111da11a4dba95dd7d7a723d239806e6f435c",
-    "prep.html": "cf79de80ef402e2f85c2e1791b729ce9ac777d413f63b74a34e85465be5df262",
-    "problem.html": "7d52f1a4a80d73a396bef57a2e55b788038a78ee80c5f5d40e653de0532bdfbf",
-    "test_clf.html": "fbac67f0647143e2f2af85041aee3afd6a698b293afa599afef92e08744dfc12",
-    "test_reg.html": "4e4bc4fead31e2e27ed6f71cf9d360c28782edfb4e93b877af7f7ce55872c920",
-    "use.html": "bd857ddc6158df69450bbcc025afdc592d67618b2b9525bfbe23607d7e04a56d",
-    "validation.html": "91975795d2f6c339218d05bdd3ae13f47b4986edd096c6e246dc03d18317d3fb"
+    "a_features.html": "61dbf368df249664a421dea929d999494da69109f6b3146f97813621d3397b0f",
+    "a_limits.html": "94b45b05e42b41c3b0c71ad2bdccd75d96fe9a4e3e60074b332b6358d9627206",
+    "a_models.html": "8bb8cd40ffc5b6c1ec294299d3b45e88fe1b6559c6b4fcf912236bae38c56c82",
+    "a_select.html": "76768fc99f97ccf5447dab0a9cb8c4c7dfeaa316a29832af414341bb0cc68e25",
+    "app.html": "9440183b759dd4854f7eb7c858fcd2be26116bc05e283bb497acf0c70723fd99",
+    "b_features.html": "bce9017e3e8f9b0a4bb75c52cfb6f809dbe71fb0bcdbe146de01ce8cd7460d4a",
+    "b_scope.html": "ebfc21c0f0a1399a0110b450f5b60a3357f5f7b3520120cdb42f167c951203c9",
+    "business.html": "cabd54cd85e4f58f4ba502ea415f2549ec42cf452c915241dc9bb65a4f2fbc3a",
+    "cover.html": "fe7b780e9d630f9859ccd744b4ce703574dcb06d94a8c8fb8ae291a13ad55f52",
+    "data.html": "aebfb2462ccfcf7a6d4b363198ba708be7059e6a9c6ba96d982d8249d5e017b8",
+    "eda.html": "cded95d70b6316a0a3c823766c377bfa0c4b98daf7897a0bf03bc5e935a3ccde",
+    "prep.html": "2b25391080ef7bcbd385fb861876225f63ff0d114a247262b1d8d95d7ef2fa46",
+    "problem.html": "c39dca1748cdb5ef64dd45cdfdd33fa00e5eafae6520770c7e7bd28a1449fdfe",
+    "test_clf.html": "4734aff8ffb842179da0ac9b9b75333e246df2a87c40cf12c657b6e42c3ad6f6",
+    "test_reg.html": "7230fdfe683caba1736d2766856927f452e93efe8ea8c7c1eca02e1b1e5692a5",
+    "use_clf.html": "eb48913e2ee36437c663ee132d7193d6c3327674497efe229032a9ce7dc7e3be",
+    "use_reg.html": "4e2593d99c5148420520a72912d723cd6eacb702448b2245a82baecbdb58de73",
+    "validation.html": "0c2ce60e855633a536141c6773dbcf0fc738555eb2c0f9badf77a0fb5b052fe1"
   }
 }

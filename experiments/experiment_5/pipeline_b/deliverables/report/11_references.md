@@ -8,6 +8,8 @@ Cui, R., Lu, Z., Sun, T., & Golden, J. M. (2024). Sooner or Later? Promising Del
 
 Deshpande, V., & Pendem, P. K. (2023). Logistics Performance, Ratings, and Its Impact on Customer Purchasing Behavior and Sales in E-Commerce Platforms. *Manufacturing & Service Operations Management*, 25(3), 827–845. https://doi.org/10.1287/msom.2021.1045
 
+Fisher, M. L., Gallino, S., & Xu, J. J. (2019). The Value of Rapid Delivery in Omnichannel Retailing. *Journal of Marketing Research*, 56(5), 732–748. https://doi.org/10.1177/0022243719849940
+
 Grinsztajn, L., Oyallon, E., & Varoquaux, G. (2022). Why Do Tree-Based Models Still Outperform Deep Learning on Typical Tabular Data? *Advances in Neural Information Processing Systems*, 35 (Datasets and Benchmarks Track). https://proceedings.neurips.cc/paper_files/paper/2022/file/0378c7692da36807bdec87ab043cdadc-Paper-Datasets_and_Benchmarks.pdf
 
 He, H., & Garcia, E. A. (2009). Learning from Imbalanced Data. *IEEE Transactions on Knowledge and Data Engineering*, 21(9), 1263–1284. https://doi.org/10.1109/TKDE.2008.239
@@ -17,6 +19,8 @@ James, G., Witten, D., Hastie, T., Tibshirani, R., & Taylor, J. (2023). *An Intr
 Kapoor, S., & Narayanan, A. (2023). Leakage and the Reproducibility Crisis in Machine-Learning-Based Science. *Patterns*, 4(9), 100804. https://doi.org/10.1016/j.patter.2023.100804
 
 Müller, A. C., & Guido, S. (2016). *Introduction to Machine Learning with Python: A Guide for Data Scientists*. O'Reilly. https://www.oreilly.com/library/view/introduction-to-machine/9781449369880/
+
+Salari, N., Liu, S., & Shen, Z.-J. M. (2022). Real-Time Delivery Time Forecasting and Promising in Online Retailing: When Will Your Package Arrive? *Manufacturing & Service Operations Management*, 24(3), 1421–1436. https://doi.org/10.1287/msom.2022.1081
 
 van den Goorbergh, R., van Smeden, M., Timmerman, D., & Van Calster, B. (2022). The Harm of Class Imbalance Corrections for Risk Prediction Models: Illustration and Simulation Using Logistic Regression. *Journal of the American Medical Informatics Association*, 29(9), 1525–1534. https://doi.org/10.1093/jamia/ocac093
 

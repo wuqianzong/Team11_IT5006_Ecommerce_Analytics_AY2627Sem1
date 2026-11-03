@@ -1,0 +1,57 @@
+{
+  "node": "BCASE/business_case",
+  "files": {
+    "promise_compare.csv": {
+      "ids": [
+        "BC.1"
+      ],
+      "kind": "table"
+    },
+    "buffer_recent.csv": {
+      "ids": [
+        "BC.2"
+      ],
+      "kind": "table"
+    },
+    "expedite.csv": {
+      "ids": [
+        "BC.3"
+      ],
+      "kind": "table"
+    },
+    "discount.csv": {
+      "ids": [
+        "BC.4"
+      ],
+      "kind": "table"
+    },
+    "reach.csv": {
+      "ids": [
+        "BC.5"
+      ],
+      "kind": "table"
+    },
+    "summary.json": {
+      "ids": [
+        "BC.1",
+        "BC.2",
+        "BC.3",
+        "BC.4",
+        "BC.5"
+      ],
+      "kind": "json"
+    },
+    "figures/promise_compare.png": {
+      "ids": [
+        "BC.1"
+      ],
+      "kind": "figure"
+    },
+    "figures/promise_compare.csv": {
+      "ids": [
+        "BC.1"
+      ],
+      "kind": "figure_data"
+    }
+  }
+}

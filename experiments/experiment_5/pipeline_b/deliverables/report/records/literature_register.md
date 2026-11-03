@@ -1,6 +1,6 @@
 # Literature register (manual checklist)
 
-The report cites only the 12 sources of the team's audited list (`_DONOTCOMMIT/Literature/ML_Ecommerce_Literature_AUDITED.md`,
+The report cites the 12 sources of the team's audited list (`_DONOTCOMMIT/Literature/ML_Ecommerce_Literature_AUDITED.md`,
 audit date 2026-10-28; the file itself is private and not committed). Each row says what the report may claim from the
 source, at the source's evidence level, and where. Henry sends this table to the team; a reviewer checks each row
 (the claim matches the audited summary, the link opens the publisher record, the metadata is complete) and signs it.
@@ -22,6 +22,8 @@ it studies, never for a result or an effect size.
 | 10 | Kapoor, S., & Narayanan, A. (2023). Leakage and the Reproducibility Crisis in Machine-Learning-Based Science. *Patterns*, 4(9), 100804. | https://doi.org/10.1016/j.patter.2023.100804 | Published abstract checked | Leakage takes several forms and inflates reported results (294 affected papers across 17 fields in the published article); our prediction-time feature rules, time-ordered folds and fold-local preprocessing are stated as our application of that warning, not as its findings | §2, §3, §6 | |
 | 11 | van den Goorbergh, R., van Smeden, M., Timmerman, D., & Van Calster, B. (2022). The Harm of Class Imbalance Corrections for Risk Prediction Models: Illustration and Simulation Using Logistic Regression. *Journal of the American Medical Informatics Association*, 29(9), 1525–1534. | https://doi.org/10.1093/jamia/ocac093 | Journal metadata and study focus checked | In logistic-regression risk prediction, imbalance corrections can harm the calibration of predicted risks; scope limited to that setting | §2, §6 | |
 | 12 | Grinsztajn, L., Oyallon, E., & Varoquaux, G. (2022). Why Do Tree-Based Models Still Outperform Deep Learning on Typical Tabular Data? *Advances in Neural Information Processing Systems*, 35 (Datasets and Benchmarks Track). | https://proceedings.neurips.cc/paper_files/paper/2022/file/0378c7692da36807bdec87ab043cdadc-Paper-Datasets_and_Benchmarks.pdf | Proceedings paper identified; technical synthesis | On the medium-sized tabular datasets studied, tree ensembles remain strong baselines; not a claim for every setting | §2, §6 | |
+| 13 | Fisher, M. L., Gallino, S., & Xu, J. J. (2019). The Value of Rapid Delivery in Omnichannel Retailing. *Journal of Marketing Research*, 56(5), 732–748. | https://doi.org/10.1177/0022243719849940 | Publisher abstract checked (Crossref record, 2026-11-03) | At a US apparel retailer, faster actual delivery (a new distribution centre, difference-in-differences) raised online sales by about 1.45% per business day cut from a seven-day baseline, with spillover to offline stores; evidence about actual delivery speed at one retailer, not about Olist or about promised dates | §1, §9 | Claude (metadata and abstract), 2026-11-03; team reviewer to sign |
+| 14 | Salari, N., Liu, S., & Shen, Z.-J. M. (2022). Real-Time Delivery Time Forecasting and Promising in Online Retailing: When Will Your Package Arrive? *Manufacturing & Service Operations Management*, 24(3), 1421–1436. | https://doi.org/10.1287/msom.2022.1081 | Publisher abstract checked (Crossref record, 2026-11-03) | Forecasting the distribution of delivery times and choosing the promised day with a cost-sensitive rule; on JD.com data a simulation suggests sales volume could rise by about 6.1% over JD.com's policy. A simulated result at one retailer, cited as support for setting promises from a forecast plus a buffer, not as an expected effect for Olist | §2, §9 | Claude (metadata and abstract), 2026-11-03; team reviewer to sign |
 
 ## Author and claim check (2026-10-28)
 
@@ -36,3 +38,9 @@ it studies, never for a result or an effect size.
   citation, as the project's own rules, so no report text changes.
 - Row 2: first edition, 2016, as catalogued; confirm this is the edition the team used.
 - The course lecture notes and tutorials are not literature sources and are not cited as such.
+
+## Added for report v2.3 (2026-11-03, B-CR-50)
+
+- Rows 13 and 14 were suggested by the experiment lead. Title, authors, journal, volume, issue, pages and DOI were read
+  from each DOI's Crossref record (registered by SAGE and INFORMS); the claim column was written from the abstract in
+  that record only. Nothing was added from memory. Benson rechecks both rows before the report locks.

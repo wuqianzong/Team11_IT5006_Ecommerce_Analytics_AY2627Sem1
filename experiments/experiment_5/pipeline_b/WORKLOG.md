@@ -853,3 +853,25 @@ more on the test than sending no alert, because the test period had fewer detrac
 - Deck retitled v2.2 to match the report (Henry): version 44, title only; a version saved by the open editor one
   second later has identical slides. `exports/2026-11-02/Team11_final_deck_v2.2.pptx` (basic fonts, 16 slides);
   audit input `deck.json` refreshed; audit 9/9.
+
+## 2026-11-03 · Henry + Claude · Report v2.3 and deck v2.3, business case (B-CR-50)
+
+**Done**
+- Henry's choices (B-G-19, B-G-20, B-G-22, B-G-23): buffers B + 3/5/6/12 (Olist, Dummy, A, B without); transit 10%
+  faster; rescue = alert risk below threshold under the freight scenarios; the two use slides replace slide 15.
+- New producer `deliverables/business_case/make_business_case.py` (BC.1 to BC.5, manifest; no fit, no stage output
+  changed); register root `BCASE/`, 504 items. Recent-weeks rule (B-G-21): 10.0 days on b08's last fold.
+- Literature register rows 13 and 14 (Fisher et al., 2019; Salari et al., 2022) from Crossref; Benson to recheck.
+- Deck v2.3 version 48 (18 slides): cover + Olist MAE 12.62, slide 2 business problem, slides 16 and 17 business use.
+- Report v2.3 sources and review doc rev 51: exec summary, §1, §2, §9 (Tables 5, 6, figure 24), §10, references, K16.
+- Dashboard README: the app is hosted.
+
+**Checks**
+- Placeholders resolve; audit 9/9 on rev 51 and version 48; tests 36 passed, 5 skipped; dashboard tests 21 passed.
+
+**Not done yet**
+- Exports: `Team11_final_deck_v2.3.pptx` and `Team11_final_report_v2.3.docx` need downloads in Henry's Chrome (the
+  docs blob of the .docx cannot be saved from this session), then `export_fill.py` (figure 24 row now
+  `F.BC.promise_compare`) and `format_submission_docx.ps1`.
+- The review doc's file name still reads v2.2 (heading and note say v2.3); rename from the doc page.
+- Benson: approve B-CR-50 and B-G-19 to B-G-23 before any merge.

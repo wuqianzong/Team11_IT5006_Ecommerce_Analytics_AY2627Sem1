@@ -1,0 +1,4 @@
+promise,orders,late_orders,late_with_late_handover,share_of_late_with_late_handover,on_time_if_transit_10pct_faster,share_of_late_handover_group_on_time,share_of_all_late_on_time,late_share_after
+Olist estimate,15422,853,328,0.38452520515826494,13,0.039634146341463415,0.015240328253223915,0.05446764362598885
+Pipeline B + 12 days (frozen buffer),15422,234,97,0.41452991452991456,5,0.05154639175257732,0.021367521367521368,0.01484891713137077
+Pipeline B + 10 days (recent-weeks buffer),15422,320,133,0.415625,13,0.09774436090225563,0.040625,0.01990662689664116

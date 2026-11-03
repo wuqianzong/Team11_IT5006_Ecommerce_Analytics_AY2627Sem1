@@ -1,9 +1,10 @@
 {
   "node": "DECK/deck_renders",
-  "run_id": "20261102T045335Z",
-  "commit": "f9de84fac0d784f644adb13c2f980d2acd6a5c60",
-  "dirty": false,
+  "run_id": "20261103T040506Z",
+  "commit": "0a54e44e4f0e82b960b83c0c31e38472459dcdc0",
+  "dirty": true,
   "inputs": {
+    "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/figures/promise_compare.csv": "c585ae7a71b368a062cdcdcdbe060423b6467e815788ebb4f210bc82ea1a0e68",
     "experiments/experiment_5/pipeline_b/stages/b08/classification/outputs/confusion_comparison.csv": "60cb9727b3b8c7b214676ffffb31839cfa5c320ef23a9bee3de334904247e869",
     "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/figures/threshold_options.csv": "c28c37205f607ec8ca2b6e680da33cb7a02ac79d5f9b804d59f7454676dd85f2",
     "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/by_customer_state.csv": "8712066d5912a6aca432e9f1efa44b42a407f4009023c694f841501109d6ffe6",
@@ -29,16 +30,17 @@
     "experiments/experiment_5/stages/s05_partition/regression/outputs/counts.json": "03c8f87457529b5cf75fb0ed50c37a51db73f9903a0809cbb3ba3fb3af97e869"
   },
   "code": {
-    "experiments/experiment_5/pipeline_b/deliverables/deck/renders/make_deck_renders.py": "5bb32283b7283a3285b39f21cb6e44966de9afe424c52a5aebe4f04b553b21a8"
+    "experiments/experiment_5/pipeline_b/deliverables/deck/renders/make_deck_renders.py": "5f58c9831b85a31151c7b5a5b8c43c8b1a0fd6e09bd2b026481e765fe57ced3d"
   },
   "outputs": {
-    "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/_evidence_index.json": "4b53d723550e96caf1e93c2b4810823df1d41f9894e5963fe87c228ab91c9712",
+    "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/_evidence_index.json": "6654382fa648d9bcf96f853f34453985d35090d0193c2174deeb1a893ba1e071",
     "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.A2.data_structure.deck.png": "fba000452353020cb5628112b78d71717ecc68314030d152e428680a3be02bef",
     "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.A3.clf.cumulative_importance.deck.png": "beb752aa1ac54832c3e2477a121a44fe1806a3f2c08313c60be7a3f87493ad4d",
     "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.A3.clf.screen_promise.deck.png": "e8447e3fffd3d633a5b10c48229a0789d18671db7e42a12d04003fa13dbb589c",
     "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.A3.clf.screen_region.deck.png": "a9de0390f03060edb4b1bb646ac93ae5927aee4acb21aeebd376d8315c1861d3",
     "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.A3.reg.correlation_heatmap.deck.png": "304e9ddd4e5a7e77a1e01dcbe5b6c9b99aecb835f1e7bb61cbdf6e9de62e2176",
     "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.A3.reg.cumulative_importance.deck.png": "e42a2cb23e213ef72275b8835aa642329fd0539811cb1a06c3b2d04e3cee619f",
+    "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.BC.promise_compare.deck.png": "aa4493a54f98d0e293efce2d99687e7ba4d89a36a53b2f8f78815588ea18a373",
     "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.clf.confusion.deck.png": "1451180219a569ddaa3c48ee5f8d214a132df8237b1d1857d5fd098a79c22a2c",
     "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.clf.selection.deck.png": "e184c288327e77f286049cebcf230161837fe558b664219aece4bff03037d1f4",
     "experiments/experiment_5/pipeline_b/deliverables/deck/renders/outputs/F.clf.test_curves.deck.png": "068d2a8186fb9512807d9f72ec09095898b0992f9d56e36faea9b55ec40ed460",

@@ -390,6 +390,23 @@ def test_curves(name: str) -> None:
     _save(fig, name)
 
 
+def promise_compare(name: str) -> None:
+    """Business case BC.1 (B-CR-50): median promise on B's test orders, labelled with late share and MAE."""
+    d = _read(B_ROOT / "deliverables/business_case/outputs/figures/promise_compare.csv").iloc[::-1].reset_index(drop=True)
+    short = {"Pipeline B + 10 days (recent-weeks buffer)": "B + 10 d (recent weeks)", "Dummy (median)": "Dummy"}
+    labels = [short.get(s, s.replace("Pipeline ", "").replace(" days", " d")) for s in d.series]
+    colours = ["#F4A259" if k == "Olist's own promise" else ("#d1d5db" if k == "baseline" else BLUE) for k in d.kind]
+    fig, ax = _fig(1000, 560)
+    ax.barh(labels, d.median_promise_days, color=colours, height=0.7)
+    for i, r in d.iterrows():
+        ax.text(r.median_promise_days + 0.3, i, f"{r.share_late:.1%} late", va="center", fontsize=FONT)
+    ax.set_xlim(0, 27)
+    ax.set_xlabel("median promised lead time (days), B's test orders")
+    _grid(ax, "x")
+    fig.tight_layout()
+    _save(fig, name)
+
+
 RENDERS = {
     "F.A3.reg.cumulative_importance": (lambda n: cumulative("regression", n), "3.4"),
     "F.A3.clf.cumulative_importance": (lambda n: cumulative("classification", n), "3.6"),
@@ -409,6 +426,7 @@ RENDERS = {
     "F.reg.partition": (partition, None),
     "F.reg.history_coverage": (history_coverage, None),
     "F.clf.test_curves": (test_curves, None),
+    "F.BC.promise_compare": (promise_compare, None),
 }
 
 

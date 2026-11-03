@@ -108,6 +108,12 @@
         "T1.4"
       ],
       "kind": "figure"
+    },
+    "F.BC.promise_compare.deck.png": {
+      "ids": [
+        "BC.1"
+      ],
+      "kind": "figure"
     }
   }
 }

@@ -1,8 +1,8 @@
-# Team 11 final report v2.2 — delivery time and detractor alerts
+# Team 11 final report v2.3 — delivery time and detractor alerts
 
 Nov 1, 2026 · @Henry
 
-Version 2.2 of the final report, for team review (2 Nov: fixes from Benson's audit of version 2; appendix N and the section 8 hosting sentence from his recheck). Seventeen body tables moved to appendix K and their key numbers quoted in the text, so the body fits the page limit; every figure kept. Every number is filled from the Pipeline B register (pipeline\_b/evidence/registry\_B.yaml). Version 1 stays in its own doc; the dated change record is pipeline\_b/deliverables/report/records/CHANGES.md.
+Version 2.3 of the final report, for team review (3 Nov: the business case — Olist's own estimate against our promises, the recent-weeks buffer rule, the dispatch, transit and freight scenarios and the alert options — in sections 1, 2, 9 and 10, Table K16 and the executive summary, from Henry's asks and Benson's brief). Seventeen body tables moved to appendix K and their key numbers quoted in the text, so the body fits the page limit; every figure kept. Every number is filled from the Pipeline B register (pipeline\_b/evidence/registry\_B.yaml). Version 1 stays in its own doc; the dated change record is pipeline\_b/deliverables/report/records/CHANGES.md.
 
 ## Predicting delivery lead time and detractor reviews for Olist orders
 
@@ -48,7 +48,7 @@ For each Olist order the business needs two answers: how many days delivery will
 
 Pipeline B is better on the same test orders in both tasks, and both intervals exclude zero. On the validation folds, most of the lead-time gain comes from the narrower scope, the rest from the new features; for the alert it comes from the features and the later moment. Orders outside the seven states are served by Pipeline A's frozen model.
 
-**Use.** Show delivery promises as a range around the prediction; alert customer service at handover (about 20.5 alerts a day on the test, including the fallback); flag orders whose shipping limit passes without a handover.
+**Use.** Olist's own delivery estimate missed the actual lead time by 12.62 days on average on the same test orders. Pipeline B plus a buffer gives a promise the operation can keep: reset monthly on recent weeks, the buffer was 10.0 days, as long as Olist's promise but late for 2.1% of test orders against 5.5% (a post-test analysis). Late orders were often handed over late by the seller, so flag orders whose shipping limit passes without a handover, and alert customer service at handover (about 20.5 alerts a day on the test, including the fallback) so it can reach at-risk customers before they review.
 
 **Limits.** The test period was faster than development, the operating threshold was chosen after the test (the frozen threshold's result is reported as the unbiased one), and all findings are associations, not causes.
 
@@ -56,13 +56,13 @@ Pipeline B is better on the same test orders in both tasks, and both intervals e
 
 Olist is a Brazilian marketplace: independent sellers ship each order to the customer through a carrier, and the customer reviews the purchase afterwards. Two things go wrong often enough to matter. Deliveries arrive later than the customer expected, and a share of customers leave a 1 or 2 star review, which hurts the seller's and the platform's reputation.
 
-**Why it matters to the business.** The development period, January 2017 to late May 2018, holds 76,925 delivered orders, each worth on average R$ 137 in goods plus R$ 22 in freight. The business grew fast: monthly revenue from item prices rose from R$ 374,255 in March 2017 to R$ 944,975 in April 2018, 2.5 times as much, with a peak of R$ 1,010,016 in November 2017 against R$ 664,219 in October (figure below). Delivery is where the experience breaks under pressure. When volume jumped in November 2017 (Black Friday: 7,284 orders against 4,478 in October), the share of orders delivered after Olist's promised date rose from 5.3% to 14.3%, and it peaked at 21.4% in March 2018. Late orders go with bad reviews: 57.2% of late orders received a 1 or 2 star review, against 9.5% of orders delivered on time, and the detractor share rose from 11.9% in October 2017 to 22.5% in March 2018 (14.8% over the whole period). Promising faster is not a free fix either: in an experiment with an online retailer, faster delivery promises raised sales and profit but also reduced customer retention (Cui et al., 2024). In a typical month only 1.5% of customers placed more than one order (between 0.8% and 2.3%), so for most customers one late delivery or bad review is their whole experience of the platform.
+**Why it matters to the business.** The development period, January 2017 to late May 2018, holds 76,925 delivered orders, each worth on average R$ 137 in goods plus R$ 22 in freight. The business grew fast, then stalled: monthly revenue from item prices rose from R$ 374,255 in March 2017 to R$ 944,975 in April 2018, 2.5 times as much, but no later month passed the November 2017 peak of R$ 1,010,016 (R$ 664,219 in October; figure below). Delivery is where the experience breaks under pressure. When volume jumped in November 2017 (Black Friday: 7,284 orders against 4,478 in October), the share of orders delivered after Olist's promised date rose from 5.3% to 14.3%, and it peaked at 21.4% in March 2018. Late orders go with bad reviews: 57.2% of late orders received a 1 or 2 star review, against 9.5% of orders delivered on time, and the detractor share rose from 11.9% in October 2017 to 22.5% in March 2018 (14.8% over the whole period). Promising faster is not a free fix either: in an experiment with an online retailer, faster delivery promises raised sales and profit but also reduced customer retention (Cui et al., 2024). In a typical month only 1.5% of customers placed more than one order (between 0.8% and 2.3%), so for most customers one late delivery or bad review is their whole experience of the platform.
 
 &#91;image: Monthly revenue and customer repeat rate, March 2017 to April 2018 (dashboard Business overview data)\]
 
 *Figure 1. Monthly revenue (item prices, freight excluded) and customer repeat rate, March 2017 to April 2018, the last full month before the test period; Business overview data of the dashboard, computed with the dashboard's own code (F.BIZ.revenue\_repeat).*
 
-The two models answer these two problems. The lead-time model gives a delivery promise the operation can keep, so sales are not bought with broken promises; the detractor alert lets customer service reach an at-risk customer before the review is written. We frame one delivery experience as two prediction tasks, each made at the moment the business can still act on it.
+**Problem statement.** Growth stalled while delivery broke and few customers came back. Can Olist promise a delivery date it keeps, and reach unhappy customers before they write the review? The lead-time model gives a promise the operation can keep, shorter than Olist's own estimate at a similar late share (section 9), so sales are not bought with broken promises; that kept promises raise sales is a literature-supported hypothesis (Fisher et al., 2019; Salari et al., 2022). The detractor alert lets customer service reach an at-risk customer before the review is written; that the contact improves satisfaction or retention is an unmeasured mechanism, to be tested in a pilot (section 10). We frame one delivery experience as two prediction tasks, each made at the moment the business can still act on it.
 
 *Table 2. The two prediction tasks.*
 
@@ -99,7 +99,7 @@ Pipeline B was adopted only after it beat Pipeline A on the same validation fold
 
 The literature shaped what the predictions are for, how the models are compared and how the evaluation guards against optimistic results. Every source was checked against the publisher's record; a source whose detailed results were not audited is cited only for the question it studies.
 
-**Delivery promises and ratings.** Cui et al. (2024) separate the delivery speed promised to shoppers from the speed actually delivered: in an experiment with an online retailer, faster promises raised sales and profit, but also raised returns and reduced customer retention. Our lead-time model is therefore the input to a promise range (section 9), not a single date to display. Deshpande and Pendem (2023) study how logistics performance and ratings relate to purchasing behaviour and sales; we cite them only for that question, not for any effect or direction. The link our alert relies on, between late delivery and bad reviews, is measured in our own data (section 4). None of the audited sources predicts a bad review at the moment a parcel is handed to the carrier, or separates the seller's dispatch delay from the carrier's transit time; both are central to this project (section 5).
+**Delivery promises and ratings.** Cui et al. (2024) separate the delivery speed promised to shoppers from the speed actually delivered: in an experiment with an online retailer, faster promises raised sales and profit, but also raised returns and reduced customer retention. Fisher et al. (2019) study actual rather than promised speed: when a new distribution centre made deliveries faster at a US apparel retailer, online sales rose by about 1.45% for each business day saved. Salari et al. (2022) forecast the distribution of delivery times and choose the promised day with a cost-sensitive rule; on JD.com data a simulation suggests sales volume could rise by about 6.1%. Our lead-time model is therefore the input to a promise with a buffer (section 9), not a single date to display. Deshpande and Pendem (2023) study how logistics performance and ratings relate to purchasing behaviour and sales; we cite them only for that question, not for any effect or direction. The link our alert relies on, between late delivery and bad reviews, is measured in our own data (section 4). None of the audited sources predicts a bad review at the moment a parcel is handed to the carrier, or separates the seller's dispatch delay from the carrier's transit time; both are central to this project (section 5).
 
 **Choosing models.** Müller and Guido (2016) recommend simple baselines, keeping training and test data apart, and fitting preprocessing inside a pipeline so that it does not leak information from the evaluation data. James et al. (2023) explain that a more flexible model trades lower bias for higher variance, and that resampling estimates how a model generalises. Our model ladder therefore starts from a dummy and from plain linear and logistic regression, and keeps a more complex model only when resampled validation shows it is better (section 6.2). A random forest averages many randomised trees (Breiman, 2001), and on the medium-sized tabular datasets they studied, tree ensembles remained strong baselines against deep learning (Grinsztajn et al., 2022), so the forest is our non-linear comparison. Stacked generalisation (Wolpert, 1992) and gradient tree boosting (Chen and Guestrin, 2016) were considered but not added: the project limits the number of model families, and the forest itself did not clear the selection rule.
 
@@ -379,23 +379,50 @@ The released models predict exactly what was tested, and the dashboard shows onl
 
 ## 9 Business recommendations
 
-Three actions follow from the results; each is labelled as an observation (measured here), a literature-supported hypothesis or an unmeasured mechanism, and the dashboard shows the detail behind each (Table K16 sets them side by side).
+The two models serve one chain of decisions about an order: the promise at checkout, the seller's dispatch, the carrier's transit and, when the order is still late, service recovery before the review. Each step is labelled as an observation (measured here), a literature-supported hypothesis, an unmeasured mechanism, a scenario or an operational rule. The test-period numbers in this section are a post-test analysis of Pipeline B's 15,422 test orders, computed from the stored predictions after the test was read, with no model refitted; the buffer of 12.0 days chosen on validation remains the unbiased result. Table K16 sets the actions side by side.
 
-**Promise a range, not a date** (observation; literature-supported hypothesis for the cost of over-promising). On validation, a buffer of 12.0 days puts 90% of orders on time and 17.5 days 95%; on the faster test period those buffers leave 1.5% and 0.7% late. Choose the buffer on recent weeks and watch the late share by state: overly optimistic promises carry costs after the sale (Cui et al., 2024).
+**1. Promise: a shorter date the operation keeps** (observation; literature-supported hypothesis for sales). Olist's own estimated delivery date is long and loose: on the test orders it promised a median of 18.6 days, missed the actual lead time by 12.6 days on average, and 5.5% of orders arrived after it. Pipeline B is far closer (MAE 3.3 days) but, shown as a date, it is late for 29.5% of orders, as any prediction near the middle of the outcomes must be. A buffer turns the prediction into a promise, and its size is a business dial (Table 5).
 
-**Alert customer service at handover** (observation). Pipeline B at 4/15 sends 5.6 alerts a day at precision 0.346; with the baseline's fallback at 1/6 the total is 20.5 a day at precision 0.192.
+*Table 5. Promises on Pipeline B's test orders (post-test analysis).*
 
-**Flag missed dispatch with a rule** (observation). Orders whose shipping limit passes without handover are detractors with precision 21.2%, and the rule catches 16.8% of all detractors on the test period, with no model.
+| Promise | Median promise (days) | MAE (days) | Orders late |
+| --- | --- | --- | --- |
+| Olist's estimated delivery date | 18.6 | 12.6 | 5.5% |
+| Dummy (median lead time) | 10.1 | 4.4 | 23.1% |
+| Pipeline A | 9.8 | 4.0 | 21.8% |
+| Pipeline B | 8.5 | 3.3 | 29.5% |
+| Pipeline B + 3 days | 11.5 | 5.2 | 11.1% |
+| Pipeline B + 5 days | 13.5 | 6.8 | 6.1% |
+| Pipeline B + 6 days | 14.5 | 7.7 | 4.7% |
+| Pipeline B + 12 days (buffer chosen on validation) | 20.5 | 13.4 | 1.5% |
+| Pipeline B + 10 days (recent-weeks rule) | 18.5 | 11.5 | 2.1% |
 
-&#91;image: Promise buffer: share of orders delivered later than prediction plus buffer; buffer chosen on validation, read on the test\]
+&#91;image: Median promised lead time, late share and MAE on Pipeline B's test orders: Olist's estimate, Dummy, A, B and B with buffers (post-test view)\]
 
-*Figure 24. Share of orders late against buffer size, validation and test (F.reg.buffer\_curve).*
+*Figure 24. Median promised lead time and late share on Pipeline B's test orders (F.BC.promise\_compare).*
 
-**Cost.** Weighting a missed detractor as five false alerts, the serving rule's test cost is 9,211 (7,123 from Pipeline B and 2,088 from the fallback). The weighting is an assumption; the dashboard shows the trade-off at other thresholds.
+At about Olist's late share, Pipeline B plus 6 days promises 14.5 days instead of 18.6 (4.7% late against 5.5%); at Olist's promise length, plus 10 days is late for only 2.1%. The 12-day buffer is conservative because validation includes the late-2017 crisis, when Pipeline B without a buffer was late for 59.7% of orders, against 29.5% on the test. We therefore recommend an operational rule: each month, set the buffer on the most recent weeks, as the smallest buffer whose late share is at or below that of Olist's own estimate on those weeks. On the last validation fold (2018-04-01 to 2018-05-24, where Olist's estimate was late for 2.1%) the rule gives 10.0 days, chosen without test data; a 10% target on the same weeks would give 3.5 days (9.6% late on the test). That shorter promises which are kept help sales is a literature-supported hypothesis for Olist: faster actual delivery raised online sales at a US apparel retailer (Fisher et al., 2019), and promising from a delivery-time forecast raised sales in a simulation on JD.com data (Salari et al., 2022). Promising too fast has costs after the sale (Cui et al., 2024), which is why the dial is tied to the late share.
 
-**Review order when capacity is short.** Pipeline B's alerts at 4/15 are reviewed first. The baseline fallback's alerts outside the seven states come next (14.9 a day at precision 0.133). The review cap of 6 alerts a day applies to Pipeline B alone; the team accepted the higher combined volume. Within the fallback, alerts are reviewed at carrier handover by handover delay, longest first, then by order value. This ordering is an operational rule, not a measured result.
+**2. Dispatch: the seller is the lever** (observation). Under the recommended promise, 133 of the 320 late orders (42%) were handed to the carrier after the seller's shipping limit. Orders whose shipping limit passes without handover are detractors with precision 21.2%, and a rule that flags them catches 16.8% of all detractors on the test period, with no model. The seller's earlier dispatch delay and the route's recent speed are among the strongest predictors (section 7.4); that working with slow sellers would cut late deliveries is an unmeasured mechanism, because nothing here tests an intervention. The dashboard ranks routes and categories by observed outcomes for each quarter so seller management can choose where to look first.
 
-**Slow sellers and routes.** The seller's earlier dispatch delay and the route's recent speed are among the strongest predictors (section 7.4). That late delivery goes with more detractors is an observation in our own data (section 4); that working on these sellers and routes would improve reviews is an unmeasured mechanism, because nothing here tests an intervention. The dashboard ranks routes and categories by observed outcomes for each quarter so operations can choose where to look first.
+**3. Transit: expediting after a late handover saves few orders** (scenario; unmeasured mechanism). If the carrier's transit had been 10% faster for the late orders handed over late (the dashboard's "logistics 10% faster" scenario, applied to the actual transit time), 13 of those 133 orders would have arrived on time, 4.1% of all late orders; against Olist's own estimate, 13 of 328. Whether a carrier can deliver such a speed-up, and at what cost, is not measured. Most late orders therefore need service recovery.
+
+**4. Service recovery: alert at handover** (observation for volumes and precision; operational rule for the workflow; unmeasured mechanism for the effect of a contact). Pipeline B at 4/15 sends 5.6 alerts a day at precision 0.346, so customer service reaches about 1.9 real detractors a day (reach = precision × alerts a day). 4/15 is a capacity choice; under the 5:1 weighting the cost-optimal threshold is 1/6. The baseline's fallback at 1/6 adds 14.9 alerts a day at precision 0.133, below the missed-dispatch rule's 21.2%; with it the total is 20.5 a day at precision 0.192. Two lighter options are open to the business: the fallback at 4/15 (2.4 a day at precision 0.226, a post-test view of a threshold not tuned on the test), or the missed-dispatch rule alone outside the seven states (Table 6).
+
+*Table 6. Alert options on the test period: detractors reached a day = precision × alerts a day (post-test view).*
+
+| Option | Alerts a day | Precision | Detractors reached a day |
+| --- | --- | --- | --- |
+| Pipeline B at 4/15, seven states | 5.6 | 0.346 | 1.9 |
+| Pipeline A fallback at 1/6, other orders | 14.9 | 0.133 | 2.0 |
+| Pipeline A fallback at 4/15, other orders | 2.4 | 0.226 | 0.6 |
+| Missed-dispatch rule | 13.3 | 0.212 | 2.8 |
+
+**Workflow** (operational rule, not a measured result). In the dashboard, customer service sets the threshold on the detractor tab, then works the ML deployment tab: the daily queue (4.1) lists Pipeline B's alerts first, by risk; the baseline fallback's alerts come next, by handover delay, longest first, then by order value. The case file (4.2) shows what is known at handover; the agent contacts the customer with a tracking update and offers a voucher for the next order. Missed dispatch is flagged when the shipping limit passes. The shortlist (4.3) and the routes with repeated late handovers go to seller management each week, and the promise buffer and alert precision by state are reviewed each month. The review cap of 6 alerts a day applies to Pipeline B alone; the team accepted the higher combined volume.
+
+**Freight discount** (association, not an effect). Among the orders still late under the recommended promise after the transit scenario, Pipeline B flags 61 (31 of them detractors). Cutting freight by 30% moves 7 of them below 4/15 and by 50% 16; free shipping moves 49, but all of those (49) fall below the lowest freight the model was trained on, so the result is an extrapolation. These are changes in the model's predicted risk, not the effect of a discount on the review.
+
+**Cost and break-even** (assumption). Weighting a missed detractor as five false alerts, the serving rule's test cost is 9,211 (7,123 from Pipeline B and 2,088 from the fallback). A contact pays when precision × the value kept per detractor reached exceeds the cost of a contact; neither value is known here, so no figure is given. A randomised hold-back pilot would measure it (section 10).
 
 ## 10 Limitations
 
@@ -407,8 +434,10 @@ Table K17 lists every remaining limit and how it is handled; these matter most f
 - **Optimistic validation, unstable alert features.** Features were ranked once on all development orders, so validation scores are slightly optimistic (the test is unaffected); the alert's feature ranks move between folds; and correlation among the new history features was not measured.
 - **Recorded deviations.** Sigmoid calibration was kept although the pre-set rule preferred raw probabilities; Pipeline B's fold 1 is below the training minimum; the forest's best configuration sits on its grid edge (section 6).
 - **Associations, not causes.** No feature's effect on the outcome was tested; recommendations are labelled by evidence type (section 9).
+- **Business case.** The promise comparison, the transit scenario and the freight scenario in section 9 were computed after the test was read; the transit and freight results are scenarios and associations, not effects of an action, and the value of a kept promise or a recovered customer is not known.
+- **Missing operational data.** The models need a live feed of carrier handovers to alert in time, and nothing records what customer service did with an alert, so the effect of a contact cannot be measured yet.
 
-**Next steps.** Monitor alert precision and late deliveries by state each month; set the promise buffer on recent weeks; and test the handover alert with customer service before scaling it.
+**Next steps.** Run a randomised hold-back pilot: contact a random half of the alerted customers and compare their reviews and repeat orders with the other half, which measures the effect of a contact and the break-even. Connect the handover feed and log every action taken on an alert. Reset the promise buffer each month on recent weeks against Olist's late share, and monitor alert precision and late deliveries by state.
 
 ## References
 
@@ -420,6 +449,8 @@ Cui, R., Lu, Z., Sun, T., & Golden, J. M. (2024). Sooner or Later? Promising Del
 
 Deshpande, V., & Pendem, P. K. (2023). Logistics Performance, Ratings, and Its Impact on Customer Purchasing Behavior and Sales in E-Commerce Platforms. *Manufacturing & Service Operations Management*, 25(3), 827–845. https://doi.org/10.1287/msom.2021.1045
 
+Fisher, M. L., Gallino, S., & Xu, J. J. (2019). The Value of Rapid Delivery in Omnichannel Retailing. *Journal of Marketing Research*, 56(5), 732–748. https://doi.org/10.1177/0022243719849940
+
 Grinsztajn, L., Oyallon, E., & Varoquaux, G. (2022). Why Do Tree-Based Models Still Outperform Deep Learning on Typical Tabular Data? *Advances in Neural Information Processing Systems*, 35 (Datasets and Benchmarks Track). https://proceedings.neurips.cc/paper\_files/paper/2022/file/0378c7692da36807bdec87ab043cdadc-Paper-Datasets\_and\_Benchmarks.pdf
 
 He, H., & Garcia, E. A. (2009). Learning from Imbalanced Data. *IEEE Transactions on Knowledge and Data Engineering*, 21(9), 1263–1284. https://doi.org/10.1109/TKDE.2008.239
@@ -429,6 +460,8 @@ James, G., Witten, D., Hastie, T., Tibshirani, R., & Taylor, J. (2023). *An Intr
 Kapoor, S., & Narayanan, A. (2023). Leakage and the Reproducibility Crisis in Machine-Learning-Based Science. *Patterns*, 4(9), 100804. https://doi.org/10.1016/j.patter.2023.100804
 
 Müller, A. C., & Guido, S. (2016). *Introduction to Machine Learning with Python: A Guide for Data Scientists*. O'Reilly. https://www.oreilly.com/library/view/introduction-to-machine/9781449369880/
+
+Salari, N., Liu, S., & Shen, Z.-J. M. (2022). Real-Time Delivery Time Forecasting and Promising in Online Retailing: When Will Your Package Arrive? *Manufacturing & Service Operations Management*, 24(3), 1421–1436. https://doi.org/10.1287/msom.2022.1081
 
 van den Goorbergh, R., van Smeden, M., Timmerman, D., & Van Calster, B. (2022). The Harm of Class Imbalance Corrections for Risk Prediction Models: Illustration and Simulation Using Logistic Regression. *Journal of the American Medical Informatics Association*, 29(9), 1525–1534. https://doi.org/10.1093/jamia/ocac093
 
@@ -1267,9 +1300,10 @@ These tables were moved from the body to keep it within the page limit; the body
 
 | Action | What the evidence shows | Label | Dashboard |
 | --- | --- | --- | --- |
-| Promise a range, not a date | On validation, a buffer of 12.0 days puts 90% of orders on time and 17.5 days 95%; on the faster test period those buffers leave 1.5% and 0.7% late. Choose the buffer on recent weeks and watch the late share by state. Overly optimistic promises carry costs after the sale (Cui et al., 2024) | Observation; literature-supported hypothesis for the cost of over-promising | Lead time, promise buffer |
-| Alert customer service at handover | Pipeline B at 4/15 sends 5.6 alerts a day at precision 0.346; with the baseline's fallback at 1/6 the total is 20.5 a day at precision 0.192 | Observation | Detractor risk, alert statistics |
-| Flag missed dispatch with a rule | Orders whose shipping limit passes without handover are detractors with precision 21.2%, and the rule catches 16.8% of all detractors on the test period, with no model | Observation | Detractor risk, missed dispatch |
+| Promise: B plus a buffer reset monthly on recent weeks | Olist's estimate: median 18.6 days, 5.5% late; B plus 6 days: 14.5 days, 4.7% late; the recent-weeks rule gives 10.0 days, 2.1% late on the test (post-test analysis); the 12.0-day buffer chosen on validation leaves 1.5% late. Faster delivery raised sales elsewhere (Fisher et al., 2019; Salari et al., 2022); over-promising has costs (Cui et al., 2024) | Observation; operational rule; literature-supported hypothesis for sales | Lead time, promise buffer |
+| Dispatch: flag missed dispatch and manage slow sellers | 42% of late orders were handed over late; the missed-dispatch rule has precision 21.2% and catches 16.8% of all detractors, with no model | Observation; unmeasured mechanism for seller management | Detractor risk, missed dispatch |
+| Transit: expedite after a late handover | 10% faster transit would put 4.1% of late orders on time | Scenario; unmeasured mechanism | ML deployment, scenarios |
+| Service recovery: alert at handover | Pipeline B at 4/15: 5.6 alerts a day, precision 0.346, about 1.9 detractors reached a day; with the fallback at 1/6, 20.5 a day at precision 0.192; a 30% freight cut moves 7 of 61 still-late flagged orders below 4/15 | Observation; operational rule for the workflow; association for the discount | Detractor risk, ML deployment |
 
 *Table K17. Limitations and how each is handled (section 10).*
 

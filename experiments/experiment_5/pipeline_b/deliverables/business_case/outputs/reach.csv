@@ -1,0 +1,5 @@
+option,alerts,precision,basis,alerts_per_day,detractors_reached_per_day,test_days
+Pipeline B at 4/15 (seven states),540,0.3462962962962962,"B10 threshold_results (test, post-test view)",5.625,1.9479166666666663,96.0
+Pipeline A fallback at 1/6 (outside the seven states),1428,0.1330532212885154,"B10 threshold_results (test, post-test view)",14.875,1.9791666666666667,96.0
+Pipeline A fallback at 4/15 (outside the seven states),234,0.2264957264957265,"T1 stored predictions (test, post-test view; threshold not tuned on test)",2.4375,0.5520833333333334,96.0
+Missed-dispatch rule alone,1273,0.2120974076983503,B9 missed_dispatch_rule_test (test),13.260416666666666,2.812499999999999,96.0

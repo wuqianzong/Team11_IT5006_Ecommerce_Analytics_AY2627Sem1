@@ -1,0 +1,38 @@
+{
+  "node": "BCASE/business_case",
+  "run_id": "20261103T035914Z",
+  "commit": "0a54e44e4f0e82b960b83c0c31e38472459dcdc0",
+  "dirty": true,
+  "events_until": "2100-01-01 00:00:00",
+  "inputs": {
+    "experiments/experiment_5/pipeline_b/stages/t1_joint_test/regression/outputs/predictions_test.csv.gz": "32d5699953c15456523bd7f016684f96954d7116455f7d5ff78e7d8c95987f63",
+    "experiments/experiment_5/pipeline_b/stages/t1_joint_test/classification/outputs/predictions_test.csv.gz": "c13076921c074e2a383c35808fb4d32a80d43a570abe821e7522a952a4bbed96",
+    "experiments/experiment_5/pipeline_b/stages/b08/regression/outputs/predictions.csv.gz": "442bc15273366712b1dee0b599de1dc5f0167de056bda0dc4c5acd36c4765c59",
+    "experiments/experiment_5/pipeline_b/stages/b12/regression/outputs/buffer_choice.csv": "deec20950de2db04ebbe96f504729db632a36c5de76a133fe8b9a4499c6667e2",
+    "experiments/experiment_5/pipeline_b/stages/b10/classification/outputs/threshold_results.csv": "80a481fa4f5b31e5cc34f2028bfc05f9ccd958f59eb33c33bc23c4f881bce2e1",
+    "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/missed_dispatch_rule_test.csv": "3549cc215357e67c4382bfb3c914630ba95253377e9ed3d39473024cac85e179",
+    "experiments/experiment_5/stages/s02_data/common/outputs/records.csv.gz": "3a86d161df392891c499b9f1d88cc7d2145d94b4015721fc631dc360dcbc4f5a",
+    "data/raw/olist_orders_dataset.csv": "8df58ef3d2d7e9944010f7beecd9b75367f5588ec6e3c91cec19ae3345ef9ecf",
+    "data/raw/olist_order_items_dataset.csv": "0bc4d068c4fe38cbb01bd90e8746e3c613fe7b4baef75fab7b0e329701c3e279",
+    "data/raw/olist_sellers_dataset.csv": "1f643d2b950373b85735e7794b20986f528d7a000432e7c6f9bcbb44d0846a0e",
+    "data/raw/olist_customers_dataset.csv": "983a422239e1712ded753b3bf9ecf47dc73f144d306029dcfa99e70a226883d2"
+  },
+  "code": {
+    "experiments/experiment_5/pipeline_b/deliverables/business_case/make_business_case.py": "83d8bd07ad19f1503115e843dd31cac969368e1ff446b3c2cb96f10ba4ce43ec",
+    "experiments/experiment_5/pipeline_b/deliverables/dashboard/app/dashboard_core/score_tab.py": "5d0b6a3b4059b1c40c99d0a169d30864d12c7df92d5302be876284633a5cbc9b",
+    "experiments/experiment_5/pipeline_b/deliverables/dashboard/app/dashboard_core/alerts.py": "4104aacaa3c54f227a02ab4c85d63b65072163c17ec2daf3b0f6a28b7246866e",
+    "experiments/experiment_5/pipeline_b/deliverables/dashboard/app/dashboard_core/model_client.py": "515f1046bfea6824ffd7e6ed750e524410ed87d0582c58024d66e6944a9e14ec",
+    "experiments/experiment_5/pipeline_b/deliverables/dashboard/app/dashboard_core/routing.py": "aabbd23dd10f4bd6ab5caf0cd3576ea9500df01608d21199fa5710aa3cb39a4d"
+  },
+  "outputs": {
+    "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/_evidence_index.json": "fb87cdff40d9a0c738f5fcc0dd899886cbe6347b3b37c7cc1b5dc52d126b67ad",
+    "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/buffer_recent.csv": "e21aaa570826ba0d0e0b65d37f993852dfeae555e421a99eea5edd911c6edd48",
+    "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/discount.csv": "160b88993a0ad1e8a41b58f36dd3459f52d864f6214437559edc614cd213bce4",
+    "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/expedite.csv": "8f6bc6535e94c33abe0bff87de0743c5c27d046d8e346680df9cf56a5fe7ea96",
+    "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/figures/promise_compare.csv": "c585ae7a71b368a062cdcdcdbe060423b6467e815788ebb4f210bc82ea1a0e68",
+    "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/figures/promise_compare.png": "e94c0216c8ee45a728a1e10cd67c6dbaac4b70cf3df14e9ae82dfcd3249bd217",
+    "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/promise_compare.csv": "c585ae7a71b368a062cdcdcdbe060423b6467e815788ebb4f210bc82ea1a0e68",
+    "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/reach.csv": "40417f66762573f44af49a013ee4814cb5c7ca33f8e954f4746e69b8651f69c6",
+    "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/summary.json": "c985a8f99f64e3ce88a3ca5e9a5b6faaba08f696768b8898fc4177d9e0f16e7e"
+  }
+}

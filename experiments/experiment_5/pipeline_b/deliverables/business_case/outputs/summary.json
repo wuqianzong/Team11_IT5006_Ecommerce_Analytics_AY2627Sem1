@@ -1,0 +1,146 @@
+{
+  "test_orders": 15422,
+  "test_window": {
+    "first_purchase": "2018-05-27",
+    "last_purchase": "2018-08-29"
+  },
+  "promise": {
+    "olist_estimate": {
+      "median_promise_days": 18.563055555555557,
+      "mae_days": 12.617745549437553,
+      "share_late": 0.05531059525353391
+    },
+    "dummy_median": {
+      "median_promise_days": 10.052685185185185,
+      "mae_days": 4.38494981991215,
+      "share_late": 0.23122811567890028
+    },
+    "pipeline_a": {
+      "median_promise_days": 9.80499370617222,
+      "mae_days": 4.028035201722085,
+      "share_late": 0.2184541563999481
+    },
+    "pipeline_b": {
+      "median_promise_days": 8.499894678361542,
+      "mae_days": 3.2991876699744895,
+      "share_late": 0.2953572818052133
+    },
+    "pipeline_b_plus_3_days": {
+      "median_promise_days": 11.499894678361542,
+      "mae_days": 5.176520407672581,
+      "share_late": 0.11094540267150824
+    },
+    "pipeline_b_plus_5_days": {
+      "median_promise_days": 13.499894678361542,
+      "mae_days": 6.843568974522148,
+      "share_late": 0.06134094151212553
+    },
+    "pipeline_b_plus_6_days": {
+      "median_promise_days": 14.499894678361542,
+      "mae_days": 7.736147059074275,
+      "share_late": 0.04727013357541175
+    },
+    "pipeline_b_plus_12_days": {
+      "median_promise_days": 20.499894678361542,
+      "mae_days": 13.412426730879218,
+      "share_late": 0.015173129295811178
+    },
+    "pipeline_b_plus_10_days_recent_weeks_buffer": {
+      "median_promise_days": 18.499894678361542,
+      "mae_days": 11.483293865383192,
+      "share_late": 0.020749578524186227
+    }
+  },
+  "buffer": {
+    "frozen_b12_days": 12.0,
+    "recent_10pct_days": 3.5,
+    "recent_olist_days": 10.0,
+    "olist_last_fold_share_late": 0.021415167237001875,
+    "last_fold": 5,
+    "last_fold_first_purchase": "2018-04-01",
+    "last_fold_last_purchase": "2018-05-24",
+    "b_no_buffer_last_fold_share_late": 0.27872833646097805,
+    "b_no_buffer_all_folds_share_late": 0.5968825319056462
+  },
+  "expedite": {
+    "Olist estimate": {
+      "orders": 15422,
+      "late_orders": 853,
+      "late_with_late_handover": 328,
+      "share_of_late_with_late_handover": 0.38452520515826494,
+      "on_time_if_transit_10pct_faster": 13,
+      "share_of_late_handover_group_on_time": 0.039634146341463415,
+      "share_of_all_late_on_time": 0.015240328253223915,
+      "late_share_after": 0.05446764362598885
+    },
+    "Pipeline B + 12 days (frozen buffer)": {
+      "orders": 15422,
+      "late_orders": 234,
+      "late_with_late_handover": 97,
+      "share_of_late_with_late_handover": 0.41452991452991456,
+      "on_time_if_transit_10pct_faster": 5,
+      "share_of_late_handover_group_on_time": 0.05154639175257732,
+      "share_of_all_late_on_time": 0.021367521367521368,
+      "late_share_after": 0.01484891713137077
+    },
+    "Pipeline B + 10 days (recent-weeks buffer)": {
+      "orders": 15422,
+      "late_orders": 320,
+      "late_with_late_handover": 133,
+      "share_of_late_with_late_handover": 0.415625,
+      "on_time_if_transit_10pct_faster": 13,
+      "share_of_late_handover_group_on_time": 0.09774436090225563,
+      "share_of_all_late_on_time": 0.040625,
+      "late_share_after": 0.01990662689664116
+    }
+  },
+  "discount_best": {
+    "Olist estimate": {
+      "flagged": 47,
+      "detractors": 28,
+      "free_shipping_stops": 45,
+      "freight_30_stops": 7
+    },
+    "Pipeline B + 10 days (recent-weeks buffer)": {
+      "flagged": 61,
+      "detractors": 31,
+      "free_shipping_stops": 49,
+      "freight_30_stops": 7
+    },
+    "Pipeline B + 12 days (frozen buffer)": {
+      "flagged": 51,
+      "detractors": 28,
+      "free_shipping_stops": 39,
+      "freight_30_stops": 4
+    }
+  },
+  "reach": {
+    "Pipeline B at 4/15 (seven states)": {
+      "alerts_per_day": 5.625,
+      "precision": 0.3462962962962962,
+      "detractors_reached_per_day": 1.9479166666666663
+    },
+    "Pipeline A fallback at 1/6 (outside the seven states)": {
+      "alerts_per_day": 14.875,
+      "precision": 0.1330532212885154,
+      "detractors_reached_per_day": 1.9791666666666667
+    },
+    "Pipeline A fallback at 4/15 (outside the seven states)": {
+      "alerts_per_day": 2.4375,
+      "precision": 0.2264957264957265,
+      "detractors_reached_per_day": 0.5520833333333334
+    },
+    "Missed-dispatch rule alone": {
+      "alerts_per_day": 13.260416666666666,
+      "precision": 0.2120974076983503,
+      "detractors_reached_per_day": 2.812499999999999
+    }
+  },
+  "labels": {
+    "BC.1": "observation on test orders (post-test view); the frozen 12.0-day buffer from b12 is the unbiased result",
+    "BC.2": "operational rule: buffer chosen on the last validation fold (no test data); test late share is a post-test view",
+    "BC.3": "scenario, unmeasured mechanism: actual carrier transit shortened by 10% for late orders handed over late",
+    "BC.4": "association, not an effect: the alert model's risk under the dashboard's freight scenarios",
+    "BC.5": "observation (precision, alerts/day on test, post-test view); reach = precision x alerts/day"
+  }
+}
