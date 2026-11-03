@@ -995,3 +995,13 @@ more on the test than sending no alert, because the test period had fewer detrac
 **Next (Henry)**
 - Doc and deck sync now also includes two new report figures (learning curves; add them to `figure_map.json` and
   `report_v2_3_figs.tsv` successor), body Table 5, Table K23 and the D3 column; slides 6, 13 and 14.
+
+## 2026-11-03 · Benson + Claude · Page budget by moving to the appendix (B-CR-57)
+
+**Done**
+- Benson: move to the appendix as long as the content is kept. Training results, learning curves, ladder gains, alert
+  error analysis, by-state figures and the full workflow paragraph moved to appendices H, E and K with body summaries.
+- Corrected an overstatement found on re-reading: many, not most, false alerts were late handovers (23%).
+
+**Checks**
+- Placeholders resolve; tests 36 passed, 5 skipped; audit recomputation and alignment PASS.

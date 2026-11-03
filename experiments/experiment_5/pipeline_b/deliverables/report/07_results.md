@@ -20,9 +20,7 @@ Pipeline B's MAE minus Pipeline A's is {{B9.reg.mae_diff}} days on the same {{T1
 
 *Figure: Residuals on the test orders, Pipeline B and Pipeline A (F.reg.residuals).*
 
-**Where it errs.** Slices are judged only with at least 100 test orders. Pipeline B is better than Pipeline A in every judged customer state, distance band and basket size, on {{B9.reg.routes_B_better}} of the {{B9.reg.routes_judged}} routes with enough orders, and in most months (Table K14).
-
-*Figure: Lead-time error by customer state (F.reg.by_state).*
+**Where it errs.** Slices are judged only with at least 100 test orders. Pipeline B is better than Pipeline A in every judged customer state, distance band and basket size, on {{B9.reg.routes_B_better}} of the {{B9.reg.routes_judged}} routes with enough orders, and in most months (Table K14; by state in appendix E).
 
 ### 7.2 Detractor alert
 
@@ -43,9 +41,7 @@ Pipeline B ranks detractors better by {{B9.clf.ap_diff}} AP (paired interval {{B
 
 **Slices.** Precision and recall by customer state and route are judged only where the test has more than 100 detractors, which holds for few slices (appendix E). In every judged slice Pipeline B is more precise; Pipeline A, which alerts more orders, has the higher recall in most of them.
 
-*Figure: Detractor alert by customer state (F.clf.by_state).*
-
-**Which orders the alert gets wrong** (observation on the stored test predictions, no refit; Table K23 gives the counts). At the frozen 1/6, Pipeline B raises {{BC.err.16_TA_n}} true and {{BC.err.16_FA_n}} false alerts and misses {{BC.err.16_MD_n}} detractors, {{BC.err.16_MD_share}} of all detractors on its test orders. Only {{BC.err.16_MD_late_delivery}} of the missed detractors arrived after Olist's estimate and {{BC.err.16_MD_late_handover}} were handed over late (true alerts: {{BC.err.16_TA_late_delivery}} and {{BC.err.16_TA_late_handover}}): for most of them the delivery went to plan, so the reason for the review lies in what the data does not hold at handover, such as the product or the seller's service. The false alerts are the mirror image: {{BC.err.16_FA_late_handover}} were handed over late, but only {{BC.err.16_FA_late_delivery}} arrived after the estimate, so the carrier often made up the seller's delay. The alert catches delivery-driven complaints; the missed ones are a limit of the data, not of the threshold.
+**Which orders the alert gets wrong** (appendix E, Table E4; stored test predictions, no refit). At the frozen 1/6, Pipeline B misses {{BC.err.16_MD_n}} detractors, {{BC.err.16_MD_share}} of all on its test orders; only {{BC.err.16_MD_late_delivery}} of them arrived after Olist's estimate, so for most the delivery went to plan and the reason for the review is not in the data. False alerts include many late handovers that still arrived on time ({{BC.err.16_FA_late_handover}} handed over late, {{BC.err.16_FA_late_delivery}} delivered late): the alert catches delivery-driven complaints.
 
 ### 7.3 Where the gain comes from
 

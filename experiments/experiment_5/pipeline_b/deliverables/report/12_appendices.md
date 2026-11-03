@@ -86,6 +86,17 @@ Full rank means no column is an exact linear combination of the others, so the c
 
 *Figure: ROC-AUC and Brier by population, detractor alert (F.clf.auc_brier).*
 
+*Figure: Lead-time error by customer state (F.reg.by_state).*
+
+*Figure: Detractor alert by customer state (F.clf.by_state).*
+
+
+**Which orders the alert gets wrong** (observation on the stored test predictions, no refit; Table E4). At the frozen 1/6, Pipeline B raises {{BC.err.16_TA_n}} true and {{BC.err.16_FA_n}} false alerts and misses {{BC.err.16_MD_n}} detractors, {{BC.err.16_MD_share}} of all detractors on its test orders. Only {{BC.err.16_MD_late_delivery}} of the missed detractors arrived after Olist's estimate and {{BC.err.16_MD_late_handover}} were handed over late (true alerts: {{BC.err.16_TA_late_delivery}} and {{BC.err.16_TA_late_handover}}): for most of them the delivery went to plan, so the reason for the review lies in what the data does not hold at handover, such as the product or the seller's service. The false alerts are the mirror image: {{BC.err.16_FA_late_handover}} were handed over late, but only {{BC.err.16_FA_late_delivery}} arrived after the estimate, so the carrier often made up the seller's delay. The alert catches delivery-driven complaints; the missed ones are a limit of the data, not of the threshold.
+
+*Table E4. Pipeline B's alert on its test orders by error group, at the frozen 1/6 and the operating 4/15: orders, orders delivered, share delivered after Olist's estimate (of those delivered), share handed over after the shipping limit, and median predicted risk (section 7.2; post-test view, no refit).*
+
+{{table:BC.error_table}}
+
 ### F. Tuning grids and the grid edge
 
 Every configuration of every family, with its mean and standard error over the five validation folds and the gap between training and validation scores.
@@ -128,6 +139,8 @@ Every removal from Pipeline B's population, by rule.
 
 ### H. Model candidates on the five folds
 
+The linear model beats the dummy in every fold, by {{B6.reg.gain_linear}} days of MAE on average, and the logistic model by {{B6.clf.gain_linear}} AP. The single tree is worse than the linear model in both tasks: {{B6.reg.gain_tree}} days, better in {{B6.reg.gain_tree_folds}} of five folds, and {{B6.clf.gain_tree}} AP, better in {{B6.clf.gain_tree_folds}}. The forest is slightly better on average, {{B6.reg.gain_forest}} days (paired standard error {{B6.reg.gain_forest_se}}, better in {{B6.reg.gain_forest_folds}} folds), and more consistently so for the alert, {{B6.clf.gain_forest}} AP (standard error {{B6.clf.gain_forest_se}}, better in {{B6.clf.gain_forest_folds}} folds).
+
 *Table H1. Model candidates on the five folds, lead time.*
 
 {{table:B6.reg.candidates}}
@@ -135,6 +148,10 @@ Every removal from Pipeline B's population, by rule.
 *Table H2. Model candidates on the five folds, detractor alert.*
 
 {{table:B6.clf.candidates}}
+
+Tables H1 and H2 give each family's training and validation score (mean of the five folds; the alert's AP before calibration). For the alert the plain logistic model scores about the same on its training and validation rows (AP {{B6.clf.linear_train}} against {{B6.clf.linear_validation}}), so it does not memorise the training orders; the forest fits its training rows more closely ({{B6.clf.forest_train}} against {{B6.clf.forest_validation}}). For lead time every family's validation error is higher than its training error, by about as much for the dummy ({{B6.reg.dummy_train}} against {{B6.reg.dummy_validation}} days) as for the linear model ({{B6.reg.linear_train}} against {{B6.reg.linear_validation}}): a model with no features shows the same gap, so it comes from slower validation windows, not from overfitting. The learning curves on fold 5 (figure below) train each model on the most recent 20% to 100% of its {{B6.reg.lc_train_rows_100}} training orders. The linear model's validation MAE is lowest with the most recent 20% ({{B6.reg.lc_plain_validation_20}} days, against {{B6.reg.lc_plain_validation_100}} with all rows): recent orders predict the next weeks best, a sign of drift that Pipeline B's recent-history features address. The logistic model's validation AP stays near {{B6.clf.lc_plain_validation_100}} while its training AP falls from {{B6.clf.lc_plain_train_20}} to {{B6.clf.lc_plain_train_100}}, largely because older rows hold fewer detractors (the dummy's training AP, which equals the detractor share, falls from {{B6.clf.lc_dummy_train_20}} to {{B6.clf.lc_dummy_train_100}}). More data narrows the gap without lifting validation much: the models are limited by what is known at the prediction moment, not by the number of orders.
+
+*Figure: Learning curves on fold 5, lead time (F.reg.learning_curves) and detractor alert (F.clf.learning_curves).*
 
 ### I. Feature ranking by fold
 
@@ -344,6 +361,8 @@ The rule and the fallback serve different orders, so one cannot replace the othe
 | Serving rule: B at 4/15, fallback at 1/6 | {{BC.cost.validation_serve}} | {{BC.cost.test_serve}} |
 | Serving rule: B at 4/15, no fallback alert | {{BC.cost.validation_serve_nofb}} | {{BC.cost.test_serve_nofb}} |
 
+**Proposed workflow** (section 9; operational rule: the dashboard covers the queue, the contact needs integration and the pilot). Customer service would set the threshold, work the daily queue (Pipeline B by risk, then the fallback by handover delay and order value), read each case file and let the reason for the risk pick the action (Table K22), from a new arrival date and an apology to a freight refund or a voucher; the contact happens outside the dashboard, and each week the priorities go to seller management. The review cap of {{B10.clf.review_cap}} alerts a day applies to Pipeline B alone. A freight discount moves few still-late alerts below 4/15 ({{BC.discount.B6h_f30_stops}} of {{BC.discount.B6h_flagged}} at 30% off; Table K20), an association, not an effect.
+
 *Table K22. From alert to action: the proposed workflow by the reason for the risk (section 9; operational rule, not a measured result; the contact itself happens outside the dashboard).*
 
 | When | Reason for the risk (what the case file shows) | Action | Dashboard | Evidence |
@@ -355,10 +374,6 @@ The rule and the fallback serve different orders, so one cannot replace the othe
 | Daily | Any contacted customer | Voucher for the next order, to invite a repeat purchase | — | Unmeasured mechanism; the hold-back pilot compares reviews and repeat orders |
 | Weekly | Sellers and routes that fall behind | Seller management works with them | 2.6 and 3.7 operational priorities; 4.3 list | Unmeasured mechanism |
 | Monthly | Promise and alert drift | Reset the buffer on recent weeks after a rolling backtest; check alert precision and late share by state | 2.4 promise buffer; 3.4 alert work statistics | Operational rule |
-
-*Table K23. Pipeline B's alert on its test orders by error group, at the frozen 1/6 and the operating 4/15: orders, orders delivered, share delivered after Olist's estimate (of those delivered), share handed over after the shipping limit, and median predicted risk (section 7.2; post-test view, no refit).*
-
-{{table:BC.error_table}}
 
 ### L. Dashboard screenshots
 

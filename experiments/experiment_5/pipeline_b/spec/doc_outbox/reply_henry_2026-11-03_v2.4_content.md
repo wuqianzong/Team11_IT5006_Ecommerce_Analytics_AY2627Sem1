@@ -51,3 +51,10 @@ Body text is about 175 words longer than v2.3 by source count. If the Word copy 
 | `report/07_results.md` | Table 3 training MAE column; §7.2 "Which orders the alert gets wrong" |
 | `report/12_appendices.md` | Table D3 gains the reason column; new Table K23 (error profile) |
 | `deck/project/slides/a_features.html`, `test_reg.html`, `test_clf.html` | Feature reasons; training to validation MAE row; error-profile card; notes |
+
+## Moved to the appendix in B-CR-57 (content kept)
+
+Body Table 5 is gone (appendix H1 and H2 hold it). The learning-curve figures are in appendix H; the two by-state
+figures (`F.reg.by_state`, `F.clf.by_state`) moved from §7.1 and §7.2 to appendix E; Table K23 is now E4 in appendix E.
+The doc's picture order changes accordingly (`figure_map.json` and the Word picture list). Body text is about 335
+words longer than v2.3 with two fewer body figures.
