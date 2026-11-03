@@ -9,4 +9,6 @@ Table K17 lists every remaining limit and how it is handled; these matter most f
 - **Recorded deviations.** Sigmoid calibration was kept although the pre-set rule preferred raw probabilities; Pipeline B's fold 1 is below the training minimum; the forest's best configuration sits on its grid edge (section 6).
 - **Associations, not causes.** No feature's effect on the outcome was tested; recommendations are labelled by evidence type (section 9).
 
-**Next steps.** Monitor alert precision and late deliveries by state each month; set the promise buffer on recent weeks; and test the handover alert with customer service before scaling it.
+- **Business case.** Section 9's comparisons were computed after the test, its scenarios are associations, the buffer rule was set on one window, and with no handover feed or action log the effect of a contact is unmeasured.
+
+**Next steps.** Run a randomised hold-back pilot (contact a random half of alerted customers and compare reviews and repeat orders), log every action on an alert, backtest the buffer rule on rolling months before resetting it monthly, and monitor alert precision and late deliveries by state.

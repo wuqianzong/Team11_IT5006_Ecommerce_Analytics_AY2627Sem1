@@ -1,0 +1,22 @@
+{
+  "node": "REPORT/report_renders",
+  "run_id": "20261103T054523Z",
+  "commit": "7041d714961ccef86290d1a11a2287a4cec4a4bd",
+  "dirty": false,
+  "inputs": {
+    "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/figures/coefficients.csv": "6af5fb9d10490897ad0855fe2c3a053406eac1374e4942912755a886796c537b",
+    "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/figures/permutation_importance.csv": "3eed4aa45deb85caf3fc4ee20da23eb96364b6476fa2f20ed0b57898684a0c39",
+    "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/coefficients.csv": "deae965a17a6d8f2d65dafcaeae07d4401694639d1373464578270be44376676",
+    "experiments/experiment_5/pipeline_b/stages/b09/regression/outputs/figures/permutation_importance.csv": "d9026d7ce11710ec56c9af2b81e8fa306d3b69364a9ad0b9933ee92b3c62688c"
+  },
+  "code": {
+    "experiments/experiment_5/pipeline_b/deliverables/report/renders/make_report_renders.py": "2747e1c8006fbc21806719867fc557f14ef4670a0a521d27b38653d1b7587368"
+  },
+  "outputs": {
+    "experiments/experiment_5/pipeline_b/deliverables/report/renders/outputs/_evidence_index.json": "886f570782d6c213df03d6a4c050ea585c52f476df061b7f8376ced2aad90e79",
+    "experiments/experiment_5/pipeline_b/deliverables/report/renders/outputs/F.clf.coefficients.report.png": "2ca64e41dcc39addb46f9e206880969e35587618b93319eaa3fcd6d07689e9d1",
+    "experiments/experiment_5/pipeline_b/deliverables/report/renders/outputs/F.clf.importance.report.png": "10e8d1497035071cb41746d4c7ef82292fc4787a9890e1d8350b20ee23ba8a2f",
+    "experiments/experiment_5/pipeline_b/deliverables/report/renders/outputs/F.reg.coefficients.report.png": "6e734bd57d3bb8283a5e8c364db4310124ccb2a9d24b27c99b07474dddda0f09",
+    "experiments/experiment_5/pipeline_b/deliverables/report/renders/outputs/F.reg.importance.report.png": "78b680541e1dbf6cea09cb3ed7f660d4934a11a90185410c4bf5d698284c4332"
+  }
+}

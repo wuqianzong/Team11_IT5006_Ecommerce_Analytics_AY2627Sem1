@@ -1,0 +1,37 @@
+promise,still_late_orders,flagged_by_B_4_15,detractors_among_flagged,scenario,scored,alert_stops,share_alert_stops,alert_stops_outside_training_range
+Olist estimate,840,47,28,Logistics −10%,47,1,0.02127659574468085,0
+Olist estimate,840,47,28,Freight −20%,47,5,0.10638297872340426,1
+Olist estimate,840,47,28,Freight −30%,47,7,0.14893617021276595,2
+Olist estimate,840,47,28,Freight −50%,47,14,0.2978723404255319,4
+Olist estimate,840,47,28,Free shipping,47,45,0.9574468085106383,45
+Olist estimate,840,47,28,Logistics −10% + Freight −20%,47,6,0.1276595744680851,1
+Olist estimate,840,47,28,Logistics −10% + Freight −30%,47,8,0.1702127659574468,2
+Olist estimate,840,47,28,Logistics −10% + Freight −50%,47,14,0.2978723404255319,4
+Olist estimate,840,47,28,Logistics −10% + Free shipping,47,45,0.9574468085106383,45
+Pipeline B + 12 days (frozen buffer),229,51,28,Logistics −10%,51,1,0.0196078431372549,0
+Pipeline B + 12 days (frozen buffer),229,51,28,Freight −20%,51,2,0.0392156862745098,0
+Pipeline B + 12 days (frozen buffer),229,51,28,Freight −30%,51,4,0.0784313725490196,1
+Pipeline B + 12 days (frozen buffer),229,51,28,Freight −50%,51,12,0.23529411764705882,2
+Pipeline B + 12 days (frozen buffer),229,51,28,Free shipping,51,39,0.7647058823529411,39
+Pipeline B + 12 days (frozen buffer),229,51,28,Logistics −10% + Freight −20%,51,4,0.0784313725490196,0
+Pipeline B + 12 days (frozen buffer),229,51,28,Logistics −10% + Freight −30%,51,6,0.11764705882352941,1
+Pipeline B + 12 days (frozen buffer),229,51,28,Logistics −10% + Freight −50%,51,12,0.23529411764705882,2
+Pipeline B + 12 days (frozen buffer),229,51,28,Logistics −10% + Free shipping,51,39,0.7647058823529411,39
+"Pipeline B + 10 days (recent weeks, Olist's late share)",307,61,31,Logistics −10%,61,1,0.01639344262295082,0
+"Pipeline B + 10 days (recent weeks, Olist's late share)",307,61,31,Freight −20%,61,3,0.04918032786885246,0
+"Pipeline B + 10 days (recent weeks, Olist's late share)",307,61,31,Freight −30%,61,7,0.11475409836065574,1
+"Pipeline B + 10 days (recent weeks, Olist's late share)",307,61,31,Freight −50%,61,16,0.26229508196721313,2
+"Pipeline B + 10 days (recent weeks, Olist's late share)",307,61,31,Free shipping,61,49,0.8032786885245902,49
+"Pipeline B + 10 days (recent weeks, Olist's late share)",307,61,31,Logistics −10% + Freight −20%,61,5,0.08196721311475409,0
+"Pipeline B + 10 days (recent weeks, Olist's late share)",307,61,31,Logistics −10% + Freight −30%,61,9,0.14754098360655737,1
+"Pipeline B + 10 days (recent weeks, Olist's late share)",307,61,31,Logistics −10% + Freight −50%,61,16,0.26229508196721313,2
+"Pipeline B + 10 days (recent weeks, Olist's late share)",307,61,31,Logistics −10% + Free shipping,61,49,0.8032786885245902,49
+"Pipeline B + 6.5 days (recommended: recent weeks, 5% late)",632,95,45,Logistics −10%,95,1,0.010526315789473684,0
+"Pipeline B + 6.5 days (recommended: recent weeks, 5% late)",632,95,45,Freight −20%,95,7,0.07368421052631578,1
+"Pipeline B + 6.5 days (recommended: recent weeks, 5% late)",632,95,45,Freight −30%,95,15,0.15789473684210525,2
+"Pipeline B + 6.5 days (recommended: recent weeks, 5% late)",632,95,45,Freight −50%,95,29,0.30526315789473685,8
+"Pipeline B + 6.5 days (recommended: recent weeks, 5% late)",632,95,45,Free shipping,95,75,0.7894736842105263,75
+"Pipeline B + 6.5 days (recommended: recent weeks, 5% late)",632,95,45,Logistics −10% + Freight −20%,95,9,0.09473684210526316,1
+"Pipeline B + 6.5 days (recommended: recent weeks, 5% late)",632,95,45,Logistics −10% + Freight −30%,95,17,0.17894736842105263,2
+"Pipeline B + 6.5 days (recommended: recent weeks, 5% late)",632,95,45,Logistics −10% + Freight −50%,95,29,0.30526315789473685,8
+"Pipeline B + 6.5 days (recommended: recent weeks, 5% late)",632,95,45,Logistics −10% + Free shipping,95,75,0.7894736842105263,75

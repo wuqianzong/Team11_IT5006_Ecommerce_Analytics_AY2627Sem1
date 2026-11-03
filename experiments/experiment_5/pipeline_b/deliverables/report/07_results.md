@@ -6,13 +6,13 @@ On the same test orders Pipeline B beats Pipeline A in both tasks. Validation sc
 
 *Table 3. Delivery lead time, validation and test results.*
 
-| | Validation MAE (selection) | Test MAE [95% interval] | Test RMSE | Test R² | Within 3 days (test) |
-| --- | --- | --- | --- | --- | --- |
-| Pipeline B (delivered) | {{B9.reg.val_mae_B}} | {{B9.reg.test_mae_B}} [{{B9.reg.test_mae_B_lo}}, {{B9.reg.test_mae_B_hi}}] | {{B9.reg.test_rmse_B}} | {{B9.reg.test_r2_B}} | {{B9.reg.test_within3_B}} |
-| Pipeline A on the same test orders | | {{B9.reg.test_mae_A_on_B}} | {{B9.reg.test_rmse_A_on_B}} | {{B9.reg.test_r2_A_on_B}} | {{B9.reg.test_within3_A_on_B}} |
-| Dummy (median) on the same test orders | | {{B9.reg.test_mae_dummy_B}} | | | |
+| | Training MAE | Validation MAE (selection) | Test MAE [95% interval] | Test RMSE | Test R² | Within 3 days (test) |
+| --- | --- | --- | --- | --- | --- | --- |
+| Pipeline B (delivered) | {{B9.reg.train_mae_B}} | {{B9.reg.val_mae_B}} | {{B9.reg.test_mae_B}} [{{B9.reg.test_mae_B_lo}}, {{B9.reg.test_mae_B_hi}}] | {{B9.reg.test_rmse_B}} | {{B9.reg.test_r2_B}} | {{B9.reg.test_within3_B}} |
+| Pipeline A on the same test orders | | | {{B9.reg.test_mae_A_on_B}} | {{B9.reg.test_rmse_A_on_B}} | {{B9.reg.test_r2_A_on_B}} | {{B9.reg.test_within3_A_on_B}} |
+| Dummy (median) on the same test orders | | | {{B9.reg.test_mae_dummy_B}} | | | |
 
-Pipeline B's MAE minus Pipeline A's is {{B9.reg.mae_diff}} days on the same {{T1.reg.test_rows_B}} test orders (paired bootstrap interval {{B9.reg.mae_diff_lo}} to {{B9.reg.mae_diff_hi}}), so the gain is not an accident of the sample. RMSE, which weights large misses more, and R², the share of the variation in lead time that the model explains, point the same way. R² is low for both: much of the variation in delivery time is not visible at checkout. Pipeline A's R² on these orders is below zero, so it does worse than predicting the test period's average lead time, consistent with the faster test period (section 7.4).
+Pipeline B's MAE minus Pipeline A's is {{B9.reg.mae_diff}} days on the same {{T1.reg.test_rows_B}} test orders (paired bootstrap interval {{B9.reg.mae_diff_lo}} to {{B9.reg.mae_diff_hi}}), so the gain is not an accident of the sample. RMSE, which weights large misses more, and R², the share of the variation in lead time that the model explains, point the same way. R² is low for both: much of the variation in delivery time is not visible at checkout. Pipeline A's R² on these orders is below zero, so it does worse than predicting the test period's average lead time, consistent with the faster test period (section 7.4). The training error is lower than the validation error and higher than the test error because the three periods differ in speed, not because the model overfits (section 6.2).
 
 *Figure: Lead time by validation fold and on the test, with time windows (F.reg.validation_and_test).*
 
@@ -20,9 +20,7 @@ Pipeline B's MAE minus Pipeline A's is {{B9.reg.mae_diff}} days on the same {{T1
 
 *Figure: Residuals on the test orders, Pipeline B and Pipeline A (F.reg.residuals).*
 
-**Where it errs.** Slices are judged only with at least 100 test orders. Pipeline B is better than Pipeline A in every judged customer state, distance band and basket size, on {{B9.reg.routes_B_better}} of the {{B9.reg.routes_judged}} routes with enough orders, and in most months (Table K14).
-
-*Figure: Lead-time error by customer state (F.reg.by_state).*
+**Where it errs.** Slices are judged only with at least 100 test orders. Pipeline B is better than Pipeline A in every judged customer state, distance band and basket size, on {{B9.reg.routes_B_better}} of the {{B9.reg.routes_judged}} routes with enough orders, and in most months (Table K14; by state in appendix E).
 
 ### 7.2 Detractor alert
 
@@ -43,7 +41,7 @@ Pipeline B ranks detractors better by {{B9.clf.ap_diff}} AP (paired interval {{B
 
 **Slices.** Precision and recall by customer state and route are judged only where the test has more than 100 detractors, which holds for few slices (appendix E). In every judged slice Pipeline B is more precise; Pipeline A, which alerts more orders, has the higher recall in most of them.
 
-*Figure: Detractor alert by customer state (F.clf.by_state).*
+**Which orders the alert gets wrong** (appendix E, Table E4; stored test predictions, no refit). At the frozen 1/6, Pipeline B misses {{BC.err.16_MD_n}} detractors, {{BC.err.16_MD_share}} of all on its test orders; only {{BC.err.16_MD_late_delivery}} of them arrived after Olist's estimate, so for most the delivery went to plan and the reason for the review is not in the data. False alerts include many late handovers that still arrived on time ({{BC.err.16_FA_late_handover}} handed over late, {{BC.err.16_FA_late_delivery}} delivered late): the alert catches delivery-driven complaints.
 
 ### 7.3 Where the gain comes from
 
@@ -57,10 +55,10 @@ For lead time, Pipeline A's MAE falls from {{B8.reg.pop_A_on_A}} days on all sta
 
 Permutation importance is the test score the frozen model loses when a feature is shuffled. For lead time the seller's earlier dispatch days, the route and the distance rank highest, so the seller's own delay matters at least as much as the journey. For the alert, the number of sellers in the order and the route's recent delivery and transit times rank above this order's handover delay, so route conditions and basket complexity carry more signal about a bad review than the dispatch delay alone. These are associations in the frozen model, not causes.
 
-*Figure: Permutation importance, lead time (F.reg.importance) and detractor alert (F.clf.importance).*
+*Figure: Permutation importance, lead time (F.reg.importance.report) and detractor alert (F.clf.importance.report).*
 
 This ranking differs from the selection ranking of section 5.3: Spearman correlation {{B9.reg.rank_spearman}} for lead time and {{B9.clf.rank_spearman}} for the alert, with {{B9.reg.rank_top10}} and {{B9.clf.rank_top10}} of the top ten features shared. This is expected: selection scored one feature at a time on development orders, while importance is measured inside the fitted model, where correlated features share credit.
 
-*Figure: Coefficients, lead time (F.reg.coefficients); odds ratios, detractor alert (F.clf.coefficients).*
+*Figure: Coefficients, lead time (F.reg.coefficients.report); odds ratios, detractor alert (F.clf.coefficients.report).*
 
 The test period differs from development: deliveries were faster and reviews happier, and the route history features shifted most. Validation and test scores therefore describe different periods, and the test gain partly reflects that the history features track the faster period as it happens (drift by fold in appendix A).

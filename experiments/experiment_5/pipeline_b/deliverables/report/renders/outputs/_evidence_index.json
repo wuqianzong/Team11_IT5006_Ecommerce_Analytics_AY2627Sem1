@@ -1,0 +1,29 @@
+{
+  "node": "REPORT/report_renders",
+  "files": {
+    "F.reg.importance.report.png": {
+      "ids": [
+        "B9.5"
+      ],
+      "kind": "figure"
+    },
+    "F.clf.importance.report.png": {
+      "ids": [
+        "B9.5"
+      ],
+      "kind": "figure"
+    },
+    "F.reg.coefficients.report.png": {
+      "ids": [
+        "B9.5"
+      ],
+      "kind": "figure"
+    },
+    "F.clf.coefficients.report.png": {
+      "ids": [
+        "B9.5"
+      ],
+      "kind": "figure"
+    }
+  }
+}

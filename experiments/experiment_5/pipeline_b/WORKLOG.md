@@ -853,3 +853,176 @@ more on the test than sending no alert, because the test period had fewer detrac
 - Deck retitled v2.2 to match the report (Henry): version 44, title only; a version saved by the open editor one
   second later has identical slides. `exports/2026-11-02/Team11_final_deck_v2.2.pptx` (basic fonts, 16 slides);
   audit input `deck.json` refreshed; audit 9/9.
+
+## 2026-11-03 · Henry + Claude · Report v2.3 and deck v2.3, business case (B-CR-50)
+
+**Done**
+- Henry's choices (B-G-19, B-G-20, B-G-22, B-G-23): buffers B + 3/5/6/12 (Olist, Dummy, A, B without); transit 10%
+  faster; rescue = alert risk below threshold under the freight scenarios; the two use slides replace slide 15.
+- New producer `deliverables/business_case/make_business_case.py` (BC.1 to BC.5, manifest; no fit, no stage output
+  changed); register root `BCASE/`, 504 items. Recent-weeks rule (B-G-21): 10.0 days on b08's last fold.
+- Literature register rows 13 and 14 (Fisher et al., 2019; Salari et al., 2022) from Crossref; Benson to recheck.
+- Deck v2.3 version 48 (18 slides): cover + Olist MAE 12.62, slide 2 business problem, slides 16 and 17 business use.
+- Report v2.3 sources and review doc rev 51: exec summary, §1, §2, §9 (Tables 5, 6, figure 24), §10, references, K16.
+- Dashboard README: the app is hosted.
+
+**Checks**
+- Placeholders resolve; audit 9/9 on rev 51 and version 48; tests 36 passed, 5 skipped; dashboard tests 21 passed.
+
+**Not done yet**
+- Exports: `Team11_final_deck_v2.3.pptx` and `Team11_final_report_v2.3.docx` need downloads in Henry's Chrome (the
+  docs blob of the .docx cannot be saved from this session), then `export_fill.py` (figure 24 row now
+  `F.BC.promise_compare`) and `format_submission_docx.ps1`.
+- The review doc's file name still reads v2.2 (heading and note say v2.3); rename from the doc page.
+- Benson: approve B-CR-50 and B-G-19 to B-G-23 before any merge.
+
+## 2026-11-03 · Henry + Claude · Report v2.3 page budget (B-CR-51)
+
+**Done**
+- Henry's limit (B-G-24): new body text cut from about 1,245 to 338 words; no new body table; Tables 5 and 6 and the
+  freight scenarios moved to K18, K19 and K20. Review doc rev 52.
+
+**Checks**
+- The real export of rev 52 ended the body two lines into page 21, so about 45 more words of the new text were cut
+  (new body text 295 words). Rev 53: audit 9/9; submission .docx body pages 2–20 (references from page 21).
+- Exports in `exports/2026-11-03/`: `Team11_final_report_v2.3.docx` (31 pictures) and `Team11_final_deck_v2.3.pptx`
+  (basic fonts, 18 slides), both downloaded in Henry's Chrome with his approval. No existing body text was trimmed.
+
+## 2026-11-03 · Henry + Claude · Report v2.3 figures 20–23 side by side (B-CR-52)
+
+**Done**
+- New producer `deliverables/report/renders/make_report_renders.py` (Experiment 5 `.venv`): four half-width renders of
+  the §7.4 charts from b09's saved data files, manifest and evidence index; register root `REPORT/`, ids `*.report`
+  (B9.5). Register 508 items; only the four new figures were added to `evidence/build/`.
+- Review doc rev 59: four new pictures (alt text = register caption) and captions citing the new ids. Two pictures in
+  one paragraph still render stacked at full width in the doc, so the doc keeps one picture per paragraph.
+- Word copy: the v2.3 session's filled export of rev 53 (`36ce84df…/scratchpad/rev53_filled.docx`) with the four
+  pictures swapped and each pair put in a borderless 2×2 table (`102d2538…/scratchpad/pair_fill.py`), then the
+  extended `format_submission_docx.ps1` (same folder; table pictures 3.3 in, 12 pt captions). Revs 54–59 changed only
+  those pictures and captions (doc read since rev 53), so no new download was needed. Saved over
+  `exports/2026-11-03/Team11_final_report_v2.3.docx`.
+
+**Checks**
+- Audit 9/9 on `report_export_rev59.md` (rev 53's export with the eight changed lines, all confirmed by the doc read);
+  tests 36 passed, 5 skipped; placeholders resolve on report and slides.
+- Submission .docx: body pages 2–20, references from page 20 (was 21); pairs on pages 17 and 18; 31 pictures.
+
+**Questions for Benson**
+- Approve B-CR-52 with B-CR-50 and B-CR-51 before any merge.
+
+## 2026-11-03 · Henry + Claude · Handover to Benson (HS-02)
+
+**Done**
+- `spec/doc_outbox/HS-02_benson_report_deck_v2.3_handover_2026-11-03.md`: prompt for Benson's agent to continue
+  report and deck v2.3 (state, binding rules, Word rebuild, token-saving practice, open approvals).
+- `deliverables/report/build/`: the Word build scripts, until now only in session scratchpads (`docx_fill.py`,
+  `report_v2_3_figs.tsv` with relative paths, `pair_fill.py`, `format_submission_docx.ps1`) and a README.
+
+**Checks**
+- `docx_fill.py` on rev 53's export gives the same `document.xml` as the filled copy behind the v2.3 export;
+  `pair_fill.py` on it: 2 pairs, 4 pictures replaced, 31 pictures. No register, source or export changed.
+
+**Questions for Benson**
+- Approve B-CR-50 to B-CR-52 and merge; rename the review doc (file name still v2.2).
+
+## 2026-11-03 · Benson + Claude · Report and deck v2.4 content (B-CR-53)
+
+**Done**
+- Took over from HS-02 on `e5/validation-fixes-henry` at `acda7ca`. Baseline reproduced on Linux before any change:
+  register 508 items, audit 9/9 on rev 59 and deck version 48, tests 36 passed, 5 skipped.
+- Validated Solomon's v2.3 audit (`deliverables/audit/runs/2026-11-03_solomon_v2.3_audit.md`): points 1–4, 6, 8, 9
+  valid, 7 partly, 5 not valid (the app opens without login); one more found (Fisher cited for promises).
+- Business case producer: 5% recent-weeks buffer (6.5 days) as the recommended rule (B-G-25, Benson), populations and
+  costs against no alert (BC.5, BC.6), whole-window repeat share (BC.7), Python and platform in the manifest. Deck
+  render of the promise chart relabelled. Register 562 items.
+- Sources only (Benson edits content; Henry produces doc, Word and deck): executive summary, §1, §9, §10, appendix
+  K16, K18–K21, M; slides business, use_reg, use_clf. Records: B-CR-53, B-G-25 to B-G-27, CHANGES.md, literature
+  register, audit README, human_decisions_B.yaml.
+
+**Machine**
+- Linux, Python 3.12.3 (dashboard venv, business case) and 3.13.18 (Experiment 5 venv, renders, register, audit).
+  Before the change, a rerun of the business case gave byte-identical CSV and JSON. This machine's matplotlibrc picks
+  Inter, so renders were run with `MATPLOTLIBRC` pinning DejaVu Sans (matplotlib's default, as on Windows): the 18
+  unchanged deck renders are pixel-identical to Henry's, with different PNG bytes (compression).
+
+**Checks**
+- All placeholders resolve (report and slides); tests 36 passed, 5 skipped.
+- Audit on rev 59 and deck version 48: recomputation and both alignment checks PASS; the six live-doc and live-deck
+  checks FAIL until the sync (expected).
+- Body text about 100 words longer than v2.3 by source count (exec summary +9, §1 +12, §9 +69, §10 +10).
+
+**Next (Henry)**
+- Optional, to keep his image bytes: rerun `make_business_case.py` and `make_deck_renders.py` on Windows, then
+  `build_evidence_B.py build`; only the promise chart (report figure 24 and slide 16) then differs from v2.3.
+- Sync review doc and deck to the sources (v2.4 labels), refresh audit inputs, audit 9/9, check the 20-page limit
+  with `format_submission_docx.ps1`, export v2.4.
+
+**Questions for Benson**
+- Approve B-G-19, B-G-20, B-G-23, B-G-24 (Proposed) and B-G-26, B-G-27; sign literature rows 13 and 14; merge.
+
+## 2026-11-03 · Benson + Claude · Business part completed in the v2.4 sources (B-CR-54)
+
+**Done**
+- Checked every item of Benson's business brief against the filled v2.4 sources. Missing were the trigger and goal in
+  the executive summary, the goal in §1, the reason-to-action mapping and the weekly seller-management hand-off.
+- Added: executive summary "Why" paragraph; goal in §1's problem statement; §9 workflow by reason (dispatch and
+  transit merged); appendix Table K22 "From alert to action"; slide 2 goal; slide 17 cards and notes; deck title v2.4.
+
+**Checks**
+- All placeholders resolve; tests and audit as below in this entry's commit message.
+- Body text about 175 words longer than v2.3 (source counts); the page limit needs Henry's Word check.
+
+**Questions for Benson**
+- Same as the B-CR-53 entry: approvals, literature rows 13 and 14, merge.
+
+## 2026-11-03 · Benson + Claude · v2.4 accuracy pass (B-CR-55)
+
+**Done**
+- Checked Solomon's points against the filled v2.4 sources: 1–4 and 9 incorporated, 7 covered by §9's opening, 8 worded
+  (signatures open), 6 waits for the merge, 5 not valid. Benson: revise only what is wrong, not Solomon's suggestions.
+- Fixed four accuracy errors (see B-CR-55). Placeholders resolve; audit recomputation and alignment PASS.
+
+## 2026-11-03 · Benson + Claude · TA's advice: training results, error analysis, feature rationale (B-CR-56)
+
+**Done**
+- Checked v2.4 against the TA's three requirements; each existed only in appendices or partly. Added them to the body
+  and the deck from stored evidence (b06 candidates and learning curves, A's s04 feature dictionary) and one new
+  business-case output (BC.8 error profile, no refit). Register 622 items.
+
+**Checks**
+- Placeholders resolve; tests 36 passed, 5 skipped; audit recomputation and alignment PASS.
+
+**Next (Henry)**
+- Doc and deck sync now also includes two new report figures (learning curves; add them to `figure_map.json` and
+  `report_v2_3_figs.tsv` successor), body Table 5, Table K23 and the D3 column; slides 6, 13 and 14.
+
+## 2026-11-03 · Benson + Claude · Page budget by moving to the appendix (B-CR-57)
+
+**Done**
+- Benson: move to the appendix as long as the content is kept. Training results, learning curves, ladder gains, alert
+  error analysis, by-state figures and the full workflow paragraph moved to appendices H, E and K with body summaries.
+- Corrected an overstatement found on re-reading: many, not most, false alerts were late handovers (23%).
+
+**Checks**
+- Placeholders resolve; tests 36 passed, 5 skipped; audit recomputation and alignment PASS.
+
+## 2026-11-03 · Benson + Claude · v2.4 final check and handover (B-CR-58, HS-03)
+
+**Done**
+- Filled every source and checked: all table, appendix and section references resolve; no stale v2.3 wording;
+  numbers agree between report and deck (alignment PASS). Fixed three slide wordings (B-CR-58).
+- Handover to Henry for the Word and PowerPoint production: HS-03 in `spec/doc_outbox/`.
+
+**Questions for Benson**
+- Approve B-G-19, 20, 22, 23, 26, 27; sign literature rows 13 and 14; merge after Henry's 9/9.
+
+## 2026-11-03 · Benson + Claude · Decisions approved (B-CR-59)
+
+- Benson approved B-G-19, 20, 22 (parts superseded by B-G-26), 23, 26 and 27. Open for Benson: literature rows 13
+  and 14, the private-window app check, and the merge after Henry's 9/9.
+
+## 2026-11-03 · Benson + Claude · Signed, app checked, merged (B-CR-60)
+
+- Benson signed literature rows 13 and 14 and checked the hosted app in a private window (works).
+- On Benson's order, merged into milestone-3 and fast-forwarded main before Henry's v2.4 production (HS-03); the
+  audit's live-doc and live-deck checks pass again once Henry syncs and refreshes the audit inputs.

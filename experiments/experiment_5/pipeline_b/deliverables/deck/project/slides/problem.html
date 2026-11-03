@@ -10,6 +10,6 @@
 <tr><td style="padding:18px 12px;border-bottom:1px solid #D5DBE3"><b>Error cost</b></td><td style="padding:18px 12px;border-bottom:1px solid #D5DBE3">A late promise breaks expectations</td><td style="padding:18px 12px;border-bottom:1px solid #D5DBE3">One missed detractor = five false alerts (assumed), so alert above 1/6</td></tr>
 <tr><td style="padding:18px 12px;border-bottom:1px solid #D5DBE3"><b>Yardstick</b></td><td style="padding:18px 12px;border-bottom:1px solid #D5DBE3">Dummy (median): test MAE {{B9.reg.test_mae_dummy_B}} days</td><td style="padding:18px 12px;border-bottom:1px solid #D5DBE3">Detractor share: {{B9.clf.test_prevalence_B}} on the test, {{A3.clf.dev_prevalence}} in development</td></tr>
 </table>
-<p style="position:absolute;left:112px;bottom:48px;width:1696px;font-size:22px;color:#6B7280">Team 11 · IT5006 · 2/16 · Report section 1</p>
+<p style="position:absolute;left:112px;bottom:48px;width:1696px;font-size:22px;color:#6B7280">Team 11 · IT5006 · 3/18 · Report section 1</p>
 <aside>0:35. Each prediction is made when someone can act on it. Lead time is predicted at checkout, when fulfilment shows the customer a delivery range, and we judge it by mean absolute error in days. The review alert is for customer service. Detractors are a minority, {{B9.clf.test_prevalence_B}} of test orders, so accuracy would mislead and we use average precision. We weight a missed detractor as five false alerts, which puts the alert threshold at one in six.</aside>
 </section>

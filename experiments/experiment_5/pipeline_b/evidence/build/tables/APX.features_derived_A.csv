@@ -1,34 +1,34 @@
-feature,formula
-n_items,order_items.order_item_id (count)
-n_products,order_items.product_id (distinct)
-n_sellers,order_items.seller_id (distinct)
-n_categories,"products.category (distinct, English)"
-total_price,order_items.price (sum; missing if any item invalid)
-total_freight,order_items.freight_value (sum; missing if any item invalid)
-freight_ratio,total_freight / total_price
-total_weight_g,products.product_weight_g (sum)
-total_volume_cm3,products length x height x width (sum)
-weight_missing_fraction,share of items without a valid weight
-volume_missing_fraction,share of items without valid dimensions
-primary_category,category of the highest-priced item (English)
-category_missing_fraction,share of items without a translated category
-customer_state,customers.customer_state
-primary_seller_state,sellers.seller_state of the primary item
-distance_km_max,max haversine customer-seller distance over distinct sellers (IBGE-filtered ZIP centroids)
-distance_missing_fraction,share of distinct sellers without a resolved distance
-interstate_share,share of distinct sellers in another state
-purchase_month,"orders.order_purchase_timestamp (month, numeric)"
-purchase_dayofweek,"orders.order_purchase_timestamp (Monday = 0, numeric)"
-purchase_hour,"orders.order_purchase_timestamp (hour, numeric)"
-primary_payment_type,order_payments (type with the largest usable value)
-payment_installments_max,order_payments.payment_installments (max over usable lines)
-n_payment_methods,order_payments.payment_type (distinct usable)
-product_photos_qty,products.product_photos_qty of the primary item
-product_description_lenght,products.product_description_lenght of the primary item
-seller_prior_review_mean,"mean valid review score of the primary seller's earlier orders, reviews answered strictly before this purchase (own order excluded)"
-missingindicator_seller_prior_review_mean,"1 if seller_prior_review_mean is missing, else 0"
-missingindicator_total_volume_cm3,"1 if total_volume_cm3 is missing, else 0"
-missingindicator_product_description_lenght,"1 if product_description_lenght is missing, else 0"
-missingindicator_total_weight_g,"1 if total_weight_g is missing, else 0"
-distance_km_max_missing,"1 if distance_km_max is missing, else 0"
-missingindicator_product_photos_qty,"1 if product_photos_qty is missing, else 0"
+feature,formula,hypothesised_signal
+n_items,order_items.order_item_id (count),more items mean more picking and packing and more chances that one item is late or wrong
+n_products,order_items.product_id (distinct),distinct products widen the chance of a stock or quality problem
+n_sellers,order_items.seller_id (distinct),"several sellers ship separate parcels, so the order is complete only when the slowest one arrives"
+n_categories,"products.category (distinct, English)",mixed baskets combine items with different handling
+total_price,order_items.price (sum; missing if any item invalid),expensive orders raise expectations and may get different handling
+total_freight,order_items.freight_value (sum; missing if any item invalid),"freight reflects distance, weight and carrier service level"
+freight_ratio,total_freight / total_price,a freight cost high relative to the price may disappoint the customer
+total_weight_g,products.product_weight_g (sum),heavy parcels travel by slower freight services
+total_volume_cm3,products length x height x width (sum),bulky parcels travel by slower freight services
+weight_missing_fraction,share of items without a valid weight,missing catalogue dimensions mark less complete listings
+volume_missing_fraction,share of items without valid dimensions,missing catalogue dimensions mark less complete listings
+primary_category,category of the highest-priced item (English),"categories differ in handling, seller mix and customer expectations"
+category_missing_fraction,share of items without a translated category,a missing category marks less complete listings
+customer_state,customers.customer_state,destination region drives the transport route and its reliability
+primary_seller_state,sellers.seller_state of the primary item,origin region drives the transport route and its reliability
+distance_km_max,max haversine customer-seller distance over distinct sellers (IBGE-filtered ZIP centroids),longer customer-seller distance means longer transit
+distance_missing_fraction,share of distinct sellers without a resolved distance,a missing location marks unusual or incomplete addresses
+interstate_share,share of distinct sellers in another state,interstate legs add hand-overs and tax checkpoints
+purchase_month,"orders.order_purchase_timestamp (month, numeric)",seasonal peaks (e.g. year-end) load the logistics network
+purchase_dayofweek,"orders.order_purchase_timestamp (Monday = 0, numeric)",orders placed before a weekend wait longer for dispatch
+purchase_hour,"orders.order_purchase_timestamp (hour, numeric)",late orders miss the same-day dispatch cut-off
+primary_payment_type,order_payments (type with the largest usable value),"boleto payments clear later than cards, delaying dispatch"
+payment_installments_max,order_payments.payment_installments (max over usable lines),instalments relate to order value and buyer profile
+n_payment_methods,order_payments.payment_type (distinct usable),split payments are rare and may mark unusual orders
+product_photos_qty,products.product_photos_qty of the primary item,listings with more photos set clearer expectations
+product_description_lenght,products.product_description_lenght of the primary item,longer descriptions set clearer expectations
+seller_prior_review_mean,"mean valid review score of the primary seller's earlier orders, reviews answered strictly before this purchase (own order excluded)",the seller rating shown at checkout summarises the seller's past service
+missingindicator_seller_prior_review_mean,"1 if seller_prior_review_mean is missing, else 0",a missing value carries its own meaning (e.g. a seller without an earlier review)
+missingindicator_total_volume_cm3,"1 if total_volume_cm3 is missing, else 0",a missing value carries its own meaning
+missingindicator_product_description_lenght,"1 if product_description_lenght is missing, else 0",a missing value carries its own meaning
+missingindicator_total_weight_g,"1 if total_weight_g is missing, else 0",a missing value carries its own meaning
+distance_km_max_missing,"1 if distance_km_max is missing, else 0",a missing value carries its own meaning
+missingindicator_product_photos_qty,"1 if product_photos_qty is missing, else 0",a missing value carries its own meaning

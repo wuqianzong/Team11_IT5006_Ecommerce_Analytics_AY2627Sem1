@@ -2,6 +2,8 @@
 
 For each Olist order the business needs two answers: how many days delivery will take, so the customer can be promised a realistic range, and whether the customer is likely to leave a 1 or 2 star review, so customer service can act before it is written. We predict the first at checkout and the second when the parcel is handed to the carrier.
 
+**Why.** Revenue grew {{BIZ.rev_growth}} times, then stalled below its November 2017 peak, while late deliveries reached {{A3.trend.late_2018_03}} and detractors {{A3.trend.detractor_2018_03}} in March 2018; only {{BC.retention.share}} of customers ordered more than once in fourteen months. The goal: restart sales with a promise Olist keeps, and lift retention by reaching unhappy customers first.
+
 **Method.** Every model row holds only what is known at its prediction moment; every step learned from data is fitted inside time-ordered, customer-purged folds; correlated and nested features are removed by a stated rule before selection; and models are compared from the simplest upwards, keeping the simpler one unless a more complex one is better by more than the fold-to-fold variation. We first built Pipeline A, a complete baseline for every order, and then Pipeline B, the delivered model, a focused improvement: the seven largest states, the seller's and the route's recent delivery history, and the alert moved to carrier handover. The rule for adopting the improvement was fixed before the test, and both pipelines were frozen and scored once on the same test period.
 
 *Table 1. Headline test results, Pipeline B and Pipeline A on the same test orders.*
@@ -14,6 +16,6 @@ For each Olist order the business needs two answers: how many days delivery will
 
 Pipeline B is better on the same test orders in both tasks, and both intervals exclude zero. On the validation folds, most of the lead-time gain comes from the narrower scope, the rest from the new features; for the alert it comes from the features and the later moment. Orders outside the seven states are served by Pipeline A's frozen model.
 
-**Use.** Show delivery promises as a range around the prediction; alert customer service at handover (about {{B10.clf.combined_test_alerts_day}} alerts a day on the test, including the fallback); flag orders whose shipping limit passes without a handover.
+**Use.** Olist's own estimate missed the actual lead time by {{BC.promise.olist_mae_2dp}} days on the same test orders. Pipeline B plus a buffer set on recent weeks at {{BC.buffer.recent5_target_share_late}} late ({{BC.buffer.recent5_buffer_days}} days, chosen without test data) promises a median of {{BC.promise.B6h_median}} days against Olist's {{BC.promise.olist_median}}, and was late for {{BC.promise.B6h_late}} of test orders against {{BC.promise.olist_late}} (post-test analysis). Flag missed dispatch, and alert customer service at handover (about {{B10.clf.combined_test_alerts_day}} alerts a day, including the fallback).
 
 **Limits.** The test period was faster than development, the operating threshold was chosen after the test (the frozen threshold's result is reported as the unbiased one), and all findings are associations, not causes.

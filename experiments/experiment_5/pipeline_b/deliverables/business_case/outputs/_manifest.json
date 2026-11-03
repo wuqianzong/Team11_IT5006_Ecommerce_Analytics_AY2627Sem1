@@ -1,0 +1,45 @@
+{
+  "node": "BCASE/business_case",
+  "run_id": "20261103T092348Z",
+  "commit": "b89abaeefd4e19f0a09ed08f2e4b63983560b793",
+  "dirty": false,
+  "events_until": "2100-01-01 00:00:00",
+  "python": "3.12.3",
+  "platform": "Linux-6.18.44-fc-v230-x86_64-with-glibc2.39",
+  "inputs": {
+    "experiments/experiment_5/pipeline_b/stages/t1_joint_test/regression/outputs/predictions_test.csv.gz": "32d5699953c15456523bd7f016684f96954d7116455f7d5ff78e7d8c95987f63",
+    "experiments/experiment_5/pipeline_b/stages/t1_joint_test/classification/outputs/predictions_test.csv.gz": "c13076921c074e2a383c35808fb4d32a80d43a570abe821e7522a952a4bbed96",
+    "experiments/experiment_5/pipeline_b/stages/b08/regression/outputs/predictions.csv.gz": "442bc15273366712b1dee0b599de1dc5f0167de056bda0dc4c5acd36c4765c59",
+    "experiments/experiment_5/pipeline_b/stages/b12/regression/outputs/buffer_choice.csv": "deec20950de2db04ebbe96f504729db632a36c5de76a133fe8b9a4499c6667e2",
+    "experiments/experiment_5/pipeline_b/stages/b10/classification/outputs/threshold_results.csv": "80a481fa4f5b31e5cc34f2028bfc05f9ccd958f59eb33c33bc23c4f881bce2e1",
+    "experiments/experiment_5/pipeline_b/stages/b09/classification/outputs/missed_dispatch_rule_test.csv": "3549cc215357e67c4382bfb3c914630ba95253377e9ed3d39473024cac85e179",
+    "experiments/experiment_5/stages/s02_data/common/outputs/records.csv.gz": "3a86d161df392891c499b9f1d88cc7d2145d94b4015721fc631dc360dcbc4f5a",
+    "data/business/dashboard/smartcommerce_consolidated.csv": "32c2f4ee3e8f7f2644b79eb932dffb0a4003a781ae86a9159d96d0a2e957e796",
+    "data/raw/olist_orders_dataset.csv": "8df58ef3d2d7e9944010f7beecd9b75367f5588ec6e3c91cec19ae3345ef9ecf",
+    "data/raw/olist_order_items_dataset.csv": "0bc4d068c4fe38cbb01bd90e8746e3c613fe7b4baef75fab7b0e329701c3e279",
+    "data/raw/olist_sellers_dataset.csv": "1f643d2b950373b85735e7794b20986f528d7a000432e7c6f9bcbb44d0846a0e",
+    "data/raw/olist_customers_dataset.csv": "983a422239e1712ded753b3bf9ecf47dc73f144d306029dcfa99e70a226883d2"
+  },
+  "code": {
+    "experiments/experiment_5/pipeline_b/deliverables/business_case/make_business_case.py": "817dade6fa02dbacaceabe14d759e9c64bdad322db948e631957c4fb00e4c590",
+    "experiments/experiment_5/pipeline_b/deliverables/dashboard/app/dashboard_core/score_tab.py": "5d0b6a3b4059b1c40c99d0a169d30864d12c7df92d5302be876284633a5cbc9b",
+    "experiments/experiment_5/pipeline_b/deliverables/dashboard/app/dashboard_core/alerts.py": "4104aacaa3c54f227a02ab4c85d63b65072163c17ec2daf3b0f6a28b7246866e",
+    "experiments/experiment_5/pipeline_b/deliverables/dashboard/app/dashboard_core/model_client.py": "515f1046bfea6824ffd7e6ed750e524410ed87d0582c58024d66e6944a9e14ec",
+    "experiments/experiment_5/pipeline_b/deliverables/dashboard/app/dashboard_core/routing.py": "aabbd23dd10f4bd6ab5caf0cd3576ea9500df01608d21199fa5710aa3cb39a4d",
+    "experiments/experiment_5/pipeline_b/deliverables/dashboard/app/dashboard_core/data.py": "83d51a6369926f9c82c82bcafd3b60f36f172013f55f823c96c79ff5d7649d17"
+  },
+  "outputs": {
+    "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/_evidence_index.json": "3efe3ef07b5ba4ff5687b907439f9ce441e5f36136edaefb1211d347f6ffb0cb",
+    "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/buffer_recent.csv": "ebf3bcec4a5cb02d534aaa05a446c2a7a353cad390d5ffe43f67c619548a9aaa",
+    "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/cost_check.csv": "a81db2c428f7c757a54936faae89212a84c2d76a528767cecf0c764c46a3af21",
+    "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/discount.csv": "06baf59266d1d9285f03f6ed119cd9ac243264577336b6a14517f70adaa3d362",
+    "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/error_profile.csv": "8dda280a911d166d34b65c01fb0591e7e2aa8ac8e2ad8b3ff3f87aa3bf5efdc8",
+    "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/expedite.csv": "2907a51ffdfdf2c876ef3b5dde6f4b1bd0485cba021e9634f9ab3ca12162a42a",
+    "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/figures/promise_compare.csv": "761b76d7e4e7aac29dd6c81ac3f2075f879e00068d463a56825729de27144649",
+    "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/figures/promise_compare.png": "7063a6c775009db7f2b04c618e6808609118e5313c32edc693b146a4429572a2",
+    "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/promise_compare.csv": "761b76d7e4e7aac29dd6c81ac3f2075f879e00068d463a56825729de27144649",
+    "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/reach.csv": "7c46bd5279c50365b27d83b555d23c484b40826d335d9f453a5fa9bcfaf97a31",
+    "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/retention.csv": "7c2f2c3e87f6f42b901f3643cb12fa65fb9ca50581598072e49f5aca7ed326c6",
+    "experiments/experiment_5/pipeline_b/deliverables/business_case/outputs/summary.json": "a75bf9b9a9ad96ac523cdbbaea7ccfff07140899a2c1472d5e044562bbd47b0f"
+  }
+}

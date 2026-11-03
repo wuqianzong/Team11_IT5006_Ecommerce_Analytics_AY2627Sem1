@@ -17,8 +17,9 @@ Plan revision 2.3 (`../DASHBOARD_PLAN.md`, 2026-10-30) is implemented, with four
    stop under a scenario (4.3). Scenarios are labelled as associations, not effects of the action.
 
 Revision 2.3 removed the score pointers that tabs 2 and 3 kept after revision 2 moved scoring to tab 4, and renamed
-tab 4 from "Score an order" to "ML deployment". Hosting plan: the model API in `../api/` and this app on Streamlit
-Community Cloud (`../api/README.md`); the app is not hosted yet.
+tab 4 from "Score an order" to "ML deployment". The app is hosted on Streamlit
+Community Cloud at https://it5006grp11ecommerce.streamlit.app/ and runs the same frozen bundles (report section 8);
+the optional model API is described in `../api/README.md`.
 
 The repository-root launchers `app.py` and `deployment/app.py` both run this app (the root `requirements.txt` mirrors
 `requirements.txt` here), so `streamlit run app.py` from the repository root also opens it.
@@ -41,7 +42,7 @@ Run the dashboard tests:
 experiments\experiment_5\pipeline_b\deliverables\dashboard\app\.venv\Scripts\python.exe -m pytest experiments\experiment_5\pipeline_b\deliverables\dashboard\app\tests
 ```
 
-The locally verified URL is `http://localhost:8501`.
+The locally verified URL is `http://localhost:8501`; the hosted app is at https://it5006grp11ecommerce.streamlit.app/.
 
 Screenshots are in `screenshots/2026-10-30/` (1600 x 1000, headless Edge, after revision 2.3):
 `01_business_overview.png`, `02_lead_time_headline.png`, `03_promise_buffer.png`, `04_detractor_headline.png`,

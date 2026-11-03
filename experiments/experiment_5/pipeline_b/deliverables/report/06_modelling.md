@@ -18,7 +18,9 @@ Each step up the ladder must beat the step below it on the same folds. Appendix 
 
 *Figure: Model ladder on the five folds, lead time (F.reg.family_ladder) and detractor alert (F.clf.family_ladder).*
 
-The linear model beats the dummy in every fold, by {{B6.reg.gain_linear}} days of MAE on average, and the logistic model by {{B6.clf.gain_linear}} AP. The single tree is worse than the linear model in both tasks: {{B6.reg.gain_tree}} days, better in {{B6.reg.gain_tree_folds}} of five folds, and {{B6.clf.gain_tree}} AP, better in {{B6.clf.gain_tree_folds}}. The forest is slightly better on average, {{B6.reg.gain_forest}} days (paired standard error {{B6.reg.gain_forest_se}}, better in {{B6.reg.gain_forest_folds}} folds), and more consistently so for the alert, {{B6.clf.gain_forest}} AP (standard error {{B6.clf.gain_forest_se}}, better in {{B6.clf.gain_forest_folds}} folds).
+**Training results** (appendix H). The plain models do not overfit: for lead time a dummy with no features shows the same training-to-validation gap ({{B6.reg.dummy_train}} to {{B6.reg.dummy_validation}} days) as the linear model ({{B6.reg.linear_train}} to {{B6.reg.linear_validation}}), so the gap is a period effect, and for the alert training and validation AP are close ({{B6.clf.linear_train}} and {{B6.clf.linear_validation}}). The learning curves show that the most recent orders predict best and that more data narrows the gap without lifting validation much.
+
+The linear model beats the dummy in every fold; the single tree is worse than the linear model in both tasks, and the forest only slightly better (appendix H gives the gains).
 
 ### 6.3 Tuning
 

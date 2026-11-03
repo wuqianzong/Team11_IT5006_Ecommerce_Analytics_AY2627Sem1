@@ -32,3 +32,6 @@ b10:
 
 b11:
   eda_numbers_from_a: {cite: true, source: "A's s03 outputs at tag e5-A-frozen, read only, sha256 checked", report_section: "03_eda.md", decision: B-G-11, status: agreed, decided_by: "Henry for the team; ratified by experiment lead (Wu Qianzong) 2026-10-27", date: 2026-10-27}
+  business_case:
+    promise_rule: {rule: "smallest buffer on the 0.5-day grid with at most 5% late on the most recent weeks", value_last_fold_days: 6.5, status: candidate, backtest: "rolling, before monthly use", replaces: B-G-21, decision: B-G-25, decided_by: "experiment lead (Wu Qianzong)", date: 2026-11-03}
+    approvals_v2_4: {agreed: [B-G-19, B-G-20, B-G-22, B-G-23, B-G-26, B-G-27], note: "B-G-22 agreed with the parts superseded by B-G-26", decided_by: "experiment lead (Wu Qianzong)", date: 2026-11-03}

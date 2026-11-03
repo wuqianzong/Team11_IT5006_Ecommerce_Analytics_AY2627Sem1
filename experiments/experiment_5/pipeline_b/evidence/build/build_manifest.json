@@ -1,7 +1,7 @@
 {
-  "commit": "d401a2132af92d4475de137a72c55239fc4f7598",
-  "registry_sha256": "b130482e6924099fe6e5527c7b0659ed1bc91157b0d226562625f648063f4295",
-  "items": 375,
+  "commit": "b89abaeefd4e19f0a09ed08f2e4b63983560b793",
+  "registry_sha256": "1f1ffae20a5ef52d1802d5db701c35e4ac82c18b6a06b2270619e4deccb84e89",
+  "items": 622,
   "current_runs": {
     "b02/classification": "20261023T154822Z",
     "b02/regression": "20261023T154814Z",
