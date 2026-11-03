@@ -393,15 +393,20 @@ def test_curves(name: str) -> None:
 def promise_compare(name: str) -> None:
     """Business case BC.1 (B-CR-50): median promise on B's test orders, labelled with late share and MAE."""
     d = _read(B_ROOT / "deliverables/business_case/outputs/figures/promise_compare.csv").iloc[::-1].reset_index(drop=True)
-    short = {"Pipeline B + 10 days (recent-weeks buffer)": "B + 10 d (recent weeks)", "Dummy (median)": "Dummy"}
+    short = {"Dummy (median)": "Dummy"}   # v2.4 (B-CR-53): rule rows named by their target
+    for s in d.series:
+        if "recommended" in s:
+            short[s] = s.split(" (")[0].replace("Pipeline ", "").replace(" days", " d") + " (5% rule)"
+        elif "Olist's late share" in s:
+            short[s] = s.split(" (")[0].replace("Pipeline ", "").replace(" days", " d") + " (Olist rule)"
     labels = [short.get(s, s.replace("Pipeline ", "").replace(" days", " d")) for s in d.series]
     colours = ["#F4A259" if k == "Olist's own promise" else ("#d1d5db" if k == "baseline" else BLUE) for k in d.kind]
     fig, ax = _fig(1000, 560)
     ax.barh(labels, d.median_promise_days, color=colours, height=0.7)
     for i, r in d.iterrows():
         ax.text(r.median_promise_days + 0.3, i, f"{r.share_late:.1%} late", va="center", fontsize=FONT)
-    ax.set_xlim(0, 27)
-    ax.set_xlabel("median promised lead time (days), B's test orders")
+    ax.set_xlim(0, 30)
+    ax.set_xlabel("median promise (days), B's test orders")
     _grid(ax, "x")
     fig.tight_layout()
     _save(fig, name)

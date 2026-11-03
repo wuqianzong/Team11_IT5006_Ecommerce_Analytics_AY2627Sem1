@@ -1,0 +1,18 @@
+rows,policy,population,cost_5_to_1
+validation,"Pipeline B, no alert",seven states (Pipeline B's orders),35000
+validation,Pipeline B at 1/6,seven states (Pipeline B's orders),30371
+validation,Pipeline B at 4/15,seven states (Pipeline B's orders),32853
+validation,"Fallback, no alert",outside the seven states (fallback orders),9750
+validation,Fallback (A) at 1/6,outside the seven states (fallback orders),8889
+validation,Serving rule: no alert,all served orders,44750
+validation,"Serving rule: B at 4/15, fallback at 1/6",all served orders,41742
+validation,"Serving rule: B at 4/15, no fallback alert",all served orders,42603
+test,"Pipeline B, no alert",seven states (Pipeline B's orders),7705
+test,Pipeline B at 1/6,seven states (Pipeline B's orders),7156
+test,Pipeline B at 4/15,seven states (Pipeline B's orders),7123
+test,"Fallback, no alert",outside the seven states (fallback orders),1800
+test,Fallback (A) at 1/6,outside the seven states (fallback orders),2088
+test,Fallback (A) at 4/15,outside the seven states (fallback orders),1716
+test,Serving rule: no alert,all served orders,9505
+test,"Serving rule: B at 4/15, fallback at 1/6",all served orders,9211
+test,"Serving rule: B at 4/15, no fallback alert",all served orders,8923

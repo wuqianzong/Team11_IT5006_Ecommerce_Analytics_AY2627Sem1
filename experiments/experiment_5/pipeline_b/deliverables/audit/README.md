@@ -40,6 +40,10 @@ asset downloaded), never from local copies. `figure_map.json` records which regi
 2026-11-03 on the committed inputs (report v2.3 rev 59, deck v2.3 version 48), after B-CR-52 (figures 20–23 side by
 side): all 9 checks PASS (`audit_result.json`).
 
+After B-CR-53 (v2.4 sources, before the doc and deck sync), on the same committed inputs: register recomputation and
+both alignment checks PASS; the six checks that compare the live doc and deck with the sources FAIL until Henry
+syncs review doc and deck to v2.4, as expected. `audit_result.json` is not updated by this run.
+
 ## Expected differences when re-checking
 
 - `evidence/build/build_manifest.json` records the commit the register was **built** on, which is the parent of the

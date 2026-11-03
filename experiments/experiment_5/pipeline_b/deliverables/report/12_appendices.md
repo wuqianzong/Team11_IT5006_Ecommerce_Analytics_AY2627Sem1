@@ -271,10 +271,10 @@ These tables were moved from the body to keep it within the page limit; the body
 
 | Action | What the evidence shows | Label | Dashboard |
 | --- | --- | --- | --- |
-| Promise: B plus a buffer reset monthly on recent weeks | Olist's estimate: median {{BC.promise.olist_median}} days, {{BC.promise.olist_late}} late; B plus 6 days: {{BC.promise.B6_median}} days, {{BC.promise.B6_late}} late; the recent-weeks rule gives {{BC.buffer.recentolist_buffer_days}} days, {{BC.promise.B10_late}} late on the test (post-test analysis); the {{B12.reg.buffer_90}}-day buffer chosen on validation leaves {{B12.reg.buffer_90_test_late}} late. Faster delivery raised sales elsewhere (Fisher et al., 2019; Salari et al., 2022); over-promising has costs (Cui et al., 2024) | Observation; operational rule; literature-supported hypothesis for sales | Lead time, promise buffer |
-| Dispatch: flag missed dispatch and manage slow sellers | {{BC.expedite.B10_share_of_late_with_late_handover}} of late orders were handed over late; the missed-dispatch rule has precision {{B9.clf.missed_dispatch_precision}} and catches {{B9.clf.missed_dispatch_share}} of all detractors, with no model | Observation; unmeasured mechanism for seller management | Detractor risk, missed dispatch |
-| Transit: expedite after a late handover | 10% faster transit would put {{BC.expedite.B10_share_of_all_late_on_time}} of late orders on time | Scenario; unmeasured mechanism | ML deployment, scenarios |
-| Service recovery: alert at handover | Pipeline B at 4/15: {{B10.clf.B_4_15_test_alerts_day}} alerts a day, precision {{B10.clf.B_4_15_test_precision}}, about {{BC.reach.B415_reached_day}} detractors reached a day; with the fallback at 1/6, {{B10.clf.combined_test_alerts_day}} a day at precision {{B10.clf.combined_test_precision}}; a 30% freight cut moves {{BC.discount.B10_f30_stops}} of {{BC.discount.B10_flagged}} still-late flagged orders below 4/15 | Observation; operational rule for the workflow; association for the discount | Detractor risk, ML deployment |
+| Promise: B plus a buffer set on recent weeks at {{BC.buffer.recent5_target_share_late}} late (candidate rule) | Olist's estimate: median {{BC.promise.olist_median}} days, {{BC.promise.olist_late}} late; the {{BC.buffer.recent5_target_share_late}} rule gives {{BC.buffer.recent5_buffer_days}} days without test data: {{BC.promise.B6h_median}} days, {{BC.promise.B6h_late}} late on the test (post-test analysis); matching Olist's late share would need {{BC.buffer.recentolist_buffer_days}} days; the {{B12.reg.buffer_90}}-day buffer chosen on validation leaves {{B12.reg.buffer_90_test_late}} late. Shorter promises raised sales in an experiment (Cui et al., 2024) and a simulation (Salari et al., 2022) and lowered retention in the experiment; faster actual delivery raised sales at another retailer (Fisher et al., 2019) | Observation; operational rule; literature-supported hypothesis for sales | Lead time, promise buffer |
+| Dispatch: flag missed dispatch and manage slow sellers | {{BC.expedite.B6h_share_of_late_with_late_handover}} of late orders were handed over late; the missed-dispatch rule has precision {{B9.clf.missed_dispatch_precision}} and catches {{B9.clf.missed_dispatch_share}} of all detractors, with no model | Observation; unmeasured mechanism for seller management | Detractor risk, missed dispatch |
+| Transit: expedite after a late handover | 10% faster transit would put {{BC.expedite.B6h_share_of_all_late_on_time}} of late orders on time | Scenario; unmeasured mechanism | ML deployment, scenarios |
+| Service recovery: alert at handover | Pipeline B at 4/15: {{B10.clf.B_4_15_test_alerts_day}} alerts a day, precision {{B10.clf.B_4_15_test_precision}}, about {{BC.reach.B415_reached_day}} detractors reached a day; with the fallback at 1/6, {{B10.clf.combined_test_alerts_day}} a day at precision {{B10.clf.combined_test_precision}}; a 30% freight cut moves {{BC.discount.B6h_f30_stops}} of {{BC.discount.B6h_flagged}} still-late flagged orders below 4/15; test cost {{B10.clf.combined_test_cost_5_1}} against {{BC.cost.test_serve_none}} with no alerts (Table K21) | Observation; proposed workflow (operational rule); association for the discount | Detractor risk, ML deployment |
 
 *Table K17. Limitations and how each is handled (section 10).*
 
@@ -306,27 +306,43 @@ These tables were moved from the body to keep it within the page limit; the body
 | Pipeline B + 5 days | {{BC.promise.B5_median}} | {{BC.promise.B5_mae}} | {{BC.promise.B5_late}} |
 | Pipeline B + 6 days | {{BC.promise.B6_median}} | {{BC.promise.B6_mae}} | {{BC.promise.B6_late}} |
 | Pipeline B + 12 days (buffer chosen on validation) | {{BC.promise.B12_median}} | {{BC.promise.B12_mae}} | {{BC.promise.B12_late}} |
-| Pipeline B + 10 days (recent-weeks rule) | {{BC.promise.B10_median}} | {{BC.promise.B10_mae}} | {{BC.promise.B10_late}} |
+| Pipeline B + 10 days (recent weeks, Olist's late share) | {{BC.promise.B10_median}} | {{BC.promise.B10_mae}} | {{BC.promise.B10_late}} |
+| Pipeline B + {{BC.buffer.recent5_buffer_days}} days (recent weeks, {{BC.buffer.recent5_target_share_late}} late; recommended) | {{BC.promise.B6h_median}} | {{BC.promise.B6h_mae}} | {{BC.promise.B6h_late}} |
 
-The recent-weeks rule is applied on the last validation fold ({{BC.buffer.recentolist_first_purchase}} to {{BC.buffer.recentolist_last_purchase}}), where Olist's estimate was late for {{BC.buffer.recentolist_olist_validation_share_late}}; a 10% target on the same weeks would give {{BC.buffer.recent10_buffer_days}} days ({{BC.buffer.recent10_test_share_late_B}} late on the test). Transit scenario: under the recommended promise, {{BC.expedite.B10_late_with_late_handover}} of {{BC.expedite.B10_late_orders}} late orders were handed over late, and {{BC.expedite.B10_on_time_if_transit_10pct_faster}} of them would have arrived on time with transit 10% faster (against Olist's estimate, {{BC.expedite.olist_on_time_if_transit_10pct_faster}} of {{BC.expedite.olist_late_with_late_handover}}).
+The recent-weeks rules are applied on the last validation fold only ({{BC.buffer.recentolist_first_purchase}} to {{BC.buffer.recentolist_last_purchase}}; no rolling backtest): at most {{BC.buffer.recent5_target_share_late}} late gives {{BC.buffer.recent5_buffer_days}} days ({{BC.buffer.recent5_validation_share_late}} late on those weeks); Olist's estimate was late for {{BC.buffer.recentolist_olist_validation_share_late}} there, and matching it gives {{BC.buffer.recentolist_buffer_days}} days; a 10% target gives {{BC.buffer.recent10_buffer_days}} days ({{BC.buffer.recent10_test_share_late_B}} late on the test). Transit scenario: under the recommended promise, {{BC.expedite.B6h_late_with_late_handover}} of {{BC.expedite.B6h_late_orders}} late orders were handed over late, and {{BC.expedite.B6h_on_time_if_transit_10pct_faster}} of them would have arrived on time with transit 10% faster (against Olist's estimate, {{BC.expedite.olist_on_time_if_transit_10pct_faster}} of {{BC.expedite.olist_late_with_late_handover}}).
 
 *Table K19. Alert options on the test period: detractors reached a day = precision × alerts a day (section 9; post-test view; A at 4/15 is a threshold not tuned on the test).*
 
-| Option | Alerts a day | Precision | Detractors reached a day |
-| --- | --- | --- | --- |
-| Pipeline B at 4/15, seven states | {{BC.reach.B415_alerts_day}} | {{BC.reach.B415_precision}} | {{BC.reach.B415_reached_day}} |
-| Pipeline A fallback at 1/6, other orders | {{BC.reach.A16_alerts_day}} | {{BC.reach.A16_precision}} | {{BC.reach.A16_reached_day}} |
-| Pipeline A fallback at 4/15, other orders | {{BC.reach.A415_alerts_day}} | {{BC.reach.A415_precision}} | {{BC.reach.A415_reached_day}} |
-| Missed-dispatch rule | {{BC.reach.rule_alerts_day}} | {{BC.reach.rule_precision}} | {{BC.reach.rule_reached_day}} |
+| Option | Population | Alerts a day | Precision | Detractors reached a day | Cost at 5:1 | Cost with no alert |
+| --- | --- | --- | --- | --- | --- | --- |
+| Pipeline B at 4/15 | Seven states | {{BC.reach.B415_alerts_day}} | {{BC.reach.B415_precision}} | {{BC.reach.B415_reached_day}} | {{BC.reach.B415_cost}} | {{BC.reach.B415_cost_no_alert}} |
+| Pipeline A fallback at 1/6 | Outside the seven states | {{BC.reach.A16_alerts_day}} | {{BC.reach.A16_precision}} | {{BC.reach.A16_reached_day}} | {{BC.reach.A16_cost}} | {{BC.reach.A16_cost_no_alert}} |
+| Pipeline A fallback at 4/15 | Outside the seven states | {{BC.reach.A415_alerts_day}} | {{BC.reach.A415_precision}} | {{BC.reach.A415_reached_day}} | {{BC.reach.A415_cost}} | {{BC.reach.A415_cost_no_alert}} |
+| Missed-dispatch rule | Seven states, including orders never handed over; overlaps Pipeline B's alerts | {{BC.reach.rule_alerts_day}} | {{BC.reach.rule_precision}} | {{BC.reach.rule_reached_day}} | {{BC.reach.rule_cost}} | {{BC.reach.rule_cost_no_alert}} |
 
-*Table K20. Freight scenarios on the {{BC.discount.B10_flagged}} still-late orders Pipeline B flags under the recommended promise ({{BC.discount.B10_detractors}} detractors): alerts that fall below 4/15 (section 9; association, not an effect).*
+The rule and the fallback serve different orders, so one cannot replace the other; the rule's reach overlaps Pipeline B's and is not added to it.
+
+*Table K20. Freight scenarios on the {{BC.discount.B6h_flagged}} still-late orders Pipeline B flags under the recommended promise ({{BC.discount.B6h_detractors}} detractors): alerts that fall below 4/15 (section 9; association, not an effect).*
 
 | Scenario | Alerts that stop | Of which below the lowest training freight |
 | --- | --- | --- |
-| Freight −20% | {{BC.discount.B10_f20_stops}} | {{BC.discount.B10_f20_outside}} |
-| Freight −30% | {{BC.discount.B10_f30_stops}} | {{BC.discount.B10_f30_outside}} |
-| Freight −50% | {{BC.discount.B10_f50_stops}} | {{BC.discount.B10_f50_outside}} |
-| Free shipping | {{BC.discount.B10_free_stops}} | {{BC.discount.B10_free_outside}} |
+| Freight −20% | {{BC.discount.B6h_f20_stops}} | {{BC.discount.B6h_f20_outside}} |
+| Freight −30% | {{BC.discount.B6h_f30_stops}} | {{BC.discount.B6h_f30_outside}} |
+| Freight −50% | {{BC.discount.B6h_f50_stops}} | {{BC.discount.B6h_f50_outside}} |
+| Free shipping | {{BC.discount.B6h_free_stops}} | {{BC.discount.B6h_free_outside}} |
+
+*Table K21. Cost at 5:1 (a missed detractor weighs as five false alerts) against no alert, on the orders each model serves (section 9; thresholds set on validation, test a post-test view).*
+
+| Policy | Validation | Test |
+| --- | --- | --- |
+| Pipeline B, no alert | {{BC.cost.validation_B_none}} | {{BC.cost.test_B_none}} |
+| Pipeline B at 1/6 | {{BC.cost.validation_B16}} | {{BC.cost.test_B16}} |
+| Pipeline B at 4/15 | {{BC.cost.validation_B415}} | {{BC.cost.test_B415}} |
+| Fallback, no alert | {{BC.cost.validation_A_none}} | {{BC.cost.test_A_none}} |
+| Fallback at 1/6 | {{BC.cost.validation_A16}} | {{BC.cost.test_A16}} |
+| Serving rule, no alert | {{BC.cost.validation_serve_none}} | {{BC.cost.test_serve_none}} |
+| Serving rule: B at 4/15, fallback at 1/6 | {{BC.cost.validation_serve}} | {{BC.cost.test_serve}} |
+| Serving rule: B at 4/15, no fallback alert | {{BC.cost.validation_serve_nofb}} | {{BC.cost.test_serve_nofb}} |
 
 ### L. Dashboard screenshots
 
@@ -336,7 +352,7 @@ Two views of the app, reading the stored test outputs.
 
 ### M. Declaration of AI use
 
-The team used Anthropic's Claude (Claude Code) throughout. It wrote and ran most of the pipeline code under the team's instructions, drafted the stage documentation, built the number register, and drafted this report and the slides. The team set the problem, the scope and every decision recorded in the project's decision logs, reviewed each stage before it was accepted, and checked the drafts. Every number in the report is filled from the stored pipeline outputs through the register, never typed; an audit script compares the report and slides against those outputs. Every reference was checked by the team against the publisher's record, and the claims made from each source were checked against that record (literature register).
+The team used Anthropic's Claude (Claude Code) throughout. It wrote and ran most of the pipeline code under the team's instructions, drafted the stage documentation, built the number register, and drafted this report and the slides. The team set the problem, the scope and every decision recorded in the project's decision logs, reviewed each stage before it was accepted, and checked the drafts. Every number in the report is filled from the stored pipeline outputs through the register, never typed; an audit script compares the report and slides against those outputs. The team checked the first twelve references against the publisher's record, and the claims made from each against that record; the two sources added in version 2.3 (Fisher et al., 2019; Salari et al., 2022) were checked against each DOI's Crossref record, with claims limited to the abstract (literature register).
 
 ### N. Reproducing the experiment
 

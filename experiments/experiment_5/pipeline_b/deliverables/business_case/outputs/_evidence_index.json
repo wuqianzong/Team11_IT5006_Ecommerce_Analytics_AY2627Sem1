@@ -31,13 +31,27 @@
       ],
       "kind": "table"
     },
+    "cost_check.csv": {
+      "ids": [
+        "BC.6"
+      ],
+      "kind": "table"
+    },
+    "retention.csv": {
+      "ids": [
+        "BC.7"
+      ],
+      "kind": "table"
+    },
     "summary.json": {
       "ids": [
         "BC.1",
         "BC.2",
         "BC.3",
         "BC.4",
-        "BC.5"
+        "BC.5",
+        "BC.6",
+        "BC.7"
       ],
       "kind": "json"
     },

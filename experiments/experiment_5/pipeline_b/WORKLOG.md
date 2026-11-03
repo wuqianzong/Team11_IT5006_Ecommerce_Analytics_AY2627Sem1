@@ -924,3 +924,38 @@ more on the test than sending no alert, because the test period had fewer detrac
 
 **Questions for Benson**
 - Approve B-CR-50 to B-CR-52 and merge; rename the review doc (file name still v2.2).
+
+## 2026-11-03 · Benson + Claude · Report and deck v2.4 content (B-CR-53)
+
+**Done**
+- Took over from HS-02 on `e5/validation-fixes-henry` at `acda7ca`. Baseline reproduced on Linux before any change:
+  register 508 items, audit 9/9 on rev 59 and deck version 48, tests 36 passed, 5 skipped.
+- Validated Solomon's v2.3 audit (`deliverables/audit/runs/2026-11-03_solomon_v2.3_audit.md`): points 1–4, 6, 8, 9
+  valid, 7 partly, 5 not valid (the app opens without login); one more found (Fisher cited for promises).
+- Business case producer: 5% recent-weeks buffer (6.5 days) as the recommended rule (B-G-25, Benson), populations and
+  costs against no alert (BC.5, BC.6), whole-window repeat share (BC.7), Python and platform in the manifest. Deck
+  render of the promise chart relabelled. Register 562 items.
+- Sources only (Benson edits content; Henry produces doc, Word and deck): executive summary, §1, §9, §10, appendix
+  K16, K18–K21, M; slides business, use_reg, use_clf. Records: B-CR-53, B-G-25 to B-G-27, CHANGES.md, literature
+  register, audit README, human_decisions_B.yaml.
+
+**Machine**
+- Linux, Python 3.12.3 (dashboard venv, business case) and 3.13.18 (Experiment 5 venv, renders, register, audit).
+  Before the change, a rerun of the business case gave byte-identical CSV and JSON. This machine's matplotlibrc picks
+  Inter, so renders were run with `MATPLOTLIBRC` pinning DejaVu Sans (matplotlib's default, as on Windows): the 18
+  unchanged deck renders are pixel-identical to Henry's, with different PNG bytes (compression).
+
+**Checks**
+- All placeholders resolve (report and slides); tests 36 passed, 5 skipped.
+- Audit on rev 59 and deck version 48: recomputation and both alignment checks PASS; the six live-doc and live-deck
+  checks FAIL until the sync (expected).
+- Body text about 100 words longer than v2.3 by source count (exec summary +9, §1 +12, §9 +69, §10 +10).
+
+**Next (Henry)**
+- Optional, to keep his image bytes: rerun `make_business_case.py` and `make_deck_renders.py` on Windows, then
+  `build_evidence_B.py build`; only the promise chart (report figure 24 and slide 16) then differs from v2.3.
+- Sync review doc and deck to the sources (v2.4 labels), refresh audit inputs, audit 9/9, check the 20-page limit
+  with `format_submission_docx.ps1`, export v2.4.
+
+**Questions for Benson**
+- Approve B-G-19, B-G-20, B-G-23, B-G-24 (Proposed) and B-G-26, B-G-27; sign literature rows 13 and 14; merge.

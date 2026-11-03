@@ -1,0 +1,2 @@
+first_month,last_month,customers,customers_more_than_one_order,share_more_than_one_order,definition
+2017-03,2018-04,67384,1971,0.029250267125727175,"customer_unique_id with more than one order over the whole window (business overview data, dashboard_core.data.load_business_complete_months)"

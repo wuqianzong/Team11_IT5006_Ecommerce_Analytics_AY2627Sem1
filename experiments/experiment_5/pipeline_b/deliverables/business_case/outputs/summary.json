@@ -45,16 +45,23 @@
       "mae_days": 13.412426730879218,
       "share_late": 0.015173129295811178
     },
-    "pipeline_b_plus_10_days_recent_weeks_buffer": {
+    "pipeline_b_plus_10_days_recent_weeks,_olist's_late_share": {
       "median_promise_days": 18.499894678361542,
       "mae_days": 11.483293865383192,
       "share_late": 0.020749578524186227
+    },
+    "pipeline_b_plus_6.5_days_recommended:_recent_weeks,_5%_late": {
+      "median_promise_days": 14.999894678361542,
+      "mae_days": 8.191801751809814,
+      "share_late": 0.04227726624302944
     }
   },
   "buffer": {
     "frozen_b12_days": 12.0,
     "recent_10pct_days": 3.5,
     "recent_olist_days": 10.0,
+    "recent_5pct_days": 6.5,
+    "recommended_days": 6.5,
     "olist_last_fold_share_late": 0.021415167237001875,
     "last_fold": 5,
     "last_fold_first_purchase": "2018-04-01",
@@ -83,7 +90,7 @@
       "share_of_all_late_on_time": 0.021367521367521368,
       "late_share_after": 0.01484891713137077
     },
-    "Pipeline B + 10 days (recent-weeks buffer)": {
+    "Pipeline B + 10 days (recent weeks, Olist's late share)": {
       "orders": 15422,
       "late_orders": 320,
       "late_with_late_handover": 133,
@@ -92,6 +99,16 @@
       "share_of_late_handover_group_on_time": 0.09774436090225563,
       "share_of_all_late_on_time": 0.040625,
       "late_share_after": 0.01990662689664116
+    },
+    "Pipeline B + 6.5 days (recommended: recent weeks, 5% late)": {
+      "orders": 15422,
+      "late_orders": 652,
+      "late_with_late_handover": 244,
+      "share_of_late_with_late_handover": 0.37423312883435583,
+      "on_time_if_transit_10pct_faster": 20,
+      "share_of_late_handover_group_on_time": 0.08196721311475409,
+      "share_of_all_late_on_time": 0.03067484662576687,
+      "late_share_after": 0.0409804175852678
     }
   },
   "discount_best": {
@@ -101,7 +118,7 @@
       "free_shipping_stops": 45,
       "freight_30_stops": 7
     },
-    "Pipeline B + 10 days (recent-weeks buffer)": {
+    "Pipeline B + 10 days (recent weeks, Olist's late share)": {
       "flagged": 61,
       "detractors": 31,
       "free_shipping_stops": 49,
@@ -112,6 +129,12 @@
       "detractors": 28,
       "free_shipping_stops": 39,
       "freight_30_stops": 4
+    },
+    "Pipeline B + 6.5 days (recommended: recent weeks, 5% late)": {
+      "flagged": 95,
+      "detractors": 45,
+      "free_shipping_stops": 75,
+      "freight_30_stops": 15
     }
   },
   "reach": {
@@ -141,6 +164,8 @@
     "BC.2": "operational rule: buffer chosen on the last validation fold (no test data); test late share is a post-test view",
     "BC.3": "scenario, unmeasured mechanism: actual carrier transit shortened by 10% for late orders handed over late",
     "BC.4": "association, not an effect: the alert model's risk under the dashboard's freight scenarios",
-    "BC.5": "observation (precision, alerts/day on test, post-test view); reach = precision x alerts/day"
+    "BC.5": "observation (precision, alerts/day on test, post-test view); reach = precision x alerts/day",
+    "BC.6": "assumption (5:1 cost); thresholds set on validation, test costs a post-test view",
+    "BC.7": "observation: repeat customers over the whole window, not a churn or lifetime measure"
   }
 }
