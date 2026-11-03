@@ -7,7 +7,8 @@ Paste everything below the line into your Claude session.
 
 ## Get the right state
 git fetch origin; git switch e5/validation-fixes-henry; git pull (head is the HS-03 commit, after 348e86d).
-Not merged into milestone-3 or main; Benson approves and merges after your 9/9.
+Benson merged this branch into milestone-3 and main on 2026-11-03 (B-CR-60), before your production. Keep working on
+e5/validation-fixes-henry; after your 9/9, Benson merges again.
 
 ## What changed since your v2.3 (sources only, content final)
 Read `CHANGELOG_B.md` B-CR-53 to B-CR-58, `spec/doc_outbox/reply_henry_2026-11-03_v2.4_content.md` and the newest
@@ -67,8 +68,8 @@ Read `CHANGELOG_B.md` B-CR-53 to B-CR-58, `spec/doc_outbox/reply_henry_2026-11-0
    anything moved, anything you think is wrong. Set this file's Status to ANSWERED.
 
 ## Not yours
-Benson (decisions B-G-19 to B-G-28 are Agreed) signs literature rows 13 and 14, checks the
-hosted app in a private window, and merges into milestone-3 and main.
+Benson merges your production into milestone-3 and main. Already done: decisions B-G-19 to B-G-28 Agreed,
+literature rows 13 and 14 signed, hosted app checked.
 
 ## Saving tokens
 Batch commands; read the newest WORKLOG entry and the last rows of records, not whole logs; read the doc with

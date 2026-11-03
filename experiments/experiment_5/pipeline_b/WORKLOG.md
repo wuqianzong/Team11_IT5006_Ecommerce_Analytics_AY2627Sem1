@@ -1020,3 +1020,9 @@ more on the test than sending no alert, because the test period had fewer detrac
 
 - Benson approved B-G-19, 20, 22 (parts superseded by B-G-26), 23, 26 and 27. Open for Benson: literature rows 13
   and 14, the private-window app check, and the merge after Henry's 9/9.
+
+## 2026-11-03 · Benson + Claude · Signed, app checked, merged (B-CR-60)
+
+- Benson signed literature rows 13 and 14 and checked the hosted app in a private window (works).
+- On Benson's order, merged into milestone-3 and fast-forwarded main before Henry's v2.4 production (HS-03); the
+  audit's live-doc and live-deck checks pass again once Henry syncs and refreshes the audit inputs.
