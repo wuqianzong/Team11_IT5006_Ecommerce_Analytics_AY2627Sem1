@@ -974,3 +974,10 @@ more on the test than sending no alert, because the test period had fewer detrac
 
 **Questions for Benson**
 - Same as the B-CR-53 entry: approvals, literature rows 13 and 14, merge.
+
+## 2026-11-03 · Benson + Claude · v2.4 accuracy pass (B-CR-55)
+
+**Done**
+- Checked Solomon's points against the filled v2.4 sources: 1–4 and 9 incorporated, 7 covered by §9's opening, 8 worded
+  (signatures open), 6 waits for the merge, 5 not valid. Benson: revise only what is wrong, not Solomon's suggestions.
+- Fixed four accuracy errors (see B-CR-55). Placeholders resolve; audit recomputation and alignment PASS.
