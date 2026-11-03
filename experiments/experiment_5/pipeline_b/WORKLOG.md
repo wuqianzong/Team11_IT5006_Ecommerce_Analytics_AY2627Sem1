@@ -875,3 +875,16 @@ more on the test than sending no alert, because the test period had fewer detrac
   `F.BC.promise_compare`) and `format_submission_docx.ps1`.
 - The review doc's file name still reads v2.2 (heading and note say v2.3); rename from the doc page.
 - Benson: approve B-CR-50 and B-G-19 to B-G-23 before any merge.
+
+## 2026-11-03 · Henry + Claude · Report v2.3 page budget (B-CR-51)
+
+**Done**
+- Henry's limit (B-G-24): new body text cut from about 1,245 to 338 words; no new body table; Tables 5 and 6 and the
+  freight scenarios moved to K18, K19 and K20. Review doc rev 52.
+
+**Checks**
+- Audit 9/9 on rev 52 and deck version 48. Local page check (same pipeline for both): v2.2 23.7, v2.3 24.0 text-pages
+  of body, so about +0.25 page in the official format; to confirm on the real export (body must end by page 20).
+
+**Question for Henry**
+- Which existing body text may be trimmed if the real export ends after page 20.

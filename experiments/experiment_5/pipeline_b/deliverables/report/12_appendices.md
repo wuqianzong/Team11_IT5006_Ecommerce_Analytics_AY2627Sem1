@@ -294,6 +294,40 @@ These tables were moved from the body to keep it within the page limit; the body
 | Reproducibility | The frozen models' predictions reproduce exactly on another machine; refitting gives slightly different numbers across machines | Reproduction compares predictions exactly and refitted scores within a tolerance |
 | Associations, not causes | Features describe association with the outcome, not the effect of acting on them | Recommendations are labelled by evidence type (section 9) |
 
+*Table K18. Promises on Pipeline B's test orders (section 9; post-test analysis).*
+
+| Promise | Median promise (days) | MAE (days) | Orders late |
+| --- | --- | --- | --- |
+| Olist's estimated delivery date | {{BC.promise.olist_median}} | {{BC.promise.olist_mae}} | {{BC.promise.olist_late}} |
+| Dummy (median lead time) | {{BC.promise.dummy_median}} | {{BC.promise.dummy_mae}} | {{BC.promise.dummy_late}} |
+| Pipeline A | {{BC.promise.A_median}} | {{BC.promise.A_mae}} | {{BC.promise.A_late}} |
+| Pipeline B | {{BC.promise.B_median}} | {{BC.promise.B_mae}} | {{BC.promise.B_late}} |
+| Pipeline B + 3 days | {{BC.promise.B3_median}} | {{BC.promise.B3_mae}} | {{BC.promise.B3_late}} |
+| Pipeline B + 5 days | {{BC.promise.B5_median}} | {{BC.promise.B5_mae}} | {{BC.promise.B5_late}} |
+| Pipeline B + 6 days | {{BC.promise.B6_median}} | {{BC.promise.B6_mae}} | {{BC.promise.B6_late}} |
+| Pipeline B + 12 days (buffer chosen on validation) | {{BC.promise.B12_median}} | {{BC.promise.B12_mae}} | {{BC.promise.B12_late}} |
+| Pipeline B + 10 days (recent-weeks rule) | {{BC.promise.B10_median}} | {{BC.promise.B10_mae}} | {{BC.promise.B10_late}} |
+
+The recent-weeks rule is applied on the last validation fold ({{BC.buffer.recentolist_first_purchase}} to {{BC.buffer.recentolist_last_purchase}}), where Olist's estimate was late for {{BC.buffer.recentolist_olist_validation_share_late}}; a 10% target on the same weeks would give {{BC.buffer.recent10_buffer_days}} days ({{BC.buffer.recent10_test_share_late_B}} late on the test). Transit scenario: under the recommended promise, {{BC.expedite.B10_late_with_late_handover}} of {{BC.expedite.B10_late_orders}} late orders were handed over late, and {{BC.expedite.B10_on_time_if_transit_10pct_faster}} of them would have arrived on time with transit 10% faster (against Olist's estimate, {{BC.expedite.olist_on_time_if_transit_10pct_faster}} of {{BC.expedite.olist_late_with_late_handover}}).
+
+*Table K19. Alert options on the test period: detractors reached a day = precision × alerts a day (section 9; post-test view; A at 4/15 is a threshold not tuned on the test).*
+
+| Option | Alerts a day | Precision | Detractors reached a day |
+| --- | --- | --- | --- |
+| Pipeline B at 4/15, seven states | {{BC.reach.B415_alerts_day}} | {{BC.reach.B415_precision}} | {{BC.reach.B415_reached_day}} |
+| Pipeline A fallback at 1/6, other orders | {{BC.reach.A16_alerts_day}} | {{BC.reach.A16_precision}} | {{BC.reach.A16_reached_day}} |
+| Pipeline A fallback at 4/15, other orders | {{BC.reach.A415_alerts_day}} | {{BC.reach.A415_precision}} | {{BC.reach.A415_reached_day}} |
+| Missed-dispatch rule | {{BC.reach.rule_alerts_day}} | {{BC.reach.rule_precision}} | {{BC.reach.rule_reached_day}} |
+
+*Table K20. Freight scenarios on the {{BC.discount.B10_flagged}} still-late orders Pipeline B flags under the recommended promise ({{BC.discount.B10_detractors}} detractors): alerts that fall below 4/15 (section 9; association, not an effect).*
+
+| Scenario | Alerts that stop | Of which below the lowest training freight |
+| --- | --- | --- |
+| Freight −20% | {{BC.discount.B10_f20_stops}} | {{BC.discount.B10_f20_outside}} |
+| Freight −30% | {{BC.discount.B10_f30_stops}} | {{BC.discount.B10_f30_outside}} |
+| Freight −50% | {{BC.discount.B10_f50_stops}} | {{BC.discount.B10_f50_outside}} |
+| Free shipping | {{BC.discount.B10_free_stops}} | {{BC.discount.B10_free_outside}} |
+
 ### L. Dashboard screenshots
 
 Two views of the app, reading the stored test outputs.

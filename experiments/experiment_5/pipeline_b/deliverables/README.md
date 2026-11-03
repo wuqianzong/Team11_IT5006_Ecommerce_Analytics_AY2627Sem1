@@ -28,4 +28,4 @@ A figure changes only by re-uploading the rebuilt PNG (blobs are immutable).
   link (B-CR-48); now slide 18 of 18.
 - Business case (B-CR-50): `business_case/make_business_case.py` (run with the dashboard venv) writes BC.1 to BC.5 with a
   manifest; the register reads them as `BCASE/<file>`. Deck slides 2 'business', 16 'use_reg' and 17 'use_clf'; report
-  §9 Tables 5 and 6 and figure 24.
+  §9 figure 24 and appendix tables K18–K20 (B-CR-51 moved Tables 5 and 6 there for the page limit).

@@ -9,7 +9,6 @@ Table K17 lists every remaining limit and how it is handled; these matter most f
 - **Recorded deviations.** Sigmoid calibration was kept although the pre-set rule preferred raw probabilities; Pipeline B's fold 1 is below the training minimum; the forest's best configuration sits on its grid edge (section 6).
 - **Associations, not causes.** No feature's effect on the outcome was tested; recommendations are labelled by evidence type (section 9).
 
-- **Business case.** The promise comparison, the transit scenario and the freight scenario in section 9 were computed after the test was read; the transit and freight results are scenarios and associations, not effects of an action, and the value of a kept promise or a recovered customer is not known.
-- **Missing operational data.** The models need a live feed of carrier handovers to alert in time, and nothing records what customer service did with an alert, so the effect of a contact cannot be measured yet.
+- **Business case.** Section 9's comparisons and scenarios were computed after the test; the transit and freight results are scenarios and associations, and without a live handover feed or a log of actions taken on alerts, the effect of a contact cannot be measured yet.
 
-**Next steps.** Run a randomised hold-back pilot: contact a random half of the alerted customers and compare their reviews and repeat orders with the other half, which measures the effect of a contact and the break-even. Connect the handover feed and log every action taken on an alert. Reset the promise buffer each month on recent weeks against Olist's late share, and monitor alert precision and late deliveries by state.
+**Next steps.** Run a randomised hold-back pilot (contact a random half of alerted customers and compare reviews and repeat orders), log every action on an alert, reset the promise buffer monthly against Olist's late share, and monitor alert precision and late deliveries by state.

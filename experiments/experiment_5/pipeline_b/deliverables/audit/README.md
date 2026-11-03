@@ -7,7 +7,7 @@ environment (`.venv`, pandas 3.0.1; `requirements-audit.txt` here pins the extra
 tests and the audit pack need):
 
 ```
-.venv/Scripts/python.exe pipeline_b/audit_deliverables_B.py --doc pipeline_b/deliverables/audit/inputs/report_export_rev51.md --deck pipeline_b/deliverables/audit/inputs/deck --doc-assets pipeline_b/deliverables/audit/inputs/doc_assets --deck-assets pipeline_b/deliverables/audit/inputs/deck_assets
+.venv/Scripts/python.exe pipeline_b/audit_deliverables_B.py --doc pipeline_b/deliverables/audit/inputs/report_export_rev52.md --deck pipeline_b/deliverables/audit/inputs/deck --doc-assets pipeline_b/deliverables/audit/inputs/doc_assets --deck-assets pipeline_b/deliverables/audit/inputs/deck_assets
 ```
 
 (`.venv/bin/python` on macOS or Linux.)
@@ -24,7 +24,7 @@ Benson's recheck.
 Inputs are read back from the live artifacts (the report doc exported to Markdown; deck slide files and every chart
 asset downloaded), never from local copies. `figure_map.json` records which register figure each chart is.
 
-- `inputs/report_export_rev51.md`: the final report v2.3 review doc exported to Markdown at rev 51 (2026-11-03).
+- `inputs/report_export_rev52.md`: the final report v2.3 review doc exported to Markdown at rev 52 (2026-11-03, after the page-budget trim, B-CR-51).
 - `inputs/deck/project/`: the 18 slide files and `deck.json` of deck v2.3, version 48 (2026-11-03; a version saved by
   the open editor one second later has identical files).
 - `inputs/doc_assets/` (29) and `inputs/deck_assets/` (22): every chart of the report and the deck. Of the deck's
@@ -34,7 +34,7 @@ asset downloaded), never from local copies. `figure_map.json` records which regi
 
 ## Last run
 
-2026-11-03 on the committed inputs (report v2.3 rev 51, deck v2.3 version 48), after B-CR-50 (business case):
+2026-11-03 on the committed inputs (report v2.3 rev 52, deck v2.3 version 48), after B-CR-51 (page budget):
 all 9 checks PASS (`audit_result.json`).
 
 ## Expected differences when re-checking
@@ -46,6 +46,8 @@ all 9 checks PASS (`audit_result.json`).
   "header kept".
 
 ## Earlier runs
+
+- 2026-11-03, report v2.3 rev 51 and deck v2.3 version 48, after B-CR-50: 9/9.
 
 - 2026-11-02, report v2.2 rev 48 and deck v2.2 version 44, after B-CR-49: 9/9.
 
