@@ -909,3 +909,18 @@ more on the test than sending no alert, because the test period had fewer detrac
 
 **Questions for Benson**
 - Approve B-CR-52 with B-CR-50 and B-CR-51 before any merge.
+
+## 2026-11-03 · Henry + Claude · Handover to Benson (HS-02)
+
+**Done**
+- `spec/doc_outbox/HS-02_benson_report_deck_v2.3_handover_2026-11-03.md`: prompt for Benson's agent to continue
+  report and deck v2.3 (state, binding rules, Word rebuild, token-saving practice, open approvals).
+- `deliverables/report/build/`: the Word build scripts, until now only in session scratchpads (`docx_fill.py`,
+  `report_v2_3_figs.tsv` with relative paths, `pair_fill.py`, `format_submission_docx.ps1`) and a README.
+
+**Checks**
+- `docx_fill.py` on rev 53's export gives the same `document.xml` as the filled copy behind the v2.3 export;
+  `pair_fill.py` on it: 2 pairs, 4 pictures replaced, 31 pictures. No register, source or export changed.
+
+**Questions for Benson**
+- Approve B-CR-50 to B-CR-52 and merge; rename the review doc (file name still v2.2).

@@ -1,0 +1,31 @@
+1	pipeline_b/evidence/build/figures/F.BIZ.revenue_repeat.png	Monthly revenue and customer repeat rate, March 2017 to April 2018 (dashboard Business overview data)
+2	pipeline_b/evidence/build/figures/F.A3.reg.target_kde.png	Lead-time distribution, development orders (Pipeline A EDA)
+3	pipeline_b/evidence/build/figures/F.reg.lateness_by_route.png	Late handover by route (B2)
+4	pipeline_b/evidence/build/figures/F.A3.reg.outcome_trends.png	Monthly orders and outcomes, development orders (Pipeline A EDA)
+5	pipeline_b/evidence/build/figures/F.A3.clf.outcome_trends.png	Monthly detractor rate, development orders (Pipeline A EDA)
+6	pipeline_b/evidence/build/figures/F.reg.history_coverage.png	Share of rows with their own seller and route history, by quarter
+7	pipeline_b/evidence/build/figures/F.reg.selection.png	Feature ranking and the 99% rule, regression
+8	pipeline_b/evidence/build/figures/F.clf.selection.png	Feature ranking and the 99% rule, detractor alert
+9	pipeline_b/evidence/build/figures/F.reg.partition.png	Time-ordered folds and the test period
+10	pipeline_b/evidence/build/figures/F.reg.family_ladder.png	Model ladder on the five folds, lead time
+11	pipeline_b/evidence/build/figures/F.clf.family_ladder.png	Model ladder on the five folds, detractor alert
+12	pipeline_b/evidence/build/figures/F.reg.validation_and_test.png	Delivery lead time: validation folds (selection scores) and the test, A and B
+13	pipeline_b/evidence/build/figures/F.reg.residuals.png	Residuals on B's test rows: B vs A
+14	pipeline_b/evidence/build/figures/F.reg.by_state.png	Lead-time error by customer state
+15	pipeline_b/evidence/build/figures/F.clf.validation_and_test.png	Detractor alert: validation folds (selection scores) and the test, A and B
+16	pipeline_b/evidence/build/figures/F.clf.test_curves.png	PR, ROC and reliability curves on B's test rows
+17	pipeline_b/evidence/build/figures/F.clf.threshold_options.png	Precision, recall and alerts per day against the threshold
+18	pipeline_b/evidence/build/figures/F.clf.by_state.png	Detractor alert precision and recall by customer state
+19	pipeline_b/evidence/build/figures/F.reg.population.png	Where B's gain comes from: scope vs features
+20	pipeline_b/evidence/build/figures/F.reg.importance.png	Permutation importance, B regression (test rows)
+21	pipeline_b/evidence/build/figures/F.clf.importance.png	Permutation importance, B classification (test rows)
+22	pipeline_b/evidence/build/figures/F.reg.coefficients.png	B's regression coefficients
+23	pipeline_b/evidence/build/figures/F.clf.coefficients.png	B's classification odds ratios
+24	pipeline_b/evidence/build/figures/F.BC.promise_compare.png	Median promised lead time, late share and MAE on Pipeline B's test orders
+25	pipeline_b/evidence/build/figures/F.reg.drift.png	Drift by fold, regression
+26	pipeline_b/evidence/build/figures/F.clf.auc_brier.png	ROC-AUC and Brier by population, detractor alert
+27	pipeline_b/evidence/build/figures/F.reg.ranking_stability.png	Delivery lead time: feature ranking on all development rows vs each training fold
+28	pipeline_b/evidence/build/figures/F.clf.ranking_stability.png	Detractor alert: feature ranking on all development rows vs each training fold
+29	pipeline_b/evidence/build/figures/F.A3.reg.correlation_heatmap.png	Pairwise correlations of A's numeric predictors (Pipeline A EDA)
+30	pipeline_b/deliverables/dashboard/app/screenshots/2026-10-29/05_alert_stats_test_4_15.png	App screenshot
+31	pipeline_b/deliverables/dashboard/app/screenshots/2026-10-29/06_score_alert_list.png	App screenshot
